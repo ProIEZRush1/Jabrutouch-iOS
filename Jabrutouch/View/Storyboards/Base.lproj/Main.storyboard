@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Yd1-qm-I9B">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hlJ-VD-Lqd">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,113 +9,302 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Display-Regular.otf">
+            <string>SFProDisplay-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
-        <!--Item 2-->
+        <!--Downloads View Controller-->
         <scene sceneID="75o-tt-jIa">
             <objects>
                 <viewController id="gkM-bD-pWP" customClass="DownloadsViewController" customModule="Jabrutouch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Zbc-ho-Ye5">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="733"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="1" green="0.37254901959999998" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                         <viewLayoutGuide key="safeArea" id="RZS-oN-cvG"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" image="DownloadsNatural" id="KfO-fA-E11"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t21-J5-8Pb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1107" y="15"/>
         </scene>
-        <!--Item-->
+        <!--Gemara View Controller-->
         <scene sceneID="RqO-Zt-41v">
             <objects>
                 <viewController id="P4T-xA-g21" customClass="GemaraViewController" customModule="Jabrutouch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TuE-Dk-Ict">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="733"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <viewLayoutGuide key="safeArea" id="C6I-JJ-zgh"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" image="GemaraNatural" id="xZS-u2-D3E"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cLH-Ab-OiE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-339" y="15"/>
         </scene>
-        <!--Item-->
+        <!--Mishna View Controller-->
         <scene sceneID="v1s-0N-VfV">
             <objects>
                 <viewController id="rH0-wW-8Qd" customClass="MishnaViewController" customModule="Jabrutouch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pC7-i8-Y6h">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="733"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.37709310433959409" green="1" blue="0.44387643456692139" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="kuC-qt-YNy"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" image="MishnaNatural" id="EKX-Ca-QnT"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QpQ-ox-ETR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="393" y="15"/>
         </scene>
-        <!--Item-->
+        <!--Donations View Controller-->
         <scene sceneID="wqN-I7-b5z">
             <objects>
                 <viewController id="6YE-v2-5Hc" customClass="DonationsViewController" customModule="Jabrutouch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nTo-1r-ILA">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="733"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="1" green="0.99626010693665912" blue="0.27453694829551756" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="mSO-ge-iO5"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" image="Donations" id="6QP-lc-Zj3"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WOZ-NP-GbP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1104" y="15"/>
         </scene>
-        <!--Item 1-->
+        <!--Main View Controller-->
         <scene sceneID="Vw6-8z-eOD">
             <objects>
                 <viewController id="hlJ-VD-Lqd" customClass="MainViewController" customModule="Jabrutouch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rWo-H5-Xrd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cae-IZ-YIV">
+                                <rect key="frame" x="0.0" y="44" width="414" height="733"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <containerView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hqr-vP-VSo">
+                                <rect key="frame" x="0.0" y="44" width="414" height="733"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <segue destination="o2k-RK-Mbm" kind="embed" identifier="embedModalsVC" id="b3c-6S-i8e"/>
+                                </connections>
+                            </containerView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="4c9-LO-X3G">
+                                <rect key="frame" x="0.0" y="777" width="414" height="85"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YiK-4x-gHP" userLabel="Downloads">
+                                        <rect key="frame" x="0.0" y="0.0" width="103.5" height="85"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DownloadsNatural" translatesAutoresizingMaskIntoConstraints="NO" id="rP6-iM-ZM4">
+                                                <rect key="frame" x="30.5" y="11.5" width="42.5" height="42.5"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Downloads" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JHT-9r-OyC">
+                                                <rect key="frame" x="19" y="60" width="66" height="17"/>
+                                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="14"/>
+                                                <color key="textColor" red="0.40392156862745099" green="0.62352941176470589" blue="0.91764705882352937" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hTB-rh-2MJ">
+                                                <rect key="frame" x="0.0" y="0.0" width="103.5" height="85"/>
+                                                <connections>
+                                                    <action selector="downloadsButtonTouchedDown:" destination="hlJ-VD-Lqd" eventType="touchDown" id="AEB-WR-hVV"/>
+                                                    <action selector="downloadsButtonTouchedUp:" destination="hlJ-VD-Lqd" eventType="touchUpInside" id="bkd-oU-zKm"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="hTB-rh-2MJ" firstAttribute="leading" secondItem="YiK-4x-gHP" secondAttribute="leading" id="9Ve-aj-0n7"/>
+                                            <constraint firstItem="rP6-iM-ZM4" firstAttribute="centerX" secondItem="YiK-4x-gHP" secondAttribute="centerX" id="EVl-is-2YI"/>
+                                            <constraint firstAttribute="trailing" secondItem="hTB-rh-2MJ" secondAttribute="trailing" id="FWX-DE-IB1"/>
+                                            <constraint firstItem="hTB-rh-2MJ" firstAttribute="top" secondItem="YiK-4x-gHP" secondAttribute="top" id="Hwj-W0-MyY"/>
+                                            <constraint firstAttribute="centerY" secondItem="rP6-iM-ZM4" secondAttribute="centerY" constant="10" id="Vkw-dA-xfY"/>
+                                            <constraint firstItem="JHT-9r-OyC" firstAttribute="centerX" secondItem="YiK-4x-gHP" secondAttribute="centerX" id="YDa-gL-M7K"/>
+                                            <constraint firstAttribute="bottom" secondItem="hTB-rh-2MJ" secondAttribute="bottom" id="kGx-i9-xfk"/>
+                                            <constraint firstAttribute="bottom" secondItem="JHT-9r-OyC" secondAttribute="bottom" constant="8" id="ymX-FF-VZy"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E68-RH-fqJ" userLabel="Gemara">
+                                        <rect key="frame" x="103.5" y="0.0" width="103.5" height="85"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GemaraNatural" translatesAutoresizingMaskIntoConstraints="NO" id="fau-za-HIW">
+                                                <rect key="frame" x="35.5" y="14.5" width="32.5" height="36"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gemara" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L4b-Gk-dkC">
+                                                <rect key="frame" x="28.5" y="60" width="47" height="17"/>
+                                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="14"/>
+                                                <color key="textColor" red="0.4039215686" green="0.62352941179999999" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jme-3j-dBL">
+                                                <rect key="frame" x="0.0" y="0.0" width="103.5" height="85"/>
+                                                <connections>
+                                                    <action selector="gemaraButtonTouchedDown:" destination="hlJ-VD-Lqd" eventType="touchDown" id="Acj-Iw-RtD"/>
+                                                    <action selector="gemaraButtonTouchedUp:" destination="hlJ-VD-Lqd" eventType="touchUpInside" id="8Ab-hr-q7b"/>
+                                                    <action selector="gemaraButtonTouchedUpOutside:" destination="hlJ-VD-Lqd" eventType="touchDragOutside" id="ilI-31-fTf"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="Jme-3j-dBL" secondAttribute="bottom" id="Ice-1w-r7R"/>
+                                            <constraint firstItem="L4b-Gk-dkC" firstAttribute="centerX" secondItem="E68-RH-fqJ" secondAttribute="centerX" id="IxY-A6-8oU"/>
+                                            <constraint firstAttribute="bottom" secondItem="L4b-Gk-dkC" secondAttribute="bottom" constant="8" id="PUV-Tk-rJs"/>
+                                            <constraint firstAttribute="trailing" secondItem="Jme-3j-dBL" secondAttribute="trailing" id="U1N-8L-bEC"/>
+                                            <constraint firstItem="fau-za-HIW" firstAttribute="centerX" secondItem="E68-RH-fqJ" secondAttribute="centerX" id="V4n-hc-e9p"/>
+                                            <constraint firstItem="Jme-3j-dBL" firstAttribute="top" secondItem="E68-RH-fqJ" secondAttribute="top" id="YIj-pO-Lc5"/>
+                                            <constraint firstItem="Jme-3j-dBL" firstAttribute="leading" secondItem="E68-RH-fqJ" secondAttribute="leading" id="cuK-9l-ERP"/>
+                                            <constraint firstAttribute="centerY" secondItem="fau-za-HIW" secondAttribute="centerY" constant="10" id="edD-dW-pqk"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qru-nw-mBS" userLabel="Mishna">
+                                        <rect key="frame" x="207" y="0.0" width="103.5" height="85"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MishnaNatural" translatesAutoresizingMaskIntoConstraints="NO" id="AYo-I6-pyK">
+                                                <rect key="frame" x="32.5" y="14.5" width="39" height="36"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mishna" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bgp-mR-fuJ">
+                                                <rect key="frame" x="30.5" y="60" width="43" height="17"/>
+                                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="14"/>
+                                                <color key="textColor" red="0.4039215686" green="0.62352941179999999" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MMO-Yi-9hU">
+                                                <rect key="frame" x="0.0" y="0.0" width="103.5" height="85"/>
+                                                <connections>
+                                                    <action selector="mishnaButtonTouchedDown:" destination="hlJ-VD-Lqd" eventType="touchDown" id="xBh-Dk-j8y"/>
+                                                    <action selector="mishnaButtonTouchedUp:" destination="hlJ-VD-Lqd" eventType="touchUpInside" id="CAr-2W-Tbs"/>
+                                                    <action selector="mishnaButtonTouchedUpOutside:" destination="hlJ-VD-Lqd" eventType="touchUpOutside" id="Jfk-2f-3lD"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="MMO-Yi-9hU" firstAttribute="leading" secondItem="Qru-nw-mBS" secondAttribute="leading" id="8xN-EA-7gR"/>
+                                            <constraint firstAttribute="centerY" secondItem="AYo-I6-pyK" secondAttribute="centerY" constant="10" id="CWJ-Xr-Bfc"/>
+                                            <constraint firstAttribute="trailing" secondItem="MMO-Yi-9hU" secondAttribute="trailing" id="KQ1-Bn-EsS"/>
+                                            <constraint firstItem="MMO-Yi-9hU" firstAttribute="top" secondItem="Qru-nw-mBS" secondAttribute="top" id="X5B-oD-lMj"/>
+                                            <constraint firstItem="AYo-I6-pyK" firstAttribute="centerX" secondItem="Qru-nw-mBS" secondAttribute="centerX" id="a5r-wd-JQM"/>
+                                            <constraint firstAttribute="bottom" secondItem="bgp-mR-fuJ" secondAttribute="bottom" constant="8" id="oRG-ab-Xif"/>
+                                            <constraint firstItem="bgp-mR-fuJ" firstAttribute="centerX" secondItem="Qru-nw-mBS" secondAttribute="centerX" id="pBN-ut-6XT"/>
+                                            <constraint firstAttribute="bottom" secondItem="MMO-Yi-9hU" secondAttribute="bottom" id="qp1-v9-2bO"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rwj-eg-OD3" userLabel="Donations">
+                                        <rect key="frame" x="310.5" y="0.0" width="103.5" height="85"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Donations" translatesAutoresizingMaskIntoConstraints="NO" id="43y-Mw-dCv">
+                                                <rect key="frame" x="31" y="14.5" width="41.5" height="36.5"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Donations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="grj-PZ-3qy">
+                                                <rect key="frame" x="22" y="60" width="60" height="17"/>
+                                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="14"/>
+                                                <color key="textColor" red="0.4039215686" green="0.62352941179999999" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TaV-ek-GJB">
+                                                <rect key="frame" x="0.0" y="0.0" width="103.5" height="85"/>
+                                                <connections>
+                                                    <action selector="donationsButtonTouchedDown:" destination="hlJ-VD-Lqd" eventType="touchDown" id="XYM-Qm-PHg"/>
+                                                    <action selector="donationsButtonTouchedUp:" destination="hlJ-VD-Lqd" eventType="touchUpInside" id="Nov-l2-Qid"/>
+                                                    <action selector="donationsButtonTouchedUpOutside:" destination="hlJ-VD-Lqd" eventType="touchUpOutside" id="oOr-4U-dRT"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="centerY" secondItem="43y-Mw-dCv" secondAttribute="centerY" constant="10" id="Vw6-9e-HGR"/>
+                                            <constraint firstAttribute="bottom" secondItem="grj-PZ-3qy" secondAttribute="bottom" constant="8" id="WjS-Zx-xQR"/>
+                                            <constraint firstItem="grj-PZ-3qy" firstAttribute="centerX" secondItem="rwj-eg-OD3" secondAttribute="centerX" id="bO7-rD-qqH"/>
+                                            <constraint firstAttribute="bottom" secondItem="TaV-ek-GJB" secondAttribute="bottom" id="fim-Cf-3Dv"/>
+                                            <constraint firstItem="43y-Mw-dCv" firstAttribute="centerX" secondItem="rwj-eg-OD3" secondAttribute="centerX" id="kcn-un-stL"/>
+                                            <constraint firstItem="TaV-ek-GJB" firstAttribute="top" secondItem="rwj-eg-OD3" secondAttribute="top" id="uAt-5r-HFn"/>
+                                            <constraint firstItem="TaV-ek-GJB" firstAttribute="leading" secondItem="rwj-eg-OD3" secondAttribute="leading" id="wnp-gt-Dbj"/>
+                                            <constraint firstAttribute="trailing" secondItem="TaV-ek-GJB" secondAttribute="trailing" id="yjM-L1-ui9"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="85" id="vOx-ZL-Q5R"/>
+                                </constraints>
+                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6iL-y3-JY0">
+                                <rect key="frame" x="0.0" y="862" width="414" height="34"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="p3Y-qg-GTc" firstAttribute="trailing" secondItem="Hqr-vP-VSo" secondAttribute="trailing" id="55X-a9-ubr"/>
+                            <constraint firstItem="6iL-y3-JY0" firstAttribute="top" secondItem="p3Y-qg-GTc" secondAttribute="bottom" id="LJw-It-CSO"/>
+                            <constraint firstItem="4c9-LO-X3G" firstAttribute="leading" secondItem="p3Y-qg-GTc" secondAttribute="leading" id="MYO-4q-SL9"/>
+                            <constraint firstItem="Hqr-vP-VSo" firstAttribute="top" secondItem="p3Y-qg-GTc" secondAttribute="top" id="O8K-im-TFi"/>
+                            <constraint firstItem="p3Y-qg-GTc" firstAttribute="trailing" secondItem="6iL-y3-JY0" secondAttribute="trailing" id="PZO-Wo-cnA"/>
+                            <constraint firstItem="4c9-LO-X3G" firstAttribute="trailing" secondItem="p3Y-qg-GTc" secondAttribute="trailing" id="TWL-aj-v4s"/>
+                            <constraint firstItem="6iL-y3-JY0" firstAttribute="top" secondItem="4c9-LO-X3G" secondAttribute="bottom" id="Udo-p3-SX1"/>
+                            <constraint firstItem="Hqr-vP-VSo" firstAttribute="leading" secondItem="p3Y-qg-GTc" secondAttribute="leading" id="VFo-cj-Ptc"/>
+                            <constraint firstAttribute="bottom" secondItem="6iL-y3-JY0" secondAttribute="bottom" id="X0k-1y-8Ca"/>
+                            <constraint firstItem="p3Y-qg-GTc" firstAttribute="trailing" secondItem="cae-IZ-YIV" secondAttribute="trailing" id="ZEh-A2-8qI"/>
+                            <constraint firstItem="4c9-LO-X3G" firstAttribute="top" secondItem="Hqr-vP-VSo" secondAttribute="bottom" id="iJe-7c-rAo"/>
+                            <constraint firstItem="cae-IZ-YIV" firstAttribute="top" secondItem="p3Y-qg-GTc" secondAttribute="top" id="kyi-rY-6ZS"/>
+                            <constraint firstItem="cae-IZ-YIV" firstAttribute="leading" secondItem="p3Y-qg-GTc" secondAttribute="leading" id="qYP-lf-KVl"/>
+                            <constraint firstItem="4c9-LO-X3G" firstAttribute="top" secondItem="cae-IZ-YIV" secondAttribute="bottom" id="z2l-6m-abc"/>
+                            <constraint firstItem="6iL-y3-JY0" firstAttribute="leading" secondItem="p3Y-qg-GTc" secondAttribute="leading" id="zdK-by-rT2"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="p3Y-qg-GTc"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="vRN-WM-cEd"/>
+                    <connections>
+                        <outlet property="donationsButton" destination="TaV-ek-GJB" id="SDT-Tf-mi6"/>
+                        <outlet property="donationsImageView" destination="43y-Mw-dCv" id="Fc6-Tm-6wn"/>
+                        <outlet property="donationsLabel" destination="grj-PZ-3qy" id="Kw7-OB-AUC"/>
+                        <outlet property="downloadsButton" destination="hTB-rh-2MJ" id="IvZ-5A-sh3"/>
+                        <outlet property="downloadsImageView" destination="rP6-iM-ZM4" id="a8B-Ea-l12"/>
+                        <outlet property="downloadsLabel" destination="JHT-9r-OyC" id="ctC-Iu-de2"/>
+                        <outlet property="gemaraButton" destination="Jme-3j-dBL" id="Dkf-AZ-XBI"/>
+                        <outlet property="gemaraImageView" destination="fau-za-HIW" id="bo8-I4-jWL"/>
+                        <outlet property="gemaraLabel" destination="L4b-Gk-dkC" id="4Zn-18-fMh"/>
+                        <outlet property="mainContainer" destination="cae-IZ-YIV" id="VrV-3U-gQX"/>
+                        <outlet property="mishnaButton" destination="MMO-Yi-9hU" id="lZr-WX-udo"/>
+                        <outlet property="mishnaImageView" destination="AYo-I6-pyK" id="g3X-ag-CRl"/>
+                        <outlet property="mishnaLabel" destination="bgp-mR-fuJ" id="Lpk-9C-0O2"/>
+                        <outlet property="modalsContainer" destination="Hqr-vP-VSo" id="DYM-YC-mRC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MyD-j7-MvK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1881" y="15"/>
+            <point key="canvasLocation" x="-1107" y="-716"/>
         </scene>
-        <!--Main Tab Bar Controller-->
-        <scene sceneID="nsT-4P-saZ">
+        <!--View Controller-->
+        <scene sceneID="cwM-MN-mhC">
             <objects>
-                <tabBarController id="Yd1-qm-I9B" customClass="MainTabBarController" customModule="Jabrutouch" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="eSj-AR-S71">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </tabBar>
+                <viewController definesPresentationContext="YES" id="o2k-RK-Mbm" sceneMemberID="viewController">
+                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="FjY-wo-PqN">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="733"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
                     <connections>
-                        <segue destination="hlJ-VD-Lqd" kind="relationship" relationship="viewControllers" id="LNf-7g-iAe"/>
-                        <segue destination="gkM-bD-pWP" kind="relationship" relationship="viewControllers" id="A3n-pC-aYb"/>
-                        <segue destination="P4T-xA-g21" kind="relationship" relationship="viewControllers" id="b12-zj-Ngz"/>
-                        <segue destination="rH0-wW-8Qd" kind="relationship" relationship="viewControllers" id="Q0T-JW-PbI"/>
-                        <segue destination="6YE-v2-5Hc" kind="relationship" relationship="viewControllers" id="a90-5Z-aya"/>
+                        <segue destination="gkM-bD-pWP" kind="presentation" identifier="presentDownloads" modalPresentationStyle="currentContext" id="OrO-Y6-OGb"/>
+                        <segue destination="P4T-xA-g21" kind="presentation" identifier="presentGemara" modalPresentationStyle="currentContext" id="dXS-Aw-ZYs"/>
+                        <segue destination="rH0-wW-8Qd" kind="presentation" identifier="presentMishna" modalPresentationStyle="currentContext" id="wIS-u8-sSV"/>
+                        <segue destination="6YE-v2-5Hc" kind="presentation" identifier="presentDonations" modalPresentationStyle="currentContext" id="1Eq-Xo-pbZ"/>
                     </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rrP-VQ-LGl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4ZF-Ew-sWy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-339" y="-766"/>
+            <point key="canvasLocation" x="6" y="-716"/>
         </scene>
     </scenes>
     <resources>
-        <image name="Donations" width="21" height="18.5"/>
-        <image name="DownloadsNatural" width="21.5" height="21.5"/>
-        <image name="GemaraNatural" width="16.5" height="18.5"/>
-        <image name="MishnaNatural" width="20" height="18.5"/>
+        <image name="Donations" width="41.5" height="36.5"/>
+        <image name="DownloadsNatural" width="42.5" height="42.5"/>
+        <image name="GemaraNatural" width="32.5" height="36"/>
+        <image name="MishnaNatural" width="39" height="36"/>
     </resources>
 </document>
