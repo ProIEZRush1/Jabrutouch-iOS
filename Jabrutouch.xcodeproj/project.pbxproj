@@ -12,7 +12,7 @@
 		2120BE2122DF2787004854DB /* VerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2120BE2022DF2787004854DB /* VerificationViewController.swift */; };
 		2120BE2322DF279D004854DB /* VerificationCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2120BE2222DF279D004854DB /* VerificationCodeViewController.swift */; };
 		2133C1F822DB5B8200F910B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2133C1F722DB5B8200F910B9 /* AppDelegate.swift */; };
-		2133C1FA22DB5B8200F910B9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2133C1F922DB5B8200F910B9 /* ViewController.swift */; };
+		2133C1FA22DB5B8200F910B9 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2133C1F922DB5B8200F910B9 /* MainTabBarController.swift */; };
 		2133C1FD22DB5B8200F910B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2133C1FB22DB5B8200F910B9 /* Main.storyboard */; };
 		2133C1FF22DB5B8500F910B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2133C1FE22DB5B8500F910B9 /* Assets.xcassets */; };
 		2133C20222DB5B8500F910B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2133C20022DB5B8500F910B9 /* LaunchScreen.storyboard */; };
@@ -68,6 +68,11 @@
 		21678D7022DF2CED007BC74C /* SF-Pro-Text-ThinItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 21678D3C22DF2CC7007BC74C /* SF-Pro-Text-ThinItalic.otf */; };
 		21678D7122DF2CED007BC74C /* SF-Pro-Text-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 21678D4422DF2CCA007BC74C /* SF-Pro-Text-Ultralight.otf */; };
 		21678D7222DF2CED007BC74C /* SF-Pro-Text-UltralightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 21678D3522DF2CC5007BC74C /* SF-Pro-Text-UltralightItalic.otf */; };
+		21678D7422E08530007BC74C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21678D7322E08530007BC74C /* MainViewController.swift */; };
+		21678D7622E08565007BC74C /* DownloadsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21678D7522E08565007BC74C /* DownloadsViewController.swift */; };
+		21678D7822E08594007BC74C /* GemaraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21678D7722E08594007BC74C /* GemaraViewController.swift */; };
+		21678D7A22E085B1007BC74C /* MishnaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21678D7922E085B1007BC74C /* MishnaViewController.swift */; };
+		21678D7C22E085CB007BC74C /* DonationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21678D7B22E085CB007BC74C /* DonationsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,7 +82,7 @@
 		2120BE2222DF279D004854DB /* VerificationCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationCodeViewController.swift; sourceTree = "<group>"; };
 		2133C1F422DB5B8200F910B9 /* Jabrutouch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jabrutouch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2133C1F722DB5B8200F910B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2133C1F922DB5B8200F910B9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2133C1F922DB5B8200F910B9 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		2133C1FC22DB5B8200F910B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2133C1FE22DB5B8500F910B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Assets.xcassets; sourceTree = "<group>"; };
 		2133C20122DB5B8500F910B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -134,6 +139,11 @@
 		21678D4322DF2CCA007BC74C /* SF-Pro-Text-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Thin.otf"; sourceTree = "<group>"; };
 		21678D4422DF2CCA007BC74C /* SF-Pro-Text-Ultralight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Ultralight.otf"; sourceTree = "<group>"; };
 		21678D4522DF2CCB007BC74C /* SF-Pro-Text-RegularItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-RegularItalic.otf"; sourceTree = "<group>"; };
+		21678D7322E08530007BC74C /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		21678D7522E08565007BC74C /* DownloadsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsViewController.swift; sourceTree = "<group>"; };
+		21678D7722E08594007BC74C /* GemaraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GemaraViewController.swift; sourceTree = "<group>"; };
+		21678D7922E085B1007BC74C /* MishnaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MishnaViewController.swift; sourceTree = "<group>"; };
+		21678D7B22E085CB007BC74C /* DonationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonationsViewController.swift; sourceTree = "<group>"; };
 		21B1A44222DDD30E006A33C9 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Jabrutouch/Info.plist; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -251,7 +261,6 @@
 				2133C21122DCA0E000F910B9 /* WalkThrough */,
 				2133C20F22DCA0CD00F910B9 /* SignIn */,
 				2133C21022DCA0D900F910B9 /* Main */,
-				2133C1F922DB5B8200F910B9 /* ViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -278,6 +287,12 @@
 		2133C21022DCA0D900F910B9 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				2133C1F922DB5B8200F910B9 /* MainTabBarController.swift */,
+				21678D7322E08530007BC74C /* MainViewController.swift */,
+				21678D7522E08565007BC74C /* DownloadsViewController.swift */,
+				21678D7722E08594007BC74C /* GemaraViewController.swift */,
+				21678D7922E085B1007BC74C /* MishnaViewController.swift */,
+				21678D7B22E085CB007BC74C /* DonationsViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -441,16 +456,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				2133C22122DCFEB500F910B9 /* WalkThroughCollectionViewCell.swift in Sources */,
-				2133C1FA22DB5B8200F910B9 /* ViewController.swift in Sources */,
+				2133C1FA22DB5B8200F910B9 /* MainTabBarController.swift in Sources */,
 				2120BE2122DF2787004854DB /* VerificationViewController.swift in Sources */,
+				21678D7422E08530007BC74C /* MainViewController.swift in Sources */,
 				2133C21F22DCFC6600F910B9 /* WalkThroughViewController.swift in Sources */,
 				2133C22622DDCD3E00F910B9 /* Colors.swift in Sources */,
+				21678D7C22E085CB007BC74C /* DonationsViewController.swift in Sources */,
 				2120BE1D22DF273F004854DB /* SignInViewController.swift in Sources */,
 				2120BE2322DF279D004854DB /* VerificationCodeViewController.swift in Sources */,
 				2133C21B22DCA5FC00F910B9 /* Strings.swift in Sources */,
+				21678D7A22E085B1007BC74C /* MishnaViewController.swift in Sources */,
+				21678D7622E08565007BC74C /* DownloadsViewController.swift in Sources */,
 				2120BE1F22DF2758004854DB /* SignUpViewController.swift in Sources */,
 				2133C22422DDCCD500F910B9 /* JBBarPageIndicator.swift in Sources */,
 				2133C1F822DB5B8200F910B9 /* AppDelegate.swift in Sources */,
+				21678D7822E08594007BC74C /* GemaraViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

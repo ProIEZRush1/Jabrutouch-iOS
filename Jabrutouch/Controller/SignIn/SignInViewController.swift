@@ -67,7 +67,7 @@ class SignInViewController: UIViewController {
     //============================================================
     
     @IBAction func signInButtonPressed(_ sender: UIButton) {
-        
+        self.performSegue(withIdentifier: "presentMain", sender: nil)
     }
     
     @IBAction func signUpButtonPressed(_ sender: UIButton) {

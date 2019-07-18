@@ -52,4 +52,24 @@ class Strings {
     class var forgotPassword: String {
         return NSLocalizedString("forgotPassword", comment: "")
     }
+    
+    class var main: String {
+        return NSLocalizedString("main", comment: "")
+    }
+    
+    class var downloads: String {
+        return NSLocalizedString("downloads", comment: "")
+    }
+    
+    class var gemara: String {
+        return NSLocalizedString("gemara", comment: "")
+    }
+    
+    class var mishna: String {
+        return NSLocalizedString("mishna", comment: "")
+    }
+    
+    class var donations: String {
+        return NSLocalizedString("donations", comment: "")
+    }
 }
