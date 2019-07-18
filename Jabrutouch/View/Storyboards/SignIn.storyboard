@@ -9,6 +9,14 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Display-Bold.otf">
+            <string>SFProDisplay-Bold</string>
+        </array>
+        <array key="SF-Pro-Text-Medium.otf">
+            <string>SFProText-Medium</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Walk Through View Controller-->
         <scene sceneID="6a1-YK-PSV">
@@ -37,7 +45,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NYV-DT-0yb">
                                                     <rect key="frame" x="8" y="40" width="398" height="33.5"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="28"/>
+                                                    <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="28"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -137,17 +145,100 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ja3-jh-CEE">
-                                <rect key="frame" x="186" y="86" width="42" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ja3-jh-CEE">
+                                <rect key="frame" x="8" y="164" width="398" height="36"/>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email or phone number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jtn-FF-X5v">
+                                <rect key="frame" x="48" y="300" width="318" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Jtn-FF-X5v" secondAttribute="height" multiplier="318:50" id="tYg-CU-iwg"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="18"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="1bu-tt-Nqu" id="kgo-bZ-FCr"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="I6x-qN-dog">
+                                <rect key="frame" x="48" y="378" width="318" height="50"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                <connections>
+                                    <outlet property="delegate" destination="1bu-tt-Nqu" id="YcG-9d-L5F"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kn5-fS-UAc">
+                                <rect key="frame" x="114" y="486" width="186" height="50"/>
+                                <color key="backgroundColor" red="1" green="0.37254901960784315" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Kn5-fS-UAc" secondAttribute="height" multiplier="93:25" id="UjO-l8-PZM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="18"/>
+                                <state key="normal" title="Sign In">
+                                    <color key="titleColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="signInButtonPressed:" destination="1bu-tt-Nqu" eventType="touchUpInside" id="UPL-vr-XNd"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xP2-zt-sRm">
+                                <rect key="frame" x="124" y="798" width="166" height="34"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="18"/>
+                                <state key="normal" title="Forogot Password?">
+                                    <color key="titleColor" red="0.16862745098039217" green="0.1764705882352941" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="forgotPasswordButtonPressed:" destination="1bu-tt-Nqu" eventType="touchUpInside" id="zrS-Hb-piw"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sTO-wd-a9K">
+                                <rect key="frame" x="70.5" y="748" width="273" height="34"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="18"/>
+                                <state key="normal" title="Don't have an account? Sign up">
+                                    <color key="titleColor" red="0.16862745100000001" green="0.1764705882" blue="0.66274509800000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="signUpButtonPressed:" destination="1bu-tt-Nqu" eventType="touchUpInside" id="If6-VX-GZe"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Jtn-FF-X5v" firstAttribute="width" secondItem="Iyp-aJ-Jsf" secondAttribute="width" multiplier="318:414" id="5d3-JH-6Xu"/>
+                            <constraint firstItem="xP2-zt-sRm" firstAttribute="top" secondItem="sTO-wd-a9K" secondAttribute="bottom" constant="16" id="69e-QR-71t"/>
+                            <constraint firstItem="I6x-qN-dog" firstAttribute="centerX" secondItem="Jtn-FF-X5v" secondAttribute="centerX" id="6xu-hC-2wk"/>
+                            <constraint firstItem="Cyj-JD-TiH" firstAttribute="trailing" secondItem="Ja3-jh-CEE" secondAttribute="trailing" constant="8" id="Koj-Pm-9HF"/>
+                            <constraint firstItem="Kn5-fS-UAc" firstAttribute="top" secondItem="I6x-qN-dog" secondAttribute="bottom" constant="58" id="MLw-T4-3oA"/>
+                            <constraint firstItem="Jtn-FF-X5v" firstAttribute="top" secondItem="Ja3-jh-CEE" secondAttribute="bottom" constant="100" id="MXY-qz-3gP"/>
+                            <constraint firstItem="Cyj-JD-TiH" firstAttribute="bottom" secondItem="xP2-zt-sRm" secondAttribute="bottom" constant="30" id="R0p-EO-ORY"/>
+                            <constraint firstItem="Ja3-jh-CEE" firstAttribute="top" secondItem="Cyj-JD-TiH" secondAttribute="top" constant="120" id="aJz-nk-Kv0"/>
+                            <constraint firstItem="Jtn-FF-X5v" firstAttribute="centerX" secondItem="Cyj-JD-TiH" secondAttribute="centerX" id="aUi-N3-Bzp"/>
+                            <constraint firstItem="Ja3-jh-CEE" firstAttribute="leading" secondItem="Cyj-JD-TiH" secondAttribute="leading" constant="8" id="cY1-F4-97e"/>
+                            <constraint firstItem="xP2-zt-sRm" firstAttribute="centerX" secondItem="Cyj-JD-TiH" secondAttribute="centerX" id="dkk-jK-YJe"/>
+                            <constraint firstItem="Kn5-fS-UAc" firstAttribute="centerX" secondItem="I6x-qN-dog" secondAttribute="centerX" id="dz8-8C-ZBL"/>
+                            <constraint firstItem="I6x-qN-dog" firstAttribute="width" secondItem="Jtn-FF-X5v" secondAttribute="width" id="fLP-cQ-4GV"/>
+                            <constraint firstItem="I6x-qN-dog" firstAttribute="height" secondItem="Jtn-FF-X5v" secondAttribute="height" id="jsZ-Ds-aB3"/>
+                            <constraint firstItem="Kn5-fS-UAc" firstAttribute="width" secondItem="Iyp-aJ-Jsf" secondAttribute="width" multiplier="186:414" id="pBl-B1-V1A"/>
+                            <constraint firstItem="sTO-wd-a9K" firstAttribute="centerX" secondItem="xP2-zt-sRm" secondAttribute="centerX" id="sUq-7g-6uh"/>
+                            <constraint firstItem="I6x-qN-dog" firstAttribute="top" secondItem="Jtn-FF-X5v" secondAttribute="bottom" constant="28" id="uUu-2j-AnS"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Cyj-JD-TiH"/>
                     </view>
+                    <connections>
+                        <outlet property="forgotPasswordButton" destination="xP2-zt-sRm" id="RkC-kW-MPn"/>
+                        <outlet property="passwordTF" destination="I6x-qN-dog" id="C1W-Jb-ZCM"/>
+                        <outlet property="signInButton" destination="Kn5-fS-UAc" id="wT3-HF-JGK"/>
+                        <outlet property="signUpButton" destination="sTO-wd-a9K" id="rCN-yH-uKp"/>
+                        <outlet property="titleLabel" destination="Ja3-jh-CEE" id="541-8v-SnV"/>
+                        <outlet property="usernameTF" destination="Jtn-FF-X5v" id="SHn-S0-Jc2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2pj-Fw-XGS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -29,6 +29,7 @@ class SignInViewController: UIViewController {
         
         self.setStrings()
         self.roundCorners()
+        self.addBorders()
     }
     
     //============================================================
@@ -42,16 +43,25 @@ class SignInViewController: UIViewController {
         self.signInButton.setTitle(Strings.signIn, for: .normal)
         self.forgotPasswordButton.setTitle(Strings.forgotPassword, for: .normal)
         
-        let signUpTitle = NSMutableAttributedString(string: Strings.dontHaveAccount)
+        let signUpTitle = NSMutableAttributedString(string: Strings.dontHaveAccount, attributes: [NSAttributedString.Key.foregroundColor: Colors.textMediumBlue])
         let range = (Strings.dontHaveAccount as NSString).range(of: Strings.signUp)
         signUpTitle.addAttributes([NSAttributedString.Key.underlineStyle:NSNumber(value: 1)], range: range)
         self.signUpButton.setAttributedTitle(signUpTitle, for: .normal)
     }
 
     private func roundCorners() {
-        self.signInButton.layer.cornerRadius = self.signUpButton.bounds.height/2
+        self.signInButton.layer.cornerRadius = self.signInButton.bounds.height/2
+        self.usernameTF.layer.cornerRadius = self.usernameTF.bounds.height/2
+        self.passwordTF.layer.cornerRadius = self.passwordTF.bounds.height/2
     }
     
+    private func addBorders() {
+        self.usernameTF.layer.borderColor = Colors.borderGray.cgColor
+        self.usernameTF.layer.borderWidth = 1.0
+        
+        self.passwordTF.layer.borderColor = Colors.borderGray.cgColor
+        self.passwordTF.layer.borderWidth = 1.0
+    }
     //============================================================
     // MARK: - @IBActions
     //============================================================
