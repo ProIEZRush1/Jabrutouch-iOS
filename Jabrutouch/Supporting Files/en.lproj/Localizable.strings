@@ -1,0 +1,25 @@
+/* 
+  Localizable.strings
+  Jabrutouch
+
+  Created by Yoni Reiss on 15/07/2019.
+  Copyright © 2019 Ravtech. All rights reserved.
+*/
+
+"welcomeToJabrutouch" = "Welcome to \nJabrutouch";
+"jabrutouch" = "Jabrutouch";
+"learnTalmudAndGemara" = "Learn Talmud and Gemara";
+"giveTheGiftOfLearning" = "Give the gift of learning";
+"askTheRabbiJoinTheJabruta" = "Ask the Rabbi,\n join the Jabruta";
+"signIn" = "Sign In";
+"emailOrPhoneNumber" = "Email or phone number";
+"password" = "Password";
+"dontHaveAccount" = "Don't have account? Sign up";
+"signUp" = "Sign up";
+"forgotPassword" = "Forgot Password?";
+
+"main" = "Main";
+"downloads" = "Downloads";
+"gemara" = "Gemara";
+"mishna" = "Mishna";
+"donations" = "Donations";
