@@ -11,20 +11,32 @@
     </dependencies>
     <scenes>
         <!--Item 2-->
-        <scene sceneID="75o-tt-jIa">
+        <scene sceneID="UTJ-ed-dYo">
             <objects>
-                <viewController id="gkM-bD-pWP" customClass="DownloadsViewController" customModule="Jabrutouch" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Zbc-ho-Ye5">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="RZS-oN-cvG"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" image="DownloadsNatural" id="KfO-fA-E11"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="t21-J5-8Pb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController id="tPZ-x8-rVE" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item 2" image="DownloadsNatural" id="SX6-pk-4iA"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="wEk-gy-Idi">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="FEB-gM-Son" kind="relationship" relationship="rootViewController" id="keB-FD-Lle"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VsT-Hp-4MV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1107" y="15"/>
+        </scene>
+        <!--Download-->
+        <scene sceneID="ITS-DL-fQZ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Download" referencedIdentifier="Download" id="FEB-gM-Son" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="HXE-TQ-sKK"/>
+                    <navigationItem key="navigationItem" id="Dmo-DI-cNi"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nwp-nE-Xf1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1107" y="483"/>
         </scene>
         <!--Item-->
         <scene sceneID="RqO-Zt-41v">
@@ -101,7 +113,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="hlJ-VD-Lqd" kind="relationship" relationship="viewControllers" id="LNf-7g-iAe"/>
-                        <segue destination="gkM-bD-pWP" kind="relationship" relationship="viewControllers" id="A3n-pC-aYb"/>
+                        <segue destination="tPZ-x8-rVE" kind="relationship" relationship="viewControllers" id="EKY-uM-tyh"/>
                         <segue destination="P4T-xA-g21" kind="relationship" relationship="viewControllers" id="b12-zj-Ngz"/>
                         <segue destination="rH0-wW-8Qd" kind="relationship" relationship="viewControllers" id="Q0T-JW-PbI"/>
                         <segue destination="6YE-v2-5Hc" kind="relationship" relationship="viewControllers" id="a90-5Z-aya"/>
