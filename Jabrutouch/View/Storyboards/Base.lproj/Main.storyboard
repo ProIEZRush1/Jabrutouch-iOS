@@ -18,20 +18,13 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Downloads View Controller-->
-        <scene sceneID="75o-tt-jIa">
+        <!--Download-->
+        <scene sceneID="f8Z-ha-gzc">
             <objects>
-                <viewController id="gkM-bD-pWP" customClass="DownloadsViewController" customModule="Jabrutouch" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Zbc-ho-Ye5">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="733"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="RZS-oN-cvG"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="t21-J5-8Pb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Download" referencedIdentifier="Download" id="xwk-Vq-Xrs" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hnP-pZ-SBM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1107" y="15"/>
+            <point key="canvasLocation" x="-839" y="-250"/>
         </scene>
         <!--Gemara View Controller-->
         <scene sceneID="RqO-Zt-41v">
@@ -335,10 +328,10 @@
                         <viewLayoutGuide key="safeArea" id="JKq-Kd-1Ej"/>
                     </view>
                     <connections>
-                        <segue destination="gkM-bD-pWP" kind="presentation" identifier="presentDownloads" modalPresentationStyle="currentContext" id="OrO-Y6-OGb"/>
                         <segue destination="P4T-xA-g21" kind="presentation" identifier="presentGemara" modalPresentationStyle="currentContext" id="dXS-Aw-ZYs"/>
                         <segue destination="rH0-wW-8Qd" kind="presentation" identifier="presentMishna" modalPresentationStyle="currentContext" id="wIS-u8-sSV"/>
                         <segue destination="6YE-v2-5Hc" kind="presentation" identifier="presentDonations" modalPresentationStyle="currentContext" id="1Eq-Xo-pbZ"/>
+                        <segue destination="xwk-Vq-Xrs" kind="presentation" identifier="presentDownloads" modalPresentationStyle="currentContext" id="POK-Y0-SqV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4ZF-Ew-sWy" userLabel="First Responder" sceneMemberID="firstResponder"/>
