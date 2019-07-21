@@ -21,7 +21,7 @@
         <!--Download-->
         <scene sceneID="f8Z-ha-gzc">
             <objects>
-                <viewControllerPlaceholder storyboardName="Download" referencedIdentifier="Download" id="xwk-Vq-Xrs" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Download" id="xwk-Vq-Xrs" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hnP-pZ-SBM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-839" y="-250"/>
@@ -146,6 +146,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hTB-rh-2MJ">
                                                 <rect key="frame" x="0.0" y="0.0" width="103.5" height="85"/>
                                                 <connections>
+                                                    <action selector="donationsButtonTouchedUpOutside:" destination="hlJ-VD-Lqd" eventType="touchUpOutside" id="WsR-ph-872"/>
                                                     <action selector="downloadsButtonTouchedDown:" destination="hlJ-VD-Lqd" eventType="touchDown" id="AEB-WR-hVV"/>
                                                     <action selector="downloadsButtonTouchedUp:" destination="hlJ-VD-Lqd" eventType="touchUpInside" id="bkd-oU-zKm"/>
                                                 </connections>
@@ -317,10 +318,10 @@
             </objects>
             <point key="canvasLocation" x="-1107" y="-716"/>
         </scene>
-        <!--View Controller-->
+        <!--Modals Container View Controller-->
         <scene sceneID="cwM-MN-mhC">
             <objects>
-                <viewController definesPresentationContext="YES" id="o2k-RK-Mbm" sceneMemberID="viewController">
+                <viewController definesPresentationContext="YES" id="o2k-RK-Mbm" customClass="ModalsContainerViewController" customModule="Jabrutouch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="FjY-wo-PqN">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="733"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

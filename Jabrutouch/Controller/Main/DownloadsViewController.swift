@@ -10,14 +10,28 @@ import UIKit
 
 class DownloadsViewController: UIViewController {
 
+    weak var delegate: MainModalDelegate?
+    
     @IBOutlet weak var headerShadowBasis: UIView!
     @IBOutlet weak var gemaraButton: UIButton!
     @IBOutlet weak var mishnaButton: UIButton!
     @IBOutlet weak var viewAllButton: UIButton!
+    @IBOutlet weak var noDownloadedFilesLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setViews()
+        setStrings()
+    }
+    
+    private func setStrings() {
+        titleLabel.text = Strings.downloads
+        noDownloadedFilesLabel.text = Strings.noDownloadedFilesYet
+        
+        gemaraButton.setTitle(Strings.gemara, for: .normal)
+        mishnaButton.setTitle(Strings.mishna, for: .normal)
+        viewAllButton.setTitle(Strings.viewAllTheLessons, for: .normal)
     }
     
     fileprivate func setViews() {
@@ -88,6 +102,9 @@ class DownloadsViewController: UIViewController {
         headerShadowBasis.translatesAutoresizingMaskIntoConstraints = false
     }
     
+    @IBAction func backButtonPressed(_ sender: UIButton) {
+        self.delegate?.dismissMainModal()
+    }
     /*
     // MARK: - Navigation
 

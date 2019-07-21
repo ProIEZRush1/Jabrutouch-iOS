@@ -72,4 +72,13 @@ class Strings {
     class var donations: String {
         return NSLocalizedString("donations", comment: "")
     }
+    
+    class var viewAllTheLessons: String {
+        return NSLocalizedString("viewAllTheLessons", comment: "")
+    }
+    
+    class var noDownloadedFilesYet: String {
+        return NSLocalizedString("noDownloadedFilesYet", comment: "")
+    }
 }
+

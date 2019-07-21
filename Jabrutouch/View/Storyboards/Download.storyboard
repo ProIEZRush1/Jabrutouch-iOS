@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="AIk-jv-S31">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UIs-Al-3WH">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,6 +9,17 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Display-Bold.otf">
+            <string>SFProDisplay-Bold</string>
+        </array>
+        <array key="SF-Pro-Display-Medium.otf">
+            <string>SFProDisplay-Medium</string>
+        </array>
+        <array key="SF-Pro-Display-Regular.otf">
+            <string>SFProDisplay-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Downloads View Controller-->
         <scene sceneID="cd7-fh-dHO">
@@ -26,8 +37,8 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="180"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Downloads" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WFQ-tq-a9Y">
-                                        <rect key="frame" x="134" y="0.0" width="146.5" height="33.5"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                        <rect key="frame" x="135.5" y="10" width="143" height="33.5"/>
+                                        <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="28"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -55,20 +66,23 @@
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PN3-Ow-0iT" userLabel="Back">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PN3-Ow-0iT" userLabel="Back">
                                         <rect key="frame" x="0.0" y="0.0" width="66" height="53"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="53" id="E3O-Hl-CI5"/>
                                         </constraints>
-                                        <state key="normal" image="LeftArrow">
-                                            <color key="titleColor" red="0.2901960784" green="0.2666666667" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
+                                        <color key="tintColor" red="0.1764705882" green="0.16862745100000001" blue="0.66274509800000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" image="LeftArrow"/>
+                                        <connections>
+                                            <action selector="backButtonPressed:" destination="AIk-jv-S31" eventType="touchUpInside" id="xM4-yx-GkC"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="PN3-Ow-0iT" firstAttribute="leading" secondItem="CHZ-zJ-NUU" secondAttribute="leading" id="0oX-wo-Q5H"/>
                                     <constraint firstItem="WFQ-tq-a9Y" firstAttribute="centerX" secondItem="CHZ-zJ-NUU" secondAttribute="centerX" id="BLr-NT-mSn"/>
+                                    <constraint firstItem="WFQ-tq-a9Y" firstAttribute="centerY" secondItem="PN3-Ow-0iT" secondAttribute="centerY" id="GmB-oR-hQM"/>
                                     <constraint firstAttribute="bottom" secondItem="I7q-I0-L9E" secondAttribute="bottom" constant="31" id="Ht5-8f-kC9"/>
                                     <constraint firstAttribute="height" constant="180" id="JY9-30-yzV"/>
                                     <constraint firstItem="Vuv-pD-qgu" firstAttribute="width" secondItem="CHZ-zJ-NUU" secondAttribute="width" multiplier="162:414" id="SUQ-DU-nxH"/>
@@ -76,10 +90,9 @@
                                     <constraint firstItem="PN3-Ow-0iT" firstAttribute="top" secondItem="CHZ-zJ-NUU" secondAttribute="top" id="X0j-Kg-Uqj"/>
                                     <constraint firstItem="XRG-CS-ct2" firstAttribute="width" secondItem="CHZ-zJ-NUU" secondAttribute="width" multiplier="162:414" id="rbA-if-3ES"/>
                                     <constraint firstItem="PN3-Ow-0iT" firstAttribute="width" secondItem="CHZ-zJ-NUU" secondAttribute="width" multiplier="66:414" id="uOx-bB-MRE"/>
-                                    <constraint firstItem="WFQ-tq-a9Y" firstAttribute="top" secondItem="CHZ-zJ-NUU" secondAttribute="top" id="um8-Pc-hdS"/>
                                 </constraints>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GrayUpArrow" translatesAutoresizingMaskIntoConstraints="NO" id="jZe-LN-lzc">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GrayUpArrow" translatesAutoresizingMaskIntoConstraints="NO" id="jZe-LN-lzc">
                                 <rect key="frame" x="98.5" y="208" width="36" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16" id="0h3-wX-JE2"/>
@@ -93,18 +106,19 @@
                                     <constraint firstAttribute="width" constant="154" id="rzW-iZ-BMc"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2FK-Ux-bgO">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2FK-Ux-bgO">
                                 <rect key="frame" x="33" y="543.5" width="348" height="47"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="47" id="rVy-Du-GVX"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Medium" family="SF Pro Display" pointSize="18"/>
                                 <state key="normal" title="View all the lessons">
-                                    <color key="titleColor" red="0.1764705882352941" green="0.16862745098039217" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.16862745100000001" green="0.1764705882" blue="0.66274509800000003" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No downloaded files yet" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oEo-6y-Cg5">
                                 <rect key="frame" x="102" y="452" width="210" height="57.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="24"/>
                                 <color key="textColor" red="0.1764705882352941" green="0.16862745098039217" blue="0.66274509803921566" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -131,16 +145,36 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="shU-4x-Wkk"/>
                     </view>
+                    <navigationItem key="navigationItem" id="zOV-g5-PN4"/>
                     <connections>
                         <outlet property="gemaraButton" destination="XRG-CS-ct2" id="dED-lR-0RS"/>
                         <outlet property="headerShadowBasis" destination="nj7-2C-gXw" id="Ydv-XQ-SQm"/>
                         <outlet property="mishnaButton" destination="Vuv-pD-qgu" id="Y7U-Pf-lav"/>
+                        <outlet property="noDownloadedFilesLabel" destination="oEo-6y-Cg5" id="SQA-xg-uHU"/>
+                        <outlet property="titleLabel" destination="WFQ-tq-a9Y" id="HDC-Q0-OLf"/>
                         <outlet property="viewAllButton" destination="2FK-Ux-bgO" id="fUM-Jh-Pno"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p42-VI-XV0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="185.50724637681162" y="133.92857142857142"/>
+            <point key="canvasLocation" x="959" y="132"/>
+        </scene>
+        <!--Downloads Navigation Controller-->
+        <scene sceneID="Hjw-5L-l84">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="UIs-Al-3WH" customClass="DownloadsNavigationController" customModule="Jabrutouch" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="UnF-ZN-s9B">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="AIk-jv-S31" kind="relationship" relationship="rootViewController" id="TT7-Ie-R7P"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IdU-5b-Hhw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="169.56521739130437" y="131.91964285714286"/>
         </scene>
     </scenes>
     <resources>

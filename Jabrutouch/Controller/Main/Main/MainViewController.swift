@@ -16,7 +16,7 @@ enum MainModal {
     
 }
 
-protocol MainModalDelegate {
+protocol MainModalDelegate : class {
     func dismissMainModal()
 }
 
@@ -25,7 +25,7 @@ class MainViewController: UIViewController, MainModalDelegate {
     //========================================
     // MARK: - Properties
     //========================================
-    private var modalsPresentingVC: UIViewController!
+    private var modalsPresentingVC: ModalsContainerViewController!
     private var currentPresentedModal: MainModal?
     //========================================
     // MARK: - @IBOutlets
@@ -64,13 +64,20 @@ class MainViewController: UIViewController, MainModalDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        self.setStrings()
     }
     
     //========================================
     // MARK: - Setup
     //========================================
     
+    private func setStrings() {
+        self.downloadsLabel.text = Strings.downloads
+        self.gemaraLabel.text = Strings.gemara
+        self.mishnaLabel.text = Strings.mishna
+        self.donationsLabel.text = Strings.donations
+        self.titleLabel.text = Strings.jabrutouch
+    }
     //========================================
     // MARK: - @IBActions
     //========================================
@@ -220,7 +227,8 @@ class MainViewController: UIViewController, MainModalDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "embedModalsVC" {
-            self.modalsPresentingVC = segue.destination
+            self.modalsPresentingVC = segue.destination as? ModalsContainerViewController
+            self.modalsPresentingVC?.delegate = self
         }
     }
 }
