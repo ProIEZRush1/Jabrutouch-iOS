@@ -12,7 +12,6 @@
 		2120BE2122DF2787004854DB /* VerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2120BE2022DF2787004854DB /* VerificationViewController.swift */; };
 		2120BE2322DF279D004854DB /* VerificationCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2120BE2222DF279D004854DB /* VerificationCodeViewController.swift */; };
 		2133C1F822DB5B8200F910B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2133C1F722DB5B8200F910B9 /* AppDelegate.swift */; };
-		2133C1FA22DB5B8200F910B9 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2133C1F922DB5B8200F910B9 /* MainTabBarController.swift */; };
 		2133C1FD22DB5B8200F910B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2133C1FB22DB5B8200F910B9 /* Main.storyboard */; };
 		2133C1FF22DB5B8500F910B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2133C1FE22DB5B8500F910B9 /* Assets.xcassets */; };
 		2133C20222DB5B8500F910B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2133C20022DB5B8500F910B9 /* LaunchScreen.storyboard */; };
@@ -83,7 +82,6 @@
 		2120BE2222DF279D004854DB /* VerificationCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationCodeViewController.swift; sourceTree = "<group>"; };
 		2133C1F422DB5B8200F910B9 /* Jabrutouch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jabrutouch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2133C1F722DB5B8200F910B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2133C1F922DB5B8200F910B9 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		2133C1FC22DB5B8200F910B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2133C1FE22DB5B8500F910B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Assets.xcassets; sourceTree = "<group>"; };
 		2133C20122DB5B8500F910B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -289,7 +287,6 @@
 		2133C21022DCA0D900F910B9 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				2133C1F922DB5B8200F910B9 /* MainTabBarController.swift */,
 				21678D7322E08530007BC74C /* MainViewController.swift */,
 				21678D7522E08565007BC74C /* DownloadsViewController.swift */,
 				21678D7722E08594007BC74C /* GemaraViewController.swift */,
@@ -468,7 +465,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2133C22122DCFEB500F910B9 /* WalkThroughCollectionViewCell.swift in Sources */,
-				2133C1FA22DB5B8200F910B9 /* MainTabBarController.swift in Sources */,
 				2120BE2122DF2787004854DB /* VerificationViewController.swift in Sources */,
 				21678D7422E08530007BC74C /* MainViewController.swift in Sources */,
 				2133C21F22DCFC6600F910B9 /* WalkThroughViewController.swift in Sources */,
