@@ -31,8 +31,14 @@ class MainViewController: UIViewController, MainModalDelegate {
     // MARK: - @IBOutlets
     //========================================
     
+    // Main Containers
     @IBOutlet weak private var mainContainer: UIView!
     @IBOutlet weak private var modalsContainer: UIView!
+    
+    // Header View
+    @IBOutlet weak private var menuButton: UIButton!
+    @IBOutlet weak private var titleLabel: UILabel!
+    @IBOutlet weak private var messagesButton: UIButton!
     
     // Tab bar buttons
     @IBOutlet weak private var downloadsImageView: UIImageView!
