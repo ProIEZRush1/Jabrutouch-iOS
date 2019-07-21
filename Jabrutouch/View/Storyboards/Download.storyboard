@@ -33,6 +33,10 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="180"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H53-E9-SWQ" userLabel="Safe area view">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CHZ-zJ-NUU" userLabel="Header">
                                 <rect key="frame" x="0.0" y="44" width="414" height="180"/>
                                 <subviews>
@@ -126,17 +130,21 @@
                         <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="z3V-E0-dPH" firstAttribute="top" secondItem="CHZ-zJ-NUU" secondAttribute="bottom" constant="64" id="1px-Bf-dnM"/>
+                            <constraint firstItem="H53-E9-SWQ" firstAttribute="top" secondItem="Eea-gi-JRr" secondAttribute="top" id="4a3-Ix-nKr"/>
                             <constraint firstItem="jZe-LN-lzc" firstAttribute="centerX" secondItem="XRG-CS-ct2" secondAttribute="centerX" id="Ffq-pP-YC6"/>
                             <constraint firstItem="z3V-E0-dPH" firstAttribute="centerX" secondItem="Eea-gi-JRr" secondAttribute="centerX" id="Gkx-a1-mza"/>
                             <constraint firstItem="oEo-6y-Cg5" firstAttribute="centerX" secondItem="Eea-gi-JRr" secondAttribute="centerX" id="RvZ-cy-75A"/>
-                            <constraint firstItem="CHZ-zJ-NUU" firstAttribute="top" secondItem="shU-4x-Wkk" secondAttribute="top" id="VK4-pa-mdu"/>
+                            <constraint firstItem="H53-E9-SWQ" firstAttribute="leading" secondItem="Eea-gi-JRr" secondAttribute="leading" id="Tro-MF-9CP"/>
                             <constraint firstItem="CHZ-zJ-NUU" firstAttribute="trailing" secondItem="shU-4x-Wkk" secondAttribute="trailing" id="doP-7N-I2B"/>
                             <constraint firstItem="jZe-LN-lzc" firstAttribute="bottom" secondItem="CHZ-zJ-NUU" secondAttribute="bottom" id="exO-hn-kn8"/>
                             <constraint firstItem="nj7-2C-gXw" firstAttribute="top" secondItem="CHZ-zJ-NUU" secondAttribute="top" id="jmn-O9-84G"/>
+                            <constraint firstItem="CHZ-zJ-NUU" firstAttribute="top" secondItem="H53-E9-SWQ" secondAttribute="bottom" id="kSr-Vm-wqm"/>
                             <constraint firstItem="nj7-2C-gXw" firstAttribute="leading" secondItem="CHZ-zJ-NUU" secondAttribute="leading" id="lid-oK-ajh"/>
                             <constraint firstItem="nj7-2C-gXw" firstAttribute="trailing" secondItem="CHZ-zJ-NUU" secondAttribute="trailing" id="mBr-vB-xrm"/>
                             <constraint firstItem="2FK-Ux-bgO" firstAttribute="top" secondItem="oEo-6y-Cg5" secondAttribute="bottom" constant="34" id="mHl-x8-pHi"/>
+                            <constraint firstItem="shU-4x-Wkk" firstAttribute="top" secondItem="H53-E9-SWQ" secondAttribute="bottom" id="mWU-BO-ubY"/>
                             <constraint firstItem="2FK-Ux-bgO" firstAttribute="centerX" secondItem="Eea-gi-JRr" secondAttribute="centerX" id="n6b-3u-Ivc"/>
+                            <constraint firstAttribute="trailing" secondItem="H53-E9-SWQ" secondAttribute="trailing" id="oiI-4O-eIj"/>
                             <constraint firstItem="oEo-6y-Cg5" firstAttribute="top" secondItem="z3V-E0-dPH" secondAttribute="bottom" constant="25" id="pAO-Oz-2jU"/>
                             <constraint firstItem="oEo-6y-Cg5" firstAttribute="width" secondItem="Eea-gi-JRr" secondAttribute="width" multiplier="210:414" id="tF4-cj-dxz"/>
                             <constraint firstItem="2FK-Ux-bgO" firstAttribute="width" secondItem="CHZ-zJ-NUU" secondAttribute="width" multiplier="348:414" id="tmv-oA-9hq"/>
