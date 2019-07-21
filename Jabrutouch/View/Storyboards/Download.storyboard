@@ -10,15 +10,19 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Downloads View Controller-->
         <scene sceneID="cd7-fh-dHO">
             <objects>
-                <viewController storyboardIdentifier="Download" id="AIk-jv-S31" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Download" id="AIk-jv-S31" customClass="DownloadsViewController" customModule="Jabrutouch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Eea-gi-JRr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CHZ-zJ-NUU">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nj7-2C-gXw" userLabel="Header Shadow Basis">
+                                <rect key="frame" x="0.0" y="44" width="414" height="180"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CHZ-zJ-NUU" userLabel="Header">
                                 <rect key="frame" x="0.0" y="44" width="414" height="180"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Downloads" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WFQ-tq-a9Y">
@@ -51,13 +55,6 @@
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GrayUpArrow" translatesAutoresizingMaskIntoConstraints="NO" id="jZe-LN-lzc">
-                                        <rect key="frame" x="98.5" y="164" width="36" height="16"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="16" id="0h3-wX-JE2"/>
-                                            <constraint firstAttribute="width" constant="36" id="ioX-8W-ZLc"/>
-                                        </constraints>
-                                    </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PN3-Ow-0iT" userLabel="Back">
                                         <rect key="frame" x="0.0" y="0.0" width="66" height="53"/>
                                         <constraints>
@@ -70,9 +67,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="jZe-LN-lzc" firstAttribute="centerX" secondItem="XRG-CS-ct2" secondAttribute="centerX" id="01n-MQ-Fb7"/>
                                     <constraint firstItem="PN3-Ow-0iT" firstAttribute="leading" secondItem="CHZ-zJ-NUU" secondAttribute="leading" id="0oX-wo-Q5H"/>
-                                    <constraint firstAttribute="bottom" secondItem="jZe-LN-lzc" secondAttribute="bottom" id="3ac-MA-elW"/>
                                     <constraint firstItem="WFQ-tq-a9Y" firstAttribute="centerX" secondItem="CHZ-zJ-NUU" secondAttribute="centerX" id="BLr-NT-mSn"/>
                                     <constraint firstAttribute="bottom" secondItem="I7q-I0-L9E" secondAttribute="bottom" constant="31" id="Ht5-8f-kC9"/>
                                     <constraint firstAttribute="height" constant="180" id="JY9-30-yzV"/>
@@ -84,6 +79,13 @@
                                     <constraint firstItem="WFQ-tq-a9Y" firstAttribute="top" secondItem="CHZ-zJ-NUU" secondAttribute="top" id="um8-Pc-hdS"/>
                                 </constraints>
                             </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GrayUpArrow" translatesAutoresizingMaskIntoConstraints="NO" id="jZe-LN-lzc">
+                                <rect key="frame" x="98.5" y="208" width="36" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="16" id="0h3-wX-JE2"/>
+                                    <constraint firstAttribute="width" constant="36" id="ioX-8W-ZLc"/>
+                                </constraints>
+                            </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Books" translatesAutoresizingMaskIntoConstraints="NO" id="z3V-E0-dPH">
                                 <rect key="frame" x="130" y="288" width="154" height="139"/>
                                 <constraints>
@@ -96,11 +98,8 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="47" id="rVy-Du-GVX"/>
                                 </constraints>
-                                <state key="normal" title="View all the lessons" backgroundImage="RoundedCornersRectangle">
+                                <state key="normal" title="View all the lessons">
                                     <color key="titleColor" red="0.1764705882352941" green="0.16862745098039217" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
-                                    <string key="image" base64-UTF8="YES">
-Aw
-</string>
                                 </state>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No downloaded files yet" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oEo-6y-Cg5">
@@ -110,22 +109,34 @@ Aw
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="z3V-E0-dPH" firstAttribute="top" secondItem="CHZ-zJ-NUU" secondAttribute="bottom" constant="64" id="1px-Bf-dnM"/>
+                            <constraint firstItem="jZe-LN-lzc" firstAttribute="centerX" secondItem="XRG-CS-ct2" secondAttribute="centerX" id="Ffq-pP-YC6"/>
                             <constraint firstItem="z3V-E0-dPH" firstAttribute="centerX" secondItem="Eea-gi-JRr" secondAttribute="centerX" id="Gkx-a1-mza"/>
                             <constraint firstItem="oEo-6y-Cg5" firstAttribute="centerX" secondItem="Eea-gi-JRr" secondAttribute="centerX" id="RvZ-cy-75A"/>
                             <constraint firstItem="CHZ-zJ-NUU" firstAttribute="top" secondItem="shU-4x-Wkk" secondAttribute="top" id="VK4-pa-mdu"/>
                             <constraint firstItem="CHZ-zJ-NUU" firstAttribute="trailing" secondItem="shU-4x-Wkk" secondAttribute="trailing" id="doP-7N-I2B"/>
+                            <constraint firstItem="jZe-LN-lzc" firstAttribute="bottom" secondItem="CHZ-zJ-NUU" secondAttribute="bottom" id="exO-hn-kn8"/>
+                            <constraint firstItem="nj7-2C-gXw" firstAttribute="top" secondItem="CHZ-zJ-NUU" secondAttribute="top" id="jmn-O9-84G"/>
+                            <constraint firstItem="nj7-2C-gXw" firstAttribute="leading" secondItem="CHZ-zJ-NUU" secondAttribute="leading" id="lid-oK-ajh"/>
+                            <constraint firstItem="nj7-2C-gXw" firstAttribute="trailing" secondItem="CHZ-zJ-NUU" secondAttribute="trailing" id="mBr-vB-xrm"/>
                             <constraint firstItem="2FK-Ux-bgO" firstAttribute="top" secondItem="oEo-6y-Cg5" secondAttribute="bottom" constant="34" id="mHl-x8-pHi"/>
                             <constraint firstItem="2FK-Ux-bgO" firstAttribute="centerX" secondItem="Eea-gi-JRr" secondAttribute="centerX" id="n6b-3u-Ivc"/>
                             <constraint firstItem="oEo-6y-Cg5" firstAttribute="top" secondItem="z3V-E0-dPH" secondAttribute="bottom" constant="25" id="pAO-Oz-2jU"/>
                             <constraint firstItem="oEo-6y-Cg5" firstAttribute="width" secondItem="Eea-gi-JRr" secondAttribute="width" multiplier="210:414" id="tF4-cj-dxz"/>
                             <constraint firstItem="2FK-Ux-bgO" firstAttribute="width" secondItem="CHZ-zJ-NUU" secondAttribute="width" multiplier="348:414" id="tmv-oA-9hq"/>
                             <constraint firstItem="CHZ-zJ-NUU" firstAttribute="leading" secondItem="shU-4x-Wkk" secondAttribute="leading" id="v4Q-vd-L7F"/>
+                            <constraint firstItem="nj7-2C-gXw" firstAttribute="bottom" secondItem="CHZ-zJ-NUU" secondAttribute="bottom" id="xmd-96-5Tu"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="shU-4x-Wkk"/>
                     </view>
+                    <connections>
+                        <outlet property="gemaraButton" destination="XRG-CS-ct2" id="dED-lR-0RS"/>
+                        <outlet property="headerShadowBasis" destination="nj7-2C-gXw" id="Ydv-XQ-SQm"/>
+                        <outlet property="mishnaButton" destination="Vuv-pD-qgu" id="Y7U-Pf-lav"/>
+                        <outlet property="viewAllButton" destination="2FK-Ux-bgO" id="fUM-Jh-Pno"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p42-VI-XV0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -133,14 +144,8 @@ Aw
         </scene>
     </scenes>
     <resources>
-        <image width="16" height="16">
-            <string key="name" base64-UTF8="YES">
-Aw
-</string>
-        </image>
         <image name="Books" width="154.5" height="139"/>
         <image name="GrayUpArrow" width="36.5" height="15"/>
         <image name="LeftArrow" width="27.5" height="19.5"/>
-        <image name="RoundedCornersRectangle" width="348.5" height="55"/>
     </resources>
 </document>
