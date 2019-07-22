@@ -74,6 +74,13 @@
 		21678D7C22E085CB007BC74C /* DonationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21678D7B22E085CB007BC74C /* DonationsViewController.swift */; };
 		219BFF2722E50A0A00ABBEE2 /* DownloadsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219BFF2622E50A0A00ABBEE2 /* DownloadsNavigationController.swift */; };
 		219BFF2922E50C0B00ABBEE2 /* ModalsContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219BFF2822E50C0B00ABBEE2 /* ModalsContainerViewController.swift */; };
+		219BFF2C22E59F4500ABBEE2 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219BFF2B22E59F4500ABBEE2 /* Extensions.swift */; };
+		219BFF2F22E5A11900ABBEE2 /* TextFieldWithPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219BFF2E22E5A11800ABBEE2 /* TextFieldWithPadding.swift */; };
+		219BFF3122E5B67C00ABBEE2 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = 219BFF3022E5B67C00ABBEE2 /* countries.json */; };
+		219BFF3522E5B6F700ABBEE2 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219BFF3422E5B6F700ABBEE2 /* Country.swift */; };
+		219BFF3822E5B72000ABBEE2 /* LocalizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219BFF3722E5B72000ABBEE2 /* LocalizationManager.swift */; };
+		219BFF3A22E5B77C00ABBEE2 /* FilesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219BFF3922E5B77C00ABBEE2 /* FilesManager.swift */; };
+		219BFF3D22E5B7BA00ABBEE2 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219BFF3C22E5B7BA00ABBEE2 /* Utils.swift */; };
 		FB67A5DF22E4723F009E4DF9 /* Download.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB67A5DE22E4723F009E4DF9 /* Download.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -147,6 +154,13 @@
 		21678D7B22E085CB007BC74C /* DonationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonationsViewController.swift; sourceTree = "<group>"; };
 		219BFF2622E50A0A00ABBEE2 /* DownloadsNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsNavigationController.swift; sourceTree = "<group>"; };
 		219BFF2822E50C0B00ABBEE2 /* ModalsContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalsContainerViewController.swift; sourceTree = "<group>"; };
+		219BFF2B22E59F4500ABBEE2 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		219BFF2E22E5A11800ABBEE2 /* TextFieldWithPadding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldWithPadding.swift; sourceTree = "<group>"; };
+		219BFF3022E5B67C00ABBEE2 /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
+		219BFF3422E5B6F700ABBEE2 /* Country.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
+		219BFF3722E5B72000ABBEE2 /* LocalizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationManager.swift; sourceTree = "<group>"; };
+		219BFF3922E5B77C00ABBEE2 /* FilesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesManager.swift; sourceTree = "<group>"; };
+		219BFF3C22E5B7BA00ABBEE2 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		21B1A44222DDD30E006A33C9 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Jabrutouch/Info.plist; sourceTree = SOURCE_ROOT; };
 		FB67A5DE22E4723F009E4DF9 /* Download.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Download.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -255,7 +269,10 @@
 			isa = PBXGroup;
 			children = (
 				2133C20C22DCA08200F910B9 /* Core */,
+				219BFF3B22E5B7A800ABBEE2 /* Utils */,
 				2133C21922DCA5EB00F910B9 /* Resources */,
+				219BFF3622E5B6FD00ABBEE2 /* Managers */,
+				219BFF3222E5B6C200ABBEE2 /* Models */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -271,6 +288,7 @@
 		2133C20B22DCA07000F910B9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				219BFF2D22E5A10400ABBEE2 /* Custom Views */,
 				2133C21122DCA0E000F910B9 /* WalkThrough */,
 				2133C20F22DCA0CD00F910B9 /* SignIn */,
 				2133C21022DCA0D900F910B9 /* Main */,
@@ -282,6 +300,7 @@
 			isa = PBXGroup;
 			children = (
 				2133C1F722DB5B8200F910B9 /* AppDelegate.swift */,
+				219BFF2B22E59F4500ABBEE2 /* Extensions.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -290,9 +309,9 @@
 			isa = PBXGroup;
 			children = (
 				2120BE1C22DF273F004854DB /* SignInViewController.swift */,
-				2120BE1E22DF2758004854DB /* SignUpViewController.swift */,
 				2120BE2022DF2787004854DB /* VerificationViewController.swift */,
 				2120BE2222DF279D004854DB /* VerificationCodeViewController.swift */,
+				2120BE1E22DF2758004854DB /* SignUpViewController.swift */,
 			);
 			path = SignIn;
 			sourceTree = "<group>";
@@ -359,9 +378,51 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		219BFF2D22E5A10400ABBEE2 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				219BFF2E22E5A11800ABBEE2 /* TextFieldWithPadding.swift */,
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		219BFF3222E5B6C200ABBEE2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				219BFF3322E5B6E100ABBEE2 /* Localization */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		219BFF3322E5B6E100ABBEE2 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				219BFF3422E5B6F700ABBEE2 /* Country.swift */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
+		219BFF3622E5B6FD00ABBEE2 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				219BFF3722E5B72000ABBEE2 /* LocalizationManager.swift */,
+				219BFF3922E5B77C00ABBEE2 /* FilesManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		219BFF3B22E5B7A800ABBEE2 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				219BFF3C22E5B7BA00ABBEE2 /* Utils.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		FB67A5E222E47E61009E4DF9 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				219BFF3022E5B67C00ABBEE2 /* countries.json */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -447,6 +508,7 @@
 				21678D5822DF2CEC007BC74C /* SF-Pro-Rounded-Black.otf in Resources */,
 				21678D5922DF2CEC007BC74C /* SF-Pro-Rounded-Bold.otf in Resources */,
 				21678D5A22DF2CEC007BC74C /* SF-Pro-Rounded-Heavy.otf in Resources */,
+				219BFF3122E5B67C00ABBEE2 /* countries.json in Resources */,
 				21678D5B22DF2CED007BC74C /* SF-Pro-Rounded-Light.otf in Resources */,
 				21678D5C22DF2CED007BC74C /* SF-Pro-Rounded-Medium.otf in Resources */,
 				21678D5D22DF2CED007BC74C /* SF-Pro-Rounded-Regular.otf in Resources */,
@@ -486,19 +548,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				219BFF2F22E5A11900ABBEE2 /* TextFieldWithPadding.swift in Sources */,
 				2133C22122DCFEB500F910B9 /* WalkThroughCollectionViewCell.swift in Sources */,
+				219BFF2C22E59F4500ABBEE2 /* Extensions.swift in Sources */,
 				2120BE2122DF2787004854DB /* VerificationViewController.swift in Sources */,
 				219BFF2922E50C0B00ABBEE2 /* ModalsContainerViewController.swift in Sources */,
 				21678D7422E08530007BC74C /* MainViewController.swift in Sources */,
 				2133C21F22DCFC6600F910B9 /* WalkThroughViewController.swift in Sources */,
 				2133C22622DDCD3E00F910B9 /* Colors.swift in Sources */,
+				219BFF3522E5B6F700ABBEE2 /* Country.swift in Sources */,
+				219BFF3A22E5B77C00ABBEE2 /* FilesManager.swift in Sources */,
 				219BFF2722E50A0A00ABBEE2 /* DownloadsNavigationController.swift in Sources */,
 				21678D7C22E085CB007BC74C /* DonationsViewController.swift in Sources */,
 				2120BE1D22DF273F004854DB /* SignInViewController.swift in Sources */,
 				2120BE2322DF279D004854DB /* VerificationCodeViewController.swift in Sources */,
 				2133C21B22DCA5FC00F910B9 /* Strings.swift in Sources */,
+				219BFF3D22E5B7BA00ABBEE2 /* Utils.swift in Sources */,
 				21678D7A22E085B1007BC74C /* MishnaViewController.swift in Sources */,
 				21678D7622E08565007BC74C /* DownloadsViewController.swift in Sources */,
+				219BFF3822E5B72000ABBEE2 /* LocalizationManager.swift in Sources */,
 				2120BE1F22DF2758004854DB /* SignUpViewController.swift in Sources */,
 				2133C22422DDCCD500F910B9 /* JBBarPageIndicator.swift in Sources */,
 				2133C1F822DB5B8200F910B9 /* AppDelegate.swift in Sources */,

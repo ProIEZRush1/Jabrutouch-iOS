@@ -80,5 +80,66 @@ class Strings {
     class var noDownloadedFilesYet: String {
         return NSLocalizedString("noDownloadedFilesYet", comment: "")
     }
+    
+    class var verification: String {
+        return NSLocalizedString("verification", comment: "")
+    }
+    
+    class var weWillSendOTP: String {
+        return NSLocalizedString("weWillSendOTP", comment: "")
+    }
+    
+    class var country: String {
+        return NSLocalizedString("country", comment: "")
+    }
+    
+    class var phoneNumber: String {
+        return NSLocalizedString("phoneNumber", comment: "")
+    }
+    
+    class var send: String {
+        return NSLocalizedString("send", comment: "")
+    }
+    
+    class var verificationCode: String {
+        return NSLocalizedString("verificationCode", comment: "")
+    }
+    
+    class var enterTheVerificationCodeSentTo: String {
+        return NSLocalizedString("enterTheVerificationCodeSentTo", comment: "")
+    }
+    
+    class var resendCode: String {
+        return NSLocalizedString("resendCode", comment: "")
+    }
+    
+    class var sendAgain: String {
+        return NSLocalizedString("sendAgain", comment: "")
+    }
+    
+    class var firstName: String {
+        return NSLocalizedString("firstName", comment: "")
+    }
+    
+    class var surname: String {
+        return NSLocalizedString("surname", comment: "")
+    }
+    
+    class var emailAddress: String {
+        return NSLocalizedString("emailAddress", comment: "")
+    }
+    
+    class var alreadyHaveAnAccountSignIn: String {
+        return NSLocalizedString("alreadyHaveAnAccountSignIn", comment: "")
+    }
+    
+    class var signInPC: String {
+        return NSLocalizedString("signInPC", comment: "")
+    }
+    
+    class var signUpPC: String {
+        return NSLocalizedString("signUpPC", comment: "")
+    }
+    
 }
 

@@ -1,21 +1,20 @@
-/* 
-  Localizable.strings
-  Jabrutouch
-
-  Created by Yoni Reiss on 15/07/2019.
-  Copyright © 2019 Ravtech. All rights reserved.
-*/
+/*
+ Localizable.strings
+ Jabrutouch
+ 
+ Created by Yoni Reiss on 15/07/2019.
+ Copyright © 2019 Ravtech. All rights reserved.
+ */
 
 "welcomeToJabrutouch" = "Welcome to \nJabrutouch";
 "jabrutouch" = "Jabrutouch";
 "learnTalmudAndGemara" = "Learn Talmud and Gemara";
 "giveTheGiftOfLearning" = "Give the gift of learning";
 "askTheRabbiJoinTheJabruta" = "Ask the Rabbi,\n join the Jabruta";
-"signIn" = "Sign In";
+
 "emailOrPhoneNumber" = "Email or phone number";
 "password" = "Password";
 "dontHaveAccount" = "Don't have account? Sign up";
-"signUp" = "Sign up";
 "forgotPassword" = "Forgot Password?";
 
 "main" = "Main";
@@ -26,3 +25,23 @@
 
 "viewAllTheLessons" = "View all the lessons";
 "noDownloadedFilesYet" = "No downloaded files yet";
+"verification" = "Verification";
+"weWillSendOTP" = "We will send you a one time password to verify your phone number";
+"country" = "Country";
+"phoneNumber" = "Phone number";
+"send" = "Send";
+
+"verificationCode" = "Verification Code";
+"enterTheVerificationCodeSentTo" = "Enter the verification code sent to";
+"resendCode" = "Didn’t get the code? Send again";
+"sendAgain" = "Send again";
+
+"firstName" = "First name";
+"surname" = "Surname";
+"emailAddress" = "Email address";
+"alreadyHaveAnAccountSignIn" = "Already have an account? Sign in";
+
+"signIn" = "Sign in";
+"signUp" = "Sign up";
+"signInPC" = "Sign In";
+"signUpPC" = "Sign Up";
