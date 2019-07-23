@@ -15,36 +15,37 @@ class DownloadsViewController: UIViewController {
     @IBOutlet weak var mishnaButton: UIButton!
     @IBOutlet weak var viewAllButton: UIButton!
     @IBOutlet weak var grayUpArrow: UIImageView!
-    @IBOutlet weak var grayUpArrowLeadingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var buttonsCenterPadding: UIView!
+    @IBOutlet weak var initialGrayUpArrowXCentererdToGemara: NSLayoutConstraint!
     
-    fileprivate var gemaraSelected = true
-    fileprivate var buttonsLeadingPadding: CGFloat = 0.0
+    fileprivate var isGemaraSelected = true
+    fileprivate var grayUpArrowXCentererdToGemara: NSLayoutConstraint?
+    fileprivate var grayUpArrowXCentererdToMishna: NSLayoutConstraint?
     
     @IBAction func gemaraPressed(_ sender: Any) {
-        if !gemaraSelected {
+        if !isGemaraSelected {
             switchViews()
         }
     }
     
     fileprivate func switchViews() {
-        gemaraSelected = !gemaraSelected
+        isGemaraSelected = !isGemaraSelected
         setSelectedPage()
     }
     
     @IBAction func mishnaPressed(_ sender: Any) {
-        if gemaraSelected {
+        if isGemaraSelected {
             switchViews()
         }
     }
     
     override func viewDidLoad() {
-        
+        initialGrayUpArrowXCentererdToGemara.isActive = false
+        grayUpArrowXCentererdToGemara = grayUpArrow.centerXAnchor.constraint(equalTo: gemaraButton.centerXAnchor)
+        grayUpArrowXCentererdToMishna = grayUpArrow.centerXAnchor.constraint(equalTo: mishnaButton.centerXAnchor)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        buttonsLeadingPadding = (headerShadowBasis.frame.width / 2) - gemaraButton.frame.width - (buttonsCenterPadding.frame.width / 2)
         setSelectedPage()
     }
     
@@ -59,21 +60,23 @@ class DownloadsViewController: UIViewController {
     }
     
     fileprivate func setButtonsColorAndFont() {
-        gemaraButton.backgroundColor = gemaraSelected ? .white : UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)
-        mishnaButton.backgroundColor = !gemaraSelected ? .white : UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)
-        gemaraButton.titleLabel?.font = gemaraSelected ? UIFont(name: "SFProDisplay-Heavy", size: 18) : UIFont(name: "SFProDisplay-Medium", size: 18)
-        mishnaButton.titleLabel?.font = !gemaraSelected ? UIFont(name: "SFProDisplay-Heavy", size: 18) : UIFont(name: "SFProDisplay-Medium", size: 18)
-        gemaraButton.setTitleColor(gemaraSelected ? UIColor(red: 0.29, green: 0.27, blue: 0.57, alpha: 1) : UIColor(red: 0.29, green: 0.27, blue: 0.57, alpha: 0.55), for: .normal)
-        mishnaButton.setTitleColor(!gemaraSelected ? UIColor(red: 0.29, green: 0.27, blue: 0.57, alpha: 1) : UIColor(red: 0.29, green: 0.27, blue: 0.57, alpha: 0.55), for: .normal)
+        gemaraButton.backgroundColor = isGemaraSelected ? .white : UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)
+        mishnaButton.backgroundColor = !isGemaraSelected ? .white : UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)
+        gemaraButton.titleLabel?.font = isGemaraSelected ? UIFont(name: "SFProDisplay-Heavy", size: 18) : UIFont(name: "SFProDisplay-Medium", size: 18)
+        mishnaButton.titleLabel?.font = !isGemaraSelected ? UIFont(name: "SFProDisplay-Heavy", size: 18) : UIFont(name: "SFProDisplay-Medium", size: 18)
+        gemaraButton.setTitleColor(isGemaraSelected ? UIColor(red: 0.29, green: 0.27, blue: 0.57, alpha: 1) : UIColor(red: 0.29, green: 0.27, blue: 0.57, alpha: 0.55), for: .normal)
+        mishnaButton.setTitleColor(!isGemaraSelected ? UIColor(red: 0.29, green: 0.27, blue: 0.57, alpha: 1) : UIColor(red: 0.29, green: 0.27, blue: 0.57, alpha: 0.55), for: .normal)
     }
     
     fileprivate func setGrayUpArrowPosition() {
-        grayUpArrowLeadingConstraint?.constant = buttonsLeadingPadding - grayUpArrow.frame.width / 2
-        if gemaraSelected {
-            grayUpArrowLeadingConstraint?.constant += (gemaraButton.frame.width / 2)
+        if isGemaraSelected {
+            grayUpArrowXCentererdToMishna?.isActive = false
+            grayUpArrowXCentererdToGemara?.isActive = true
         } else {
-            grayUpArrowLeadingConstraint?.constant += gemaraButton.frame.width + buttonsCenterPadding.frame.width + (mishnaButton.frame.width / 2)
+            grayUpArrowXCentererdToGemara?.isActive = false
+            grayUpArrowXCentererdToMishna?.isActive = true
         }
+        
         grayUpArrow.layoutIfNeeded()
     }
     
