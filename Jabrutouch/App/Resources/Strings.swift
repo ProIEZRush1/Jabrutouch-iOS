@@ -72,4 +72,96 @@ class Strings {
     class var donations: String {
         return NSLocalizedString("donations", comment: "")
     }
+    
+    class var viewAllTheLessons: String {
+        return NSLocalizedString("viewAllTheLessons", comment: "")
+    }
+    
+    class var noDownloadedFilesYet: String {
+        return NSLocalizedString("noDownloadedFilesYet", comment: "")
+    }
+    
+    class var verification: String {
+        return NSLocalizedString("verification", comment: "")
+    }
+    
+    class var weWillSendOTP: String {
+        return NSLocalizedString("weWillSendOTP", comment: "")
+    }
+    
+    class var country: String {
+        return NSLocalizedString("country", comment: "")
+    }
+    
+    class var phoneNumber: String {
+        return NSLocalizedString("phoneNumber", comment: "")
+    }
+    
+    class var send: String {
+        return NSLocalizedString("send", comment: "")
+    }
+    
+    class var verificationCode: String {
+        return NSLocalizedString("verificationCode", comment: "")
+    }
+    
+    class var enterTheVerificationCodeSentTo: String {
+        return NSLocalizedString("enterTheVerificationCodeSentTo", comment: "")
+    }
+    
+    class var resendCode: String {
+        return NSLocalizedString("resendCode", comment: "")
+    }
+    
+    class var sendAgain: String {
+        return NSLocalizedString("sendAgain", comment: "")
+    }
+    
+    class var firstName: String {
+        return NSLocalizedString("firstName", comment: "")
+    }
+    
+    class var surname: String {
+        return NSLocalizedString("surname", comment: "")
+    }
+    
+    class var emailAddress: String {
+        return NSLocalizedString("emailAddress", comment: "")
+    }
+    
+    class var alreadyHaveAnAccountSignIn: String {
+        return NSLocalizedString("alreadyHaveAnAccountSignIn", comment: "")
+    }
+    
+    class var signInPC: String {
+        return NSLocalizedString("signInPC", comment: "")
+    }
+    
+    class var signUpPC: String {
+        return NSLocalizedString("signUpPC", comment: "")
+    }
+    
+    class var profile: String {
+        return NSLocalizedString("profile", comment: "")
+    }
+    
+    class var about: String {
+        return NSLocalizedString("about", comment: "")
+    }
+    
+    class var messagesCenter: String {
+        return NSLocalizedString("messagesCenter", comment: "")
+    }
+    
+    class var donationsCenter: String {
+        return NSLocalizedString("donationsCenter", comment: "")
+    }
+    
+    class var donate: String {
+        return NSLocalizedString("donate", comment: "")
+    }
+    
+    class var logout: String {
+        return NSLocalizedString("logout", comment: "")
+    }
 }

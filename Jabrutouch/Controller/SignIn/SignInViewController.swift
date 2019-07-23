@@ -37,10 +37,10 @@ class SignInViewController: UIViewController {
     //============================================================
     
     private func setStrings() {
-        self.titleLabel.text = Strings.signIn
+        self.titleLabel.text = Strings.signInPC
         self.usernameTF.placeholder = Strings.emailOrPhoneNumber
         self.passwordTF.placeholder = Strings.password
-        self.signInButton.setTitle(Strings.signIn, for: .normal)
+        self.signInButton.setTitle(Strings.signInPC, for: .normal)
         self.forgotPasswordButton.setTitle(Strings.forgotPassword, for: .normal)
         
         let signUpTitle = NSMutableAttributedString(string: Strings.dontHaveAccount, attributes: [NSAttributedString.Key.foregroundColor: Colors.textMediumBlue])
@@ -67,6 +67,7 @@ class SignInViewController: UIViewController {
     //============================================================
     
     @IBAction func signInButtonPressed(_ sender: UIButton) {
+        // TODO: - Pending real implementation
         self.performSegue(withIdentifier: "presentMain", sender: nil)
     }
     
