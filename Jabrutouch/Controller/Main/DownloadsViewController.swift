@@ -10,33 +10,78 @@ import UIKit
 
 class DownloadsViewController: UIViewController {
 
-    weak var delegate: MainModalDelegate?
-    
     @IBOutlet weak var headerShadowBasis: UIView!
     @IBOutlet weak var gemaraButton: UIButton!
     @IBOutlet weak var mishnaButton: UIButton!
     @IBOutlet weak var viewAllButton: UIButton!
-    @IBOutlet weak var noDownloadedFilesLabel: UILabel!
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var grayUpArrow: UIImageView!
+    @IBOutlet weak var initialGrayUpArrowXCentererdToGemara: NSLayoutConstraint!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setViews()
-        setStrings()
+    fileprivate var isGemaraSelected = true
+    fileprivate var grayUpArrowXCentererdToGemara: NSLayoutConstraint?
+    fileprivate var grayUpArrowXCentererdToMishna: NSLayoutConstraint?
+    
+    @IBAction func gemaraPressed(_ sender: Any) {
+        if !isGemaraSelected {
+            switchViews()
+        }
     }
     
-    private func setStrings() {
-        titleLabel.text = Strings.downloads
-        noDownloadedFilesLabel.text = Strings.noDownloadedFilesYet
+    fileprivate func switchViews() {
+        isGemaraSelected = !isGemaraSelected
+        setSelectedPage()
+    }
+    
+    @IBAction func mishnaPressed(_ sender: Any) {
+        if isGemaraSelected {
+            switchViews()
+        }
+    }
+    
+    override func viewDidLoad() {
+        initialGrayUpArrowXCentererdToGemara.isActive = false
+        grayUpArrowXCentererdToGemara = grayUpArrow.centerXAnchor.constraint(equalTo: gemaraButton.centerXAnchor)
+        grayUpArrowXCentererdToMishna = grayUpArrow.centerXAnchor.constraint(equalTo: mishnaButton.centerXAnchor)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setSelectedPage()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        setViews()
+    }
+    
+    fileprivate func setSelectedPage() {
+        setButtonsColorAndFont()
+        setGrayUpArrowPosition()
+    }
+    
+    fileprivate func setButtonsColorAndFont() {
+        gemaraButton.backgroundColor = isGemaraSelected ? .white : UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)
+        mishnaButton.backgroundColor = !isGemaraSelected ? .white : UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)
+        gemaraButton.titleLabel?.font = isGemaraSelected ? UIFont(name: "SFProDisplay-Heavy", size: 18) : UIFont(name: "SFProDisplay-Medium", size: 18)
+        mishnaButton.titleLabel?.font = !isGemaraSelected ? UIFont(name: "SFProDisplay-Heavy", size: 18) : UIFont(name: "SFProDisplay-Medium", size: 18)
+        gemaraButton.setTitleColor(isGemaraSelected ? UIColor(red: 0.29, green: 0.27, blue: 0.57, alpha: 1) : UIColor(red: 0.29, green: 0.27, blue: 0.57, alpha: 0.55), for: .normal)
+        mishnaButton.setTitleColor(!isGemaraSelected ? UIColor(red: 0.29, green: 0.27, blue: 0.57, alpha: 1) : UIColor(red: 0.29, green: 0.27, blue: 0.57, alpha: 0.55), for: .normal)
+    }
+    
+    fileprivate func setGrayUpArrowPosition() {
+        if isGemaraSelected {
+            grayUpArrowXCentererdToMishna?.isActive = false
+            grayUpArrowXCentererdToGemara?.isActive = true
+        } else {
+            grayUpArrowXCentererdToGemara?.isActive = false
+            grayUpArrowXCentererdToMishna?.isActive = true
+        }
         
-        gemaraButton.setTitle(Strings.gemara, for: .normal)
-        mishnaButton.setTitle(Strings.mishna, for: .normal)
-        viewAllButton.setTitle(Strings.viewAllTheLessons, for: .normal)
+        grayUpArrow.layoutIfNeeded()
     }
     
     fileprivate func setViews() {
-        setHeaderShadow()
-        //setButtonsShadow()
+        setViewsShadow()
         setViewAllButtonShape()
     }
     
@@ -47,64 +92,30 @@ class DownloadsViewController: UIViewController {
         viewAllButton.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    fileprivate func setButtonsShadow() {
-        let shadows = UIView()
-        shadows.frame = gemaraButton.frame
-        shadows.clipsToBounds = false
-        gemaraButton.addSubview(shadows)
-        
-        let shadowPath0 = UIBezierPath(roundedRect: shadows.bounds, cornerRadius: 99)
-        
-        let layer0 = CALayer()
-        layer0.shadowPath = shadowPath0.cgPath
-        layer0.shadowColor = UIColor(red: 0.1, green: 0.12, blue: 0.57, alpha: 0.1).cgColor
-        layer0.shadowOpacity = 1
-        layer0.shadowRadius = 20
-        layer0.shadowOffset = CGSize(width: 0, height: 10)
-        layer0.bounds = shadows.bounds
-        layer0.position = shadows.center
-        shadows.layer.addSublayer(layer0)
-        
-        let shapes = UIView()
-        shapes.frame = gemaraButton.frame
-        shapes.clipsToBounds = true
-        gemaraButton.addSubview(shapes)
-        
-        let layer1 = CALayer()
-        layer1.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1).cgColor
-        layer1.bounds = shapes.bounds
-        layer1.position = shapes.center
-        shapes.layer.addSublayer(layer1)
-        shapes.layer.cornerRadius = 99
-        shapes.layer.borderWidth = 1
-        shapes.layer.borderColor = UIColor(red: 0.93, green: 0.94, blue: 0.96, alpha: 1).cgColor
-        
-        gemaraButton.translatesAutoresizingMaskIntoConstraints = false
+    fileprivate func setViewsShadow() {
+        let borderColor = UIColor(red: 0.93, green: 0.94, blue: 0.96, alpha: 1)
+        let shadowColor = UIColor(red: 0.1, green: 0.12, blue: 0.57, alpha: 0.1)
+        let headerShadowColor = UIColor(red: 0.1, green: 0.12, blue: 0.57, alpha: 0.07)
+        let shadowOffset = CGSize(width: 0.0, height: 10)
+        let headerShadowOffset = CGSize(width: 0, height: 4)
+        let cornerRadius = gemaraButton.layer.frame.height / 2
+        dropViewShadow(view: gemaraButton, borderWidht: 1, borderColor: borderColor, cornerRadius: cornerRadius, shadowColor: shadowColor, shadowRadius: 20, shadowOffset: shadowOffset)
+        dropViewShadow(view: mishnaButton, borderWidht: 1, borderColor: borderColor, cornerRadius: cornerRadius, shadowColor: shadowColor, shadowRadius: 20, shadowOffset: shadowOffset)
+        dropViewShadow(view: headerShadowBasis, shadowColor: headerShadowColor, shadowRadius: 22, shadowOffset: headerShadowOffset)
     }
     
-    fileprivate func setHeaderShadow() {
-        let shadows = UIView()
-        shadows.frame = headerShadowBasis.frame
-        shadows.clipsToBounds = false
-        headerShadowBasis.addSubview(shadows)
-        
-        let shadowPath0 = UIBezierPath(roundedRect: shadows.bounds, cornerRadius: 0)
-        
-        let layer0 = CALayer()
-        layer0.shadowPath = shadowPath0.cgPath
-        layer0.shadowColor = UIColor(red: 0.1, green: 0.12, blue: 0.57, alpha: 0.07).cgColor
-        layer0.shadowOpacity = 1
-        layer0.shadowRadius = 22
-        layer0.shadowOffset = CGSize(width: 0, height: 4)
-        layer0.bounds = shadows.bounds
-        layer0.position = shadows.center
-        shadows.layer.addSublayer(layer0)
-        headerShadowBasis.translatesAutoresizingMaskIntoConstraints = false
+    fileprivate func dropViewShadow(view: UIView, borderWidht: CGFloat = 0, borderColor: UIColor = .white, cornerRadius: CGFloat = 0, shadowColor: UIColor, shadowRadius: CGFloat, shadowOffset: CGSize) {
+        view.layer.cornerRadius = cornerRadius
+        view.layer.borderWidth = borderWidht
+        view.layer.borderColor = borderColor.cgColor
+        view.layer.shadowColor = shadowColor.cgColor
+        view.layer.shadowOffset = shadowOffset
+        view.layer.shadowOpacity = 1.0
+        view.layer.shadowRadius = shadowRadius
+        view.layer.masksToBounds = false
+        view.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    @IBAction func backButtonPressed(_ sender: UIButton) {
-        self.delegate?.dismissMainModal()
-    }
     /*
     // MARK: - Navigation
 
