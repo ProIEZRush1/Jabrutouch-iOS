@@ -141,5 +141,27 @@ class Strings {
         return NSLocalizedString("signUpPC", comment: "")
     }
     
+    class var profile: String {
+        return NSLocalizedString("profile", comment: "")
+    }
+    
+    class var about: String {
+        return NSLocalizedString("about", comment: "")
+    }
+    
+    class var messagesCenter: String {
+        return NSLocalizedString("messagesCenter", comment: "")
+    }
+    
+    class var donationsCenter: String {
+        return NSLocalizedString("donationsCenter", comment: "")
+    }
+    
+    class var donate: String {
+        return NSLocalizedString("donate", comment: "")
+    }
+    
+    class var logout: String {
+        return NSLocalizedString("logout", comment: "")
+    }
 }
-

@@ -74,12 +74,13 @@ class SignUpViewController: UIViewController {
         self.passwordTF.layer.borderColor = Colors.borderGray.cgColor
         self.passwordTF.layer.borderWidth = 1.0
     }
+    
     //============================================================
     // MARK: - @IBActions
     //============================================================
     
     @IBAction func signUpButtonPressed(_ sender: UIButton) {
-        
+        self.navigationController?.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func signInButtonPressed(_ sender: UIButton) {

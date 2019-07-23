@@ -78,6 +78,7 @@ class VerificationViewController: UIViewController {
     
     private func initCountriesPicker() {
         self.countriesPicker = UIPickerView()
+        self.countriesPicker?.backgroundColor = Colors.offwhiteLight
         self.countriesPicker?.dataSource = self
         self.countriesPicker?.delegate = self
     }

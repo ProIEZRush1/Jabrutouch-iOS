@@ -162,9 +162,16 @@ class MainViewController: UIViewController, MainModalDelegate {
         }
     }
     
+    @IBAction func menuButtonPressed(_ sender: UIButton) {
+        self.presentMenu()
+    }
     //========================================
     // MARK: - Navigation
     //========================================
+    
+    private func presentMenu() {
+        self.performSegue(withIdentifier: "presentMenu", sender: nil)
+    }
     
     private func presentDownloadsViewController() {
         if self.currentPresentedModal != nil && self.currentPresentedModal != .downloads {
@@ -230,5 +237,16 @@ class MainViewController: UIViewController, MainModalDelegate {
             self.modalsPresentingVC = segue.destination as? ModalsContainerViewController
             self.modalsPresentingVC?.delegate = self
         }
+        
+        else if segue.identifier == "presentMenu" {
+            let menuVC = segue.destination as? MainMenuViewController
+            menuVC?.delegate = self
+        }
+    }
+}
+
+extension MainViewController: MenuDelegate {
+    func optionSelected(option: MenuOption) {
+        
     }
 }

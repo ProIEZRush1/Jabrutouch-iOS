@@ -16,6 +16,9 @@
         <array key="SF-Pro-Display-Regular.otf">
             <string>SFProDisplay-Regular</string>
         </array>
+        <array key="SF-Pro-Text-Regular.otf">
+            <string>SFProText-Regular</string>
+        </array>
     </customFonts>
     <scenes>
         <!--Download-->
@@ -25,6 +28,136 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hnP-pZ-SBM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="723" y="-967"/>
+        </scene>
+        <!--Main Menu View Controller-->
+        <scene sceneID="2eN-tH-jne">
+            <objects>
+                <viewController id="Jhr-px-5v1" customClass="MainMenuViewController" customModule="Jabrutouch" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WBJ-Iy-4uG">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cMC-QG-fcN">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="backgroundButtonPressed:" destination="Jhr-px-5v1" eventType="touchUpInside" id="jir-O1-4xG"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RGA-Tt-lwn">
+                                <rect key="frame" x="0.0" y="0.0" width="362.5" height="44"/>
+                                <color key="backgroundColor" red="0.16862745098039217" green="0.1764705882352941" blue="0.66274509803921566" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IXa-uw-NFE">
+                                <rect key="frame" x="0.0" y="44" width="362.5" height="852"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9lA-yo-5Ys">
+                                        <rect key="frame" x="0.0" y="0.0" width="362.5" height="55"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jabrutouch" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TON-Dx-FSb">
+                                                <rect key="frame" x="0.0" y="0.0" width="362.5" height="55"/>
+                                                <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="32"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.16862745100000001" green="0.1764705882" blue="0.66274509800000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="TON-Dx-FSb" secondAttribute="trailing" id="02h-r5-ki5"/>
+                                            <constraint firstAttribute="height" constant="55" id="JuO-Xb-2db"/>
+                                            <constraint firstItem="TON-Dx-FSb" firstAttribute="leading" secondItem="9lA-yo-5Ys" secondAttribute="leading" id="SeM-bW-1cW"/>
+                                            <constraint firstAttribute="bottom" secondItem="TON-Dx-FSb" secondAttribute="bottom" id="sUL-0e-25P"/>
+                                            <constraint firstItem="TON-Dx-FSb" firstAttribute="top" secondItem="9lA-yo-5Ys" secondAttribute="top" id="tWE-3c-oJA"/>
+                                        </constraints>
+                                    </view>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nAu-3z-TdM">
+                                        <rect key="frame" x="0.0" y="55" width="362.5" height="797"/>
+                                        <color key="backgroundColor" red="0.16862745100000001" green="0.1764705882" blue="0.66274509800000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MenuCell" id="Sna-jw-WIE" customClass="MenuTableViewCell" customModule="Jabrutouch" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="362.5" height="60"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Sna-jw-WIE" id="hTW-uz-3yc">
+                                                    <rect key="frame" x="0.0" y="0.0" width="362.5" height="60"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3c4-GC-2hd">
+                                                            <rect key="frame" x="36" y="17" width="290.5" height="26.5"/>
+                                                            <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="22"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.16862745100000001" green="0.1764705882" blue="0.66274509800000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="3c4-GC-2hd" secondAttribute="trailing" constant="16" id="EgB-iR-oq4"/>
+                                                        <constraint firstItem="3c4-GC-2hd" firstAttribute="centerY" secondItem="hTW-uz-3yc" secondAttribute="centerY" id="XG5-Oi-Gq1"/>
+                                                        <constraint firstItem="3c4-GC-2hd" firstAttribute="leading" secondItem="hTW-uz-3yc" secondAttribute="leadingMargin" constant="16" id="nSE-Ak-S9m"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <connections>
+                                                    <outlet property="label" destination="3c4-GC-2hd" id="CQ9-tn-9c6"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <sections/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="Jhr-px-5v1" id="lFI-7e-J3G"/>
+                                            <outlet property="delegate" destination="Jhr-px-5v1" id="Wkr-gE-9Jr"/>
+                                        </connections>
+                                    </tableView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstItem="nAu-3z-TdM" firstAttribute="top" secondItem="9lA-yo-5Ys" secondAttribute="bottom" id="P0r-AZ-s4c"/>
+                                    <constraint firstAttribute="bottom" secondItem="nAu-3z-TdM" secondAttribute="bottom" id="eMp-5b-8Ew"/>
+                                    <constraint firstItem="9lA-yo-5Ys" firstAttribute="leading" secondItem="IXa-uw-NFE" secondAttribute="leading" id="lM6-U7-aNw"/>
+                                    <constraint firstAttribute="trailing" secondItem="9lA-yo-5Ys" secondAttribute="trailing" id="ofF-u4-qL6"/>
+                                    <constraint firstItem="9lA-yo-5Ys" firstAttribute="top" secondItem="IXa-uw-NFE" secondAttribute="top" id="r61-Oa-Fej"/>
+                                    <constraint firstAttribute="trailing" secondItem="nAu-3z-TdM" secondAttribute="trailing" id="r7R-qG-PPM"/>
+                                    <constraint firstItem="nAu-3z-TdM" firstAttribute="leading" secondItem="IXa-uw-NFE" secondAttribute="leading" id="ubE-JJ-HTP"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Vbf-ad-dr6" appends="YES" id="GR9-dB-7Y7"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="cMC-QG-fcN" secondAttribute="trailing" id="AA6-kf-cvJ"/>
+                            <constraint firstItem="IXa-uw-NFE" firstAttribute="leading" secondItem="WBJ-Iy-4uG" secondAttribute="leading" id="GFZ-ac-UKm"/>
+                            <constraint firstItem="IXa-uw-NFE" firstAttribute="width" secondItem="WBJ-Iy-4uG" secondAttribute="width" multiplier="28:32" id="USV-Q2-bwC"/>
+                            <constraint firstItem="cMC-QG-fcN" firstAttribute="top" secondItem="WBJ-Iy-4uG" secondAttribute="top" id="ceo-6N-H7Q"/>
+                            <constraint firstItem="RGA-Tt-lwn" firstAttribute="top" secondItem="WBJ-Iy-4uG" secondAttribute="top" id="eEY-Hm-A4j"/>
+                            <constraint firstAttribute="bottom" secondItem="cMC-QG-fcN" secondAttribute="bottom" id="etw-z6-gtj"/>
+                            <constraint firstItem="IXa-uw-NFE" firstAttribute="top" secondItem="vQm-de-9rw" secondAttribute="top" id="ffu-Ke-AQr"/>
+                            <constraint firstItem="RGA-Tt-lwn" firstAttribute="leading" secondItem="WBJ-Iy-4uG" secondAttribute="leading" id="hVO-W7-fb3"/>
+                            <constraint firstAttribute="bottom" secondItem="IXa-uw-NFE" secondAttribute="bottom" id="kxS-JF-ufO"/>
+                            <constraint firstItem="cMC-QG-fcN" firstAttribute="leading" secondItem="WBJ-Iy-4uG" secondAttribute="leading" id="lxx-es-mgN"/>
+                            <constraint firstItem="IXa-uw-NFE" firstAttribute="top" secondItem="RGA-Tt-lwn" secondAttribute="bottom" id="q9i-Aw-mcP"/>
+                            <constraint firstItem="RGA-Tt-lwn" firstAttribute="trailing" secondItem="IXa-uw-NFE" secondAttribute="trailing" id="sWl-H1-GdY"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="vQm-de-9rw"/>
+                    </view>
+                    <connections>
+                        <outlet property="backgroundButton" destination="cMC-QG-fcN" id="bk0-tY-EHa"/>
+                        <outlet property="containerView" destination="IXa-uw-NFE" id="fS0-H1-yP7"/>
+                        <outlet property="containerViewLeadingConstraint" destination="GFZ-ac-UKm" id="fM7-dg-fHt"/>
+                        <outlet property="tableView" destination="nAu-3z-TdM" id="04J-r1-8nN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m2D-up-DW9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="Vbf-ad-dr6">
+                    <connections>
+                        <action selector="containerViewPanned:" destination="Jhr-px-5v1" id="PLO-Z4-aOe"/>
+                    </connections>
+                </panGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="-1107.2463768115942" y="54.910714285714285"/>
         </scene>
         <!--Gemara View Controller-->
         <scene sceneID="RqO-Zt-41v">
@@ -100,6 +233,9 @@
                                                 <rect key="frame" x="0.0" y="14" width="73.5" height="52"/>
                                                 <color key="tintColor" red="0.16862745100000001" green="0.1764705882" blue="0.66274509800000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" image="menu"/>
+                                                <connections>
+                                                    <action selector="menuButtonPressed:" destination="hlJ-VD-Lqd" eventType="touchUpInside" id="abE-Gd-xzr"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Jabrutouch" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9mK-Ep-QyN">
                                                 <rect key="frame" x="73.5" y="23.5" width="279" height="33.5"/>
@@ -321,6 +457,7 @@
                         <outlet property="mishnaLabel" destination="bgp-mR-fuJ" id="Lpk-9C-0O2"/>
                         <outlet property="modalsContainer" destination="Hqr-vP-VSo" id="DYM-YC-mRC"/>
                         <outlet property="titleLabel" destination="9mK-Ep-QyN" id="sSc-Pc-qBG"/>
+                        <segue destination="Jhr-px-5v1" kind="presentation" identifier="presentMenu" animates="NO" modalPresentationStyle="overFullScreen" id="QyC-qE-FwQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MyD-j7-MvK" userLabel="First Responder" sceneMemberID="firstResponder"/>

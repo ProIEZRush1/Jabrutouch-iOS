@@ -81,6 +81,8 @@
 		219BFF3822E5B72000ABBEE2 /* LocalizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219BFF3722E5B72000ABBEE2 /* LocalizationManager.swift */; };
 		219BFF3A22E5B77C00ABBEE2 /* FilesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219BFF3922E5B77C00ABBEE2 /* FilesManager.swift */; };
 		219BFF3D22E5B7BA00ABBEE2 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219BFF3C22E5B7BA00ABBEE2 /* Utils.swift */; };
+		219BFF4122E7173C00ABBEE2 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219BFF4022E7173C00ABBEE2 /* MainMenuViewController.swift */; };
+		219BFF4422E7186D00ABBEE2 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219BFF4322E7186D00ABBEE2 /* MenuTableViewCell.swift */; };
 		FB67A5DF22E4723F009E4DF9 /* Download.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB67A5DE22E4723F009E4DF9 /* Download.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -161,6 +163,8 @@
 		219BFF3722E5B72000ABBEE2 /* LocalizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationManager.swift; sourceTree = "<group>"; };
 		219BFF3922E5B77C00ABBEE2 /* FilesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesManager.swift; sourceTree = "<group>"; };
 		219BFF3C22E5B7BA00ABBEE2 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		219BFF4022E7173C00ABBEE2 /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
+		219BFF4322E7186D00ABBEE2 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		21B1A44222DDD30E006A33C9 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Jabrutouch/Info.plist; sourceTree = SOURCE_ROOT; };
 		FB67A5DE22E4723F009E4DF9 /* Download.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Download.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -288,6 +292,7 @@
 		2133C20B22DCA07000F910B9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				219BFF3E22E7171700ABBEE2 /* Menus */,
 				219BFF2D22E5A10400ABBEE2 /* Custom Views */,
 				2133C21122DCA0E000F910B9 /* WalkThrough */,
 				2133C20F22DCA0CD00F910B9 /* SignIn */,
@@ -419,6 +424,23 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		219BFF3E22E7171700ABBEE2 /* Menus */ = {
+			isa = PBXGroup;
+			children = (
+				219BFF3F22E7172200ABBEE2 /* MainMenu */,
+			);
+			path = Menus;
+			sourceTree = "<group>";
+		};
+		219BFF3F22E7172200ABBEE2 /* MainMenu */ = {
+			isa = PBXGroup;
+			children = (
+				219BFF4022E7173C00ABBEE2 /* MainMenuViewController.swift */,
+				219BFF4322E7186D00ABBEE2 /* MenuTableViewCell.swift */,
+			);
+			path = MainMenu;
+			sourceTree = "<group>";
+		};
 		FB67A5E222E47E61009E4DF9 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -548,6 +570,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				219BFF4122E7173C00ABBEE2 /* MainMenuViewController.swift in Sources */,
 				219BFF2F22E5A11900ABBEE2 /* TextFieldWithPadding.swift in Sources */,
 				2133C22122DCFEB500F910B9 /* WalkThroughCollectionViewCell.swift in Sources */,
 				219BFF2C22E59F4500ABBEE2 /* Extensions.swift in Sources */,
@@ -571,6 +594,7 @@
 				2133C22422DDCCD500F910B9 /* JBBarPageIndicator.swift in Sources */,
 				2133C1F822DB5B8200F910B9 /* AppDelegate.swift in Sources */,
 				21678D7822E08594007BC74C /* GemaraViewController.swift in Sources */,
+				219BFF4422E7186D00ABBEE2 /* MenuTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
