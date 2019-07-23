@@ -13,9 +13,11 @@ class DownloadsViewController: UIViewController {
     @IBOutlet weak var headerShadowBasis: UIView!
     @IBOutlet weak var gemaraButton: UIButton!
     @IBOutlet weak var mishnaButton: UIButton!
-    @IBOutlet weak var viewAllButton: UIButton!
+    @IBOutlet weak var viewAllLessonsButton: UIButton!
     @IBOutlet weak var grayUpArrow: UIImageView!
     @IBOutlet weak var initialGrayUpArrowXCentererdToGemara: NSLayoutConstraint!
+    @IBOutlet weak var booksImage: UIImageView!
+    @IBOutlet weak var noDownloadedFilesMessage: UILabel!
     
     fileprivate var isGemaraSelected = true
     fileprivate var grayUpArrowXCentererdToGemara: NSLayoutConstraint?
@@ -86,10 +88,10 @@ class DownloadsViewController: UIViewController {
     }
     
     fileprivate func setViewAllButtonShape() {
-        viewAllButton.layer.cornerRadius = 10.32
-        viewAllButton.layer.borderWidth = 0.57
-        viewAllButton.layer.borderColor = UIColor(red: 0.18, green: 0.17, blue: 0.66, alpha: 1).cgColor
-        viewAllButton.translatesAutoresizingMaskIntoConstraints = false
+        viewAllLessonsButton.layer.cornerRadius = 10.32
+        viewAllLessonsButton.layer.borderWidth = 0.57
+        viewAllLessonsButton.layer.borderColor = UIColor(red: 0.18, green: 0.17, blue: 0.66, alpha: 1).cgColor
+        viewAllLessonsButton.translatesAutoresizingMaskIntoConstraints = false
     }
     
     fileprivate func setViewsShadow() {
