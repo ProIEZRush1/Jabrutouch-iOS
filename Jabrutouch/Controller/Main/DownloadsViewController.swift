@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DownloadsViewController: UIViewController {
+class DownloadsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, HeaderViewDelegate {
 
     @IBOutlet weak var headerShadowBasis: UIView!
     @IBOutlet weak var gemaraButton: UIButton!
@@ -18,10 +18,15 @@ class DownloadsViewController: UIViewController {
     @IBOutlet weak var initialGrayUpArrowXCentererdToGemara: NSLayoutConstraint!
     @IBOutlet weak var booksImage: UIImageView!
     @IBOutlet weak var noDownloadedFilesMessage: UILabel!
+    @IBOutlet weak var gemaraTableView: UITableView!
+    @IBOutlet weak var deleteButton: UIButton!
     
-    fileprivate var isGemaraSelected = true
     fileprivate var grayUpArrowXCentererdToGemara: NSLayoutConstraint?
     fileprivate var grayUpArrowXCentererdToMishna: NSLayoutConstraint?
+    fileprivate var gemaraDownloads: [JTDownloadGroup] = []
+    fileprivate var mishnaDownloads: [JTDownloadGroup] = []
+    fileprivate var isGemaraSelected = true
+    fileprivate var isDeleting = false
     
     @IBAction func gemaraPressed(_ sender: Any) {
         if !isGemaraSelected {
@@ -44,6 +49,56 @@ class DownloadsViewController: UIViewController {
         initialGrayUpArrowXCentererdToGemara.isActive = false
         grayUpArrowXCentererdToGemara = grayUpArrow.centerXAnchor.constraint(equalTo: gemaraButton.centerXAnchor)
         grayUpArrowXCentererdToMishna = grayUpArrow.centerXAnchor.constraint(equalTo: mishnaButton.centerXAnchor)
+        fillTableForDev()
+        gemaraTableView.register(UINib(nibName: "DownloadsHeaderCell", bundle: nil), forHeaderFooterViewReuseIdentifier: "downloadsHeaderCell")
+        gemaraTableView.delegate = self
+        gemaraTableView.dataSource = self
+        setViews()
+    }
+    
+    fileprivate func fillTableForDev() {
+        var downloads1 = [JTDownload]()
+        let download1_1 = JTDownload(book: "Shabbat", chapter: "A", number: "1", hasAudio: true, hasVideo: true)
+        let download1_2 = JTDownload(book: "Shabbat", chapter: "A", number: "2", hasAudio: true, hasVideo: true)
+        let download1_3 = JTDownload(book: "Shabbat", chapter: "B", number: "12", hasAudio: false, hasVideo: true)
+        let download1_4 = JTDownload(book: "Shabbat", chapter: "B", number: "13", hasAudio: false, hasVideo: true)
+        let download1_5 = JTDownload(book: "Shabbat", chapter: "B", number: "14", hasAudio: true, hasVideo: false)
+        downloads1.append(download1_1)
+        downloads1.append(download1_2)
+        downloads1.append(download1_3)
+        downloads1.append(download1_4)
+        downloads1.append(download1_5)
+        let downloadGroup1 = JTDownloadGroup(group: "Shabbat", downloads: downloads1)
+        
+        var downloads2 = [JTDownload]()
+        let download2_1 = JTDownload(book: "Iruvim", chapter: "A", number: "2", hasAudio: true, hasVideo: true)
+        let download2_2 = JTDownload(book: "Iruvim", chapter: "A", number: "5", hasAudio: true, hasVideo: false)
+        let download2_3 = JTDownload(book: "Iruvim", chapter: "C", number: "1", hasAudio: true, hasVideo: true)
+        let download2_4 = JTDownload(book: "Iruvim", chapter: "C", number: "3", hasAudio: false, hasVideo: true)
+        downloads2.append(download2_1)
+        downloads2.append(download2_2)
+        downloads2.append(download2_3)
+        downloads2.append(download2_4)
+        let downloadGroup2 = JTDownloadGroup(group: "Iruvim", downloads: downloads2)
+        
+        var downloads3 = [JTDownload]()
+        let download3_1 = JTDownload(book: "Pesachim", chapter: "B", number: "3", hasAudio: true, hasVideo: false)
+        let download3_2 = JTDownload(book: "Pesachim", chapter: "B", number: "4", hasAudio: true, hasVideo: true)
+        let download3_3 = JTDownload(book: "Pesachim", chapter: "D", number: "1", hasAudio: true, hasVideo: false)
+        let download3_4 = JTDownload(book: "Pesachim", chapter: "E", number: "4", hasAudio: false, hasVideo: true)
+        let download3_5 = JTDownload(book: "Pesachim", chapter: "G", number: "2", hasAudio: true, hasVideo: false)
+        let download3_6 = JTDownload(book: "Pesachim", chapter: "G", number: "3", hasAudio: true, hasVideo: false)
+        downloads3.append(download3_1)
+        downloads3.append(download3_2)
+        downloads3.append(download3_3)
+        downloads3.append(download3_4)
+        downloads3.append(download3_5)
+        downloads3.append(download3_6)
+        let downloadGroup3 = JTDownloadGroup(group: "Pesachim", downloads: downloads3)
+        
+        gemaraDownloads.append(downloadGroup1)
+        gemaraDownloads.append(downloadGroup2)
+        gemaraDownloads.append(downloadGroup3)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,14 +106,34 @@ class DownloadsViewController: UIViewController {
         setSelectedPage()
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        setViews()
-    }
-    
     fileprivate func setSelectedPage() {
         setButtonsColorAndFont()
         setGrayUpArrowPosition()
+        showNoDownloadMessageIfNeeded()
+    }
+    
+    fileprivate func showNoDownloadMessageIfNeeded() {
+        if isGemaraSelected {
+            if gemaraDownloads.count == 0 {
+                setNoDownloadMessage(isHidden: false, table: gemaraTableView)
+            } else {
+                setNoDownloadMessage(isHidden: true, table: gemaraTableView)
+            }
+        } else {
+            if mishnaDownloads.count == 0 {
+                setNoDownloadMessage(isHidden: false, table: gemaraTableView) //TODO change gemaraTableView to mishnaTableView when created
+            } else {
+                setNoDownloadMessage(isHidden: true, table: gemaraTableView) //TODO change gemaraTableView to mishnaTableView when created
+            }
+        }
+    }
+    
+    fileprivate func setNoDownloadMessage(isHidden: Bool, table: UITableView) {
+        table.isHidden = !isHidden
+        deleteButton.isHidden = !isHidden
+        booksImage.isHidden = isHidden
+        noDownloadedFilesMessage.isHidden = isHidden
+        viewAllLessonsButton.isHidden = isHidden
     }
     
     fileprivate func setButtonsColorAndFont() {
@@ -116,6 +191,63 @@ class DownloadsViewController: UIViewController {
         view.layer.shadowRadius = shadowRadius
         view.layer.masksToBounds = false
         view.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    //----------------------------------------------------------------
+    // MARK: - UITableView Data Source and Delegate section
+    //----------------------------------------------------------------
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return gemaraDownloads.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if gemaraDownloads[section].isExpanded {
+            return gemaraDownloads[section].downloads.count
+        } else {
+            return 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+        return 200
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerCell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "downloadsHeaderCell") as! DownloadsHeaderCellController
+        headerCell.titleLabel?.text = self.gemaraDownloads[section].name
+        headerCell.section = section
+        headerCell.delegate = self
+        
+        return headerCell
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "downloadsCell", for: indexPath) as! DownloadsCellController
+        let download = self.gemaraDownloads[indexPath.section].downloads[indexPath.row]
+
+        cell.book.text = download.book
+        cell.chapter.text = download.chapter
+        cell.number.text = download.number
+        cell.audioButton.isHidden = !(download.hasAudio ?? false)
+        cell.videoButton.isHidden = !(download.hasVideo ?? false)
+        
+        if isDeleting {
+            cell.deleteButton.isHidden = false
+            cell.cellTrailingConstraint.constant = 45
+        } else {
+            cell.deleteButton.isHidden = true
+            cell.cellTrailingConstraint.constant = 21
+        }
+        
+        cell.cellView.layoutIfNeeded()
+        
+        return cell
+    }
+    
+    func toggleSection(header: DownloadsHeaderCellController, section: Int) {
+        gemaraDownloads[section].isExpanded = !gemaraDownloads[section].isExpanded
+        gemaraTableView.reloadSections([section], with: .automatic)
     }
     
     /*

@@ -16,7 +16,7 @@ class DownloadsNavigationController: UINavigationController {
         super.viewDidLoad()
 
         if let downloadsViewController = self.children.first as? DownloadsViewController {
-            downloadsViewController.delegate = self.modalDelegate
+            //downloadsViewController.delegate = self.modalDelegate // Marked by Aaron Tuil because it prevented the app to run
         }
     }
     

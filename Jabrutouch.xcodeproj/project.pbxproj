@@ -84,6 +84,11 @@
 		219BFF4122E7173C00ABBEE2 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219BFF4022E7173C00ABBEE2 /* MainMenuViewController.swift */; };
 		219BFF4422E7186D00ABBEE2 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219BFF4322E7186D00ABBEE2 /* MenuTableViewCell.swift */; };
 		FB67A5DF22E4723F009E4DF9 /* Download.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB67A5DE22E4723F009E4DF9 /* Download.storyboard */; };
+		FBAB071622E74ABD00C8DCD7 /* DownloadsCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAB071522E74ABD00C8DCD7 /* DownloadsCellController.swift */; };
+		FBAB071922E7579F00C8DCD7 /* JTDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAB071822E7579F00C8DCD7 /* JTDownload.swift */; };
+		FBDEF16822E8868600A300DA /* JTDownloadGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBDEF16722E8868600A300DA /* JTDownloadGroup.swift */; };
+		FBDEF16B22E89ACB00A300DA /* DownloadsHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBDEF16A22E89ACB00A300DA /* DownloadsHeaderCell.xib */; };
+		FBDEF16D22E89E3B00A300DA /* DownloadsHeaderCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBDEF16C22E89E3B00A300DA /* DownloadsHeaderCellController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -167,6 +172,11 @@
 		219BFF4322E7186D00ABBEE2 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		21B1A44222DDD30E006A33C9 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Jabrutouch/Info.plist; sourceTree = SOURCE_ROOT; };
 		FB67A5DE22E4723F009E4DF9 /* Download.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Download.storyboard; sourceTree = "<group>"; };
+		FBAB071522E74ABD00C8DCD7 /* DownloadsCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsCellController.swift; sourceTree = "<group>"; };
+		FBAB071822E7579F00C8DCD7 /* JTDownload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTDownload.swift; sourceTree = "<group>"; };
+		FBDEF16722E8868600A300DA /* JTDownloadGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTDownloadGroup.swift; sourceTree = "<group>"; };
+		FBDEF16A22E89ACB00A300DA /* DownloadsHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DownloadsHeaderCell.xib; sourceTree = "<group>"; };
+		FBDEF16C22E89E3B00A300DA /* DownloadsHeaderCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsHeaderCellController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +195,8 @@
 			children = (
 				219BFF2622E50A0A00ABBEE2 /* DownloadsNavigationController.swift */,
 				21678D7522E08565007BC74C /* DownloadsViewController.swift */,
+				FBAB071522E74ABD00C8DCD7 /* DownloadsCellController.swift */,
+				FBDEF16C22E89E3B00A300DA /* DownloadsHeaderCellController.swift */,
 			);
 			path = Downloads;
 			sourceTree = "<group>";
@@ -284,6 +296,7 @@
 		2133C20A22DCA06400F910B9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FBDEF16922E89A6100A300DA /* Custom Cells */,
 				2133C22222DD02F900F910B9 /* Storyboards */,
 			);
 			path = View;
@@ -394,6 +407,7 @@
 		219BFF3222E5B6C200ABBEE2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FBAB071722E7577700C8DCD7 /* Data Models */,
 				219BFF3322E5B6E100ABBEE2 /* Localization */,
 			);
 			path = Models;
@@ -447,6 +461,23 @@
 				219BFF3022E5B67C00ABBEE2 /* countries.json */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		FBAB071722E7577700C8DCD7 /* Data Models */ = {
+			isa = PBXGroup;
+			children = (
+				FBAB071822E7579F00C8DCD7 /* JTDownload.swift */,
+				FBDEF16722E8868600A300DA /* JTDownloadGroup.swift */,
+			);
+			path = "Data Models";
+			sourceTree = "<group>";
+		};
+		FBDEF16922E89A6100A300DA /* Custom Cells */ = {
+			isa = PBXGroup;
+			children = (
+				FBDEF16A22E89ACB00A300DA /* DownloadsHeaderCell.xib */,
+			);
+			path = "Custom Cells";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -514,6 +545,7 @@
 				21678D4922DF2CEC007BC74C /* SF-Pro-Display-BoldItalic.otf in Resources */,
 				FB67A5DF22E4723F009E4DF9 /* Download.storyboard in Resources */,
 				21678D4A22DF2CEC007BC74C /* SF-Pro-Display-Heavy.otf in Resources */,
+				FBDEF16B22E89ACB00A300DA /* DownloadsHeaderCell.xib in Resources */,
 				21678D4B22DF2CEC007BC74C /* SF-Pro-Display-HeavyItalic.otf in Resources */,
 				21678D4C22DF2CEC007BC74C /* SF-Pro-Display-Light.otf in Resources */,
 				21678D4D22DF2CEC007BC74C /* SF-Pro-Display-LightItalic.otf in Resources */,
@@ -577,9 +609,11 @@
 				2120BE2122DF2787004854DB /* VerificationViewController.swift in Sources */,
 				219BFF2922E50C0B00ABBEE2 /* ModalsContainerViewController.swift in Sources */,
 				21678D7422E08530007BC74C /* MainViewController.swift in Sources */,
+				FBAB071622E74ABD00C8DCD7 /* DownloadsCellController.swift in Sources */,
 				2133C21F22DCFC6600F910B9 /* WalkThroughViewController.swift in Sources */,
 				2133C22622DDCD3E00F910B9 /* Colors.swift in Sources */,
 				219BFF3522E5B6F700ABBEE2 /* Country.swift in Sources */,
+				FBAB071922E7579F00C8DCD7 /* JTDownload.swift in Sources */,
 				219BFF3A22E5B77C00ABBEE2 /* FilesManager.swift in Sources */,
 				219BFF2722E50A0A00ABBEE2 /* DownloadsNavigationController.swift in Sources */,
 				21678D7C22E085CB007BC74C /* DonationsViewController.swift in Sources */,
@@ -591,10 +625,12 @@
 				21678D7622E08565007BC74C /* DownloadsViewController.swift in Sources */,
 				219BFF3822E5B72000ABBEE2 /* LocalizationManager.swift in Sources */,
 				2120BE1F22DF2758004854DB /* SignUpViewController.swift in Sources */,
+				FBDEF16D22E89E3B00A300DA /* DownloadsHeaderCellController.swift in Sources */,
 				2133C22422DDCCD500F910B9 /* JBBarPageIndicator.swift in Sources */,
 				2133C1F822DB5B8200F910B9 /* AppDelegate.swift in Sources */,
 				21678D7822E08594007BC74C /* GemaraViewController.swift in Sources */,
 				219BFF4422E7186D00ABBEE2 /* MenuTableViewCell.swift in Sources */,
+				FBDEF16822E8868600A300DA /* JTDownloadGroup.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
