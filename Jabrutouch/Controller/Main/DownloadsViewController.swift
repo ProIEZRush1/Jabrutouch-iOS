@@ -36,6 +36,7 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     fileprivate var tableViewsMap = [String: UITableView]()
     fileprivate let GEMARA = "Gemara"
     fileprivate let MISHNA = "Mishna"
+    fileprivate let shadowColor = UIColor(red: 0.1, green: 0.12, blue: 0.57, alpha: 0.1)
     
     //----------------------------------------------------------------
     // MARK: - @IBActions and their helpers
@@ -232,7 +233,6 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     
     fileprivate func setViewsShadow() {
         let borderColor = UIColor(red: 0.93, green: 0.94, blue: 0.96, alpha: 1)
-        let shadowColor = UIColor(red: 0.1, green: 0.12, blue: 0.57, alpha: 0.1)
         let headerShadowColor = UIColor(red: 0.1, green: 0.12, blue: 0.57, alpha: 0.07)
         let shadowOffset = CGSize(width: 0.0, height: 10)
         let headerShadowOffset = CGSize(width: 0, height: 4)
@@ -283,7 +283,7 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
+        return 40
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -327,9 +327,10 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.delegate = self
         cell.audioButton.isHidden = !download.hasAudio
         cell.videoButton.isHidden = !download.hasVideo
-        cell.cellView.layer.cornerRadius = 18
         cell.cellView.translatesAutoresizingMaskIntoConstraints = false
-        
+        let shadowOffset = CGSize(width: 0.0, height: 12)
+        dropViewShadow(view: cell.cellView, cornerRadius: 18, shadowColor: shadowColor, shadowRadius: 36, shadowOffset: shadowOffset)
+
         if isDeleting {
             cell.deleteButton.isHidden = false
             cell.cellTrailingConstraint.constant = 45
