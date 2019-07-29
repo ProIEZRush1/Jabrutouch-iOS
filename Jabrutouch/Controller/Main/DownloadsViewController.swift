@@ -32,6 +32,10 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     fileprivate var mishnaDownloads: [JTDownloadGroup] = []
     fileprivate var isGemaraSelected = true
     fileprivate var isDeleting = false
+    fileprivate var downloadsMap = [String: [JTDownloadGroup]]()
+    fileprivate var tableViewsMap = [String: UITableView]()
+    fileprivate let GEMARA = "Gemara"
+    fileprivate let MISHNA = "Mishna"
     
     //----------------------------------------------------------------
     // MARK: - @IBActions and their helpers
@@ -84,13 +88,17 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         initialGrayUpArrowXCentererdToGemara.isActive = false
         grayUpArrowXCentererdToGemara = grayUpArrow.centerXAnchor.constraint(equalTo: gemaraButton.centerXAnchor)
         grayUpArrowXCentererdToMishna = grayUpArrow.centerXAnchor.constraint(equalTo: mishnaButton.centerXAnchor)
-        fillTableForDev()
+        fillTableForDev() // Only for Dev
         gemaraTableView.register(UINib(nibName: "DownloadsHeaderCell", bundle: nil), forHeaderFooterViewReuseIdentifier: "downloadsHeaderCell")
         mishnaTableView.register(UINib(nibName: "DownloadsHeaderCell", bundle: nil), forHeaderFooterViewReuseIdentifier: "downloadsHeaderCell")
         gemaraTableView.delegate = self
         gemaraTableView.dataSource = self
         mishnaTableView.delegate = self
         mishnaTableView.dataSource = self
+        downloadsMap[GEMARA] = gemaraDownloads
+        downloadsMap[MISHNA] = mishnaDownloads
+        tableViewsMap[GEMARA] = gemaraTableView
+        tableViewsMap[MISHNA] = mishnaTableView
         setViews()
     }
     
@@ -157,20 +165,15 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     fileprivate func setSelectedPage() {
         setButtonsColorAndFont()
         setGrayUpArrowPosition()
-        showNoDownloadMessageIfNeeded()
+        checkIfTableViewEmpty(gemaraDownloads, gemaraTableView)
+        checkIfTableViewEmpty(mishnaDownloads, mishnaTableView)
     }
     
-    fileprivate func showNoDownloadMessageIfNeeded() {
-        if gemaraDownloads.count == 0 {
-            setNoDownloadMessage(isHidden: false, table: gemaraTableView)
+    fileprivate func checkIfTableViewEmpty(_ downloads: [JTDownloadGroup], _ tableView: UITableView) {
+        if downloads.count == 0 {
+            setNoDownloadMessage(isHidden: false, table: tableView)
         } else {
-            setNoDownloadMessage(isHidden: true, table: gemaraTableView)
-        }
-        
-        if mishnaDownloads.count == 0 {
-            setNoDownloadMessage(isHidden: false, table: mishnaTableView)
-        } else {
-            setNoDownloadMessage(isHidden: true, table: mishnaTableView)
+            setNoDownloadMessage(isHidden: true, table: tableView)
         }
     }
     
@@ -356,6 +359,7 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
+    // Note: coudln't avoid code reuse by writing help function or dictionaries
     func cellDeletePressed(_ cell: DownloadsCellController) {
         let alert = UIAlertController(title: "Please Confirm", message: "Delete this download(s)?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default, handler: { action in
@@ -365,6 +369,7 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
                     if self.gemaraDownloads[indexPath.section].downloads.count == 0 {
                         self.gemaraDownloads.remove(at: indexPath.section)
                         self.gemaraTableView.deleteSections([indexPath.section], with: .bottom)
+                        self.reloadRelevantSections(indexPath.section, self.gemaraDownloads, self.gemaraTableView)
                     } else {
                         self.gemaraTableView.deleteRows(at: [indexPath], with: .bottom)
                     }
@@ -374,8 +379,8 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
                     self.mishnaDownloads[indexPath.section].downloads.remove(at: indexPath.row)
                     if self.mishnaDownloads[indexPath.section].downloads.count == 0 {
                         self.mishnaDownloads.remove(at: indexPath.section)
-//                        self.mishnaTableView.deleteRows(at: [indexPath], with: .bottom)
                         self.mishnaTableView.deleteSections([indexPath.section], with: .bottom)
+                        self.reloadRelevantSections(indexPath.section, self.mishnaDownloads, self.mishnaTableView)
                     } else {
                         self.mishnaTableView.deleteRows(at: [indexPath], with: .bottom)
                     }
@@ -384,6 +389,17 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    // Update the "section" field in the header cells that are after the deleted section.
+    fileprivate func reloadRelevantSections(_ deletedSection: Int, _ downloadGroups: [JTDownloadGroup], _ tableView: UITableView) {
+        var sections: IndexSet = []
+        
+        for section in deletedSection..<downloadGroups.count {
+            sections.insert(section)
+        }
+        
+        tableView.reloadSections(sections, with: .automatic)
     }
     
     /*

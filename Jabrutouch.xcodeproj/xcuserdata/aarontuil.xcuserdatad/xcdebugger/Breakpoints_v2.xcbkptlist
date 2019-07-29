@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Jabrutouch/Controller/Main/DownloadsViewController.swift"
-            timestampString = "586090937.445227"
+            timestampString = "586103248.839498"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "321"
-            endingLineNumber = "321"
-            landmarkName = "tableView(_:cellForRowAt:)"
+            startingLineNumber = "396"
+            endingLineNumber = "396"
+            landmarkName = "reloadRelevantSections(_:_:_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -134,48 +134,42 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="downloadsCell" rowHeight="89" id="IPO-2W-CTR" userLabel="Download Cell View" customClass="DownloadsCellController" customModule="Jabrutouch" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="89"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="downloadsCell" id="IPO-2W-CTR" userLabel="Download Cell View" customClass="DownloadsCellController" customModule="Jabrutouch" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IPO-2W-CTR" id="tgY-Hl-LHG" userLabel="Download Cell Content View">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="89"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IPO-2W-CTR" id="tgY-Hl-LHG" userLabel="Download Cell Content View">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tys-3p-kx8">
-                                                    <rect key="frame" x="21" y="0.0" width="348" height="76"/>
+                                                    <rect key="frame" x="21" y="0.0" width="348" height="76.333333333333329"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shabbat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YtL-SC-a2e">
-                                                            <rect key="frame" x="26.000000000000007" y="24" width="92.666666666666686" height="28"/>
+                                                            <rect key="frame" x="26" y="24.333333333333336" width="91" height="28"/>
                                                             <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="24"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6IX-7g-KOM">
-                                                            <rect key="frame" x="123.66666666666667" y="24" width="15.666666666666671" height="28"/>
+                                                            <rect key="frame" x="122.00000000000001" y="24.333333333333336" width="15.666666666666671" height="28"/>
                                                             <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="24"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZQv-Uz-0ue">
-                                                            <rect key="frame" x="144.33333333333334" y="24" width="11.666666666666657" height="28"/>
+                                                            <rect key="frame" x="142.66666666666666" y="24.333333333333336" width="13.666666666666657" height="28"/>
                                                             <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="24"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jyb-sK-pGD" userLabel="Audio">
-                                                            <rect key="frame" x="253" y="18" width="40" height="40"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="40" id="N0z-De-Eej"/>
-                                                                <constraint firstAttribute="height" constant="40" id="bQJ-ZB-6gc"/>
-                                                            </constraints>
+                                                            <rect key="frame" x="267.66666666666669" y="17.000000000000004" width="29.666666666666686" height="42.333333333333343"/>
+                                                            <inset key="contentEdgeInsets" minX="7" minY="10" maxX="7" maxY="10"/>
                                                             <state key="normal" image="Audio"/>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pTh-16-GT2" userLabel="Video">
-                                                            <rect key="frame" x="298" y="18" width="40" height="40"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="40" id="Se4-Rx-M5g"/>
-                                                                <constraint firstAttribute="width" constant="40" id="lXi-Op-Vmv"/>
-                                                            </constraints>
+                                                            <rect key="frame" x="302.33333333333331" y="17.000000000000004" width="35.666666666666686" height="42.333333333333343"/>
+                                                            <inset key="contentEdgeInsets" minX="7" minY="10" maxX="7" maxY="10"/>
                                                             <state key="normal" image="Video"/>
                                                         </button>
                                                     </subviews>
@@ -196,17 +190,15 @@
                                                     </constraints>
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fJy-Q9-W6e" userLabel="Delete">
-                                                    <rect key="frame" x="369" y="0.0" width="45" height="76"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="45" id="deF-Xu-QN0"/>
-                                                    </constraints>
+                                                    <rect key="frame" x="369" y="7.0000000000000036" width="45" height="62.333333333333343"/>
+                                                    <inset key="contentEdgeInsets" minX="15" minY="20" maxX="15" maxY="20"/>
                                                     <state key="normal" image="X"/>
                                                     <connections>
                                                         <action selector="deletePressed:" destination="IPO-2W-CTR" eventType="touchUpInside" id="6BQ-7g-VhG"/>
                                                     </connections>
                                                 </button>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QP1-7F-oEE" userLabel="Bottom Padding">
-                                                    <rect key="frame" x="0.0" y="76" width="414" height="13"/>
+                                                    <rect key="frame" x="0.0" y="76.333333333333329" width="414" height="13"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <accessibility key="accessibilityConfiguration" identifier="Cell Bottom Padding"/>
                                                     <constraints>
@@ -224,7 +216,6 @@
                                                 <constraint firstAttribute="trailing" secondItem="fJy-Q9-W6e" secondAttribute="trailing" id="QcT-W5-8Cc"/>
                                                 <constraint firstItem="fJy-Q9-W6e" firstAttribute="centerY" secondItem="tys-3p-kx8" secondAttribute="centerY" id="ZDW-N6-34h"/>
                                                 <constraint firstItem="QP1-7F-oEE" firstAttribute="centerX" secondItem="tgY-Hl-LHG" secondAttribute="centerX" id="n7a-pY-uax"/>
-                                                <constraint firstItem="fJy-Q9-W6e" firstAttribute="height" secondItem="tys-3p-kx8" secondAttribute="height" id="rOs-PG-3JZ"/>
                                                 <constraint firstAttribute="trailing" secondItem="tys-3p-kx8" secondAttribute="trailing" constant="45" id="uUz-tN-R8v"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -247,36 +238,36 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="downloadsCell" rowHeight="89" id="7dV-xT-Hbu" userLabel="Download Cell View" customClass="DownloadsCellController" customModule="Jabrutouch" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="89"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="downloadsCell" id="7dV-xT-Hbu" userLabel="Download Cell View" customClass="DownloadsCellController" customModule="Jabrutouch" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7dV-xT-Hbu" id="6v9-k5-fyH" userLabel="Download Cell Content View">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="89"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7dV-xT-Hbu" id="6v9-k5-fyH" userLabel="Download Cell Content View">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1jW-un-djR">
-                                                    <rect key="frame" x="21" y="0.0" width="348" height="76"/>
+                                                    <rect key="frame" x="21" y="0.0" width="348" height="76.333333333333329"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shabbat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y4d-u8-PqE">
-                                                            <rect key="frame" x="26.000000000000007" y="24" width="92.666666666666686" height="28"/>
+                                                            <rect key="frame" x="26" y="24.333333333333336" width="91" height="28"/>
                                                             <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="24"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xBH-Gp-bmk">
-                                                            <rect key="frame" x="123.66666666666667" y="24" width="15.666666666666671" height="28"/>
+                                                            <rect key="frame" x="122.00000000000001" y="24.333333333333336" width="15.666666666666671" height="28"/>
                                                             <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="24"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DGe-9V-cpb">
-                                                            <rect key="frame" x="144.33333333333334" y="24" width="11.666666666666657" height="28"/>
+                                                            <rect key="frame" x="142.66666666666666" y="24.333333333333336" width="13.666666666666657" height="28"/>
                                                             <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="24"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="efs-vY-7eU" userLabel="Audio">
-                                                            <rect key="frame" x="253" y="18" width="40" height="40"/>
+                                                            <rect key="frame" x="253" y="18.000000000000004" width="40" height="40.333333333333343"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="40" id="7iZ-Mb-esZ"/>
                                                                 <constraint firstAttribute="width" constant="40" id="uxe-82-mbY"/>
@@ -284,7 +275,7 @@
                                                             <state key="normal" image="Audio"/>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gCk-Wa-Bj7" userLabel="Video">
-                                                            <rect key="frame" x="298" y="18" width="40" height="40"/>
+                                                            <rect key="frame" x="298" y="18.000000000000004" width="40" height="40.333333333333343"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="40" id="JL4-b5-TzJ"/>
                                                                 <constraint firstAttribute="width" constant="40" id="r6p-av-Bu7"/>
@@ -309,7 +300,7 @@
                                                     </constraints>
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ebl-Bk-flN" userLabel="Delete">
-                                                    <rect key="frame" x="369" y="0.0" width="45" height="76"/>
+                                                    <rect key="frame" x="369" y="0.0" width="45" height="76.333333333333329"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="45" id="8kY-XG-Viw"/>
                                                     </constraints>
@@ -319,7 +310,7 @@
                                                     </connections>
                                                 </button>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TiH-4W-ifg" userLabel="Bottom Padding">
-                                                    <rect key="frame" x="0.0" y="76" width="414" height="13"/>
+                                                    <rect key="frame" x="0.0" y="76.333333333333329" width="414" height="13"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <accessibility key="accessibilityConfiguration" identifier="Cell Bottom Padding"/>
                                                     <constraints>
