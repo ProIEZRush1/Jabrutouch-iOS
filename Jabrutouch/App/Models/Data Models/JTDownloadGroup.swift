@@ -10,7 +10,7 @@ import Foundation
 
 class JTDownloadGroup {
     
-    var name: String?
+    var name: String = ""
     var downloads: [JTDownload]
     var isExpanded = false
     
