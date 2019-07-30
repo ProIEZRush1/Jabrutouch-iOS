@@ -80,6 +80,9 @@
                                         <state key="normal" image="LeftArrow">
                                             <color key="titleColor" red="0.2901960784" green="0.2666666667" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="backButtonPressed:" destination="AIk-jv-S31" eventType="touchUpInside" id="vQu-0H-ftW"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -17,6 +17,8 @@ class DownloadsViewController: UIViewController {
     @IBOutlet weak var grayUpArrow: UIImageView!
     @IBOutlet weak var initialGrayUpArrowXCentererdToGemara: NSLayoutConstraint!
     
+    weak var delegate: MainModalDelegate?
+    
     fileprivate var isGemaraSelected = true
     fileprivate var grayUpArrowXCentererdToGemara: NSLayoutConstraint?
     fileprivate var grayUpArrowXCentererdToMishna: NSLayoutConstraint?
@@ -116,6 +118,9 @@ class DownloadsViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
     }
     
+    @IBAction func backButtonPressed(_ sender: UIButton) {
+        self.delegate?.dismissMainModal()
+    }
     /*
     // MARK: - Navigation
 

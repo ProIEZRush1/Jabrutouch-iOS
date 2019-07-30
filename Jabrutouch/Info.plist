@@ -91,5 +91,7 @@
         <string>SF-Pro-Text-Ultralight.otf</string>
         <string>SF-Pro-Text-UltralightItalic.otf</string>
     </array>
+    <key>APIBaseUrl</key>
+    <string>$(API_BASE_URL)</string>
 </dict>
 </plist>
