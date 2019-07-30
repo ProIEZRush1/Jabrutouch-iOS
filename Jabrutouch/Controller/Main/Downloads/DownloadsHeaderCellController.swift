@@ -25,7 +25,7 @@ class DownloadsHeaderCellController: UITableViewHeaderFooterView {
     
     @objc private func headerPressed() {
         delegate?.toggleSection(header: self, section: section)
-        arrowImage?.rotate(isExpanded ? .pi : 0.0)
+        arrowImage?.rotate(.pi)
     }
 }
 
