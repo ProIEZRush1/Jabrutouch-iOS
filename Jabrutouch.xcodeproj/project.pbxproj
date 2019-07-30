@@ -22,6 +22,10 @@
 		2133C22122DCFEB500F910B9 /* WalkThroughCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2133C22022DCFEB500F910B9 /* WalkThroughCollectionViewCell.swift */; };
 		2133C22422DDCCD500F910B9 /* JBBarPageIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2133C22322DDCCD500F910B9 /* JBBarPageIndicator.swift */; };
 		2133C22622DDCD3E00F910B9 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2133C22522DDCD3E00F910B9 /* Colors.swift */; };
+		2145858F22EF7D980062F830 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2145858E22EF7D980062F830 /* API.swift */; };
+		2145859222EF7E410062F830 /* SendCodeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2145859122EF7E410062F830 /* SendCodeResponse.swift */; };
+		2145859422EF7E920062F830 /* ResendCodeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2145859322EF7E920062F830 /* ResendCodeResponse.swift */; };
+		2145859622EF7EC60062F830 /* ValidateCodeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2145859522EF7EC60062F830 /* ValidateCodeResponse.swift */; };
 		21678D4622DF2CEC007BC74C /* SF-Pro-Display-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 21678D1A22DF2CB9007BC74C /* SF-Pro-Display-Black.otf */; };
 		21678D4722DF2CEC007BC74C /* SF-Pro-Display-BlackItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 21678D3622DF2CC5007BC74C /* SF-Pro-Display-BlackItalic.otf */; };
 		21678D4822DF2CEC007BC74C /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 21678D2D22DF2CC2007BC74C /* SF-Pro-Display-Bold.otf */; };
@@ -72,6 +76,9 @@
 		21678D7822E08594007BC74C /* GemaraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21678D7722E08594007BC74C /* GemaraViewController.swift */; };
 		21678D7A22E085B1007BC74C /* MishnaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21678D7922E085B1007BC74C /* MishnaViewController.swift */; };
 		21678D7C22E085CB007BC74C /* DonationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21678D7B22E085CB007BC74C /* DonationsViewController.swift */; };
+		216A0E6E22EEFD1400F7FBC1 /* HTTPProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A0E6D22EEFD1400F7FBC1 /* HTTPProvider.swift */; };
+		216A0E7022EEFDA300F7FBC1 /* HTTPRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A0E6F22EEFDA300F7FBC1 /* HTTPRequestFactory.swift */; };
+		216A0E7322EF15DB00F7FBC1 /* JBUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A0E7222EF15DB00F7FBC1 /* JBUser.swift */; };
 		219BFF2722E50A0A00ABBEE2 /* DownloadsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219BFF2622E50A0A00ABBEE2 /* DownloadsNavigationController.swift */; };
 		219BFF2922E50C0B00ABBEE2 /* ModalsContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219BFF2822E50C0B00ABBEE2 /* ModalsContainerViewController.swift */; };
 		219BFF2C22E59F4500ABBEE2 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219BFF2B22E59F4500ABBEE2 /* Extensions.swift */; };
@@ -83,6 +90,9 @@
 		219BFF3D22E5B7BA00ABBEE2 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219BFF3C22E5B7BA00ABBEE2 /* Utils.swift */; };
 		219BFF4122E7173C00ABBEE2 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219BFF4022E7173C00ABBEE2 /* MainMenuViewController.swift */; };
 		219BFF4422E7186D00ABBEE2 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219BFF4322E7186D00ABBEE2 /* MenuTableViewCell.swift */; };
+		21CC093E22F04C4000E8FE27 /* daf_yomi.json in Resources */ = {isa = PBXBuildFile; fileRef = 21CC093D22F04C4000E8FE27 /* daf_yomi.json */; };
+		21CC094122F05D1500E8FE27 /* DafYomi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CC094022F05D1500E8FE27 /* DafYomi.swift */; };
+		21CC094422F05D8A00E8FE27 /* DafYomiRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CC094322F05D8A00E8FE27 /* DafYomiRepository.swift */; };
 		FB67A5DF22E4723F009E4DF9 /* Download.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB67A5DE22E4723F009E4DF9 /* Download.storyboard */; };
 		FBAB071622E74ABD00C8DCD7 /* DownloadsCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAB071522E74ABD00C8DCD7 /* DownloadsCellController.swift */; };
 		FBAB071922E7579F00C8DCD7 /* JTDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAB071822E7579F00C8DCD7 /* JTDownload.swift */; };
@@ -109,6 +119,10 @@
 		2133C22022DCFEB500F910B9 /* WalkThroughCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkThroughCollectionViewCell.swift; sourceTree = "<group>"; };
 		2133C22322DDCCD500F910B9 /* JBBarPageIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JBBarPageIndicator.swift; sourceTree = "<group>"; };
 		2133C22522DDCD3E00F910B9 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		2145858E22EF7D980062F830 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		2145859122EF7E410062F830 /* SendCodeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SendCodeResponse.swift; path = Jabrutouch/App/Models/Localization/SendCodeResponse.swift; sourceTree = SOURCE_ROOT; };
+		2145859322EF7E920062F830 /* ResendCodeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResendCodeResponse.swift; sourceTree = "<group>"; };
+		2145859522EF7EC60062F830 /* ValidateCodeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateCodeResponse.swift; sourceTree = "<group>"; };
 		21678D1922DF2CB9007BC74C /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
 		21678D1A22DF2CB9007BC74C /* SF-Pro-Display-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Black.otf"; sourceTree = "<group>"; };
 		21678D1B22DF2CB9007BC74C /* SF-Pro-Display-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-BoldItalic.otf"; sourceTree = "<group>"; };
@@ -159,6 +173,9 @@
 		21678D7722E08594007BC74C /* GemaraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GemaraViewController.swift; sourceTree = "<group>"; };
 		21678D7922E085B1007BC74C /* MishnaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MishnaViewController.swift; sourceTree = "<group>"; };
 		21678D7B22E085CB007BC74C /* DonationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonationsViewController.swift; sourceTree = "<group>"; };
+		216A0E6D22EEFD1400F7FBC1 /* HTTPProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPProvider.swift; sourceTree = "<group>"; };
+		216A0E6F22EEFDA300F7FBC1 /* HTTPRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequestFactory.swift; sourceTree = "<group>"; };
+		216A0E7222EF15DB00F7FBC1 /* JBUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JBUser.swift; sourceTree = "<group>"; };
 		219BFF2622E50A0A00ABBEE2 /* DownloadsNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsNavigationController.swift; sourceTree = "<group>"; };
 		219BFF2822E50C0B00ABBEE2 /* ModalsContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalsContainerViewController.swift; sourceTree = "<group>"; };
 		219BFF2B22E59F4500ABBEE2 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -171,6 +188,9 @@
 		219BFF4022E7173C00ABBEE2 /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		219BFF4322E7186D00ABBEE2 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		21B1A44222DDD30E006A33C9 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Jabrutouch/Info.plist; sourceTree = SOURCE_ROOT; };
+		21CC093D22F04C4000E8FE27 /* daf_yomi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = daf_yomi.json; sourceTree = "<group>"; };
+		21CC094022F05D1500E8FE27 /* DafYomi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DafYomi.swift; sourceTree = "<group>"; };
+		21CC094322F05D8A00E8FE27 /* DafYomiRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DafYomiRepository.swift; sourceTree = "<group>"; };
 		FB67A5DE22E4723F009E4DF9 /* Download.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Download.storyboard; sourceTree = "<group>"; };
 		FBAB071522E74ABD00C8DCD7 /* DownloadsCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsCellController.swift; sourceTree = "<group>"; };
 		FBAB071822E7579F00C8DCD7 /* JTDownload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTDownload.swift; sourceTree = "<group>"; };
@@ -190,6 +210,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2107341B22EEFCA8008479D0 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				216A0E6C22EEFCF100F7FBC1 /* Network */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		21186E9D22E5097700B3049E /* Downloads */ = {
 			isa = PBXGroup;
 			children = (
@@ -287,7 +315,9 @@
 				2133C20C22DCA08200F910B9 /* Core */,
 				219BFF3B22E5B7A800ABBEE2 /* Utils */,
 				2133C21922DCA5EB00F910B9 /* Resources */,
+				21CC094222F05D6C00E8FE27 /* Repositories */,
 				219BFF3622E5B6FD00ABBEE2 /* Managers */,
+				2107341B22EEFCA8008479D0 /* Services */,
 				219BFF3222E5B6C200ABBEE2 /* Models */,
 			);
 			path = App;
@@ -359,7 +389,7 @@
 		2133C21222DCA57900F910B9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				FB67A5E222E47E61009E4DF9 /* Utils */,
+				FB67A5E222E47E61009E4DF9 /* Documents */,
 				2120BE2522DF2C62004854DB /* Fonts */,
 				2133C1FE22DB5B8500F910B9 /* Assets.xcassets */,
 				2133C21722DCA5D200F910B9 /* Localizable.strings */,
@@ -387,6 +417,34 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
+		2145859022EF7E120062F830 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				2145859122EF7E410062F830 /* SendCodeResponse.swift */,
+				2145859322EF7E920062F830 /* ResendCodeResponse.swift */,
+				2145859522EF7EC60062F830 /* ValidateCodeResponse.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		216A0E6C22EEFCF100F7FBC1 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				216A0E6D22EEFD1400F7FBC1 /* HTTPProvider.swift */,
+				216A0E6F22EEFDA300F7FBC1 /* HTTPRequestFactory.swift */,
+				2145858E22EF7D980062F830 /* API.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		216A0E7122EF15C600F7FBC1 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				216A0E7222EF15DB00F7FBC1 /* JBUser.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
 		219BFF2A22E50CE200ABBEE2 /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -407,6 +465,9 @@
 		219BFF3222E5B6C200ABBEE2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				21CC093F22F05CEB00E8FE27 /* DafYomi */,
+				2145859022EF7E120062F830 /* Network */,
+				216A0E7122EF15C600F7FBC1 /* User */,
 				FBAB071722E7577700C8DCD7 /* Data Models */,
 				219BFF3322E5B6E100ABBEE2 /* Localization */,
 			);
@@ -455,12 +516,29 @@
 			path = MainMenu;
 			sourceTree = "<group>";
 		};
-		FB67A5E222E47E61009E4DF9 /* Utils */ = {
+		21CC093F22F05CEB00E8FE27 /* DafYomi */ = {
 			isa = PBXGroup;
 			children = (
+				21CC094022F05D1500E8FE27 /* DafYomi.swift */,
+			);
+			path = DafYomi;
+			sourceTree = "<group>";
+		};
+		21CC094222F05D6C00E8FE27 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				21CC094322F05D8A00E8FE27 /* DafYomiRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		FB67A5E222E47E61009E4DF9 /* Documents */ = {
+			isa = PBXGroup;
+			children = (
+				21CC093D22F04C4000E8FE27 /* daf_yomi.json */,
 				219BFF3022E5B67C00ABBEE2 /* countries.json */,
 			);
-			path = Utils;
+			path = Documents;
 			sourceTree = "<group>";
 		};
 		FBAB071722E7577700C8DCD7 /* Data Models */ = {
@@ -585,6 +663,7 @@
 				21678D6E22DF2CED007BC74C /* SF-Pro-Text-SemiboldItalic.otf in Resources */,
 				21678D6F22DF2CED007BC74C /* SF-Pro-Text-Thin.otf in Resources */,
 				21678D7022DF2CED007BC74C /* SF-Pro-Text-ThinItalic.otf in Resources */,
+				21CC093E22F04C4000E8FE27 /* daf_yomi.json in Resources */,
 				21678D7122DF2CED007BC74C /* SF-Pro-Text-Ultralight.otf in Resources */,
 				21678D7222DF2CED007BC74C /* SF-Pro-Text-UltralightItalic.otf in Resources */,
 				2133C21522DCA5D200F910B9 /* Localizable.strings in Resources */,
@@ -607,8 +686,11 @@
 				2133C22122DCFEB500F910B9 /* WalkThroughCollectionViewCell.swift in Sources */,
 				219BFF2C22E59F4500ABBEE2 /* Extensions.swift in Sources */,
 				2120BE2122DF2787004854DB /* VerificationViewController.swift in Sources */,
+				2145859422EF7E920062F830 /* ResendCodeResponse.swift in Sources */,
 				219BFF2922E50C0B00ABBEE2 /* ModalsContainerViewController.swift in Sources */,
+				216A0E6E22EEFD1400F7FBC1 /* HTTPProvider.swift in Sources */,
 				21678D7422E08530007BC74C /* MainViewController.swift in Sources */,
+				2145859622EF7EC60062F830 /* ValidateCodeResponse.swift in Sources */,
 				FBAB071622E74ABD00C8DCD7 /* DownloadsCellController.swift in Sources */,
 				2133C21F22DCFC6600F910B9 /* WalkThroughViewController.swift in Sources */,
 				2133C22622DDCD3E00F910B9 /* Colors.swift in Sources */,
@@ -617,17 +699,23 @@
 				219BFF3A22E5B77C00ABBEE2 /* FilesManager.swift in Sources */,
 				219BFF2722E50A0A00ABBEE2 /* DownloadsNavigationController.swift in Sources */,
 				21678D7C22E085CB007BC74C /* DonationsViewController.swift in Sources */,
+				2145858F22EF7D980062F830 /* API.swift in Sources */,
 				2120BE1D22DF273F004854DB /* SignInViewController.swift in Sources */,
 				2120BE2322DF279D004854DB /* VerificationCodeViewController.swift in Sources */,
+				21CC094422F05D8A00E8FE27 /* DafYomiRepository.swift in Sources */,
 				2133C21B22DCA5FC00F910B9 /* Strings.swift in Sources */,
+				21CC094122F05D1500E8FE27 /* DafYomi.swift in Sources */,
 				219BFF3D22E5B7BA00ABBEE2 /* Utils.swift in Sources */,
 				21678D7A22E085B1007BC74C /* MishnaViewController.swift in Sources */,
 				21678D7622E08565007BC74C /* DownloadsViewController.swift in Sources */,
+				216A0E7322EF15DB00F7FBC1 /* JBUser.swift in Sources */,
 				219BFF3822E5B72000ABBEE2 /* LocalizationManager.swift in Sources */,
 				2120BE1F22DF2758004854DB /* SignUpViewController.swift in Sources */,
 				FBDEF16D22E89E3B00A300DA /* DownloadsHeaderCellController.swift in Sources */,
 				2133C22422DDCCD500F910B9 /* JBBarPageIndicator.swift in Sources */,
+				216A0E7022EEFDA300F7FBC1 /* HTTPRequestFactory.swift in Sources */,
 				2133C1F822DB5B8200F910B9 /* AppDelegate.swift in Sources */,
+				2145859222EF7E410062F830 /* SendCodeResponse.swift in Sources */,
 				21678D7822E08594007BC74C /* GemaraViewController.swift in Sources */,
 				219BFF4422E7186D00ABBEE2 /* MenuTableViewCell.swift in Sources */,
 				FBDEF16822E8868600A300DA /* JTDownloadGroup.swift in Sources */,
@@ -786,6 +874,7 @@
 		2133C20722DB5B8500F910B9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				API_BASE_URL = "https://jabrutouch.ravtech.co.il/api/";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C692PFPDCX;
@@ -804,6 +893,7 @@
 		2133C20822DB5B8500F910B9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				API_BASE_URL = "https://jabrutouch.ravtech.co.il/api/";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C692PFPDCX;

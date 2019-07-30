@@ -45,4 +45,28 @@ class Utils {
         }
     }
 
+    class func convertDataToDictionary(_ data:Data)->Dictionary<String,Any>?{
+        do {
+            let dictionary = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableLeaves) as? Dictionary<String,Any>
+            return dictionary
+        }
+            
+        catch let error as NSError{
+            NSLog("Could not create dictionary from string, with error: \(error)")
+            return nil
+        }
+    }
+    
+    class func convertDictionaryToString(_ dictionary:Dictionary<String,Any>)->String?{
+        do {
+            let data = try JSONSerialization.data(withJSONObject: dictionary, options: JSONSerialization.WritingOptions(rawValue: 0))
+            let string = String(data: data, encoding: String.Encoding.utf8)
+            return string
+        }
+            
+        catch let error as NSError{
+            NSLog("Could not parse dictionary, with error: \(error)")
+            return nil
+        }
+    }
 }
