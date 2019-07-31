@@ -291,15 +291,9 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        var sectionName: String
+        var sectionName: String = ""
         let headerCell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "downloadsHeaderCell") as! DownloadsHeaderCellController
-        if tableView == gemaraTableView {
-            headerCell.isFirstTable = true
-            sectionName = self.gemaraDownloads[section].name
-        } else {
-            headerCell.isFirstTable = false
-            sectionName = self.mishnaDownloads[section].name
-        }
+        initHeaderCell(headerCell, tableView, section, &sectionName)
         headerCell.titleLabel?.text = sectionName
         headerCell.section = section
         headerCell.delegate = self
@@ -308,6 +302,26 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         headerCell.backgroundView = background
         
         return headerCell
+    }
+    
+    fileprivate func initHeaderCell(_ headerCell: DownloadsHeaderCellController, _ tableView: UITableView, _ section: Int, _ sectionName: inout String) {
+        if tableView == gemaraTableView {
+            headerCell.isFirstTable = true
+            if gemaraDownloads[section].isExpanded {
+                headerCell.arrowImage?.image = UIImage(named: "Black&BlueUpArrow")
+            } else {
+                headerCell.arrowImage?.image = UIImage(named: "Black&BlueDownArrow")
+            }
+            sectionName = self.gemaraDownloads[section].name
+        } else {
+            headerCell.isFirstTable = false
+            if mishnaDownloads[section].isExpanded {
+                headerCell.arrowImage?.image = UIImage(named: "Black&BlueUpArrow")
+            } else {
+                headerCell.arrowImage?.image = UIImage(named: "Black&BlueDownArrow")
+            }
+            sectionName = self.mishnaDownloads[section].name
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -351,11 +365,9 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     func toggleSection(header: DownloadsHeaderCellController, section: Int) {
         if header.isFirstTable {
             gemaraDownloads[section].isExpanded = !gemaraDownloads[section].isExpanded
-            header.isExpanded = gemaraDownloads[section].isExpanded
             gemaraTableView.reloadSections([section], with: .automatic)
         } else {
             mishnaDownloads[section].isExpanded = !mishnaDownloads[section].isExpanded
-            header.isExpanded = mishnaDownloads[section].isExpanded
             mishnaTableView.reloadSections([section], with: .automatic)
         }
     }
