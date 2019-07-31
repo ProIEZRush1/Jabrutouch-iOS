@@ -69,4 +69,19 @@ class Utils {
             return nil
         }
     }
+    
+    class func setViewShape(view: UIView, viewBorderWidht: CGFloat = 0, viewBorderColor: UIColor = .white, viewCornerRadius: CGFloat = 0) {
+        view.layer.cornerRadius = viewCornerRadius
+        view.layer.borderWidth = viewBorderWidht
+        view.layer.borderColor = viewBorderColor.cgColor
+    }
+    
+    class func dropViewShadow(view: UIView, shadowColor: UIColor, shadowRadius: CGFloat, shadowOffset: CGSize) {
+        view.layer.shadowColor = shadowColor.cgColor
+        view.layer.shadowOffset = shadowOffset
+        view.layer.shadowOpacity = 1.0
+        view.layer.shadowRadius = shadowRadius
+        view.layer.masksToBounds = false
+        view.translatesAutoresizingMaskIntoConstraints = false
+    }
 }
