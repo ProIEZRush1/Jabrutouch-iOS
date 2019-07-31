@@ -69,4 +69,24 @@ class Utils {
             return nil
         }
     }
+    
+    class func showActivityView(inView view:UIView, withFrame frame: CGRect, text: String?) -> ActivityView {
+        let activityView = ActivityView(frame: frame)
+        activityView.alpha = 0.0
+        view.addSubview(activityView)
+        activityView.activityIndicator.startAnimating()
+        UIView.animate(withDuration: 0.2, animations: {
+            activityView.alpha = 1.0
+        })
+        return activityView
+    }
+    
+    class func removeActivityView(_ activityView:ActivityView){
+        
+        UIView.animate(withDuration: 0.2, animations: {
+            activityView.alpha = 0.0
+        }) { (success: Bool) in
+            activityView.removeFromSuperview()
+        }
+    }
 }

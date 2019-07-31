@@ -15,7 +15,7 @@ class DownloadsNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let downloadsViewController = self.children.first as? DownloadsViewController {
+        if let _ = self.children.first as? DownloadsViewController {
             //downloadsViewController.delegate = self.modalDelegate // Marked by Aaron Tuil because it prevented the app to run
         }
     }

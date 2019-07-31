@@ -23,7 +23,6 @@
 		2133C22422DDCCD500F910B9 /* JBBarPageIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2133C22322DDCCD500F910B9 /* JBBarPageIndicator.swift */; };
 		2133C22622DDCD3E00F910B9 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2133C22522DDCD3E00F910B9 /* Colors.swift */; };
 		2145858F22EF7D980062F830 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2145858E22EF7D980062F830 /* API.swift */; };
-		2145859222EF7E410062F830 /* SendCodeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2145859122EF7E410062F830 /* SendCodeResponse.swift */; };
 		2145859422EF7E920062F830 /* ResendCodeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2145859322EF7E920062F830 /* ResendCodeResponse.swift */; };
 		2145859622EF7EC60062F830 /* ValidateCodeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2145859522EF7EC60062F830 /* ValidateCodeResponse.swift */; };
 		21678D4622DF2CEC007BC74C /* SF-Pro-Display-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 21678D1A22DF2CB9007BC74C /* SF-Pro-Display-Black.otf */; };
@@ -78,7 +77,7 @@
 		21678D7C22E085CB007BC74C /* DonationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21678D7B22E085CB007BC74C /* DonationsViewController.swift */; };
 		216A0E6E22EEFD1400F7FBC1 /* HTTPProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A0E6D22EEFD1400F7FBC1 /* HTTPProvider.swift */; };
 		216A0E7022EEFDA300F7FBC1 /* HTTPRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A0E6F22EEFDA300F7FBC1 /* HTTPRequestFactory.swift */; };
-		216A0E7322EF15DB00F7FBC1 /* JBUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A0E7222EF15DB00F7FBC1 /* JBUser.swift */; };
+		216A0E7322EF15DB00F7FBC1 /* JTUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A0E7222EF15DB00F7FBC1 /* JTUser.swift */; };
 		219BFF2722E50A0A00ABBEE2 /* DownloadsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219BFF2622E50A0A00ABBEE2 /* DownloadsNavigationController.swift */; };
 		219BFF2922E50C0B00ABBEE2 /* ModalsContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219BFF2822E50C0B00ABBEE2 /* ModalsContainerViewController.swift */; };
 		219BFF2C22E59F4500ABBEE2 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219BFF2B22E59F4500ABBEE2 /* Extensions.swift */; };
@@ -86,13 +85,25 @@
 		219BFF3122E5B67C00ABBEE2 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = 219BFF3022E5B67C00ABBEE2 /* countries.json */; };
 		219BFF3522E5B6F700ABBEE2 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219BFF3422E5B6F700ABBEE2 /* Country.swift */; };
 		219BFF3822E5B72000ABBEE2 /* LocalizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219BFF3722E5B72000ABBEE2 /* LocalizationManager.swift */; };
-		219BFF3A22E5B77C00ABBEE2 /* FilesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219BFF3922E5B77C00ABBEE2 /* FilesManager.swift */; };
+		219BFF3A22E5B77C00ABBEE2 /* FilesManagementProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219BFF3922E5B77C00ABBEE2 /* FilesManagementProvider.swift */; };
 		219BFF3D22E5B7BA00ABBEE2 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219BFF3C22E5B7BA00ABBEE2 /* Utils.swift */; };
 		219BFF4122E7173C00ABBEE2 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219BFF4022E7173C00ABBEE2 /* MainMenuViewController.swift */; };
 		219BFF4422E7186D00ABBEE2 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219BFF4322E7186D00ABBEE2 /* MenuTableViewCell.swift */; };
 		21CC093E22F04C4000E8FE27 /* daf_yomi.json in Resources */ = {isa = PBXBuildFile; fileRef = 21CC093D22F04C4000E8FE27 /* daf_yomi.json */; };
 		21CC094122F05D1500E8FE27 /* DafYomi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CC094022F05D1500E8FE27 /* DafYomi.swift */; };
 		21CC094422F05D8A00E8FE27 /* DafYomiRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CC094322F05D8A00E8FE27 /* DafYomiRepository.swift */; };
+		21CC094622F078CF00E8FE27 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CC094522F078CF00E8FE27 /* APIError.swift */; };
+		21CC094822F0791C00E8FE27 /* APIResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CC094722F0791C00E8FE27 /* APIResult.swift */; };
+		21CC094A22F07B3300E8FE27 /* ServerGenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CC094922F07B3300E8FE27 /* ServerGenericResponse.swift */; };
+		21CC094D22F0D45100E8FE27 /* SendCodeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CC094C22F0D45100E8FE27 /* SendCodeResponse.swift */; };
+		21CC094F22F0DCD900E8FE27 /* APIResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CC094E22F0DCD900E8FE27 /* APIResponseModel.swift */; };
+		21CC095122F0DD0600E8FE27 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CC095022F0DD0600E8FE27 /* LoginResponse.swift */; };
+		21CC095322F0E0D700E8FE27 /* SignUpResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CC095222F0E0D700E8FE27 /* SignUpResponse.swift */; };
+		21CC095522F1882D00E8FE27 /* JTCommunity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CC095422F1882D00E8FE27 /* JTCommunity.swift */; };
+		21CC095722F19B1F00E8FE27 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CC095622F19B1F00E8FE27 /* LoginManager.swift */; };
+		21CC095922F1A07700E8FE27 /* UserDefaultsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CC095822F1A07700E8FE27 /* UserDefaultsProvider.swift */; };
+		21CC095C22F1AD5D00E8FE27 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CC095B22F1AD5D00E8FE27 /* ActivityView.swift */; };
+		21CC095F22F1AD8600E8FE27 /* ActivityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21CC095E22F1AD8600E8FE27 /* ActivityView.xib */; };
 		FB67A5DF22E4723F009E4DF9 /* Download.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB67A5DE22E4723F009E4DF9 /* Download.storyboard */; };
 		FBAB071622E74ABD00C8DCD7 /* DownloadsCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAB071522E74ABD00C8DCD7 /* DownloadsCellController.swift */; };
 		FBAB071922E7579F00C8DCD7 /* JTDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAB071822E7579F00C8DCD7 /* JTDownload.swift */; };
@@ -120,7 +131,6 @@
 		2133C22322DDCCD500F910B9 /* JBBarPageIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JBBarPageIndicator.swift; sourceTree = "<group>"; };
 		2133C22522DDCD3E00F910B9 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		2145858E22EF7D980062F830 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
-		2145859122EF7E410062F830 /* SendCodeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SendCodeResponse.swift; path = Jabrutouch/App/Models/Localization/SendCodeResponse.swift; sourceTree = SOURCE_ROOT; };
 		2145859322EF7E920062F830 /* ResendCodeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResendCodeResponse.swift; sourceTree = "<group>"; };
 		2145859522EF7EC60062F830 /* ValidateCodeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateCodeResponse.swift; sourceTree = "<group>"; };
 		21678D1922DF2CB9007BC74C /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
@@ -175,7 +185,7 @@
 		21678D7B22E085CB007BC74C /* DonationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonationsViewController.swift; sourceTree = "<group>"; };
 		216A0E6D22EEFD1400F7FBC1 /* HTTPProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPProvider.swift; sourceTree = "<group>"; };
 		216A0E6F22EEFDA300F7FBC1 /* HTTPRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequestFactory.swift; sourceTree = "<group>"; };
-		216A0E7222EF15DB00F7FBC1 /* JBUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JBUser.swift; sourceTree = "<group>"; };
+		216A0E7222EF15DB00F7FBC1 /* JTUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTUser.swift; sourceTree = "<group>"; };
 		219BFF2622E50A0A00ABBEE2 /* DownloadsNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsNavigationController.swift; sourceTree = "<group>"; };
 		219BFF2822E50C0B00ABBEE2 /* ModalsContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalsContainerViewController.swift; sourceTree = "<group>"; };
 		219BFF2B22E59F4500ABBEE2 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -183,7 +193,7 @@
 		219BFF3022E5B67C00ABBEE2 /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
 		219BFF3422E5B6F700ABBEE2 /* Country.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		219BFF3722E5B72000ABBEE2 /* LocalizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationManager.swift; sourceTree = "<group>"; };
-		219BFF3922E5B77C00ABBEE2 /* FilesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesManager.swift; sourceTree = "<group>"; };
+		219BFF3922E5B77C00ABBEE2 /* FilesManagementProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesManagementProvider.swift; sourceTree = "<group>"; };
 		219BFF3C22E5B7BA00ABBEE2 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		219BFF4022E7173C00ABBEE2 /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		219BFF4322E7186D00ABBEE2 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
@@ -191,6 +201,18 @@
 		21CC093D22F04C4000E8FE27 /* daf_yomi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = daf_yomi.json; sourceTree = "<group>"; };
 		21CC094022F05D1500E8FE27 /* DafYomi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DafYomi.swift; sourceTree = "<group>"; };
 		21CC094322F05D8A00E8FE27 /* DafYomiRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DafYomiRepository.swift; sourceTree = "<group>"; };
+		21CC094522F078CF00E8FE27 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		21CC094722F0791C00E8FE27 /* APIResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResult.swift; sourceTree = "<group>"; };
+		21CC094922F07B3300E8FE27 /* ServerGenericResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerGenericResponse.swift; sourceTree = "<group>"; };
+		21CC094C22F0D45100E8FE27 /* SendCodeResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendCodeResponse.swift; sourceTree = "<group>"; };
+		21CC094E22F0DCD900E8FE27 /* APIResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponseModel.swift; sourceTree = "<group>"; };
+		21CC095022F0DD0600E8FE27 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
+		21CC095222F0E0D700E8FE27 /* SignUpResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResponse.swift; sourceTree = "<group>"; };
+		21CC095422F1882D00E8FE27 /* JTCommunity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTCommunity.swift; sourceTree = "<group>"; };
+		21CC095622F19B1F00E8FE27 /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
+		21CC095822F1A07700E8FE27 /* UserDefaultsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsProvider.swift; sourceTree = "<group>"; };
+		21CC095B22F1AD5D00E8FE27 /* ActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
+		21CC095E22F1AD8600E8FE27 /* ActivityView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityView.xib; sourceTree = "<group>"; };
 		FB67A5DE22E4723F009E4DF9 /* Download.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Download.storyboard; sourceTree = "<group>"; };
 		FBAB071522E74ABD00C8DCD7 /* DownloadsCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsCellController.swift; sourceTree = "<group>"; };
 		FBAB071822E7579F00C8DCD7 /* JTDownload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTDownload.swift; sourceTree = "<group>"; };
@@ -214,6 +236,8 @@
 			isa = PBXGroup;
 			children = (
 				216A0E6C22EEFCF100F7FBC1 /* Network */,
+				21CC095822F1A07700E8FE27 /* UserDefaultsProvider.swift */,
+				219BFF3922E5B77C00ABBEE2 /* FilesManagementProvider.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -328,6 +352,7 @@
 			children = (
 				FBDEF16922E89A6100A300DA /* Custom Cells */,
 				2133C22222DD02F900F910B9 /* Storyboards */,
+				21CC095D22F1AD6400E8FE27 /* Xibs */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -335,11 +360,12 @@
 		2133C20B22DCA07000F910B9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				219BFF3E22E7171700ABBEE2 /* Menus */,
 				219BFF2D22E5A10400ABBEE2 /* Custom Views */,
 				2133C21122DCA0E000F910B9 /* WalkThrough */,
 				2133C20F22DCA0CD00F910B9 /* SignIn */,
 				2133C21022DCA0D900F910B9 /* Main */,
+				219BFF3E22E7171700ABBEE2 /* Menus */,
+				21CC095A22F1AD2D00E8FE27 /* Supporting Views */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -420,9 +446,10 @@
 		2145859022EF7E120062F830 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				2145859122EF7E410062F830 /* SendCodeResponse.swift */,
-				2145859322EF7E920062F830 /* ResendCodeResponse.swift */,
-				2145859522EF7EC60062F830 /* ValidateCodeResponse.swift */,
+				21CC094922F07B3300E8FE27 /* ServerGenericResponse.swift */,
+				21CC094722F0791C00E8FE27 /* APIResult.swift */,
+				21CC094522F078CF00E8FE27 /* APIError.swift */,
+				21CC094B22F0D43800E8FE27 /* API Response models */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -440,7 +467,8 @@
 		216A0E7122EF15C600F7FBC1 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				216A0E7222EF15DB00F7FBC1 /* JBUser.swift */,
+				216A0E7222EF15DB00F7FBC1 /* JTUser.swift */,
+				21CC095422F1882D00E8FE27 /* JTCommunity.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -486,7 +514,7 @@
 			isa = PBXGroup;
 			children = (
 				219BFF3722E5B72000ABBEE2 /* LocalizationManager.swift */,
-				219BFF3922E5B77C00ABBEE2 /* FilesManager.swift */,
+				21CC095622F19B1F00E8FE27 /* LoginManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -530,6 +558,35 @@
 				21CC094322F05D8A00E8FE27 /* DafYomiRepository.swift */,
 			);
 			path = Repositories;
+			sourceTree = "<group>";
+		};
+		21CC094B22F0D43800E8FE27 /* API Response models */ = {
+			isa = PBXGroup;
+			children = (
+				21CC094E22F0DCD900E8FE27 /* APIResponseModel.swift */,
+				21CC094C22F0D45100E8FE27 /* SendCodeResponse.swift */,
+				2145859322EF7E920062F830 /* ResendCodeResponse.swift */,
+				2145859522EF7EC60062F830 /* ValidateCodeResponse.swift */,
+				21CC095022F0DD0600E8FE27 /* LoginResponse.swift */,
+				21CC095222F0E0D700E8FE27 /* SignUpResponse.swift */,
+			);
+			path = "API Response models";
+			sourceTree = "<group>";
+		};
+		21CC095A22F1AD2D00E8FE27 /* Supporting Views */ = {
+			isa = PBXGroup;
+			children = (
+				21CC095B22F1AD5D00E8FE27 /* ActivityView.swift */,
+			);
+			path = "Supporting Views";
+			sourceTree = "<group>";
+		};
+		21CC095D22F1AD6400E8FE27 /* Xibs */ = {
+			isa = PBXGroup;
+			children = (
+				21CC095E22F1AD8600E8FE27 /* ActivityView.xib */,
+			);
+			path = Xibs;
 			sourceTree = "<group>";
 		};
 		FB67A5E222E47E61009E4DF9 /* Documents */ = {
@@ -665,6 +722,7 @@
 				21678D7022DF2CED007BC74C /* SF-Pro-Text-ThinItalic.otf in Resources */,
 				21CC093E22F04C4000E8FE27 /* daf_yomi.json in Resources */,
 				21678D7122DF2CED007BC74C /* SF-Pro-Text-Ultralight.otf in Resources */,
+				21CC095F22F1AD8600E8FE27 /* ActivityView.xib in Resources */,
 				21678D7222DF2CED007BC74C /* SF-Pro-Text-UltralightItalic.otf in Resources */,
 				2133C21522DCA5D200F910B9 /* Localizable.strings in Resources */,
 				2133C20E22DCA0BC00F910B9 /* SignIn.storyboard in Resources */,
@@ -686,6 +744,7 @@
 				2133C22122DCFEB500F910B9 /* WalkThroughCollectionViewCell.swift in Sources */,
 				219BFF2C22E59F4500ABBEE2 /* Extensions.swift in Sources */,
 				2120BE2122DF2787004854DB /* VerificationViewController.swift in Sources */,
+				21CC095C22F1AD5D00E8FE27 /* ActivityView.swift in Sources */,
 				2145859422EF7E920062F830 /* ResendCodeResponse.swift in Sources */,
 				219BFF2922E50C0B00ABBEE2 /* ModalsContainerViewController.swift in Sources */,
 				216A0E6E22EEFD1400F7FBC1 /* HTTPProvider.swift in Sources */,
@@ -694,31 +753,40 @@
 				FBAB071622E74ABD00C8DCD7 /* DownloadsCellController.swift in Sources */,
 				2133C21F22DCFC6600F910B9 /* WalkThroughViewController.swift in Sources */,
 				2133C22622DDCD3E00F910B9 /* Colors.swift in Sources */,
+				21CC095722F19B1F00E8FE27 /* LoginManager.swift in Sources */,
+				21CC094822F0791C00E8FE27 /* APIResult.swift in Sources */,
+				21CC095322F0E0D700E8FE27 /* SignUpResponse.swift in Sources */,
 				219BFF3522E5B6F700ABBEE2 /* Country.swift in Sources */,
 				FBAB071922E7579F00C8DCD7 /* JTDownload.swift in Sources */,
-				219BFF3A22E5B77C00ABBEE2 /* FilesManager.swift in Sources */,
+				219BFF3A22E5B77C00ABBEE2 /* FilesManagementProvider.swift in Sources */,
 				219BFF2722E50A0A00ABBEE2 /* DownloadsNavigationController.swift in Sources */,
 				21678D7C22E085CB007BC74C /* DonationsViewController.swift in Sources */,
+				21CC094D22F0D45100E8FE27 /* SendCodeResponse.swift in Sources */,
 				2145858F22EF7D980062F830 /* API.swift in Sources */,
 				2120BE1D22DF273F004854DB /* SignInViewController.swift in Sources */,
 				2120BE2322DF279D004854DB /* VerificationCodeViewController.swift in Sources */,
+				21CC094A22F07B3300E8FE27 /* ServerGenericResponse.swift in Sources */,
 				21CC094422F05D8A00E8FE27 /* DafYomiRepository.swift in Sources */,
 				2133C21B22DCA5FC00F910B9 /* Strings.swift in Sources */,
+				21CC095522F1882D00E8FE27 /* JTCommunity.swift in Sources */,
 				21CC094122F05D1500E8FE27 /* DafYomi.swift in Sources */,
 				219BFF3D22E5B7BA00ABBEE2 /* Utils.swift in Sources */,
 				21678D7A22E085B1007BC74C /* MishnaViewController.swift in Sources */,
 				21678D7622E08565007BC74C /* DownloadsViewController.swift in Sources */,
-				216A0E7322EF15DB00F7FBC1 /* JBUser.swift in Sources */,
+				216A0E7322EF15DB00F7FBC1 /* JTUser.swift in Sources */,
 				219BFF3822E5B72000ABBEE2 /* LocalizationManager.swift in Sources */,
+				21CC095922F1A07700E8FE27 /* UserDefaultsProvider.swift in Sources */,
+				21CC095122F0DD0600E8FE27 /* LoginResponse.swift in Sources */,
 				2120BE1F22DF2758004854DB /* SignUpViewController.swift in Sources */,
 				FBDEF16D22E89E3B00A300DA /* DownloadsHeaderCellController.swift in Sources */,
 				2133C22422DDCCD500F910B9 /* JBBarPageIndicator.swift in Sources */,
 				216A0E7022EEFDA300F7FBC1 /* HTTPRequestFactory.swift in Sources */,
 				2133C1F822DB5B8200F910B9 /* AppDelegate.swift in Sources */,
-				2145859222EF7E410062F830 /* SendCodeResponse.swift in Sources */,
+				21CC094F22F0DCD900E8FE27 /* APIResponseModel.swift in Sources */,
 				21678D7822E08594007BC74C /* GemaraViewController.swift in Sources */,
 				219BFF4422E7186D00ABBEE2 /* MenuTableViewCell.swift in Sources */,
 				FBDEF16822E8868600A300DA /* JTDownloadGroup.swift in Sources */,
+				21CC094622F078CF00E8FE27 /* APIError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

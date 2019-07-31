@@ -1,5 +1,5 @@
 //בעזרת ה׳ החונן לאדם דעת
-//  FilesManager.swift
+//  FilesManagementProvider.swift
 //  Jabrutouch
 //
 //  Created by Yoni Reiss on 22/07/2019.
@@ -8,13 +8,13 @@
 
 import Foundation
 
-class FilesManager {
+class FilesManagementProvider {
     
-    private static var manager: FilesManager?
+    private static var manager: FilesManagementProvider?
     
-    class var shared: FilesManager {
+    class var shared: FilesManagementProvider {
         if self.manager == nil {
-            self.manager = FilesManager()
+            self.manager = FilesManagementProvider()
         }
         return self.manager!
     }
