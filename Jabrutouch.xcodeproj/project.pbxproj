@@ -352,7 +352,7 @@
 			children = (
 				FBDEF16922E89A6100A300DA /* Custom Cells */,
 				2133C22222DD02F900F910B9 /* Storyboards */,
-				21CC095D22F1AD6400E8FE27 /* Xibs */,
+				21CC095D22F1AD6400E8FE27 /* Single Views */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -360,12 +360,12 @@
 		2133C20B22DCA07000F910B9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				219BFF2D22E5A10400ABBEE2 /* Custom Views */,
 				2133C21122DCA0E000F910B9 /* WalkThrough */,
 				2133C20F22DCA0CD00F910B9 /* SignIn */,
 				2133C21022DCA0D900F910B9 /* Main */,
 				219BFF3E22E7171700ABBEE2 /* Menus */,
 				21CC095A22F1AD2D00E8FE27 /* Supporting Views */,
+				219BFF2D22E5A10400ABBEE2 /* Custom Views */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -581,12 +581,12 @@
 			path = "Supporting Views";
 			sourceTree = "<group>";
 		};
-		21CC095D22F1AD6400E8FE27 /* Xibs */ = {
+		21CC095D22F1AD6400E8FE27 /* Single Views */ = {
 			isa = PBXGroup;
 			children = (
 				21CC095E22F1AD8600E8FE27 /* ActivityView.xib */,
 			);
-			path = Xibs;
+			path = "Single Views";
 			sourceTree = "<group>";
 		};
 		FB67A5E222E47E61009E4DF9 /* Documents */ = {
