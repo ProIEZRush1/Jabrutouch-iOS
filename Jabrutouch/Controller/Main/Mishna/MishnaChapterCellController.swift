@@ -1,5 +1,5 @@
 //בס״ד
-//  MishnaMasechetCellController.swift
+//  MishnaChapterCellController.swift
 //  Jabrutouch
 //
 //  Created by Aaron Tuil on 31/07/2019.
@@ -8,15 +8,15 @@
 
 import UIKit
 
-class MishnaMasechetCellController: UITableViewCell {
+class MishnaChapterCellController: UITableViewCell {
     
     @IBOutlet weak var cellView: UIView!
-    @IBOutlet weak var masechetName: UILabel!
-    @IBOutlet weak var chaptersCount: UILabel!
-    @IBOutlet weak var chapterText: UILabel!
+    @IBOutlet weak var chapterName: UILabel!
+    @IBOutlet weak var mishnaiotCount: UILabel!
+    @IBOutlet weak var mishnaiotText: UILabel!
     
     var indexPath: IndexPath = []
-    weak var delegate: MishnaMasechetCellDelegate?
+    weak var delegate: MishnaChapterCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,11 +24,11 @@ class MishnaMasechetCellController: UITableViewCell {
         cellView.addGestureRecognizer(gestureRecognizer)
     }
     
-    @objc func cellPressed() {
-        delegate?.showMasechetChapters(indexPath: indexPath)
+    @objc private func cellPressed() {
+        delegate?.showMasechetLessons(indexPath: indexPath)
     }
 }
 
-protocol MishnaMasechetCellDelegate: class {
-    func showMasechetChapters(indexPath: IndexPath)
+protocol MishnaChapterCellDelegate: class {
+    func showMasechetLessons(indexPath: IndexPath)
 }

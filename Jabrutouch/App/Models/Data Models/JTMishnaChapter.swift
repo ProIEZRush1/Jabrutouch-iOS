@@ -10,11 +10,11 @@ import Foundation
 
 class JTMishnaChapter {
     
-    var chapterName: String = ""
+    var name: String = ""
     var lessonsDownloaded: [JTLessonDownload] = []
     
-    init(chapterName: String, lessonsDownloaded: [JTLessonDownload]) {
-        self.chapterName = chapterName
+    init(name: String, lessonsDownloaded: [JTLessonDownload]) {
+        self.name = name
         self.lessonsDownloaded = lessonsDownloaded
     }
 }

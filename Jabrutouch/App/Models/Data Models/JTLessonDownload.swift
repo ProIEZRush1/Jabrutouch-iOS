@@ -10,12 +10,14 @@ import Foundation
 
 class JTLessonDownload {
     
-    var lessonNumber: String = ""
+    var number: String = ""
+    var length: String = ""
     var isAudioDownloaded: Bool = false
     var isVideoDownloaded: Bool = false
     
-    init(lessonNumber: String, isAudioDownloaded: Bool, isVideoDownloaded: Bool) {
-        self.lessonNumber = lessonNumber
+    init(number: String, length: String, isAudioDownloaded: Bool, isVideoDownloaded: Bool) {
+        self.number = number
+        self.length = length
         self.isAudioDownloaded = isAudioDownloaded
         self.isVideoDownloaded = isVideoDownloaded
     }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MishnaViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, HeaderViewDelegate {
+class MishnaViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, HeaderViewDelegate, MishnaMasechetCellDelegate {
     
     //========================================
     // MARK: - @IBOutlets and Fields
@@ -17,6 +17,7 @@ class MishnaViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var tableView: UITableView!
     
     fileprivate var sedarim: [JTMishnaSeder] = []
+    fileprivate var indexPathSelected: IndexPath = []
     
     //========================================
     // MARK: - LifeCycle
@@ -30,6 +31,14 @@ class MishnaViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.dataSource = self
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showMishnaChapters" {
+            let vc = segue.destination as? MishnaChapterViewController
+            vc?.chapters = sedarim[indexPathSelected.section].masechtot[indexPathSelected.row].chapters
+            vc?.masechetString = sedarim[indexPathSelected.section].masechtot[indexPathSelected.row].name
+        }
+    }
+    
     //========================================
     // MARK: - Setup
     //========================================
@@ -37,36 +46,36 @@ class MishnaViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // Only for Dev function
     fileprivate func fillTableForDev() {
         var downloads1 = [JTLessonDownload]()
-        let download1_1 = JTLessonDownload(lessonNumber: "1", isAudioDownloaded: false, isVideoDownloaded: false)
-        let download1_2 = JTLessonDownload(lessonNumber: "2", isAudioDownloaded: false, isVideoDownloaded: true)
-        let download1_3 = JTLessonDownload(lessonNumber: "3", isAudioDownloaded: true, isVideoDownloaded: true)
+        let download1_1 = JTLessonDownload(number: "1", length: "56 min", isAudioDownloaded: false, isVideoDownloaded: false)
+        let download1_2 = JTLessonDownload(number: "2", length: "67 min", isAudioDownloaded: false, isVideoDownloaded: true)
+        let download1_3 = JTLessonDownload(number: "3", length: "52 min", isAudioDownloaded: true, isVideoDownloaded: true)
         downloads1.append(download1_1)
         downloads1.append(download1_2)
         downloads1.append(download1_3)
-        let mishnaChapter1 = JTMishnaChapter(chapterName: "A", lessonsDownloaded: downloads1)
+        let mishnaChapter1 = JTMishnaChapter(name: "A", lessonsDownloaded: downloads1)
         
         var downloads2 = [JTLessonDownload]()
-        let download2_1 = JTLessonDownload(lessonNumber: "1", isAudioDownloaded: false, isVideoDownloaded: false)
-        let download2_2 = JTLessonDownload(lessonNumber: "2", isAudioDownloaded: true, isVideoDownloaded: true)
+        let download2_1 = JTLessonDownload(number: "1", length: "43 min", isAudioDownloaded: false, isVideoDownloaded: false)
+        let download2_2 = JTLessonDownload(number: "2", length: "52 min", isAudioDownloaded: true, isVideoDownloaded: true)
         downloads2.append(download2_1)
         downloads2.append(download2_2)
-        let mishnaChapter2 = JTMishnaChapter(chapterName: "B", lessonsDownloaded: downloads2)
+        let mishnaChapter2 = JTMishnaChapter(name: "B", lessonsDownloaded: downloads2)
         
         var downloads3 = [JTLessonDownload]()
-        let download3_1 = JTLessonDownload(lessonNumber: "1", isAudioDownloaded: false, isVideoDownloaded: false)
-        let download3_2 = JTLessonDownload(lessonNumber: "2", isAudioDownloaded: false, isVideoDownloaded: true)
-        let download3_3 = JTLessonDownload(lessonNumber: "3", isAudioDownloaded: true, isVideoDownloaded: true)
+        let download3_1 = JTLessonDownload(number: "1", length: "23 min", isAudioDownloaded: false, isVideoDownloaded: false)
+        let download3_2 = JTLessonDownload(number: "2", length: "34 min", isAudioDownloaded: false, isVideoDownloaded: true)
+        let download3_3 = JTLessonDownload(number: "3", length: "50 min", isAudioDownloaded: true, isVideoDownloaded: true)
         downloads3.append(download3_1)
         downloads3.append(download3_2)
         downloads3.append(download3_3)
-        let mishnaChapter3 = JTMishnaChapter(chapterName: "C", lessonsDownloaded: downloads3)
+        let mishnaChapter3 = JTMishnaChapter(name: "C", lessonsDownloaded: downloads3)
         
         var downloads4 = [JTLessonDownload]()
-        let download4_1 = JTLessonDownload(lessonNumber: "1", isAudioDownloaded: false, isVideoDownloaded: false)
-        let download4_2 = JTLessonDownload(lessonNumber: "2", isAudioDownloaded: true, isVideoDownloaded: true)
+        let download4_1 = JTLessonDownload(number: "1", length: "16 min", isAudioDownloaded: false, isVideoDownloaded: false)
+        let download4_2 = JTLessonDownload(number: "2", length: "37 min", isAudioDownloaded: true, isVideoDownloaded: true)
         downloads4.append(download4_1)
         downloads4.append(download4_2)
-        let mishnaChapter4 = JTMishnaChapter(chapterName: "D", lessonsDownloaded: downloads4)
+        let mishnaChapter4 = JTMishnaChapter(name: "D", lessonsDownloaded: downloads4)
         
         let mishnaMasechet1 = JTMishnaMasechet(name: "Shabbat", chapters: [mishnaChapter1, mishnaChapter2, mishnaChapter3, mishnaChapter4])
         let mishnaMasechet2 = JTMishnaMasechet(name: "Iruvim", chapters: [mishnaChapter1, mishnaChapter2, mishnaChapter3, mishnaChapter4])
@@ -112,10 +121,9 @@ class MishnaViewController: UIViewController, UITableViewDelegate, UITableViewDa
         sedarim.append(mishnaSeder6)
     }
     
-    
-    //----------------------------------------------------------------
+    //=====================================================
     // MARK: - UITableView Data Source and Delegate section
-    //----------------------------------------------------------------
+    //=====================================================
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return sedarim.count
@@ -130,7 +138,7 @@ class MishnaViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
+        return 70
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -166,22 +174,28 @@ class MishnaViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let chaptersCount = sedarim[indexPath.section].masechtot[indexPath.row].chapters.count
         cell.chaptersCount.text = String(chaptersCount)
         cell.chapterText.text = chaptersCount > 1 ? "Chapters" : "Chapter"
+        cell.indexPath = indexPath
+        cell.delegate = self
         Utils.setViewShape(view: cell.cellView, viewCornerRadius: 18)
         let shadowOffset = CGSize(width: 0.0, height: 12)
         Utils.dropViewShadow(view: cell.cellView, shadowColor: Colors.shadowColor, shadowRadius: 36, shadowOffset: shadowOffset)
-        
         cell.cellView.layoutIfNeeded()
         
         return cell
     }
     
-    //----------------------------------------------------------------
+    //====================================================
     // MARK: - Implemented Protocols functions and helpers
-    //----------------------------------------------------------------
+    //====================================================
     
     func toggleSection(header: DownloadsHeaderCellController, section: Int) {
         sedarim[section].isExpanded = !sedarim[section].isExpanded
         tableView.reloadSections([section], with: .automatic)
+    }
+
+    func showMasechetChapters(indexPath: IndexPath) {
+        indexPathSelected = indexPath
+        performSegue(withIdentifier: "showMishnaChapters", sender: self)
     }
     
     //========================================

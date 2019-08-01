@@ -13,6 +13,9 @@
         <array key="SF-Pro-Display-Bold.otf">
             <string>SFProDisplay-Bold</string>
         </array>
+        <array key="SF-Pro-Display-Light.otf">
+            <string>SFProDisplay-Light</string>
+        </array>
         <array key="SF-Pro-Display-Regular.otf">
             <string>SFProDisplay-Regular</string>
         </array>
@@ -75,22 +78,21 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="65k-iV-0hn">
-                                                            <rect key="frame" x="265" y="17.5" width="19" height="20"/>
+                                                            <rect key="frame" x="262.5" y="17.5" width="19" height="20"/>
                                                             <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="16"/>
                                                             <color key="textColor" red="0.1764705882352941" green="0.16862745098039217" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chapters" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eST-bu-QKV">
-                                                            <rect key="frame" x="288" y="17.5" width="62" height="20"/>
+                                                            <rect key="frame" x="285.5" y="17.5" width="62" height="20"/>
                                                             <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="16"/>
                                                             <color key="textColor" red="0.1764705882" green="0.16862745100000001" blue="0.66274509800000003" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueRightArrow" translatesAutoresizingMaskIntoConstraints="NO" id="hd1-Xv-OYh">
-                                                            <rect key="frame" x="360.5" y="20.5" width="6.5" height="14"/>
+                                                            <rect key="frame" x="358" y="20.5" width="9" height="14"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="6.7000000000000002" id="1QX-Cr-lud"/>
-                                                                <constraint firstAttribute="height" constant="13.9" id="nz5-xn-syc"/>
+                                                                <constraint firstAttribute="height" constant="14" id="nz5-xn-syc"/>
                                                             </constraints>
                                                         </imageView>
                                                     </subviews>
@@ -155,15 +157,299 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="msA-Fl-Df0" id="ufA-C6-GX8"/>
+                        <segue destination="D18-8v-Y5I" kind="show" identifier="showMishnaChapters" id="jDO-ct-iEv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OZX-ri-PlC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="82.608695652173921" y="174.77678571428569"/>
         </scene>
+        <!--Mishna Chapter View Controller-->
+        <scene sceneID="HZ8-dc-62T">
+            <objects>
+                <viewController id="D18-8v-Y5I" customClass="MishnaChapterViewController" customModule="Jabrutouch" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="EWk-Qo-xqo">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pesachim" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YGX-Yz-Opu">
+                                <rect key="frame" x="144.5" y="51" width="125" height="33"/>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="28"/>
+                                <color key="textColor" red="0.17254901959999999" green="0.16862745100000001" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ykj-3n-f1p" userLabel="Left Arrow Button">
+                                <rect key="frame" x="0.0" y="44" width="66" height="53"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Left Arrow Button"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="66" id="3Ts-GL-YYH"/>
+                                    <constraint firstAttribute="height" constant="53" id="RMQ-JT-NoH"/>
+                                </constraints>
+                                <state key="normal" image="LeftArrow"/>
+                                <connections>
+                                    <action selector="backPressed:" destination="D18-8v-Y5I" eventType="touchUpInside" id="CtP-Oa-CS9"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="mJR-XZ-hRS">
+                                <rect key="frame" x="0.0" y="109" width="414" height="753"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="mishnaChapterCell" id="ccF-pp-iLd" customClass="MishnaChapterCellController" customModule="Jabrutouch" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="55.5" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ccF-pp-iLd" id="W09-sv-sUf">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rlB-zo-Bba" userLabel="Cell Content">
+                                                    <rect key="frame" x="18" y="0.0" width="378" height="74"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chapter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ge7-KQ-mWl">
+                                                            <rect key="frame" x="18" y="22.5" width="87" height="29"/>
+                                                            <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="24"/>
+                                                            <color key="textColor" red="0.17254901959999999" green="0.16862745100000001" blue="0.33725490200000002" alpha="0.88" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qzn-vT-eqc">
+                                                            <rect key="frame" x="109" y="22.5" width="16.5" height="29"/>
+                                                            <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="24"/>
+                                                            <color key="textColor" red="0.17254901959999999" green="0.16862745100000001" blue="0.33725490200000002" alpha="0.88" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fdR-kV-RQL">
+                                                            <rect key="frame" x="267.5" y="27" width="10" height="20"/>
+                                                            <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="16"/>
+                                                            <color key="textColor" red="0.1764705882" green="0.16862745100000001" blue="0.66274509800000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mishnaiot" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SM1-IV-R5c">
+                                                            <rect key="frame" x="281.5" y="27" width="66" height="20"/>
+                                                            <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="16"/>
+                                                            <color key="textColor" red="0.1764705882" green="0.16862745100000001" blue="0.66274509800000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueRightArrow" translatesAutoresizingMaskIntoConstraints="NO" id="sD9-rS-9mF">
+                                                            <rect key="frame" x="358" y="30" width="9" height="14"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="14" id="5Ks-tl-f0u"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.99607843139999996" green="0.99607843139999996" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="Mishna Chapter Cell Content"/>
+                                                    <constraints>
+                                                        <constraint firstItem="fdR-kV-RQL" firstAttribute="centerY" secondItem="rlB-zo-Bba" secondAttribute="centerY" id="4vg-A3-PV9"/>
+                                                        <constraint firstAttribute="height" constant="74" id="6Dg-sK-pgs"/>
+                                                        <constraint firstItem="SM1-IV-R5c" firstAttribute="centerY" secondItem="rlB-zo-Bba" secondAttribute="centerY" id="BKj-mF-vRl"/>
+                                                        <constraint firstItem="sD9-rS-9mF" firstAttribute="centerY" secondItem="rlB-zo-Bba" secondAttribute="centerY" id="DAl-MI-ZrL"/>
+                                                        <constraint firstItem="SM1-IV-R5c" firstAttribute="leading" secondItem="fdR-kV-RQL" secondAttribute="trailing" constant="4" id="FO9-r4-Nc5"/>
+                                                        <constraint firstItem="Qzn-vT-eqc" firstAttribute="leading" secondItem="ge7-KQ-mWl" secondAttribute="trailing" constant="4" id="LGd-GF-BhE"/>
+                                                        <constraint firstItem="Qzn-vT-eqc" firstAttribute="centerY" secondItem="rlB-zo-Bba" secondAttribute="centerY" id="cd5-Y8-Imz"/>
+                                                        <constraint firstItem="ge7-KQ-mWl" firstAttribute="centerY" secondItem="rlB-zo-Bba" secondAttribute="centerY" id="ds7-4b-ITD"/>
+                                                        <constraint firstAttribute="trailing" secondItem="sD9-rS-9mF" secondAttribute="trailing" constant="10.9" id="gQo-Dj-q4a"/>
+                                                        <constraint firstItem="ge7-KQ-mWl" firstAttribute="leading" secondItem="rlB-zo-Bba" secondAttribute="leading" constant="18" id="nT6-6P-ZZx"/>
+                                                        <constraint firstItem="sD9-rS-9mF" firstAttribute="leading" secondItem="SM1-IV-R5c" secondAttribute="trailing" constant="10.4" id="zGk-3p-aTU"/>
+                                                    </constraints>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nKz-NB-WE1" userLabel="Bottom Padding">
+                                                    <rect key="frame" x="0.0" y="74" width="414" height="12"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="Mishna Chapter Cell Padding"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="12" id="hxl-19-4T4"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="nKz-NB-WE1" firstAttribute="leading" secondItem="W09-sv-sUf" secondAttribute="leading" id="DE5-tf-EuF"/>
+                                                <constraint firstItem="rlB-zo-Bba" firstAttribute="leading" secondItem="W09-sv-sUf" secondAttribute="leading" constant="18" id="QBQ-KN-aL2"/>
+                                                <constraint firstItem="nKz-NB-WE1" firstAttribute="top" secondItem="rlB-zo-Bba" secondAttribute="bottom" id="UdD-Ra-pYz"/>
+                                                <constraint firstItem="rlB-zo-Bba" firstAttribute="top" secondItem="W09-sv-sUf" secondAttribute="top" id="tyB-lF-kA0"/>
+                                                <constraint firstAttribute="trailing" secondItem="nKz-NB-WE1" secondAttribute="trailing" id="v8m-f9-QXl"/>
+                                                <constraint firstAttribute="trailing" secondItem="rlB-zo-Bba" secondAttribute="trailing" constant="18" id="z5b-zd-ga7"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="cellView" destination="rlB-zo-Bba" id="LBJ-XN-AZf"/>
+                                            <outlet property="chapterName" destination="Qzn-vT-eqc" id="WxO-3P-81s"/>
+                                            <outlet property="mishnaiotCount" destination="fdR-kV-RQL" id="TcV-fu-U0M"/>
+                                            <outlet property="mishnaiotText" destination="SM1-IV-R5c" id="BTm-sI-BCU"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="mJR-XZ-hRS" firstAttribute="bottom" secondItem="cXP-q0-FiG" secondAttribute="bottom" id="06v-Tn-0Be"/>
+                            <constraint firstItem="YGX-Yz-Opu" firstAttribute="top" secondItem="cXP-q0-FiG" secondAttribute="top" constant="7" id="TaC-US-lro"/>
+                            <constraint firstItem="YGX-Yz-Opu" firstAttribute="centerX" secondItem="cXP-q0-FiG" secondAttribute="centerX" id="a6b-gI-ZEX"/>
+                            <constraint firstItem="mJR-XZ-hRS" firstAttribute="width" secondItem="cXP-q0-FiG" secondAttribute="width" id="dRB-TQ-4hp"/>
+                            <constraint firstItem="cXP-q0-FiG" firstAttribute="top" secondItem="Ykj-3n-f1p" secondAttribute="top" id="djb-cz-Qgc"/>
+                            <constraint firstItem="mJR-XZ-hRS" firstAttribute="top" secondItem="YGX-Yz-Opu" secondAttribute="bottom" constant="25" id="doc-bg-wWU"/>
+                            <constraint firstItem="cXP-q0-FiG" firstAttribute="leading" secondItem="Ykj-3n-f1p" secondAttribute="leading" id="nmE-9a-UYT"/>
+                            <constraint firstItem="mJR-XZ-hRS" firstAttribute="centerX" secondItem="cXP-q0-FiG" secondAttribute="centerX" id="wBE-Tr-blM"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="cXP-q0-FiG"/>
+                    </view>
+                    <connections>
+                        <outlet property="masechetName" destination="YGX-Yz-Opu" id="1LJ-9b-uj2"/>
+                        <outlet property="tableView" destination="mJR-XZ-hRS" id="bpK-aX-mb0"/>
+                        <segue destination="hP7-Gq-eVR" kind="show" id="VmI-uS-zKs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mvM-1k-rrH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1012" y="175"/>
+        </scene>
+        <!--Mishna Lessons View Controller-->
+        <scene sceneID="WWG-s2-gy7">
+            <objects>
+                <viewController id="hP7-Gq-eVR" customClass="MishnaLessonsViewController" customModule="Jabrutouch" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YaA-Ee-fLf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Msf-aK-2iP">
+                                <rect key="frame" x="133" y="51" width="148.5" height="33.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pesachim" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aYC-zn-bQY">
+                                        <rect key="frame" x="0.0" y="0.0" width="125" height="33.5"/>
+                                        <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="28"/>
+                                        <color key="textColor" red="0.17254901959999999" green="0.16862745100000001" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OdD-d7-gFt">
+                                        <rect key="frame" x="129" y="0.0" width="19.5" height="33.5"/>
+                                        <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="28"/>
+                                        <color key="textColor" red="0.17254901959999999" green="0.16862745100000001" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z1Z-oe-w00" userLabel="Left Arrow Button">
+                                <rect key="frame" x="0.0" y="44" width="66" height="53"/>
+                                <accessibility key="accessibilityConfiguration" identifier="MLVC Left Arrow Btn"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="66" id="SE0-77-f6c"/>
+                                    <constraint firstAttribute="height" constant="53" id="YhV-WO-z2w"/>
+                                </constraints>
+                                <state key="normal" image="LeftArrow"/>
+                                <connections>
+                                    <action selector="backPressed:" destination="hP7-Gq-eVR" eventType="touchUpInside" id="cd2-cN-5Gw"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0CB-ys-92O" userLabel="Download Button">
+                                <rect key="frame" x="348" y="44" width="66" height="53"/>
+                                <accessibility key="accessibilityConfiguration" identifier="MLVC Download Btn"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="53" id="GRZ-Kg-rQA"/>
+                                    <constraint firstAttribute="width" constant="66" id="IF2-Qg-d7K"/>
+                                </constraints>
+                                <state key="normal" image="Download"/>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Y0h-zQ-elc">
+                                <rect key="frame" x="0.0" y="109.5" width="414" height="752.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="mishnaLessonCell" id="zpL-YV-WaS" customClass="MishnaChapterCellController" customModule="Jabrutouch" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="55.5" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zpL-YV-WaS" id="2p8-WQ-qAG">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OLh-nb-C0S" userLabel="Cell Content">
+                                                    <rect key="frame" x="18" y="0.0" width="378" height="75"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BEz-O8-4hd">
+                                                            <rect key="frame" x="26" y="18.5" width="15.5" height="38.5"/>
+                                                            <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="32"/>
+                                                            <color key="textColor" red="0.17254901959999999" green="0.16862745100000001" blue="0.33725490200000002" alpha="0.88" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GrayTimer" translatesAutoresizingMaskIntoConstraints="NO" id="fua-4O-pDP">
+                                                            <rect key="frame" x="91.5" y="29" width="15" height="17"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="15" id="LoP-tY-ClS"/>
+                                                                <constraint firstAttribute="height" constant="17" id="ZAX-OX-9KT"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="56 min" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="45m-7C-8f3">
+                                                            <rect key="frame" x="113.5" y="29" width="40.5" height="17"/>
+                                                            <fontDescription key="fontDescription" name="SFProDisplay-Light" family="SF Pro Display" pointSize="14"/>
+                                                            <color key="textColor" red="0.17254901959999999" green="0.16862745100000001" blue="0.33725490200000002" alpha="0.88" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.99607843139999996" green="0.99607843139999996" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="Mishna Chapter Cell Content"/>
+                                                    <constraints>
+                                                        <constraint firstItem="fua-4O-pDP" firstAttribute="leading" secondItem="BEz-O8-4hd" secondAttribute="trailing" constant="50" id="335-t8-hb4"/>
+                                                        <constraint firstItem="fua-4O-pDP" firstAttribute="centerY" secondItem="OLh-nb-C0S" secondAttribute="centerY" id="IWO-c4-5hF"/>
+                                                        <constraint firstItem="BEz-O8-4hd" firstAttribute="leading" secondItem="OLh-nb-C0S" secondAttribute="leading" constant="26" id="RrV-uI-YS6"/>
+                                                        <constraint firstItem="BEz-O8-4hd" firstAttribute="centerY" secondItem="OLh-nb-C0S" secondAttribute="centerY" id="gE1-r4-cum"/>
+                                                        <constraint firstAttribute="height" constant="75" id="iYz-xn-ha4"/>
+                                                        <constraint firstItem="45m-7C-8f3" firstAttribute="leading" secondItem="fua-4O-pDP" secondAttribute="trailing" constant="7" id="qt0-YF-Yqn"/>
+                                                        <constraint firstItem="45m-7C-8f3" firstAttribute="centerY" secondItem="OLh-nb-C0S" secondAttribute="centerY" id="s8P-2J-Kgu"/>
+                                                    </constraints>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ULo-EW-8BT" userLabel="Bottom Padding">
+                                                    <rect key="frame" x="0.0" y="75" width="414" height="14"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="Mishna Chapter Cell Padding"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="14" id="doj-9v-DZn"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="OLh-nb-C0S" firstAttribute="leading" secondItem="2p8-WQ-qAG" secondAttribute="leading" constant="18" id="A00-wg-UBm"/>
+                                                <constraint firstAttribute="trailing" secondItem="OLh-nb-C0S" secondAttribute="trailing" constant="18" id="CGk-El-mfn"/>
+                                                <constraint firstItem="OLh-nb-C0S" firstAttribute="top" secondItem="2p8-WQ-qAG" secondAttribute="top" id="QJL-k7-nAN"/>
+                                                <constraint firstItem="ULo-EW-8BT" firstAttribute="leading" secondItem="2p8-WQ-qAG" secondAttribute="leading" id="dn1-7B-O8d"/>
+                                                <constraint firstAttribute="trailing" secondItem="ULo-EW-8BT" secondAttribute="trailing" id="qLh-g6-Jjv"/>
+                                                <constraint firstItem="ULo-EW-8BT" firstAttribute="top" secondItem="OLh-nb-C0S" secondAttribute="bottom" id="qfu-O1-F9a"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="d6V-gz-W0L" firstAttribute="top" secondItem="0CB-ys-92O" secondAttribute="top" id="2uZ-lP-hHz"/>
+                            <constraint firstItem="0CB-ys-92O" firstAttribute="trailing" secondItem="d6V-gz-W0L" secondAttribute="trailing" id="8yI-P5-uoF"/>
+                            <constraint firstItem="Y0h-zQ-elc" firstAttribute="width" secondItem="d6V-gz-W0L" secondAttribute="width" id="JiJ-Kb-oyR"/>
+                            <constraint firstItem="Y0h-zQ-elc" firstAttribute="top" secondItem="Msf-aK-2iP" secondAttribute="bottom" constant="25" id="NBd-3S-pfX"/>
+                            <constraint firstItem="Y0h-zQ-elc" firstAttribute="bottom" secondItem="d6V-gz-W0L" secondAttribute="bottom" id="Spi-aU-xGp"/>
+                            <constraint firstItem="Msf-aK-2iP" firstAttribute="top" secondItem="d6V-gz-W0L" secondAttribute="top" constant="7" id="TAx-XL-IzO"/>
+                            <constraint firstItem="Y0h-zQ-elc" firstAttribute="centerX" secondItem="d6V-gz-W0L" secondAttribute="centerX" id="YhK-aS-St6"/>
+                            <constraint firstItem="d6V-gz-W0L" firstAttribute="top" secondItem="z1Z-oe-w00" secondAttribute="top" id="iMF-GJ-jQW"/>
+                            <constraint firstItem="d6V-gz-W0L" firstAttribute="leading" secondItem="z1Z-oe-w00" secondAttribute="leading" id="pZA-0N-SSn"/>
+                            <constraint firstItem="Msf-aK-2iP" firstAttribute="centerX" secondItem="YaA-Ee-fLf" secondAttribute="centerX" id="zCS-pF-rTF"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="d6V-gz-W0L"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="Y0h-zQ-elc" id="XUc-xo-HSj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="POs-Co-93U" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1937.68115942029" y="174.77678571428569"/>
+        </scene>
     </scenes>
     <resources>
         <image name="BlueRightArrow" width="9" height="16"/>
+        <image name="Download" width="19.5" height="26"/>
+        <image name="GrayTimer" width="15.5" height="17"/>
         <image name="LeftArrow" width="27.5" height="19.5"/>
         <image name="Loupe" width="23" height="22.5"/>
     </resources>
