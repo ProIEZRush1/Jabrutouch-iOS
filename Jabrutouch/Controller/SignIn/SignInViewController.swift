@@ -171,11 +171,7 @@ class SignInViewController: UIViewController {
     
     private func navigateToMain() {
         let mainViewController = Storyboards.Main.mainViewController
-        mainViewController.modalTransitionStyle = .crossDissolve
-        self.present(mainViewController, animated: true) {
-            appDelegate.window?.rootViewController = mainViewController
-            appDelegate.window?.makeKeyAndVisible()
-        }
+        appDelegate.setRootViewController(viewController: mainViewController, animated: true)
     }
     
     

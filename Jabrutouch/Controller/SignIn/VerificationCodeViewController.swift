@@ -1,5 +1,5 @@
 //בעזרת ה׳ החונן לאדם דעת
-//  VerificationCodeViewController.swift
+//  ValidateVerificationCodeViewController.swift
 //  Jabrutouch
 //
 //  Created by Yoni Reiss on 17/07/2019.
@@ -8,8 +8,14 @@
 
 import UIKit
 
-class VerificationCodeViewController: UIViewController {
+class ValidateVerificationCodeViewController: UIViewController {
     
+    //============================================================
+    // MARK: - Properties
+    //============================================================
+    
+    private var activityView: ActivityView?
+    var phoneNumber: String?
     //============================================================
     // MARK: - Outlets
     //============================================================
@@ -60,10 +66,33 @@ class VerificationCodeViewController: UIViewController {
     }
     
     //============================================================
+    // MARK: - ActivityView
+    //============================================================
+    
+    private func showActivityView() {
+        DispatchQueue.main.async {
+            if self.activityView == nil {
+                self.activityView = Utils.showActivityView(inView: self.view, withFrame: self.view.frame, text: nil)
+            }
+        }
+    }
+    private func removeActivityView() {
+        DispatchQueue.main.async {
+            if let view = self.activityView {
+                Utils.removeActivityView(view)
+            }
+        }
+    }
+    
+    //============================================================
     // MARK: - Navigation
     //============================================================
     
     private func navigateToSignUp() {
         self.performSegue(withIdentifier: "showSignUp", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
     }
 }

@@ -20,11 +20,7 @@ class WalkThroughViewController: UIViewController {
     
     private func navigateToSignIn() {
         let signInViewController = Storyboards.SignIn.signInViewController
-        self.present(signInViewController, animated: true) {
-            appDelegate.window?.rootViewController = signInViewController
-            appDelegate.window?.makeKeyAndVisible()
-        }
-        self.performSegue(withIdentifier: "presentSignIn", sender: nil)
+        appDelegate.setRootViewController(viewController: signInViewController, animated: true)
     }
 
 }

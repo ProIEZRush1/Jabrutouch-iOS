@@ -1,5 +1,5 @@
 //בעזרת ה׳ החונן לאדם דעת
-//  VerificationViewController.swift
+//  RequestVerificationCodeViewController.swift
 //  Jabrutouch
 //
 //  Created by Yoni Reiss on 17/07/2019.
@@ -8,11 +8,13 @@
 
 import UIKit
 
-class VerificationViewController: UIViewController {
+class RequestVerificationCodeViewController: UIViewController {
     
     //============================================================
     // MARK: - Properties
     //============================================================
+    
+    private var activityView: ActivityView?
     
     private var countriesPicker: UIPickerView?
     private var currentCountry = LocalizationManager.shared.getDefaultCountry() {
@@ -108,8 +110,7 @@ class VerificationViewController: UIViewController {
     }
     
     @IBAction func sendButtonPressed(_ sender: UIButton) {
-        // TODO: - Pending real implementation
-        self.navigateToVerificatonCodeViewController()
+        self.validateForm()
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
@@ -117,19 +118,67 @@ class VerificationViewController: UIViewController {
     }
     
     //============================================================
+    // MARK: - Logic
+    //============================================================
+    
+    private func validateForm() {
+        self.showActivityView()
+    }
+    
+    private func requestCode(phoneNumber: String) {
+        LoginManager.shared.sendCode(phoneNumber: phoneNumber) { (result) in
+            self.removeActivityView()
+            switch result {
+            case .success:
+                self.navigateToVerificatonCodeViewController(phoneNumber: phoneNumber)
+            case .failure(let error):
+                let title = Strings.error
+                let message = error.localizedDescription
+                Utils.showAlertMessage(message, title: title, viewControler: self)
+            }
+        }
+    }
+    
+    //============================================================
+    // MARK: - ActivityView
+    //============================================================
+    
+    private func showActivityView() {
+        DispatchQueue.main.async {
+            if self.activityView == nil {
+                self.activityView = Utils.showActivityView(inView: self.view, withFrame: self.view.frame, text: nil)
+            }
+        }
+    }
+    private func removeActivityView() {
+        DispatchQueue.main.async {
+            if let view = self.activityView {
+                Utils.removeActivityView(view)
+            }
+        }
+    }
+    
+    //============================================================
     // MARK: - Navigation
     //============================================================
     
-    private func navigateToVerificatonCodeViewController() {
-        self.performSegue(withIdentifier: "showVerificationCode", sender: nil)
+    private func navigateToVerificatonCodeViewController(phoneNumber:String) {
+        self.performSegue(withIdentifier: "showVerificationCode", sender: phoneNumber)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showVerificationCode" {
+            let validateCodeVC = segue.destination as? ValidateVerificationCodeViewController
+            validateCodeVC?.phoneNumber = sender as? String
+        }
     }
 }
 
-extension VerificationViewController: UIPickerViewDelegate {
+extension RequestVerificationCodeViewController: UIPickerViewDelegate {
     
 }
 
-extension VerificationViewController: UIPickerViewDataSource {
+extension RequestVerificationCodeViewController: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -146,7 +195,7 @@ extension VerificationViewController: UIPickerViewDataSource {
     
 }
 
-extension VerificationViewController: UITextFieldDelegate {
+extension RequestVerificationCodeViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField === self.countryTF {
             return false

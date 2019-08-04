@@ -180,4 +180,12 @@ class Strings {
     class var ok: String {
         return NSLocalizedString("ok", comment: "")
     }
+    
+    class var error: String {
+        return NSLocalizedString("error", comment: "")
+    }
+    
+    class var signOut: String {
+        return NSLocalizedString("signOut", comment: "")
+    }
 }

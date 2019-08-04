@@ -63,29 +63,19 @@ class SplashScreenViewController: UIViewController {
 
     private func navigateToSignIn() {
         let signInViewController = Storyboards.SignIn.signInViewController
-        signInViewController.modalTransitionStyle = .crossDissolve
-        self.present(signInViewController, animated: true) {
-            appDelegate.window?.rootViewController = signInViewController
-            appDelegate.window?.makeKeyAndVisible()
-        }
+        appDelegate.setRootViewController(viewController: signInViewController, animated: true)
+
     }
     
     private func navigateToWalkThrough() {
         let walkThroughViewController = Storyboards.WalkThrough.walkThroughViewController
-        walkThroughViewController.modalTransitionStyle = .crossDissolve
-        self.present(walkThroughViewController, animated: true) {
-            appDelegate.window?.rootViewController = walkThroughViewController
-            appDelegate.window?.makeKeyAndVisible()
-        }
+        appDelegate.setRootViewController(viewController: walkThroughViewController, animated: true)
     }
     
     private func navigateToMain() {
         let mainViewController = Storyboards.Main.mainViewController
-        mainViewController.modalTransitionStyle = .crossDissolve
-        self.present(mainViewController, animated: true) {
-            appDelegate.window?.rootViewController = mainViewController
-            appDelegate.window?.makeKeyAndVisible()
-        }
+        appDelegate.setRootViewController(viewController: mainViewController, animated: true)
+
     }
 
 }

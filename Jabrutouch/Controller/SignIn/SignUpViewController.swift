@@ -80,10 +80,20 @@ class SignUpViewController: UIViewController {
     //============================================================
     
     @IBAction func signUpButtonPressed(_ sender: UIButton) {
-        self.navigationController?.dismiss(animated: true, completion: nil)
+        
     }
     
     @IBAction func signInButtonPressed(_ sender: UIButton) {
         self.navigationController?.dismiss(animated: true, completion: nil)
+    }
+    
+    //============================================================
+    // MARK: - Navigation
+    //============================================================
+    
+    private func navigateToMain() {
+        let mainViewController = Storyboards.Main.mainViewController
+        appDelegate.setRootViewController(viewController: mainViewController, animated: true)
+
     }
 }
