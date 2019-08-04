@@ -52,3 +52,9 @@
 "donationsCenter" = "Donations Center";
 "donate" = "Donate";
 "logout" = "Log Out";
+
+"passwordMissing" = "Password is missing";
+"usernameInvalid" = "Username must be a valid email or phone number";
+"usernameMissing" = "Username is missing.";
+
+"ok" = "OK";

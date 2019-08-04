@@ -11,7 +11,7 @@ import UIKit
 class WalkThroughViewController: UIViewController {
 
     @IBOutlet weak private var collectionView: UICollectionView!
-    @IBOutlet weak var barPageIndicator: JBBarPageIndicator!
+    @IBOutlet weak var barPageIndicator: JTBarPageIndicator!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +19,11 @@ class WalkThroughViewController: UIViewController {
     }
     
     private func navigateToSignIn() {
+        let signInViewController = Storyboards.SignIn.signInViewController
+        self.present(signInViewController, animated: true) {
+            appDelegate.window?.rootViewController = signInViewController
+            appDelegate.window?.makeKeyAndVisible()
+        }
         self.performSegue(withIdentifier: "presentSignIn", sender: nil)
     }
 
@@ -42,6 +47,7 @@ extension WalkThroughViewController: UICollectionViewDataSource {
 extension WalkThroughViewController: UICollectionViewDelegate {
     func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.x > scrollView.bounds.width*3 {
+            UserDefaultsProvider.shared.seenWalkThrough = true
             self.navigateToSignIn()
         }
     }

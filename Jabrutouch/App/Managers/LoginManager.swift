@@ -27,10 +27,11 @@ class LoginManager {
     // MARK: - Public methods
     //==========================================
     
-    func login(phoneNumber: String?, email: String?, password: String, completion:@escaping (_ result: Result<JTUser,Error>)->Void){
-        API.login(phoneNumber: phoneNumber, email: email, password: password, fcmToken: "1234") { (result:APIResult<LoginResponse>) in
+    func signIn(phoneNumber: String?, email: String?, password: String, completion:@escaping (_ result: Result<JTUser,Error>)->Void){
+        API.signIn(phoneNumber: phoneNumber, email: email, password: password, fcmToken: "1234") { (result:APIResult<LoginResponse>) in
             switch result {
             case .success(let response):
+                self.userDidSignIn(user: response.user, password: password)
                 DispatchQueue.main.async {
                     completion(.success(response.user))
                 }
@@ -38,6 +39,11 @@ class LoginManager {
                 completion(.failure(error))
             }
         }
+    }
+    
+    func signOut(completion: ()->Void) {
+        self.userDidSignOut()
+        completion()
     }
     
     func sendCode(phoneNumber: String, completion:@escaping (_ result: Result<Any, Error>)->Void){
@@ -103,11 +109,15 @@ class LoginManager {
         
     }
     
-    private func userDidSignIn(email: String?, phoneNumber: String?, password: String) {
-        
+    private func userDidSignIn(user: JTUser, password: String) {
+        UserDefaultsProvider.shared.currentUsername = user.email
+        UserDefaultsProvider.shared.currentPassword = password
+        UserDefaultsProvider.shared.currentUser = user
     }
     
-    private func userDidSignOut(email: String?, phoneNumber: String?, password: String) {
-        
+    private func userDidSignOut() {
+        UserDefaultsProvider.shared.currentUsername = nil
+        UserDefaultsProvider.shared.currentPassword = nil
+        UserDefaultsProvider.shared.currentUser = nil
     }
 }

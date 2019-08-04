@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DownloadsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, HeaderViewDelegate, CellDelegate {
+class DownloadsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, HeaderViewDelegate, DownloadsCellDelegate {
     
     @IBOutlet weak var headerShadowBasis: UIView!
     @IBOutlet weak var gemaraButton: UIButton!
@@ -36,7 +36,6 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     fileprivate var tableViewsMap = [String: UITableView]()
     fileprivate let GEMARA = "Gemara"
     fileprivate let MISHNA = "Mishna"
-    fileprivate let shadowColor = UIColor(red: 0.1, green: 0.12, blue: 0.57, alpha: 0.1)
     
     //----------------------------------------------------------------
     // MARK: - @IBActions and their helpers
@@ -90,8 +89,8 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         grayUpArrowXCentererdToGemara = grayUpArrow.centerXAnchor.constraint(equalTo: gemaraButton.centerXAnchor)
         grayUpArrowXCentererdToMishna = grayUpArrow.centerXAnchor.constraint(equalTo: mishnaButton.centerXAnchor)
         fillTableForDev() // Only for Dev
-        gemaraTableView.register(UINib(nibName: "DownloadsHeaderCell", bundle: nil), forHeaderFooterViewReuseIdentifier: "downloadsHeaderCell")
-        mishnaTableView.register(UINib(nibName: "DownloadsHeaderCell", bundle: nil), forHeaderFooterViewReuseIdentifier: "downloadsHeaderCell")
+        gemaraTableView.register(UINib(nibName: "DownloadsHeaderCell", bundle: nil), forHeaderFooterViewReuseIdentifier: "headerCell")
+        mishnaTableView.register(UINib(nibName: "DownloadsHeaderCell", bundle: nil), forHeaderFooterViewReuseIdentifier: "headerCell")
         gemaraTableView.delegate = self
         gemaraTableView.dataSource = self
         mishnaTableView.delegate = self
@@ -103,6 +102,7 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         setViews()
     }
     
+    // Only for Dev function
     fileprivate func fillTableForDev() {
         var downloads1 = [JTDownload]()
         var downloads4 = [JTDownload]()
@@ -225,9 +225,7 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     fileprivate func setViewAllButtonShape() {
-        gemaraViewAllLessonsButton.layer.cornerRadius = 10.32
-        gemaraViewAllLessonsButton.layer.borderWidth = 0.57
-        gemaraViewAllLessonsButton.layer.borderColor = UIColor(red: 0.18, green: 0.17, blue: 0.66, alpha: 1).cgColor
+        Utils.setViewShape(view: gemaraViewAllLessonsButton, viewBorderWidht: 0.57, viewBorderColor: UIColor(red: 0.18, green: 0.17, blue: 0.66, alpha: 1), viewCornerRadius: 10.32)
         gemaraViewAllLessonsButton.translatesAutoresizingMaskIntoConstraints = false
     }
     
@@ -237,21 +235,11 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         let shadowOffset = CGSize(width: 0.0, height: 10)
         let headerShadowOffset = CGSize(width: 0, height: 4)
         let cornerRadius = gemaraButton.layer.frame.height / 2
-        dropViewShadow(view: gemaraButton, borderWidht: 1, borderColor: borderColor, cornerRadius: cornerRadius, shadowColor: shadowColor, shadowRadius: 20, shadowOffset: shadowOffset)
-        dropViewShadow(view: mishnaButton, borderWidht: 1, borderColor: borderColor, cornerRadius: cornerRadius, shadowColor: shadowColor, shadowRadius: 20, shadowOffset: shadowOffset)
-        dropViewShadow(view: headerShadowBasis, shadowColor: headerShadowColor, shadowRadius: 22, shadowOffset: headerShadowOffset)
-    }
-    
-    fileprivate func dropViewShadow(view: UIView, borderWidht: CGFloat = 0, borderColor: UIColor = .white, cornerRadius: CGFloat = 0, shadowColor: UIColor, shadowRadius: CGFloat, shadowOffset: CGSize) {
-        view.layer.cornerRadius = cornerRadius
-        view.layer.borderWidth = borderWidht
-        view.layer.borderColor = borderColor.cgColor
-        view.layer.shadowColor = shadowColor.cgColor
-        view.layer.shadowOffset = shadowOffset
-        view.layer.shadowOpacity = 1.0
-        view.layer.shadowRadius = shadowRadius
-        view.layer.masksToBounds = false
-        view.translatesAutoresizingMaskIntoConstraints = false
+        Utils.setViewShape(view: gemaraButton, viewBorderWidht: 1, viewBorderColor: borderColor, viewCornerRadius: cornerRadius)
+        Utils.dropViewShadow(view: gemaraButton, shadowColor: Colors.shadowColor, shadowRadius: 20, shadowOffset: shadowOffset)
+        Utils.setViewShape(view: mishnaButton, viewBorderWidht: 1, viewBorderColor: borderColor, viewCornerRadius: cornerRadius)
+        Utils.dropViewShadow(view: mishnaButton, shadowColor: Colors.shadowColor, shadowRadius: 20, shadowOffset: shadowOffset)
+        Utils.dropViewShadow(view: headerShadowBasis, shadowColor: headerShadowColor, shadowRadius: 22, shadowOffset: headerShadowOffset)
     }
     
     //----------------------------------------------------------------
@@ -283,7 +271,11 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40
+        return 50
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.00001 // Returning 0 does not reduce the footer height!
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -292,7 +284,7 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         var sectionName: String = ""
-        let headerCell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "downloadsHeaderCell") as! DownloadsHeaderCellController
+        let headerCell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "headerCell") as! DownloadsHeaderCellController
         initHeaderCell(headerCell, tableView, section, &sectionName)
         headerCell.titleLabel?.text = sectionName
         headerCell.section = section
@@ -305,22 +297,22 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     fileprivate func initHeaderCell(_ headerCell: DownloadsHeaderCellController, _ tableView: UITableView, _ section: Int, _ sectionName: inout String) {
+        var isExpanded: Bool
+        
         if tableView == gemaraTableView {
             headerCell.isFirstTable = true
-            if gemaraDownloads[section].isExpanded {
-                headerCell.arrowImage?.image = UIImage(named: "Black&BlueUpArrow")
-            } else {
-                headerCell.arrowImage?.image = UIImage(named: "Black&BlueDownArrow")
-            }
+            isExpanded = gemaraDownloads[section].isExpanded
             sectionName = self.gemaraDownloads[section].name
         } else {
             headerCell.isFirstTable = false
-            if mishnaDownloads[section].isExpanded {
-                headerCell.arrowImage?.image = UIImage(named: "Black&BlueUpArrow")
-            } else {
-                headerCell.arrowImage?.image = UIImage(named: "Black&BlueDownArrow")
-            }
+            isExpanded = mishnaDownloads[section].isExpanded
             sectionName = self.mishnaDownloads[section].name
+        }
+        
+        if isExpanded {
+            headerCell.arrowImage?.image = UIImage(named: "Black&BlueUpArrow")
+        } else {
+            headerCell.arrowImage?.image = UIImage(named: "Black&BlueDownArrow")
         }
     }
     
@@ -341,9 +333,9 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.delegate = self
         cell.audioButton.isHidden = !download.hasAudio
         cell.videoButton.isHidden = !download.hasVideo
-        cell.cellView.translatesAutoresizingMaskIntoConstraints = false
+        Utils.setViewShape(view: cell.cellView, viewCornerRadius: 18)
         let shadowOffset = CGSize(width: 0.0, height: 12)
-        dropViewShadow(view: cell.cellView, cornerRadius: 18, shadowColor: shadowColor, shadowRadius: 36, shadowOffset: shadowOffset)
+        Utils.dropViewShadow(view: cell.cellView, shadowColor: Colors.shadowColor, shadowRadius: 36, shadowOffset: shadowOffset)
 
         if isDeleting {
             cell.deleteButton.isHidden = false

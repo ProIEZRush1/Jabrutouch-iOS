@@ -174,20 +174,13 @@
             </objects>
             <point key="canvasLocation" x="-339" y="15"/>
         </scene>
-        <!--Mishna View Controller-->
-        <scene sceneID="v1s-0N-VfV">
+        <!--Mishna-->
+        <scene sceneID="av7-5p-DLf">
             <objects>
-                <viewController id="rH0-wW-8Qd" customClass="MishnaViewController" customModule="Jabrutouch" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="pC7-i8-Y6h">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="777"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="kuC-qt-YNy"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="QpQ-ox-ETR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Mishna" id="JVG-Qg-8AU" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EFY-uB-qC2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="393" y="15"/>
+            <point key="canvasLocation" x="383" y="-263"/>
         </scene>
         <!--Donations View Controller-->
         <scene sceneID="wqN-I7-b5z">
@@ -207,7 +200,7 @@
         <!--Main View Controller-->
         <scene sceneID="Vw6-8z-eOD">
             <objects>
-                <viewController id="hlJ-VD-Lqd" customClass="MainViewController" customModule="Jabrutouch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainViewController" id="hlJ-VD-Lqd" customClass="MainViewController" customModule="Jabrutouch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rWo-H5-Xrd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -476,9 +469,9 @@
                     </view>
                     <connections>
                         <segue destination="P4T-xA-g21" kind="presentation" identifier="presentGemara" modalPresentationStyle="currentContext" id="dXS-Aw-ZYs"/>
-                        <segue destination="rH0-wW-8Qd" kind="presentation" identifier="presentMishna" modalPresentationStyle="currentContext" id="wIS-u8-sSV"/>
                         <segue destination="6YE-v2-5Hc" kind="presentation" identifier="presentDonations" modalPresentationStyle="currentContext" id="1Eq-Xo-pbZ"/>
                         <segue destination="xwk-Vq-Xrs" kind="presentation" identifier="presentDownloads" modalPresentationStyle="currentContext" id="POK-Y0-SqV"/>
+                        <segue destination="JVG-Qg-8AU" kind="presentation" identifier="presentMishna" modalPresentationStyle="currentContext" id="Rcw-p9-fF4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4ZF-Ew-sWy" userLabel="First Responder" sceneMemberID="firstResponder"/>

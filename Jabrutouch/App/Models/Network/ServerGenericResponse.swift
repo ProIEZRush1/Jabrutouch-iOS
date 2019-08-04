@@ -12,7 +12,6 @@ struct ServerGenericResponse {
     var success: Bool
     var errorCode: Int?
     var errors: String?
-    var phone: [String]?
     var data: [String:Any]?
     
     init?(values: [String:Any]) {
@@ -21,9 +20,8 @@ struct ServerGenericResponse {
         } else { return nil }
         
         self.errorCode = values["error_code"] as? Int
-        self.errors = values["error_code"] as? String
-        self.phone = values["error_code"] as? [String]
-        self.data = values["error_code"] as? [String:Any]
+        self.errors = values["errors"] as? String
+        self.data = values["data"] as? [String:Any]
     }
     
 }

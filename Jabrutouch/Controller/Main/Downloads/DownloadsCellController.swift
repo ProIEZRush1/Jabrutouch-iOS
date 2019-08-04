@@ -19,7 +19,7 @@ class DownloadsCellController: UITableViewCell {
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var cellTrailingConstraint: NSLayoutConstraint! // 21 or 45
     
-    weak var delegate: CellDelegate?
+    weak var delegate: DownloadsCellDelegate?
     var isFirstTable = true // For multiple tables on same view controller
     
     @IBAction func deletePressed(_ sender: Any) {
@@ -31,6 +31,6 @@ class DownloadsCellController: UITableViewCell {
     }
 }
 
-protocol CellDelegate: class {
+protocol DownloadsCellDelegate: class {
     func cellDeletePressed(_ cell: DownloadsCellController)
 }

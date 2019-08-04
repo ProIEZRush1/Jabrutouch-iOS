@@ -169,6 +169,14 @@ class MainViewController: UIViewController, MainModalDelegate {
     // MARK: - Navigation
     //========================================
     
+    private func navigateToSignIn() {
+        let signInViewController = Storyboards.SignIn.signInViewController
+        signInViewController.modalTransitionStyle = .crossDissolve
+        self.present(signInViewController, animated: true) {
+            appDelegate.window?.rootViewController = signInViewController
+            appDelegate.window?.makeKeyAndVisible()
+        }
+    }
     private func presentMenu() {
         self.performSegue(withIdentifier: "presentMenu", sender: nil)
     }
@@ -247,6 +255,15 @@ class MainViewController: UIViewController, MainModalDelegate {
 
 extension MainViewController: MenuDelegate {
     func optionSelected(option: MenuOption) {
-        
+        switch option {
+        case .logout:
+            LoginManager.shared.signOut {
+                DispatchQueue.main.async {
+                    self.navigateToSignIn()
+                }                
+            }
+        default:
+            break
+        }
     }
 }

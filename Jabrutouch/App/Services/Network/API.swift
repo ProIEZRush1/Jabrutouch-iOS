@@ -45,7 +45,7 @@ class API {
         }
     }
     
-    class func login(phoneNumber: String?, email: String?, password:String, fcmToken: String, completionHandler:@escaping (_ response: APIResult<LoginResponse>)->Void) {
+    class func signIn(phoneNumber: String?, email: String?, password:String, fcmToken: String, completionHandler:@escaping (_ response: APIResult<LoginResponse>)->Void) {
         guard let request = HttpRequestsFactory.createLoginRequest(email: email, phoneNumber: phoneNumber, password: password, fcmToken: fcmToken) else {
             completionHandler(APIResult.failure(.unableToCreateRequest))
             return
