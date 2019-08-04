@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MishnaChapterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MishnaChapterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MishnaChapterCellDelegate {
     
     //========================================
     // MARK: - @IBOutlets and Fields
@@ -19,6 +19,7 @@ class MishnaChapterViewController: UIViewController, UITableViewDelegate, UITabl
     
     var chapters: [JTMishnaChapter] = []
     var masechetString: String?
+    fileprivate var selectedRow: Int = 0
 
     //========================================
     // MARK: - LifeCycle
@@ -29,6 +30,15 @@ class MishnaChapterViewController: UIViewController, UITableViewDelegate, UITabl
         tableView.delegate = self
         tableView.dataSource = self
         masechetName.text = masechetString
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showMishnaLessons" {
+            let vc = segue.destination as? MishnaLessonsViewController
+            vc?.lessons = chapters[selectedRow].lessonsDownloaded
+            vc?.masechet = masechetString
+            vc?.chapter = chapters[selectedRow].name
+        }
     }
     
     //========================================
@@ -57,7 +67,8 @@ class MishnaChapterViewController: UIViewController, UITableViewDelegate, UITabl
         let mishnaiotCount = chapters[indexPath.row].lessonsDownloaded.count
         cell.mishnaiotCount.text = String(mishnaiotCount)
         cell.mishnaiotText.text = mishnaiotCount > 1 ? "Mishnaiot" : "Mishna"
-        cell.indexPath = indexPath
+        cell.delegate = self
+        cell.selectedRow = indexPath.row
         Utils.setViewShape(view: cell.cellView, viewCornerRadius: 18)
         let shadowOffset = CGSize(width: 0.0, height: 12)
         Utils.dropViewShadow(view: cell.cellView, shadowColor: Colors.shadowColor, shadowRadius: 36, shadowOffset: shadowOffset)
@@ -79,6 +90,10 @@ class MishnaChapterViewController: UIViewController, UITableViewDelegate, UITabl
     // MARK: - Implemented Protocols functions and helpers
     //====================================================
     
+    func showMasechetLessons(selectedRow: Int) {
+        self.selectedRow = selectedRow
+        performSegue(withIdentifier: "showMishnaLessons", sender: self)
+    }
     
     
 }

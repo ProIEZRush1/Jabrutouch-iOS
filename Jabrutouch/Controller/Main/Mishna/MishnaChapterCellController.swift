@@ -15,7 +15,7 @@ class MishnaChapterCellController: UITableViewCell {
     @IBOutlet weak var mishnaiotCount: UILabel!
     @IBOutlet weak var mishnaiotText: UILabel!
     
-    var indexPath: IndexPath = []
+    var selectedRow: Int = 0
     weak var delegate: MishnaChapterCellDelegate?
     
     override func awakeFromNib() {
@@ -25,10 +25,10 @@ class MishnaChapterCellController: UITableViewCell {
     }
     
     @objc private func cellPressed() {
-        delegate?.showMasechetLessons(indexPath: indexPath)
+        delegate?.showMasechetLessons(selectedRow: selectedRow)
     }
 }
 
 protocol MishnaChapterCellDelegate: class {
-    func showMasechetLessons(indexPath: IndexPath)
+    func showMasechetLessons(selectedRow: Int)
 }

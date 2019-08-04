@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MishnaLessonCellDelegate {
     
     //========================================
     // MARK: - @IBOutlets and Fields
@@ -17,10 +17,13 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var masechetLabel: UILabel!
     @IBOutlet weak var chapterLabel: UILabel!
+    @IBOutlet weak var downloadButton: UIButton!
     
     var lessons: [JTLessonDownload] = []
     var masechet: String?
     var chapter: String?
+    var isCurrentlyEditing: Bool = false
+    var isFirstLoading: Bool = true
     
     //========================================
     // MARK: - LifeCycle
@@ -31,6 +34,7 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
         tableView.delegate = self
         tableView.dataSource = self
         masechetLabel.text = masechet
+        chapterLabel.text = chapter
     }
     
     //========================================
@@ -55,40 +59,119 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "mishnaLessonCell", for: indexPath) as! MishnaLessonCellController
+        setEditingIfNeeded(cell)
         cell.lessonNumber.text = lessons[indexPath.row].number
         cell.lessonLength.text = lessons[indexPath.row].length
-        if lessons[indexPath.row].isAudioDownloaded {
-            cell.audioImage?.image = UIImage(named: "RedAudioV")
+        let isAudioDownloaded = lessons[indexPath.row].isAudioDownloaded
+        let isVideoDownloaded = lessons[indexPath.row].isVideoDownloaded
+        if isAudioDownloaded {
+            cell.audioImage?.image = UIImage(named: "RedAudio")
+            cell.redAudioVImage.isHidden = isCurrentlyEditing ? true : false
         } else {
             cell.audioImage?.image = UIImage(named: "Audio")
+            cell.redAudioVImage.isHidden = true
         }
-        if lessons[indexPath.row].isVideoDownloaded {
-            cell.videoImage?.image = UIImage(named: "RedVideoV")
+        cell.underneathAudioDownloadImage.isHidden = isAudioDownloaded
+        if isVideoDownloaded {
+            cell.videoImage?.image = UIImage(named: "RedVideo")
+            cell.redVideoVImage.isHidden = isCurrentlyEditing ? true : false
         } else {
             cell.videoImage?.image = UIImage(named: "Video")
+            cell.redVideoVImage.isHidden = true
         }
-        cell.indexPath = indexPath
+        cell.underneathVideoDownloadImage.isHidden = isVideoDownloaded
+        cell.delegate = self
+        cell.selectedRow = indexPath.row
+        Utils.setViewShape(view: cell.underneathCellView, viewCornerRadius: 18)
         Utils.setViewShape(view: cell.cellView, viewCornerRadius: 18)
         let shadowOffset = CGSize(width: 0.0, height: 12)
-        Utils.dropViewShadow(view: cell.cellView, shadowColor: Colors.shadowColor, shadowRadius: 36, shadowOffset: shadowOffset)
+        Utils.dropViewShadow(view: cell.underneathCellView, shadowColor: Colors.shadowColor, shadowRadius: 36, shadowOffset: shadowOffset)
         
+        cell.underneathCellView.layoutIfNeeded()
         cell.cellView.layoutIfNeeded()
         
         return cell
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if isFirstLoading {
+            if indexPath.row == tableView.numberOfRows(inSection: 0) - 1 {
+                isFirstLoading = false
+            }
+        }
+    }
+    
+    fileprivate func setEditingIfNeeded(_ cell: MishnaLessonCellController) {
+        cell.audioImage.isHidden = isCurrentlyEditing
+        cell.videoImage.isHidden = isCurrentlyEditing
+        
+        if self.isCurrentlyEditing {
+            cell.cellViewTrailingConstraint.constant = self.view.frame.size.width / 2 - 20
+        } else {
+            cell.cellViewTrailingConstraint.constant = 18
+        }
+        
+        cell.cellView.layoutIfNeeded()
+    }
+    
     //========================================
-    // MARK: - @IBActions
+    // MARK: - @IBActions and helpers
     //========================================
     
     @IBAction func backPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func downloadPressed(_ sender: Any) {
+        isCurrentlyEditing = !isCurrentlyEditing
+        
+        if isCurrentlyEditing {
+            downloadButton.setImage(nil, for: .normal)
+            downloadButton.setTitle("Done", for: .normal)
+        } else {
+            downloadButton.setImage(UIImage(named: "Download"), for: .normal)
+            downloadButton.setTitle("", for: .normal)
+        }
+        
+        tableView.reloadData()
+    }
+    
     //====================================================
     // MARK: - Implemented Protocols functions and helpers
     //====================================================
     
+    func cellPressed(selectedRow: Int) {
+        // TODO Send to View mode (Ask Dudi what is it)
+    }
     
+    func audioPressed(selectedRow: Int) {
+        // TODO Send to correct screen
+    }
+    
+    func videoPressed(selectedRow: Int) {
+        // TODO Send to correct screen
+    }
+    
+    func underneathAudioPressed(selectedRow: Int) {
+        if lessons[selectedRow].isAudioDownloaded {
+            alreadyDownloadedMediaAlert()
+        } else {
+            print("Download audio")
+        }
+    }
+    
+    fileprivate func alreadyDownloadedMediaAlert() {
+        let alert = UIAlertController(title: "", message: "The media already exists in the phone", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func underneathVideoPressed(selectedRow: Int) {
+        if lessons[selectedRow].isVideoDownloaded {
+            alreadyDownloadedMediaAlert()
+        } else {
+            print("Download video")
+        }
+    }
     
 }
