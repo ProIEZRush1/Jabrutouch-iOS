@@ -176,3 +176,16 @@ class SignInViewController: UIViewController {
     
     
 }
+
+extension SignInViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField === self.usernameTF {
+            self.passwordTF.becomeFirstResponder()
+        }
+        else if textField === self.passwordTF {
+            textField.resignFirstResponder()
+            self.validateFields()
+        }
+        return true
+    }
+}

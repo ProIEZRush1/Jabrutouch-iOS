@@ -230,4 +230,12 @@ extension RequestVerificationCodeViewController: UITextFieldDelegate {
         }
         return true
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField === self.phoneNumberTF {
+            textField.resignFirstResponder()
+            self.validateForm()
+        }
+        return true
+    }
 }

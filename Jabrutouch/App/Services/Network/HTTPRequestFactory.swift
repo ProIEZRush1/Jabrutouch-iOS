@@ -36,7 +36,7 @@ class HttpRequestsFactory {
     
     class func createValidateCodeRequest(phoneNumber:String, code: String) -> URLRequest?{
         guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
-        let link = baseUrl.appendingPathComponent("send_again/").absoluteString
+        let link = baseUrl.appendingPathComponent("validate_code/").absoluteString
         let body: [String:Any] = [ "phone": phoneNumber, "code": code]
         guard let url = self.createUrl(fromLink: link, urlParams: nil) else { return nil }
         let request = self.createRequest(url, method: .post, body: body, additionalHeaders: nil)
