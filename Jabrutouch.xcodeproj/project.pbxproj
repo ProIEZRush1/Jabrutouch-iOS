@@ -11,8 +11,8 @@
 		210628BB22F6EBB3008BBD8C /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210628BA22F6EBB3008BBD8C /* Storyboards.swift */; };
 		2120BE1D22DF273F004854DB /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2120BE1C22DF273F004854DB /* SignInViewController.swift */; };
 		2120BE1F22DF2758004854DB /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2120BE1E22DF2758004854DB /* SignUpViewController.swift */; };
-		2120BE2122DF2787004854DB /* VerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2120BE2022DF2787004854DB /* VerificationViewController.swift */; };
-		2120BE2322DF279D004854DB /* VerificationCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2120BE2222DF279D004854DB /* VerificationCodeViewController.swift */; };
+		2120BE2122DF2787004854DB /* RequestVerificationCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2120BE2022DF2787004854DB /* RequestVerificationCodeViewController.swift */; };
+		2120BE2322DF279D004854DB /* ValidateVerificationCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2120BE2222DF279D004854DB /* ValidateVerificationCodeViewController.swift */; };
 		2131969622F38B1200B0AF5F /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2131969222F38B1200B0AF5F /* APIError.swift */; };
 		2131969722F38B1200B0AF5F /* APIResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2131969322F38B1200B0AF5F /* APIResult.swift */; };
 		2131969822F38B1200B0AF5F /* ServerGenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2131969422F38B1200B0AF5F /* ServerGenericResponse.swift */; };
@@ -131,8 +131,8 @@
 		210628BA22F6EBB3008BBD8C /* Storyboards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboards.swift; sourceTree = "<group>"; };
 		2120BE1C22DF273F004854DB /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		2120BE1E22DF2758004854DB /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		2120BE2022DF2787004854DB /* VerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewController.swift; sourceTree = "<group>"; };
-		2120BE2222DF279D004854DB /* VerificationCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationCodeViewController.swift; sourceTree = "<group>"; };
+		2120BE2022DF2787004854DB /* RequestVerificationCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestVerificationCodeViewController.swift; sourceTree = "<group>"; };
+		2120BE2222DF279D004854DB /* ValidateVerificationCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateVerificationCodeViewController.swift; sourceTree = "<group>"; };
 		2131969222F38B1200B0AF5F /* APIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		2131969322F38B1200B0AF5F /* APIResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIResult.swift; sourceTree = "<group>"; };
 		2131969422F38B1200B0AF5F /* ServerGenericResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerGenericResponse.swift; sourceTree = "<group>"; };
@@ -449,8 +449,8 @@
 			isa = PBXGroup;
 			children = (
 				2120BE1C22DF273F004854DB /* SignInViewController.swift */,
-				2120BE2022DF2787004854DB /* VerificationViewController.swift */,
-				2120BE2222DF279D004854DB /* VerificationCodeViewController.swift */,
+				2120BE2022DF2787004854DB /* RequestVerificationCodeViewController.swift */,
+				2120BE2222DF279D004854DB /* ValidateVerificationCodeViewController.swift */,
 				2120BE1E22DF2758004854DB /* SignUpViewController.swift */,
 			);
 			path = SignIn;
@@ -808,7 +808,7 @@
 				FBD9375122F328CC00BC94DC /* MishnaLessonCellController.swift in Sources */,
 				2133C22122DCFEB500F910B9 /* WalkThroughCollectionViewCell.swift in Sources */,
 				219BFF2C22E59F4500ABBEE2 /* Extensions.swift in Sources */,
-				2120BE2122DF2787004854DB /* VerificationViewController.swift in Sources */,
+				2120BE2122DF2787004854DB /* RequestVerificationCodeViewController.swift in Sources */,
 				213196AA22F38B3E00B0AF5F /* LoginResponse.swift in Sources */,
 				219BFF2922E50C0B00ABBEE2 /* ModalsContainerViewController.swift in Sources */,
 				216A0E6E22EEFD1400F7FBC1 /* HTTPProvider.swift in Sources */,
@@ -832,7 +832,7 @@
 				21678D7C22E085CB007BC74C /* DonationsViewController.swift in Sources */,
 				2145858F22EF7D980062F830 /* API.swift in Sources */,
 				2120BE1D22DF273F004854DB /* SignInViewController.swift in Sources */,
-				2120BE2322DF279D004854DB /* VerificationCodeViewController.swift in Sources */,
+				2120BE2322DF279D004854DB /* ValidateVerificationCodeViewController.swift in Sources */,
 				2131969822F38B1200B0AF5F /* ServerGenericResponse.swift in Sources */,
 				2131969622F38B1200B0AF5F /* APIError.swift in Sources */,
 				21CC094422F05D8A00E8FE27 /* DafYomiRepository.swift in Sources */,

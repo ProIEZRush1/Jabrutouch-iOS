@@ -188,4 +188,16 @@ class Strings {
     class var signOut: String {
         return NSLocalizedString("signOut", comment: "")
     }
+    
+    class var phoneNumberMissing: String {
+        return NSLocalizedString("phoneNumberMissing", comment: "")
+    }
+    
+    class var phoneNumberInvalid: String {
+        return NSLocalizedString("phoneNumberInvalid", comment: "")
+    }
+    
+    class var pleaseSelectCountry: String {
+        return NSLocalizedString("pleaseSelectCountry", comment: "")
+    }
 }

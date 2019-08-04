@@ -123,10 +123,38 @@ class RequestVerificationCodeViewController: UIViewController {
     
     private func validateForm() {
         self.showActivityView()
+        
+        guard var phoneNumber = self.phoneNumberTF.text else {
+            let message = Strings.phoneNumberMissing
+            Utils.showAlertMessage(message, title: nil, viewControler: self)
+            self.removeActivityView()
+            return
+        }
+        if phoneNumber.isEmpty {
+            let message = Strings.phoneNumberMissing
+            Utils.showAlertMessage(message, title: nil, viewControler: self)
+            self.removeActivityView()
+            return
+        }
+        if phoneNumber.first == "0"{
+            let message = Strings.phoneNumberMissing
+            Utils.showAlertMessage(message, title: nil, viewControler: self)
+            phoneNumber = String(phoneNumber.dropFirst())
+        }
+        
+        guard let country = self.currentCountry else {
+            let message = Strings.pleaseSelectCountry
+            Utils.showAlertMessage(message, title: nil, viewControler: self)
+            self.removeActivityView()
+            return
+        }
+        
+        let fullPhoneNumber = country.dialCode + phoneNumber
+        self.requestCode(phoneNumber: fullPhoneNumber)
     }
     
     private func requestCode(phoneNumber: String) {
-        LoginManager.shared.sendCode(phoneNumber: phoneNumber) { (result) in
+        LoginManager.shared.requestVerificationCode(phoneNumber: phoneNumber) { (result) in
             self.removeActivityView()
             switch result {
             case .success:

@@ -46,8 +46,8 @@ class LoginManager {
         completion()
     }
     
-    func sendCode(phoneNumber: String, completion:@escaping (_ result: Result<Any, Error>)->Void){
-        API.sendCode(phoneNumber: phoneNumber) { (result:APIResult<SendCodeResponse>) in
+    func requestVerificationCode(phoneNumber: String, completion:@escaping (_ result: Result<Any, Error>)->Void){
+        API.requestVerificationCode(phoneNumber: phoneNumber) { (result:APIResult<SendCodeResponse>) in
             switch result {
             case .success(let response):
                 DispatchQueue.main.async {

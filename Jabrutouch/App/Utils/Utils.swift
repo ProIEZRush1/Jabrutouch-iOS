@@ -163,6 +163,14 @@ class Utils {
     }
     
     class func validatePhoneNumber(_ phoneNumber: String) -> Bool {
-        return true
+        let charcterSet  = CharacterSet(charactersIn: "+0123456789").inverted
+        let inputString = phoneNumber.components(separatedBy: charcterSet)
+        let filtered = inputString.joined(separator: "")
+        if let lastPlusIndex = phoneNumber.lastIndex(of: "+") {
+            return  (phoneNumber == filtered) && lastPlusIndex == phoneNumber.startIndex
+        }
+        else {
+            return  (phoneNumber == filtered)
+        }
     }
 }

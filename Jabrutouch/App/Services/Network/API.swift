@@ -14,7 +14,7 @@ class API {
     // MARK: - Login Flow
     //========================================
     
-    class func sendCode(phoneNumber: String, completionHandler:@escaping (_ response: APIResult<SendCodeResponse>)->Void) {
+    class func requestVerificationCode(phoneNumber: String, completionHandler:@escaping (_ response: APIResult<SendCodeResponse>)->Void) {
         guard let request = HttpRequestsFactory.createSendCodeRequest(phoneNumber: phoneNumber) else {
             completionHandler(APIResult.failure(.unableToCreateRequest))
             return
