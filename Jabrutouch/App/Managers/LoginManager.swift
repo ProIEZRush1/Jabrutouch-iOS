@@ -89,6 +89,7 @@ class LoginManager {
         API.signUp(firstName: firstName, lastName: lastName, phoneNumber: phoneNumber, email: email, password: password, fcmToken: "1234") { (result:APIResult<SignUpResponse>) in
             switch result {
             case .success(let response):
+                self.userDidSignIn(user: response.user, password: password)
                 DispatchQueue.main.async {
                     completion(.success(response.user))
                 }

@@ -11,6 +11,12 @@ import UIKit
 class SignUpViewController: UIViewController {
     
     //============================================================
+    // MARK: - Properties
+    //============================================================
+    
+    private var activityView: ActivityView?
+    var phoneNumber: String?
+    //============================================================
     // MARK: - Outlets
     //============================================================
     
@@ -80,12 +86,118 @@ class SignUpViewController: UIViewController {
     //============================================================
     
     @IBAction func signUpButtonPressed(_ sender: UIButton) {
-        
+        self.validateForm()
     }
     
     @IBAction func signInButtonPressed(_ sender: UIButton) {
         self.navigationController?.dismiss(animated: true, completion: nil)
     }
+    
+    //============================================================
+    // MARK: - Private methods
+    //============================================================
+    
+    private func validateForm() {
+        self.showActivityView()
+        
+        guard let firstName = self.firstNameTF.text else {
+            let message = Strings.firstNameMissing
+            Utils.showAlertMessage(message, title: nil, viewControler: self)
+            self.removeActivityView()
+            return
+        }
+        if firstName.isEmpty {
+            let message = Strings.firstNameMissing
+            Utils.showAlertMessage(message, title: nil, viewControler: self)
+            self.removeActivityView()
+            return
+        }
+        
+        guard let lastName = self.lastNameTF.text else {
+            let message = Strings.lastNameMissing
+            Utils.showAlertMessage(message, title: nil, viewControler: self)
+            self.removeActivityView()
+            return
+        }
+        
+        if lastName.isEmpty {
+            let message = Strings.lastNameMissing
+            Utils.showAlertMessage(message, title: nil, viewControler: self)
+            self.removeActivityView()
+            return
+        }
+        
+        guard let email = self.emailTF.text else {
+            let message = Strings.emailIsMissing
+            Utils.showAlertMessage(message, title: nil, viewControler: self)
+            self.removeActivityView()
+            return
+        }
+        
+        if email.isEmpty {
+            let message = Strings.emailIsMissing
+            Utils.showAlertMessage(message, title: nil, viewControler: self)
+            self.removeActivityView()
+            return
+        }
+        
+        if Utils.validateEmail(email) == false {
+            let message = Strings.emailInvalid
+            Utils.showAlertMessage(message, title: nil, viewControler: self)
+            self.removeActivityView()
+            return
+        }
+        
+        guard let password = self.passwordTF.text else {
+            let message = Strings.passwordMissing
+            Utils.showAlertMessage(message, title: nil, viewControler: self)
+            self.removeActivityView()
+            return
+        }
+        
+        if password.isEmpty {
+            let message = Strings.passwordMissing
+            Utils.showAlertMessage(message, title: nil, viewControler: self)
+            self.removeActivityView()
+            return
+        }
+     
+        self.attemptSignUp(firstName: firstName, lastName: lastName, phoneNumber: self.phoneNumber ?? "", email: email, password: password)
+    }
+    
+    private func attemptSignUp(firstName: String, lastName: String, phoneNumber: String, email: String, password: String) {
+        LoginManager.shared.signUp(firstName: firstName, lastName: lastName, phoneNumber: phoneNumber, email: email, password: password) { (result) in
+            self.removeActivityView()
+            switch result {
+            case .success:
+                self.navigateToMain()
+            case .failure(let error):
+                let title = Strings.error
+                let message = error.localizedDescription
+                Utils.showAlertMessage(message, title: title, viewControler: self)
+            }
+        }
+    }
+    
+    //============================================================
+    // MARK: - ActivityView
+    //============================================================
+    
+    private func showActivityView() {
+        DispatchQueue.main.async {
+            if self.activityView == nil {
+                self.activityView = Utils.showActivityView(inView: self.view, withFrame: self.view.frame, text: nil)
+            }
+        }
+    }
+    private func removeActivityView() {
+        DispatchQueue.main.async {
+            if let view = self.activityView {
+                Utils.removeActivityView(view)
+            }
+        }
+    }
+    
     
     //============================================================
     // MARK: - Navigation

@@ -63,3 +63,7 @@
 "phoneNumberMissing" = "Phone number is missing";
 "phoneNumberInvalid" = "Phone Number is invalid";
 "pleaseSelectCountry" = "please select country";
+"firstNameMissing" = "First name is missing";
+"lastNameMissing" = "Last name is missing";
+"emailIsMissing" = "Email is misssing";
+"emailInvalid" = "Email is invalid";

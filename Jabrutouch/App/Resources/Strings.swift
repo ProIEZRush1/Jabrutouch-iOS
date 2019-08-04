@@ -200,4 +200,21 @@ class Strings {
     class var pleaseSelectCountry: String {
         return NSLocalizedString("pleaseSelectCountry", comment: "")
     }
+    
+    class var firstNameMissing: String {
+        return NSLocalizedString("firstNameMissing", comment: "")
+    }
+    
+    class var lastNameMissing: String {
+        return NSLocalizedString("lastNameMissing", comment: "")
+    }
+    
+    class var emailIsMissing: String {
+        return NSLocalizedString("emailIsMissing", comment: "")
+    }
+    
+    class var emailInvalid: String {
+        return NSLocalizedString("emailInvalid", comment: "")
+    }
 }
+

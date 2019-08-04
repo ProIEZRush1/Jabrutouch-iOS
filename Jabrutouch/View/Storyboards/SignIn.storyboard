@@ -159,25 +159,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verification" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x1X-ig-kuC">
-                                <rect key="frame" x="8" y="84" width="398" height="35"/>
+                                <rect key="frame" x="8" y="84" width="398" height="36"/>
                                 <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We will send you a one time password to verify your phone number" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K8J-dZ-6bq">
-                                <rect key="frame" x="20" y="139" width="374" height="37.5"/>
+                                <rect key="frame" x="25" y="140" width="364" height="38.5"/>
                                 <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COUNTRY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P8S-gS-mjF">
-                                <rect key="frame" x="48" y="207.5" width="77" height="19"/>
+                                <rect key="frame" x="48" y="209.5" width="75" height="19"/>
                                 <fontDescription key="fontDescription" name="SFProDisplay-Medium" family="SF Pro Display" pointSize="16"/>
                                 <color key="textColor" red="0.1764705882" green="0.16862745100000001" blue="0.66274509800000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ftN-KR-6im" customClass="TextFieldWithPadding" customModule="Jabrutouch" customModuleProvider="target">
-                                <rect key="frame" x="48" y="236.5" width="318" height="50"/>
+                                <rect key="frame" x="48" y="238.5" width="318" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="ftN-KR-6im" secondAttribute="height" multiplier="318:50" id="NLo-NU-W8a"/>
@@ -198,13 +198,13 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PHONE NUMBER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y8J-jO-384">
-                                <rect key="frame" x="48" y="317.5" width="129" height="19"/>
+                                <rect key="frame" x="48" y="319.5" width="121" height="19"/>
                                 <fontDescription key="fontDescription" name="SFProDisplay-Medium" family="SF Pro Display" pointSize="16"/>
                                 <color key="textColor" red="0.1764705882" green="0.16862745100000001" blue="0.66274509800000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eCM-EN-tTU" customClass="TextFieldWithPadding" customModule="Jabrutouch" customModuleProvider="target">
-                                <rect key="frame" x="48" y="346.5" width="318" height="50"/>
+                                <rect key="frame" x="48" y="348.5" width="318" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="18"/>
@@ -222,7 +222,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7z4-kh-geP">
-                                <rect key="frame" x="114" y="454.5" width="186" height="50"/>
+                                <rect key="frame" x="114" y="456.5" width="186" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.37254901959999998" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="7z4-kh-geP" secondAttribute="height" multiplier="93:25" id="784-cj-eO0"/>
@@ -236,7 +236,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="moV-7i-8Eo">
-                                <rect key="frame" x="20" y="90.5" width="16" height="22"/>
+                                <rect key="frame" x="20" y="91" width="27.5" height="22"/>
                                 <state key="normal" image="LeftArrow"/>
                                 <connections>
                                     <action selector="backButtonPressed:" destination="YhB-vT-jhV" eventType="touchUpInside" id="Zjf-WT-Bwq"/>
@@ -309,7 +309,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="18"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" textContentType="given-name"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="leadingPadding">
                                         <real key="value" value="20"/>
@@ -327,7 +327,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="18"/>
-                                <textInputTraits key="textInputTraits" keyboardType="phonePad" textContentType="tel"/>
+                                <textInputTraits key="textInputTraits" textContentType="family-name"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="leadingPadding">
                                         <real key="value" value="20"/>
@@ -345,7 +345,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="18"/>
-                                <textInputTraits key="textInputTraits" keyboardType="phonePad" textContentType="tel"/>
+                                <textInputTraits key="textInputTraits" textContentType="password"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="leadingPadding">
                                         <real key="value" value="20"/>
@@ -363,7 +363,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="18"/>
-                                <textInputTraits key="textInputTraits" keyboardType="phonePad" textContentType="tel"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="leadingPadding">
                                         <real key="value" value="20"/>
@@ -477,7 +477,7 @@
                                     <action selector="backButtonPressed:" destination="k2D-x8-SUw" eventType="touchUpInside" id="CUB-fB-gld"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="53••" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e3r-48-23x" customClass="TextFieldWithDeleteDelegate" customModule="Jabrutouch" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="••••" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e3r-48-23x" customClass="TextFieldWithDeleteDelegate" customModule="Jabrutouch" customModuleProvider="target">
                                 <rect key="frame" x="20" y="248.5" width="374" height="86"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="86" id="TH0-k6-sfH"/>
