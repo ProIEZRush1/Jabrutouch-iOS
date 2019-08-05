@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MishnaLessonCellController: UITableViewCell {
+class LessonDownloadCellController: UITableViewCell {
     
     @IBOutlet weak var cellView: UIView!
     @IBOutlet weak var underneathCellView: UIView!

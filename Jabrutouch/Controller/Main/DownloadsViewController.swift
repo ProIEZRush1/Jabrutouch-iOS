@@ -284,7 +284,7 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         var sectionName: String = ""
-        let headerCell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "headerCell") as! DownloadsHeaderCellController
+        let headerCell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "headerCell") as! HeaderCellController
         initHeaderCell(headerCell, tableView, section, &sectionName)
         headerCell.titleLabel?.text = sectionName
         headerCell.section = section
@@ -296,7 +296,7 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         return headerCell
     }
     
-    fileprivate func initHeaderCell(_ headerCell: DownloadsHeaderCellController, _ tableView: UITableView, _ section: Int, _ sectionName: inout String) {
+    fileprivate func initHeaderCell(_ headerCell: HeaderCellController, _ tableView: UITableView, _ section: Int, _ sectionName: inout String) {
         var isExpanded: Bool
         
         if tableView == gemaraTableView {
@@ -369,7 +369,7 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     // MARK: - Implemented Protocols functions and helpers
     //----------------------------------------------------------------
     
-    func toggleSection(header: DownloadsHeaderCellController, section: Int) {
+    func toggleSection(header: HeaderCellController, section: Int) {
         if header.isFirstTable {
             gemaraDownloads[section].isExpanded = !gemaraDownloads[section].isExpanded
             gemaraTableView.reloadSections([section], with: .automatic)

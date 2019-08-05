@@ -1,14 +1,14 @@
 //בס״ד
-//  MishnaLessonsViewController.swift
+//  GemaraLessonsViewController.swift
 //  Jabrutouch
 //
-//  Created by Aaron Tuil on 01/08/2019.
+//  Created by Aaron Tuil on 05/08/2019.
 //  Copyright © 2019 Ravtech. All rights reserved.
 //
 
 import UIKit
 
-class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MishnaLessonCellDelegate {
+class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MishnaLessonCellDelegate {
     
     //========================================
     // MARK: - @IBOutlets and Fields
@@ -16,12 +16,10 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var masechetLabel: UILabel!
-    @IBOutlet weak var chapterLabel: UILabel!
     @IBOutlet weak var downloadButton: UIButton!
     
     var lessons: [JTLessonDownload] = []
     var masechet: String?
-    var chapter: String?
     var isCurrentlyEditing: Bool = false
     var isFirstLoading: Bool = true
     
@@ -34,7 +32,6 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
         tableView.delegate = self
         tableView.dataSource = self
         masechetLabel.text = masechet
-        chapterLabel.text = chapter
     }
     
     //========================================
@@ -163,14 +160,17 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
     //====================================================
     
     func cellPressed(selectedRow: Int) {
+        print("Cell Pressed")
         // TODO Send to View mode (Ask Dudi what is it)
     }
     
     func audioPressed(selectedRow: Int) {
+        print("Audio Pressed")
         // TODO Send to correct screen
     }
     
     func videoPressed(selectedRow: Int) {
+        print("Video Pressed")
         // TODO Send to correct screen
     }
     

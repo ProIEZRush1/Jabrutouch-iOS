@@ -1,20 +1,20 @@
 //בס״ד
-//  JTMishnaSeder.swift
+//  JTGemaraSeder.swift
 //  Jabrutouch
 //
-//  Created by Aaron Tuil on 31/07/2019.
+//  Created by Aaron Tuil on 05/08/2019.
 //  Copyright © 2019 Ravtech. All rights reserved.
 //
 
 import Foundation
 
-class JTMishnaSeder {
+class JTGemaraSeder {
     
     var name: String = ""
-    var masechtot: [JTMishnaMasechet] = []
+    var masechtot: [JTGemaraMasechet] = []
     var isExpanded = false
     
-    init(sederName: String, masechtot: [JTMishnaMasechet]) {
+    init(sederName: String, masechtot: [JTGemaraMasechet]) {
         self.name = sederName
         self.masechtot = masechtot
     }

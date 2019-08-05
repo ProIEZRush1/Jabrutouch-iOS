@@ -25,7 +25,7 @@ class MishnaViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fillTableForDev()
+        fillTableForDev() // Only for Dev
         tableView.register(UINib(nibName: "DownloadsHeaderCell", bundle: nil), forHeaderFooterViewReuseIdentifier: "headerCell")
         tableView.delegate = self
         tableView.dataSource = self
@@ -150,7 +150,7 @@ class MishnaViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerCell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "headerCell") as! DownloadsHeaderCellController
+        let headerCell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "headerCell") as! HeaderCellController
         
         if sedarim[section].isExpanded {
             headerCell.arrowImage?.image = UIImage(named: "Black&BlueUpArrow")
@@ -188,7 +188,7 @@ class MishnaViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // MARK: - Implemented Protocols functions and helpers
     //====================================================
     
-    func toggleSection(header: DownloadsHeaderCellController, section: Int) {
+    func toggleSection(header: HeaderCellController, section: Int) {
         sedarim[section].isExpanded = !sedarim[section].isExpanded
         tableView.reloadSections([section], with: .automatic)
     }
@@ -201,4 +201,5 @@ class MishnaViewController: UIViewController, UITableViewDelegate, UITableViewDa
     //========================================
     // MARK: - @IBActions
     //========================================
+
 }

@@ -38,22 +38,24 @@
                                 <color key="textColor" red="0.17254901960784313" green="0.16862745098039217" blue="0.33725490196078434" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0J-IU-3R3" userLabel="Left Arrow Button">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0J-IU-3R3" userLabel="Left Arrow Button">
                                 <rect key="frame" x="0.0" y="44" width="66" height="53"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Left Arrow Button"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="agR-wc-YhY"/>
                                     <constraint firstAttribute="width" constant="66" id="bpy-ac-aZJ"/>
                                 </constraints>
+                                <color key="tintColor" red="0.1764705882352941" green="0.16862745098039217" blue="0.66274509803921566" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" image="LeftArrow"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NEN-u1-6dp" userLabel="Loupe Button">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NEN-u1-6dp" userLabel="Loupe Button">
                                 <rect key="frame" x="348" y="44" width="66" height="53"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Loupe Button"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="pu4-p2-JZP"/>
                                     <constraint firstAttribute="width" constant="66" id="sJ3-kj-wk7"/>
                                 </constraints>
+                                <color key="tintColor" red="0.1764705882352941" green="0.16862745098039217" blue="0.66274509803921566" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" image="Loupe"/>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="msA-Fl-Df0">
@@ -157,12 +159,12 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="msA-Fl-Df0" id="ufA-C6-GX8"/>
-                        <segue destination="D18-8v-Y5I" kind="show" identifier="showMishnaChapters" id="jDO-ct-iEv"/>
+                        <segue destination="D18-8v-Y5I" kind="presentation" identifier="showMishnaChapters" modalPresentationStyle="currentContext" id="Vfl-EI-Cw7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OZX-ri-PlC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="82.608695652173921" y="174.77678571428569"/>
+            <point key="canvasLocation" x="88" y="175"/>
         </scene>
         <!--Mishna Chapter View Controller-->
         <scene sceneID="HZ8-dc-62T">
@@ -178,13 +180,14 @@
                                 <color key="textColor" red="0.17254901959999999" green="0.16862745100000001" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ykj-3n-f1p" userLabel="Left Arrow Button">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ykj-3n-f1p" userLabel="Left Arrow Button">
                                 <rect key="frame" x="0.0" y="44" width="66" height="53"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Left Arrow Button"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="66" id="3Ts-GL-YYH"/>
                                     <constraint firstAttribute="height" constant="53" id="RMQ-JT-NoH"/>
                                 </constraints>
+                                <color key="tintColor" red="0.1764705882352941" green="0.16862745098039217" blue="0.66274509803921566" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" image="LeftArrow"/>
                                 <connections>
                                     <action selector="backPressed:" destination="D18-8v-Y5I" eventType="touchUpInside" id="CtP-Oa-CS9"/>
@@ -298,7 +301,7 @@
                     <connections>
                         <outlet property="masechetName" destination="YGX-Yz-Opu" id="1LJ-9b-uj2"/>
                         <outlet property="tableView" destination="mJR-XZ-hRS" id="bpK-aX-mb0"/>
-                        <segue destination="hP7-Gq-eVR" kind="show" identifier="showMishnaLessons" id="VmI-uS-zKs"/>
+                        <segue destination="hP7-Gq-eVR" kind="presentation" identifier="showMishnaLessons" modalPresentationStyle="currentContext" id="uHW-Pa-iax"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mvM-1k-rrH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -330,30 +333,29 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z1Z-oe-w00" userLabel="Left Arrow Button">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z1Z-oe-w00" userLabel="Left Arrow Button">
                                 <rect key="frame" x="0.0" y="44" width="66" height="53"/>
                                 <accessibility key="accessibilityConfiguration" identifier="MLVC Left Arrow Btn"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="66" id="SE0-77-f6c"/>
                                     <constraint firstAttribute="height" constant="53" id="YhV-WO-z2w"/>
                                 </constraints>
+                                <color key="tintColor" red="0.1764705882352941" green="0.16862745098039217" blue="0.66274509803921566" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" image="LeftArrow"/>
                                 <connections>
                                     <action selector="backPressed:" destination="hP7-Gq-eVR" eventType="touchUpInside" id="cd2-cN-5Gw"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="0CB-ys-92O" userLabel="Download Button">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="0CB-ys-92O" userLabel="Download Button">
                                 <rect key="frame" x="348" y="44" width="66" height="53"/>
                                 <accessibility key="accessibilityConfiguration" identifier="MLVC Download Btn"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="GRZ-Kg-rQA"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="66" id="IF2-Qg-d7K"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="22"/>
+                                <color key="tintColor" red="0.1764705882352941" green="0.16862745098039217" blue="0.66274509803921566" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
-                                <state key="normal" image="Download">
-                                    <color key="titleColor" red="0.1764705882352941" green="0.16862745098039217" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
+                                <state key="normal" image="Download"/>
                                 <connections>
                                     <action selector="downloadPressed:" destination="hP7-Gq-eVR" eventType="touchUpInside" id="aSe-DU-F2h"/>
                                 </connections>
@@ -363,7 +365,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="mishnaLessonCell" rowHeight="90" id="zpL-YV-WaS" customClass="MishnaLessonCellController" customModule="Jabrutouch" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="lessonDownloadCell" rowHeight="90" id="zpL-YV-WaS" customClass="LessonDownloadCellController" customModule="Jabrutouch" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="55.5" width="414" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zpL-YV-WaS" id="2p8-WQ-qAG">
