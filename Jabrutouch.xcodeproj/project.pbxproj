@@ -119,6 +119,8 @@
 		FB67A5DF22E4723F009E4DF9 /* Download.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB67A5DE22E4723F009E4DF9 /* Download.storyboard */; };
 		FBAB071622E74ABD00C8DCD7 /* DownloadsCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAB071522E74ABD00C8DCD7 /* DownloadsCellController.swift */; };
 		FBAB071922E7579F00C8DCD7 /* JTDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAB071822E7579F00C8DCD7 /* JTDownload.swift */; };
+		FBB18FAC22F85019006886FD /* Gemara.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBB18FAB22F85019006886FD /* Gemara.storyboard */; };
+		FBB18FAE22F85773006886FD /* GemaraMasechetCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB18FAD22F85773006886FD /* GemaraMasechetCellController.swift */; };
 		FBD9374F22F323AA00BC94DC /* MishnaLessonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD9374E22F323AA00BC94DC /* MishnaLessonsViewController.swift */; };
 		FBD9375122F328CC00BC94DC /* MishnaLessonCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD9375022F328CC00BC94DC /* MishnaLessonCellController.swift */; };
 		FBDEF16822E8868600A300DA /* JTDownloadGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBDEF16722E8868600A300DA /* JTDownloadGroup.swift */; };
@@ -243,6 +245,8 @@
 		FB67A5DE22E4723F009E4DF9 /* Download.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Download.storyboard; sourceTree = "<group>"; };
 		FBAB071522E74ABD00C8DCD7 /* DownloadsCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsCellController.swift; sourceTree = "<group>"; };
 		FBAB071822E7579F00C8DCD7 /* JTDownload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTDownload.swift; sourceTree = "<group>"; };
+		FBB18FAB22F85019006886FD /* Gemara.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Gemara.storyboard; sourceTree = "<group>"; };
+		FBB18FAD22F85773006886FD /* GemaraMasechetCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GemaraMasechetCellController.swift; sourceTree = "<group>"; };
 		FBD9374E22F323AA00BC94DC /* MishnaLessonsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MishnaLessonsViewController.swift; sourceTree = "<group>"; };
 		FBD9375022F328CC00BC94DC /* MishnaLessonCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MishnaLessonCellController.swift; sourceTree = "<group>"; };
 		FBDEF16722E8868600A300DA /* JTDownloadGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTDownloadGroup.swift; sourceTree = "<group>"; };
@@ -461,10 +465,10 @@
 		2133C21022DCA0D900F910B9 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				FBB18FAA22F84CA2006886FD /* Gemara */,
 				219BFF2A22E50CE200ABBEE2 /* Main */,
 				FB51711222F19C07003BCAFC /* Mishna */,
 				21186E9D22E5097700B3049E /* Downloads */,
-				21678D7722E08594007BC74C /* GemaraViewController.swift */,
 				21678D7B22E085CB007BC74C /* DonationsViewController.swift */,
 			);
 			path = Main;
@@ -510,6 +514,7 @@
 				2133C1FB22DB5B8200F910B9 /* Main.storyboard */,
 				FB67A5DE22E4723F009E4DF9 /* Download.storyboard */,
 				FBFB161522F0794600362012 /* Mishna.storyboard */,
+				FBB18FAB22F85019006886FD /* Gemara.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -668,6 +673,15 @@
 			path = "Data Models";
 			sourceTree = "<group>";
 		};
+		FBB18FAA22F84CA2006886FD /* Gemara */ = {
+			isa = PBXGroup;
+			children = (
+				21678D7722E08594007BC74C /* GemaraViewController.swift */,
+				FBB18FAD22F85773006886FD /* GemaraMasechetCellController.swift */,
+			);
+			path = Gemara;
+			sourceTree = "<group>";
+		};
 		FBDEF16922E89A6100A300DA /* Custom Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -784,6 +798,7 @@
 				21678D6E22DF2CED007BC74C /* SF-Pro-Text-SemiboldItalic.otf in Resources */,
 				21678D6F22DF2CED007BC74C /* SF-Pro-Text-Thin.otf in Resources */,
 				21678D7022DF2CED007BC74C /* SF-Pro-Text-ThinItalic.otf in Resources */,
+				FBB18FAC22F85019006886FD /* Gemara.storyboard in Resources */,
 				21CC093E22F04C4000E8FE27 /* daf_yomi.json in Resources */,
 				21678D7122DF2CED007BC74C /* SF-Pro-Text-Ultralight.otf in Resources */,
 				21678D7222DF2CED007BC74C /* SF-Pro-Text-UltralightItalic.otf in Resources */,
@@ -813,6 +828,7 @@
 				219BFF2C22E59F4500ABBEE2 /* Extensions.swift in Sources */,
 				2120BE2122DF2787004854DB /* RequestVerificationCodeViewController.swift in Sources */,
 				21407C8922F72632002F9690 /* TextFieldWithDeleteDelegate.swift in Sources */,
+				FBB18FAE22F85773006886FD /* GemaraMasechetCellController.swift in Sources */,
 				213196AA22F38B3E00B0AF5F /* LoginResponse.swift in Sources */,
 				219BFF2922E50C0B00ABBEE2 /* ModalsContainerViewController.swift in Sources */,
 				216A0E6E22EEFD1400F7FBC1 /* HTTPProvider.swift in Sources */,
