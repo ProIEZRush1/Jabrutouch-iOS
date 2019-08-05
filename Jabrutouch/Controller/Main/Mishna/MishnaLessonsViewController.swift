@@ -22,6 +22,7 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
     var lessons: [JTLessonDownload] = []
     var masechet: String?
     var chapter: String?
+    var wasEditing: Bool = false
     var isCurrentlyEditing: Bool = false
     var isFirstLoading: Bool = true
     
@@ -60,26 +61,9 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "mishnaLessonCell", for: indexPath) as! MishnaLessonCellController
         setEditingIfNeeded(cell)
+        setImagesVisibility(indexPath, cell)
         cell.lessonNumber.text = lessons[indexPath.row].number
         cell.lessonLength.text = lessons[indexPath.row].length
-        let isAudioDownloaded = lessons[indexPath.row].isAudioDownloaded
-        let isVideoDownloaded = lessons[indexPath.row].isVideoDownloaded
-        if isAudioDownloaded {
-            cell.audioImage?.image = UIImage(named: "RedAudio")
-            cell.redAudioVImage.isHidden = isCurrentlyEditing ? true : false
-        } else {
-            cell.audioImage?.image = UIImage(named: "Audio")
-            cell.redAudioVImage.isHidden = true
-        }
-        cell.underneathAudioDownloadImage.isHidden = isAudioDownloaded
-        if isVideoDownloaded {
-            cell.videoImage?.image = UIImage(named: "RedVideo")
-            cell.redVideoVImage.isHidden = isCurrentlyEditing ? true : false
-        } else {
-            cell.videoImage?.image = UIImage(named: "Video")
-            cell.redVideoVImage.isHidden = true
-        }
-        cell.underneathVideoDownloadImage.isHidden = isVideoDownloaded
         cell.delegate = self
         cell.selectedRow = indexPath.row
         Utils.setViewShape(view: cell.underneathCellView, viewCornerRadius: 18)
@@ -93,6 +77,28 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
         return cell
     }
     
+    fileprivate func setImagesVisibility(_ indexPath: IndexPath, _ cell: MishnaLessonCellController) {
+        if lessons[indexPath.row].isAudioDownloaded {
+            cell.audioImage?.image = UIImage(named: "RedAudio")
+            cell.redAudioVImage.isHidden = isCurrentlyEditing ? true : false
+        } else {
+            cell.audioImage?.image = UIImage(named: "Audio")
+            cell.redAudioVImage.isHidden = true
+        }
+        
+        cell.underneathAudioDownloadImage.isHidden = lessons[indexPath.row].isAudioDownloaded
+        
+        if lessons[indexPath.row].isVideoDownloaded {
+            cell.videoImage?.image = UIImage(named: "RedVideo")
+            cell.redVideoVImage.isHidden = isCurrentlyEditing ? true : false
+        } else {
+            cell.videoImage?.image = UIImage(named: "Video")
+            cell.redVideoVImage.isHidden = true
+        }
+        
+        cell.underneathVideoDownloadImage.isHidden = lessons[indexPath.row].isVideoDownloaded
+    }
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if isFirstLoading {
             if indexPath.row == tableView.numberOfRows(inSection: 0) - 1 {
@@ -102,16 +108,30 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     fileprivate func setEditingIfNeeded(_ cell: MishnaLessonCellController) {
-        cell.audioImage.isHidden = isCurrentlyEditing
-        cell.videoImage.isHidden = isCurrentlyEditing
-        
-        if self.isCurrentlyEditing {
-            cell.cellViewTrailingConstraint.constant = self.view.frame.size.width / 2 - 20
-        } else {
-            cell.cellViewTrailingConstraint.constant = 18
+        if !isFirstLoading {
+            animateImagesVisibiltyIfNeeded(cell)
+            UIView.animate(withDuration: 0.3) {
+                if self.isCurrentlyEditing {
+                    cell.cellViewTrailingConstraint.constant = self.view.frame.size.width / 2 - 20
+                } else {
+                    cell.cellViewTrailingConstraint.constant = 18
+                }
+                
+                self.view.layoutIfNeeded()
+            }
         }
-        
-        cell.cellView.layoutIfNeeded()
+    }
+    
+    fileprivate func animateImagesVisibiltyIfNeeded(_ cell: MishnaLessonCellController) {
+        if cell.audioImage.isHidden && !isCurrentlyEditing { // Animate only when necessary
+            UIView.animate(withDuration: 0.2, animations: {
+                cell.audioImage.alpha = self.isCurrentlyEditing ? 0 : 1
+                cell.videoImage.alpha = self.isCurrentlyEditing ? 0 : 1
+            }, completion: { _ in
+                cell.audioImage.isHidden = self.isCurrentlyEditing
+                cell.videoImage.isHidden = self.isCurrentlyEditing
+            })
+        }
     }
     
     //========================================
