@@ -85,7 +85,7 @@ class LoginManager {
         }
     }
     
-    func signUp(userId: String, firstName: String, lastName: String, phoneNumber: String, email: String, password: String, completion:@escaping (_ result: Result<JTUser,Error>)->Void){
+    func signUp(userId: Int, firstName: String, lastName: String, phoneNumber: String, email: String, password: String, completion:@escaping (_ result: Result<JTUser,Error>)->Void){
         API.signUp(userId: userId, firstName: firstName, lastName: lastName, phoneNumber: phoneNumber, email: email, password: password, fcmToken: "1234") { (result:APIResult<SignUpResponse>) in
             switch result {
             case .success(let response):

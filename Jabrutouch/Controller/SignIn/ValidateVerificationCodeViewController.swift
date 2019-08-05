@@ -121,7 +121,7 @@ class ValidateVerificationCodeViewController: UIViewController {
         LoginManager.shared.validateCode(phoneNumber: phoneNumber, code: self.code) { (result) in
             switch result {
             case .success(let userId):
-                self.navigateToSignUp(phoneNumber: phoneNumber, userId: "\(userId)")
+                self.navigateToSignUp(phoneNumber: phoneNumber, userId: userId)
             case .failure(let error):
                 self.removeActivityView()
                 let title = Strings.error
@@ -153,15 +153,15 @@ class ValidateVerificationCodeViewController: UIViewController {
     // MARK: - Navigation
     //============================================================
     
-    private func navigateToSignUp(phoneNumber: String, userId: String) {
+    private func navigateToSignUp(phoneNumber: String, userId: Int) {
         self.performSegue(withIdentifier: "showSignUp", sender: (phoneNumber,userId) )
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showSignUp" {
             let signUpVC = segue.destination as? SignUpViewController
-            signUpVC?.phoneNumber = (sender as? (String,String))?.0
-            signUpVC?.userId = (sender as? (String,String))?.1
+            signUpVC?.phoneNumber = (sender as? (String,Int))?.0
+            signUpVC?.userId = (sender as? (String,Int))?.1
         }
     }
 }

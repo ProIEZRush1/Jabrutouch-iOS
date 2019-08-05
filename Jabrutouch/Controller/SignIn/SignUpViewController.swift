@@ -16,7 +16,7 @@ class SignUpViewController: UIViewController {
     
     private var activityView: ActivityView?
     var phoneNumber: String?
-    var userId: String?
+    var userId: Int?
     //============================================================
     // MARK: - Outlets
     //============================================================
@@ -182,7 +182,7 @@ class SignUpViewController: UIViewController {
         self.attemptSignUp(userId: userId, firstName: firstName, lastName: lastName, phoneNumber: phoneNumber, email: email, password: password)
     }
     
-    private func attemptSignUp(userId: String, firstName: String, lastName: String, phoneNumber: String, email: String, password: String) {
+    private func attemptSignUp(userId: Int, firstName: String, lastName: String, phoneNumber: String, email: String, password: String) {
         LoginManager.shared.signUp(userId: userId, firstName: firstName, lastName: lastName, phoneNumber: phoneNumber, email: email, password: password) { (result) in
             self.removeActivityView()
             switch result {
