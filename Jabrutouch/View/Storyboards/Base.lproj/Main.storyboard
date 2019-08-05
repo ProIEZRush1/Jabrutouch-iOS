@@ -254,14 +254,75 @@
                                             <constraint firstItem="9mK-Ep-QyN" firstAttribute="centerY" secondItem="Wg6-HG-Y9Y" secondAttribute="centerY" id="uvA-JS-gGu"/>
                                         </constraints>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1qD-92-wJ1" userLabel="Todays Daf Container">
+                                        <rect key="frame" x="0.0" y="164" width="414" height="128"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TODAY'S DAF YOMI" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fI9-Bx-Pnq">
+                                                <rect key="frame" x="20" y="0.0" width="136" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="wjx-ma-fd3"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="16"/>
+                                                <color key="textColor" red="0.16862745100000001" green="0.1764705882" blue="0.66274509800000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fjW-Qw-qdU">
+                                                <rect key="frame" x="29" y="32" width="364" height="90"/>
+                                                <color key="backgroundColor" red="0.098039215686274508" green="0.11764705882352941" blue="0.56862745098039214" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GZK-BL-cQ3">
+                                                <rect key="frame" x="25" y="28" width="364" height="90"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="On8-WA-0eI">
+                                                        <rect key="frame" x="20" y="16" width="102.5" height="26.5"/>
+                                                        <string key="text">Shabbat 11
+</string>
+                                                        <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="22"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adar 21, 5779" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ivd-wy-Oxn">
+                                                        <rect key="frame" x="20" y="54.5" width="94" height="19.5"/>
+                                                        <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="16"/>
+                                                        <color key="textColor" red="0.50980392156862742" green="0.50980392156862742" blue="0.50980392156862742" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="ivd-wy-Oxn" secondAttribute="bottom" constant="16" id="1R3-rm-x6w"/>
+                                                    <constraint firstItem="On8-WA-0eI" firstAttribute="top" secondItem="GZK-BL-cQ3" secondAttribute="top" constant="16" id="PlY-mK-VqY"/>
+                                                    <constraint firstItem="ivd-wy-Oxn" firstAttribute="leading" secondItem="GZK-BL-cQ3" secondAttribute="leading" constant="20" id="hAt-jy-EhG"/>
+                                                    <constraint firstItem="On8-WA-0eI" firstAttribute="leading" secondItem="GZK-BL-cQ3" secondAttribute="leading" constant="20" id="tvG-PX-hrA"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="GZK-BL-cQ3" secondAttribute="trailing" constant="25" id="0nG-Xd-MQy"/>
+                                            <constraint firstAttribute="height" constant="128" id="2ew-Im-mKS"/>
+                                            <constraint firstItem="fjW-Qw-qdU" firstAttribute="bottom" secondItem="GZK-BL-cQ3" secondAttribute="bottom" constant="4" id="6CW-VM-0rK"/>
+                                            <constraint firstItem="GZK-BL-cQ3" firstAttribute="leading" secondItem="1qD-92-wJ1" secondAttribute="leading" constant="25" id="6m5-vc-P4Z"/>
+                                            <constraint firstItem="fI9-Bx-Pnq" firstAttribute="top" secondItem="1qD-92-wJ1" secondAttribute="top" id="7XC-0Z-Lbj"/>
+                                            <constraint firstItem="GZK-BL-cQ3" firstAttribute="top" secondItem="fI9-Bx-Pnq" secondAttribute="bottom" constant="8" id="Sqm-Yr-Bcp"/>
+                                            <constraint firstItem="fjW-Qw-qdU" firstAttribute="top" secondItem="GZK-BL-cQ3" secondAttribute="top" constant="4" id="bx1-es-Cmz"/>
+                                            <constraint firstAttribute="bottom" secondItem="GZK-BL-cQ3" secondAttribute="bottom" constant="10" id="hQH-hB-416"/>
+                                            <constraint firstItem="fjW-Qw-qdU" firstAttribute="leading" secondItem="GZK-BL-cQ3" secondAttribute="leading" constant="4" id="nLb-Yu-9Fn"/>
+                                            <constraint firstItem="fjW-Qw-qdU" firstAttribute="trailing" secondItem="GZK-BL-cQ3" secondAttribute="trailing" constant="4" id="pnW-iq-jjL"/>
+                                            <constraint firstItem="fI9-Bx-Pnq" firstAttribute="leading" secondItem="1qD-92-wJ1" secondAttribute="leading" constant="20" id="tkL-eK-8Xp"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="d9m-Jd-OIp" firstAttribute="top" secondItem="cae-IZ-YIV" secondAttribute="top" id="1Id-w9-M8f"/>
                                     <constraint firstAttribute="trailing" secondItem="d9m-Jd-OIp" secondAttribute="trailing" id="ACh-Dv-aj8"/>
+                                    <constraint firstItem="1qD-92-wJ1" firstAttribute="leading" secondItem="cae-IZ-YIV" secondAttribute="leading" id="DCu-om-p1E"/>
+                                    <constraint firstItem="1qD-92-wJ1" firstAttribute="top" secondItem="Wg6-HG-Y9Y" secondAttribute="bottom" constant="40" id="Ws7-NO-XTz"/>
                                     <constraint firstItem="Wg6-HG-Y9Y" firstAttribute="leading" secondItem="cae-IZ-YIV" secondAttribute="leading" id="XBs-fW-Epv"/>
                                     <constraint firstAttribute="trailing" secondItem="Wg6-HG-Y9Y" secondAttribute="trailing" id="nGd-cq-VeI"/>
                                     <constraint firstItem="Wg6-HG-Y9Y" firstAttribute="top" secondItem="d9m-Jd-OIp" secondAttribute="bottom" id="psY-K9-sPX"/>
+                                    <constraint firstAttribute="trailing" secondItem="1qD-92-wJ1" secondAttribute="trailing" id="rjd-cz-azT"/>
                                     <constraint firstItem="d9m-Jd-OIp" firstAttribute="leading" secondItem="cae-IZ-YIV" secondAttribute="leading" id="vFd-VY-41m"/>
                                 </constraints>
                             </view>
@@ -450,12 +511,18 @@
                         <outlet property="mishnaLabel" destination="bgp-mR-fuJ" id="Lpk-9C-0O2"/>
                         <outlet property="modalsContainer" destination="Hqr-vP-VSo" id="DYM-YC-mRC"/>
                         <outlet property="titleLabel" destination="9mK-Ep-QyN" id="sSc-Pc-qBG"/>
+                        <outlet property="todaysDafContainer" destination="GZK-BL-cQ3" id="9VR-oo-mKc"/>
+                        <outlet property="todaysDafContainerShadow" destination="fjW-Qw-qdU" id="Fwf-sS-ptr"/>
+                        <outlet property="todaysDafLabel" destination="On8-WA-0eI" id="iaH-Vh-vnf"/>
+                        <outlet property="todaysDafOuterContainer" destination="1qD-92-wJ1" id="hPU-Iy-sDv"/>
+                        <outlet property="todaysDafTitleLabel" destination="fI9-Bx-Pnq" id="QyQ-7b-jmX"/>
+                        <outlet property="todaysDateLabel" destination="ivd-wy-Oxn" id="H9h-VL-SJi"/>
                         <segue destination="Jhr-px-5v1" kind="presentation" identifier="presentMenu" animates="NO" modalPresentationStyle="overFullScreen" id="QyC-qE-FwQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MyD-j7-MvK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1107" y="-716"/>
+            <point key="canvasLocation" x="-1107.2463768115942" y="-716.51785714285711"/>
         </scene>
         <!--Modals Container View Controller-->
         <scene sceneID="cwM-MN-mhC">

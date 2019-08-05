@@ -32,6 +32,9 @@ struct DafYomi {
         } else { return nil }
     }
     
+    var displayString: String {
+        return "\(self.masechet) \(self.daf)"
+    }
     var values: [String:Any] {
         return [
             "seder": seder,

@@ -40,6 +40,15 @@ class MainViewController: UIViewController, MainModalDelegate {
     @IBOutlet weak private var titleLabel: UILabel!
     @IBOutlet weak private var messagesButton: UIButton!
     
+    // Todays Daf Yomi
+    
+    @IBOutlet weak private var todaysDafOuterContainer: UIView!
+    @IBOutlet weak private var todaysDafContainer: UIView!
+    @IBOutlet weak private var todaysDafContainerShadow: UIView!
+    @IBOutlet weak private var todaysDafTitleLabel: UILabel!
+    @IBOutlet weak private var todaysDafLabel: UILabel!
+    @IBOutlet weak private var todaysDateLabel: UILabel!
+    
     // Tab bar buttons
     @IBOutlet weak private var downloadsImageView: UIImageView!
     @IBOutlet weak private var downloadsLabel: UILabel!
@@ -65,6 +74,7 @@ class MainViewController: UIViewController, MainModalDelegate {
         super.viewDidLoad()
 
         self.setStrings()
+        self.roundCorners()
     }
     
     //========================================
@@ -72,11 +82,34 @@ class MainViewController: UIViewController, MainModalDelegate {
     //========================================
     
     private func setStrings() {
+        
+        // Todays daf
+        self.todaysDafTitleLabel.text = Strings.todaysDafYomi.uppercased()
+        self.todaysDafLabel.text = DafYomiRepository.shared.getTodaysDaf().displayString
+        let calendar = Calendar(identifier: .hebrew)
+        let dateFormatter = DateFormatter()
+        dateFormatter.calendar = calendar
+        dateFormatter.dateStyle = .long
+        self.todaysDateLabel.text = dateFormatter.string(from: Date())
+        
+        
+        // Main tabs
         self.downloadsLabel.text = Strings.downloads
         self.gemaraLabel.text = Strings.gemara
         self.mishnaLabel.text = Strings.mishna
         self.donationsLabel.text = Strings.donations
         self.titleLabel.text = Strings.jabrutouch
+    }
+    
+    private func roundCorners() {
+        self.todaysDafContainer.layer.cornerRadius = 15.0
+        self.todaysDafContainerShadow.layer.cornerRadius = 15.0
+    }
+    
+    private func setShadows() {
+        let shadowOffset = CGSize(width: 0.0, height: 12)
+        Utils.dropViewShadow(view: self.todaysDafContainer, shadowColor: Colors.shadowColor, shadowRadius: 36, shadowOffset: shadowOffset)
+
     }
     //========================================
     // MARK: - @IBActions

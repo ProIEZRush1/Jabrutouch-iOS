@@ -10,9 +10,11 @@ import UIKit
 
 class SplashScreenViewController: UIViewController {
 
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.activityIndicator.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,7 +40,8 @@ class SplashScreenViewController: UIViewController {
     private func attemptSignIn(username: String, password: String) {
         var phoneNumber: String?
         var email: String?
-        
+        self.activityIndicator.isHidden = false
+        self.activityIndicator.startAnimating()
         if Utils.validateEmail(username) {
             email = username
         }

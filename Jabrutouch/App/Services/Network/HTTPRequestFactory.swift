@@ -43,9 +43,9 @@ class HttpRequestsFactory {
         return request
     }
     
-    class func createSignUpRequest(firstName: String, lastName:String, email:String, phoneNumber:String, fcmToken:String, password: String) -> URLRequest?{
+    class func createSignUpRequest(userId: String, firstName: String, lastName:String, email:String, phoneNumber:String, fcmToken:String, password: String) -> URLRequest?{
         guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
-        let link = baseUrl.appendingPathComponent("sing_up/").absoluteString
+        let link = baseUrl.appendingPathComponent("sing_up/\(userId)/").absoluteString
         let body: [String:Any] = ["first_name": firstName, "last_name": lastName, "email": email, "password": password, "device_type":"ios", "phone": phoneNumber, "fcm_token": fcmToken]
         guard let url = self.createUrl(fromLink: link, urlParams: nil) else { return nil }
         let request = self.createRequest(url, method: .patch, body: body, additionalHeaders: nil)

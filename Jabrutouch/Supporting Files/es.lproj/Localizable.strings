@@ -66,4 +66,6 @@
 "lastNameMissing" = "Last name is missing";
 "emailIsMissing" = "Email is misssing";
 "emailInvalid" = "Email is invalid";
-
+"missingField" = "Missing Field";
+"invalidField" = "Invalid Field";
+"todaysDafYomi" = "Today’s daf yomi";

@@ -38,6 +38,9 @@ class SignInViewController: UIViewController {
         self.addBorders()
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
     //============================================================
     // MARK: - Setup
     //============================================================
@@ -73,7 +76,7 @@ class SignInViewController: UIViewController {
     //============================================================
     
     @IBAction func signInButtonPressed(_ sender: UIButton) {
-        self.validateFields()
+        self.validateForm()
     }
     
     @IBAction func signUpButtonPressed(_ sender: UIButton) {
@@ -88,32 +91,36 @@ class SignInViewController: UIViewController {
     // MARK: - SignIn
     //============================================================
     
-    private func validateFields() {
+    private func validateForm() {
         self.showActivityView()
         var phoneNumber: String?
         var email: String?
         guard let username = self.usernameTF.text else {
             let message = Strings.usernameMissing
-            Utils.showAlertMessage(message,title:nil,viewControler:self)
+            let title = Strings.missingField
+            Utils.showAlertMessage(message,title: title, viewControler:self)
             self.removeActivityView()
             return
         }
         guard username.isEmpty == false else {
             let message = Strings.usernameMissing
-            Utils.showAlertMessage(message,title:nil,viewControler:self)
+            let title = Strings.missingField
+            Utils.showAlertMessage(message,title: title, viewControler:self)
             self.removeActivityView()
             return
         }
         
         guard let password = self.passwordTF.text else {
             let message = Strings.passwordMissing
-            Utils.showAlertMessage(message,title:nil,viewControler:self)
+            let title = Strings.missingField
+            Utils.showAlertMessage(message,title: title, viewControler:self)
             self.removeActivityView()
             return
         }
         guard password.isEmpty == false else {
             let message = Strings.passwordMissing
-            Utils.showAlertMessage(message,title:nil,viewControler:self)
+            let title = Strings.missingField
+            Utils.showAlertMessage(message,title: title, viewControler:self)
             self.removeActivityView()
             return
         }
@@ -126,7 +133,8 @@ class SignInViewController: UIViewController {
         }
         else {
             let message = Strings.usernameInvalid
-            Utils.showAlertMessage(message,title:nil,viewControler:self)
+            let title = Strings.invalidField
+            Utils.showAlertMessage(message,title: title, viewControler:self)
             self.removeActivityView()
             return
         }
@@ -185,7 +193,7 @@ extension SignInViewController: UITextFieldDelegate {
         }
         else if textField === self.passwordTF {
             textField.resignFirstResponder()
-            self.validateFields()
+            self.validateForm()
         }
         return true
     }

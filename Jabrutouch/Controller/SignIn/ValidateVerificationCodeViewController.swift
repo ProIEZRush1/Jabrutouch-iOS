@@ -40,6 +40,10 @@ class ValidateVerificationCodeViewController: UIViewController {
         self.setupCodeTextField()
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     //============================================================
     // MARK: - Setup
     //============================================================
@@ -116,8 +120,8 @@ class ValidateVerificationCodeViewController: UIViewController {
         self.showActivityView()
         LoginManager.shared.validateCode(phoneNumber: phoneNumber, code: self.code) { (result) in
             switch result {
-            case .success:
-                self.navigateToSignUp(phoneNumber: phoneNumber)
+            case .success(let userId):
+                self.navigateToSignUp(phoneNumber: phoneNumber, userId: "\(userId)")
             case .failure(let error):
                 self.removeActivityView()
                 let title = Strings.error
@@ -149,14 +153,15 @@ class ValidateVerificationCodeViewController: UIViewController {
     // MARK: - Navigation
     //============================================================
     
-    private func navigateToSignUp(phoneNumber: String) {
-        self.performSegue(withIdentifier: "showSignUp", sender: phoneNumber)
+    private func navigateToSignUp(phoneNumber: String, userId: String) {
+        self.performSegue(withIdentifier: "showSignUp", sender: (phoneNumber,userId) )
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showSignUp" {
-            let signUpVC = segue.identifier as? SignUpViewController
-            signUpVC?.phoneNumber = sender as? String
+            let signUpVC = segue.destination as? SignUpViewController
+            signUpVC?.phoneNumber = (sender as? (String,String))?.0
+            signUpVC?.userId = (sender as? (String,String))?.1
         }
     }
 }

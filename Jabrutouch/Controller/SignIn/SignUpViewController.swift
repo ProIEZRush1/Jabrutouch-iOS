@@ -16,6 +16,7 @@ class SignUpViewController: UIViewController {
     
     private var activityView: ActivityView?
     var phoneNumber: String?
+    var userId: String?
     //============================================================
     // MARK: - Outlets
     //============================================================
@@ -39,6 +40,9 @@ class SignUpViewController: UIViewController {
         self.addBorders()
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
     //============================================================
     // MARK: - Setup
     //============================================================
@@ -86,6 +90,7 @@ class SignUpViewController: UIViewController {
     //============================================================
     
     @IBAction func signUpButtonPressed(_ sender: UIButton) {
+        self.view.endEditing(true)
         self.validateForm()
     }
     
@@ -102,71 +107,83 @@ class SignUpViewController: UIViewController {
         
         guard let firstName = self.firstNameTF.text else {
             let message = Strings.firstNameMissing
-            Utils.showAlertMessage(message, title: nil, viewControler: self)
+            let title = Strings.missingField
+            Utils.showAlertMessage(message, title: title, viewControler: self)
             self.removeActivityView()
             return
         }
         if firstName.isEmpty {
             let message = Strings.firstNameMissing
-            Utils.showAlertMessage(message, title: nil, viewControler: self)
+            let title = Strings.missingField
+            Utils.showAlertMessage(message, title: title, viewControler: self)
             self.removeActivityView()
             return
         }
         
         guard let lastName = self.lastNameTF.text else {
             let message = Strings.lastNameMissing
-            Utils.showAlertMessage(message, title: nil, viewControler: self)
+            let title = Strings.missingField
+            Utils.showAlertMessage(message, title: title, viewControler: self)
             self.removeActivityView()
             return
         }
         
         if lastName.isEmpty {
             let message = Strings.lastNameMissing
-            Utils.showAlertMessage(message, title: nil, viewControler: self)
+            let title = Strings.missingField
+            Utils.showAlertMessage(message, title: title, viewControler: self)
             self.removeActivityView()
             return
         }
         
         guard let email = self.emailTF.text else {
             let message = Strings.emailIsMissing
-            Utils.showAlertMessage(message, title: nil, viewControler: self)
+            let title = Strings.missingField
+            Utils.showAlertMessage(message, title: title, viewControler: self)
             self.removeActivityView()
             return
         }
         
         if email.isEmpty {
+            let title = Strings.missingField
             let message = Strings.emailIsMissing
-            Utils.showAlertMessage(message, title: nil, viewControler: self)
+            Utils.showAlertMessage(message, title: title, viewControler: self)
             self.removeActivityView()
             return
         }
         
         if Utils.validateEmail(email) == false {
             let message = Strings.emailInvalid
-            Utils.showAlertMessage(message, title: nil, viewControler: self)
+            let title = Strings.invalidField
+            Utils.showAlertMessage(message, title: title, viewControler: self)
             self.removeActivityView()
             return
         }
         
         guard let password = self.passwordTF.text else {
             let message = Strings.passwordMissing
-            Utils.showAlertMessage(message, title: nil, viewControler: self)
+            let title = Strings.missingField
+            Utils.showAlertMessage(message, title: title, viewControler: self)
             self.removeActivityView()
             return
         }
         
         if password.isEmpty {
             let message = Strings.passwordMissing
-            Utils.showAlertMessage(message, title: nil, viewControler: self)
+            let title = Strings.missingField
+            Utils.showAlertMessage(message, title: title, viewControler: self)
             self.removeActivityView()
             return
         }
-     
-        self.attemptSignUp(firstName: firstName, lastName: lastName, phoneNumber: self.phoneNumber ?? "", email: email, password: password)
+        guard let userId = self.userId, let phoneNumber = self.phoneNumber else {
+            self.removeActivityView()
+            return
+        }
+        self.attemptSignUp(userId: userId, firstName: firstName, lastName: lastName, phoneNumber: phoneNumber, email: email, password: password)
     }
     
-    private func attemptSignUp(firstName: String, lastName: String, phoneNumber: String, email: String, password: String) {
-        LoginManager.shared.signUp(firstName: firstName, lastName: lastName, phoneNumber: phoneNumber, email: email, password: password) { (result) in
+    private func attemptSignUp(userId: String, firstName: String, lastName: String, phoneNumber: String, email: String, password: String) {
+        LoginManager.shared.signUp(userId: userId, firstName: firstName, lastName: lastName, phoneNumber: phoneNumber, email: email, password: password) { (result) in
             self.removeActivityView()
             switch result {
             case .success:
@@ -207,5 +224,24 @@ class SignUpViewController: UIViewController {
         let mainViewController = Storyboards.Main.mainViewController
         appDelegate.setRootViewController(viewController: mainViewController, animated: true)
 
+    }
+}
+
+extension SignUpViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField === self.firstNameTF {
+            self.lastNameTF.becomeFirstResponder()
+        }
+        else if textField === self.lastNameTF {
+            self.emailTF.becomeFirstResponder()
+        }
+        else if textField === self.emailTF {
+            self.passwordTF.becomeFirstResponder()
+        }
+        else if textField === self.passwordTF {
+            textField.resignFirstResponder()
+            self.validateForm()
+        }
+        return true
     }
 }
