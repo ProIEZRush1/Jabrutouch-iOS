@@ -9,17 +9,43 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Display-Bold.otf">
+            <string>SFProDisplay-Bold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Splash Screen View Controller-->
         <scene sceneID="X2E-qG-2lL">
             <objects>
                 <viewController storyboardIdentifier="SplashScreenViewController" id="GDy-cJ-b4M" customClass="SplashScreenViewController" customModule="Jabrutouch" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ocU-Jq-ZpM">
+                    <view key="view" contentMode="scaleToFill" id="YAX-wK-hNL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="2NW-Un-aGb"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jabrutouch" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1eE-Iz-hU3">
+                                <rect key="frame" x="128" y="244" width="158.5" height="36"/>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="vBZ-IG-GeV">
+                                <rect key="frame" x="188.5" y="434.5" width="37" height="37"/>
+                                <color key="color" red="0.58039215690000001" green="0.58823529409999997" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="1eE-Iz-hU3" firstAttribute="centerX" secondItem="YAX-wK-hNL" secondAttribute="centerX" id="8uA-W9-OPW"/>
+                            <constraint firstItem="vBZ-IG-GeV" firstAttribute="centerX" secondItem="joU-nI-APl" secondAttribute="centerX" id="N18-Cx-yD1"/>
+                            <constraint firstItem="vBZ-IG-GeV" firstAttribute="centerY" secondItem="joU-nI-APl" secondAttribute="centerY" id="O9U-6o-CLL"/>
+                            <constraint firstItem="1eE-Iz-hU3" firstAttribute="top" secondItem="joU-nI-APl" secondAttribute="top" constant="200" id="buS-Wi-EzG"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="joU-nI-APl"/>
                     </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="vBZ-IG-GeV" id="IWL-Dc-wy7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p4y-BU-FyG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

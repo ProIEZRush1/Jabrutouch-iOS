@@ -42,6 +42,7 @@
 		2133C22122DCFEB500F910B9 /* WalkThroughCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2133C22022DCFEB500F910B9 /* WalkThroughCollectionViewCell.swift */; };
 		2133C22422DDCCD500F910B9 /* JBBarPageIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2133C22322DDCCD500F910B9 /* JBBarPageIndicator.swift */; };
 		2133C22622DDCD3E00F910B9 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2133C22522DDCD3E00F910B9 /* Colors.swift */; };
+		21407C8922F72632002F9690 /* TextFieldWithDeleteDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21407C8822F72632002F9690 /* TextFieldWithDeleteDelegate.swift */; };
 		2145858F22EF7D980062F830 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2145858E22EF7D980062F830 /* API.swift */; };
 		21678D4622DF2CEC007BC74C /* SF-Pro-Display-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 21678D1A22DF2CB9007BC74C /* SF-Pro-Display-Black.otf */; };
 		21678D4722DF2CEC007BC74C /* SF-Pro-Display-BlackItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 21678D3622DF2CC5007BC74C /* SF-Pro-Display-BlackItalic.otf */; };
@@ -164,6 +165,7 @@
 		2133C22022DCFEB500F910B9 /* WalkThroughCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkThroughCollectionViewCell.swift; sourceTree = "<group>"; };
 		2133C22322DDCCD500F910B9 /* JBBarPageIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = JBBarPageIndicator.swift; path = ../WalkThrough/JBBarPageIndicator.swift; sourceTree = "<group>"; };
 		2133C22522DDCD3E00F910B9 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		21407C8822F72632002F9690 /* TextFieldWithDeleteDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldWithDeleteDelegate.swift; sourceTree = "<group>"; };
 		2145858E22EF7D980062F830 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		21678D1922DF2CB9007BC74C /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
 		21678D1A22DF2CB9007BC74C /* SF-Pro-Display-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Black.otf"; sourceTree = "<group>"; };
@@ -556,6 +558,7 @@
 			children = (
 				2133C22322DDCCD500F910B9 /* JBBarPageIndicator.swift */,
 				219BFF2E22E5A11800ABBEE2 /* TextFieldWithPadding.swift */,
+				21407C8822F72632002F9690 /* TextFieldWithDeleteDelegate.swift */,
 			);
 			path = "Custom Controlles";
 			sourceTree = "<group>";
@@ -809,6 +812,7 @@
 				2133C22122DCFEB500F910B9 /* WalkThroughCollectionViewCell.swift in Sources */,
 				219BFF2C22E59F4500ABBEE2 /* Extensions.swift in Sources */,
 				2120BE2122DF2787004854DB /* RequestVerificationCodeViewController.swift in Sources */,
+				21407C8922F72632002F9690 /* TextFieldWithDeleteDelegate.swift in Sources */,
 				213196AA22F38B3E00B0AF5F /* LoginResponse.swift in Sources */,
 				219BFF2922E50C0B00ABBEE2 /* ModalsContainerViewController.swift in Sources */,
 				216A0E6E22EEFD1400F7FBC1 /* HTTPProvider.swift in Sources */,

@@ -126,19 +126,28 @@ class RequestVerificationCodeViewController: UIViewController {
         
         guard var phoneNumber = self.phoneNumberTF.text else {
             let message = Strings.phoneNumberMissing
-            Utils.showAlertMessage(message, title: nil, viewControler: self)
+            let title = Strings.missingField
+            Utils.showAlertMessage(message, title: title, viewControler: self)
             self.removeActivityView()
             return
         }
         if phoneNumber.isEmpty {
             let message = Strings.phoneNumberMissing
-            Utils.showAlertMessage(message, title: nil, viewControler: self)
+            let title = Strings.missingField
+            Utils.showAlertMessage(message, title: title, viewControler: self)
             self.removeActivityView()
             return
         }
+        
+        if Utils.validatePhoneNumber(phoneNumber) == false {
+            let message = Strings.phoneNumberInvalid
+            let title = Strings.invalidField
+            Utils.showAlertMessage(message, title: title, viewControler: self)
+            self.removeActivityView()
+            return
+        }
+        
         if phoneNumber.first == "0"{
-            let message = Strings.phoneNumberMissing
-            Utils.showAlertMessage(message, title: nil, viewControler: self)
             phoneNumber = String(phoneNumber.dropFirst())
         }
         
@@ -227,6 +236,14 @@ extension RequestVerificationCodeViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField === self.countryTF {
             return false
+        }
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField === self.phoneNumberTF {
+            textField.resignFirstResponder()
+            self.validateForm()
         }
         return true
     }

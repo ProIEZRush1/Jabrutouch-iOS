@@ -11,6 +11,13 @@ import UIKit
 class SignUpViewController: UIViewController {
     
     //============================================================
+    // MARK: - Properties
+    //============================================================
+    
+    private var activityView: ActivityView?
+    var phoneNumber: String?
+    var userId: Int?
+    //============================================================
     // MARK: - Outlets
     //============================================================
     
@@ -33,6 +40,9 @@ class SignUpViewController: UIViewController {
         self.addBorders()
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
     //============================================================
     // MARK: - Setup
     //============================================================
@@ -80,12 +90,131 @@ class SignUpViewController: UIViewController {
     //============================================================
     
     @IBAction func signUpButtonPressed(_ sender: UIButton) {
-        
+        self.view.endEditing(true)
+        self.validateForm()
     }
     
     @IBAction func signInButtonPressed(_ sender: UIButton) {
         self.navigationController?.dismiss(animated: true, completion: nil)
     }
+    
+    //============================================================
+    // MARK: - Private methods
+    //============================================================
+    
+    private func validateForm() {
+        self.showActivityView()
+        
+        guard let firstName = self.firstNameTF.text else {
+            let message = Strings.firstNameMissing
+            let title = Strings.missingField
+            Utils.showAlertMessage(message, title: title, viewControler: self)
+            self.removeActivityView()
+            return
+        }
+        if firstName.isEmpty {
+            let message = Strings.firstNameMissing
+            let title = Strings.missingField
+            Utils.showAlertMessage(message, title: title, viewControler: self)
+            self.removeActivityView()
+            return
+        }
+        
+        guard let lastName = self.lastNameTF.text else {
+            let message = Strings.lastNameMissing
+            let title = Strings.missingField
+            Utils.showAlertMessage(message, title: title, viewControler: self)
+            self.removeActivityView()
+            return
+        }
+        
+        if lastName.isEmpty {
+            let message = Strings.lastNameMissing
+            let title = Strings.missingField
+            Utils.showAlertMessage(message, title: title, viewControler: self)
+            self.removeActivityView()
+            return
+        }
+        
+        guard let email = self.emailTF.text else {
+            let message = Strings.emailIsMissing
+            let title = Strings.missingField
+            Utils.showAlertMessage(message, title: title, viewControler: self)
+            self.removeActivityView()
+            return
+        }
+        
+        if email.isEmpty {
+            let title = Strings.missingField
+            let message = Strings.emailIsMissing
+            Utils.showAlertMessage(message, title: title, viewControler: self)
+            self.removeActivityView()
+            return
+        }
+        
+        if Utils.validateEmail(email) == false {
+            let message = Strings.emailInvalid
+            let title = Strings.invalidField
+            Utils.showAlertMessage(message, title: title, viewControler: self)
+            self.removeActivityView()
+            return
+        }
+        
+        guard let password = self.passwordTF.text else {
+            let message = Strings.passwordMissing
+            let title = Strings.missingField
+            Utils.showAlertMessage(message, title: title, viewControler: self)
+            self.removeActivityView()
+            return
+        }
+        
+        if password.isEmpty {
+            let message = Strings.passwordMissing
+            let title = Strings.missingField
+            Utils.showAlertMessage(message, title: title, viewControler: self)
+            self.removeActivityView()
+            return
+        }
+        guard let userId = self.userId, let phoneNumber = self.phoneNumber else {
+            self.removeActivityView()
+            return
+        }
+        self.attemptSignUp(userId: userId, firstName: firstName, lastName: lastName, phoneNumber: phoneNumber, email: email, password: password)
+    }
+    
+    private func attemptSignUp(userId: Int, firstName: String, lastName: String, phoneNumber: String, email: String, password: String) {
+        LoginManager.shared.signUp(userId: userId, firstName: firstName, lastName: lastName, phoneNumber: phoneNumber, email: email, password: password) { (result) in
+            self.removeActivityView()
+            switch result {
+            case .success:
+                self.navigateToMain()
+            case .failure(let error):
+                let title = Strings.error
+                let message = error.localizedDescription
+                Utils.showAlertMessage(message, title: title, viewControler: self)
+            }
+        }
+    }
+    
+    //============================================================
+    // MARK: - ActivityView
+    //============================================================
+    
+    private func showActivityView() {
+        DispatchQueue.main.async {
+            if self.activityView == nil {
+                self.activityView = Utils.showActivityView(inView: self.view, withFrame: self.view.frame, text: nil)
+            }
+        }
+    }
+    private func removeActivityView() {
+        DispatchQueue.main.async {
+            if let view = self.activityView {
+                Utils.removeActivityView(view)
+            }
+        }
+    }
+    
     
     //============================================================
     // MARK: - Navigation
@@ -95,5 +224,24 @@ class SignUpViewController: UIViewController {
         let mainViewController = Storyboards.Main.mainViewController
         appDelegate.setRootViewController(viewController: mainViewController, animated: true)
 
+    }
+}
+
+extension SignUpViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField === self.firstNameTF {
+            self.lastNameTF.becomeFirstResponder()
+        }
+        else if textField === self.lastNameTF {
+            self.emailTF.becomeFirstResponder()
+        }
+        else if textField === self.emailTF {
+            self.passwordTF.becomeFirstResponder()
+        }
+        else if textField === self.passwordTF {
+            textField.resignFirstResponder()
+            self.validateForm()
+        }
+        return true
     }
 }

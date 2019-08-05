@@ -49,8 +49,9 @@ class MainMenuViewController: UIViewController, UITableViewDelegate, UITableView
     //===============================================
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .default
+        return .lightContent
     }
+    
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .portrait

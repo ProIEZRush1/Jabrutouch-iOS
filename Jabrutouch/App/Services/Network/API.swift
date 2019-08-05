@@ -55,8 +55,8 @@ class API {
         }
     }
     
-    class func signUp(firstName:String, lastName:String, phoneNumber: String, email: String, password:String, fcmToken: String, completionHandler:@escaping (_ response: APIResult<SignUpResponse>)->Void) {
-        guard let request = HttpRequestsFactory.createSignUpRequest(firstName: firstName, lastName: lastName, email: email, phoneNumber: phoneNumber, fcmToken: fcmToken, password: password) else {
+    class func signUp(userId: Int, firstName:String, lastName:String, phoneNumber: String, email: String, password:String, fcmToken: String, completionHandler:@escaping (_ response: APIResult<SignUpResponse>)->Void) {
+        guard let request = HttpRequestsFactory.createSignUpRequest(userId: userId, firstName: firstName, lastName: lastName, email: email, phoneNumber: phoneNumber, fcmToken: fcmToken, password: password) else {
             completionHandler(APIResult.failure(.unableToCreateRequest))
             return
         }
