@@ -8,9 +8,8 @@
 
 import Foundation
 
-struct ResendCodeResponse {
-    
-    init?(data: Data) {
-        return nil
+struct ResendCodeResponse: APIResponseModel {
+    init?(values: [String : Any]) {
+        
     }
 }

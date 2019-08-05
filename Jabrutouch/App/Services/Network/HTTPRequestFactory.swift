@@ -25,10 +25,10 @@ class HttpRequestsFactory {
         return request
     }
     
-    class func createResendCodeRequest(phone: String) -> URLRequest?{
+    class func createResendCodeRequest(phoneNumber: String) -> URLRequest?{
         guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
         let link = baseUrl.appendingPathComponent("send_again/").absoluteString
-        let body: [String:String] = ["phone": phone]
+        let body: [String:String] = ["phone": phoneNumber]
         guard let url = self.createUrl(fromLink: link, urlParams: nil) else { return nil }
         let request = self.createRequest(url, method: .post, body: body, additionalHeaders: nil)
         return request
@@ -43,20 +43,20 @@ class HttpRequestsFactory {
         return request
     }
     
-    class func createSignUpRequest(user: JBUser) -> URLRequest?{
+    class func createSignUpRequest(firstName: String, lastName:String, email:String, phoneNumber:String, fcmToken:String, password: String) -> URLRequest?{
         guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
         let link = baseUrl.appendingPathComponent("sing_up/").absoluteString
-        let body: [String:Any] = ["first_name": user.firstName, "last_name": user.lastName, "email": user.email, "password": user.password, "device_type":"ios", "phone": user.phoneNumber, "fcm_token": "1234"]
+        let body: [String:Any] = ["first_name": firstName, "last_name": lastName, "email": email, "password": password, "device_type":"ios", "phone": phoneNumber, "fcm_token": fcmToken]
         guard let url = self.createUrl(fromLink: link, urlParams: nil) else { return nil }
-        let request = self.createRequest(url, method: .post, body: body, additionalHeaders: nil)
+        let request = self.createRequest(url, method: .patch, body: body, additionalHeaders: nil)
         return request
     }
     
-    class func createLoginRequest(email: String?, phoneNumber: String?, password: String) -> URLRequest?{
+    class func createLoginRequest(email: String?, phoneNumber: String?, password: String, fcmToken: String) -> URLRequest?{
         guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
         if email == nil && phoneNumber == nil { return nil }
         let link = baseUrl.appendingPathComponent("login/").absoluteString
-        let body: [String:Any] = [ "email": email ?? "", "password": password, "device_type":"ios", "phone": phoneNumber ?? "", "fcm_token": "1234"]
+        let body: [String:Any] = [ "email": email ?? "", "password": password, "device_type":"ios", "phone": phoneNumber ?? "", "fcm_token": fcmToken]
         guard let url = self.createUrl(fromLink: link, urlParams: nil) else { return nil }
         let request = self.createRequest(url, method: .post, body: body, additionalHeaders: nil)
         return request

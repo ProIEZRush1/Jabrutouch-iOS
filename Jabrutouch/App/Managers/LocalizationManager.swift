@@ -36,7 +36,7 @@ class LocalizationManager {
     ///
     /// - Returns: Array of country objects
     func getCountries() -> [Country] {
-        guard let data = FilesManager.shared.getResource(resourceName: "countries", extensionName: "json") else { return [] }
+        guard let data = FilesManagementProvider.shared.getResource(resourceName: "countries", extensionName: "json") else { return [] }
         guard let json = Utils.convertDataToJSONObject(data) as? [[String:Any]] else { return [] }
         let countries = json.compactMap{Country(data: $0)}
         return countries.sorted{$0.localizedName < $1.localizedName}

@@ -8,6 +8,7 @@
 
 import UIKit
 
+let appDelegate = UIApplication.shared.delegate as! AppDelegate
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -41,6 +42,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
+    
+    func setRootViewController(viewController: UIViewController, animated: Bool) {
+        if self.window == nil {
+            self.window = UIWindow()
+        }
+        let window = self.window!
+        if animated {
+            UIView.transition(with: window, duration: 0.3, options: [.transitionCrossDissolve], animations: {
+                window.rootViewController = viewController
+            }) { (Bool) in
+                window.makeKeyAndVisible()
+            }
+        }
+        else {
+            window.rootViewController = viewController
+            window.makeKeyAndVisible()
+        }
+    }
 }
 

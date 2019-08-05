@@ -24,7 +24,7 @@ class DafYomiRepository {
     }
     
     func getDafYomiByOffset(offset: Int) -> DafYomi? {
-        let dafYomiData: Data = FilesManager.shared.getResource(resourceName: "daf_yomi", extensionName: "json")!
+        let dafYomiData: Data = FilesManagementProvider.shared.getResource(resourceName: "daf_yomi", extensionName: "json")!
         let shas = Utils.convertDataToDictionary(dafYomiData)!["shas"] as! [[String:Any]]
         let dafValues = shas[offset]
         let daf = DafYomi(values: dafValues)
@@ -36,7 +36,7 @@ class DafYomiRepository {
     }
     
     private func getTodaysOffset() -> Int{
-        let dafYomiData: Data = FilesManager.shared.getResource(resourceName: "daf_yomi", extensionName: "json")!
+        let dafYomiData: Data = FilesManagementProvider.shared.getResource(resourceName: "daf_yomi", extensionName: "json")!
         let dafYomiDetails = Utils.convertDataToDictionary(dafYomiData)!["dafYomiDetails"] as! [String:Any]
         let dateStartString = dafYomiDetails["dateStart"] as! String
         let dateFormatter = DateFormatter()

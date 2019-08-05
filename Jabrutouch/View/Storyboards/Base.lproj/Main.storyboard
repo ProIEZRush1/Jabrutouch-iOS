@@ -200,7 +200,7 @@
         <!--Main View Controller-->
         <scene sceneID="Vw6-8z-eOD">
             <objects>
-                <viewController id="hlJ-VD-Lqd" customClass="MainViewController" customModule="Jabrutouch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainViewController" id="hlJ-VD-Lqd" customClass="MainViewController" customModule="Jabrutouch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rWo-H5-Xrd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

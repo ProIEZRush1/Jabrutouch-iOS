@@ -164,4 +164,40 @@ class Strings {
     class var logout: String {
         return NSLocalizedString("logout", comment: "")
     }
+    
+    class var passwordMissing: String {
+        return NSLocalizedString("passwordMissing", comment: "")
+    }
+    
+    class var usernameInvalid: String {
+        return NSLocalizedString("usernameInvalid", comment: "")
+    }
+    
+    class var usernameMissing: String {
+        return NSLocalizedString("usernameMissing", comment: "")
+    }
+    
+    class var ok: String {
+        return NSLocalizedString("ok", comment: "")
+    }
+    
+    class var error: String {
+        return NSLocalizedString("error", comment: "")
+    }
+    
+    class var signOut: String {
+        return NSLocalizedString("signOut", comment: "")
+    }
+    
+    class var phoneNumberMissing: String {
+        return NSLocalizedString("phoneNumberMissing", comment: "")
+    }
+    
+    class var phoneNumberInvalid: String {
+        return NSLocalizedString("phoneNumberInvalid", comment: "")
+    }
+    
+    class var pleaseSelectCountry: String {
+        return NSLocalizedString("pleaseSelectCountry", comment: "")
+    }
 }

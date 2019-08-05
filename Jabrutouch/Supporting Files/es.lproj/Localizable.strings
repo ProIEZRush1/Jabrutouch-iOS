@@ -52,3 +52,14 @@
 "donationsCenter" = "Donations Center";
 "donate" = "Donate";
 "logout" = "Log Out";
+
+"passwordMissing" = "Password is missing";
+"usernameInvalid" = "Username must be a valid email or phone number";
+"usernameMissing" = "Username is missing.";
+
+"ok" = "OK";
+"error" = "Error";
+"signOut" = "Sign Out";
+"phoneNumberMissing" = "Phone number is missing";
+"phoneNumberInvalid" = "Phone Number is invalid";
+"pleaseSelectCountry" = "please select country";
