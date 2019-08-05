@@ -222,7 +222,7 @@
                                                         <constraint firstItem="ZQv-Uz-0ue" firstAttribute="centerY" secondItem="YtL-SC-a2e" secondAttribute="centerY" id="pEP-HS-aSS"/>
                                                     </constraints>
                                                 </view>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fJy-Q9-W6e" userLabel="Delete">
+                                                <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fJy-Q9-W6e" userLabel="Delete">
                                                     <rect key="frame" x="369" y="7.0000000000000036" width="45" height="62.333333333333343"/>
                                                     <inset key="contentEdgeInsets" minX="15" minY="20" maxX="15" maxY="20"/>
                                                     <state key="normal" image="X"/>

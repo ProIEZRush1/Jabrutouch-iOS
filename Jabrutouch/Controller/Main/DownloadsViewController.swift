@@ -336,18 +336,33 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         Utils.setViewShape(view: cell.cellView, viewCornerRadius: 18)
         let shadowOffset = CGSize(width: 0.0, height: 12)
         Utils.dropViewShadow(view: cell.cellView, shadowColor: Colors.shadowColor, shadowRadius: 36, shadowOffset: shadowOffset)
-
-        if isDeleting {
-            cell.deleteButton.isHidden = false
-            cell.cellTrailingConstraint.constant = 45
-        } else {
-            cell.deleteButton.isHidden = true
-            cell.cellTrailingConstraint.constant = 21
-        }
+        animateSizeChangeWhenNeeded(cell)
         
         cell.cellView.layoutIfNeeded()
         
         return cell
+    }
+    
+    fileprivate func animateSizeChangeWhenNeeded(_ cell: DownloadsCellController) {
+        UIView.animate(withDuration: 0.3, delay: isDeleting ? 0.15 : 0, animations: {
+            if self.isDeleting {
+                cell.deleteButton.alpha = 1
+            } else {
+                cell.deleteButton.alpha = 0
+            }
+            
+            self.view.layoutIfNeeded()
+        })
+        
+        UIView.animate(withDuration: 0.3, delay: isDeleting ? 0 : 0.15, animations: {
+            if self.isDeleting {
+                cell.cellTrailingConstraint.constant = 45
+            } else {
+                cell.cellTrailingConstraint.constant = 21
+            }
+            
+            self.view.layoutIfNeeded()
+        })
     }
     
     //----------------------------------------------------------------

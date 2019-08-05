@@ -60,8 +60,8 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "mishnaLessonCell", for: indexPath) as! MishnaLessonCellController
+        setImages(indexPath, cell)
         setEditingIfNeeded(cell)
-        setImagesVisibility(indexPath, cell)
         cell.lessonNumber.text = lessons[indexPath.row].number
         cell.lessonLength.text = lessons[indexPath.row].length
         cell.delegate = self
@@ -77,10 +77,10 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
         return cell
     }
     
-    fileprivate func setImagesVisibility(_ indexPath: IndexPath, _ cell: MishnaLessonCellController) {
+    fileprivate func setImages(_ indexPath: IndexPath, _ cell: MishnaLessonCellController) {
         if lessons[indexPath.row].isAudioDownloaded {
             cell.audioImage?.image = UIImage(named: "RedAudio")
-            cell.redAudioVImage.isHidden = isCurrentlyEditing ? true : false
+            cell.redAudioVImage.isHidden = false
         } else {
             cell.audioImage?.image = UIImage(named: "Audio")
             cell.redAudioVImage.isHidden = true
@@ -90,7 +90,7 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
         
         if lessons[indexPath.row].isVideoDownloaded {
             cell.videoImage?.image = UIImage(named: "RedVideo")
-            cell.redVideoVImage.isHidden = isCurrentlyEditing ? true : false
+            cell.redVideoVImage.isHidden = false
         } else {
             cell.videoImage?.image = UIImage(named: "Video")
             cell.redVideoVImage.isHidden = true
@@ -123,13 +123,16 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     fileprivate func animateImagesVisibiltyIfNeeded(_ cell: MishnaLessonCellController) {
-        if cell.audioImage.isHidden && !isCurrentlyEditing { // Animate only when necessary
-            UIView.animate(withDuration: 0.2, animations: {
+        if (cell.audioImage.alpha == 0) == !isCurrentlyEditing { // Animate only when a change occurred
+            UIView.animate(withDuration: 0.2, delay: isCurrentlyEditing ? 0 : 0.1, animations: {
+                if cell.redAudioVImage.isHidden == false { // Animate only when suppose to be visible
+                    cell.redAudioVImage.alpha = self.isCurrentlyEditing ? 0 : 1
+                }
+                if cell.redVideoVImage.isHidden == false {
+                    cell.redVideoVImage.alpha = self.isCurrentlyEditing ? 0 : 1
+                }
                 cell.audioImage.alpha = self.isCurrentlyEditing ? 0 : 1
                 cell.videoImage.alpha = self.isCurrentlyEditing ? 0 : 1
-            }, completion: { _ in
-                cell.audioImage.isHidden = self.isCurrentlyEditing
-                cell.videoImage.isHidden = self.isCurrentlyEditing
             })
         }
     }
