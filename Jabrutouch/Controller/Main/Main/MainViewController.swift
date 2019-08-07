@@ -50,7 +50,6 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     // Todays Daf Yomi
     @IBOutlet weak private var todaysDafOuterContainer: UIView!
     @IBOutlet weak private var todaysDafContainer: UIView!
-    @IBOutlet weak private var todaysDafContainerShadow: UIView!
     @IBOutlet weak private var todaysDafTitleLabel: UILabel!
     @IBOutlet weak private var todaysDafLabel: UILabel!
     @IBOutlet weak private var todaysDateLabel: UILabel!
@@ -87,6 +86,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
 
         self.setStrings()
         self.roundCorners()
+        setShadows()
         setDataForDev() // Only for Dev
     }
     
@@ -121,8 +121,8 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     }
     
     private func roundCorners() {
-        self.todaysDafContainer.layer.cornerRadius = 15.0
-        self.todaysDafContainerShadow.layer.cornerRadius = 15.0
+//        self.todaysDafContainer.layer.cornerRadius = 15.0
+        Utils.setViewShape(view: todaysDafContainer, viewCornerRadius: 15)
     }
     
     private func setShadows() {
@@ -278,6 +278,14 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     
     @IBAction func menuButtonPressed(_ sender: UIButton) {
         self.presentMenu()
+    }
+    
+    @IBAction func todaysDafAudioPressed(_ sender: Any) {
+        
+    }
+    
+    @IBAction func todaysDafVideoPressed(_ sender: Any) {
+        
     }
     
     //========================================

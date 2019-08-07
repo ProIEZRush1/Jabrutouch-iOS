@@ -264,21 +264,27 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     
     fileprivate func initHeaderCell(_ headerCell: HeaderCellController, _ tableView: UITableView, _ section: Int, _ sectionName: inout String) {
         var isExpanded: Bool
+        var sectionRowsCount: Int
         
         if tableView == gemaraTableView {
             headerCell.isFirstTable = true
             isExpanded = gemaraDownloads[section].isExpanded
             sectionName = self.gemaraDownloads[section].name
+            sectionRowsCount = self.gemaraDownloads[section].downloads.count
         } else {
             headerCell.isFirstTable = false
             isExpanded = mishnaDownloads[section].isExpanded
             sectionName = self.mishnaDownloads[section].name
+            sectionRowsCount = self.mishnaDownloads[section].downloads.count
         }
         
         if isExpanded {
             headerCell.arrowImage?.image = UIImage(named: "Black&BlueUpArrow")
+            headerCell.sectionRowsCountLabel.isHidden = true
         } else {
             headerCell.arrowImage?.image = UIImage(named: "Black&BlueDownArrow")
+            headerCell.sectionRowsCountLabel.text = String(sectionRowsCount)
+            headerCell.sectionRowsCountLabel.isHidden = false
         }
     }
     

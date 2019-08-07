@@ -12,7 +12,7 @@ class JTMishnaSeder {
     
     var name: String = ""
     var masechtot: [JTMishnaMasechet] = []
-    var isExpanded = false
+    var isExpanded = true
     
     init(sederName: String, masechtot: [JTMishnaMasechet]) {
         self.name = sederName

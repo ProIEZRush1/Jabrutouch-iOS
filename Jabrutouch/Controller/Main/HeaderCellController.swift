@@ -12,6 +12,7 @@ class HeaderCellController: UITableViewHeaderFooterView {
     
     @IBOutlet weak var titleLabel: UILabel?
     @IBOutlet weak var arrowImage: UIImageView!
+    @IBOutlet weak var sectionRowsCountLabel: UILabel!
     
     var section: Int = 0
     weak var delegate: HeaderViewDelegate?

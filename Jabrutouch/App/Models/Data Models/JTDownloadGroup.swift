@@ -12,7 +12,7 @@ class JTDownloadGroup {
     
     var name: String = ""
     var downloads: [JTDownload]
-    var isExpanded = false
+    var isExpanded = true
     
     init(group: String, downloads: [JTDownload]?) {
         self.name = group

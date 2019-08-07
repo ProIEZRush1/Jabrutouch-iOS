@@ -29,8 +29,14 @@
                         <color key="textColor" red="0.17254901960784313" green="0.16862745098039217" blue="0.33725490196078434" alpha="0.88" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NBD-Td-1k8">
+                        <rect key="frame" x="342" y="12" width="18" height="19.5"/>
+                        <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="16"/>
+                        <color key="textColor" red="0.17254901959999999" green="0.16862745100000001" blue="0.33725490200000002" alpha="0.88" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Black&amp;BlueDownArrow" translatesAutoresizingMaskIntoConstraints="NO" id="8dK-yn-Dh8">
-                        <rect key="frame" x="380" y="14" width="14" height="16"/>
+                        <rect key="frame" x="380" y="17.5" width="14" height="9"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="13.9" id="x8M-QS-CP0"/>
                         </constraints>
@@ -42,10 +48,13 @@
                     <constraint firstAttribute="trailing" secondItem="8dK-yn-Dh8" secondAttribute="trailing" constant="20" id="6CF-gi-jdR"/>
                     <constraint firstItem="uXY-cf-k4b" firstAttribute="centerY" secondItem="hCV-Q9-d8A" secondAttribute="centerY" id="Zd6-rD-BHk"/>
                     <constraint firstItem="8dK-yn-Dh8" firstAttribute="centerY" secondItem="hCV-Q9-d8A" secondAttribute="centerY" id="oRy-o0-sfF"/>
+                    <constraint firstItem="8dK-yn-Dh8" firstAttribute="leading" secondItem="NBD-Td-1k8" secondAttribute="trailing" constant="20" id="sfq-Tb-qft"/>
+                    <constraint firstItem="NBD-Td-1k8" firstAttribute="centerY" secondItem="hCV-Q9-d8A" secondAttribute="centerY" id="te4-Mb-dZ0"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="arrowImage" destination="8dK-yn-Dh8" id="keL-cg-YSE"/>
+                <outlet property="sectionRowsCountLabel" destination="NBD-Td-1k8" id="yY5-ng-23g"/>
                 <outlet property="titleLabel" destination="uXY-cf-k4b" id="rGc-ab-j2M"/>
             </connections>
             <point key="canvasLocation" x="-10" y="52"/>
