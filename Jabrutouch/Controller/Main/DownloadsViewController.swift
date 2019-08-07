@@ -10,6 +10,10 @@ import UIKit
 
 class DownloadsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, HeaderViewDelegate, DownloadsCellDelegate {
     
+    //========================================
+    // MARK: - @IBOutlets and Fields
+    //========================================
+    
     @IBOutlet weak var headerShadowBasis: UIView!
     @IBOutlet weak var gemaraButton: UIButton!
     @IBOutlet weak var mishnaButton: UIButton!
@@ -36,53 +40,11 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     fileprivate var tableViewsMap = [String: UITableView]()
     fileprivate let GEMARA = "Gemara"
     fileprivate let MISHNA = "Mishna"
+    fileprivate var isReloadingSection =  false
     
-    //----------------------------------------------------------------
-    // MARK: - @IBActions and their helpers
-    //----------------------------------------------------------------
-    
-    @IBAction func gemaraPressed(_ sender: Any) {
-        if !isGemaraSelected {
-            switchViews()
-        }
-    }
-    
-    fileprivate func switchViews() {
-        isGemaraSelected = !isGemaraSelected
-        setSelectedPage()
-        UIView.animate(withDuration: 0.3) {
-            if self.isGemaraSelected {
-                self.gemaraLeadingConsraint.constant = 0
-            } else {
-                self.gemaraLeadingConsraint.constant = -self.view.frame.width
-            }
-            self.view.layoutIfNeeded()
-        }
-    }
-    
-    @IBAction func mishnaPressed(_ sender: Any) {
-        if isGemaraSelected {
-            switchViews()
-        }
-    }
-    
-    
-    @IBAction func deletePressed(_ sender: Any) {
-        isDeleting = !isDeleting
-        
-        if isDeleting {
-            deleteButton.setTitle("Done",for: .normal)
-        } else {
-            deleteButton.setTitle("Delete",for: .normal)
-        }
-        
-        gemaraTableView.reloadData()
-        mishnaTableView.reloadData()
-    }
-    
-    //----------------------------------------------------------------
-    // MARK: - Main functions
-    //----------------------------------------------------------------
+    //=======================================
+    // MARK: - LifeCycle
+    //=======================================
     
     override func viewDidLoad() {
         initialGrayUpArrowXCentererdToGemara.isActive = false
@@ -101,6 +63,15 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         tableViewsMap[MISHNA] = mishnaTableView
         setViews()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setSelectedPage()
+    }
+    
+    //========================================
+    // MARK: - Setup
+    //========================================
     
     // Only for Dev function
     fileprivate func fillTableForDev() {
@@ -156,11 +127,6 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         mishnaDownloads.append(downloadGroup4)
         mishnaDownloads.append(downloadGroup5)
         mishnaDownloads.append(downloadGroup6)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setSelectedPage()
     }
     
     fileprivate func setSelectedPage() {
@@ -242,9 +208,9 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         Utils.dropViewShadow(view: headerShadowBasis, shadowColor: headerShadowColor, shadowRadius: 22, shadowOffset: headerShadowOffset)
     }
     
-    //----------------------------------------------------------------
+    //=======================================================
     // MARK: - UITableView Data Source and Delegate section
-    //----------------------------------------------------------------
+    //=======================================================
     
     func numberOfSections(in tableView: UITableView) -> Int {
         if tableView == gemaraTableView {
@@ -354,29 +320,49 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
             self.view.layoutIfNeeded()
         })
         
-        UIView.animate(withDuration: 0.3, delay: isDeleting ? 0 : 0.15, animations: {
-            if self.isDeleting {
-                cell.cellTrailingConstraint.constant = 45
-            } else {
-                cell.cellTrailingConstraint.constant = 21
-            }
-            
-            self.view.layoutIfNeeded()
-        })
+        if isReloadingSection {
+            setCellTrailingConstraint(cell)
+        } else {
+            UIView.animate(withDuration: 0.3, delay: isDeleting ? 0 : 0.15, animations: {
+                self.setCellTrailingConstraint(cell)
+            })
+        }
     }
     
-    //----------------------------------------------------------------
+    fileprivate func setCellTrailingConstraint(_ cell: DownloadsCellController) {
+        if self.isDeleting {
+            cell.cellTrailingConstraint.constant = 45
+        } else {
+            cell.cellTrailingConstraint.constant = 21
+        }
+        
+        self.view.layoutIfNeeded()
+    }
+    
+    //======================================================
     // MARK: - Implemented Protocols functions and helpers
-    //----------------------------------------------------------------
+    //======================================================
     
     func toggleSection(header: HeaderCellController, section: Int) {
         if header.isFirstTable {
             gemaraDownloads[section].isExpanded = !gemaraDownloads[section].isExpanded
-            gemaraTableView.reloadSections([section], with: .automatic)
+            reloadSection(GEMARA, section)
         } else {
             mishnaDownloads[section].isExpanded = !mishnaDownloads[section].isExpanded
-            mishnaTableView.reloadSections([section], with: .automatic)
+            reloadSection(MISHNA, section)
         }
+    }
+    
+    fileprivate func reloadSection(_ table: String, _ section: Int) {
+        isReloadingSection = true
+        CATransaction.begin()
+        tableViewsMap[table]?.beginUpdates()
+        CATransaction.setCompletionBlock {
+            self.isReloadingSection = false
+        }
+        tableViewsMap[table]?.reloadSections([section], with: .automatic)
+        tableViewsMap[table]?.endUpdates()
+        CATransaction.commit()
     }
     
     // Note: coudln't avoid code reuse by writing help function or dictionaries
@@ -411,6 +397,20 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         self.present(alert, animated: true, completion: nil)
     }
     
+    // Help function attempted to avoid code reuse in cellDeletePressed() (Crashes app when deleting first a row in the middle of a section and then deleting all the rows of this section)
+    fileprivate func deleteCell(_ cell: DownloadsCellController, _ tableView: inout UITableView, _ downloads: inout [JTDownloadGroup]) {
+        if let indexPath = tableView.indexPath(for: cell) {
+            downloads[indexPath.section].downloads.remove(at: indexPath.row)
+            if downloads[indexPath.section].downloads.count == 0 {
+                downloads.remove(at: indexPath.section)
+                tableView.deleteSections([indexPath.section], with: .bottom)
+                self.reloadRelevantSections(indexPath.section, downloads, tableView)
+            } else {
+                tableView.deleteRows(at: [indexPath], with: .bottom)
+            }
+        }
+    }
+    
     // Update the "section" field in the header cells that are after the deleted section.
     fileprivate func reloadRelevantSections(_ deletedSection: Int, _ downloadGroups: [JTDownloadGroup], _ tableView: UITableView) {
         var sections: IndexSet = []
@@ -422,14 +422,46 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.reloadSections(sections, with: .automatic)
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    //======================================================
+    // MARK: - @IBActions and Helpers
+    //======================================================
+    
+    @IBAction func gemaraPressed(_ sender: Any) {
+        if !isGemaraSelected {
+            switchViews()
+        }
     }
-    */
-
+    
+    fileprivate func switchViews() {
+        isGemaraSelected = !isGemaraSelected
+        setSelectedPage()
+        UIView.animate(withDuration: 0.3) {
+            if self.isGemaraSelected {
+                self.gemaraLeadingConsraint.constant = 0
+            } else {
+                self.gemaraLeadingConsraint.constant = -self.view.frame.width
+            }
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    @IBAction func mishnaPressed(_ sender: Any) {
+        if isGemaraSelected {
+            switchViews()
+        }
+    }
+    
+    
+    @IBAction func deletePressed(_ sender: Any) {
+        isDeleting = !isDeleting
+        
+        if isDeleting {
+            deleteButton.setTitle("Done",for: .normal)
+        } else {
+            deleteButton.setTitle("Delete",for: .normal)
+        }
+        
+        gemaraTableView.reloadData()
+        mishnaTableView.reloadData()
+    }
 }

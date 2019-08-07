@@ -20,13 +20,16 @@ protocol MainModalDelegate : class {
     func dismissMainModal()
 }
 
-class MainViewController: UIViewController, MainModalDelegate {
+class MainViewController: UIViewController, MainModalDelegate, UICollectionViewDataSource, MainCollectionCellDelegate {
 
     //========================================
     // MARK: - Properties
     //========================================
     private var modalsPresentingVC: ModalsContainerViewController!
     private var currentPresentedModal: MainModal?
+    private var gemaraHistory: [JTDownload] = []
+    private var mishnaHistory: [JTDownload] = []
+    
     //========================================
     // MARK: - @IBOutlets
     //========================================
@@ -40,14 +43,19 @@ class MainViewController: UIViewController, MainModalDelegate {
     @IBOutlet weak private var titleLabel: UILabel!
     @IBOutlet weak private var messagesButton: UIButton!
     
-    // Todays Daf Yomi
+    // Welcome Views
+    @IBOutlet weak var welcomeLabel: UILabel!
+    @IBOutlet weak var welcomeImage: UIImageView!
     
+    // Todays Daf Yomi
     @IBOutlet weak private var todaysDafOuterContainer: UIView!
     @IBOutlet weak private var todaysDafContainer: UIView!
     @IBOutlet weak private var todaysDafContainerShadow: UIView!
     @IBOutlet weak private var todaysDafTitleLabel: UILabel!
     @IBOutlet weak private var todaysDafLabel: UILabel!
     @IBOutlet weak private var todaysDateLabel: UILabel!
+    @IBOutlet weak var todaysDafToHeaderConstraint: NSLayoutConstraint!
+    @IBOutlet weak var todaysDafToWelcomeConstraint: NSLayoutConstraint!
     
     // Tab bar buttons
     @IBOutlet weak private var downloadsImageView: UIImageView!
@@ -66,6 +74,10 @@ class MainViewController: UIViewController, MainModalDelegate {
     @IBOutlet weak private var donationsLabel: UILabel!
     @IBOutlet weak private var donationsButton: UIButton!
     
+    // Other
+    @IBOutlet weak var gemaraCollectionView: UICollectionView!
+    @IBOutlet weak var mishnaCollectionView: UICollectionView!
+    
     //========================================
     // MARK: - LifeCycle
     //========================================
@@ -75,6 +87,13 @@ class MainViewController: UIViewController, MainModalDelegate {
 
         self.setStrings()
         self.roundCorners()
+        setDataForDev() // Only for Dev
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setView()
     }
     
     //========================================
@@ -111,6 +130,68 @@ class MainViewController: UIViewController, MainModalDelegate {
         Utils.dropViewShadow(view: self.todaysDafContainer, shadowColor: Colors.shadowColor, shadowRadius: 36, shadowOffset: shadowOffset)
 
     }
+    
+    private func setView() {
+        welcomeLabel.isHidden = (gemaraHistory.count != 0 && mishnaHistory.count != 0)
+        welcomeImage.isHidden = (gemaraHistory.count != 0 && mishnaHistory.count != 0)
+        // TODO debug constraint conflict between the two constraints used in this function (watch Output)
+        if (gemaraHistory.count == 0 && mishnaHistory.count == 0) {
+            self.view.removeConstraint(todaysDafToHeaderConstraint)
+            self.view.addConstraint(todaysDafToWelcomeConstraint)
+        } else {
+            self.view.removeConstraint(todaysDafToWelcomeConstraint)
+            self.view.addConstraint(todaysDafToHeaderConstraint)
+        }
+        
+        self.view.layoutIfNeeded()
+    }
+    
+    private func setDataForDev() {
+        gemaraHistory.append(JTDownload(book: "Pesachim", chapter: "A", number: "11", hasAudio: true, hasVideo: true))
+        gemaraHistory.append(JTDownload(book: "Iruvin", chapter: "C", number: "2", hasAudio: true, hasVideo: true))
+        gemaraHistory.append(JTDownload(book: "Brachot", chapter: "D", number: "5", hasAudio: true, hasVideo: true))
+        mishnaHistory.append(JTDownload(book: "Rosh Hashana", chapter: "B", number: "12", hasAudio: true, hasVideo: true))
+        mishnaHistory.append(JTDownload(book: "Shabbat", chapter: "E", number: "3", hasAudio: true, hasVideo: true))
+    }
+    
+    //========================================
+    // MARK: - Collection Views
+    //========================================
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if collectionView == gemaraCollectionView {
+            return gemaraHistory.count
+        } else {
+            return mishnaHistory.count
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mainCollectionCell",
+                                                            for: indexPath) as? MainCollectionCellViewController else { return UICollectionViewCell() }
+        var download: JTDownload
+        if collectionView == gemaraCollectionView {
+            download = gemaraHistory[indexPath.row]
+        } else {
+            download = mishnaHistory[indexPath.row]
+        }
+        
+        cell.masechetLabel.text = download.book
+        cell.chapterLabel.text = download.chapter
+        cell.numberLabel.text = download.number
+        cell.audio.isHidden = !download.hasAudio
+        cell.video.isHidden = !download.hasVideo
+        cell.delegate = self
+        cell.selectedRow = indexPath.row
+        cell.isFirstCollection = collectionView == gemaraCollectionView
+        Utils.setViewShape(view: cell.cellView, viewCornerRadius: 18)
+        let shadowOffset = CGSize(width: 0, height: 5)
+        Utils.dropViewShadow(view: cell.cellView, shadowColor: Colors.brightShadowColor, shadowRadius: 10, shadowOffset: shadowOffset)
+        
+        return cell
+    }
+    
+    
     //========================================
     // MARK: - @IBActions
     //========================================
@@ -198,6 +279,7 @@ class MainViewController: UIViewController, MainModalDelegate {
     @IBAction func menuButtonPressed(_ sender: UIButton) {
         self.presentMenu()
     }
+    
     //========================================
     // MARK: - Navigation
     //========================================
@@ -206,6 +288,7 @@ class MainViewController: UIViewController, MainModalDelegate {
         let signInViewController = Storyboards.SignIn.signInViewController
         appDelegate.setRootViewController(viewController: signInViewController, animated: true)
     }
+    
     private func presentMenu() {
         self.performSegue(withIdentifier: "presentMenu", sender: nil)
     }
@@ -291,8 +374,44 @@ extension MainViewController: MenuDelegate {
                     self.navigateToSignIn()
                 }                
             }
+        case .mishna:
+            presentMishnaViewController()
+        case .gemara:
+            presentGemaraViewController()
         default:
             break
         }
     }
+    
+    //====================================================
+    // MARK: - Implemented Protocols functions and helpers
+    //====================================================
+    
+    func cellPressed(selectedRow: Int, isFirstCollection: Bool) {
+        print("Cell pressed")
+        if isFirstCollection {
+            print(gemaraHistory[selectedRow].book + gemaraHistory[selectedRow].chapter + gemaraHistory[selectedRow].number)
+        } else {
+            print(mishnaHistory[selectedRow].book + mishnaHistory[selectedRow].chapter + mishnaHistory[selectedRow].number)
+        }
+    }
+    
+    func audioPressed(selectedRow: Int, isFirstCollection: Bool) {
+        print("Audio pressed")
+        if isFirstCollection {
+            print(gemaraHistory[selectedRow].book + gemaraHistory[selectedRow].chapter + gemaraHistory[selectedRow].number)
+        } else {
+            print(mishnaHistory[selectedRow].book + mishnaHistory[selectedRow].chapter + mishnaHistory[selectedRow].number)
+        }
+    }
+    
+    func videoPressed(selectedRow: Int, isFirstCollection: Bool) {
+        print("Video pressed")
+        if isFirstCollection {
+            print(gemaraHistory[selectedRow].book + gemaraHistory[selectedRow].chapter + gemaraHistory[selectedRow].number)
+        } else {
+            print(mishnaHistory[selectedRow].book + mishnaHistory[selectedRow].chapter + mishnaHistory[selectedRow].number)
+        }
+    }
+    
 }

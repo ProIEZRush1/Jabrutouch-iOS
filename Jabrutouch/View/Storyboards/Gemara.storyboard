@@ -74,19 +74,19 @@
                                                     <rect key="frame" x="18" y="0.0" width="378" height="55"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shabbat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xc1-bq-BmF">
-                                                            <rect key="frame" x="25" y="13.5" width="91" height="28"/>
+                                                            <rect key="frame" x="25" y="13" width="90" height="29"/>
                                                             <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="24"/>
                                                             <color key="textColor" red="0.17254901959999999" green="0.16862745100000001" blue="0.33725490200000002" alpha="0.88" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TpY-lG-EdS">
-                                                            <rect key="frame" x="265.5" y="18" width="18" height="19"/>
+                                                            <rect key="frame" x="269.5" y="18" width="18" height="19"/>
                                                             <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="16"/>
                                                             <color key="textColor" red="0.36470588235294116" green="0.59607843137254901" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lessons" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fyr-ag-q72">
-                                                            <rect key="frame" x="287.5" y="18" width="60" height="19"/>
+                                                            <rect key="frame" x="291.5" y="18" width="56" height="19"/>
                                                             <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="16"/>
                                                             <color key="textColor" red="0.36470588235294116" green="0.59607843137254901" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -223,25 +223,25 @@
                                                     <rect key="frame" x="18" y="0.0" width="378" height="75"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TransparentAudio" translatesAutoresizingMaskIntoConstraints="NO" id="4e2-Wv-IbQ">
-                                                            <rect key="frame" x="259" y="25.499999999999996" width="21" height="24.500000000000004"/>
+                                                            <rect key="frame" x="259" y="29.5" width="21" height="16"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="21" id="lQa-V9-gQt"/>
                                                             </constraints>
                                                         </imageView>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DownloadInCircle" translatesAutoresizingMaskIntoConstraints="NO" id="NfR-Md-Mpi">
-                                                            <rect key="frame" x="271" y="40.5" width="24" height="24"/>
+                                                            <rect key="frame" x="271" y="44.5" width="24" height="16"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="24" id="Fx7-Vf-CxW"/>
                                                             </constraints>
                                                         </imageView>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TransparentVideo" translatesAutoresizingMaskIntoConstraints="NO" id="LbE-af-XwM">
-                                                            <rect key="frame" x="323" y="28" width="30" height="19.5"/>
+                                                            <rect key="frame" x="323" y="29.5" width="30" height="16"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="30" id="4SV-Lo-ZCc"/>
                                                             </constraints>
                                                         </imageView>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DownloadInCircle" translatesAutoresizingMaskIntoConstraints="NO" id="5MK-BE-9jN">
-                                                            <rect key="frame" x="335" y="40.5" width="24" height="24"/>
+                                                            <rect key="frame" x="335" y="44.5" width="24" height="16"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="24" id="7Gp-SZ-N4I"/>
                                                             </constraints>
@@ -285,49 +285,49 @@
                                                     <rect key="frame" x="18" y="0.0" width="378" height="75"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FVx-hy-G7W">
-                                                            <rect key="frame" x="26" y="18.5" width="15.5" height="38.5"/>
+                                                            <rect key="frame" x="26" y="19" width="18" height="37.5"/>
                                                             <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="32"/>
                                                             <color key="textColor" red="0.17254901959999999" green="0.16862745100000001" blue="0.33725490200000002" alpha="0.88" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GrayTimer" translatesAutoresizingMaskIntoConstraints="NO" id="HAD-dN-kgf">
-                                                            <rect key="frame" x="91.5" y="29" width="15" height="17"/>
+                                                            <rect key="frame" x="94" y="29" width="15" height="17"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="17" id="Y9c-IZ-jj1"/>
                                                                 <constraint firstAttribute="width" constant="15" id="rl5-Qm-c11"/>
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="56 min" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ocu-AW-QtR">
-                                                            <rect key="frame" x="113.5" y="29" width="40.5" height="17"/>
+                                                            <rect key="frame" x="116" y="29" width="42.5" height="17"/>
                                                             <fontDescription key="fontDescription" name="SFProDisplay-Light" family="SF Pro Display" pointSize="14"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Audio" translatesAutoresizingMaskIntoConstraints="NO" id="u3X-rD-rwq">
-                                                            <rect key="frame" x="269" y="19.5" width="21" height="36.5"/>
+                                                            <rect key="frame" x="269" y="29.5" width="21" height="16"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="21" id="2GZ-Zq-isp"/>
                                                             </constraints>
                                                         </imageView>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RedV" translatesAutoresizingMaskIntoConstraints="NO" id="KrA-ho-pV5">
-                                                            <rect key="frame" x="290" y="43.5" width="8.5" height="11"/>
+                                                            <rect key="frame" x="290" y="41" width="8.5" height="16"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="8.6999999999999993" id="n2e-J2-KU0"/>
                                                             </constraints>
                                                         </imageView>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Video" translatesAutoresizingMaskIntoConstraints="NO" id="6Bm-rb-6SW">
-                                                            <rect key="frame" x="323" y="23.5" width="30" height="28.5"/>
+                                                            <rect key="frame" x="323" y="29.5" width="30" height="16"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="30" id="gnw-kJ-QUg"/>
                                                             </constraints>
                                                         </imageView>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RedV" translatesAutoresizingMaskIntoConstraints="NO" id="Ipa-QS-RBA">
-                                                            <rect key="frame" x="353" y="43.5" width="8.5" height="11"/>
+                                                            <rect key="frame" x="353" y="41" width="8.5" height="16"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="8.6999999999999993" id="S8f-SI-R2t"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YoW-aB-qVp" userLabel="Audio Button">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YoW-aB-qVp" userLabel="Audio Button">
                                                             <rect key="frame" x="254.5" y="12.5" width="50" height="50"/>
                                                             <accessibility key="accessibilityConfiguration" identifier="GLVC Audio Btn"/>
                                                             <constraints>
