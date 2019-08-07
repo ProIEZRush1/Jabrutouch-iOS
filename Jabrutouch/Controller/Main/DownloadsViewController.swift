@@ -470,4 +470,9 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         gemaraTableView.reloadData()
         mishnaTableView.reloadData()
     }
+    
+    @IBAction func backPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
 }

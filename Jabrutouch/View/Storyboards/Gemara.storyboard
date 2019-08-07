@@ -47,6 +47,9 @@
                                 </constraints>
                                 <color key="tintColor" red="0.1764705882352941" green="0.16862745098039217" blue="0.66274509803921566" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" image="LeftArrow"/>
+                                <connections>
+                                    <action selector="backPressed:" destination="w5P-xi-dck" eventType="touchUpInside" id="u48-Dk-NXB"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C6e-xc-Jym" userLabel="Loupe Button">
                                 <rect key="frame" x="348" y="44" width="66" height="53"/>

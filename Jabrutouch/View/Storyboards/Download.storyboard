@@ -47,6 +47,9 @@
                                         <state key="normal" image="LeftArrow">
                                             <color key="titleColor" red="0.2901960784" green="0.2666666667" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="backPressed:" destination="AIk-jv-S31" eventType="touchUpInside" id="5C1-mz-1xU"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Downloads" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WFQ-tq-a9Y">
                                         <rect key="frame" x="135.66666666666666" y="7" width="142.99999999999997" height="33.666666666666664"/>

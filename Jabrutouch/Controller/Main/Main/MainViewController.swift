@@ -29,6 +29,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     private var currentPresentedModal: MainModal?
     private var gemaraHistory: [JTDownload] = []
     private var mishnaHistory: [JTDownload] = []
+    private var todaysDafToHeaderConstraint: NSLayoutConstraint?
     
     //========================================
     // MARK: - @IBOutlets
@@ -39,6 +40,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     @IBOutlet weak private var modalsContainer: UIView!
     
     // Header View
+    @IBOutlet weak var headerContainer: UIView!
     @IBOutlet weak private var menuButton: UIButton!
     @IBOutlet weak private var titleLabel: UILabel!
     @IBOutlet weak private var messagesButton: UIButton!
@@ -53,7 +55,6 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     @IBOutlet weak private var todaysDafTitleLabel: UILabel!
     @IBOutlet weak private var todaysDafLabel: UILabel!
     @IBOutlet weak private var todaysDateLabel: UILabel!
-    @IBOutlet weak var todaysDafToHeaderConstraint: NSLayoutConstraint!
     @IBOutlet weak var todaysDafToWelcomeConstraint: NSLayoutConstraint!
     
     // Tab bar buttons
@@ -86,8 +87,9 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
 
         self.setStrings()
         self.roundCorners()
-        setShadows()
-        setDataForDev() // Only for Dev
+        self.setShadows()
+        self.setConstraints()
+        self.setDataForDev() // Only for Dev
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -121,7 +123,6 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     }
     
     private func roundCorners() {
-//        self.todaysDafContainer.layer.cornerRadius = 15.0
         Utils.setViewShape(view: todaysDafContainer, viewCornerRadius: 15)
     }
     
@@ -136,11 +137,11 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         welcomeImage.isHidden = (gemaraHistory.count != 0 && mishnaHistory.count != 0)
         // TODO debug constraint conflict between the two constraints used in this function (watch Output)
         if (gemaraHistory.count == 0 && mishnaHistory.count == 0) {
-            self.view.removeConstraint(todaysDafToHeaderConstraint)
-            self.view.addConstraint(todaysDafToWelcomeConstraint)
+            todaysDafToHeaderConstraint?.isActive = false
+            todaysDafToWelcomeConstraint.isActive = true
         } else {
-            self.view.removeConstraint(todaysDafToWelcomeConstraint)
-            self.view.addConstraint(todaysDafToHeaderConstraint)
+            todaysDafToWelcomeConstraint.isActive = false
+            todaysDafToHeaderConstraint?.isActive = true
         }
         
         self.view.layoutIfNeeded()
@@ -152,6 +153,10 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         gemaraHistory.append(JTDownload(book: "Brachot", chapter: "D", number: "5", hasAudio: true, hasVideo: true))
         mishnaHistory.append(JTDownload(book: "Rosh Hashana", chapter: "B", number: "12", hasAudio: true, hasVideo: true))
         mishnaHistory.append(JTDownload(book: "Shabbat", chapter: "E", number: "3", hasAudio: true, hasVideo: true))
+    }
+    
+    private func setConstraints() {
+        todaysDafToHeaderConstraint = todaysDafContainer.topAnchor.constraint(equalTo: headerContainer.bottomAnchor, constant: 55)
     }
     
     //========================================

@@ -198,4 +198,7 @@ class GemaraViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // MARK: - @IBActions
     //========================================
     
+    @IBAction func backPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
 }
