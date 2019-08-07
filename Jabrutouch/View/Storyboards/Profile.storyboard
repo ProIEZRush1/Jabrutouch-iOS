@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cWk-hO-RXe">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Display-Regular.otf">
+            <string>SFProDisplay-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Profile View Controller-->
+        <scene sceneID="LLC-f4-L8S">
+            <objects>
+                <viewController storyboardIdentifier="Profile" id="cWk-hO-RXe" customClass="ProfileViewController" customModule="Jabrutouch" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="I8N-Ti-g2X">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YUr-1d-Hoe">
+                                <rect key="frame" x="343" y="44" width="66" height="53"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="66" id="sGx-xJ-jBl"/>
+                                    <constraint firstAttribute="height" constant="53" id="xw0-S4-7sx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="22"/>
+                                <state key="normal" title="Edit">
+                                    <color key="titleColor" red="0.1764705882352941" green="0.16862745098039217" blue="0.66274509803921566" alpha="0.88" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wDk-fZ-jhw">
+                                <rect key="frame" x="0.0" y="44" width="66" height="53"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="53" id="6vw-05-Myb"/>
+                                    <constraint firstAttribute="width" constant="66" id="nCG-p5-tP1"/>
+                                </constraints>
+                                <state key="normal" image="LeftArrow"/>
+                                <connections>
+                                    <action selector="backPressed:" destination="cWk-hO-RXe" eventType="touchUpInside" id="mPW-bG-T5u"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="1x6-04-nlq" firstAttribute="trailing" secondItem="YUr-1d-Hoe" secondAttribute="trailing" constant="5" id="A9R-EC-fs0"/>
+                            <constraint firstItem="1x6-04-nlq" firstAttribute="top" secondItem="wDk-fZ-jhw" secondAttribute="top" id="MaD-7M-HE4"/>
+                            <constraint firstItem="1x6-04-nlq" firstAttribute="leading" secondItem="wDk-fZ-jhw" secondAttribute="leading" id="PdY-Tb-b7Q"/>
+                            <constraint firstItem="1x6-04-nlq" firstAttribute="top" secondItem="YUr-1d-Hoe" secondAttribute="top" id="jRq-XH-4CZ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="1x6-04-nlq"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WBD-13-TiV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7" y="164"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="LeftArrow" width="27.5" height="19.5"/>
+    </resources>
+</document>

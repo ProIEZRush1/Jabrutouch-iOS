@@ -306,6 +306,10 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.performSegue(withIdentifier: "presentMenu", sender: nil)
     }
     
+    private func presentProfile() {
+        self.performSegue(withIdentifier: "presentProfile", sender: nil)
+    }
+    
     private func presentDownloadsViewController() {
         if self.currentPresentedModal != nil && self.currentPresentedModal != .downloads {
             self.modalsPresentingVC.dismiss(animated: true) {
@@ -381,6 +385,8 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
 extension MainViewController: MenuDelegate {
     func optionSelected(option: MenuOption) {
         switch option {
+        case .profile:
+            presentProfile()
         case .signOut:
             LoginManager.shared.signOut {
                 DispatchQueue.main.async {

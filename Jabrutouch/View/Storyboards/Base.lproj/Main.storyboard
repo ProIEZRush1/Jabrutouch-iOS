@@ -159,13 +159,21 @@
             </objects>
             <point key="canvasLocation" x="-1107.2463768115942" y="54.910714285714285"/>
         </scene>
+        <!--Profile-->
+        <scene sceneID="ux7-1o-Dg2">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Profile" id="Tk9-3e-QLR" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="evY-Vq-uXu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-490" y="-236"/>
+        </scene>
         <!--Gemara-->
         <scene sceneID="IHn-Qr-1Q9">
             <objects>
                 <viewControllerPlaceholder storyboardName="Gemara" id="Ld6-3Q-y7r" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y0l-1o-GPV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-216" y="-262"/>
+            <point key="canvasLocation" x="7" y="-236"/>
         </scene>
         <!--Mishna-->
         <scene sceneID="av7-5p-DLf">
@@ -173,7 +181,7 @@
                 <viewControllerPlaceholder storyboardName="Mishna" id="JVG-Qg-8AU" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EFY-uB-qC2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="383" y="-263"/>
+            <point key="canvasLocation" x="433" y="-236"/>
         </scene>
         <!--Donations View Controller-->
         <scene sceneID="wqN-I7-b5z">
@@ -188,7 +196,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WOZ-NP-GbP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1104" y="15"/>
+            <point key="canvasLocation" x="1107" y="83"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="Vw6-8z-eOD">
@@ -860,6 +868,7 @@
                         <outlet property="welcomeImage" destination="nTO-Sk-Ujz" id="jz3-eN-WNr"/>
                         <outlet property="welcomeLabel" destination="3yT-kT-SQl" id="3JJ-Zv-qwh"/>
                         <segue destination="Jhr-px-5v1" kind="presentation" identifier="presentMenu" animates="NO" modalPresentationStyle="overFullScreen" id="QyC-qE-FwQ"/>
+                        <segue destination="Tk9-3e-QLR" kind="presentation" identifier="presentProfile" modalPresentationStyle="currentContext" id="yYt-96-UZ5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MyD-j7-MvK" userLabel="First Responder" sceneMemberID="firstResponder"/>
