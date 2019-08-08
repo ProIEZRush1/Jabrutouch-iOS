@@ -25,6 +25,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     //========================================
     // MARK: - Properties
     //========================================
+    
     private var modalsPresentingVC: ModalsContainerViewController!
     private var currentPresentedModal: MainModal?
     private var gemaraHistory: [JTDownload] = []
@@ -123,24 +124,23 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     }
     
     private func roundCorners() {
-        Utils.setViewShape(view: todaysDafContainer, viewCornerRadius: 15)
+        self.todaysDafContainer.layer.cornerRadius = 15
     }
     
     private func setShadows() {
         let shadowOffset = CGSize(width: 0.0, height: 12)
         Utils.dropViewShadow(view: self.todaysDafContainer, shadowColor: Colors.shadowColor, shadowRadius: 36, shadowOffset: shadowOffset)
-
     }
     
     private func setView() {
         welcomeLabel.isHidden = (gemaraHistory.count != 0 && mishnaHistory.count != 0)
         welcomeImage.isHidden = (gemaraHistory.count != 0 && mishnaHistory.count != 0)
-        // TODO debug constraint conflict between the two constraints used in this function (watch Output)
+        
         if (gemaraHistory.count == 0 && mishnaHistory.count == 0) {
             todaysDafToHeaderConstraint?.isActive = false
-            todaysDafToWelcomeConstraint.isActive = true
+            todaysDafToWelcomeConstraint?.isActive = true
         } else {
-            todaysDafToWelcomeConstraint.isActive = false
+            todaysDafToWelcomeConstraint?.isActive = false
             todaysDafToHeaderConstraint?.isActive = true
         }
         
@@ -297,7 +297,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     // MARK: - Navigation
     //========================================
     
-    private func navigateToSignIn() {
+    func navigateToSignIn() {
         let signInViewController = Storyboards.SignIn.signInViewController
         appDelegate.setRootViewController(viewController: signInViewController, animated: true)
     }
@@ -307,7 +307,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     }
     
     private func presentProfile() {
-        self.performSegue(withIdentifier: "presentProfile", sender: nil)
+        self.performSegue(withIdentifier: "presentProfile", sender: self)
     }
     
     private func presentDownloadsViewController() {
@@ -378,6 +378,11 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         else if segue.identifier == "presentMenu" {
             let menuVC = segue.destination as? MainMenuViewController
             menuVC?.delegate = self
+        }
+            
+        else if segue.identifier == "presentProfile" {
+            let profileViewController = segue.destination as! ProfileViewController
+            profileViewController.mainViewController = self
         }
     }
 }
