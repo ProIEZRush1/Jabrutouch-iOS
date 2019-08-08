@@ -68,10 +68,7 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func logoutPressed(_ sender: Any) {
-        LoginManager.shared.signOut {
-            DispatchQueue.main.async {
-                self.mainViewController?.navigateToSignIn()
-            }
-        }
+        // TODO Popup Logout ALert
+        dismiss(animated: true, completion: nil)
     }
 }

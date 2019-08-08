@@ -117,6 +117,7 @@
 		FB51712122F1D374003BCAFC /* MishnaChapterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB51712022F1D374003BCAFC /* MishnaChapterViewController.swift */; };
 		FB51712322F1D7CC003BCAFC /* MishnaChapterCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB51712222F1D7CB003BCAFC /* MishnaChapterCellController.swift */; };
 		FB67A5DF22E4723F009E4DF9 /* Download.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB67A5DE22E4723F009E4DF9 /* Download.storyboard */; };
+		FB6877C222FC49AE0096465D /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6877C122FC49AE0096465D /* AlertViewController.swift */; };
 		FBAB071622E74ABD00C8DCD7 /* DownloadsCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAB071522E74ABD00C8DCD7 /* DownloadsCellController.swift */; };
 		FBAB071922E7579F00C8DCD7 /* JTDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAB071822E7579F00C8DCD7 /* JTDownload.swift */; };
 		FBB18FAC22F85019006886FD /* Gemara.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBB18FAB22F85019006886FD /* Gemara.storyboard */; };
@@ -125,7 +126,6 @@
 		FBB18FB222F8649A006886FD /* JTGemaraMasechet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB18FB122F8649A006886FD /* JTGemaraMasechet.swift */; };
 		FBB18FB422F866C8006886FD /* GemaraLessonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB18FB322F866C8006886FD /* GemaraLessonsViewController.swift */; };
 		FBB434FA22FACA47008EE211 /* MainCollectionCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB434F922FACA47008EE211 /* MainCollectionCellViewController.swift */; };
-		FBB434FC22FB2C0E008EE211 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBB434FB22FB2C0E008EE211 /* Profile.storyboard */; };
 		FBB434FE22FB2CA4008EE211 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB434FD22FB2CA4008EE211 /* ProfileViewController.swift */; };
 		FBD9374F22F323AA00BC94DC /* MishnaLessonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD9374E22F323AA00BC94DC /* MishnaLessonsViewController.swift */; };
 		FBD9375122F328CC00BC94DC /* LessonDownloadCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD9375022F328CC00BC94DC /* LessonDownloadCellController.swift */; };
@@ -249,6 +249,7 @@
 		FB51712022F1D374003BCAFC /* MishnaChapterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MishnaChapterViewController.swift; sourceTree = "<group>"; };
 		FB51712222F1D7CB003BCAFC /* MishnaChapterCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MishnaChapterCellController.swift; sourceTree = "<group>"; };
 		FB67A5DE22E4723F009E4DF9 /* Download.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Download.storyboard; sourceTree = "<group>"; };
+		FB6877C122FC49AE0096465D /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AlertViewController.swift; path = Main/AlertViewController.swift; sourceTree = "<group>"; };
 		FBAB071522E74ABD00C8DCD7 /* DownloadsCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsCellController.swift; sourceTree = "<group>"; };
 		FBAB071822E7579F00C8DCD7 /* JTDownload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTDownload.swift; sourceTree = "<group>"; };
 		FBB18FAB22F85019006886FD /* Gemara.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Gemara.storyboard; sourceTree = "<group>"; };
@@ -257,7 +258,6 @@
 		FBB18FB122F8649A006886FD /* JTGemaraMasechet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTGemaraMasechet.swift; sourceTree = "<group>"; };
 		FBB18FB322F866C8006886FD /* GemaraLessonsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GemaraLessonsViewController.swift; sourceTree = "<group>"; };
 		FBB434F922FACA47008EE211 /* MainCollectionCellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionCellViewController.swift; sourceTree = "<group>"; };
-		FBB434FB22FB2C0E008EE211 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		FBB434FD22FB2CA4008EE211 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		FBD9374E22F323AA00BC94DC /* MishnaLessonsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MishnaLessonsViewController.swift; sourceTree = "<group>"; };
 		FBD9375022F328CC00BC94DC /* LessonDownloadCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonDownloadCellController.swift; sourceTree = "<group>"; };
@@ -484,6 +484,7 @@
 				FBDEF16C22E89E3B00A300DA /* HeaderCellController.swift */,
 				FBD9375022F328CC00BC94DC /* LessonDownloadCellController.swift */,
 				FBB434FD22FB2CA4008EE211 /* ProfileViewController.swift */,
+				FB6877C122FC49AE0096465D /* AlertViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -529,7 +530,6 @@
 				FB67A5DE22E4723F009E4DF9 /* Download.storyboard */,
 				FBFB161522F0794600362012 /* Mishna.storyboard */,
 				FBB18FAB22F85019006886FD /* Gemara.storyboard */,
-				FBB434FB22FB2C0E008EE211 /* Profile.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -809,7 +809,6 @@
 				21678D6722DF2CED007BC74C /* SF-Pro-Text-Light.otf in Resources */,
 				21678D6822DF2CED007BC74C /* SF-Pro-Text-LightItalic.otf in Resources */,
 				21678D6922DF2CED007BC74C /* SF-Pro-Text-Medium.otf in Resources */,
-				FBB434FC22FB2C0E008EE211 /* Profile.storyboard in Resources */,
 				21678D6A22DF2CED007BC74C /* SF-Pro-Text-MediumItalic.otf in Resources */,
 				21678D6B22DF2CED007BC74C /* SF-Pro-Text-Regular.otf in Resources */,
 				21678D6C22DF2CED007BC74C /* SF-Pro-Text-RegularItalic.otf in Resources */,
@@ -851,6 +850,7 @@
 				FBB18FAE22F85773006886FD /* GemaraMasechetCellController.swift in Sources */,
 				213196AA22F38B3E00B0AF5F /* LoginResponse.swift in Sources */,
 				219BFF2922E50C0B00ABBEE2 /* ModalsContainerViewController.swift in Sources */,
+				FB6877C222FC49AE0096465D /* AlertViewController.swift in Sources */,
 				FBB18FB422F866C8006886FD /* GemaraLessonsViewController.swift in Sources */,
 				216A0E6E22EEFD1400F7FBC1 /* HTTPProvider.swift in Sources */,
 				21678D7422E08530007BC74C /* MainViewController.swift in Sources */,

@@ -20,7 +20,7 @@ protocol MainModalDelegate : class {
     func dismissMainModal()
 }
 
-class MainViewController: UIViewController, MainModalDelegate, UICollectionViewDataSource, MainCollectionCellDelegate {
+class MainViewController: UIViewController, MainModalDelegate, UICollectionViewDataSource {
 
     //========================================
     // MARK: - Properties
@@ -381,23 +381,21 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         }
             
         else if segue.identifier == "presentProfile" {
-            let profileViewController = segue.destination as! ProfileViewController
-            profileViewController.mainViewController = self
+            let profileVC = segue.destination as? ProfileViewController
+            profileVC?.mainViewController = self
         }
     }
 }
 
-extension MainViewController: MenuDelegate {
+extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertViewDelegate {
+    
+    // MenuDelegate
     func optionSelected(option: MenuOption) {
         switch option {
         case .profile:
             presentProfile()
         case .signOut:
-            LoginManager.shared.signOut {
-                DispatchQueue.main.async {
-                    self.navigateToSignIn()
-                }                
-            }
+            presentLogoutAlert()
         case .mishna:
             presentMishnaViewController()
         case .gemara:
@@ -407,10 +405,16 @@ extension MainViewController: MenuDelegate {
         }
     }
     
-    //====================================================
-    // MARK: - Implemented Protocols functions and helpers
-    //====================================================
+    func presentLogoutAlert() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let myAlert = storyboard.instantiateViewController(withIdentifier: "alertView") as! AlertViewController
+        myAlert.delegate = self
+        myAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        myAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+        self.present(myAlert, animated: true, completion: nil)
+    }
     
+    // MainCollectionCellDelegate
     func cellPressed(selectedRow: Int, isFirstCollection: Bool) {
         print("Cell pressed")
         if isFirstCollection {
@@ -438,4 +442,12 @@ extension MainViewController: MenuDelegate {
         }
     }
     
+    // AlertViewDelegate
+    func okPressed() {
+        LoginManager.shared.signOut {
+            DispatchQueue.main.async {
+                self.navigateToSignIn()
+            }
+        }
+    }
 }
