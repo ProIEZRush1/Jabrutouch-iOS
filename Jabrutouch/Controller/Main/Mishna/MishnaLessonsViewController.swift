@@ -141,7 +141,7 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
     //========================================
     
     @IBAction func backPressed(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func downloadPressed(_ sender: Any) {

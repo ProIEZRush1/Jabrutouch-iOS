@@ -27,7 +27,7 @@ class LoginManager {
     // MARK: - Public methods
     //==========================================
     
-    func signIn(phoneNumber: String?, email: String?, password: String, completion:@escaping (_ result: Result<JTUser,Error>)->Void){
+    func signIn(phoneNumber: String?, email: String?, password: String, completion:@escaping (_ result: Result<JTUser,APIError>)->Void){
         API.signIn(phoneNumber: phoneNumber, email: email, password: password, fcmToken: "1234") { (result:APIResult<LoginResponse>) in
             switch result {
             case .success(let response):
@@ -46,7 +46,7 @@ class LoginManager {
         completion()
     }
     
-    func requestVerificationCode(phoneNumber: String, completion:@escaping (_ result: Result<Any, Error>)->Void){
+    func requestVerificationCode(phoneNumber: String, completion:@escaping (_ result: Result<Any, APIError>)->Void){
         API.requestVerificationCode(phoneNumber: phoneNumber) { (result:APIResult<SendCodeResponse>) in
             switch result {
             case .success(let response):

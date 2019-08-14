@@ -10,6 +10,9 @@ import UIKit
 
 class DonationsViewController: UIViewController {
     
+    
+    var delegate: MainModalDelegate?
+    
     //========================================
     // MARK: - @IBOutlets
     //========================================
@@ -31,4 +34,8 @@ class DonationsViewController: UIViewController {
     //========================================
     // MARK: - @IBActions
     //========================================
+    
+    @IBAction func backButtonPressed(_ sender: UIButton) {
+        self.delegate?.dismissMainModal()
+    }
 }

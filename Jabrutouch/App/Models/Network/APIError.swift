@@ -14,4 +14,16 @@ enum APIError: Error {
     case unableToCreateRequest
     case unableToParseResponse
     case serverError(Error)
+    case custom(String)
+    
+    var message: String {
+        switch self {
+        case .serverError(let error):
+            return error.localizedDescription
+        case .custom(let message):
+            return message
+        default:
+            return "Server error"
+        }
+    }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="AIk-jv-S31">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Csn-pr-HK7">
     <device id="retina6_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -484,6 +484,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="shU-4x-Wkk"/>
                     </view>
+                    <navigationItem key="navigationItem" id="mDC-1Q-xu0"/>
                     <connections>
                         <outlet property="deleteButton" destination="lI7-zo-g40" id="D9h-Nl-tDJ"/>
                         <outlet property="gemaraBooksImage" destination="jYC-Qw-FwK" id="5hQ-Um-cUn"/>
@@ -503,6 +504,24 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p42-VI-XV0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1095.6521739130435" y="133.92857142857142"/>
+        </scene>
+        <!--Downloads Navigation Controller-->
+        <scene sceneID="fbL-Gk-Soo">
+            <objects>
+                <navigationController storyboardIdentifier="DownloadsNavigationController" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="Csn-pr-HK7" customClass="DownloadsNavigationController" customModule="Jabrutouch" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="MKW-uG-A69">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="AIk-jv-S31" kind="relationship" relationship="rootViewController" id="PtF-E0-IjL"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dFW-sz-0EK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="185.50724637681162" y="133.92857142857142"/>
         </scene>

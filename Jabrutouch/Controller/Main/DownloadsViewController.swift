@@ -30,6 +30,7 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var gemaraLeadingConsraint: NSLayoutConstraint!
     
+    var delegate: MainModalDelegate?
     fileprivate var grayUpArrowXCentererdToGemara: NSLayoutConstraint?
     fileprivate var grayUpArrowXCentererdToMishna: NSLayoutConstraint?
     fileprivate var gemaraDownloads: [JTDownloadGroup] = []
@@ -472,7 +473,7 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     @IBAction func backPressed(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        self.delegate?.dismissMainModal()
     }
     
 }

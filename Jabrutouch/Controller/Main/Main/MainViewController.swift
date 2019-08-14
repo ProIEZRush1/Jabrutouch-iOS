@@ -384,6 +384,8 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
             let profileVC = segue.destination as? ProfileViewController
             profileVC?.mainViewController = self
         }
+        
+
     }
 }
 

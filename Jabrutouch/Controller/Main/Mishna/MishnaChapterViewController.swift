@@ -83,7 +83,7 @@ class MishnaChapterViewController: UIViewController, UITableViewDelegate, UITabl
     //========================================
     
     @IBAction func backPressed(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
     //====================================================

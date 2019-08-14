@@ -11,7 +11,7 @@ import Foundation
 struct ServerGenericResponse {
     var success: Bool
     var errorCode: Int?
-    var errors: String?
+    var errors: [ServerFieldError] = []
     var data: [String:Any]?
     
     init?(values: [String:Any]) {
@@ -20,8 +20,12 @@ struct ServerGenericResponse {
         } else { return nil }
         
         self.errorCode = values["error_code"] as? Int
-        self.errors = values["errors"] as? String
+        
+        if let errorsValues = values["errors"] as? [[String:String]] {
+            self.errors = errorsValues.compactMap{ServerFieldError(values: $0)}
+        }        
         self.data = values["data"] as? [String:Any]
     }
     
 }
+

@@ -16,6 +16,8 @@ class GemaraViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet weak var tableView: UITableView!
     
+    var delegate: MainModalDelegate?
+    
     fileprivate var sedarim: [JTGemaraSeder] = []
     fileprivate var indexPathSelected: IndexPath = []
     
@@ -199,6 +201,6 @@ class GemaraViewController: UIViewController, UITableViewDelegate, UITableViewDa
     //========================================
     
     @IBAction func backPressed(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        self.delegate?.dismissMainModal()
     }
 }

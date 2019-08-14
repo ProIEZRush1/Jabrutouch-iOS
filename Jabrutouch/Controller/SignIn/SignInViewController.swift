@@ -149,8 +149,8 @@ class SignInViewController: UIViewController {
             case .success:
                 self.navigateToMain()
             case .failure(let error):
-                let message = error.localizedDescription
-                Utils.showAlertMessage(message,title:nil,viewControler:self)
+                let message = error.message
+                Utils.showAlertMessage(message,title:"",viewControler:self)
             }
         }
     }

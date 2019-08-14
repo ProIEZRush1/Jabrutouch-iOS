@@ -13,6 +13,13 @@
 		2120BE1F22DF2758004854DB /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2120BE1E22DF2758004854DB /* SignUpViewController.swift */; };
 		2120BE2122DF2787004854DB /* RequestVerificationCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2120BE2022DF2787004854DB /* RequestVerificationCodeViewController.swift */; };
 		2120BE2322DF279D004854DB /* ValidateVerificationCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2120BE2222DF279D004854DB /* ValidateVerificationCodeViewController.swift */; };
+		2126D6D623033CF800CB501D /* JTSeder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2126D6D523033CF800CB501D /* JTSeder.swift */; };
+		2126D6D823033D4D00CB501D /* JTMasechet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2126D6D723033D4C00CB501D /* JTMasechet.swift */; };
+		2126D6DA2303E81700CB501D /* GetMasechtotResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2126D6D92303E81700CB501D /* GetMasechtotResponse.swift */; };
+		2126D6DC2303EA8600CB501D /* ContentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2126D6DB2303EA8600CB501D /* ContentRepository.swift */; };
+		2126D6DF2303EC5400CB501D /* NotificationsNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2126D6DE2303EC5400CB501D /* NotificationsNames.swift */; };
+		2126D6E12304025A00CB501D /* MishnaNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2126D6E02304025A00CB501D /* MishnaNavigationController.swift */; };
+		2126D6E3230404BD00CB501D /* GemaraNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2126D6E2230404BD00CB501D /* GemaraNavigationController.swift */; };
 		2131969622F38B1200B0AF5F /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2131969222F38B1200B0AF5F /* APIError.swift */; };
 		2131969722F38B1200B0AF5F /* APIResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2131969322F38B1200B0AF5F /* APIResult.swift */; };
 		2131969822F38B1200B0AF5F /* ServerGenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2131969422F38B1200B0AF5F /* ServerGenericResponse.swift */; };
@@ -96,6 +103,7 @@
 		21678D7C22E085CB007BC74C /* DonationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21678D7B22E085CB007BC74C /* DonationsViewController.swift */; };
 		216A0E6E22EEFD1400F7FBC1 /* HTTPProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A0E6D22EEFD1400F7FBC1 /* HTTPProvider.swift */; };
 		216A0E7022EEFDA300F7FBC1 /* HTTPRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A0E6F22EEFDA300F7FBC1 /* HTTPRequestFactory.swift */; };
+		219B06FA230408F400A7EBBA /* ServerFieldError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219B06F9230408F400A7EBBA /* ServerFieldError.swift */; };
 		219BFF2722E50A0A00ABBEE2 /* DownloadsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219BFF2622E50A0A00ABBEE2 /* DownloadsNavigationController.swift */; };
 		219BFF2922E50C0B00ABBEE2 /* ModalsContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219BFF2822E50C0B00ABBEE2 /* ModalsContainerViewController.swift */; };
 		219BFF2C22E59F4500ABBEE2 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219BFF2B22E59F4500ABBEE2 /* Extensions.swift */; };
@@ -142,6 +150,15 @@
 		2120BE1E22DF2758004854DB /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		2120BE2022DF2787004854DB /* RequestVerificationCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestVerificationCodeViewController.swift; sourceTree = "<group>"; };
 		2120BE2222DF279D004854DB /* ValidateVerificationCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateVerificationCodeViewController.swift; sourceTree = "<group>"; };
+		2126D6CF2302CE7100CB501D /* Reachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		2126D6D12302D0E400CB501D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Jabrutouch/Info.plist; sourceTree = SOURCE_ROOT; };
+		2126D6D523033CF800CB501D /* JTSeder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTSeder.swift; sourceTree = "<group>"; };
+		2126D6D723033D4C00CB501D /* JTMasechet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTMasechet.swift; sourceTree = "<group>"; };
+		2126D6D92303E81700CB501D /* GetMasechtotResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMasechtotResponse.swift; sourceTree = "<group>"; };
+		2126D6DB2303EA8600CB501D /* ContentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentRepository.swift; sourceTree = "<group>"; };
+		2126D6DE2303EC5400CB501D /* NotificationsNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsNames.swift; sourceTree = "<group>"; };
+		2126D6E02304025A00CB501D /* MishnaNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MishnaNavigationController.swift; sourceTree = "<group>"; };
+		2126D6E2230404BD00CB501D /* GemaraNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GemaraNavigationController.swift; sourceTree = "<group>"; };
 		2131969222F38B1200B0AF5F /* APIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		2131969322F38B1200B0AF5F /* APIResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIResult.swift; sourceTree = "<group>"; };
 		2131969422F38B1200B0AF5F /* ServerGenericResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerGenericResponse.swift; sourceTree = "<group>"; };
@@ -224,9 +241,10 @@
 		21678D7522E08565007BC74C /* DownloadsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DownloadsViewController.swift; path = ../DownloadsViewController.swift; sourceTree = "<group>"; };
 		21678D7722E08594007BC74C /* GemaraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GemaraViewController.swift; sourceTree = "<group>"; };
 		21678D7922E085B1007BC74C /* MishnaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MishnaViewController.swift; sourceTree = "<group>"; };
-		21678D7B22E085CB007BC74C /* DonationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonationsViewController.swift; sourceTree = "<group>"; };
+		21678D7B22E085CB007BC74C /* DonationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DonationsViewController.swift; path = ../DonationsViewController.swift; sourceTree = "<group>"; };
 		216A0E6D22EEFD1400F7FBC1 /* HTTPProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPProvider.swift; sourceTree = "<group>"; };
 		216A0E6F22EEFDA300F7FBC1 /* HTTPRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequestFactory.swift; sourceTree = "<group>"; };
+		219B06F9230408F400A7EBBA /* ServerFieldError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerFieldError.swift; sourceTree = "<group>"; };
 		219BFF2622E50A0A00ABBEE2 /* DownloadsNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsNavigationController.swift; sourceTree = "<group>"; };
 		219BFF2822E50C0B00ABBEE2 /* ModalsContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalsContainerViewController.swift; sourceTree = "<group>"; };
 		219BFF2B22E59F4500ABBEE2 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -237,7 +255,6 @@
 		219BFF3C22E5B7BA00ABBEE2 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		219BFF4022E7173C00ABBEE2 /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		219BFF4322E7186D00ABBEE2 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
-		21B1A44222DDD30E006A33C9 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Jabrutouch/Info.plist; sourceTree = SOURCE_ROOT; };
 		21CC093D22F04C4000E8FE27 /* daf_yomi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = daf_yomi.json; sourceTree = "<group>"; };
 		21CC094022F05D1500E8FE27 /* DafYomi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DafYomi.swift; sourceTree = "<group>"; };
 		21CC094322F05D8A00E8FE27 /* DafYomiRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DafYomiRepository.swift; sourceTree = "<group>"; };
@@ -350,6 +367,55 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		2126D0DF2302CD5400CB501D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2126D6D02302CE7900CB501D /* Reachability */,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
+		2126D6D02302CE7900CB501D /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				2126D6CF2302CE7100CB501D /* Reachability.h */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
+		2126D6D32302D12F00CB501D /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				2133C21722DCA5D200F910B9 /* Localizable.strings */,
+			);
+			path = Strings;
+			sourceTree = "<group>";
+		};
+		2126D6D423033CDD00CB501D /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				2126D6D523033CF800CB501D /* JTSeder.swift */,
+				2126D6D723033D4C00CB501D /* JTMasechet.swift */,
+			);
+			path = Content;
+			sourceTree = "<group>";
+		};
+		2126D6DD2303EC3600CB501D /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				2126D6DE2303EC5400CB501D /* NotificationsNames.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
+		2126D6E4230405EA00CB501D /* Donations */ = {
+			isa = PBXGroup;
+			children = (
+				21678D7B22E085CB007BC74C /* DonationsViewController.swift */,
+			);
+			path = Donations;
+			sourceTree = "<group>";
+		};
 		2131969E22F38B3300B0AF5F /* API Response models */ = {
 			isa = PBXGroup;
 			children = (
@@ -359,6 +425,7 @@
 				213196A122F38B3E00B0AF5F /* SendCodeResponse.swift */,
 				2131969F22F38B3D00B0AF5F /* SignUpResponse.swift */,
 				213196A022F38B3E00B0AF5F /* ValidateCodeResponse.swift */,
+				2126D6D92303E81700CB501D /* GetMasechtotResponse.swift */,
 			);
 			path = "API Response models";
 			sourceTree = "<group>";
@@ -410,7 +477,7 @@
 				2133C20A22DCA06400F910B9 /* View */,
 				2133C20B22DCA07000F910B9 /* Controller */,
 				2133C21222DCA57900F910B9 /* Supporting Files */,
-				21B1A44222DDD30E006A33C9 /* Info.plist */,
+				2126D0DF2302CD5400CB501D /* Frameworks */,
 			);
 			path = Jabrutouch;
 			sourceTree = "<group>";
@@ -425,6 +492,7 @@
 				219BFF3622E5B6FD00ABBEE2 /* Managers */,
 				2107341B22EEFCA8008479D0 /* Services */,
 				219BFF3222E5B6C200ABBEE2 /* Models */,
+				2126D6DD2303EC3600CB501D /* Notifications */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -476,11 +544,11 @@
 		2133C21022DCA0D900F910B9 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				FBB18FAA22F84CA2006886FD /* Gemara */,
 				219BFF2A22E50CE200ABBEE2 /* Main */,
+				FBB18FAA22F84CA2006886FD /* Gemara */,
 				FB51711222F19C07003BCAFC /* Mishna */,
 				21186E9D22E5097700B3049E /* Downloads */,
-				21678D7B22E085CB007BC74C /* DonationsViewController.swift */,
+				2126D6E4230405EA00CB501D /* Donations */,
 				FBDEF16C22E89E3B00A300DA /* HeaderCellController.swift */,
 				FBD9375022F328CC00BC94DC /* LessonDownloadCellController.swift */,
 				FBB434FD22FB2CA4008EE211 /* ProfileViewController.swift */,
@@ -503,8 +571,9 @@
 			children = (
 				FB67A5E222E47E61009E4DF9 /* Documents */,
 				2120BE2522DF2C62004854DB /* Fonts */,
+				2126D6D32302D12F00CB501D /* Strings */,
 				2133C1FE22DB5B8500F910B9 /* Assets.xcassets */,
-				2133C21722DCA5D200F910B9 /* Localizable.strings */,
+				2126D6D12302D0E400CB501D /* Info.plist */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -541,6 +610,7 @@
 				2131969222F38B1200B0AF5F /* APIError.swift */,
 				2131969322F38B1200B0AF5F /* APIResult.swift */,
 				2131969422F38B1200B0AF5F /* ServerGenericResponse.swift */,
+				219B06F9230408F400A7EBBA /* ServerFieldError.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -587,6 +657,7 @@
 		219BFF3222E5B6C200ABBEE2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2126D6D423033CDD00CB501D /* Content */,
 				21CC093F22F05CEB00E8FE27 /* DafYomi */,
 				2145859022EF7E120062F830 /* Network */,
 				216A0E7122EF15C600F7FBC1 /* User */,
@@ -650,6 +721,7 @@
 			isa = PBXGroup;
 			children = (
 				21CC094322F05D8A00E8FE27 /* DafYomiRepository.swift */,
+				2126D6DB2303EA8600CB501D /* ContentRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -657,6 +729,7 @@
 		FB51711222F19C07003BCAFC /* Mishna */ = {
 			isa = PBXGroup;
 			children = (
+				2126D6E02304025A00CB501D /* MishnaNavigationController.swift */,
 				21678D7922E085B1007BC74C /* MishnaViewController.swift */,
 				FB51711322F19C3F003BCAFC /* MishnaMasechetCellController.swift */,
 				FB51712022F1D374003BCAFC /* MishnaChapterViewController.swift */,
@@ -693,6 +766,7 @@
 		FBB18FAA22F84CA2006886FD /* Gemara */ = {
 			isa = PBXGroup;
 			children = (
+				2126D6E2230404BD00CB501D /* GemaraNavigationController.swift */,
 				21678D7722E08594007BC74C /* GemaraViewController.swift */,
 				FBB18FAD22F85773006886FD /* GemaraMasechetCellController.swift */,
 				FBB18FB322F866C8006886FD /* GemaraLessonsViewController.swift */,
@@ -751,6 +825,7 @@
 				en,
 				Base,
 				es,
+				mr,
 			);
 			mainGroup = 2133C1EB22DB5B8200F910B9;
 			productRefGroup = 2133C1F522DB5B8200F910B9 /* Products */;
@@ -841,9 +916,11 @@
 				FB51711622F19FD2003BCAFC /* JTMishnaMasechet.swift in Sources */,
 				FB51712122F1D374003BCAFC /* MishnaChapterViewController.swift in Sources */,
 				219BFF2F22E5A11900ABBEE2 /* TextFieldWithPadding.swift in Sources */,
+				2126D6D623033CF800CB501D /* JTSeder.swift in Sources */,
 				FBD9375122F328CC00BC94DC /* LessonDownloadCellController.swift in Sources */,
 				FBB434FE22FB2CA4008EE211 /* ProfileViewController.swift in Sources */,
 				2133C22122DCFEB500F910B9 /* WalkThroughCollectionViewCell.swift in Sources */,
+				2126D6DF2303EC5400CB501D /* NotificationsNames.swift in Sources */,
 				219BFF2C22E59F4500ABBEE2 /* Extensions.swift in Sources */,
 				2120BE2122DF2787004854DB /* RequestVerificationCodeViewController.swift in Sources */,
 				21407C8922F72632002F9690 /* TextFieldWithDeleteDelegate.swift in Sources */,
@@ -855,6 +932,7 @@
 				216A0E6E22EEFD1400F7FBC1 /* HTTPProvider.swift in Sources */,
 				21678D7422E08530007BC74C /* MainViewController.swift in Sources */,
 				213196A822F38B3E00B0AF5F /* APIResponseModel.swift in Sources */,
+				2126D6E12304025A00CB501D /* MishnaNavigationController.swift in Sources */,
 				FBAB071622E74ABD00C8DCD7 /* DownloadsCellController.swift in Sources */,
 				2133C21F22DCFC6600F910B9 /* WalkThroughViewController.swift in Sources */,
 				210628BB22F6EBB3008BBD8C /* Storyboards.swift in Sources */,
@@ -883,7 +961,10 @@
 				21CC094122F05D1500E8FE27 /* DafYomi.swift in Sources */,
 				219BFF3D22E5B7BA00ABBEE2 /* Utils.swift in Sources */,
 				21678D7A22E085B1007BC74C /* MishnaViewController.swift in Sources */,
+				2126D6D823033D4D00CB501D /* JTMasechet.swift in Sources */,
+				219B06FA230408F400A7EBBA /* ServerFieldError.swift in Sources */,
 				FBB434FA22FACA47008EE211 /* MainCollectionCellViewController.swift in Sources */,
+				2126D6DA2303E81700CB501D /* GetMasechtotResponse.swift in Sources */,
 				21678D7622E08565007BC74C /* DownloadsViewController.swift in Sources */,
 				219BFF3822E5B72000ABBEE2 /* LocalizationManager.swift in Sources */,
 				213196A522F38B3E00B0AF5F /* SignUpResponse.swift in Sources */,
@@ -893,12 +974,14 @@
 				2133C22422DDCCD500F910B9 /* JBBarPageIndicator.swift in Sources */,
 				213196A922F38B3E00B0AF5F /* ResendCodeResponse.swift in Sources */,
 				213196A622F38B3E00B0AF5F /* ValidateCodeResponse.swift in Sources */,
+				2126D6E3230404BD00CB501D /* GemaraNavigationController.swift in Sources */,
 				2131969D22F38B2E00B0AF5F /* FilesManagementProvider.swift in Sources */,
 				216A0E7022EEFDA300F7FBC1 /* HTTPRequestFactory.swift in Sources */,
 				213196B122F38B9E00B0AF5F /* ActivityView.swift in Sources */,
 				2133C1F822DB5B8200F910B9 /* AppDelegate.swift in Sources */,
 				FB51711F22F1AE0B003BCAFC /* JTLessonDownload.swift in Sources */,
 				21678D7822E08594007BC74C /* GemaraViewController.swift in Sources */,
+				2126D6DC2303EA8600CB501D /* ContentRepository.swift in Sources */,
 				219BFF4422E7186D00ABBEE2 /* MenuTableViewCell.swift in Sources */,
 				2131969722F38B1200B0AF5F /* APIResult.swift in Sources */,
 				FBDEF16822E8868600A300DA /* JTDownloadGroup.swift in Sources */,
@@ -1062,11 +1145,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C692PFPDCX;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Jabrutouch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = il.co.ravtech.Jabrutouch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1081,11 +1166,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C692PFPDCX;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Jabrutouch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = il.co.ravtech.Jabrutouch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

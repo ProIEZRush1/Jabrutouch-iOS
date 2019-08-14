@@ -170,7 +170,7 @@ class RequestVerificationCodeViewController: UIViewController {
                 self.navigateToVerificatonCodeViewController(phoneNumber: phoneNumber)
             case .failure(let error):
                 let title = Strings.error
-                let message = error.localizedDescription
+                let message = error.message
                 Utils.showAlertMessage(message, title: title, viewControler: self)
             }
         }

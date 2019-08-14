@@ -16,6 +16,7 @@ class MishnaViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet weak var tableView: UITableView!
     
+    var delegate: MainModalDelegate?
     fileprivate var sedarim: [JTMishnaSeder] = []
     fileprivate var indexPathSelected: IndexPath = []
     
@@ -203,6 +204,6 @@ class MishnaViewController: UIViewController, UITableViewDelegate, UITableViewDa
     //========================================
     
     @IBAction func backPressed(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        self.delegate?.dismissMainModal()
     }
 }

@@ -64,6 +64,20 @@ class API {
             self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
         }
     }
+    
+    //========================================
+    // MARK: - Content
+    //========================================
+    
+    class func getMasechtot(completionHandler:@escaping (_ response: APIResult<GetMasechtotResponse>)->Void) {
+        guard let request = HttpRequestsFactory.createGetMasechtotRequest() else {
+            completionHandler(APIResult.failure(.unableToCreateRequest))
+            return
+        }
+        HttpProvider.excecuteRequest(request: request) { (data, response, error) in
+            self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
+        }
+    }
     //========================================
     // MARK: - Response Processing
     //========================================
@@ -96,7 +110,14 @@ class API {
             }
             else {
                 // TODO - implement specific error evaluation
-                completionHandler(.failure(.unknown))
+                if serverResponse.errors.count > 0 {
+                    let fieldError = serverResponse.errors[0]
+                    completionHandler(.failure(.custom(fieldError.message)))
+                }
+                else {
+                    completionHandler(.failure(.unknown))
+                }
+                
             }
         }
         else {

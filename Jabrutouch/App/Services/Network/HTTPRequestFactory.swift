@@ -63,7 +63,7 @@ class HttpRequestsFactory {
     }
     
     //==========================================
-    // MARK: - Login Flow
+    // MARK: - User Flow
     //==========================================
     
     class func createGetUserRequest(userId: Int, token: String) -> URLRequest?{
@@ -85,6 +85,19 @@ class HttpRequestsFactory {
         let request = self.createRequest(url, method: .post, body: body, additionalHeaders: additionalHeaders)
         return request
     }
+    
+    //==========================================
+    // MARK: - Content
+    //==========================================
+    
+    class func createGetMasechtotRequest() -> URLRequest?{
+        guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
+        let link = baseUrl.appendingPathComponent("masechtot_list/").absoluteString
+        guard let url = self.createUrl(fromLink: link, urlParams: nil) else { return nil }
+        let request = self.createRequest(url, method: .get, body: nil, additionalHeaders: nil)
+        return request
+    }
+    
     //==========================================
     // MARK: - Utils & Helpers
     //==========================================

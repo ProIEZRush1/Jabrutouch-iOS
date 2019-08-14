@@ -10,8 +10,16 @@ import UIKit
 
 class SplashScreenViewController: UIViewController {
 
+    //========================================
+    // MARK: - @OBOutlets
+    //========================================
+    
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    
+    //========================================
+    // MARK: - LifeCycle
+    //========================================
     override func viewDidLoad() {
         super.viewDidLoad()
         self.activityIndicator.isHidden = true
@@ -19,24 +27,27 @@ class SplashScreenViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        
+        self.registerForNotifications()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if UserDefaultsProvider.shared.seenWalkThrough == false {
-            self.navigateToWalkThrough()
-        }
-        else if let username = UserDefaultsProvider.shared.currentUsername, let password = UserDefaultsProvider.shared.currentPassword {
-            self.attemptSignIn(username: username, password: password)
-        }
-        else {
-            self.navigateToSignIn()
-        }
-        
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self)
+    }
+    //========================================
+    // MARK: - Notifications setup
+    //========================================
+    
+    private func registerForNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.shasLoaded(_:)), name: .shasLoaded, object: nil)
+    }
+    
     private func attemptSignIn(username: String, password: String) {
         var phoneNumber: String?
         var email: String?
@@ -81,4 +92,19 @@ class SplashScreenViewController: UIViewController {
 
     }
 
+    //========================================
+    // MARK: - Notification observations
+    //========================================
+    
+    @objc func shasLoaded(_ notifcation: Notification) {
+        if UserDefaultsProvider.shared.seenWalkThrough == false {
+            self.navigateToWalkThrough()
+        }
+        else if let username = UserDefaultsProvider.shared.currentUsername, let password = UserDefaultsProvider.shared.currentPassword {
+            self.attemptSignIn(username: username, password: password)
+        }
+        else {
+            self.navigateToSignIn()
+        }
+    }
 }
