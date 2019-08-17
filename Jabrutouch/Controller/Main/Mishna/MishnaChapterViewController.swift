@@ -17,8 +17,8 @@ class MishnaChapterViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var masechetName: UILabel!
     
-    var chapters: [JTMishnaChapter] = []
-    var masechetString: String?
+    var masechetId: Int?
+    var masechet: JTMishnaMasechet?
     fileprivate var selectedRow: Int = 0
 
     //========================================
@@ -27,17 +27,19 @@ class MishnaChapterViewController: UIViewController, UITableViewDelegate, UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
-        masechetName.text = masechetString
+        
+        self.setContent()
+        self.setTableView()
+        self.setStrings()
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showMishnaLessons" {
             let vc = segue.destination as? MishnaLessonsViewController
-            vc?.lessons = chapters[selectedRow].lessonsDownloaded
-            vc?.masechet = masechetString
-            vc?.chapter = chapters[selectedRow].name
+            vc?.masechetId = self.masechetId
+            vc?.masechetName = self.masechet?.name
+            vc?.chapter = Int(self.masechet?.chapters[self.selectedRow].chapter ?? "")
         }
     }
     
@@ -45,6 +47,20 @@ class MishnaChapterViewController: UIViewController, UITableViewDelegate, UITabl
     // MARK: - Setup
     //========================================
     
+    private func setContent() {
+        if let id = self.masechetId {
+            self.masechet = ContentRepository.shared.getMishanMasechet(masechetId: id)
+            self.tableView.reloadData()
+        }
+    }
+    
+    private func setTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+    private func setStrings() {
+        self.masechetName.text = self.masechet?.name
+    }
     //=====================================================
     // MARK: - UITableView Data Source and Delegate section
     //=====================================================
@@ -54,7 +70,7 @@ class MishnaChapterViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return chapters.count
+        return self.masechet?.chapters.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -63,10 +79,11 @@ class MishnaChapterViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "mishnaChapterCell", for: indexPath) as! MishnaChapterCellController
-        cell.chapterName.text = chapters[indexPath.row].name
-        let mishnaiotCount = chapters[indexPath.row].lessonsDownloaded.count
+        guard let chapter = self.masechet?.chapters[indexPath.row] else { return cell }
+        cell.chapterName.text = chapter.chapter
+        let mishnaiotCount = chapter.lessonsCount
         cell.mishnaiotCount.text = String(mishnaiotCount)
-        cell.mishnaiotText.text = mishnaiotCount > 1 ? "Mishnaiot" : "Mishna"
+        cell.mishnaiotText.text = mishnaiotCount > 1 ? Strings.mishnayot : Strings.mishna
         cell.delegate = self
         cell.selectedRow = indexPath.row
         Utils.setViewShape(view: cell.cellView, viewCornerRadius: 18)

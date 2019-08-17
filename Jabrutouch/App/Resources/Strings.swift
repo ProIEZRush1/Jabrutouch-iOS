@@ -228,6 +228,32 @@ class Strings {
     class var todaysDafYomi: String {
         return NSLocalizedString("todaysDafYomi", comment: "")
     }
+    
+    class var pages: String {
+        return NSLocalizedString("pages", comment: "")
+    }
+    
+    class var page: String {
+        return NSLocalizedString("page", comment: "")
+    }
+    
+    class var chapter: String {
+        return NSLocalizedString("chapter", comment: "")
+    }
+    
+    class var chapters: String {
+        return NSLocalizedString("chapters", comment: "")
+    }
+    
+    class var seder: String {
+        return NSLocalizedString("seder", comment: "")
+    }
+    
+    class var mishnayot: String {
+        return NSLocalizedString("mishnayot", comment: "")
+    }
+    
+    class var minutesShorthand: String {
+        return NSLocalizedString("minutesShorthand", comment: "")
+    }
 }
-
-

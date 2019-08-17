@@ -19,28 +19,62 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var chapterLabel: UILabel!
     @IBOutlet weak var downloadButton: UIButton!
     
-    var lessons: [JTLessonDownload] = []
-    var masechet: String?
-    var chapter: String?
+    var lessons: [JTMishnaLesson] = []
+    var masechetName: String?
+    var chapter: Int?
+    var masechetId: Int?
     var isCurrentlyEditing: Bool = false
-    var isFirstLoading: Bool = true
+    var isFirstLoading: Bool = false
     
+    private var activityView: ActivityView?
     //========================================
     // MARK: - LifeCycle
     //========================================
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
-        masechetLabel.text = masechet
-        chapterLabel.text = chapter
+        
+        self.setTableView()
+        self.setStrings()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.setContent()
+    }
     //========================================
     // MARK: - Setup
     //========================================
     
+    private func setTableView() {
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+    }
+    
+    private func setStrings() {
+        self.masechetLabel.text = self.masechetName
+        self.chapterLabel.text = "\(self.chapter ?? 1)"
+    }
+    
+    private func setContent() {
+        guard let masechetId = self.masechetId, let chapter = self.chapter else { return }
+        self.showActivityView()
+        ContentRepository.shared.getMishnaLessons(masechetId: masechetId, chapter: chapter) { (result:
+            Result<[JTMishnaLesson], JTError>) in
+            self.removeActivityView()
+            switch result {
+            case .success(let lessons):
+                self.lessons = lessons
+                self.tableView.reloadData()
+            case .failure(let error):
+                let title = Strings.error
+                let message = error.message
+                Utils.showAlertMessage(message, title: title, viewControler: self)
+            }
+        }
+        
+    }
     //=====================================================
     // MARK: - UITableView Data Source and Delegate section
     //=====================================================
@@ -61,8 +95,9 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
         let cell = tableView.dequeueReusableCell(withIdentifier: "lessonDownloadCell", for: indexPath) as! LessonDownloadCellController
         setImages(indexPath, cell)
         setEditingIfNeeded(cell)
-        cell.lessonNumber.text = lessons[indexPath.row].number
-        cell.lessonLength.text = lessons[indexPath.row].length
+        let lesson = lessons[indexPath.row]
+        cell.lessonNumber.text = "\(lesson.mishna)"
+        cell.lessonLength.text = lesson.durationDisplay
         cell.delegate = self
         cell.selectedRow = indexPath.row
         Utils.setViewShape(view: cell.underneathCellView, viewCornerRadius: 18)
@@ -193,6 +228,25 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
             alreadyDownloadedMediaAlert()
         } else {
             print("Download video")
+        }
+    }
+    
+    //============================================================
+    // MARK: - ActivityView
+    //============================================================
+    
+    private func showActivityView() {
+        DispatchQueue.main.async {
+            if self.activityView == nil {
+                self.activityView = Utils.showActivityView(inView: self.view, withFrame: self.view.frame, text: nil)
+            }
+        }
+    }
+    private func removeActivityView() {
+        DispatchQueue.main.async {
+            if let view = self.activityView {
+                Utils.removeActivityView(view)
+            }
         }
     }
 }

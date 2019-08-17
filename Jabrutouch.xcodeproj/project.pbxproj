@@ -20,7 +20,7 @@
 		2126D6DF2303EC5400CB501D /* NotificationsNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2126D6DE2303EC5400CB501D /* NotificationsNames.swift */; };
 		2126D6E12304025A00CB501D /* MishnaNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2126D6E02304025A00CB501D /* MishnaNavigationController.swift */; };
 		2126D6E3230404BD00CB501D /* GemaraNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2126D6E2230404BD00CB501D /* GemaraNavigationController.swift */; };
-		2131969622F38B1200B0AF5F /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2131969222F38B1200B0AF5F /* APIError.swift */; };
+		2131969622F38B1200B0AF5F /* JTError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2131969222F38B1200B0AF5F /* JTError.swift */; };
 		2131969722F38B1200B0AF5F /* APIResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2131969322F38B1200B0AF5F /* APIResult.swift */; };
 		2131969822F38B1200B0AF5F /* ServerGenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2131969422F38B1200B0AF5F /* ServerGenericResponse.swift */; };
 		2131969C22F38B2E00B0AF5F /* UserDefaultsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2131969A22F38B2D00B0AF5F /* UserDefaultsProvider.swift */; };
@@ -117,6 +117,13 @@
 		21CC093E22F04C4000E8FE27 /* daf_yomi.json in Resources */ = {isa = PBXBuildFile; fileRef = 21CC093D22F04C4000E8FE27 /* daf_yomi.json */; };
 		21CC094122F05D1500E8FE27 /* DafYomi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CC094022F05D1500E8FE27 /* DafYomi.swift */; };
 		21CC094422F05D8A00E8FE27 /* DafYomiRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CC094322F05D8A00E8FE27 /* DafYomiRepository.swift */; };
+		21E0BE942304217800F820D4 /* JTMishnaMasechetItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E0BE932304217800F820D4 /* JTMishnaMasechetItem.swift */; };
+		21ED3BCC23042A3C009D8E3D /* JTMishnaChapterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21ED3BCB23042A3C009D8E3D /* JTMishnaChapterItem.swift */; };
+		21ED3BD12304847A009D8E3D /* JTLessonPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21ED3BD02304847A009D8E3D /* JTLessonPresenter.swift */; };
+		21ED3BD42304858C009D8E3D /* JTMishnaLesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21ED3BD32304858C009D8E3D /* JTMishnaLesson.swift */; };
+		21ED3BD823048835009D8E3D /* GetMishnaLessonsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21ED3BD723048835009D8E3D /* GetMishnaLessonsResponse.swift */; };
+		21ED3BDA230488E3009D8E3D /* JTGemaraLesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21ED3BD9230488E3009D8E3D /* JTGemaraLesson.swift */; };
+		21ED3BDC23048970009D8E3D /* GetGemaraLessonsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21ED3BDB23048970009D8E3D /* GetGemaraLessonsResponse.swift */; };
 		FB51711422F19C3F003BCAFC /* MishnaMasechetCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB51711322F19C3F003BCAFC /* MishnaMasechetCellController.swift */; };
 		FB51711622F19FD2003BCAFC /* JTMishnaMasechet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB51711522F19FD2003BCAFC /* JTMishnaMasechet.swift */; };
 		FB51711A22F1A100003BCAFC /* JTMishnaChapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB51711922F1A100003BCAFC /* JTMishnaChapter.swift */; };
@@ -131,7 +138,7 @@
 		FBB18FAC22F85019006886FD /* Gemara.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBB18FAB22F85019006886FD /* Gemara.storyboard */; };
 		FBB18FAE22F85773006886FD /* GemaraMasechetCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB18FAD22F85773006886FD /* GemaraMasechetCellController.swift */; };
 		FBB18FB022F863AF006886FD /* JTGemaraSeder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB18FAF22F863AF006886FD /* JTGemaraSeder.swift */; };
-		FBB18FB222F8649A006886FD /* JTGemaraMasechet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB18FB122F8649A006886FD /* JTGemaraMasechet.swift */; };
+		FBB18FB222F8649A006886FD /* JTGemaraMasechetItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB18FB122F8649A006886FD /* JTGemaraMasechetItem.swift */; };
 		FBB18FB422F866C8006886FD /* GemaraLessonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB18FB322F866C8006886FD /* GemaraLessonsViewController.swift */; };
 		FBB434FA22FACA47008EE211 /* MainCollectionCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB434F922FACA47008EE211 /* MainCollectionCellViewController.swift */; };
 		FBB434FE22FB2CA4008EE211 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB434FD22FB2CA4008EE211 /* ProfileViewController.swift */; };
@@ -159,7 +166,7 @@
 		2126D6DE2303EC5400CB501D /* NotificationsNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsNames.swift; sourceTree = "<group>"; };
 		2126D6E02304025A00CB501D /* MishnaNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MishnaNavigationController.swift; sourceTree = "<group>"; };
 		2126D6E2230404BD00CB501D /* GemaraNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GemaraNavigationController.swift; sourceTree = "<group>"; };
-		2131969222F38B1200B0AF5F /* APIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		2131969222F38B1200B0AF5F /* JTError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JTError.swift; sourceTree = "<group>"; };
 		2131969322F38B1200B0AF5F /* APIResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIResult.swift; sourceTree = "<group>"; };
 		2131969422F38B1200B0AF5F /* ServerGenericResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerGenericResponse.swift; sourceTree = "<group>"; };
 		2131969A22F38B2D00B0AF5F /* UserDefaultsProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsProvider.swift; sourceTree = "<group>"; };
@@ -183,7 +190,6 @@
 		2133C1FE22DB5B8500F910B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Assets.xcassets; sourceTree = "<group>"; };
 		2133C20122DB5B8500F910B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2133C20D22DCA0BC00F910B9 /* SignIn.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
-		2133C21622DCA5D200F910B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2133C21822DCA5DB00F910B9 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2133C21A22DCA5FC00F910B9 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		2133C21E22DCFC6600F910B9 /* WalkThroughViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkThroughViewController.swift; sourceTree = "<group>"; };
@@ -258,6 +264,16 @@
 		21CC093D22F04C4000E8FE27 /* daf_yomi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = daf_yomi.json; sourceTree = "<group>"; };
 		21CC094022F05D1500E8FE27 /* DafYomi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DafYomi.swift; sourceTree = "<group>"; };
 		21CC094322F05D8A00E8FE27 /* DafYomiRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DafYomiRepository.swift; sourceTree = "<group>"; };
+		21E0BE912304132300F820D4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		21E0BE922304132300F820D4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		21E0BE932304217800F820D4 /* JTMishnaMasechetItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTMishnaMasechetItem.swift; sourceTree = "<group>"; };
+		21ED3BCA230424A2009D8E3D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		21ED3BCB23042A3C009D8E3D /* JTMishnaChapterItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTMishnaChapterItem.swift; sourceTree = "<group>"; };
+		21ED3BD02304847A009D8E3D /* JTLessonPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTLessonPresenter.swift; sourceTree = "<group>"; };
+		21ED3BD32304858C009D8E3D /* JTMishnaLesson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTMishnaLesson.swift; sourceTree = "<group>"; };
+		21ED3BD723048835009D8E3D /* GetMishnaLessonsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMishnaLessonsResponse.swift; sourceTree = "<group>"; };
+		21ED3BD9230488E3009D8E3D /* JTGemaraLesson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTGemaraLesson.swift; sourceTree = "<group>"; };
+		21ED3BDB23048970009D8E3D /* GetGemaraLessonsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGemaraLessonsResponse.swift; sourceTree = "<group>"; };
 		FB51711322F19C3F003BCAFC /* MishnaMasechetCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MishnaMasechetCellController.swift; sourceTree = "<group>"; };
 		FB51711522F19FD2003BCAFC /* JTMishnaMasechet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTMishnaMasechet.swift; sourceTree = "<group>"; };
 		FB51711922F1A100003BCAFC /* JTMishnaChapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTMishnaChapter.swift; sourceTree = "<group>"; };
@@ -272,7 +288,7 @@
 		FBB18FAB22F85019006886FD /* Gemara.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Gemara.storyboard; sourceTree = "<group>"; };
 		FBB18FAD22F85773006886FD /* GemaraMasechetCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GemaraMasechetCellController.swift; sourceTree = "<group>"; };
 		FBB18FAF22F863AF006886FD /* JTGemaraSeder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTGemaraSeder.swift; sourceTree = "<group>"; };
-		FBB18FB122F8649A006886FD /* JTGemaraMasechet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTGemaraMasechet.swift; sourceTree = "<group>"; };
+		FBB18FB122F8649A006886FD /* JTGemaraMasechetItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTGemaraMasechetItem.swift; sourceTree = "<group>"; };
 		FBB18FB322F866C8006886FD /* GemaraLessonsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GemaraLessonsViewController.swift; sourceTree = "<group>"; };
 		FBB434F922FACA47008EE211 /* MainCollectionCellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionCellViewController.swift; sourceTree = "<group>"; };
 		FBB434FD22FB2CA4008EE211 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -394,8 +410,8 @@
 		2126D6D423033CDD00CB501D /* Content */ = {
 			isa = PBXGroup;
 			children = (
-				2126D6D523033CF800CB501D /* JTSeder.swift */,
-				2126D6D723033D4C00CB501D /* JTMasechet.swift */,
+				21ED3BD6230485C6009D8E3D /* Domain Models */,
+				21ED3BD5230485A4009D8E3D /* App Models */,
 			);
 			path = Content;
 			sourceTree = "<group>";
@@ -426,6 +442,8 @@
 				2131969F22F38B3D00B0AF5F /* SignUpResponse.swift */,
 				213196A022F38B3E00B0AF5F /* ValidateCodeResponse.swift */,
 				2126D6D92303E81700CB501D /* GetMasechtotResponse.swift */,
+				21ED3BD723048835009D8E3D /* GetMishnaLessonsResponse.swift */,
+				21ED3BDB23048970009D8E3D /* GetGemaraLessonsResponse.swift */,
 			);
 			path = "API Response models";
 			sourceTree = "<group>";
@@ -607,7 +625,6 @@
 			isa = PBXGroup;
 			children = (
 				2131969E22F38B3300B0AF5F /* API Response models */,
-				2131969222F38B1200B0AF5F /* APIError.swift */,
 				2131969322F38B1200B0AF5F /* APIResult.swift */,
 				2131969422F38B1200B0AF5F /* ServerGenericResponse.swift */,
 				219B06F9230408F400A7EBBA /* ServerFieldError.swift */,
@@ -657,6 +674,7 @@
 		219BFF3222E5B6C200ABBEE2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2131969222F38B1200B0AF5F /* JTError.swift */,
 				2126D6D423033CDD00CB501D /* Content */,
 				21CC093F22F05CEB00E8FE27 /* DafYomi */,
 				2145859022EF7E120062F830 /* Network */,
@@ -726,14 +744,56 @@
 			path = Repositories;
 			sourceTree = "<group>";
 		};
+		21ED3BCD23042D25009D8E3D /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				FB51711322F19C3F003BCAFC /* MishnaMasechetCellController.swift */,
+				FB51712222F1D7CB003BCAFC /* MishnaChapterCellController.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		21ED3BD5230485A4009D8E3D /* App Models */ = {
+			isa = PBXGroup;
+			children = (
+				FBB18FAF22F863AF006886FD /* JTGemaraSeder.swift */,
+				FBB18FB122F8649A006886FD /* JTGemaraMasechetItem.swift */,
+				FB51711C22F1A275003BCAFC /* JTMishnaSeder.swift */,
+				21E0BE932304217800F820D4 /* JTMishnaMasechetItem.swift */,
+				FB51711522F19FD2003BCAFC /* JTMishnaMasechet.swift */,
+				21ED3BCB23042A3C009D8E3D /* JTMishnaChapterItem.swift */,
+				FB51711922F1A100003BCAFC /* JTMishnaChapter.swift */,
+			);
+			path = "App Models";
+			sourceTree = "<group>";
+		};
+		21ED3BD6230485C6009D8E3D /* Domain Models */ = {
+			isa = PBXGroup;
+			children = (
+				2126D6D523033CF800CB501D /* JTSeder.swift */,
+				2126D6D723033D4C00CB501D /* JTMasechet.swift */,
+				21ED3BD02304847A009D8E3D /* JTLessonPresenter.swift */,
+				21ED3BD32304858C009D8E3D /* JTMishnaLesson.swift */,
+				21ED3BD9230488E3009D8E3D /* JTGemaraLesson.swift */,
+			);
+			path = "Domain Models";
+			sourceTree = "<group>";
+		};
+		21ED3BDD23056349009D8E3D /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				FBB18FAD22F85773006886FD /* GemaraMasechetCellController.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		FB51711222F19C07003BCAFC /* Mishna */ = {
 			isa = PBXGroup;
 			children = (
+				21ED3BCD23042D25009D8E3D /* Cells */,
 				2126D6E02304025A00CB501D /* MishnaNavigationController.swift */,
 				21678D7922E085B1007BC74C /* MishnaViewController.swift */,
-				FB51711322F19C3F003BCAFC /* MishnaMasechetCellController.swift */,
 				FB51712022F1D374003BCAFC /* MishnaChapterViewController.swift */,
-				FB51712222F1D7CB003BCAFC /* MishnaChapterCellController.swift */,
 				FBD9374E22F323AA00BC94DC /* MishnaLessonsViewController.swift */,
 			);
 			path = Mishna;
@@ -753,12 +813,7 @@
 			children = (
 				FBAB071822E7579F00C8DCD7 /* JTDownload.swift */,
 				FBDEF16722E8868600A300DA /* JTDownloadGroup.swift */,
-				FB51711522F19FD2003BCAFC /* JTMishnaMasechet.swift */,
-				FB51711922F1A100003BCAFC /* JTMishnaChapter.swift */,
-				FB51711C22F1A275003BCAFC /* JTMishnaSeder.swift */,
 				FB51711E22F1AE0B003BCAFC /* JTLessonDownload.swift */,
-				FBB18FAF22F863AF006886FD /* JTGemaraSeder.swift */,
-				FBB18FB122F8649A006886FD /* JTGemaraMasechet.swift */,
 			);
 			path = "Data Models";
 			sourceTree = "<group>";
@@ -766,9 +821,9 @@
 		FBB18FAA22F84CA2006886FD /* Gemara */ = {
 			isa = PBXGroup;
 			children = (
+				21ED3BDD23056349009D8E3D /* Cells */,
 				2126D6E2230404BD00CB501D /* GemaraNavigationController.swift */,
 				21678D7722E08594007BC74C /* GemaraViewController.swift */,
-				FBB18FAD22F85773006886FD /* GemaraMasechetCellController.swift */,
 				FBB18FB322F866C8006886FD /* GemaraLessonsViewController.swift */,
 			);
 			path = Gemara;
@@ -822,10 +877,9 @@
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
 				es,
-				mr,
+				en,
 			);
 			mainGroup = 2133C1EB22DB5B8200F910B9;
 			productRefGroup = 2133C1F522DB5B8200F910B9 /* Products */;
@@ -915,14 +969,18 @@
 				213196A722F38B3E00B0AF5F /* SendCodeResponse.swift in Sources */,
 				FB51711622F19FD2003BCAFC /* JTMishnaMasechet.swift in Sources */,
 				FB51712122F1D374003BCAFC /* MishnaChapterViewController.swift in Sources */,
+				21ED3BD12304847A009D8E3D /* JTLessonPresenter.swift in Sources */,
 				219BFF2F22E5A11900ABBEE2 /* TextFieldWithPadding.swift in Sources */,
 				2126D6D623033CF800CB501D /* JTSeder.swift in Sources */,
 				FBD9375122F328CC00BC94DC /* LessonDownloadCellController.swift in Sources */,
 				FBB434FE22FB2CA4008EE211 /* ProfileViewController.swift in Sources */,
+				21ED3BD42304858C009D8E3D /* JTMishnaLesson.swift in Sources */,
+				21ED3BDC23048970009D8E3D /* GetGemaraLessonsResponse.swift in Sources */,
 				2133C22122DCFEB500F910B9 /* WalkThroughCollectionViewCell.swift in Sources */,
 				2126D6DF2303EC5400CB501D /* NotificationsNames.swift in Sources */,
 				219BFF2C22E59F4500ABBEE2 /* Extensions.swift in Sources */,
 				2120BE2122DF2787004854DB /* RequestVerificationCodeViewController.swift in Sources */,
+				21ED3BDA230488E3009D8E3D /* JTGemaraLesson.swift in Sources */,
 				21407C8922F72632002F9690 /* TextFieldWithDeleteDelegate.swift in Sources */,
 				FBB18FAE22F85773006886FD /* GemaraMasechetCellController.swift in Sources */,
 				213196AA22F38B3E00B0AF5F /* LoginResponse.swift in Sources */,
@@ -954,8 +1012,9 @@
 				2120BE1D22DF273F004854DB /* SignInViewController.swift in Sources */,
 				2120BE2322DF279D004854DB /* ValidateVerificationCodeViewController.swift in Sources */,
 				2131969822F38B1200B0AF5F /* ServerGenericResponse.swift in Sources */,
-				2131969622F38B1200B0AF5F /* APIError.swift in Sources */,
+				2131969622F38B1200B0AF5F /* JTError.swift in Sources */,
 				21CC094422F05D8A00E8FE27 /* DafYomiRepository.swift in Sources */,
+				21ED3BD823048835009D8E3D /* GetMishnaLessonsResponse.swift in Sources */,
 				2133C21B22DCA5FC00F910B9 /* Strings.swift in Sources */,
 				213196B322F6DAC600B0AF5F /* LoginManager.swift in Sources */,
 				21CC094122F05D1500E8FE27 /* DafYomi.swift in Sources */,
@@ -971,7 +1030,9 @@
 				2120BE1F22DF2758004854DB /* SignUpViewController.swift in Sources */,
 				213196AD22F38B6800B0AF5F /* JTCommunity.swift in Sources */,
 				FBDEF16D22E89E3B00A300DA /* HeaderCellController.swift in Sources */,
+				21E0BE942304217800F820D4 /* JTMishnaMasechetItem.swift in Sources */,
 				2133C22422DDCCD500F910B9 /* JBBarPageIndicator.swift in Sources */,
+				21ED3BCC23042A3C009D8E3D /* JTMishnaChapterItem.swift in Sources */,
 				213196A922F38B3E00B0AF5F /* ResendCodeResponse.swift in Sources */,
 				213196A622F38B3E00B0AF5F /* ValidateCodeResponse.swift in Sources */,
 				2126D6E3230404BD00CB501D /* GemaraNavigationController.swift in Sources */,
@@ -985,7 +1046,7 @@
 				219BFF4422E7186D00ABBEE2 /* MenuTableViewCell.swift in Sources */,
 				2131969722F38B1200B0AF5F /* APIResult.swift in Sources */,
 				FBDEF16822E8868600A300DA /* JTDownloadGroup.swift in Sources */,
-				FBB18FB222F8649A006886FD /* JTGemaraMasechet.swift in Sources */,
+				FBB18FB222F8649A006886FD /* JTGemaraMasechetItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -996,6 +1057,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				2133C1FC22DB5B8200F910B9 /* Base */,
+				21E0BE922304132300F820D4 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1004,6 +1066,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				2133C20122DB5B8500F910B9 /* Base */,
+				21E0BE912304132300F820D4 /* en */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -1011,8 +1074,8 @@
 		2133C21722DCA5D200F910B9 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				2133C21622DCA5D200F910B9 /* en */,
 				2133C21822DCA5DB00F910B9 /* es */,
+				21ED3BCA230424A2009D8E3D /* en */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

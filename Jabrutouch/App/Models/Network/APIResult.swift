@@ -10,5 +10,5 @@ import Foundation
 
 enum APIResult<APIResponseModel> {
     case success(APIResponseModel)
-    case failure(APIError)
+    case failure(JTError)
 }

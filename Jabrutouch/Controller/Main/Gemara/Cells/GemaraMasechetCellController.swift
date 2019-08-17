@@ -12,8 +12,8 @@ class GemaraMasechetCellController: UITableViewCell {
     
     @IBOutlet weak var cellView: UIView!
     @IBOutlet weak var masechetName: UILabel!
-    @IBOutlet weak var lessonsCount: UILabel!
-    @IBOutlet weak var lessonText: UILabel!
+    @IBOutlet weak var pagesCountLabel: UILabel!
+    @IBOutlet weak var pagesCountTextLabel: UILabel!
     
     var indexPath: IndexPath = []
     weak var delegate: GemaraMasechetCellDelegate?

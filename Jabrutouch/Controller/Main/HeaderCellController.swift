@@ -25,7 +25,7 @@ class HeaderCellController: UITableViewHeaderFooterView {
     }
     
     @objc private func headerPressed() {
-        arrowImage?.rotate(.pi)
+        arrowImage?.rotate(.pi - 0.0001)
         delegate?.toggleSection(header: self, section: section)
     }
 }

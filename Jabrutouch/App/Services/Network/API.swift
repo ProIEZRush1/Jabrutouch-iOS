@@ -78,6 +78,27 @@ class API {
             self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
         }
     }
+    
+    class func getGemarahMasechetLessons(masechetId:Int, authToken: String, completionHandler:@escaping (_ response: APIResult<GetGemaraLessonsResponse>)->Void) {
+        guard let request = HttpRequestsFactory.createGetGemaraMasechetLessonsRequest(masechetId: masechetId, token: authToken) else {
+            completionHandler(APIResult.failure(.unableToCreateRequest))
+            return
+        }
+        HttpProvider.excecuteRequest(request: request) { (data, response, error) in
+            self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
+        }
+    }
+    
+    class func getMishnaLessons(masechetId:Int, chapter: Int, authToken: String, completionHandler:@escaping (_ response: APIResult<GetMishnaLessonsResponse>)->Void) {
+        guard let request = HttpRequestsFactory.createGetMishnaLessonsRequest(masechetId: masechetId, chapter: chapter, token: authToken) else {
+            completionHandler(APIResult.failure(.unableToCreateRequest))
+            return
+        }
+        HttpProvider.excecuteRequest(request: request) { (data, response, error) in
+            self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
+        }
+    }
+    
     //========================================
     // MARK: - Response Processing
     //========================================

@@ -18,26 +18,58 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var masechetLabel: UILabel!
     @IBOutlet weak var downloadButton: UIButton!
     
-    var lessons: [JTLessonDownload] = []
-    var masechet: String?
+    var lessons: [JTGemaraLesson] = []
+    var masechetName: String?
+    var masechetId: Int?
     var isCurrentlyEditing: Bool = false
-    var isFirstLoading: Bool = true
+    var isFirstLoading: Bool = false
     
+    private var activityView: ActivityView?
     //========================================
     // MARK: - LifeCycle
     //========================================
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
-        masechetLabel.text = masechet
+        
+        self.setTableView()
+        self.setStrings()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.setContent()
+    }
     //========================================
     // MARK: - Setup
     //========================================
     
+    private func setTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+    
+    private func setStrings() {
+        masechetLabel.text = self.masechetName
+    }
+    
+    private func setContent() {
+        guard let masechetId = self.masechetId else { return }
+        self.showActivityView()
+        ContentRepository.shared.getGemaraLessons(masechetId: masechetId) { (result:Result<[JTGemaraLesson], JTError>) in
+            self.removeActivityView()
+            switch result {
+            case .success(let lessons):
+                self.lessons = lessons
+                self.tableView.reloadData()
+            case .failure(let error):
+                let title = Strings.error
+                let message = error.message
+                Utils.showAlertMessage(message, title: title, viewControler: self)
+            }
+        }
+    }
     //=====================================================
     // MARK: - UITableView Data Source and Delegate section
     //=====================================================
@@ -58,8 +90,9 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
         let cell = tableView.dequeueReusableCell(withIdentifier: "lessonDownloadCell", for: indexPath) as! LessonDownloadCellController
         setImages(indexPath, cell)
         setEditingIfNeeded(cell)
-        cell.lessonNumber.text = lessons[indexPath.row].number
-        cell.lessonLength.text = lessons[indexPath.row].length
+        let lesson = self.lessons[indexPath.row]
+        cell.lessonNumber.text = "\(lesson.page)"
+        cell.lessonLength.text = lesson.durationDisplay
         cell.delegate = self
         cell.selectedRow = indexPath.row
         Utils.setViewShape(view: cell.underneathCellView, viewCornerRadius: 18)
@@ -193,6 +226,25 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
             alreadyDownloadedMediaAlert()
         } else {
             print("Download video")
+        }
+    }
+    
+    //============================================================
+    // MARK: - ActivityView
+    //============================================================
+    
+    private func showActivityView() {
+        DispatchQueue.main.async {
+            if self.activityView == nil {
+                self.activityView = Utils.showActivityView(inView: self.view, withFrame: self.view.frame, text: nil)
+            }
+        }
+    }
+    private func removeActivityView() {
+        DispatchQueue.main.async {
+            if let view = self.activityView {
+                Utils.removeActivityView(view)
+            }
         }
     }
 }

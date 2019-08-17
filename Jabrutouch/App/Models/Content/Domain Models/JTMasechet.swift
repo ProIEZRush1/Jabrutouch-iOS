@@ -15,7 +15,7 @@ struct JTMasechet {
     var name: String
     var chaptersCount: Int
     var pagesCount: Int
-    var mishnaShiurimCountPerChapter: [Int:Int]
+    var mishnaShiurimCountPerChapter: [String:Int]
     
     init?(values: [String:Any]) {
         if let id = values["id"] as? Int {
@@ -34,7 +34,7 @@ struct JTMasechet {
             self.chaptersCount = chaptersCount
         } else { return nil }
         
-        if let pagesCount = values["pagesCount"] as? Int {
+        if let pagesCount = values["pages"] as? Int {
             self.pagesCount = pagesCount
         } else { return nil }
         
@@ -42,7 +42,7 @@ struct JTMasechet {
             self.mishnaShiurimCountPerChapter = [:]
             for chapterValues in shiurimCountPerChapterValues {
                 if let chapter = chapterValues["chapter"], let mishnayotCount = chapterValues["mishnayots"] {
-                    self.mishnaShiurimCountPerChapter[chapter] = mishnayotCount
+                    self.mishnaShiurimCountPerChapter["\(chapter)"] = mishnayotCount
                 }
             }
         } else { self.mishnaShiurimCountPerChapter = [:] }

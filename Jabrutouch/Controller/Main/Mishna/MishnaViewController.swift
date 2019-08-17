@@ -16,9 +16,11 @@ class MishnaViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet weak var tableView: UITableView!
     
+    var openSections: Set<Int> = []
     var delegate: MainModalDelegate?
-    fileprivate var sedarim: [JTMishnaSeder] = []
-    fileprivate var indexPathSelected: IndexPath = []
+    
+    fileprivate var sedarim: [JTMishnaSeder] = ContentRepository.shared.getMishanSeders()
+    fileprivate var selectedIndexPath: IndexPath = []
     
     //========================================
     // MARK: - LifeCycle
@@ -26,17 +28,17 @@ class MishnaViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fillTableForDev() // Only for Dev
         tableView.register(UINib(nibName: "DownloadsHeaderCell", bundle: nil), forHeaderFooterViewReuseIdentifier: "headerCell")
         tableView.delegate = self
         tableView.dataSource = self
+        
+        self.setInitialOpenSections()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showMishnaChapters" {
             let vc = segue.destination as? MishnaChapterViewController
-            vc?.chapters = sedarim[indexPathSelected.section].masechtot[indexPathSelected.row].chapters
-            vc?.masechetString = sedarim[indexPathSelected.section].masechtot[indexPathSelected.row].name
+            vc?.masechetId = self.sedarim[selectedIndexPath.section].masechtot[selectedIndexPath.row].masechetId
         }
     }
     
@@ -44,82 +46,10 @@ class MishnaViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // MARK: - Setup
     //========================================
     
-    // Only for Dev function
-    fileprivate func fillTableForDev() {
-        var downloads1 = [JTLessonDownload]()
-        let download1_1 = JTLessonDownload(number: "1", length: "56 min", isAudioDownloaded: false, isVideoDownloaded: false)
-        let download1_2 = JTLessonDownload(number: "2", length: "67 min", isAudioDownloaded: false, isVideoDownloaded: true)
-        let download1_3 = JTLessonDownload(number: "3", length: "52 min", isAudioDownloaded: true, isVideoDownloaded: true)
-        downloads1.append(download1_1)
-        downloads1.append(download1_2)
-        downloads1.append(download1_3)
-        let mishnaChapter1 = JTMishnaChapter(name: "A", lessonsDownloaded: downloads1)
-        
-        var downloads2 = [JTLessonDownload]()
-        let download2_1 = JTLessonDownload(number: "1", length: "43 min", isAudioDownloaded: false, isVideoDownloaded: false)
-        let download2_2 = JTLessonDownload(number: "2", length: "52 min", isAudioDownloaded: true, isVideoDownloaded: true)
-        downloads2.append(download2_1)
-        downloads2.append(download2_2)
-        let mishnaChapter2 = JTMishnaChapter(name: "B", lessonsDownloaded: downloads2)
-        
-        var downloads3 = [JTLessonDownload]()
-        let download3_1 = JTLessonDownload(number: "1", length: "23 min", isAudioDownloaded: false, isVideoDownloaded: false)
-        let download3_2 = JTLessonDownload(number: "2", length: "34 min", isAudioDownloaded: false, isVideoDownloaded: true)
-        let download3_3 = JTLessonDownload(number: "3", length: "50 min", isAudioDownloaded: true, isVideoDownloaded: true)
-        downloads3.append(download3_1)
-        downloads3.append(download3_2)
-        downloads3.append(download3_3)
-        let mishnaChapter3 = JTMishnaChapter(name: "C", lessonsDownloaded: downloads3)
-        
-        var downloads4 = [JTLessonDownload]()
-        let download4_1 = JTLessonDownload(number: "1", length: "16 min", isAudioDownloaded: false, isVideoDownloaded: false)
-        let download4_2 = JTLessonDownload(number: "2", length: "37 min", isAudioDownloaded: true, isVideoDownloaded: true)
-        downloads4.append(download4_1)
-        downloads4.append(download4_2)
-        let mishnaChapter4 = JTMishnaChapter(name: "D", lessonsDownloaded: downloads4)
-        
-        let mishnaMasechet1 = JTMishnaMasechet(name: "Shabbat", chapters: [mishnaChapter1, mishnaChapter2, mishnaChapter3, mishnaChapter4])
-        let mishnaMasechet2 = JTMishnaMasechet(name: "Iruvim", chapters: [mishnaChapter1, mishnaChapter2, mishnaChapter3, mishnaChapter4])
-        let mishnaMasechet3 = JTMishnaMasechet(name: "Pesachim", chapters: [mishnaChapter1, mishnaChapter2, mishnaChapter3, mishnaChapter4])
-        
-        let mishnaSeder1 = JTMishnaSeder(sederName: "Moed", masechtot: [mishnaMasechet1, mishnaMasechet2, mishnaMasechet3])
-        
-        let mishnaMasechet4 = JTMishnaMasechet(name: "Brachot", chapters: [mishnaChapter1, mishnaChapter2, mishnaChapter3, mishnaChapter4])
-        let mishnaMasechet5 = JTMishnaMasechet(name: "Peah", chapters: [mishnaChapter1, mishnaChapter2, mishnaChapter3, mishnaChapter4])
-        let mishnaMasechet6 = JTMishnaMasechet(name: "Dmai", chapters: [mishnaChapter1, mishnaChapter2, mishnaChapter3, mishnaChapter4])
-        
-        let mishnaSeder2 = JTMishnaSeder(sederName: "Zraim", masechtot: [mishnaMasechet4, mishnaMasechet5, mishnaMasechet6])
-        
-        let mishnaMasechet7 = JTMishnaMasechet(name: "Yevamot", chapters: [mishnaChapter1, mishnaChapter2, mishnaChapter3, mishnaChapter4])
-        let mishnaMasechet8 = JTMishnaMasechet(name: "Ketubot", chapters: [mishnaChapter1, mishnaChapter2, mishnaChapter3, mishnaChapter4])
-        let mishnaMasechet9 = JTMishnaMasechet(name: "Nedarim", chapters: [mishnaChapter1, mishnaChapter2, mishnaChapter3, mishnaChapter4])
-        
-        let mishnaSeder3 = JTMishnaSeder(sederName: "Nashim", masechtot: [mishnaMasechet7, mishnaMasechet8, mishnaMasechet9])
-        
-        let mishnaMasechet10 = JTMishnaMasechet(name: "Baba Kama", chapters: [mishnaChapter1, mishnaChapter2, mishnaChapter3, mishnaChapter4])
-        let mishnaMasechet11 = JTMishnaMasechet(name: "Baba Metsia", chapters: [mishnaChapter1, mishnaChapter2, mishnaChapter3, mishnaChapter4])
-        let mishnaMasechet12 = JTMishnaMasechet(name: "Baba Batra", chapters: [mishnaChapter1, mishnaChapter2, mishnaChapter3, mishnaChapter4])
-        
-        let mishnaSeder4 = JTMishnaSeder(sederName: "Nezikim", masechtot: [mishnaMasechet10, mishnaMasechet11, mishnaMasechet12])
-        
-        let mishnaMasechet13 = JTMishnaMasechet(name: "Zvachim", chapters: [mishnaChapter1, mishnaChapter2, mishnaChapter3, mishnaChapter4])
-        let mishnaMasechet14 = JTMishnaMasechet(name: "Menachot", chapters: [mishnaChapter1, mishnaChapter2, mishnaChapter3, mishnaChapter4])
-        let mishnaMasechet15 = JTMishnaMasechet(name: "Chulin", chapters: [mishnaChapter1, mishnaChapter2, mishnaChapter3, mishnaChapter4])
-        
-        let mishnaSeder5 = JTMishnaSeder(sederName: "Kedoshim", masechtot: [mishnaMasechet13, mishnaMasechet14, mishnaMasechet15])
-        
-        let mishnaMasechet16 = JTMishnaMasechet(name: "Kelim", chapters: [mishnaChapter1, mishnaChapter2, mishnaChapter3, mishnaChapter4])
-        let mishnaMasechet17 = JTMishnaMasechet(name: "Ohalot", chapters: [mishnaChapter1, mishnaChapter2, mishnaChapter3, mishnaChapter4])
-        let mishnaMasechet18 = JTMishnaMasechet(name: "Negaim", chapters: [mishnaChapter1, mishnaChapter2, mishnaChapter3, mishnaChapter4])
-        
-        let mishnaSeder6 = JTMishnaSeder(sederName: "Taharot", masechtot: [mishnaMasechet16, mishnaMasechet17, mishnaMasechet18])
-        
-        sedarim.append(mishnaSeder1)
-        sedarim.append(mishnaSeder2)
-        sedarim.append(mishnaSeder3)
-        sedarim.append(mishnaSeder4)
-        sedarim.append(mishnaSeder5)
-        sedarim.append(mishnaSeder6)
+    private func setInitialOpenSections() {
+        for i in 0..<self.sedarim.count {
+            self.openSections.insert(i)
+        }
     }
     
     //=====================================================
@@ -131,7 +61,7 @@ class MishnaViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if sedarim[section].isExpanded {
+        if self.openSections.contains(section) {
             return sedarim[section].masechtot.count
         } else {
             return 0
@@ -153,7 +83,7 @@ class MishnaViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerCell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "headerCell") as! HeaderCellController
         
-        if sedarim[section].isExpanded {
+        if self.openSections.contains(section) {
             headerCell.arrowImage?.image = UIImage(named: "Black&BlueUpArrow")
         } else {
             headerCell.arrowImage?.image = UIImage(named: "Black&BlueDownArrow")
@@ -172,9 +102,9 @@ class MishnaViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "mishnaMasechetCell", for: indexPath) as! MishnaMasechetCellController
         cell.masechetName.text = sedarim[indexPath.section].masechtot[indexPath.row].name
-        let chaptersCount = sedarim[indexPath.section].masechtot[indexPath.row].chapters.count
+        let chaptersCount = sedarim[indexPath.section].masechtot[indexPath.row].chaptersCount
         cell.chaptersCount.text = String(chaptersCount)
-        cell.chapterText.text = chaptersCount > 1 ? "Chapters" : "Chapter"
+        cell.chapterText.text = chaptersCount > 1 ? Strings.chapters : Strings.chapter
         cell.indexPath = indexPath
         cell.delegate = self
         Utils.setViewShape(view: cell.cellView, viewCornerRadius: 18)
@@ -190,12 +120,16 @@ class MishnaViewController: UIViewController, UITableViewDelegate, UITableViewDa
     //====================================================
     
     func toggleSection(header: HeaderCellController, section: Int) {
-        sedarim[section].isExpanded = !sedarim[section].isExpanded
+        if self.openSections.contains(section) {
+            self.openSections.remove(section)
+        } else {
+            self.openSections.insert(section)
+        }
         tableView.reloadSections([section], with: .automatic)
     }
 
     func showMasechetChapters(indexPath: IndexPath) {
-        indexPathSelected = indexPath
+        selectedIndexPath = indexPath
         performSegue(withIdentifier: "showMishnaChapters", sender: self)
     }
     

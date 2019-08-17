@@ -1,5 +1,5 @@
 //
-//  APIError.swift
+//  JTError.swift
 //  Jabrutouch
 //
 //  Created by Yoni Reiss on 30/07/2019.
@@ -8,7 +8,8 @@
 
 import Foundation
 
-enum APIError: Error {
+enum JTError: Error {
+    case authTokenMissing
     case userAlreadyExist
     case unknown
     case unableToCreateRequest
