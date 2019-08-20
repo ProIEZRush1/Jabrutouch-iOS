@@ -9,6 +9,9 @@
 import Foundation
 
 enum JTError: Error {
+    case unableToConvertDictionaryToString
+    case unableToConvertStringToData
+    case invalidUrl
     case authTokenMissing
     case userAlreadyExist
     case unknown

@@ -37,7 +37,16 @@ struct JTLesssonPresenter {
         if let imageLink = values["image"] as? String {
             self.imageLink = imageLink
         } else { return nil }
-
+    }
+    
+    var values: [String: Any] {
+        var values: [String:Any] = [:]
+        values["id"] = self.id
+        values["first_name"] = self.firstName
+        values["phone"] = self.lastName
+        values["phone"] = self.phone
+        values["image"] = self.imageLink
+        return values
     }
 }
 

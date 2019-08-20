@@ -46,6 +46,7 @@ class SplashScreenViewController: UIViewController {
     
     private func registerForNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(self.shasLoaded(_:)), name: .shasLoaded, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.failedLoadingShas(_:)), name: .failedLoadingShas, object: nil)
     }
     
     private func attemptSignIn(username: String, password: String) {
@@ -64,12 +65,14 @@ class SplashScreenViewController: UIViewController {
         }
         
         LoginManager.shared.signIn(phoneNumber: phoneNumber, email: email, password: password) { (result) in
-            switch result {
-            case .success:
-                self.navigateToMain()
-            case .failure(let error):
-                print(error)
-                self.navigateToSignIn()
+            DispatchQueue.main.async {
+                switch result {
+                case .success:
+                    self.navigateToMain()
+                case .failure(let error):
+                    print(error)
+                    self.navigateToSignIn()                    
+                }
             }
         }
     }
@@ -101,6 +104,15 @@ class SplashScreenViewController: UIViewController {
             self.navigateToWalkThrough()
         }
         else if let username = UserDefaultsProvider.shared.currentUsername, let password = UserDefaultsProvider.shared.currentPassword {
+            self.attemptSignIn(username: username, password: password)
+        }
+        else {
+            self.navigateToSignIn()
+        }
+    }
+    
+    @objc func failedLoadingShas(_ notification: Notification) {
+        if let username = UserDefaultsProvider.shared.currentUsername, let password = UserDefaultsProvider.shared.currentPassword {
             self.attemptSignIn(username: username, password: password)
         }
         else {

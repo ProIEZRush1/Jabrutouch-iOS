@@ -33,6 +33,18 @@ struct JTMishnaLesson {
         return false
     }
     
+    var audioLocalFileName: String {
+        return "\(self.id)_aud.mp3"
+    }
+    
+    var videoLoaclFileName: String {
+        return "\(self.id)_vid.mp4"
+    }
+    
+    var teztLocalFileName: String {
+        return "\(self.id)_text.pdf"
+    }
+    
     init?(values: [String:Any]) {
         
         if let id = values["id"] as? Int {
@@ -76,5 +88,20 @@ struct JTMishnaLesson {
                 self.presenter = presenter
             }
         }
+    }
+    
+    var values: [String: Any] {                        
+        var values: [String:Any] = [:]
+        values["id"] = self.id
+        values["chapter"] = chapter
+        values["mishna"] = self.mishna
+        values["duration"] = self.duration
+        values["audio"] = self.audioLink
+        values["video"] = self.videoLink
+        values["page"]  = self.textLink
+        values["video_part"] = self.videoPart
+        values["gallery"] = self.gallery
+        values["presenter"] = self.presenter?.values
+        return values
     }
 }

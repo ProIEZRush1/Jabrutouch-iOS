@@ -101,7 +101,7 @@
 		21678D7822E08594007BC74C /* GemaraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21678D7722E08594007BC74C /* GemaraViewController.swift */; };
 		21678D7A22E085B1007BC74C /* MishnaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21678D7922E085B1007BC74C /* MishnaViewController.swift */; };
 		21678D7C22E085CB007BC74C /* DonationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21678D7B22E085CB007BC74C /* DonationsViewController.swift */; };
-		216A0E6E22EEFD1400F7FBC1 /* HTTPProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A0E6D22EEFD1400F7FBC1 /* HTTPProvider.swift */; };
+		216A0E6E22EEFD1400F7FBC1 /* HttpServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A0E6D22EEFD1400F7FBC1 /* HttpServiceProvider.swift */; };
 		216A0E7022EEFDA300F7FBC1 /* HTTPRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A0E6F22EEFDA300F7FBC1 /* HTTPRequestFactory.swift */; };
 		219B06FA230408F400A7EBBA /* ServerFieldError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219B06F9230408F400A7EBBA /* ServerFieldError.swift */; };
 		219BFF2722E50A0A00ABBEE2 /* DownloadsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219BFF2622E50A0A00ABBEE2 /* DownloadsNavigationController.swift */; };
@@ -248,7 +248,7 @@
 		21678D7722E08594007BC74C /* GemaraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GemaraViewController.swift; sourceTree = "<group>"; };
 		21678D7922E085B1007BC74C /* MishnaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MishnaViewController.swift; sourceTree = "<group>"; };
 		21678D7B22E085CB007BC74C /* DonationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DonationsViewController.swift; path = ../DonationsViewController.swift; sourceTree = "<group>"; };
-		216A0E6D22EEFD1400F7FBC1 /* HTTPProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPProvider.swift; sourceTree = "<group>"; };
+		216A0E6D22EEFD1400F7FBC1 /* HttpServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpServiceProvider.swift; sourceTree = "<group>"; };
 		216A0E6F22EEFDA300F7FBC1 /* HTTPRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequestFactory.swift; sourceTree = "<group>"; };
 		219B06F9230408F400A7EBBA /* ServerFieldError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerFieldError.swift; sourceTree = "<group>"; };
 		219BFF2622E50A0A00ABBEE2 /* DownloadsNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsNavigationController.swift; sourceTree = "<group>"; };
@@ -635,7 +635,7 @@
 		216A0E6C22EEFCF100F7FBC1 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				216A0E6D22EEFD1400F7FBC1 /* HTTPProvider.swift */,
+				216A0E6D22EEFD1400F7FBC1 /* HttpServiceProvider.swift */,
 				216A0E6F22EEFDA300F7FBC1 /* HTTPRequestFactory.swift */,
 				2145858E22EF7D980062F830 /* API.swift */,
 			);
@@ -987,7 +987,7 @@
 				219BFF2922E50C0B00ABBEE2 /* ModalsContainerViewController.swift in Sources */,
 				FB6877C222FC49AE0096465D /* AlertViewController.swift in Sources */,
 				FBB18FB422F866C8006886FD /* GemaraLessonsViewController.swift in Sources */,
-				216A0E6E22EEFD1400F7FBC1 /* HTTPProvider.swift in Sources */,
+				216A0E6E22EEFD1400F7FBC1 /* HttpServiceProvider.swift in Sources */,
 				21678D7422E08530007BC74C /* MainViewController.swift in Sources */,
 				213196A822F38B3E00B0AF5F /* APIResponseModel.swift in Sources */,
 				2126D6E12304025A00CB501D /* MishnaNavigationController.swift in Sources */,

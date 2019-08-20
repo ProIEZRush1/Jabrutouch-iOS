@@ -19,7 +19,7 @@ class API {
             completionHandler(APIResult.failure(.unableToCreateRequest))
             return
         }
-        HttpProvider.excecuteRequest(request: request) { (data, response, error) in
+        HttpServiceProvider.shared.excecuteRequest(request: request) { (data, response, error) in
             self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
 
         }
@@ -30,7 +30,7 @@ class API {
             completionHandler(APIResult.failure(.unableToCreateRequest))
             return
         }
-        HttpProvider.excecuteRequest(request: request) { (data, response, error) in
+        HttpServiceProvider.shared.excecuteRequest(request: request) { (data, response, error) in
             self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
         }
     }
@@ -40,7 +40,7 @@ class API {
             completionHandler(APIResult.failure(.unableToCreateRequest))
             return
         }
-        HttpProvider.excecuteRequest(request: request) { (data, response, error) in
+        HttpServiceProvider.shared.excecuteRequest(request: request) { (data, response, error) in
             self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
         }
     }
@@ -50,7 +50,7 @@ class API {
             completionHandler(APIResult.failure(.unableToCreateRequest))
             return
         }
-        HttpProvider.excecuteRequest(request: request) { (data, response, error) in
+        HttpServiceProvider.shared.excecuteRequest(request: request) { (data, response, error) in
             self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
         }
     }
@@ -60,7 +60,7 @@ class API {
             completionHandler(APIResult.failure(.unableToCreateRequest))
             return
         }
-        HttpProvider.excecuteRequest(request: request) { (data, response, error) in
+        HttpServiceProvider.shared.excecuteRequest(request: request) { (data, response, error) in
             self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
         }
     }
@@ -74,7 +74,7 @@ class API {
             completionHandler(APIResult.failure(.unableToCreateRequest))
             return
         }
-        HttpProvider.excecuteRequest(request: request) { (data, response, error) in
+        HttpServiceProvider.shared.excecuteRequest(request: request) { (data, response, error) in
             self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
         }
     }
@@ -84,7 +84,7 @@ class API {
             completionHandler(APIResult.failure(.unableToCreateRequest))
             return
         }
-        HttpProvider.excecuteRequest(request: request) { (data, response, error) in
+        HttpServiceProvider.shared.excecuteRequest(request: request) { (data, response, error) in
             self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
         }
     }
@@ -94,7 +94,7 @@ class API {
             completionHandler(APIResult.failure(.unableToCreateRequest))
             return
         }
-        HttpProvider.excecuteRequest(request: request) { (data, response, error) in
+        HttpServiceProvider.shared.excecuteRequest(request: request) { (data, response, error) in
             self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
         }
     }

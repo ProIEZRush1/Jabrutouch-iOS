@@ -113,7 +113,18 @@ class Utils {
         }
     }
     
-
+    class func convertStringToDictionary(_ string:String)->NSDictionary?{
+        do {
+            let data = string.data(using: String.Encoding.utf8)
+            let dictionary = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableLeaves) as! NSDictionary
+            return dictionary
+        }
+            
+        catch let error as NSError{
+            NSLog("Could not create dictionary from string, with error: \(error)")
+            return nil
+        }
+    }
     // MARK: - ActivityView
     
     class func showActivityView(inView view:UIView, withFrame frame: CGRect, text: String?) -> ActivityView {
