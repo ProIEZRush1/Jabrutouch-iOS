@@ -39,6 +39,7 @@ class MishnaViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if segue.identifier == "showMishnaChapters" {
             let vc = segue.destination as? MishnaChapterViewController
             vc?.masechetId = self.sedarim[selectedIndexPath.section].masechtot[selectedIndexPath.row].masechetId
+            vc?.seder = self.sedarim[selectedIndexPath.section].name
         }
     }
     

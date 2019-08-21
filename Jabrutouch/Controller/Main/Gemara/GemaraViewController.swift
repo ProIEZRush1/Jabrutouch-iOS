@@ -36,8 +36,10 @@ class GemaraViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if segue.identifier == "showGemaraLessons" {
             let vc = segue.destination as? GemaraLessonsViewController
             let masechet = self.sedarim[self.selectedIndexPath.section].masechtot[self.selectedIndexPath.row]
+            let seder = self.sedarim[self.selectedIndexPath.section].name
             vc?.masechetName = masechet.name
             vc?.masechetId = masechet.masechetId
+            vc?.seder = seder
         }
     }
     

@@ -31,7 +31,9 @@ class ContentRepository {
     var shas: [JTSeder] = []
     var gemaraLessons: [String:[String:JTGemaraLesson]] = [:]
     var mishnaLessons: [String:[String:[String:JTMishnaLesson]]] = [:]
-    
+    var downloadedGemaraLessons: [String: [String:JTGemaraLesson]] = [:]
+    var downloadedMishnaLessons: [String: [String:JTMishnaLesson]] = [:]
+
     private static var repository: ContentRepository?
     
     class var shared: ContentRepository {
@@ -54,12 +56,20 @@ class ContentRepository {
         let url = directoryUrl.appendingPathComponent(filename)
         return url
     }
+    
+    var downloadedLessonsStorageUrl: URL? {
+        guard let directoryUrl = FileDirectory.cache.url else { return nil }
+        let filename = "downloadedLessons.json"
+        let url = directoryUrl.appendingPathComponent(filename)
+        return url
+    }
     //========================================
     // MARK: - Initializer
     //========================================
     
     private init() {
         self.loadShas()
+        self.loadDownloadedLessonsFromStorage()
         self.gemaraLessons = self.loadGemaraLessonsFromStorage()
         self.mishnaLessons = self.loadMishnaLessonsFromStorage()
     }
@@ -172,6 +182,35 @@ class ContentRepository {
     // MARK: - Download content methods
     //========================================
     
+    func addLessonToDownloaded(_ lesson: JTGemaraLesson, seder: String) {
+        if let _ = self.downloadedGemaraLessons[seder] {
+            self.downloadedGemaraLessons[seder]?.updateValue(lesson, forKey: "\(lesson.id)")
+        }
+        else {
+            self.downloadedGemaraLessons[seder] = ["\(lesson.id)" : lesson]
+        }
+        self.updateDownloadedLessonsStorage()
+    }
+    
+    func addLessonToDownloaded(_ lesson: JTMishnaLesson, seder: String) {
+        if let _ = self.downloadedMishnaLessons[seder] {
+            self.downloadedMishnaLessons[seder]?.updateValue(lesson, forKey: "\(lesson.id)")
+        }
+        else {
+            self.downloadedMishnaLessons[seder] = ["\(lesson.id)" : lesson]
+        }
+        self.updateDownloadedLessonsStorage()
+    }
+    
+    func removeLessonFromDownloaded(_ lesson: JTGemaraLesson, seder: String) {
+        
+    }
+    
+    func removeLessonFromDownloaded(_ lesson: JTMishnaLesson, seder: String) {
+        
+    }
+    
+    
     func downloadGemaraLesson(_ lesson: JTGemaraLesson, mediaType: JTLessonMediaType, delegate: DownloadTaskDelegate?) {
         let downloadTask = DownloadTask(id: lesson.id, delegate: delegate)
         switch mediaType {
@@ -188,7 +227,7 @@ class ContentRepository {
         downloadTask.execute()
     }
     
-    func downloadMishnaLesson(_ lesson: JTGemaraLesson, mediaType: JTLessonMediaType, delegate: DownloadTaskDelegate?) {
+    func downloadMishnaLesson(_ lesson: JTMishnaLesson, mediaType: JTLessonMediaType, delegate: DownloadTaskDelegate?) {
         let downloadTask = DownloadTask(id: lesson.id, delegate: delegate)
         switch mediaType {
         case .audio:
@@ -250,6 +289,36 @@ class ContentRepository {
         }
     }
     
+    private func loadDownloadedLessonsFromStorage() {
+        guard let url = self.downloadedLessonsStorageUrl else { return }
+        do {
+            let contentString = try String(contentsOf: url)
+            guard let content = Utils.convertStringToDictionary(contentString) as? [String:[String:[String:[String:Any]]]] else { return }
+            if let gemaraLessonsValues = content["gemara"] {
+                self.downloadedGemaraLessons = gemaraLessonsValues.mapValues{$0.compactMapValues{JTGemaraLesson(values: $0)}}
+            }
+            if let mishnaLessonsValues = content["mishna"] {
+                self.downloadedMishnaLessons = mishnaLessonsValues.mapValues{$0.compactMapValues{JTMishnaLesson(values: $0)}}
+            }
+        }
+        catch {
+            
+        }
+    }
+    
+    private func updateDownloadedLessonsStorage() {
+        guard let url = self.downloadedLessonsStorageUrl else { return }
+        let mappedGemaraLessons = self.downloadedGemaraLessons.mapValues{$0.mapValues{$0.values}}
+        let mappedMishnaLessons = self.downloadedMishnaLessons.mapValues{$0.mapValues{$0.values}}
+        let content = ["gemara": mappedGemaraLessons, "mishna": mappedMishnaLessons]
+        do {
+            try self.saveContentToFile(content: content, url: url)
+        }
+        catch {
+            
+        }
+        
+    }
     //========================================
     // MARK: - Private methods
     //========================================

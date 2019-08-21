@@ -9,6 +9,11 @@
 import Foundation
 
 struct JTGemaraLesson  {
+    
+    //============================================
+    // MARK: - Stored Properties
+    //============================================
+    
     var id: Int
     var chapter: Int
     var page: Int
@@ -20,53 +25,11 @@ struct JTGemaraLesson  {
     var gallery: [String]
     var presenter: JTLesssonPresenter?
     
-    var durationDisplay: String {
-        let minutes = self.duration/60
-        return "\(minutes)\(Strings.minutesShorthand)"
-    }
-    
-    var isAudioDownloaded: Bool {
-        guard let filesNames = FilesManagementProvider.shared.filesList(.cache) else { return false }
-        for fileName in filesNames {
-            if fileName == self.audioLocalFileName {
-                return true
-            }
-        }
-        return false
-    }
-    
-    var isVideoDownloaded: Bool {
-        guard let filesNames = FilesManagementProvider.shared.filesList(.cache) else { return false }
-        for fileName in filesNames {
-            if fileName == self.videoLoaclFileName {
-                return true
-            }
-        }
-        return false
-    }
-    
-    var isTextFileDownloaded: Bool {
-        guard let filesNames = FilesManagementProvider.shared.filesList(.cache) else { return false }
-        for fileName in filesNames {
-            if fileName == self.textLocalFileName {
-                return true
-            }
-        }
-        return false
-    }
-    
-    
-    var audioLocalFileName: String {
-        return "\(self.id)_aud.mp3"
-    }
-    
-    var videoLoaclFileName: String {
-        return "\(self.id)_vid.mp4"
-    }
-    
-    var textLocalFileName: String {
-        return "\(self.id)_text.pdf"
-    }
+    var isDonwnloading = false
+    var downloadProgress: Float?
+    //============================================
+    // MARK: - Initializer
+    //============================================
     
     init?(values: [String:Any]) {
         
@@ -111,6 +74,83 @@ struct JTGemaraLesson  {
                 self.presenter = presenter
             } 
         }
+    }
+    
+    //============================================
+    // MARK: - Computed Properties
+    //============================================
+    
+    var durationDisplay: String {
+        let minutes = self.duration/60
+        return "\(minutes)\(Strings.minutesShorthand)"
+    }
+    
+    var isAudioDownloaded: Bool {
+        guard let filesNames = FilesManagementProvider.shared.filesList(.cache) else { return false }
+        for fileName in filesNames {
+            if fileName == self.audioLocalFileName {
+                return true
+            }
+        }
+        return false
+    }
+    
+    var isVideoDownloaded: Bool {
+        guard let filesNames = FilesManagementProvider.shared.filesList(.cache) else { return false }
+        for fileName in filesNames {
+            if fileName == self.videoLoaclFileName {
+                return true
+            }
+        }
+        return false
+    }
+    
+    var isTextFileDownloaded: Bool {
+        guard let filesNames = FilesManagementProvider.shared.filesList(.cache) else { return false }
+        for fileName in filesNames {
+            if fileName == self.textLocalFileName {
+                return true
+            }
+        }
+        return false
+    }
+    
+    var audioRemoteURL: URL? {
+        let fullLink = "\(AWSS3Provider.appS3BaseUrl)\(AWSS3Provider.appS3BucketName)/\(self.videoLink)"
+        return URL(string: fullLink)
+    }
+    
+    var videoRemoteURL: URL? {
+        return URL(string: self.videoLink)
+    }
+    
+    var textRemoteURL: URL? {
+        let fullLink = "\(AWSS3Provider.appS3BaseUrl)\(AWSS3Provider.appS3BucketName)/\(self.videoLink)"
+        return URL(string: fullLink)
+    }
+    
+    var audioLocalURL: URL? {
+        return FileDirectory.cache.url?.appendingPathComponent(self.audioLocalFileName)
+    }
+    
+    var videoLocalURL: URL? {
+        return FileDirectory.cache.url?.appendingPathComponent(self.videoLoaclFileName)
+    }
+    
+    var textLocalURL: URL? {
+        return FileDirectory.cache.url?.appendingPathComponent(self.textLocalFileName)
+    }
+    
+    var audioLocalFileName: String {
+        return "\(self.id)_aud.mp3"
+    }
+    
+    var videoLoaclFileName: String {
+        return "\(self.id)_vid.mp4"
+    }
+    
+    var textLocalFileName: String {
+        return "\(self.id)_text.pdf"
     }
     
     var values: [String: Any] {

@@ -19,6 +19,7 @@ class MishnaChapterViewController: UIViewController, UITableViewDelegate, UITabl
     
     var masechetId: Int?
     var masechet: JTMishnaMasechet?
+    var seder: String?
     fileprivate var selectedRow: Int = 0
 
     //========================================
@@ -40,6 +41,7 @@ class MishnaChapterViewController: UIViewController, UITableViewDelegate, UITabl
             vc?.masechetId = self.masechetId
             vc?.masechetName = self.masechet?.name
             vc?.chapter = Int(self.masechet?.chapters[self.selectedRow].chapter ?? "")
+            vc?.seder = self.seder
         }
     }
     

@@ -22,6 +22,7 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
     var lessons: [JTMishnaLesson] = []
     var masechetName: String?
     var chapter: Int?
+    var seder: String?
     var masechetId: Int?
     var isCurrentlyEditing: Bool = false
     var isFirstLoading: Bool = false
@@ -213,10 +214,11 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func downloadAudioPressed(selectedRow: Int) {
-        if lessons[selectedRow].isAudioDownloaded {
+        let lesson = self.lessons[selectedRow]
+        if lesson.isAudioDownloaded {
             alreadyDownloadedMediaAlert()
         } else {
-            print("Download audio")
+            ContentRepository.shared.downloadMishnaLesson(lesson, mediaType: .audio, delegate: self)
         }
     }
     
@@ -227,10 +229,11 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func downloadVideoPressed(selectedRow: Int) {
-        if lessons[selectedRow].isVideoDownloaded {
+        let lesson = self.lessons[selectedRow]
+        if lesson.isVideoDownloaded {
             alreadyDownloadedMediaAlert()
         } else {
-            print("Download video")
+            ContentRepository.shared.downloadMishnaLesson(lesson, mediaType: .video, delegate: self)
         }
     }
     
@@ -251,5 +254,18 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
                 Utils.removeActivityView(view)
             }
         }
+    }
+}
+
+extension MishnaLessonsViewController: DownloadTaskDelegate {
+    func downloadCompleted(downloadId: Int) {
+        guard let lesson = (self.lessons.filter{$0.id == downloadId}).first else { return }
+        guard let seder = self.seder else { return }
+        ContentRepository.shared.addLessonToDownloaded(lesson, seder: seder)
+        print("GemaraLessonsViewController downloadCompleted, downloadId: \(downloadId)")
+    }
+    
+    func downloadProgress(downloadId: Int, progress: Float) {
+        print("GemaraLessonsViewController downloadProgress, progress: \(progress)")
     }
 }

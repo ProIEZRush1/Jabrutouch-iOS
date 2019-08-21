@@ -42,6 +42,20 @@ class FilesManagementProvider {
     
     //MARK - Public methods
     
+    func clearDirectory(_ directory: FileDirectory) {
+        guard let directoryUrl = directory.url else { return }
+        
+        do {
+            let filesPaths = try FileManager.default.contentsOfDirectory(at: directoryUrl, includingPropertiesForKeys: nil)
+            for path in filesPaths {
+                try FileManager.default.removeItem(at: path)
+            }
+        }
+        catch {
+            return
+        }
+    }
+    
     func filesList(_ directory: FileDirectory) -> [String]? {
         guard let directoryUrl = directory.url else { return nil }
         
