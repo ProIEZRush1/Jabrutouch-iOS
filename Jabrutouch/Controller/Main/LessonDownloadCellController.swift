@@ -11,19 +11,19 @@ import UIKit
 class LessonDownloadCellController: UITableViewCell {
     
     @IBOutlet weak var cellView: UIView!
-    @IBOutlet weak var underneathCellView: UIView!
+    @IBOutlet weak var downloadButtonsContainerView: UIView!
     @IBOutlet weak var lessonNumber: UILabel!
     @IBOutlet weak var lessonLength: UILabel!
     @IBOutlet weak var audioImage: UIImageView!
     @IBOutlet weak var videoImage: UIImageView!
     @IBOutlet weak var redAudioVImage: UIImageView!
     @IBOutlet weak var redVideoVImage: UIImageView!
-    @IBOutlet weak var audioButton: UIButton!
-    @IBOutlet weak var videoButton: UIButton!
-    @IBOutlet weak var underneathAudioButton: UIButton!
-    @IBOutlet weak var underneathVideoButton: UIButton!
-    @IBOutlet weak var underneathAudioDownloadImage: UIImageView!
-    @IBOutlet weak var underneathVideoDownloadImage: UIImageView!
+    @IBOutlet weak var playAudioButton: UIButton!
+    @IBOutlet weak var playVideoButton: UIButton!
+    @IBOutlet weak var downloadAudioButton: UIButton!
+    @IBOutlet weak var downloadVideoButton: UIButton!
+    @IBOutlet weak var downloadAudioButtonImageView: UIImageView!
+    @IBOutlet weak var downloadVideoButtonImageView: UIImageView!
     @IBOutlet weak var cellViewTrailingConstraint: NSLayoutConstraint!
     
     var selectedRow: Int = 0
@@ -33,41 +33,85 @@ class LessonDownloadCellController: UITableViewCell {
         super.awakeFromNib()
         let cellGestureRecognizer = (UITapGestureRecognizer(target: self, action: #selector(cellPressed)))
         cellView.addGestureRecognizer(cellGestureRecognizer)
-        let audioGestureRecognizer = (UITapGestureRecognizer(target: self, action: #selector(audioPressed)))
-        audioButton.addGestureRecognizer(audioGestureRecognizer)
-        let videoGestureRecognizer = (UITapGestureRecognizer(target: self, action: #selector(videoPressed)))
-        videoButton.addGestureRecognizer(videoGestureRecognizer)
-        let downloadAudioGestureRecognizer = (UITapGestureRecognizer(target: self, action: #selector(underneathAudioPressed)))
-        underneathAudioButton.addGestureRecognizer(downloadAudioGestureRecognizer)
-        let downloadVideoGestureRecognizer = (UITapGestureRecognizer(target: self, action: #selector(underneathVideoPressed)))
-        underneathVideoButton.addGestureRecognizer(downloadVideoGestureRecognizer)
     }
     
     @objc private func cellPressed() {
         delegate?.cellPressed(selectedRow: selectedRow)
     }
     
-    @objc private func audioPressed() {
-        delegate?.audioPressed(selectedRow: selectedRow)
+    @IBAction func playAudioButtonPressed(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.3) {
+            self.audioImage.alpha = 1.0
+        }
+        delegate?.playAudioPressed(selectedRow: selectedRow)
     }
     
-    @objc private func videoPressed() {
-        delegate?.videoPressed(selectedRow: selectedRow)
+    @IBAction func playVideoButtonPressed(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.3) {
+            self.videoImage.alpha = 1.0
+        }
+        delegate?.playVideoPressed(selectedRow: selectedRow)
     }
     
-    @objc private func underneathAudioPressed() {
-        delegate?.underneathAudioPressed(selectedRow: selectedRow)
+    @IBAction func downloadAudioButtonPressed(_ sender: UIButton) {
+        delegate?.downloadAudioPressed(selectedRow: selectedRow)
     }
     
-    @objc private func underneathVideoPressed() {
-        delegate?.underneathVideoPressed(selectedRow: selectedRow)
+    @IBAction func downloadVideoButtonPressed(_ sender: UIButton) {
+        delegate?.downloadVideoPressed(selectedRow: selectedRow)
+    }
+    
+    @IBAction func playAudioButtonTouchedDown(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.3) {
+            self.downloadAudioButtonImageView.alpha = 1.0
+        }
+        self.audioImage.alpha = 0.3
+    }
+    
+    @IBAction func playVideoButtonTouchedDown(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.3) {
+            self.downloadVideoButtonImageView.alpha = 1.0
+        }
+        self.videoImage.alpha = 0.3
+    }
+    
+    @IBAction func downloadAudioButtonTouchedDown(_ sender: UIButton) {
+        self.downloadAudioButtonImageView.alpha = 0.3
+    }
+    
+    @IBAction func downloadVideoButtonTouchedDown(_ sender: UIButton) {
+        self.downloadVideoButtonImageView.alpha = 0.3
+    }
+    
+    @IBAction func playAudioButtonTouchedUp(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.3) {
+            self.audioImage.alpha = 1.0
+        }
+    }
+    
+    @IBAction func playVideoButtonTouchedUp(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.3) {
+            self.videoImage.alpha = 1.0
+        }
+    }
+    
+    @IBAction func downloadAudioButtonTouchedUp(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.3) {
+            self.downloadAudioButtonImageView.alpha = 1.0
+        }
+    }
+    
+    @IBAction func downloadVideoButtonTouchedUp(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.3) {
+            self.downloadVideoButtonImageView.alpha = 1.0
+        }
     }
 }
 
 protocol MishnaLessonCellDelegate: class {
     func cellPressed(selectedRow: Int)
-    func audioPressed(selectedRow: Int)
-    func videoPressed(selectedRow: Int)
-    func underneathAudioPressed(selectedRow: Int)
-    func underneathVideoPressed(selectedRow: Int)
+    func playAudioPressed(selectedRow: Int)
+    func playVideoPressed(selectedRow: Int)
+    func downloadAudioPressed(selectedRow: Int)
+    func downloadVideoPressed(selectedRow: Int)
 }

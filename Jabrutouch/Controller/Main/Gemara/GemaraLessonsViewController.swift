@@ -89,18 +89,18 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "lessonDownloadCell", for: indexPath) as! LessonDownloadCellController
         setImages(indexPath, cell)
-        setEditingIfNeeded(cell)
+        setEditingIfNeeded(indexPath, cell)
         let lesson = self.lessons[indexPath.row]
         cell.lessonNumber.text = "\(lesson.page)"
         cell.lessonLength.text = lesson.durationDisplay
         cell.delegate = self
         cell.selectedRow = indexPath.row
-        Utils.setViewShape(view: cell.underneathCellView, viewCornerRadius: 18)
+        Utils.setViewShape(view: cell.downloadButtonsContainerView, viewCornerRadius: 18)
         Utils.setViewShape(view: cell.cellView, viewCornerRadius: 18)
         let shadowOffset = CGSize(width: 0.0, height: 12)
-        Utils.dropViewShadow(view: cell.underneathCellView, shadowColor: Colors.shadowColor, shadowRadius: 36, shadowOffset: shadowOffset)
+        Utils.dropViewShadow(view: cell.downloadButtonsContainerView, shadowColor: Colors.shadowColor, shadowRadius: 36, shadowOffset: shadowOffset)
         
-        cell.underneathCellView.layoutIfNeeded()
+        cell.downloadButtonsContainerView.layoutIfNeeded()
         cell.cellView.layoutIfNeeded()
         
         return cell
@@ -115,7 +115,7 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
             cell.redAudioVImage.isHidden = true
         }
         
-        cell.underneathAudioDownloadImage.isHidden = lessons[indexPath.row].isAudioDownloaded
+        cell.downloadAudioButtonImageView.isHidden = lessons[indexPath.row].isAudioDownloaded
         
         if lessons[indexPath.row].isVideoDownloaded {
             cell.videoImage?.image = UIImage(named: "RedVideo")
@@ -125,7 +125,7 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
             cell.redVideoVImage.isHidden = true
         }
         
-        cell.underneathVideoDownloadImage.isHidden = lessons[indexPath.row].isVideoDownloaded
+        cell.downloadVideoButtonImageView.isHidden = lessons[indexPath.row].isVideoDownloaded
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -136,9 +136,9 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
         }
     }
     
-    fileprivate func setEditingIfNeeded(_ cell: LessonDownloadCellController) {
+    fileprivate func setEditingIfNeeded(_ indexPath: IndexPath, _ cell: LessonDownloadCellController) {
         if !isFirstLoading {
-            animateImagesVisibiltyIfNeeded(cell)
+            animateImagesVisibiltyIfNeeded(indexPath, cell)
             UIView.animate(withDuration: 0.3) {
                 if self.isCurrentlyEditing {
                     cell.cellViewTrailingConstraint.constant = self.view.frame.size.width / 2 - 20
@@ -151,17 +151,19 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
         }
     }
     
-    fileprivate func animateImagesVisibiltyIfNeeded(_ cell: LessonDownloadCellController) {
-        if (cell.audioImage.alpha == 0) == !isCurrentlyEditing { // Animate only when a change occurred
+    fileprivate func animateImagesVisibiltyIfNeeded(_ indexPath: IndexPath, _ cell: LessonDownloadCellController) {
+        if (cell.audioImage.isHidden) == !isCurrentlyEditing { // Animate only when a change occurred
             UIView.animate(withDuration: 0.2, delay: isCurrentlyEditing ? 0 : 0.1, animations: {
-                if cell.redAudioVImage.isHidden == false { // Animate only when suppose to be visible
-                    cell.redAudioVImage.alpha = self.isCurrentlyEditing ? 0 : 1
+                if self.lessons[indexPath.row].isAudioDownloaded  { // Animate only when suppose to be visible
+                    cell.redAudioVImage.isHidden = self.isCurrentlyEditing ? true : false
                 }
-                if cell.redVideoVImage.isHidden == false {
-                    cell.redVideoVImage.alpha = self.isCurrentlyEditing ? 0 : 1
+                if self.lessons[indexPath.row].isVideoDownloaded {
+                    cell.redVideoVImage.isHidden = self.isCurrentlyEditing ? true : false
                 }
-                cell.audioImage.alpha = self.isCurrentlyEditing ? 0 : 1
-                cell.videoImage.alpha = self.isCurrentlyEditing ? 0 : 1
+                cell.audioImage.isHidden = self.isCurrentlyEditing ? true : false
+                cell.videoImage.isHidden = self.isCurrentlyEditing ? true : false
+                cell.playAudioButton.isHidden = self.isCurrentlyEditing ? true : false
+                cell.playVideoButton.isHidden = self.isCurrentlyEditing ? true : false
             })
         }
     }
@@ -197,17 +199,17 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
         // TODO Send to View mode (Ask Dudi what is it)
     }
     
-    func audioPressed(selectedRow: Int) {
+    func playAudioPressed(selectedRow: Int) {
         print("Audio Pressed")
         // TODO Send to correct screen
     }
     
-    func videoPressed(selectedRow: Int) {
+    func playVideoPressed(selectedRow: Int) {
         print("Video Pressed")
         // TODO Send to correct screen
     }
     
-    func underneathAudioPressed(selectedRow: Int) {
+    func downloadAudioPressed(selectedRow: Int) {
         if lessons[selectedRow].isAudioDownloaded {
             alreadyDownloadedMediaAlert()
         } else {
@@ -221,7 +223,7 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
         self.present(alert, animated: true, completion: nil)
     }
     
-    func underneathVideoPressed(selectedRow: Int) {
+    func downloadVideoPressed(selectedRow: Int) {
         if lessons[selectedRow].isVideoDownloaded {
             alreadyDownloadedMediaAlert()
         } else {

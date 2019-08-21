@@ -73,12 +73,15 @@ class FilesManagementProvider {
     }
     
     func overwriteFile(path:URL, data: Data) throws {
-        do {
-            try self.removeFile(atPath: path)
+        if self.isFileExist(atUrl: path) {
+            do {
+                try self.removeFile(atPath: path)
+            }
+            catch let error {
+                throw error
+            }
         }
-        catch let error {
-            throw error            
-        }
+        
         do {
             try data.write(to: path)
         }

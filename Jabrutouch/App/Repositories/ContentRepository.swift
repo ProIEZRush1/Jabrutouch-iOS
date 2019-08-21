@@ -217,7 +217,7 @@ class ContentRepository {
     }
     
     private func updateMishnaLessonsStorage(content: [String:[String:[String:JTMishnaLesson]]]) throws {
-        guard let url = self.gemaraLessonsStorageUrl else {
+        guard let url = self.mishnaLessonsStorageUrl else {
             throw JTError.invalidUrl
         }
         let mappedContent = content.mapValues{$0.mapValues{$0.mapValues{$0.values}}}

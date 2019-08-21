@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mAt-cH-Aqw">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -25,17 +29,17 @@
             <objects>
                 <viewController id="w5P-xi-dck" customClass="GemaraViewController" customModule="Jabrutouch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1mo-Yd-AtK">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gemara" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pNI-SS-Jyu">
-                                <rect key="frame" x="249.5" y="27" width="101" height="33"/>
+                                <rect key="frame" x="156.5" y="51" width="101" height="33"/>
                                 <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="28"/>
                                 <color key="textColor" red="0.17254901959999999" green="0.16862745100000001" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R4m-jr-VED" userLabel="Left Arrow Button">
-                                <rect key="frame" x="0.0" y="20" width="66" height="53"/>
+                                <rect key="frame" x="0.0" y="44" width="66" height="53"/>
                                 <accessibility key="accessibilityConfiguration" identifier="GVC Left Arrow Btn"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="Fgy-P7-ekj"/>
@@ -48,7 +52,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C6e-xc-Jym" userLabel="Loupe Button">
-                                <rect key="frame" x="534" y="20" width="66" height="53"/>
+                                <rect key="frame" x="348" y="44" width="66" height="53"/>
                                 <accessibility key="accessibilityConfiguration" identifier="GVC Loupe Btn"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="GHL-PA-0hM"/>
@@ -58,19 +62,19 @@
                                 <state key="normal" image="Loupe"/>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="qqP-TU-LAx">
-                                <rect key="frame" x="0.0" y="100" width="600" height="500"/>
+                                <rect key="frame" x="0.0" y="124" width="414" height="738"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="gemaraMasechetCell" id="PxE-ZX-pZi" customClass="GemaraMasechetCellController" customModule="Jabrutouch" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PxE-ZX-pZi" id="7GI-eO-UGr">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3LC-mN-5ge" userLabel="Cell Content">
-                                                    <rect key="frame" x="18" y="0.0" width="378" height="55"/>
+                                                    <rect key="frame" x="18" y="0.0" width="564" height="55"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shabbat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xc1-bq-BmF">
                                                             <rect key="frame" x="25" y="13" width="90" height="29"/>
@@ -79,19 +83,19 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TpY-lG-EdS">
-                                                            <rect key="frame" x="262.5" y="18" width="18" height="19"/>
+                                                            <rect key="frame" x="455.5" y="18" width="18" height="19"/>
                                                             <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="16"/>
                                                             <color key="textColor" red="0.36470588235294116" green="0.59607843137254901" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lessons" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fyr-ag-q72">
-                                                            <rect key="frame" x="284.5" y="18" width="56" height="19"/>
+                                                            <rect key="frame" x="477.5" y="18" width="56" height="19"/>
                                                             <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="16"/>
                                                             <color key="textColor" red="0.36470588235294116" green="0.59607843137254901" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueRightArrow" translatesAutoresizingMaskIntoConstraints="NO" id="enF-Kk-uJC">
-                                                            <rect key="frame" x="351" y="20.5" width="16" height="14"/>
+                                                            <rect key="frame" x="544" y="20.5" width="9" height="14"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="14" id="wuF-aV-pWE"/>
                                                             </constraints>
@@ -112,7 +116,7 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RcY-0m-zPp" userLabel="Bottom Padding">
-                                                    <rect key="frame" x="0.0" y="55" width="414" height="12"/>
+                                                    <rect key="frame" x="0.0" y="55" width="600" height="12"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <accessibility key="accessibilityConfiguration" identifier="GVC Cell Padding"/>
                                                     <constraints>
@@ -171,17 +175,17 @@
             <objects>
                 <viewController id="sTY-0t-VEK" customClass="GemaraLessonsViewController" customModule="Jabrutouch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iVl-19-oMi">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pesachim" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dw0-zC-7ck">
-                                <rect key="frame" x="237.5" y="27" width="125" height="33"/>
+                                <rect key="frame" x="144.5" y="51" width="125" height="33"/>
                                 <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="28"/>
                                 <color key="textColor" red="0.17254901959999999" green="0.16862745100000001" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZaW-1C-ZW9" userLabel="Left Arrow Button">
-                                <rect key="frame" x="0.0" y="20" width="66" height="53"/>
+                                <rect key="frame" x="0.0" y="44" width="66" height="53"/>
                                 <accessibility key="accessibilityConfiguration" identifier="GLVC Left Arrow Btn"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="SfN-VB-PMA"/>
@@ -194,7 +198,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="3gq-R3-zya" userLabel="Download Button">
-                                <rect key="frame" x="534" y="20" width="66" height="53"/>
+                                <rect key="frame" x="348" y="44" width="66" height="53"/>
                                 <accessibility key="accessibilityConfiguration" identifier="GLVC Download Btn"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="Dfj-0c-dFo"/>
@@ -208,18 +212,18 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="ULS-cP-Bih">
-                                <rect key="frame" x="0.0" y="85" width="600" height="515"/>
+                                <rect key="frame" x="0.0" y="109" width="414" height="753"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="lessonDownloadCell" rowHeight="90" id="stx-P0-QHU" customClass="LessonDownloadCellController" customModule="Jabrutouch" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.5" width="600" height="90"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="414" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="stx-P0-QHU" id="T3w-mu-DyN">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="90"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G7Y-2J-INF" userLabel="Underneath Cell Content">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G7Y-2J-INF">
                                                     <rect key="frame" x="18" y="0.0" width="378" height="75"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TransparentAudio" translatesAutoresizingMaskIntoConstraints="NO" id="4e2-Wv-IbQ">
@@ -253,6 +257,11 @@
                                                                 <constraint firstAttribute="width" constant="50" id="IxK-r8-KSf"/>
                                                                 <constraint firstAttribute="height" constant="50" id="jCA-4T-e8R"/>
                                                             </constraints>
+                                                            <connections>
+                                                                <action selector="downloadAudioButtonPressed:" destination="stx-P0-QHU" eventType="touchUpInside" id="nAT-aS-awg"/>
+                                                                <action selector="downloadAudioButtonTouchedDown:" destination="stx-P0-QHU" eventType="touchDown" id="gDS-05-yZs"/>
+                                                                <action selector="downloadAudioButtonTouchedUp:" destination="stx-P0-QHU" eventType="touchUpOutside" id="UIH-NZ-qPt"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QVQ-vs-qnp" userLabel="Underneath Video Button">
                                                             <rect key="frame" x="313" y="12.5" width="50" height="50"/>
@@ -261,6 +270,11 @@
                                                                 <constraint firstAttribute="height" constant="50" id="NTX-F6-i7F"/>
                                                                 <constraint firstAttribute="width" constant="50" id="Plb-h9-evs"/>
                                                             </constraints>
+                                                            <connections>
+                                                                <action selector="downloadVideoButtonPressed:" destination="stx-P0-QHU" eventType="touchUpInside" id="AMb-K4-LrQ"/>
+                                                                <action selector="downloadVideoButtonTouchedDown:" destination="stx-P0-QHU" eventType="touchDown" id="Wmm-Uc-GsI"/>
+                                                                <action selector="downloadVideoButtonTouchedUp:" destination="stx-P0-QHU" eventType="touchUpOutside" id="GGP-YL-w2Z"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.31764705879999999" green="0.31372549020000001" blue="0.54117647059999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -285,20 +299,20 @@
                                                     <rect key="frame" x="18" y="0.0" width="378" height="75"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FVx-hy-G7W">
-                                                            <rect key="frame" x="26" y="18.5" width="15.5" height="38.5"/>
+                                                            <rect key="frame" x="26" y="19" width="18" height="37.5"/>
                                                             <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="32"/>
                                                             <color key="textColor" red="0.17254901959999999" green="0.16862745100000001" blue="0.33725490200000002" alpha="0.88" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GrayTimer" translatesAutoresizingMaskIntoConstraints="NO" id="HAD-dN-kgf">
-                                                            <rect key="frame" x="91.5" y="29" width="15" height="17"/>
+                                                            <rect key="frame" x="94" y="29" width="15" height="17"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="17" id="Y9c-IZ-jj1"/>
                                                                 <constraint firstAttribute="width" constant="15" id="rl5-Qm-c11"/>
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="56 min" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ocu-AW-QtR">
-                                                            <rect key="frame" x="113.5" y="29" width="40.5" height="17"/>
+                                                            <rect key="frame" x="116" y="29" width="42.5" height="17"/>
                                                             <fontDescription key="fontDescription" name="SFProDisplay-Light" family="SF Pro Display" pointSize="14"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -334,6 +348,11 @@
                                                                 <constraint firstAttribute="height" constant="50" id="HlV-IN-6tp"/>
                                                                 <constraint firstAttribute="width" constant="50" id="MaY-WC-qwb"/>
                                                             </constraints>
+                                                            <connections>
+                                                                <action selector="playAudioButtonPressed:" destination="stx-P0-QHU" eventType="touchUpInside" id="WQc-7C-O9h"/>
+                                                                <action selector="playAudioButtonTouchedDown:" destination="stx-P0-QHU" eventType="touchDown" id="gp3-gj-aS2"/>
+                                                                <action selector="playAudioButtonTouchedUp:" destination="stx-P0-QHU" eventType="touchUpOutside" id="UKs-7v-bkn"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mz8-2f-iL0" userLabel="Video Button">
                                                             <rect key="frame" x="313" y="12.5" width="50" height="50"/>
@@ -342,6 +361,11 @@
                                                                 <constraint firstAttribute="height" constant="50" id="F6w-Dz-rI3"/>
                                                                 <constraint firstAttribute="width" constant="50" id="gZ8-sE-G0z"/>
                                                             </constraints>
+                                                            <connections>
+                                                                <action selector="playVideoButtonPressed:" destination="stx-P0-QHU" eventType="touchUpInside" id="ZTL-0I-9ga"/>
+                                                                <action selector="playVideoButtonTouchedDown:" destination="stx-P0-QHU" eventType="touchDown" id="XvE-tl-WMF"/>
+                                                                <action selector="playVideoButtonTouchedUp:" destination="stx-P0-QHU" eventType="touchUpOutside" id="o4E-x1-FDG"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.99607843139999996" green="0.99607843139999996" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -393,20 +417,20 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
-                                            <outlet property="audioButton" destination="YoW-aB-qVp" id="F2d-PD-MQ3"/>
                                             <outlet property="audioImage" destination="u3X-rD-rwq" id="eGX-AX-N11"/>
                                             <outlet property="cellView" destination="QFU-dG-KeJ" id="dnh-lW-UZc"/>
                                             <outlet property="cellViewTrailingConstraint" destination="mWG-sD-vRN" id="UhL-oF-QvJ"/>
+                                            <outlet property="downloadAudioButton" destination="Xd8-zT-NIm" id="TiN-1c-GAF"/>
+                                            <outlet property="downloadAudioButtonImageView" destination="NfR-Md-Mpi" id="frq-dM-Z2K"/>
+                                            <outlet property="downloadButtonsContainerView" destination="G7Y-2J-INF" id="Ta6-gQ-UqJ"/>
+                                            <outlet property="downloadVideoButton" destination="QVQ-vs-qnp" id="cwt-eU-AgE"/>
+                                            <outlet property="downloadVideoButtonImageView" destination="5MK-BE-9jN" id="v7k-rL-Xft"/>
                                             <outlet property="lessonLength" destination="ocu-AW-QtR" id="B3e-p7-Apy"/>
                                             <outlet property="lessonNumber" destination="FVx-hy-G7W" id="yAX-wQ-uQ6"/>
+                                            <outlet property="playAudioButton" destination="YoW-aB-qVp" id="F2d-PD-MQ3"/>
+                                            <outlet property="playVideoButton" destination="mz8-2f-iL0" id="2aa-ea-zcL"/>
                                             <outlet property="redAudioVImage" destination="KrA-ho-pV5" id="FSv-FA-9gJ"/>
                                             <outlet property="redVideoVImage" destination="Ipa-QS-RBA" id="TSw-Ef-0wR"/>
-                                            <outlet property="underneathAudioButton" destination="Xd8-zT-NIm" id="TiN-1c-GAF"/>
-                                            <outlet property="underneathAudioDownloadImage" destination="NfR-Md-Mpi" id="frq-dM-Z2K"/>
-                                            <outlet property="underneathCellView" destination="G7Y-2J-INF" id="Ta6-gQ-UqJ"/>
-                                            <outlet property="underneathVideoButton" destination="QVQ-vs-qnp" id="cwt-eU-AgE"/>
-                                            <outlet property="underneathVideoDownloadImage" destination="5MK-BE-9jN" id="v7k-rL-Xft"/>
-                                            <outlet property="videoButton" destination="mz8-2f-iL0" id="2aa-ea-zcL"/>
                                             <outlet property="videoImage" destination="6Bm-rb-6SW" id="4v3-PX-6lv"/>
                                         </connections>
                                     </tableViewCell>
@@ -445,7 +469,6 @@
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kvX-qb-F4a">
-                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
