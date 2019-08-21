@@ -42,6 +42,19 @@ class FilesManagementProvider {
     
     //MARK - Public methods
     
+    func filesList(_ directory: FileDirectory) -> [String]? {
+        guard let directoryUrl = directory.url else { return nil }
+        
+        do {
+            let files = try FileManager.default.contentsOfDirectory(at: directoryUrl, includingPropertiesForKeys: nil)
+            let filesNames = files.map{$0.lastPathComponent}
+            return filesNames
+        }
+        catch {
+            return nil
+        }
+    }
+    
     func getResource(resourceName: String, extensionName: String) -> Data? {
         guard let url = Bundle.main.url(forResource: resourceName, withExtension: extensionName) else { return nil }
         do {
@@ -56,6 +69,8 @@ class FilesManagementProvider {
     func isFileExist(atUrl url: URL) -> Bool {
         return FileManager.default.fileExists(atPath: url.absoluteString)
     }
+    
+    //2813_aud.mp3
     func loadFile(link: String, directory: FileDirectory) {
         
     }

@@ -16,21 +16,25 @@ enum HttpRequestMethod:String {
     case patch = "PATCH"
 }
 
-protocol DownloadTaskDelegate {
-    func downloadProgress(progress: Float, downloadId: Int)
+protocol HttpDownloadTaskDelegate {
+    func downloadTotalProgress(progress: Float, downloadId: Int)
+    func fileDownloadProgress(link: String, bytesDownloaded: Int64, totalBytes: Int64, downloadId: Int)
+    func fileDownloadFinished(link: String, downlaodId: Int, data: Data)
+    func fileDownloadFailed(link: String, downlaodId: Int)
     func downloadFinished(downloadId: Int)
 }
 
-class DownloadTask {
+class HttpDownloadTask {
     var id: Int
-    var tasks: [(task: URLSessionDataTask, url: URL)]
-    var delegate: DownloadTaskDelegate
+    var tasks: [(task: URLSessionDataTask, link: String)]
+    var downloadedData: [Int: Data] = [:]
+    var delegate: HttpDownloadTaskDelegate
     var progress: Float
     var finished: Bool
-    var tasksFinished = 0
-    var tasksFinishedSuccessfully = 0
+    private var tasksFinished = 0
+    private var tasksFinishedSuccessfully = 0
     
-    init(id: Int, delegate: DownloadTaskDelegate) {
+    init(id: Int, delegate: HttpDownloadTaskDelegate) {
         self.id = id
         self.delegate = delegate
         self.tasks = []        
@@ -38,10 +42,23 @@ class DownloadTask {
         self.finished = false
     }
     
-    func taskCompleted(withError error: Error?) {
+    func taskCompleted(task: URLSessionDataTask, withError error: Error?) {
         self.tasksFinished += 1
         if error == nil {
             self.tasksFinishedSuccessfully += 1
+        }
+        
+        for _task in self.tasks {
+            if _task.task.taskIdentifier == task.taskIdentifier {
+                if error == nil {
+                    if let data = self.downloadedData[task.taskIdentifier] {
+                        self.delegate.fileDownloadFinished(link: _task.link, downlaodId: self.id, data: data)
+                    }
+                }
+                else {
+                    self.delegate.fileDownloadFailed(link: _task.link, downlaodId: self.id)
+                }
+            }
         }
         if self.tasksFinished == self.tasks.count {
             self.finished = true
@@ -54,7 +71,7 @@ class DownloadTask {
 
 class HttpServiceProvider: NSObject {
     
-    private var downloadTasks: [DownloadTask] = []
+    private var downloadTasks: [HttpDownloadTask] = []
     private var _downloadSession: URLSession?
     
     private static var provider: HttpServiceProvider?
@@ -92,23 +109,24 @@ class HttpServiceProvider: NSObject {
         task.resume()
     }
     
-    func downloadFiles(downloadId: Int, links: [String], delegate: DownloadTaskDelegate) {
+    func downloadFiles(downloadId: Int, links: [String], delegate: HttpDownloadTaskDelegate) {
         
-        let downloadTask = DownloadTask(id: downloadId, delegate: delegate)
+        let downloadTask = HttpDownloadTask(id: downloadId, delegate: delegate)
         for link in links {
             guard let url = URL(string: link) else { return }
             let task = self.downloadSession.dataTask(with: url)
-            downloadTask.tasks.append((task,url))
+            downloadTask.tasks.append((task,link))
         }
         self.downloadTasks.append(downloadTask)
         
         for (task,_) in downloadTask.tasks {
+            downloadTask.downloadedData[task.taskIdentifier] = Data()
             task.resume()
         }
         
     }
     
-    private func removeDownloadTask(_ downloadTask: DownloadTask) {
+    private func removeDownloadTask(_ downloadTask: HttpDownloadTask) {
         for i in 0..<self.downloadTasks.count {
             if self.downloadTasks[i] === downloadTask {
                 self.downloadTasks.remove(at: i)
@@ -124,15 +142,18 @@ extension HttpServiceProvider: URLSessionDataDelegate{
         for downloadTask in self.downloadTasks {
             var total: Int64 = 0
             var received: Int64 = 0
-            for (task,_) in downloadTask.tasks {
+            for (task, link) in downloadTask.tasks {
                 total += task.countOfBytesExpectedToReceive
                 received += task.countOfBytesReceived
+                
+                if task.taskIdentifier == dataTask.taskIdentifier {
+                    downloadTask.downloadedData[task.taskIdentifier]?.append(data)
+                    downloadTask.delegate.fileDownloadProgress(link: link, bytesDownloaded: task.countOfBytesReceived, totalBytes: task.countOfBytesExpectedToReceive, downloadId: downloadTask.id)
+                }
             }
             downloadTask.progress = Float(received/total)
             
-            DispatchQueue.main.async {
-                downloadTask.delegate.downloadProgress(progress: downloadTask.progress, downloadId: downloadTask.id)
-            }
+            downloadTask.delegate.downloadTotalProgress(progress: downloadTask.progress, downloadId: downloadTask.id)
         }
     }
     
@@ -140,7 +161,8 @@ extension HttpServiceProvider: URLSessionDataDelegate{
         for downloadTask in self.downloadTasks {
             for (_task,_) in downloadTask.tasks {
                 if _task.taskIdentifier == task.taskIdentifier {
-                    downloadTask.taskCompleted(withError: error)
+                    
+                    downloadTask.taskCompleted(task: _task, withError: error)
                     if downloadTask.finished {
                         self.removeDownloadTask(downloadTask)
                     }

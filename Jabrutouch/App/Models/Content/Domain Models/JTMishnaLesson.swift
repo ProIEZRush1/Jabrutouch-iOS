@@ -26,10 +26,32 @@ struct JTMishnaLesson {
     }
     
     var isAudioDownloaded: Bool {
+        guard let filesNames = FilesManagementProvider.shared.filesList(.cache) else { return false }
+        for fileName in filesNames {
+            if fileName == self.audioLocalFileName {
+                return true
+            }
+        }
         return false
     }
     
     var isVideoDownloaded: Bool {
+        guard let filesNames = FilesManagementProvider.shared.filesList(.cache) else { return false }
+        for fileName in filesNames {
+            if fileName == self.videoLoaclFileName {
+                return true
+            }
+        }
+        return false
+    }
+    
+    var isTextFileDownloaded: Bool {
+        guard let filesNames = FilesManagementProvider.shared.filesList(.cache) else { return false }
+        for fileName in filesNames {
+            if fileName == self.textLocalFileName {
+                return true
+            }
+        }
         return false
     }
     
@@ -41,7 +63,7 @@ struct JTMishnaLesson {
         return "\(self.id)_vid.mp4"
     }
     
-    var teztLocalFileName: String {
+    var textLocalFileName: String {
         return "\(self.id)_text.pdf"
     }
     

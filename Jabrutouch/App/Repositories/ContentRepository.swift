@@ -17,7 +17,13 @@ protocol ContentRepositoryDownloadDelegate: class {
     
 }
 
+enum ContentFileSource {
+    case s3
+    case vimeo
+}
+
 class ContentRepository {
+    
     
     //========================================
     // MARK: - Properties
@@ -166,42 +172,36 @@ class ContentRepository {
     // MARK: - Download content methods
     //========================================
     
-    func isLinkDownloaded(link: String) -> Bool {
-        guard let url = FileDirectory.cache.url?.appendingPathComponent(link) else { return false }
-        return FilesManagementProvider.shared.isFileExist(atUrl: url)
-    }
-    
-    func downloadGemaraLesson(_ lesson: JTGemaraLesson, mediaType: JTLessonMediaType) {
-        var mediaLink = ""
+    func downloadGemaraLesson(_ lesson: JTGemaraLesson, mediaType: JTLessonMediaType, delegate: DownloadTaskDelegate?) {
+        let downloadTask = DownloadTask(id: lesson.id, delegate: delegate)
         switch mediaType {
         case .audio:
-            mediaLink = lesson.audioLink
+            downloadTask.filesToDownload.append((lesson.audioLink, .s3, lesson.audioLocalFileName))
         case .video:
-            mediaLink = lesson.videoLink
-        }
-        var links = [mediaLink]
-        let textLink = lesson.textLink
-        if self.isLinkDownloaded(link: textLink) == false {
-            links.append(textLink)
-        }
-        self.downloadFiles(downloadId: lesson.id, links: links)
-    }
-    
-    func downloadMishnaLesson(_ lesson: JTGemaraLesson, mediaType: JTLessonMediaType) {
-        var mediaLink = ""
-        switch mediaType {
-        case .audio:
-            mediaLink = lesson.audioLink
-        case .video:
-            mediaLink = lesson.videoLink
+            downloadTask.filesToDownload.append((lesson.videoLink, .vimeo, lesson.videoLoaclFileName))
         }
         
-        var links = [mediaLink]
-        let textLink = lesson.textLink
-        if self.isLinkDownloaded(link: textLink) == false {
-            links.append(textLink)
+        if lesson.isTextFileDownloaded == false {
+            downloadTask.filesToDownload.append((lesson.textLink, .s3, lesson.textLocalFileName))
         }
-        self.downloadFiles(downloadId: lesson.id, links: links)
+        
+        downloadTask.execute()
+    }
+    
+    func downloadMishnaLesson(_ lesson: JTGemaraLesson, mediaType: JTLessonMediaType, delegate: DownloadTaskDelegate?) {
+        let downloadTask = DownloadTask(id: lesson.id, delegate: delegate)
+        switch mediaType {
+        case .audio:
+            downloadTask.filesToDownload.append((lesson.audioLink, .s3, lesson.audioLocalFileName))
+        case .video:
+            downloadTask.filesToDownload.append((lesson.videoLink, .vimeo, lesson.videoLoaclFileName))
+        }
+        
+        if lesson.isTextFileDownloaded == false {
+            downloadTask.filesToDownload.append((lesson.textLink, .s3, lesson.textLocalFileName))
+        }
+        
+        downloadTask.execute()
     }
     
     //========================================
@@ -253,10 +253,6 @@ class ContentRepository {
     //========================================
     // MARK: - Private methods
     //========================================
-    
-    private func downloadFiles(downloadId: Int, links: [String]) {
-        HttpServiceProvider.shared.downloadFiles(downloadId: downloadId, links: links, delegate: self)
-    }
     
     private func loadShas() {
         API.getMasechtot { (result: APIResult<GetMasechtotResponse>) in
@@ -317,16 +313,5 @@ class ContentRepository {
         catch let error {
             throw error
         }
-    }
-}
-
-extension ContentRepository: DownloadTaskDelegate {
-    
-    func downloadProgress(progress: Float, downloadId: Int) {
-        print("DownloadProgress: \(progress), downloadId: \(downloadId)")
-    }
-    
-    func downloadFinished(downloadId: Int) {
-        print("downloadFinished, downloadId: \(downloadId)")
     }
 }

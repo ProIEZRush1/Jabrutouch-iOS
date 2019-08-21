@@ -214,7 +214,7 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
         if lesson.isAudioDownloaded {
             alreadyDownloadedMediaAlert()
         } else {
-            ContentRepository.shared.downloadGemaraLesson(lesson, mediaType: .audio)
+            ContentRepository.shared.downloadGemaraLesson(lesson, mediaType: .audio, delegate: self)
         }
     }
     
@@ -223,7 +223,7 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
         if lesson.isVideoDownloaded {
             alreadyDownloadedMediaAlert()
         } else {
-            ContentRepository.shared.downloadGemaraLesson(lesson, mediaType: .video)
+            ContentRepository.shared.downloadGemaraLesson(lesson, mediaType: .video, delegate: self)
         }
     }
     
@@ -252,3 +252,14 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
         }
     }
 }
+
+extension GemaraLessonsViewController: DownloadTaskDelegate {
+    func downloadCompleted(downloadId: Int) {
+        print("GemaraLessonsViewController downloadCompleted, downloadId: \(downloadId)")
+    }
+    
+    func downloadProgress(downloadId: Int, progress: Float) {
+        print("GemaraLessonsViewController downloadProgress, progress: \(progress)")
+    }
+}
+
