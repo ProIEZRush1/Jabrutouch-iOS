@@ -102,6 +102,9 @@ class HttpServiceProvider: NSObject {
         }
         self.downloadTasks.append(downloadTask)
         
+        for (task,_) in downloadTask.tasks {
+            task.resume()
+        }
         
     }
     

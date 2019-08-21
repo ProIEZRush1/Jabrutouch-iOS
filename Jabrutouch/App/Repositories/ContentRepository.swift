@@ -323,10 +323,10 @@ class ContentRepository {
 extension ContentRepository: DownloadTaskDelegate {
     
     func downloadProgress(progress: Float, downloadId: Int) {
-        
+        print("DownloadProgress: \(progress), downloadId: \(downloadId)")
     }
     
     func downloadFinished(downloadId: Int) {
-        
+        print("downloadFinished, downloadId: \(downloadId)")
     }
 }

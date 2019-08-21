@@ -54,10 +54,16 @@ class LessonDownloadCellController: UITableViewCell {
     }
     
     @IBAction func downloadAudioButtonPressed(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.3) {
+            self.downloadAudioButtonImageView.alpha = 1.0
+        }
         delegate?.downloadAudioPressed(selectedRow: selectedRow)
     }
     
     @IBAction func downloadVideoButtonPressed(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.3) {
+            self.downloadVideoButtonImageView.alpha = 1.0
+        }
         delegate?.downloadVideoPressed(selectedRow: selectedRow)
     }
     

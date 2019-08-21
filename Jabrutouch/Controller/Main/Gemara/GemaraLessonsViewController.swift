@@ -210,10 +210,20 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func downloadAudioPressed(selectedRow: Int) {
-        if lessons[selectedRow].isAudioDownloaded {
+        let lesson = self.lessons[selectedRow]
+        if lesson.isAudioDownloaded {
             alreadyDownloadedMediaAlert()
         } else {
-            print("Download audio")
+            ContentRepository.shared.downloadGemaraLesson(lesson, mediaType: .audio)
+        }
+    }
+    
+    func downloadVideoPressed(selectedRow: Int) {
+        let lesson = self.lessons[selectedRow]
+        if lesson.isVideoDownloaded {
+            alreadyDownloadedMediaAlert()
+        } else {
+            ContentRepository.shared.downloadGemaraLesson(lesson, mediaType: .video)
         }
     }
     
@@ -222,15 +232,7 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
-    
-    func downloadVideoPressed(selectedRow: Int) {
-        if lessons[selectedRow].isVideoDownloaded {
-            alreadyDownloadedMediaAlert()
-        } else {
-            print("Download video")
-        }
-    }
-    
+        
     //============================================================
     // MARK: - ActivityView
     //============================================================
