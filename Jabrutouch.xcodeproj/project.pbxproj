@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -50,6 +50,7 @@
 		2133C22422DDCCD500F910B9 /* JBBarPageIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2133C22322DDCCD500F910B9 /* JBBarPageIndicator.swift */; };
 		2133C22622DDCD3E00F910B9 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2133C22522DDCD3E00F910B9 /* Colors.swift */; };
 		21407C8922F72632002F9690 /* TextFieldWithDeleteDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21407C8822F72632002F9690 /* TextFieldWithDeleteDelegate.swift */; };
+		21419CB0230D50CB00145F1F /* AWSS3Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21419CAF230D50CA00145F1F /* AWSS3Provider.swift */; };
 		2145858F22EF7D980062F830 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2145858E22EF7D980062F830 /* API.swift */; };
 		21678D4622DF2CEC007BC74C /* SF-Pro-Display-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 21678D1A22DF2CB9007BC74C /* SF-Pro-Display-Black.otf */; };
 		21678D4722DF2CEC007BC74C /* SF-Pro-Display-BlackItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 21678D3622DF2CC5007BC74C /* SF-Pro-Display-BlackItalic.otf */; };
@@ -124,6 +125,7 @@
 		21ED3BD823048835009D8E3D /* GetMishnaLessonsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21ED3BD723048835009D8E3D /* GetMishnaLessonsResponse.swift */; };
 		21ED3BDA230488E3009D8E3D /* JTGemaraLesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21ED3BD9230488E3009D8E3D /* JTGemaraLesson.swift */; };
 		21ED3BDC23048970009D8E3D /* GetGemaraLessonsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21ED3BDB23048970009D8E3D /* GetGemaraLessonsResponse.swift */; };
+		F7AEA20A7CC7E87A1BEC48AF /* Pods_Jabrutouch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0F9377FF1E3DA5E9F901D68 /* Pods_Jabrutouch.framework */; };
 		FB51711422F19C3F003BCAFC /* MishnaMasechetCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB51711322F19C3F003BCAFC /* MishnaMasechetCellController.swift */; };
 		FB51711622F19FD2003BCAFC /* JTMishnaMasechet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB51711522F19FD2003BCAFC /* JTMishnaMasechet.swift */; };
 		FB51711A22F1A100003BCAFC /* JTMishnaChapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB51711922F1A100003BCAFC /* JTMishnaChapter.swift */; };
@@ -197,6 +199,8 @@
 		2133C22322DDCCD500F910B9 /* JBBarPageIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = JBBarPageIndicator.swift; path = ../WalkThrough/JBBarPageIndicator.swift; sourceTree = "<group>"; };
 		2133C22522DDCD3E00F910B9 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		21407C8822F72632002F9690 /* TextFieldWithDeleteDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldWithDeleteDelegate.swift; sourceTree = "<group>"; };
+		21419CAF230D50CA00145F1F /* AWSS3Provider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWSS3Provider.swift; sourceTree = "<group>"; };
+		21419CB2230D521800145F1F /* Bridging_Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bridging_Header.h; sourceTree = "<group>"; };
 		2145858E22EF7D980062F830 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		21678D1922DF2CB9007BC74C /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
 		21678D1A22DF2CB9007BC74C /* SF-Pro-Display-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Black.otf"; sourceTree = "<group>"; };
@@ -274,6 +278,9 @@
 		21ED3BD723048835009D8E3D /* GetMishnaLessonsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMishnaLessonsResponse.swift; sourceTree = "<group>"; };
 		21ED3BD9230488E3009D8E3D /* JTGemaraLesson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTGemaraLesson.swift; sourceTree = "<group>"; };
 		21ED3BDB23048970009D8E3D /* GetGemaraLessonsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGemaraLessonsResponse.swift; sourceTree = "<group>"; };
+		715A51EC96A60C90B07F8038 /* Pods-Jabrutouch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jabrutouch.debug.xcconfig"; path = "Target Support Files/Pods-Jabrutouch/Pods-Jabrutouch.debug.xcconfig"; sourceTree = "<group>"; };
+		C0F9377FF1E3DA5E9F901D68 /* Pods_Jabrutouch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jabrutouch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F71C57777BA59A6B8E3F7474 /* Pods-Jabrutouch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jabrutouch.release.xcconfig"; path = "Target Support Files/Pods-Jabrutouch/Pods-Jabrutouch.release.xcconfig"; sourceTree = "<group>"; };
 		FB51711322F19C3F003BCAFC /* MishnaMasechetCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MishnaMasechetCellController.swift; sourceTree = "<group>"; };
 		FB51711522F19FD2003BCAFC /* JTMishnaMasechet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTMishnaMasechet.swift; sourceTree = "<group>"; };
 		FB51711922F1A100003BCAFC /* JTMishnaChapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTMishnaChapter.swift; sourceTree = "<group>"; };
@@ -305,17 +312,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7AEA20A7CC7E87A1BEC48AF /* Pods_Jabrutouch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1371B014ACF312EFC7849D49 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C0F9377FF1E3DA5E9F901D68 /* Pods_Jabrutouch.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		2107341B22EEFCA8008479D0 /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				216A0E6C22EEFCF100F7FBC1 /* Network */,
 				2131969B22F38B2D00B0AF5F /* FilesManagementProvider.swift */,
+				21419CAF230D50CA00145F1F /* AWSS3Provider.swift */,
 				2131969A22F38B2D00B0AF5F /* UserDefaultsProvider.swift */,
 			);
 			path = Services;
@@ -477,6 +494,8 @@
 			children = (
 				2133C1F622DB5B8200F910B9 /* Jabrutouch */,
 				2133C1F522DB5B8200F910B9 /* Products */,
+				9A9C05757DCAA6D93F172828 /* Pods */,
+				1371B014ACF312EFC7849D49 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -587,6 +606,7 @@
 		2133C21222DCA57900F910B9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				21419CB1230D51F700145F1F /* Bridging Headers */,
 				FB67A5E222E47E61009E4DF9 /* Documents */,
 				2120BE2522DF2C62004854DB /* Fonts */,
 				2126D6D32302D12F00CB501D /* Strings */,
@@ -619,6 +639,14 @@
 				FBB18FAB22F85019006886FD /* Gemara.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		21419CB1230D51F700145F1F /* Bridging Headers */ = {
+			isa = PBXGroup;
+			children = (
+				21419CB2230D521800145F1F /* Bridging_Header.h */,
+			);
+			path = "Bridging Headers";
 			sourceTree = "<group>";
 		};
 		2145859022EF7E120062F830 /* Network */ = {
@@ -787,6 +815,15 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		9A9C05757DCAA6D93F172828 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				715A51EC96A60C90B07F8038 /* Pods-Jabrutouch.debug.xcconfig */,
+				F71C57777BA59A6B8E3F7474 /* Pods-Jabrutouch.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		FB51711222F19C07003BCAFC /* Mishna */ = {
 			isa = PBXGroup;
 			children = (
@@ -844,9 +881,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2133C20622DB5B8500F910B9 /* Build configuration list for PBXNativeTarget "Jabrutouch" */;
 			buildPhases = (
+				3FCF7E3637718E5E8BA0405D /* [CP] Check Pods Manifest.lock */,
 				2133C1F022DB5B8200F910B9 /* Sources */,
 				2133C1F122DB5B8200F910B9 /* Frameworks */,
 				2133C1F222DB5B8200F910B9 /* Resources */,
+				6E56CD5A8C3BF47E7ECFCD1D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -960,6 +999,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3FCF7E3637718E5E8BA0405D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Jabrutouch-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6E56CD5A8C3BF47E7ECFCD1D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Jabrutouch/Pods-Jabrutouch-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Jabrutouch/Pods-Jabrutouch-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Jabrutouch/Pods-Jabrutouch-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2133C1F022DB5B8200F910B9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -1035,6 +1116,7 @@
 				21ED3BCC23042A3C009D8E3D /* JTMishnaChapterItem.swift in Sources */,
 				213196A922F38B3E00B0AF5F /* ResendCodeResponse.swift in Sources */,
 				213196A622F38B3E00B0AF5F /* ValidateCodeResponse.swift in Sources */,
+				21419CB0230D50CB00145F1F /* AWSS3Provider.swift in Sources */,
 				2126D6E3230404BD00CB501D /* GemaraNavigationController.swift in Sources */,
 				2131969D22F38B2E00B0AF5F /* FilesManagementProvider.swift in Sources */,
 				216A0E7022EEFDA300F7FBC1 /* HTTPRequestFactory.swift in Sources */,
@@ -1203,6 +1285,7 @@
 		};
 		2133C20722DB5B8500F910B9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 715A51EC96A60C90B07F8038 /* Pods-Jabrutouch.debug.xcconfig */;
 			buildSettings = {
 				API_BASE_URL = "https://jabrutouch.ravtech.co.il/api/";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1217,6 +1300,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = il.co.ravtech.Jabrutouch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Jabrutouch/Supporting Files/Bridging Headers/Bridging_Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1224,6 +1308,7 @@
 		};
 		2133C20822DB5B8500F910B9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F71C57777BA59A6B8E3F7474 /* Pods-Jabrutouch.release.xcconfig */;
 			buildSettings = {
 				API_BASE_URL = "https://jabrutouch.ravtech.co.il/api/";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1238,6 +1323,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = il.co.ravtech.Jabrutouch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Jabrutouch/Supporting Files/Bridging Headers/Bridging_Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
