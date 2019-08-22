@@ -14,6 +14,7 @@ class LessonDownloadCellController: UITableViewCell {
     @IBOutlet weak var downloadButtonsContainerView: UIView!
     @IBOutlet weak var lessonNumber: UILabel!
     @IBOutlet weak var lessonLength: UILabel!
+    @IBOutlet weak var downloadProgressPercentageLabel: UILabel!
     @IBOutlet weak var audioImage: UIImageView!
     @IBOutlet weak var videoImage: UIImageView!
     @IBOutlet weak var redAudioVImage: UIImageView!

@@ -43,6 +43,13 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
         super.viewWillAppear(animated)
         
         self.setContent()
+        ContentRepository.shared.addDelegate(self)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        ContentRepository.shared.removeDelegate(self)
     }
     //========================================
     // MARK: - Setup
@@ -67,6 +74,7 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
             switch result {
             case .success(let lessons):
                 self.lessons = lessons
+                self.syncDownloadData()
                 self.tableView.reloadData()
             case .failure(let error):
                 let title = Strings.error
@@ -75,6 +83,15 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
             }
         }
         
+    }
+    
+    func syncDownloadData() {
+        for i in 0..<self.lessons.count {
+            if let progress = ContentRepository.shared.getLessonDownloadProgress(self.lessons[i].id) {
+                self.lessons[i].isDownloading = true
+                self.lessons[i].downloadProgress = progress
+            }
+        }
     }
     //=====================================================
     // MARK: - UITableView Data Source and Delegate section
@@ -105,6 +122,15 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
         Utils.setViewShape(view: cell.cellView, viewCornerRadius: 18)
         let shadowOffset = CGSize(width: 0.0, height: 12)
         Utils.dropViewShadow(view: cell.downloadButtonsContainerView, shadowColor: Colors.shadowColor, shadowRadius: 36, shadowOffset: shadowOffset)
+        
+        // Set playing buttons enablity according to downloading state
+        let downloadProgress = "\(Int((lesson.downloadProgress ?? 0.0) * 100))%"
+        cell.downloadProgressPercentageLabel.text = downloadProgress
+        cell.downloadProgressPercentageLabel.isHidden = !lesson.isDownloading
+        cell.playAudioButton.isEnabled = !lesson.isDownloading
+        cell.playVideoButton.isEnabled = !lesson.isDownloading
+        cell.audioImage.alpha = lesson.isDownloading ? 0.3 : 1.0
+        cell.videoImage.alpha = lesson.isDownloading ? 0.3 : 1.0
         
         cell.downloadButtonsContainerView.layoutIfNeeded()
         cell.cellView.layoutIfNeeded()
@@ -145,8 +171,9 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
     fileprivate func setEditingIfNeeded(_ indexPath: IndexPath, _ cell: LessonDownloadCellController) {
         if !isFirstLoading {
             animateImagesVisibiltyIfNeeded(indexPath, cell)
+            let lesson = self.lessons[indexPath.row]
             UIView.animate(withDuration: 0.3) {
-                if self.isCurrentlyEditing {
+                if self.isCurrentlyEditing && !lesson.isDownloading {
                     cell.cellViewTrailingConstraint.constant = self.view.frame.size.width / 2 - 20
                 } else {
                     cell.cellViewTrailingConstraint.constant = 18
@@ -175,15 +202,7 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
         }
     }
     
-    //========================================
-    // MARK: - @IBActions and helpers
-    //========================================
-    
-    @IBAction func backPressed(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
-    }
-    
-    @IBAction func downloadPressed(_ sender: Any) {
+    private func toggleEditingMode() {
         isCurrentlyEditing = !isCurrentlyEditing
         
         if isCurrentlyEditing {
@@ -195,6 +214,18 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
         }
         
         tableView.reloadData()
+    }
+    
+    //========================================
+    // MARK: - @IBActions and helpers
+    //========================================
+    
+    @IBAction func backPressed(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func downloadPressed(_ sender: Any) {
+        self.toggleEditingMode()
     }
     
     //====================================================
@@ -218,14 +249,11 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
         if lesson.isAudioDownloaded {
             alreadyDownloadedMediaAlert()
         } else {
-            ContentRepository.shared.downloadMishnaLesson(lesson, mediaType: .audio, delegate: self)
+            self.lessons[selectedRow].isDownloading = true
+            self.toggleEditingMode()
+            ContentRepository.shared.lessonStartedDownloading(lesson.id)
+            ContentRepository.shared.downloadMishnaLesson(lesson, mediaType: .audio, delegate: ContentRepository.shared)
         }
-    }
-    
-    fileprivate func alreadyDownloadedMediaAlert() {
-        let alert = UIAlertController(title: "", message: "The media already exists in the phone", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.cancel, handler: nil))
-        self.present(alert, animated: true, completion: nil)
     }
     
     func downloadVideoPressed(selectedRow: Int) {
@@ -233,8 +261,17 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
         if lesson.isVideoDownloaded {
             alreadyDownloadedMediaAlert()
         } else {
-            ContentRepository.shared.downloadMishnaLesson(lesson, mediaType: .video, delegate: self)
+            self.lessons[selectedRow].isDownloading = true
+            self.toggleEditingMode()
+            ContentRepository.shared.lessonStartedDownloading(lesson.id)
+            ContentRepository.shared.downloadMishnaLesson(lesson, mediaType: .video, delegate: ContentRepository.shared)
         }
+    }
+    
+    fileprivate func alreadyDownloadedMediaAlert() {
+        let alert = UIAlertController(title: "", message: "The media already exists in the phone", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     //============================================================
@@ -257,17 +294,27 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
     }
 }
 
-extension MishnaLessonsViewController: DownloadTaskDelegate {
+extension MishnaLessonsViewController: ContentRepositoryDownloadDelegate {
     func downloadCompleted(downloadId: Int) {
-        guard let lesson = (self.lessons.filter{$0.id == downloadId}).first else { return }
+        guard let index = self.lessons.firstIndex(where: {$0.id == downloadId}) else { return }
         guard let sederId = self.sederId else { return }
         guard let masecetId = self.masechetId else { return }
         guard let chapter = self.chapter else { return }
+        
+        let lesson = self.lessons[index]
+        self.lessons[index].isDownloading = false
+        self.lessons[index].downloadProgress = nil
+        self.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
+        ContentRepository.shared.lessonEndedDownloading(lesson.id)
         ContentRepository.shared.addLessonToDownloaded(lesson, sederId: sederId, masechetId: "\(masecetId)", chapter: "\(chapter)")
         print("GemaraLessonsViewController downloadCompleted, downloadId: \(downloadId)")
     }
     
     func downloadProgress(downloadId: Int, progress: Float) {
+        guard let index = self.lessons.firstIndex(where: {$0.id == downloadId}) else { return }
+        self.lessons[index].downloadProgress = progress
+        self.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
+        ContentRepository.shared.lessonDownloadProgress(downloadId, progress: progress)
         print("GemaraLessonsViewController downloadProgress, progress: \(progress)")
     }
 }

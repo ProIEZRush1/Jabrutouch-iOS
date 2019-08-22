@@ -19,7 +19,8 @@ enum JTLessonMediaType {
 }
 
 protocol ContentRepositoryDownloadDelegate: class {
-    
+    func downloadCompleted(downloadId: Int)
+    func downloadProgress(downloadId: Int, progress: Float)
 }
 
 enum ContentFileSource {
@@ -33,12 +34,14 @@ class ContentRepository {
     //========================================
     // MARK: - Properties
     //========================================
+    private var lessonsInDownload: [Int: Float] = [:]
     private var shas: [JTSeder] = []
     private var gemaraLessons: [String:[String:JTGemaraLesson]] = [:]
     private var mishnaLessons: [String:[String:[String:JTMishnaLesson]]] = [:]
     private var downloadedGemaraLessons: [SederId:[MasechetId:Set<JTGemaraLesson>]] = [:]
     private var downloadedMishnaLessons: [SederId:[MasechetId:[Chapter:Set<JTMishnaLesson>]]] = [:]
-
+    private var delegates: [ContentRepositoryDownloadDelegate] = []
+    
     private static var repository: ContentRepository?
     
     class var shared: ContentRepository {
@@ -79,6 +82,22 @@ class ContentRepository {
         self.mishnaLessons = self.loadMishnaLessonsFromStorage()
     }
     
+    //========================================
+    // MARK: - Delegates
+    //========================================
+    
+    func addDelegate(_ delegate: ContentRepositoryDownloadDelegate) {
+        self.delegates.append(delegate)
+    }
+    
+    func removeDelegate(_ delegate: ContentRepositoryDownloadDelegate) {
+        for i in 0..<self.delegates.count {
+            if self.delegates[i] === delegate {
+                self.delegates.remove(at: i)
+                return
+            }
+        }
+    }
     //========================================
     // MARK: - Main Methods
     //========================================
@@ -221,7 +240,20 @@ class ContentRepository {
     //========================================
     // MARK: - Download content methods
     //========================================
+    func getLessonDownloadProgress(_ lessonId: Int) -> Float? {
+        return self.lessonsInDownload[lessonId]
+    }
+    func lessonStartedDownloading(_ lessonId: Int) {
+        self.lessonsInDownload[lessonId] = 0.0
+    }
     
+    func lessonEndedDownloading(_ lessonId: Int) {
+        self.lessonsInDownload.removeValue(forKey: lessonId)
+    }
+    
+    func lessonDownloadProgress(_ lessonId: Int, progress: Float) {
+        self.lessonsInDownload[lessonId] = progress
+    }
     func addLessonToDownloaded(_ lesson: JTGemaraLesson, sederId: String, masechetId: String) {
         if let _ = self.downloadedGemaraLessons[sederId] {
             if let _ = self.downloadedGemaraLessons[sederId]?[masechetId] {
@@ -479,5 +511,19 @@ class ContentRepository {
             }
         }
         return nil
+    }
+}
+
+extension ContentRepository: DownloadTaskDelegate {
+    func downloadCompleted(downloadId: Int) {
+        for delegate in self.delegates {
+            delegate.downloadCompleted(downloadId: downloadId)
+        }
+    }
+    
+    func downloadProgress(downloadId: Int, progress: Float) {
+        for delegate in self.delegates {
+            delegate.downloadProgress(downloadId: downloadId, progress: progress )
+        }
     }
 }

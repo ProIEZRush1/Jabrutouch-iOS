@@ -74,7 +74,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3LC-mN-5ge" userLabel="Cell Content">
-                                                    <rect key="frame" x="18" y="0.0" width="564" height="55"/>
+                                                    <rect key="frame" x="18" y="0.0" width="378" height="55"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shabbat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xc1-bq-BmF">
                                                             <rect key="frame" x="25" y="13" width="90" height="29"/>
@@ -83,19 +83,19 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TpY-lG-EdS">
-                                                            <rect key="frame" x="455.5" y="18" width="18" height="19"/>
+                                                            <rect key="frame" x="269.5" y="18" width="18" height="19"/>
                                                             <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="16"/>
                                                             <color key="textColor" red="0.36470588235294116" green="0.59607843137254901" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lessons" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fyr-ag-q72">
-                                                            <rect key="frame" x="477.5" y="18" width="56" height="19"/>
+                                                            <rect key="frame" x="291.5" y="18" width="56" height="19"/>
                                                             <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="16"/>
                                                             <color key="textColor" red="0.36470588235294116" green="0.59607843137254901" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueRightArrow" translatesAutoresizingMaskIntoConstraints="NO" id="enF-Kk-uJC">
-                                                            <rect key="frame" x="544" y="20.5" width="9" height="14"/>
+                                                            <rect key="frame" x="358" y="20.5" width="9" height="14"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="14" id="wuF-aV-pWE"/>
                                                             </constraints>
@@ -116,7 +116,7 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RcY-0m-zPp" userLabel="Bottom Padding">
-                                                    <rect key="frame" x="0.0" y="55" width="600" height="12"/>
+                                                    <rect key="frame" x="0.0" y="55" width="414" height="12"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <accessibility key="accessibilityConfiguration" identifier="GVC Cell Padding"/>
                                                     <constraints>
@@ -367,6 +367,12 @@
                                                                 <action selector="playVideoButtonTouchedUp:" destination="stx-P0-QHU" eventType="touchUpOutside" id="o4E-x1-FDG"/>
                                                             </connections>
                                                         </button>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cmb-v3-ni8">
+                                                            <rect key="frame" x="168" y="27" width="42" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.99607843139999996" green="0.99607843139999996" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
                                                     <accessibility key="accessibilityConfiguration" identifier="GLVC Cell Content"/>
@@ -379,11 +385,13 @@
                                                         <constraint firstItem="6Bm-rb-6SW" firstAttribute="leading" secondItem="u3X-rD-rwq" secondAttribute="trailing" constant="33" id="FL3-eR-Ces"/>
                                                         <constraint firstAttribute="trailing" secondItem="6Bm-rb-6SW" secondAttribute="trailing" constant="25" id="IxD-sH-hJ4"/>
                                                         <constraint firstItem="KrA-ho-pV5" firstAttribute="leading" secondItem="u3X-rD-rwq" secondAttribute="trailing" id="QFF-fC-nDV"/>
+                                                        <constraint firstItem="cmb-v3-ni8" firstAttribute="centerX" secondItem="QFU-dG-KeJ" secondAttribute="centerX" id="SDo-NX-i1I"/>
                                                         <constraint firstItem="Ipa-QS-RBA" firstAttribute="centerY" secondItem="QFU-dG-KeJ" secondAttribute="centerY" multiplier="1.3:1" id="TZY-Zb-JmD"/>
                                                         <constraint firstItem="ocu-AW-QtR" firstAttribute="centerY" secondItem="QFU-dG-KeJ" secondAttribute="centerY" id="WnQ-Qe-Ie3"/>
                                                         <constraint firstItem="mz8-2f-iL0" firstAttribute="centerY" secondItem="6Bm-rb-6SW" secondAttribute="centerY" id="XjM-Cf-Pwm"/>
                                                         <constraint firstItem="ocu-AW-QtR" firstAttribute="leading" secondItem="HAD-dN-kgf" secondAttribute="trailing" constant="7" id="aTS-Qg-zqD"/>
                                                         <constraint firstItem="Ipa-QS-RBA" firstAttribute="leading" secondItem="6Bm-rb-6SW" secondAttribute="trailing" id="bI2-IQ-fVK"/>
+                                                        <constraint firstItem="cmb-v3-ni8" firstAttribute="centerY" secondItem="QFU-dG-KeJ" secondAttribute="centerY" id="eec-nz-kv5"/>
                                                         <constraint firstItem="YoW-aB-qVp" firstAttribute="centerY" secondItem="u3X-rD-rwq" secondAttribute="centerY" id="in6-Dj-brw"/>
                                                         <constraint firstItem="YoW-aB-qVp" firstAttribute="centerX" secondItem="u3X-rD-rwq" secondAttribute="centerX" id="mAE-Lc-dB6"/>
                                                         <constraint firstItem="HAD-dN-kgf" firstAttribute="leading" secondItem="FVx-hy-G7W" secondAttribute="trailing" constant="50" id="o8B-o0-NkN"/>
@@ -423,6 +431,7 @@
                                             <outlet property="downloadAudioButton" destination="Xd8-zT-NIm" id="TiN-1c-GAF"/>
                                             <outlet property="downloadAudioButtonImageView" destination="NfR-Md-Mpi" id="frq-dM-Z2K"/>
                                             <outlet property="downloadButtonsContainerView" destination="G7Y-2J-INF" id="Ta6-gQ-UqJ"/>
+                                            <outlet property="downloadProgressPercentageLabel" destination="cmb-v3-ni8" id="F3l-7B-W15"/>
                                             <outlet property="downloadVideoButton" destination="QVQ-vs-qnp" id="cwt-eU-AgE"/>
                                             <outlet property="downloadVideoButtonImageView" destination="5MK-BE-9jN" id="v7k-rL-Xft"/>
                                             <outlet property="lessonLength" destination="ocu-AW-QtR" id="B3e-p7-Apy"/>

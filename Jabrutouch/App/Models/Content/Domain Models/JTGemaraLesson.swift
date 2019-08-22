@@ -25,7 +25,7 @@ struct JTGemaraLesson: Hashable  {
     var gallery: [String]
     var presenter: JTLesssonPresenter?
     
-    var isDonwnloading = false
+    var isDownloading = false
     var downloadProgress: Float?
     //============================================
     // MARK: - Initializer
