@@ -52,6 +52,10 @@
 		21407C8922F72632002F9690 /* TextFieldWithDeleteDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21407C8822F72632002F9690 /* TextFieldWithDeleteDelegate.swift */; };
 		21419CB0230D50CB00145F1F /* AWSS3Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21419CAF230D50CA00145F1F /* AWSS3Provider.swift */; };
 		21419CB4230D894B00145F1F /* DownloadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21419CB3230D894B00145F1F /* DownloadTask.swift */; };
+		21419CB7230DD8C100145F1F /* JTSederDownloadedGemaraLessons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21419CB6230DD8C100145F1F /* JTSederDownloadedGemaraLessons.swift */; };
+		21419CB9230DD91100145F1F /* JTSederDownloadedMishnaLessons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21419CB8230DD91100145F1F /* JTSederDownloadedMishnaLessons.swift */; };
+		21419CBB230EAF5300145F1F /* JTDownloadedGemaraLesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21419CBA230EAF5300145F1F /* JTDownloadedGemaraLesson.swift */; };
+		21419CBD230EAF9C00145F1F /* JTDownloadedMishnaLesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21419CBC230EAF9C00145F1F /* JTDownloadedMishnaLesson.swift */; };
 		2145858F22EF7D980062F830 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2145858E22EF7D980062F830 /* API.swift */; };
 		21678D4622DF2CEC007BC74C /* SF-Pro-Display-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 21678D1A22DF2CB9007BC74C /* SF-Pro-Display-Black.otf */; };
 		21678D4722DF2CEC007BC74C /* SF-Pro-Display-BlackItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 21678D3622DF2CC5007BC74C /* SF-Pro-Display-BlackItalic.otf */; };
@@ -203,6 +207,10 @@
 		21419CAF230D50CA00145F1F /* AWSS3Provider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWSS3Provider.swift; sourceTree = "<group>"; };
 		21419CB2230D521800145F1F /* Bridging_Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bridging_Header.h; sourceTree = "<group>"; };
 		21419CB3230D894B00145F1F /* DownloadTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadTask.swift; sourceTree = "<group>"; };
+		21419CB6230DD8C100145F1F /* JTSederDownloadedGemaraLessons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTSederDownloadedGemaraLessons.swift; sourceTree = "<group>"; };
+		21419CB8230DD91100145F1F /* JTSederDownloadedMishnaLessons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTSederDownloadedMishnaLessons.swift; sourceTree = "<group>"; };
+		21419CBA230EAF5300145F1F /* JTDownloadedGemaraLesson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTDownloadedGemaraLesson.swift; sourceTree = "<group>"; };
+		21419CBC230EAF9C00145F1F /* JTDownloadedMishnaLesson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTDownloadedMishnaLesson.swift; sourceTree = "<group>"; };
 		2145858E22EF7D980062F830 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		21678D1922DF2CB9007BC74C /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
 		21678D1A22DF2CB9007BC74C /* SF-Pro-Display-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Black.otf"; sourceTree = "<group>"; };
@@ -343,9 +351,9 @@
 		21186E9D22E5097700B3049E /* Downloads */ = {
 			isa = PBXGroup;
 			children = (
+				21419CB5230DD4DE00145F1F /* Cells */,
 				219BFF2622E50A0A00ABBEE2 /* DownloadsNavigationController.swift */,
 				21678D7522E08565007BC74C /* DownloadsViewController.swift */,
-				FBAB071522E74ABD00C8DCD7 /* DownloadsCellController.swift */,
 			);
 			path = Downloads;
 			sourceTree = "<group>";
@@ -651,6 +659,14 @@
 			path = "Bridging Headers";
 			sourceTree = "<group>";
 		};
+		21419CB5230DD4DE00145F1F /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				FBAB071522E74ABD00C8DCD7 /* DownloadsCellController.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		2145859022EF7E120062F830 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -705,13 +721,13 @@
 		219BFF3222E5B6C200ABBEE2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				2131969222F38B1200B0AF5F /* JTError.swift */,
 				2126D6D423033CDD00CB501D /* Content */,
 				21CC093F22F05CEB00E8FE27 /* DafYomi */,
 				2145859022EF7E120062F830 /* Network */,
 				216A0E7122EF15C600F7FBC1 /* User */,
 				FBAB071722E7577700C8DCD7 /* Data Models */,
 				219BFF3322E5B6E100ABBEE2 /* Localization */,
+				2131969222F38B1200B0AF5F /* JTError.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -794,6 +810,10 @@
 				FB51711522F19FD2003BCAFC /* JTMishnaMasechet.swift */,
 				21ED3BCB23042A3C009D8E3D /* JTMishnaChapterItem.swift */,
 				FB51711922F1A100003BCAFC /* JTMishnaChapter.swift */,
+				21419CB6230DD8C100145F1F /* JTSederDownloadedGemaraLessons.swift */,
+				21419CB8230DD91100145F1F /* JTSederDownloadedMishnaLessons.swift */,
+				21419CBA230EAF5300145F1F /* JTDownloadedGemaraLesson.swift */,
+				21419CBC230EAF9C00145F1F /* JTDownloadedMishnaLesson.swift */,
 			);
 			path = "App Models";
 			sourceTree = "<group>";
@@ -1072,6 +1092,7 @@
 				FB6877C222FC49AE0096465D /* AlertViewController.swift in Sources */,
 				FBB18FB422F866C8006886FD /* GemaraLessonsViewController.swift in Sources */,
 				216A0E6E22EEFD1400F7FBC1 /* HttpServiceProvider.swift in Sources */,
+				21419CBB230EAF5300145F1F /* JTDownloadedGemaraLesson.swift in Sources */,
 				21678D7422E08530007BC74C /* MainViewController.swift in Sources */,
 				213196A822F38B3E00B0AF5F /* APIResponseModel.swift in Sources */,
 				2126D6E12304025A00CB501D /* MishnaNavigationController.swift in Sources */,
@@ -1092,6 +1113,7 @@
 				21419CB4230D894B00145F1F /* DownloadTask.swift in Sources */,
 				219BFF2722E50A0A00ABBEE2 /* DownloadsNavigationController.swift in Sources */,
 				2131969C22F38B2E00B0AF5F /* UserDefaultsProvider.swift in Sources */,
+				21419CBD230EAF9C00145F1F /* JTDownloadedMishnaLesson.swift in Sources */,
 				21678D7C22E085CB007BC74C /* DonationsViewController.swift in Sources */,
 				2145858F22EF7D980062F830 /* API.swift in Sources */,
 				2120BE1D22DF273F004854DB /* SignInViewController.swift in Sources */,
@@ -1112,6 +1134,7 @@
 				21678D7622E08565007BC74C /* DownloadsViewController.swift in Sources */,
 				219BFF3822E5B72000ABBEE2 /* LocalizationManager.swift in Sources */,
 				213196A522F38B3E00B0AF5F /* SignUpResponse.swift in Sources */,
+				21419CB7230DD8C100145F1F /* JTSederDownloadedGemaraLessons.swift in Sources */,
 				2120BE1F22DF2758004854DB /* SignUpViewController.swift in Sources */,
 				213196AD22F38B6800B0AF5F /* JTCommunity.swift in Sources */,
 				FBDEF16D22E89E3B00A300DA /* HeaderCellController.swift in Sources */,
@@ -1132,6 +1155,7 @@
 				219BFF4422E7186D00ABBEE2 /* MenuTableViewCell.swift in Sources */,
 				2131969722F38B1200B0AF5F /* APIResult.swift in Sources */,
 				FBDEF16822E8868600A300DA /* JTDownloadGroup.swift in Sources */,
+				21419CB9230DD91100145F1F /* JTSederDownloadedMishnaLessons.swift in Sources */,
 				FBB18FB222F8649A006886FD /* JTGemaraMasechetItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

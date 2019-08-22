@@ -11,6 +11,7 @@ import Foundation
 struct JTMishnaSeder {
     
     var name: String
+    var sederId: Int
     var masechtot: [JTMishnaMasechetItem]
     
 }

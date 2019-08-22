@@ -8,7 +8,10 @@
 
 import Foundation
 
-struct JTMishnaLesson {
+struct JTMishnaLesson: Hashable {
+    
+    
+    
     
     //============================================
     // MARK: - Stored Properties
@@ -79,8 +82,22 @@ struct JTMishnaLesson {
     }
     
     //============================================
+    // MARK: - Hashable & Equateable
+    //============================================
+    
+    static func == (lhs: JTMishnaLesson, rhs: JTMishnaLesson) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.id)
+    }
+    
+    //============================================
     // MARK: - Computed Properties
     //============================================
+    
+    
     
     var durationDisplay: String {
         let minutes = self.duration/60

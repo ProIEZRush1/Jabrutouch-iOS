@@ -9,6 +9,7 @@
 import Foundation
 
 struct JTGemaraSeder {
+    var sederId: Int
     var name: String
     var masechtot: [JTGemaraMasechetItem]
 }

@@ -69,6 +69,17 @@ class FilesManagementProvider {
         }
     }
     
+    func removeFiles(_ urls: [URL]) {
+        do {
+            for url in urls {
+                try FileManager.default.removeItem(at: url)
+            }
+        }
+        catch {
+            return
+        }
+    }
+    
     func getResource(resourceName: String, extensionName: String) -> Data? {
         guard let url = Bundle.main.url(forResource: resourceName, withExtension: extensionName) else { return nil }
         do {

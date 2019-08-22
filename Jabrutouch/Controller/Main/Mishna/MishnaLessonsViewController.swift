@@ -22,7 +22,7 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
     var lessons: [JTMishnaLesson] = []
     var masechetName: String?
     var chapter: Int?
-    var seder: String?
+    var sederId: String?
     var masechetId: Int?
     var isCurrentlyEditing: Bool = false
     var isFirstLoading: Bool = false
@@ -260,8 +260,10 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
 extension MishnaLessonsViewController: DownloadTaskDelegate {
     func downloadCompleted(downloadId: Int) {
         guard let lesson = (self.lessons.filter{$0.id == downloadId}).first else { return }
-        guard let seder = self.seder else { return }
-        ContentRepository.shared.addLessonToDownloaded(lesson, seder: seder)
+        guard let sederId = self.sederId else { return }
+        guard let masecetId = self.masechetId else { return }
+        guard let chapter = self.chapter else { return }
+        ContentRepository.shared.addLessonToDownloaded(lesson, sederId: sederId, masechetId: "\(masecetId)", chapter: "\(chapter)")
         print("GemaraLessonsViewController downloadCompleted, downloadId: \(downloadId)")
     }
     

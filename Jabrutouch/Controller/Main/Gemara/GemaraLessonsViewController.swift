@@ -21,7 +21,7 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
     var lessons: [JTGemaraLesson] = []
     var masechetName: String?
     var masechetId: Int?
-    var seder: String?
+    var sederId: String?
     var isCurrentlyEditing: Bool = false
     var isFirstLoading: Bool = false
     
@@ -257,8 +257,9 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
 extension GemaraLessonsViewController: DownloadTaskDelegate {
     func downloadCompleted(downloadId: Int) {
         guard let lesson = (self.lessons.filter{$0.id == downloadId}).first else { return }
-        guard let seder = self.seder else { return }
-        ContentRepository.shared.addLessonToDownloaded(lesson, seder: seder)
+        guard let sederId = self.sederId else { return }
+        guard let masechetId = self.masechetId else { return }
+        ContentRepository.shared.addLessonToDownloaded(lesson, sederId: sederId, masechetId: "\(masechetId)")
         print("GemaraLessonsViewController downloadCompleted, downloadId: \(downloadId)")
     }
     

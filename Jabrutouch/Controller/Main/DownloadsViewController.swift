@@ -33,16 +33,17 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     var delegate: MainModalDelegate?
     fileprivate var grayUpArrowXCentererdToGemara: NSLayoutConstraint?
     fileprivate var grayUpArrowXCentererdToMishna: NSLayoutConstraint?
-    fileprivate var gemaraDownloads: [JTDownloadGroup] = []
-    fileprivate var mishnaDownloads: [JTDownloadGroup] = []
+    fileprivate var gemaraDownloads: [JTSederDownloadedGemaraLessons] = []
+    fileprivate var mishnaDownloads: [JTSederDownloadedMishnaLessons] = []
     fileprivate var isGemaraSelected = true
     fileprivate var isDeleting = false
-    fileprivate var downloadsMap = [String: [JTDownloadGroup]]()
     fileprivate var tableViewsMap = [String: UITableView]()
     fileprivate let GEMARA = "Gemara"
     fileprivate let MISHNA = "Mishna"
     fileprivate var isReloadingSection =  false
     
+    fileprivate var gemaraOpenSections: Set<Int> = []
+    fileprivate var mishnaOpenSections: Set<Int> = []
     //=======================================
     // MARK: - LifeCycle
     //=======================================
@@ -51,15 +52,13 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         initialGrayUpArrowXCentererdToGemara.isActive = false
         grayUpArrowXCentererdToGemara = grayUpArrow.centerXAnchor.constraint(equalTo: gemaraButton.centerXAnchor)
         grayUpArrowXCentererdToMishna = grayUpArrow.centerXAnchor.constraint(equalTo: mishnaButton.centerXAnchor)
-        fillTableForDev() // Only for Dev
         gemaraTableView.register(UINib(nibName: "DownloadsHeaderCell", bundle: nil), forHeaderFooterViewReuseIdentifier: "headerCell")
         mishnaTableView.register(UINib(nibName: "DownloadsHeaderCell", bundle: nil), forHeaderFooterViewReuseIdentifier: "headerCell")
         gemaraTableView.delegate = self
         gemaraTableView.dataSource = self
         mishnaTableView.delegate = self
         mishnaTableView.dataSource = self
-        downloadsMap[GEMARA] = gemaraDownloads
-        downloadsMap[MISHNA] = mishnaDownloads
+        
         tableViewsMap[GEMARA] = gemaraTableView
         tableViewsMap[MISHNA] = mishnaTableView
         setViews()
@@ -67,68 +66,15 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setContent()
         setSelectedPage()
+
     }
     
     //========================================
     // MARK: - Setup
     //========================================
     
-    // Only for Dev function
-    fileprivate func fillTableForDev() {
-        var downloads1 = [JTDownload]()
-        var downloads4 = [JTDownload]()
-        let download1_1 = JTDownload(book: "Shabbat", chapter: "A", number: "1", hasAudio: true, hasVideo: true)
-        let download1_2 = JTDownload(book: "Shabbat", chapter: "A", number: "2", hasAudio: true, hasVideo: true)
-        let download1_3 = JTDownload(book: "Shabbat", chapter: "B", number: "12", hasAudio: false, hasVideo: true)
-        let download1_4 = JTDownload(book: "Shekalim", chapter: "B", number: "13", hasAudio: false, hasVideo: true)
-        let download1_5 = JTDownload(book: "Shekalim", chapter: "B", number: "14", hasAudio: true, hasVideo: false)
-        downloads1.append(download1_1)
-        downloads1.append(download1_2)
-        downloads1.append(download1_3)
-        downloads4.append(download1_4)
-        downloads4.append(download1_5)
-        let downloadGroup1 = JTDownloadGroup(group: "Shabbat", downloads: downloads1)
-        let downloadGroup4 = JTDownloadGroup(group: "Shekalim", downloads: downloads4)
-        
-        var downloads2 = [JTDownload]()
-        var downloads5 = [JTDownload]()
-        let download2_1 = JTDownload(book: "Iruvim", chapter: "A", number: "2", hasAudio: true, hasVideo: true)
-        let download2_2 = JTDownload(book: "Iruvim", chapter: "A", number: "5", hasAudio: true, hasVideo: false)
-        let download2_3 = JTDownload(book: "Yoma", chapter: "C", number: "1", hasAudio: true, hasVideo: true)
-        let download2_4 = JTDownload(book: "Yoma", chapter: "C", number: "3", hasAudio: false, hasVideo: true)
-        downloads2.append(download2_1)
-        downloads2.append(download2_2)
-        downloads5.append(download2_3)
-        downloads5.append(download2_4)
-        let downloadGroup2 = JTDownloadGroup(group: "Iruvim", downloads: downloads2)
-        let downloadGroup5 = JTDownloadGroup(group: "Yoma", downloads: downloads5)
-        
-        var downloads3 = [JTDownload]()
-        var downloads6 = [JTDownload]()
-        let download3_1 = JTDownload(book: "Pesachim", chapter: "B", number: "3", hasAudio: true, hasVideo: false)
-        let download3_2 = JTDownload(book: "Pesachim", chapter: "B", number: "4", hasAudio: true, hasVideo: true)
-        let download3_3 = JTDownload(book: "Pesachim", chapter: "D", number: "1", hasAudio: true, hasVideo: false)
-        let download3_4 = JTDownload(book: "Succah", chapter: "E", number: "4", hasAudio: false, hasVideo: true)
-        let download3_5 = JTDownload(book: "Succah", chapter: "G", number: "2", hasAudio: true, hasVideo: false)
-        let download3_6 = JTDownload(book: "Succah", chapter: "G", number: "3", hasAudio: true, hasVideo: false)
-        downloads3.append(download3_1)
-        downloads3.append(download3_2)
-        downloads3.append(download3_3)
-        downloads6.append(download3_4)
-        downloads6.append(download3_5)
-        downloads6.append(download3_6)
-        let downloadGroup3 = JTDownloadGroup(group: "Pesachim", downloads: downloads3)
-        let downloadGroup6 = JTDownloadGroup(group: "Succah", downloads: downloads6)
-        
-        gemaraDownloads.append(downloadGroup1)
-        gemaraDownloads.append(downloadGroup2)
-        gemaraDownloads.append(downloadGroup3)
-        
-        mishnaDownloads.append(downloadGroup4)
-        mishnaDownloads.append(downloadGroup5)
-        mishnaDownloads.append(downloadGroup6)
-    }
     
     fileprivate func setSelectedPage() {
         setButtonsColorAndFont()
@@ -137,7 +83,7 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         checkIfTableViewEmpty(mishnaDownloads, mishnaTableView)
     }
     
-    fileprivate func checkIfTableViewEmpty(_ downloads: [JTDownloadGroup], _ tableView: UITableView) {
+    fileprivate func checkIfTableViewEmpty(_ downloads: [Any], _ tableView: UITableView) {
         if downloads.count == 0 {
             setNoDownloadMessage(isHidden: false, table: tableView)
         } else {
@@ -209,6 +155,12 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         Utils.dropViewShadow(view: headerShadowBasis, shadowColor: headerShadowColor, shadowRadius: 22, shadowOffset: headerShadowOffset)
     }
     
+    fileprivate func setContent() {
+        self.gemaraDownloads = ContentRepository.shared.getDownloadedGemaraLessons()
+        self.mishnaDownloads = ContentRepository.shared.getDownloadedMishnaLessons()
+        self.gemaraTableView.reloadData()
+        self.mishnaTableView.reloadData()
+    }
     //=======================================================
     // MARK: - UITableView Data Source and Delegate section
     //=======================================================
@@ -223,14 +175,14 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == gemaraTableView {
-            if gemaraDownloads[section].isExpanded {
-                return gemaraDownloads[section].downloads.count
+            if gemaraOpenSections.contains(section) {
+                return gemaraDownloads[section].lessons.count
             } else {
                 return 0
             }
         } else {
-            if mishnaDownloads[section].isExpanded {
-                return mishnaDownloads[section].downloads.count
+            if mishnaOpenSections.contains(section) {
+                return mishnaDownloads[section].lessons.count
             } else {
                 return 0
             }
@@ -269,14 +221,14 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         
         if tableView == gemaraTableView {
             headerCell.isFirstTable = true
-            isExpanded = gemaraDownloads[section].isExpanded
-            sectionName = self.gemaraDownloads[section].name
-            sectionRowsCount = self.gemaraDownloads[section].downloads.count
+            isExpanded = gemaraOpenSections.contains(section)
+            sectionName = self.gemaraDownloads[section].sederName
+            sectionRowsCount = self.gemaraDownloads[section].lessons.count
         } else {
             headerCell.isFirstTable = false
-            isExpanded = mishnaDownloads[section].isExpanded
-            sectionName = self.mishnaDownloads[section].name
-            sectionRowsCount = self.mishnaDownloads[section].downloads.count
+            isExpanded = mishnaOpenSections.contains(section)
+            sectionName = self.mishnaDownloads[section].sederName
+            sectionRowsCount = self.mishnaDownloads[section].lessons.count
         }
         
         if isExpanded {
@@ -291,21 +243,27 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "downloadsCell", for: indexPath) as! DownloadsCellController
-        var download: JTDownload
         if tableView == gemaraTableView {
             cell.isFirstTable = true
-            download = self.gemaraDownloads[indexPath.section].downloads[indexPath.row]
+            let lesson = self.gemaraDownloads[indexPath.section].lessons[indexPath.row]
+            cell.book.text = lesson.masechetName
+            cell.chapter.text = ""
+            cell.number.text = "\(lesson.lesson.page)"
+            cell.delegate = self
+            cell.audioButton.isHidden = !lesson.lesson.isAudioDownloaded
+            cell.videoButton.isHidden = !lesson.lesson.isVideoDownloaded
         } else {
             cell.isFirstTable = false
-            download = self.mishnaDownloads[indexPath.section].downloads[indexPath.row]
+            let lesson = self.mishnaDownloads[indexPath.section].lessons[indexPath.row]
+            cell.book.text = lesson.masechetName
+            cell.chapter.text = lesson.chapter
+            cell.number.text = "\(lesson.lesson.mishna)"
+            cell.delegate = self
+            cell.audioButton.isHidden = !lesson.lesson.isAudioDownloaded
+            cell.videoButton.isHidden = !lesson.lesson.isVideoDownloaded
         }
 
-        cell.book.text = download.book
-        cell.chapter.text = download.chapter
-        cell.number.text = download.number
-        cell.delegate = self
-        cell.audioButton.isHidden = !download.hasAudio
-        cell.videoButton.isHidden = !download.hasVideo
+        
         Utils.setViewShape(view: cell.cellView, viewCornerRadius: 18)
         let shadowOffset = CGSize(width: 0.0, height: 12)
         Utils.dropViewShadow(view: cell.cellView, shadowColor: Colors.shadowColor, shadowRadius: 36, shadowOffset: shadowOffset)
@@ -352,10 +310,20 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func toggleSection(header: HeaderCellController, section: Int) {
         if header.isFirstTable {
-            gemaraDownloads[section].isExpanded = !gemaraDownloads[section].isExpanded
+            if gemaraOpenSections.contains(section) {
+                gemaraOpenSections.remove(section)
+            }
+            else {
+                gemaraOpenSections.insert(section)
+            }
             reloadSection(GEMARA, section)
         } else {
-            mishnaDownloads[section].isExpanded = !mishnaDownloads[section].isExpanded
+            if mishnaOpenSections.contains(section) {
+                mishnaOpenSections.remove(section)
+            }
+            else {
+                mishnaOpenSections.insert(section)
+            }
             reloadSection(MISHNA, section)
         }
     }
@@ -378,8 +346,14 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default, handler: { action in
             if cell.isFirstTable {
                 if let indexPath = self.gemaraTableView.indexPath(for: cell) {
-                    self.gemaraDownloads[indexPath.section].downloads.remove(at: indexPath.row)
-                    if self.gemaraDownloads[indexPath.section].downloads.count == 0 {
+                   
+                    // Remove from storage
+                    let downloadedLesson = self.gemaraDownloads[indexPath.section].lessons[indexPath.row]
+                    ContentRepository.shared.removeLessonFromDownloaded(downloadedLesson.lesson, sederId: "\(self.gemaraDownloads[indexPath.section].sederId)", masechetId: downloadedLesson.masechetId)
+                    
+                    // Refresh local data and view
+                    self.gemaraDownloads[indexPath.section].lessons.remove(at: indexPath.row)
+                    if self.gemaraDownloads[indexPath.section].lessons.count == 0 {
                         self.gemaraDownloads.remove(at: indexPath.section)
                         self.gemaraTableView.deleteSections([indexPath.section], with: .bottom)
                         self.reloadRelevantSections(indexPath.section, self.gemaraDownloads, self.gemaraTableView)
@@ -389,8 +363,13 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
                 }
             } else {
                 if let indexPath = self.mishnaTableView.indexPath(for: cell) {
-                    self.mishnaDownloads[indexPath.section].downloads.remove(at: indexPath.row)
-                    if self.mishnaDownloads[indexPath.section].downloads.count == 0 {
+                   // Remove from storage
+                    let downloadedLesson = self.mishnaDownloads[indexPath.section].lessons[indexPath.row]
+                    ContentRepository.shared.removeLessonFromDownloaded(downloadedLesson.lesson, sederId: "\(self.mishnaDownloads[indexPath.section].sederId)", masechetId: downloadedLesson.masechetId, chapter: downloadedLesson.chapter)
+
+                    // Refresh local data and view
+                    self.mishnaDownloads[indexPath.section].lessons.remove(at: indexPath.row)
+                    if self.mishnaDownloads[indexPath.section].lessons.count == 0 {
                         self.mishnaDownloads.remove(at: indexPath.section)
                         self.mishnaTableView.deleteSections([indexPath.section], with: .bottom)
                         self.reloadRelevantSections(indexPath.section, self.mishnaDownloads, self.mishnaTableView)
@@ -408,6 +387,7 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     fileprivate func deleteCell(_ cell: DownloadsCellController, _ tableView: inout UITableView, _ downloads: inout [JTDownloadGroup]) {
         if let indexPath = tableView.indexPath(for: cell) {
             downloads[indexPath.section].downloads.remove(at: indexPath.row)
+            tableView.beginUpdates()
             if downloads[indexPath.section].downloads.count == 0 {
                 downloads.remove(at: indexPath.section)
                 tableView.deleteSections([indexPath.section], with: .bottom)
@@ -415,11 +395,12 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
             } else {
                 tableView.deleteRows(at: [indexPath], with: .bottom)
             }
+            tableView.endUpdates()
         }
     }
     
     // Update the "section" field in the header cells that are after the deleted section.
-    fileprivate func reloadRelevantSections(_ deletedSection: Int, _ downloadGroups: [JTDownloadGroup], _ tableView: UITableView) {
+    fileprivate func reloadRelevantSections(_ deletedSection: Int, _ downloadGroups: [Any], _ tableView: UITableView) {
         var sections: IndexSet = []
         
         for section in deletedSection..<downloadGroups.count {

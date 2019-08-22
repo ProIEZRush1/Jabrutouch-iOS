@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct JTGemaraLesson  {
+struct JTGemaraLesson: Hashable  {
     
     //============================================
     // MARK: - Stored Properties
@@ -76,9 +76,23 @@ struct JTGemaraLesson  {
         }
     }
     
+    
+    //============================================
+    // MARK: - Hashable & Equateable
+    //============================================
+    
+    static func == (lhs: JTGemaraLesson, rhs: JTGemaraLesson) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.id)
+    }
+    
     //============================================
     // MARK: - Computed Properties
     //============================================
+    
     
     var durationDisplay: String {
         let minutes = self.duration/60
