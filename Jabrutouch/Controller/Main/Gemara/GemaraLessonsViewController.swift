@@ -119,7 +119,7 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
         
         
         setCellImages(cell, lesson: lesson)
-        setCellEditingIfNeeded(cell: cell, lesson: lesson)
+        setCellEditingIfNeeded(cell, lesson: lesson)
         setCellDownloadMode(cell, lesson: lesson)
         
         
@@ -159,7 +159,7 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
         }
     }
     
-    fileprivate func setCellEditingIfNeeded(cell: LessonDownloadCellController, lesson: JTLesson) {
+    fileprivate func setCellEditingIfNeeded(_ cell: LessonDownloadCellController, lesson: JTLesson) {
         if !isFirstLoading {
             animateImagesVisibiltyIfNeeded(lesson: lesson, cell: cell)
             UIView.animate(withDuration: 0.3) {
@@ -318,7 +318,7 @@ extension GemaraLessonsViewController: ContentRepositoryDownloadDelegate {
         // Update cell progress
         guard let cell = self.tableView.cellForRow(at:  IndexPath(row: index, section: 0)) as? LessonDownloadCellController else { return }
         setCellImages(cell, lesson: self.lessons[index])
-        setCellEditingIfNeeded(cell: cell, lesson: self.lessons[index])
+        setCellEditingIfNeeded(cell, lesson: self.lessons[index])
         setCellDownloadMode(cell, lesson: self.lessons[index])
 //        self.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
         print("GemaraLessonsViewController downloadProgress, progress: \(progress)")

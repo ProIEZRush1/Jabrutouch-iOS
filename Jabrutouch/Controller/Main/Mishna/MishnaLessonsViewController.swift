@@ -326,7 +326,7 @@ extension MishnaLessonsViewController: ContentRepositoryDownloadDelegate {
         // Update cell progress
         guard let cell = self.tableView.cellForRow(at:  IndexPath(row: index, section: 0)) as? LessonDownloadCellController else { return }
         setCellImages(cell, lesson: self.lessons[index])
-        setCellEditingIfNeeded(cell: cell, lesson: self.lessons[index])
+        setEditingIfNeeded(cell, lesson: self.lessons[index])
         setCellDownloadMode(cell, lesson: self.lessons[index])
         
         print("GemaraLessonsViewController downloadProgress, progress: \(progress)")
