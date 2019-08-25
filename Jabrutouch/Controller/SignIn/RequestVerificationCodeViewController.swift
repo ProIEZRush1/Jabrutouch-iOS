@@ -37,6 +37,10 @@ class RequestVerificationCodeViewController: UIViewController {
     // MARK: - LifeCycle
     //============================================================
     
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return [.portrait]
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

@@ -26,6 +26,10 @@ class MishnaViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // MARK: - LifeCycle
     //========================================
     
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return [.portrait]
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "DownloadsHeaderCell", bundle: nil), forHeaderFooterViewReuseIdentifier: "headerCell")
@@ -33,14 +37,6 @@ class MishnaViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.dataSource = self
         
         self.setInitialOpenSections()
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showMishnaChapters" {
-            let vc = segue.destination as? MishnaChapterViewController
-            vc?.masechetId = self.sedarim[selectedIndexPath.section].masechtot[selectedIndexPath.row].masechetId
-            vc?.sederId = "\(self.sedarim[selectedIndexPath.section].sederId)"
-        }
     }
     
     //========================================
@@ -140,5 +136,17 @@ class MishnaViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBAction func backPressed(_ sender: Any) {
         self.delegate?.dismissMainModal()
+    }
+    
+    //========================================
+    // MARK: - Navigation
+    //========================================
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showMishnaChapters" {
+            let vc = segue.destination as? MishnaChapterViewController
+            vc?.masechetId = self.sedarim[selectedIndexPath.section].masechtot[selectedIndexPath.row].masechetId
+            vc?.sederId = "\(self.sedarim[selectedIndexPath.section].sederId)"
+        }
     }
 }

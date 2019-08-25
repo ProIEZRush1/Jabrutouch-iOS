@@ -32,6 +32,10 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
     // MARK: - LifeCycle
     //========================================
     
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return [.portrait]
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

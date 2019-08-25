@@ -309,7 +309,7 @@
 		FB51712022F1D374003BCAFC /* MishnaChapterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MishnaChapterViewController.swift; sourceTree = "<group>"; };
 		FB51712222F1D7CB003BCAFC /* MishnaChapterCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MishnaChapterCellController.swift; sourceTree = "<group>"; };
 		FB67A5DE22E4723F009E4DF9 /* Download.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Download.storyboard; sourceTree = "<group>"; };
-		FB6877C122FC49AE0096465D /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AlertViewController.swift; path = Main/AlertViewController.swift; sourceTree = "<group>"; };
+		FB6877C122FC49AE0096465D /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		FBAB071522E74ABD00C8DCD7 /* DownloadsCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsCellController.swift; sourceTree = "<group>"; };
 		FBAB071822E7579F00C8DCD7 /* JTDownload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTDownload.swift; sourceTree = "<group>"; };
 		FBB18FAB22F85019006886FD /* Gemara.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Gemara.storyboard; sourceTree = "<group>"; };
@@ -479,6 +479,40 @@
 			path = Player;
 			sourceTree = "<group>";
 		};
+		212ECEAF2312F81B005AEB36 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				FBB434F922FACA47008EE211 /* MainCollectionCellViewController.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		212ECEB02312F92E005AEB36 /* Modals */ = {
+			isa = PBXGroup;
+			children = (
+				212ECEB12312F93C005AEB36 /* Profile */,
+			);
+			path = Modals;
+			sourceTree = "<group>";
+		};
+		212ECEB12312F93C005AEB36 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				FBB434FD22FB2CA4008EE211 /* ProfileViewController.swift */,
+				FB6877C122FC49AE0096465D /* AlertViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		212ECEB22312F954005AEB36 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				FBDEF16C22E89E3B00A300DA /* HeaderCellController.swift */,
+				FBD9375022F328CC00BC94DC /* LessonDownloadCellController.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		2131969E22F38B3300B0AF5F /* API Response models */ = {
 			isa = PBXGroup;
 			children = (
@@ -578,12 +612,13 @@
 		2133C20B22DCA07000F910B9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				212ECEA4230F3687005AEB36 /* Player */,
 				213196BC22F6EA3E00B0AF5F /* SplashScreen */,
 				2133C21122DCA0E000F910B9 /* WalkThrough */,
 				2133C20F22DCA0CD00F910B9 /* SignIn */,
 				2133C21022DCA0D900F910B9 /* Main */,
+				212ECEB02312F92E005AEB36 /* Modals */,
 				219BFF3E22E7171700ABBEE2 /* Menus */,
+				212ECEA4230F3687005AEB36 /* Player */,
 				213196AF22F38B9E00B0AF5F /* Supporting Views */,
 				219BFF2D22E5A10400ABBEE2 /* Custom Controlles */,
 			);
@@ -618,10 +653,7 @@
 				FB51711222F19C07003BCAFC /* Mishna */,
 				21186E9D22E5097700B3049E /* Downloads */,
 				2126D6E4230405EA00CB501D /* Donations */,
-				FBDEF16C22E89E3B00A300DA /* HeaderCellController.swift */,
-				FBD9375022F328CC00BC94DC /* LessonDownloadCellController.swift */,
-				FBB434FD22FB2CA4008EE211 /* ProfileViewController.swift */,
-				FB6877C122FC49AE0096465D /* AlertViewController.swift */,
+				212ECEB22312F954005AEB36 /* Cells */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -723,9 +755,9 @@
 		219BFF2A22E50CE200ABBEE2 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				212ECEAF2312F81B005AEB36 /* Cells */,
 				21678D7322E08530007BC74C /* MainViewController.swift */,
 				219BFF2822E50C0B00ABBEE2 /* ModalsContainerViewController.swift */,
-				FBB434F922FACA47008EE211 /* MainCollectionCellViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";

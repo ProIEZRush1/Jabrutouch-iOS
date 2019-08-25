@@ -83,6 +83,10 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     // MARK: - LifeCycle
     //========================================
     
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return [.portrait]
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

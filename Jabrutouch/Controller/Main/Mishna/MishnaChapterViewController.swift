@@ -26,6 +26,10 @@ class MishnaChapterViewController: UIViewController, UITableViewDelegate, UITabl
     // MARK: - LifeCycle
     //========================================
     
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return [.portrait]
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,16 +37,6 @@ class MishnaChapterViewController: UIViewController, UITableViewDelegate, UITabl
         self.setTableView()
         self.setStrings()
         
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showMishnaLessons" {
-            let vc = segue.destination as? MishnaLessonsViewController
-            vc?.masechetId = self.masechetId
-            vc?.masechetName = self.masechet?.name
-            vc?.chapter = Int(self.masechet?.chapters[self.selectedRow].chapter ?? "")
-            vc?.sederId = self.sederId
-        }
     }
     
     //========================================
@@ -114,5 +108,17 @@ class MishnaChapterViewController: UIViewController, UITableViewDelegate, UITabl
         performSegue(withIdentifier: "showMishnaLessons", sender: self)
     }
     
+    //====================================================
+    // MARK: - Navigation
+    //====================================================
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showMishnaLessons" {
+            let vc = segue.destination as? MishnaLessonsViewController
+            vc?.masechetId = self.masechetId
+            vc?.masechetName = self.masechet?.name
+            vc?.chapter = Int(self.masechet?.chapters[self.selectedRow].chapter ?? "")
+            vc?.sederId = self.sederId
+        }
+    }
 }

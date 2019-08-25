@@ -31,6 +31,14 @@ struct JTSeder {
         if let masechtotValues = values["masechet"] as? [[String: Any]] {
             self.masechtot = masechtotValues.compactMap{JTMasechet(values: $0)}
         } else { self.masechtot = [] }
-        
+    }
+    
+    var values: [String:Any] {
+        var values: [String:Any] = [:]
+        values["id"] = self.id
+        values["order"] = self.order
+        values["name"] = self.name
+        values["masechet"] = self.masechtot.map{$0.values}
+        return values
     }
 }

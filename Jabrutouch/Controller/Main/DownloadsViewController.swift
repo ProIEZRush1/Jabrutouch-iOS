@@ -46,9 +46,14 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     
     fileprivate var gemaraOpenSections: Set<Int> = []
     fileprivate var mishnaOpenSections: Set<Int> = []
+    
     //=======================================
     // MARK: - LifeCycle
     //=======================================
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return [.portrait]
+    }
     
     override func viewDidLoad() {
         initialGrayUpArrowXCentererdToGemara.isActive = false

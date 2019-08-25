@@ -71,6 +71,13 @@ class ContentRepository {
         let url = directoryUrl.appendingPathComponent(filename)
         return url
     }
+    
+    var shasStorageUrl: URL? {
+        guard let directoryUrl = FileDirectory.cache.url else { return nil }
+        let filename = "shas.json"
+        let url = directoryUrl.appendingPathComponent(filename)
+        return url
+    }
     //========================================
     // MARK: - Initializer
     //========================================
@@ -428,6 +435,32 @@ class ContentRepository {
         }
         
     }
+    
+    private func updateShasStorage(shas: [JTSeder]) {
+        guard let url = self.shasStorageUrl else { return }
+        let content = ["shas":shas.map{$0.values}]
+        do {
+            try self.saveContentToFile(content: content, url: url)
+        }
+        catch {
+            
+        }
+    }
+    
+    private func loadShasStorage() -> [JTSeder] {
+        guard let url = self.shasStorageUrl else { return [] }
+        do {
+            let contentString = try String(contentsOf: url)
+            guard let content = Utils.convertStringToDictionary(contentString) as? [String:Any] else { return [] }
+            guard let shasValues = content["shas"] as? [[String:Any]] else { return [] }
+            let shas = shasValues.compactMap{JTSeder(values: $0)}
+            return shas
+        }
+        catch {
+            return []
+        }
+        
+    }
     //========================================
     // MARK: - Private methods
     //========================================
@@ -438,8 +471,10 @@ class ContentRepository {
                 switch result {
                 case .success(let response):
                     self.shas = response.shas
+                    self.updateShasStorage(shas: response.shas)
                     NotificationCenter.default.post(name: .shasLoaded, object: nil, userInfo: nil)
                 case .failure(let error):
+                    self.shas = self.loadShasStorage()
                     let userInfo: [String:Any] = ["errorMessage": error.message]
                     NotificationCenter.default.post(name: .failedLoadingShas, object: nil, userInfo: userInfo)
                     break

@@ -26,9 +26,14 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
     var isFirstLoading: Bool = false
     
     private var activityView: ActivityView?
+    
     //========================================
     // MARK: - LifeCycle
     //========================================
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return [.portrait]
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

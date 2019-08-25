@@ -13,6 +13,10 @@ class WalkThroughViewController: UIViewController {
     @IBOutlet weak private var collectionView: UICollectionView!
     @IBOutlet weak var barPageIndicator: JTBarPageIndicator!
 
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return [.portrait]
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
                 

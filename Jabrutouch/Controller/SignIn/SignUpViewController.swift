@@ -28,9 +28,14 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak private var passwordTF: UITextField!
     @IBOutlet weak private var signUpButton: UIButton!
     @IBOutlet weak private var signInButton: UIButton!
+    
     //============================================================
     // MARK: - LifeCycle
     //============================================================
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return [.portrait]
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

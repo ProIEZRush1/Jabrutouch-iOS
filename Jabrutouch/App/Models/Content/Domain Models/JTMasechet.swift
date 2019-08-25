@@ -45,7 +45,20 @@ struct JTMasechet {
                     self.mishnaShiurimCountPerChapter["\(chapter)"] = mishnayotCount
                 }
             }
+        } else if let mishnaShiurimCountPerChapter = values["chapters_list"] as? [String:Int] {
+            self.mishnaShiurimCountPerChapter = mishnaShiurimCountPerChapter
         } else { self.mishnaShiurimCountPerChapter = [:] }
         
+    }
+    
+    var values: [String: Any] {
+        var values:[String:Any] = [:]
+        values["id"] = self.id
+        values["order"] = self.order
+        values["name"] = self.name
+        values["chapters"] = self.chaptersCount
+        values["pages"] = self.pagesCount
+        values["chapters_list"]  = mishnaShiurimCountPerChapter
+        return values
     }
 }

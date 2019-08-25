@@ -25,22 +25,15 @@ class GemaraViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // MARK: - LifeCycle
     //========================================
     
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return [.portrait]
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.setTableView()
         self.setInitialOpenSections()
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showGemaraLessons" {
-            let vc = segue.destination as? GemaraLessonsViewController
-            let masechet = self.sedarim[self.selectedIndexPath.section].masechtot[self.selectedIndexPath.row]
-            let sederId = "\(self.sedarim[self.selectedIndexPath.section].sederId)"
-            vc?.masechetName = masechet.name
-            vc?.masechetId = masechet.masechetId
-            vc?.sederId = sederId
-        }
     }
     
     //========================================
@@ -146,5 +139,20 @@ class GemaraViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBAction func backPressed(_ sender: Any) {
         self.delegate?.dismissMainModal()
+    }
+    
+    //========================================
+    // MARK: - Navigation
+    //========================================
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showGemaraLessons" {
+            let vc = segue.destination as? GemaraLessonsViewController
+            let masechet = self.sedarim[self.selectedIndexPath.section].masechtot[self.selectedIndexPath.row]
+            let sederId = "\(self.sedarim[self.selectedIndexPath.section].sederId)"
+            vc?.masechetName = masechet.name
+            vc?.masechetId = masechet.masechetId
+            vc?.sederId = sederId
+        }
     }
 }

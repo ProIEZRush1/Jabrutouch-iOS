@@ -20,6 +20,11 @@ class SplashScreenViewController: UIViewController {
     //========================================
     // MARK: - LifeCycle
     //========================================
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return [.portrait]
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.activityIndicator.isHidden = true
@@ -71,7 +76,8 @@ class SplashScreenViewController: UIViewController {
                     self.navigateToMain()
                 case .failure(let error):
                     print(error)
-                    self.navigateToSignIn()                    
+                    self.navigateToMain()
+//                    self.navigateToSignIn()
                 }
             }
         }
