@@ -516,14 +516,18 @@ class ContentRepository {
 
 extension ContentRepository: DownloadTaskDelegate {
     func downloadCompleted(downloadId: Int) {
-        for delegate in self.delegates {
-            delegate.downloadCompleted(downloadId: downloadId)
+        DispatchQueue.main.async {
+            for delegate in self.delegates {
+                delegate.downloadCompleted(downloadId: downloadId)
+            }
         }
     }
     
     func downloadProgress(downloadId: Int, progress: Float) {
-        for delegate in self.delegates {
-            delegate.downloadProgress(downloadId: downloadId, progress: progress )
+        DispatchQueue.main.async {
+            for delegate in self.delegates {
+                delegate.downloadProgress(downloadId: downloadId, progress: progress )
+            }
         }
     }
 }

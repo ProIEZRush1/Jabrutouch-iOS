@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LessonPlayerViewController" customModule="Jabrutouch" customModuleProvider="target">
+            <connections>
+                <outlet property="pdfWebView" destination="Gfw-eM-Nxd" id="cMl-Y9-nww"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PVv-ui-sj5" userLabel="Header View">
+                    <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6YO-P4-mQY">
+                            <rect key="frame" x="0.0" y="0.0" width="61.5" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="6YO-P4-mQY" secondAttribute="height" multiplier="27:22" id="0yc-r2-mqa"/>
+                            </constraints>
+                            <color key="tintColor" red="0.16862745100000001" green="0.1764705882" blue="0.66274509800000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <state key="normal" image="LeftArrow"/>
+                            <connections>
+                                <action selector="backButtonPressed:" destination="-1" eventType="touchUpInside" id="QEM-SJ-Uik"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="6YO-P4-mQY" firstAttribute="top" secondItem="PVv-ui-sj5" secondAttribute="top" id="E0P-PH-gK3"/>
+                        <constraint firstItem="6YO-P4-mQY" firstAttribute="leading" secondItem="PVv-ui-sj5" secondAttribute="leading" id="VsJ-Du-fdn"/>
+                        <constraint firstAttribute="height" constant="50" id="YEt-6E-Ier"/>
+                        <constraint firstAttribute="bottom" secondItem="6YO-P4-mQY" secondAttribute="bottom" id="gZZ-wN-3zC"/>
+                    </constraints>
+                </view>
+                <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gfw-eM-Nxd">
+                    <rect key="frame" x="0.0" y="262" width="414" height="600"/>
+                    <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="600" id="yO4-jH-hbm"/>
+                    </constraints>
+                    <wkWebViewConfiguration key="configuration">
+                        <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                        <wkPreferences key="preferences"/>
+                    </wkWebViewConfiguration>
+                </wkWebView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Gfw-eM-Nxd" secondAttribute="trailing" id="8SS-ti-8p8"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="PVv-ui-sj5" secondAttribute="trailing" id="AHo-e0-XTU"/>
+                <constraint firstItem="Gfw-eM-Nxd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="BhF-uz-7FW"/>
+                <constraint firstItem="PVv-ui-sj5" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="SIC-Hk-Jsf"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Gfw-eM-Nxd" secondAttribute="bottom" id="cSf-66-tVJ"/>
+                <constraint firstItem="PVv-ui-sj5" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="rZF-OB-FHz"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="LeftArrow" width="27.5" height="19.5"/>
+    </resources>
+</document>

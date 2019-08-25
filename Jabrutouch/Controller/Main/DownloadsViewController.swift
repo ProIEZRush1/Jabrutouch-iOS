@@ -9,6 +9,8 @@
 import UIKit
 
 class DownloadsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, HeaderViewDelegate, DownloadsCellDelegate {
+   
+    
     
     //========================================
     // MARK: - @IBOutlets and Fields
@@ -243,6 +245,7 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "downloadsCell", for: indexPath) as! DownloadsCellController
+        cell.indexPath = indexPath
         if tableView == gemaraTableView {
             cell.isFirstTable = true
             let lesson = self.gemaraDownloads[indexPath.section].lessons[indexPath.row]
@@ -383,6 +386,28 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         self.present(alert, animated: true, completion: nil)
     }
     
+    func playAudioPressed(atIndexPath indexPath: IndexPath, lessonType: JTLessonType) {
+        var lesson: JTLesson!
+        switch lessonType {
+        case .gemara:
+            lesson = self.gemaraDownloads[indexPath.section].lessons[indexPath.row].lesson
+        case .mishna:
+            lesson = self.mishnaDownloads[indexPath.section].lessons[indexPath.row].lesson
+        }
+        self.playLesson(lesson, mediaType: .audio)
+    }
+    
+    func playVideoPressed(atIndexPath indexPath: IndexPath, lessonType: JTLessonType) {
+        var lesson: JTLesson!
+        switch lessonType {
+        case .gemara:
+            lesson = self.gemaraDownloads[indexPath.section].lessons[indexPath.row].lesson
+        case .mishna:
+            lesson = self.mishnaDownloads[indexPath.section].lessons[indexPath.row].lesson
+        }
+        self.playLesson(lesson, mediaType: .video)
+    }
+    
     // Help function attempted to avoid code reuse in cellDeletePressed() (Crashes app when deleting first a row in the middle of a section and then deleting all the rows of this section)
     fileprivate func deleteCell(_ cell: DownloadsCellController, _ tableView: inout UITableView, _ downloads: inout [JTDownloadGroup]) {
         if let indexPath = tableView.indexPath(for: cell) {
@@ -455,6 +480,20 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @IBAction func backPressed(_ sender: Any) {
         self.delegate?.dismissMainModal()
+    }
+    
+    //======================================================
+    // MARK: - Player
+    //======================================================
+    
+    private func playLesson(_ lesson: JTLesson, mediaType: JTLessonMediaType) {
+        guard let pdfUrl = lesson.textLocalURL ?? lesson.textRemoteURL else { return    }
+        let audioUrl = lesson.audioLocalURL ?? lesson.audioRemoteURL
+        let videoUrl = lesson.videoLocalURL ?? lesson.videoRemoteURL
+        let playerVC = LessonPlayerViewController(pdfUrl: pdfUrl, videoUrl: videoUrl, audioUrl: audioUrl, mediaType: mediaType)
+        self.present(playerVC, animated: true) {
+            
+        }
     }
     
 }

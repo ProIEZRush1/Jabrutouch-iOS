@@ -198,6 +198,9 @@
                                                             </constraints>
                                                             <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                                             <state key="normal" image="Audio"/>
+                                                            <connections>
+                                                                <action selector="playAudioPressed:" destination="IPO-2W-CTR" eventType="touchUpInside" id="Ryq-YL-O3K"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pTh-16-GT2" userLabel="Video">
                                                             <rect key="frame" x="297.66666666666669" y="18.666666666666671" width="40.333333333333314" height="39"/>
@@ -207,6 +210,9 @@
                                                             </constraints>
                                                             <inset key="contentEdgeInsets" minX="5" minY="11" maxX="5" maxY="11"/>
                                                             <state key="normal" image="Video"/>
+                                                            <connections>
+                                                                <action selector="playVideoPressed:" destination="IPO-2W-CTR" eventType="touchUpInside" id="kfU-l2-wxm"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -302,6 +308,9 @@
                                                             </constraints>
                                                             <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                                             <state key="normal" image="Audio"/>
+                                                            <connections>
+                                                                <action selector="playAudioPressed:" destination="7dV-xT-Hbu" eventType="touchUpInside" id="q9J-1w-PYg"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gCk-Wa-Bj7" userLabel="Video">
                                                             <rect key="frame" x="297.66666666666669" y="18.666666666666671" width="40.333333333333314" height="39"/>
@@ -311,6 +320,9 @@
                                                             </constraints>
                                                             <inset key="contentEdgeInsets" minX="5" minY="11" maxX="5" maxY="11"/>
                                                             <state key="normal" image="Video"/>
+                                                            <connections>
+                                                                <action selector="playVideoPressed:" destination="7dV-xT-Hbu" eventType="touchUpInside" id="0aW-zi-96X"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

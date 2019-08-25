@@ -106,8 +106,7 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "lessonDownloadCell", for: indexPath) as! LessonDownloadCellController
-        setImages(indexPath, cell)
-        setEditingIfNeeded(indexPath, cell)
+        
         let lesson = self.lessons[indexPath.row]
         cell.lessonNumber.text = "\(lesson.page)"
         cell.lessonLength.text = lesson.durationDisplay
@@ -119,14 +118,9 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
         Utils.dropViewShadow(view: cell.downloadButtonsContainerView, shadowColor: Colors.shadowColor, shadowRadius: 36, shadowOffset: shadowOffset)
         
         
-        // Set playing buttons enablity according to downloading state
-        let downloadProgress = "\(Int((lesson.downloadProgress ?? 0.0) * 100))%"
-        cell.downloadProgressPercentageLabel.text = downloadProgress
-        cell.downloadProgressPercentageLabel.isHidden = !lesson.isDownloading
-        cell.playAudioButton.isEnabled = !lesson.isDownloading
-        cell.playVideoButton.isEnabled = !lesson.isDownloading
-        cell.audioImage.alpha = lesson.isDownloading ? 0.3 : 1.0
-        cell.videoImage.alpha = lesson.isDownloading ? 0.3 : 1.0
+        setCellImages(cell, lesson: lesson)
+        setCellEditingIfNeeded(cell: cell, lesson: lesson)
+        setCellDownloadMode(cell, lesson: lesson)
         
         
         cell.downloadButtonsContainerView.layoutIfNeeded()
@@ -135,8 +129,8 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
         return cell
     }
     
-    fileprivate func setImages(_ indexPath: IndexPath, _ cell: LessonDownloadCellController) {
-        if lessons[indexPath.row].isAudioDownloaded {
+    fileprivate func setCellImages(_ cell: LessonDownloadCellController, lesson: JTLesson) {
+        if lesson.isAudioDownloaded {
             cell.audioImage?.image = UIImage(named: "RedAudio")
             cell.redAudioVImage.isHidden = false
         } else {
@@ -144,9 +138,9 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
             cell.redAudioVImage.isHidden = true
         }
         
-        cell.downloadAudioButtonImageView.isHidden = lessons[indexPath.row].isAudioDownloaded
+        cell.downloadAudioButtonImageView.isHidden = lesson.isAudioDownloaded
         
-        if lessons[indexPath.row].isVideoDownloaded {
+        if lesson.isVideoDownloaded {
             cell.videoImage?.image = UIImage(named: "RedVideo")
             cell.redVideoVImage.isHidden = false
         } else {
@@ -154,7 +148,7 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
             cell.redVideoVImage.isHidden = true
         }
         
-        cell.downloadVideoButtonImageView.isHidden = lessons[indexPath.row].isVideoDownloaded
+        cell.downloadVideoButtonImageView.isHidden = lesson.isVideoDownloaded
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -165,10 +159,9 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
         }
     }
     
-    fileprivate func setEditingIfNeeded(_ indexPath: IndexPath, _ cell: LessonDownloadCellController) {
+    fileprivate func setCellEditingIfNeeded(cell: LessonDownloadCellController, lesson: JTLesson) {
         if !isFirstLoading {
-            animateImagesVisibiltyIfNeeded(indexPath, cell)
-            let lesson = self.lessons[indexPath.row]
+            animateImagesVisibiltyIfNeeded(lesson: lesson, cell: cell)
             UIView.animate(withDuration: 0.3) {
                 if self.isCurrentlyEditing && !lesson.isDownloading {
                     cell.cellViewTrailingConstraint.constant = self.view.frame.size.width / 2 - 20
@@ -181,13 +174,13 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
         }
     }
     
-    fileprivate func animateImagesVisibiltyIfNeeded(_ indexPath: IndexPath, _ cell: LessonDownloadCellController) {
+    fileprivate func animateImagesVisibiltyIfNeeded(lesson: JTLesson, cell: LessonDownloadCellController) {
         if (cell.audioImage.isHidden) == !isCurrentlyEditing { // Animate only when a change occurred
             UIView.animate(withDuration: 0.2, delay: isCurrentlyEditing ? 0 : 0.1, animations: {
-                if self.lessons[indexPath.row].isAudioDownloaded  { // Animate only when suppose to be visible
+                if lesson.isAudioDownloaded  { // Animate only when suppose to be visible
                     cell.redAudioVImage.isHidden = self.isCurrentlyEditing ? true : false
                 }
-                if self.lessons[indexPath.row].isVideoDownloaded {
+                if lesson.isVideoDownloaded {
                     cell.redVideoVImage.isHidden = self.isCurrentlyEditing ? true : false
                 }
                 cell.audioImage.isHidden = self.isCurrentlyEditing ? true : false
@@ -196,6 +189,16 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
                 cell.playVideoButton.isHidden = self.isCurrentlyEditing ? true : false
             })
         }
+    }
+    
+    fileprivate func setCellDownloadMode(_ cell: LessonDownloadCellController, lesson: JTLesson) {
+        let downloadProgress = "\(Int((lesson.downloadProgress ?? 0.0) * 100))%"
+        cell.downloadProgressPercentageLabel.text = downloadProgress
+        cell.downloadProgressPercentageLabel.isHidden = !lesson.isDownloading
+        cell.playAudioButton.isEnabled = !lesson.isDownloading
+        cell.playVideoButton.isEnabled = !lesson.isDownloading
+        cell.audioImage.alpha = lesson.isDownloading ? 0.3 : 1.0
+        cell.videoImage.alpha = lesson.isDownloading ? 0.3 : 1.0
     }
     
     private func toggleEditingMode() {
@@ -311,7 +314,13 @@ extension GemaraLessonsViewController: ContentRepositoryDownloadDelegate {
         guard let index = self.lessons.firstIndex(where: {$0.id == downloadId}) else { return }
         self.lessons[index].downloadProgress = progress
         ContentRepository.shared.lessonDownloadProgress(downloadId, progress: progress)
-        self.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
+        
+        // Update cell progress
+        guard let cell = self.tableView.cellForRow(at:  IndexPath(row: index, section: 0)) as? LessonDownloadCellController else { return }
+        setCellImages(cell, lesson: self.lessons[index])
+        setCellEditingIfNeeded(cell: cell, lesson: self.lessons[index])
+        setCellDownloadMode(cell, lesson: self.lessons[index])
+//        self.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
         print("GemaraLessonsViewController downloadProgress, progress: \(progress)")
     }
 }

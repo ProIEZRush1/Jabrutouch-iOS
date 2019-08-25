@@ -20,10 +20,23 @@ class DownloadsCellController: UITableViewCell {
     @IBOutlet weak var cellTrailingConstraint: NSLayoutConstraint! // 21 or 45
     
     weak var delegate: DownloadsCellDelegate?
+    var indexPath: IndexPath?
     var isFirstTable = true // For multiple tables on same view controller
     
     @IBAction func deletePressed(_ sender: Any) {
         delegate?.cellDeletePressed(self)
+    }
+    
+    @IBAction func playAudioPressed(_ sender: Any) {
+        guard let indexPath = self.indexPath else { return }
+        let lessonType: JTLessonType = self.isFirstTable ? .gemara : .mishna
+        delegate?.playAudioPressed(atIndexPath: indexPath, lessonType: lessonType)
+    }
+    
+    @IBAction func playVideoPressed(_ sender: Any) {
+        guard let indexPath = self.indexPath else { return }
+        let lessonType: JTLessonType = self.isFirstTable ? .gemara : .mishna
+        delegate?.playAudioPressed(atIndexPath: indexPath, lessonType: lessonType)
     }
     
     override func awakeFromNib() {
@@ -33,4 +46,6 @@ class DownloadsCellController: UITableViewCell {
 
 protocol DownloadsCellDelegate: class {
     func cellDeletePressed(_ cell: DownloadsCellController)
+    func playAudioPressed(atIndexPath indexPath: IndexPath, lessonType: JTLessonType)
+    func playVideoPressed(atIndexPath indexPath: IndexPath, lessonType: JTLessonType)
 }
