@@ -241,13 +241,13 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func playAudioPressed(selectedRow: Int) {
-        print("Audio Pressed")
-        // TODO Send to correct screen
+        let lesson = self.lessons[selectedRow]
+        self.playLesson(lesson, mediaType: .audio)
     }
     
     func playVideoPressed(selectedRow: Int) {
-        print("Video Pressed")
-        // TODO Send to correct screen
+        let lesson = self.lessons[selectedRow]
+        self.playLesson(lesson, mediaType: .video)
     }
     
     func downloadAudioPressed(selectedRow: Int) {
@@ -296,6 +296,20 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
             if let view = self.activityView {
                 Utils.removeActivityView(view)
             }
+        }
+    }
+    
+    //======================================================
+    // MARK: - Player
+    //======================================================
+    
+    private func playLesson(_ lesson: JTLesson, mediaType: JTLessonMediaType) {
+        guard let pdfUrl = lesson.textLocalURL ?? lesson.textRemoteURL else { return    }
+        let audioUrl = lesson.audioLocalURL ?? lesson.audioRemoteURL
+        let videoUrl = lesson.videoLocalURL ?? lesson.videoRemoteURL
+        let playerVC = LessonPlayerViewController(pdfUrl: pdfUrl, videoUrl: videoUrl, audioUrl: audioUrl, mediaType: mediaType)
+        self.present(playerVC, animated: true) {
+            
         }
     }
 }
