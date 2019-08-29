@@ -21,11 +21,6 @@ protocol AudioPlayerDelegate: class {
     func didFinishPlaying()
 }
 
-enum AudioPlayerPlaybackSpeed {
-    case regular
-    case oneAndAHalf
-    case double
-}
 
 enum AudioPlayerUIMode {
     case portrait
@@ -51,7 +46,7 @@ class AudioPlayer: UIView {
     weak var delegate: AudioPlayerDelegate?
     
     private var timeUpdateTimer: Timer?
-    private var currentSpeed: AudioPlayerPlaybackSpeed = .regular
+    private var currentSpeed: PlaybackSpeed = .regular
     private var url: URL?
     private var player: AVAudioPlayer?
     
@@ -112,7 +107,7 @@ class AudioPlayer: UIView {
     }
  
     func stopAndRelease() {
-        self.player?.stop()        
+        self.player?.stop()
         self.stopTimeUpdateTimer()
     }
     //----------------------------------------------------
@@ -242,7 +237,7 @@ class AudioPlayer: UIView {
         self.setCurrentTime(newTime)
     }
     
-    private func changePlaybackSpeed(_ speed: AudioPlayerPlaybackSpeed) {
+    private func changePlaybackSpeed(_ speed: PlaybackSpeed) {
         guard let player = self.player else { return }
         self.currentSpeed = speed
         player.pause()

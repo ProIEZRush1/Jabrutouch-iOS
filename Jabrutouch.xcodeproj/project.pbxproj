@@ -118,6 +118,8 @@
 		216A0E6E22EEFD1400F7FBC1 /* HttpServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A0E6D22EEFD1400F7FBC1 /* HttpServiceProvider.swift */; };
 		216A0E7022EEFDA300F7FBC1 /* HTTPRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A0E6F22EEFDA300F7FBC1 /* HTTPRequestFactory.swift */; };
 		21999F36231823FF003DB1B4 /* CustomTrackHeightSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21999F35231823FF003DB1B4 /* CustomTrackHeightSlider.swift */; };
+		21999F3923185D39003DB1B4 /* PlaybackSpeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21999F3823185D39003DB1B4 /* PlaybackSpeed.swift */; };
+		21999F3B23185F1C003DB1B4 /* EndTimeDisplayMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21999F3A23185F1C003DB1B4 /* EndTimeDisplayMode.swift */; };
 		219B06FA230408F400A7EBBA /* ServerFieldError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219B06F9230408F400A7EBBA /* ServerFieldError.swift */; };
 		219BFF2722E50A0A00ABBEE2 /* DownloadsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219BFF2622E50A0A00ABBEE2 /* DownloadsNavigationController.swift */; };
 		219BFF2922E50C0B00ABBEE2 /* ModalsContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219BFF2822E50C0B00ABBEE2 /* ModalsContainerViewController.swift */; };
@@ -282,6 +284,8 @@
 		216A0E6D22EEFD1400F7FBC1 /* HttpServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpServiceProvider.swift; sourceTree = "<group>"; };
 		216A0E6F22EEFDA300F7FBC1 /* HTTPRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequestFactory.swift; sourceTree = "<group>"; };
 		21999F35231823FF003DB1B4 /* CustomTrackHeightSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTrackHeightSlider.swift; sourceTree = "<group>"; };
+		21999F3823185D39003DB1B4 /* PlaybackSpeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackSpeed.swift; sourceTree = "<group>"; };
+		21999F3A23185F1C003DB1B4 /* EndTimeDisplayMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndTimeDisplayMode.swift; sourceTree = "<group>"; };
 		219B06F9230408F400A7EBBA /* ServerFieldError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerFieldError.swift; sourceTree = "<group>"; };
 		219BFF2622E50A0A00ABBEE2 /* DownloadsNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsNavigationController.swift; sourceTree = "<group>"; };
 		219BFF2822E50C0B00ABBEE2 /* ModalsContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalsContainerViewController.swift; sourceTree = "<group>"; };
@@ -763,6 +767,15 @@
 			path = User;
 			sourceTree = "<group>";
 		};
+		21999F3723185D26003DB1B4 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				21999F3823185D39003DB1B4 /* PlaybackSpeed.swift */,
+				21999F3A23185F1C003DB1B4 /* EndTimeDisplayMode.swift */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
 		219BFF2A22E50CE200ABBEE2 /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -793,6 +806,7 @@
 				216A0E7122EF15C600F7FBC1 /* User */,
 				FBAB071722E7577700C8DCD7 /* Data Models */,
 				219BFF3322E5B6E100ABBEE2 /* Localization */,
+				21999F3723185D26003DB1B4 /* Player */,
 				2131969222F38B1200B0AF5F /* JTError.swift */,
 			);
 			path = Models;
@@ -1139,6 +1153,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21999F3923185D39003DB1B4 /* PlaybackSpeed.swift in Sources */,
 				219BFF4122E7173C00ABBEE2 /* MainMenuViewController.swift in Sources */,
 				213196A722F38B3E00B0AF5F /* SendCodeResponse.swift in Sources */,
 				FB51711622F19FD2003BCAFC /* JTMishnaMasechet.swift in Sources */,
@@ -1222,6 +1237,7 @@
 				21419CB0230D50CB00145F1F /* AWSS3Provider.swift in Sources */,
 				2126D6E3230404BD00CB501D /* GemaraNavigationController.swift in Sources */,
 				2131969D22F38B2E00B0AF5F /* FilesManagementProvider.swift in Sources */,
+				21999F3B23185F1C003DB1B4 /* EndTimeDisplayMode.swift in Sources */,
 				216A0E7022EEFDA300F7FBC1 /* HTTPRequestFactory.swift in Sources */,
 				213196B122F38B9E00B0AF5F /* ActivityView.swift in Sources */,
 				2133C1F822DB5B8200F910B9 /* AppDelegate.swift in Sources */,

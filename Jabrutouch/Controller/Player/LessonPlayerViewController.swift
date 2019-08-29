@@ -56,6 +56,7 @@ class LessonPlayerViewController: UIViewController {
     var videoUrl: URL?
     var audioUrl: URL?
     var mediaType: JTLessonMediaType
+    var endTimeDisplayType: EndTimeDisplayMode = .duration
     
     private var videoPlayerMode: VideoPlayerMode = .regular
     
@@ -257,6 +258,25 @@ class LessonPlayerViewController: UIViewController {
             self.audioPlayer.delegate = self
         }
     }
+    
+    private func updateAudioSliderTimes(currentTime: TimeInterval, duration: TimeInterval) {
+        let percentage = Float(currentTime/duration)
+        self.audioSlider.value = percentage
+        self.audioCurrentTimeLabel.text = Utils.convertTimeInSecondsToDisplayString(currentTime)
+        
+        let endTime: TimeInterval
+        switch self.endTimeDisplayType {
+        case .duration:
+            endTime = duration
+        case .timeLeft:
+            endTime = duration - currentTime
+        }
+        var title = Utils.convertTimeInSecondsToDisplayString(endTime)
+        if self.endTimeDisplayType == .timeLeft {
+            title = "-\(title)"
+        }
+        self.audioEndTimeButton.setTitle(title, for: .normal)
+    }
     //====================================================
     // MARK: - Content setup
     //====================================================
@@ -285,10 +305,21 @@ class LessonPlayerViewController: UIViewController {
 
     }
     
+    @IBAction func audioEndTimeButtonPressed(_ sender: UIButton) {
+        switch self.endTimeDisplayType {
+        case .duration:
+            self.endTimeDisplayType = .timeLeft
+        case .timeLeft:
+            self.endTimeDisplayType = .duration
+        }
+        self.updateAudioSliderTimes(currentTime: self.audioPlayer.currentTime, duration: self.audioPlayer.duration)
+    }
+    
     @IBAction func audioSliderValueChanged(_ sender: UISlider) {
         let time = self.audioPlayer.duration * Double(sender.value)
         self.audioPlayer.setCurrentTime(time)
     }
+    
 }
 
 extension LessonPlayerViewController: WKUIDelegate {
@@ -312,10 +343,7 @@ extension LessonPlayerViewController: WKNavigationDelegate {
 
 extension LessonPlayerViewController: AudioPlayerDelegate {
     func currentTimeDidChange(currentTime: TimeInterval, duration: TimeInterval) {
-        let percentage = Float(currentTime/duration)
-        self.audioSlider.value = percentage
-        self.audioCurrentTimeLabel.text = Utils.convertTimeInSecondsToDisplayString(currentTime)
-        self.audioEndTimeButton.setTitle(Utils.convertTimeInSecondsToDisplayString(duration), for: .normal)
+        self.updateAudioSliderTimes(currentTime: currentTime, duration: duration)
     }
     
     func didStartPlaying() {
