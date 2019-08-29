@@ -36,7 +36,7 @@ class DownloadsCellController: UITableViewCell {
     @IBAction func playVideoPressed(_ sender: Any) {
         guard let indexPath = self.indexPath else { return }
         let lessonType: JTLessonType = self.isFirstTable ? .gemara : .mishna
-        delegate?.playAudioPressed(atIndexPath: indexPath, lessonType: lessonType)
+        delegate?.playVideoPressed(atIndexPath: indexPath, lessonType: lessonType)
     }
     
     override func awakeFromNib() {

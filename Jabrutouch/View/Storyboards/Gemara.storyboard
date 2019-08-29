@@ -179,7 +179,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pesachim" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dw0-zC-7ck">
-                                <rect key="frame" x="144.5" y="51" width="125" height="33"/>
+                                <rect key="frame" x="145.5" y="51" width="123" height="33"/>
                                 <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="28"/>
                                 <color key="textColor" red="0.17254901959999999" green="0.16862745100000001" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>

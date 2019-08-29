@@ -125,6 +125,14 @@ class Utils {
             return nil
         }
     }
+    
+    class func convertTimeInSecondsToDisplayString(_ time: TimeInterval) -> String {
+        let minutes = Int(time/60)
+        let seconds = Int(time.truncatingRemainder(dividingBy: 60))
+        let minutesString = minutes < 10 ? "0\(minutes)" : "\(minutes)"
+        let secondsString = seconds < 10 ? "0\(seconds)" : "\(seconds)"
+        return "\(minutesString):\(secondsString)"
+    }
     // MARK: - ActivityView
     
     class func showActivityView(inView view:UIView, withFrame frame: CGRect, text: String?) -> ActivityView {
@@ -184,4 +192,23 @@ class Utils {
             return  (phoneNumber == filtered)
         }
     }
+    
+    class func linearGradientImage(size: CGSize, colors: [UIColor]) -> UIImage? {
+        let gradientLayer = CAGradientLayer()
+        let frame = CGRect.init(x:0, y:0, width:size.width, height: size.height)
+        gradientLayer.frame = frame
+        gradientLayer.colors = colors.map{$0.cgColor}
+        gradientLayer.startPoint = CGPoint.init(x:0.0, y:0.5)
+        gradientLayer.endPoint = CGPoint.init(x:1.0, y:0.5)
+        UIGraphicsBeginImageContextWithOptions(gradientLayer.frame.size, gradientLayer.isOpaque, 0.0);
+        gradientLayer.render(in: UIGraphicsGetCurrentContext()!)
+        if let image = UIGraphicsGetImageFromCurrentImageContext() {
+            UIGraphicsEndImageContext()            
+            image.resizableImage(withCapInsets: UIEdgeInsets.zero)
+            return image
+        }
+        return nil
+    }
+    
+    
 }
