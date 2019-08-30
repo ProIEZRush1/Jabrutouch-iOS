@@ -121,6 +121,17 @@ class AudioPlayer: UIView {
         self.rewindButton.isEnabled = true
         self.playbackSpeedButton.isEnabled = true
         
+        if self.player == nil {
+            do {
+                self.player = try AVAudioPlayer(contentsOf: url)
+                self.player?.enableRate = true
+            }
+            catch let error {
+                print("failed instanciating player, with error: \(error.localizedDescription)")
+                return
+            }
+        }
+        
         if startPlaying {
             self.play()
         }
@@ -203,20 +214,10 @@ class AudioPlayer: UIView {
         
     }
     private func play() {
-        guard let url = self.url else { return }
-        if self.player == nil {
-            do {
-                self.player = try AVAudioPlayer(contentsOf: url)
-                self.player?.enableRate = true
-            }
-            catch let error {
-                print("failed instanciating player, with error: \(error.localizedDescription)")
-                return
-            }
-        }
+        guard let player = self.player else { return }
         self.playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
-        player?.prepareToPlay()
-        player?.play()
+        player.prepareToPlay()
+        player.play()
         self.startTimeUpdateTimer()
     }
     
@@ -252,9 +253,7 @@ class AudioPlayer: UIView {
             player.rate = 2.0
             self.playbackSpeedButton.setTitle("2", for: .normal)
         }
-        player.play()
-        self.playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
-        self.startTimeUpdateTimer()
+        self.play()
     }
     
     @objc private func updateTime() {
@@ -283,9 +282,8 @@ extension AudioPlayer: AudioPlayerInterface {
     
     func setCurrentTime(_ time: TimeInterval) {
         guard let player = self.player else { return }
+        self.play()
         player.currentTime = time
         player.play(atTime: time)
-        self.playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
-        self.startTimeUpdateTimer()
     }
 }

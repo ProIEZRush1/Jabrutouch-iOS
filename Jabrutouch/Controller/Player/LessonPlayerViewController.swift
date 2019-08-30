@@ -282,7 +282,8 @@ class LessonPlayerViewController: UIViewController {
     //====================================================
     
     private func loadPDF() {
-        self.pdfWebView.loadFileURL(self.pdfUrl, allowingReadAccessTo: self.pdfUrl)
+        let urlRequest = URLRequest(url: self.pdfUrl)
+        self.pdfWebView.load(urlRequest)
     }
     
     //====================================================
@@ -338,6 +339,14 @@ extension LessonPlayerViewController: WKNavigationDelegate {
                 self.audioPlayer.setAudioUrl(url, startPlaying: true)
             }
         }
+    }
+    
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        print("webView, didFail navigation, withError: \(error.localizedDescription)")
+    }
+    
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+        print("webView, didFailProvisionalNavigation navigation, withError: \(error.localizedDescription)")
     }
 }
 

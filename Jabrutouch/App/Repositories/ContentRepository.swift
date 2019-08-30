@@ -305,7 +305,7 @@ class ContentRepository {
         if self.downloadedGemaraLessons[sederId]?.count == 0 {
             self.downloadedGemaraLessons.removeValue(forKey: sederId)
         }
-        let urls: [URL] = [lesson.textLocalURL, lesson.audioLocalURL, lesson.videoLocalURL].compactMap{$0}
+        let urls: [URL] = [lesson.textURL, lesson.audioURL, lesson.videoURL].compactMap{$0}
         FilesManagementProvider.shared.removeFiles(urls)
         self.updateDownloadedLessonsStorage()
     }
@@ -321,7 +321,7 @@ class ContentRepository {
         if self.downloadedMishnaLessons[sederId]?.count == 0 {
             self.downloadedMishnaLessons.removeValue(forKey: sederId)
         }
-        let urls: [URL] = [lesson.textLocalURL, lesson.audioLocalURL, lesson.videoLocalURL].compactMap{$0}
+        let urls: [URL] = [lesson.textURL, lesson.audioURL, lesson.videoURL].compactMap{$0}
         FilesManagementProvider.shared.removeFiles(urls)
         self.updateDownloadedLessonsStorage()
     }

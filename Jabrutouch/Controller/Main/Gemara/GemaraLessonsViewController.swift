@@ -304,9 +304,9 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
     //======================================================
     
     private func playLesson(_ lesson: JTLesson, mediaType: JTLessonMediaType) {
-        guard let pdfUrl = lesson.textLocalURL ?? lesson.textRemoteURL else { return    }
-        let audioUrl = lesson.audioLocalURL ?? lesson.audioRemoteURL
-        let videoUrl = lesson.videoLocalURL ?? lesson.videoRemoteURL
+        guard let pdfUrl = lesson.textURL else { return    }
+        let audioUrl = lesson.audioURL
+        let videoUrl = lesson.videoURL
         let playerVC = LessonPlayerViewController(pdfUrl: pdfUrl, videoUrl: videoUrl, audioUrl: audioUrl, mediaType: mediaType)
         self.present(playerVC, animated: true) {
             

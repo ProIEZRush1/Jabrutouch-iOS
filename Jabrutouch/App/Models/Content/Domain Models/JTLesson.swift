@@ -111,29 +111,31 @@ class JTLesson: NSObject  {
         return false
     }
     
-    var audioRemoteURL: URL? {
-        let fullLink = "\(AWSS3Provider.appS3BaseUrl)\(AWSS3Provider.appS3BucketName)/\(self.videoLink)"
+    private var audioRemoteURL: URL? {
+        var fullLink = "\(AWSS3Provider.appS3BaseUrl)\(AWSS3Provider.appS3BucketName)/\(self.audioLink)"
+        fullLink = fullLink.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         return URL(string: fullLink)
     }
     
-    var videoRemoteURL: URL? {
+    private var videoRemoteURL: URL? {
         return URL(string: self.videoLink)
     }
     
-    var textRemoteURL: URL? {
-        let fullLink = "\(AWSS3Provider.appS3BaseUrl)\(AWSS3Provider.appS3BucketName)/\(self.videoLink)"
+    private var textRemoteURL: URL? {
+        var fullLink = "\(AWSS3Provider.appS3BaseUrl)\(AWSS3Provider.appS3BucketName)/\(self.textLink)"
+        fullLink = fullLink.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         return URL(string: fullLink)
     }
     
-    var audioLocalURL: URL? {
+    private var audioLocalURL: URL? {
         return FileDirectory.cache.url?.appendingPathComponent(self.audioLocalFileName)
     }
     
-    var videoLocalURL: URL? {
+    private var videoLocalURL: URL? {
         return FileDirectory.cache.url?.appendingPathComponent(self.videoLoaclFileName)
     }
     
-    var textLocalURL: URL? {
+    private var textLocalURL: URL? {
         return FileDirectory.cache.url?.appendingPathComponent(self.textLocalFileName)
     }
     
@@ -147,6 +149,33 @@ class JTLesson: NSObject  {
     
     var textLocalFileName: String {
         return "\(self.id)_text.pdf"
+    }
+    
+    var audioURL: URL? {
+        if self.isAudioDownloaded {
+            return self.audioLocalURL
+        }
+        else {
+            return self.audioRemoteURL
+        }
+    }
+    
+    var videoURL: URL? {
+        if self.isVideoDownloaded {
+            return self.videoLocalURL
+        }
+        else {
+            return self.videoRemoteURL
+        }
+    }
+    
+    var textURL: URL? {
+        if self.isTextFileDownloaded {
+            return self.textLocalURL
+        }
+        else {
+            return self.textRemoteURL
+        }
     }
     
     var values: [String: Any] {
