@@ -46,7 +46,7 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QeO-MI-C6t">
                             <rect key="frame" x="75.5" y="0.0" width="75" height="69"/>
                             <color key="tintColor" red="0.16862745100000001" green="0.1764705882" blue="0.66274509800000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <state key="normal" image="rewind10"/>
+                            <state key="normal" image="rewind30"/>
                             <connections>
                                 <action selector="rewindPauseButtonPressed:" destination="-1" eventType="touchUpInside" id="LUB-uW-8N1"/>
                             </connections>
@@ -62,7 +62,7 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mug-LN-I4Y">
                             <rect key="frame" x="226" y="0.0" width="75" height="69"/>
                             <color key="tintColor" red="0.16862745100000001" green="0.1764705882" blue="0.66274509800000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <state key="normal" image="forwar10"/>
+                            <state key="normal" image="forward10"/>
                             <connections>
                                 <action selector="forwardPauseButtonPressed:" destination="-1" eventType="touchUpInside" id="k76-fQ-Y7b"/>
                             </connections>
@@ -113,9 +113,9 @@
         </view>
     </objects>
     <resources>
-        <image name="forwar10" width="34" height="35"/>
+        <image name="forward10" width="34" height="35"/>
         <image name="multiply" width="12.5" height="12"/>
         <image name="play" width="27" height="28"/>
-        <image name="rewind10" width="34" height="35"/>
+        <image name="rewind30" width="34" height="35"/>
     </resources>
 </document>

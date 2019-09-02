@@ -8,6 +8,8 @@
 
 import UIKit
 import WebKit
+import SnapKit
+import PDFKit
 
 class LessonPlayerViewController: UIViewController {
 
@@ -40,7 +42,7 @@ class LessonPlayerViewController: UIViewController {
     @IBOutlet weak var audioPlayer: AudioPlayer!
     
     // Video Player
-    @IBOutlet weak var videoPlayerContainer: UIView!
+    @IBOutlet weak var videoPlayer: VideoPlayer!
     
     // PDF WebView
     @IBOutlet weak var pdfWebView: WKWebView!
@@ -66,20 +68,8 @@ class LessonPlayerViewController: UIViewController {
     
     private let audioPlayerPortraitWidth: CGFloat = 301.0
     private let audioPlayerLandscapeWidth: CGFloat = 600.0
-    
-    private var safeAreaBounds: CGRect {
-        let window = UIApplication.shared.keyWindow
-        let topPadding = window?.safeAreaInsets.top ?? 0.0
-        let bottomPadding = window?.safeAreaInsets.bottom ?? 0.0
-        let leftPadding = window?.safeAreaInsets.left ?? 0.0
-        let rightPadding = window?.safeAreaInsets.right ?? 0.0
-        
-        let width = UIScreen.main.bounds.width - leftPadding - rightPadding
-        let height = UIScreen.main.bounds.height - topPadding - bottomPadding
-        let bounds = CGRect(x: 0, y: 0, width: width, height: height)
-        print("safe area bounds: \(bounds), isLandscape: \(UIDevice.current.orientation.isLandscape)")
-        return bounds
-    }
+   
+    private let videoAspectRatio: CGFloat = 270/480
     //====================================================
     // MARK: - LifeCycle
     //====================================================
@@ -99,15 +89,15 @@ class LessonPlayerViewController: UIViewController {
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        if UIDevice.current.orientation.isLandscape {
-            self.setLandscapeMode()
-        } else {
-            self.setPortraitMode()
-        }
+        
     }
     
     override func loadView() {
         Bundle.main.loadNibNamed("LessonPlayerViewController", owner: self, options: nil)
+    }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return [.allButUpsideDown]
     }
     
     override func viewDidLoad() {
@@ -132,12 +122,29 @@ class LessonPlayerViewController: UIViewController {
         self.pdfWebView.backgroundColor = UIColor.clear
         
         self.pdfWebView.scrollView.backgroundColor = UIColor.clear
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.orientationDidChange(_:)), name: UIDevice.orientationDidChangeNotification, object: nil)
+
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         self.audioPlayer.stopAndRelease()
+        self.videoPlayer.stopAndRelease()
+        
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func orientationDidChange(_ notification: Notification) {
+        print(UIDevice.current.orientation.rawValue)
+        print(self.view.frame)
+        if UIDevice.current.orientation == .landscapeLeft || UIDevice.current.orientation == .landscapeRight || UIDevice.current.orientation == .portraitUpsideDown{
+            self.setLandscapeMode()
+        }
+        else if UIDevice.current.orientation == .portrait  {
+            self.setPortraitMode()
+        }
     }
     //====================================================
     // MARK: - Setup
@@ -156,7 +163,8 @@ class LessonPlayerViewController: UIViewController {
         case .video:
             switch self.videoPlayerMode {
             case .regular:
-                self.pdfWebViewTopConstraint.constant = self.portraitHeaderViewVideoHeight + UIScreen.main.bounds.width * (229/423)
+                let screenWidth = min(UIScreen.main.bounds.width, UIScreen.main.bounds.height)
+                self.pdfWebViewTopConstraint.constant = self.portraitHeaderViewVideoHeight + screenWidth * self.videoAspectRatio
             case .small:
                 self.pdfWebViewTopConstraint.constant = self.portraitHeaderViewVideoHeight
             case .fullScreen:
@@ -168,21 +176,47 @@ class LessonPlayerViewController: UIViewController {
         self.pdfWebViewTrailingConstraint.constant = 0.0
         
         // Set audio player
-        self.audioPlayer.setUIMode(.portrait)
+        self.audioPlayer.setOrientation(.portrait)
         self.audioPlayerContainerWidthConstraint.constant = self.audioPlayerPortraitWidth
         
         // Set video player
+        if self.videoPlayerMode == .regular {
+            self.videoPlayer.setMode(.regular)
+        }
+        self.videoPlayer.snp.removeConstraints()
         switch self.videoPlayerMode {
         case .fullScreen:
-           break
+            self.videoPlayer.snp.makeConstraints { (maker: ConstraintMaker) in
+                maker.top.equalTo(self.view.snp.top)
+                maker.leading.equalTo(self.view.snp.leading)
+                maker.trailing.equalTo(self.view.snp.trailing)
+                maker.bottom.equalTo(self.view.snp.bottom)
+            }
+            self.videoPlayer.layer.cornerRadius = 0.0
         case .regular:
-            break
+            self.videoPlayer.snp.makeConstraints { (maker: ConstraintMaker) in
+                maker.top.equalTo(self.portraitHeaderView.snp.bottom)
+                maker.leading.equalTo(self.view.snp.leading)
+                maker.trailing.equalTo(self.view.snp.trailing)
+                maker.height.equalTo(self.videoPlayer.snp.width).multipliedBy(self.videoAspectRatio).offset(15.0)
+            }
+            self.videoPlayer.layer.cornerRadius = 0.0
         case .small:
-            break
+            self.videoPlayer.snp.makeConstraints { (maker: ConstraintMaker) in
+                maker.bottom.equalTo(self.view.snp.bottomMargin).offset(16.0)
+                maker.centerX.equalToSuperview()
+                maker.width.equalTo(386.0)
+                maker.height.equalTo(70.0)
+            }
+            self.videoPlayer.layer.cornerRadius = 15.0
         }
         
-        self.view.updateConstraints()
-        self.view.layoutIfNeeded()
+        UIView.animate(withDuration: 0.4) {
+            self.view.updateConstraints()
+            self.view.layoutIfNeeded()
+        }
+        self.videoPlayer.setMode(self.videoPlayerMode)
+
     }
     
     private func setLandscapeMode() {
@@ -196,18 +230,42 @@ class LessonPlayerViewController: UIViewController {
         self.pdfWebViewTrailingConstraint.constant = 0.0
         
         // Set audio player
-        self.audioPlayer.setUIMode(.landscape)
+        self.audioPlayer.setOrientation(.landscape)
         self.audioPlayerContainerWidthConstraint.constant = self.audioPlayerLandscapeWidth
         
         // Set video player
+        
+        self.videoPlayer.snp.removeConstraints()
         switch self.videoPlayerMode {
         case .fullScreen:
-            break
+            self.videoPlayer.snp.makeConstraints { (maker: ConstraintMaker) in
+                maker.top.equalTo(self.view.snp.top)
+                maker.leading.equalTo(self.view.snp.leading)
+                maker.trailing.equalTo(self.view.snp.trailing)
+                maker.bottom.equalTo(self.view.snp.bottom)
+            }
+            self.videoPlayer.layer.cornerRadius = 0.0
         case .small, .regular:
-            break
+            self.videoPlayer.snp.makeConstraints { (maker: ConstraintMaker) in
+                maker.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(16.0)
+                maker.centerX.equalToSuperview()
+                maker.width.equalTo(386.0)
+                maker.height.equalTo(70.0)
+            }
+            self.videoPlayer.layer.cornerRadius = 15.0
         }
-        self.view.updateConstraints()
-        self.view.layoutIfNeeded()
+        
+        UIView.animate(withDuration: 0.4) {
+            self.view.updateConstraints()
+            self.view.layoutIfNeeded()
+        }
+        if self.videoPlayerMode == .regular || self.videoPlayerMode == .small{
+            self.videoPlayer.setMode(.small)
+        }
+        else {
+            self.videoPlayer.setMode(.fullScreen)
+        }
+        
     }
     
     private func setPortraitHeaderViewHeight() {
@@ -228,6 +286,8 @@ class LessonPlayerViewController: UIViewController {
         self.audioPlayerContainer.layer.cornerRadius = 15.0
         self.audioPlayer.layer.cornerRadius = 15.0
         self.audioPlayer.clipsToBounds = true
+        
+        self.videoPlayer.clipsToBounds = true
     }
     
     private func setShadows() {
@@ -249,11 +309,12 @@ class LessonPlayerViewController: UIViewController {
     private func setPlayers() {
         switch self.mediaType {
         case .video:
-            self.videoPlayerContainer.isHidden = false
+            self.videoPlayer.isHidden = false
             self.audioPlayerContainer.isHidden = true
+            self.videoPlayer.delegate = self
             
         case .audio:
-            self.videoPlayerContainer.isHidden = true
+            self.videoPlayer.isHidden = true
             self.audioPlayerContainer.isHidden = false
             self.audioPlayer.delegate = self
         }
@@ -333,7 +394,9 @@ extension LessonPlayerViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         switch self.mediaType {
         case .video:
-            break
+            if let url = self.videoUrl {
+                self.videoPlayer.setVideoUrl(url, startPlaying: true)
+            }
         case .audio:
             if let url = self.audioUrl {
                 self.audioPlayer.setAudioUrl(url, startPlaying: true)
@@ -350,7 +413,17 @@ extension LessonPlayerViewController: WKNavigationDelegate {
     }
 }
 
-extension LessonPlayerViewController: AudioPlayerDelegate {
+extension LessonPlayerViewController: AudioPlayerDelegate, VideoPlayerDelegate {
+    func videoPlayerModeDidChange(newMode: VideoPlayerMode) {
+        self.videoPlayerMode = newMode
+        if UIDevice.current.orientation == .landscapeLeft || UIDevice.current.orientation == .landscapeRight || UIDevice.current.orientation == .portraitUpsideDown{
+            self.setLandscapeMode()
+        }
+        else if UIDevice.current.orientation == .portrait {
+            self.setPortraitMode()
+        }
+    }
+    
     func currentTimeDidChange(currentTime: TimeInterval, duration: TimeInterval) {
         self.updateAudioSliderTimes(currentTime: currentTime, duration: duration)
     }

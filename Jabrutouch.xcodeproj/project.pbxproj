@@ -141,6 +141,8 @@
 		21ED3BD823048835009D8E3D /* GetMishnaLessonsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21ED3BD723048835009D8E3D /* GetMishnaLessonsResponse.swift */; };
 		21ED3BDA230488E3009D8E3D /* JTGemaraLesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21ED3BD9230488E3009D8E3D /* JTGemaraLesson.swift */; };
 		21ED3BDC23048970009D8E3D /* GetGemaraLessonsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21ED3BDB23048970009D8E3D /* GetGemaraLessonsResponse.swift */; };
+		21F89DCC2319645600540658 /* PDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F89DCB2319645500540658 /* PDFKit.framework */; };
+		21F89DCE231B173500540658 /* VideoPlayer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21F89DCD231B173500540658 /* VideoPlayer.xib */; };
 		F7AEA20A7CC7E87A1BEC48AF /* Pods_Jabrutouch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0F9377FF1E3DA5E9F901D68 /* Pods_Jabrutouch.framework */; };
 		FB51711422F19C3F003BCAFC /* MishnaMasechetCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB51711322F19C3F003BCAFC /* MishnaMasechetCellController.swift */; };
 		FB51711622F19FD2003BCAFC /* JTMishnaMasechet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB51711522F19FD2003BCAFC /* JTMishnaMasechet.swift */; };
@@ -310,6 +312,8 @@
 		21ED3BD723048835009D8E3D /* GetMishnaLessonsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMishnaLessonsResponse.swift; sourceTree = "<group>"; };
 		21ED3BD9230488E3009D8E3D /* JTGemaraLesson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTGemaraLesson.swift; sourceTree = "<group>"; };
 		21ED3BDB23048970009D8E3D /* GetGemaraLessonsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGemaraLessonsResponse.swift; sourceTree = "<group>"; };
+		21F89DCB2319645500540658 /* PDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PDFKit.framework; path = System/Library/Frameworks/PDFKit.framework; sourceTree = SDKROOT; };
+		21F89DCD231B173500540658 /* VideoPlayer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoPlayer.xib; sourceTree = "<group>"; };
 		715A51EC96A60C90B07F8038 /* Pods-Jabrutouch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jabrutouch.debug.xcconfig"; path = "Target Support Files/Pods-Jabrutouch/Pods-Jabrutouch.debug.xcconfig"; sourceTree = "<group>"; };
 		C0F9377FF1E3DA5E9F901D68 /* Pods_Jabrutouch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jabrutouch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F71C57777BA59A6B8E3F7474 /* Pods-Jabrutouch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jabrutouch.release.xcconfig"; path = "Target Support Files/Pods-Jabrutouch/Pods-Jabrutouch.release.xcconfig"; sourceTree = "<group>"; };
@@ -344,6 +348,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21F89DCC2319645600540658 /* PDFKit.framework in Frameworks */,
 				212ECEAE23126628005AEB36 /* WebKit.framework in Frameworks */,
 				F7AEA20A7CC7E87A1BEC48AF /* Pods_Jabrutouch.framework in Frameworks */,
 			);
@@ -355,6 +360,7 @@
 		1371B014ACF312EFC7849D49 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				21F89DCB2319645500540658 /* PDFKit.framework */,
 				212ECEAD23126627005AEB36 /* WebKit.framework */,
 				C0F9377FF1E3DA5E9F901D68 /* Pods_Jabrutouch.framework */,
 			);
@@ -557,6 +563,7 @@
 				213196B622F6DDB000B0AF5F /* ActivityView.xib */,
 				212ECEA6230F36BF005AEB36 /* LessonPlayerViewController.xib */,
 				212ECEB72317DC57005AEB36 /* AudioPlayer.xib */,
+				21F89DCD231B173500540658 /* VideoPlayer.xib */,
 			);
 			path = "Single Views";
 			sourceTree = "<group>";
@@ -1090,6 +1097,7 @@
 				21678D6E22DF2CED007BC74C /* SF-Pro-Text-SemiboldItalic.otf in Resources */,
 				21678D6F22DF2CED007BC74C /* SF-Pro-Text-Thin.otf in Resources */,
 				21678D7022DF2CED007BC74C /* SF-Pro-Text-ThinItalic.otf in Resources */,
+				21F89DCE231B173500540658 /* VideoPlayer.xib in Resources */,
 				FBB18FAC22F85019006886FD /* Gemara.storyboard in Resources */,
 				21CC093E22F04C4000E8FE27 /* daf_yomi.json in Resources */,
 				21678D7122DF2CED007BC74C /* SF-Pro-Text-Ultralight.otf in Resources */,

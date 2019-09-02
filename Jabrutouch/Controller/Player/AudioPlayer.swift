@@ -22,7 +22,7 @@ protocol AudioPlayerDelegate: class {
 }
 
 
-enum AudioPlayerUIMode {
+enum PlayerOrientation {
     case portrait
     case landscape
 }
@@ -101,8 +101,10 @@ class AudioPlayer: UIView {
         self.rewindButton.isEnabled = false
         self.playbackSpeedButton.isEnabled = false
         
+        self.slider.setThumbImage(#imageLiteral(resourceName: "thumb"), for: .normal)
         if let image = Utils.linearGradientImage(size: self.slider.frame.size, colors: [Colors.appBlue, Colors.appOrange]) {
             self.slider.setMinimumTrackImage(image, for: .normal)
+            
         }
     }
  
@@ -137,8 +139,8 @@ class AudioPlayer: UIView {
         }
     }
     
-    func setUIMode(_ mode: AudioPlayerUIMode) {
-        switch mode {
+    func setOrientation(_ orientation: PlayerOrientation) {
+        switch orientation {
         case .portrait:
             self.slider.isHidden = true
         case .landscape:
@@ -224,6 +226,8 @@ class AudioPlayer: UIView {
     private func pause() {
         self.player?.pause()
         self.playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+        self.stopTimeUpdateTimer()
+
     }
     
     private func forward(_ time: TimeInterval) {
