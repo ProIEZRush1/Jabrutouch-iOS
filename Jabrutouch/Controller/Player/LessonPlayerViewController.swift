@@ -45,11 +45,11 @@ class LessonPlayerViewController: UIViewController {
     @IBOutlet weak var videoPlayer: VideoPlayer!
     
     // PDF WebView
-    @IBOutlet weak var pdfWebView: WKWebView!
-    @IBOutlet weak var pdfWebViewTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var pdfWebViewBottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak var pdfWebViewLeadingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var pdfWebViewTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var pdfView: PDFView!
+    @IBOutlet weak var pdfViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var pdfViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var pdfViewLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var pdfViewTrailingConstraint: NSLayoutConstraint!
     //====================================================
     // MARK: - Properties
     //====================================================
@@ -103,8 +103,7 @@ class LessonPlayerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.pdfWebView.uiDelegate = self
-        self.pdfWebView.navigationDelegate = self
+        self.pdfView.delegate = self
         self.loadPDF()
         self.roundCorners()
         self.setPlayers()
@@ -118,10 +117,8 @@ class LessonPlayerViewController: UIViewController {
         self.setPortraitHeaderViewHeight()
         self.setPortraitMode()
         
-        self.pdfWebView.isOpaque = false
-        self.pdfWebView.backgroundColor = UIColor.clear
-        
-        self.pdfWebView.scrollView.backgroundColor = UIColor.clear
+        self.pdfView.isOpaque = false
+        self.pdfView.backgroundColor = UIColor.clear
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.orientationDidChange(_:)), name: UIDevice.orientationDidChangeNotification, object: nil)
 
@@ -139,10 +136,10 @@ class LessonPlayerViewController: UIViewController {
     @objc func orientationDidChange(_ notification: Notification) {
         print(UIDevice.current.orientation.rawValue)
         print(self.view.frame)
-        if UIDevice.current.orientation == .landscapeLeft || UIDevice.current.orientation == .landscapeRight || UIDevice.current.orientation == .portraitUpsideDown{
+        if UIScreen.main.bounds.height < UIScreen.main.bounds.width {
             self.setLandscapeMode()
         }
-        else if UIDevice.current.orientation == .portrait  {
+        else  {
             self.setPortraitMode()
         }
     }
@@ -159,21 +156,21 @@ class LessonPlayerViewController: UIViewController {
         // Set pdf view
         switch self.mediaType {
         case .audio:
-            self.pdfWebViewTopConstraint.constant = self.portraitHeaderViewAudioHeight
+            self.pdfViewTopConstraint.constant = self.portraitHeaderViewAudioHeight
         case .video:
             switch self.videoPlayerMode {
             case .regular:
                 let screenWidth = min(UIScreen.main.bounds.width, UIScreen.main.bounds.height)
-                self.pdfWebViewTopConstraint.constant = self.portraitHeaderViewVideoHeight + screenWidth * self.videoAspectRatio
+                self.pdfViewTopConstraint.constant = self.portraitHeaderViewVideoHeight + screenWidth * self.videoAspectRatio
             case .small:
-                self.pdfWebViewTopConstraint.constant = self.portraitHeaderViewVideoHeight
+                self.pdfViewTopConstraint.constant = self.portraitHeaderViewVideoHeight
             case .fullScreen:
                 break
             }
         }
-        self.pdfWebViewBottomConstraint.constant = 0.0
-        self.pdfWebViewLeadingConstraint.constant = 0.0
-        self.pdfWebViewTrailingConstraint.constant = 0.0
+        self.pdfViewBottomConstraint.constant = 0.0
+        self.pdfViewLeadingConstraint.constant = 0.0
+        self.pdfViewTrailingConstraint.constant = 0.0
         
         // Set audio player
         self.audioPlayer.setOrientation(.portrait)
@@ -193,6 +190,8 @@ class LessonPlayerViewController: UIViewController {
                 maker.bottom.equalTo(self.view.snp.bottom)
             }
             self.videoPlayer.layer.cornerRadius = 0.0
+            Utils.dropViewShadow(view: self.videoPlayer, shadowColor: UIColor.clear, shadowRadius: 0, shadowOffset: CGSize(width: 0.0, height: 12))
+
         case .regular:
             self.videoPlayer.snp.makeConstraints { (maker: ConstraintMaker) in
                 maker.top.equalTo(self.portraitHeaderView.snp.bottom)
@@ -201,14 +200,19 @@ class LessonPlayerViewController: UIViewController {
                 maker.height.equalTo(self.videoPlayer.snp.width).multipliedBy(self.videoAspectRatio).offset(15.0)
             }
             self.videoPlayer.layer.cornerRadius = 0.0
+            Utils.dropViewShadow(view: self.videoPlayer, shadowColor: UIColor.clear, shadowRadius: 0, shadowOffset: CGSize(width: 0.0, height: 12))
+
         case .small:
             self.videoPlayer.snp.makeConstraints { (maker: ConstraintMaker) in
-                maker.bottom.equalTo(self.view.snp.bottomMargin).offset(16.0)
+                maker.bottom.equalTo(self.view.snp.bottom).inset(16.0)
                 maker.centerX.equalToSuperview()
-                maker.width.equalTo(386.0)
-                maker.height.equalTo(70.0)
+                maker.width.equalTo(386.0).priority(ConstraintPriority.high)
+                maker.height.equalTo(70.0).priority(ConstraintPriority.high)
+                maker.trailing.lessThanOrEqualTo(self.view.snp.trailing).inset(16.0).priority(ConstraintPriority.required)
+                maker.leading.greaterThanOrEqualTo(self.view.snp.leading).offset(16.0).priority(ConstraintPriority.required)
             }
             self.videoPlayer.layer.cornerRadius = 15.0
+            Utils.dropViewShadow(view: self.videoPlayer, shadowColor: Colors.playerShadowColor, shadowRadius: 36, shadowOffset: CGSize(width: 0.0, height: 12))
         }
         
         UIView.animate(withDuration: 0.4) {
@@ -224,10 +228,10 @@ class LessonPlayerViewController: UIViewController {
         self.landscapeHeaderView.isHidden = false
         
         // Set pdf view
-        self.pdfWebViewTopConstraint.constant = 0.0
-        self.pdfWebViewBottomConstraint.constant = 0.0
-        self.pdfWebViewLeadingConstraint.constant = self.landscapeHeaderViewVideoWidth
-        self.pdfWebViewTrailingConstraint.constant = 0.0
+        self.pdfViewTopConstraint.constant = 0.0
+        self.pdfViewBottomConstraint.constant = 0.0
+        self.pdfViewLeadingConstraint.constant = self.landscapeHeaderViewVideoWidth
+        self.pdfViewTrailingConstraint.constant = 0.0
         
         // Set audio player
         self.audioPlayer.setOrientation(.landscape)
@@ -245,6 +249,7 @@ class LessonPlayerViewController: UIViewController {
                 maker.bottom.equalTo(self.view.snp.bottom)
             }
             self.videoPlayer.layer.cornerRadius = 0.0
+            Utils.dropViewShadow(view: self.videoPlayer, shadowColor: UIColor.clear, shadowRadius: 0, shadowOffset: CGSize(width: 0.0, height: 12))
         case .small, .regular:
             self.videoPlayer.snp.makeConstraints { (maker: ConstraintMaker) in
                 maker.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(16.0)
@@ -253,6 +258,7 @@ class LessonPlayerViewController: UIViewController {
                 maker.height.equalTo(70.0)
             }
             self.videoPlayer.layer.cornerRadius = 15.0
+            Utils.dropViewShadow(view: self.videoPlayer, shadowColor: Colors.playerShadowColor, shadowRadius: 36, shadowOffset: CGSize(width: 0.0, height: 12))
         }
         
         UIView.animate(withDuration: 0.4) {
@@ -287,12 +293,13 @@ class LessonPlayerViewController: UIViewController {
         self.audioPlayer.layer.cornerRadius = 15.0
         self.audioPlayer.clipsToBounds = true
         
-        self.videoPlayer.clipsToBounds = true
     }
     
     private func setShadows() {
         let shadowOffset = CGSize(width: 0.0, height: 12)
         Utils.dropViewShadow(view: self.audioPlayerContainer, shadowColor: Colors.playerShadowColor, shadowRadius: 36, shadowOffset: shadowOffset)
+        Utils.dropViewShadow(view: self.videoPlayer, shadowColor: Colors.playerShadowColor, shadowRadius: 36, shadowOffset: shadowOffset)
+
     }
     
     private func setPortraitHeader() {
@@ -343,8 +350,20 @@ class LessonPlayerViewController: UIViewController {
     //====================================================
     
     private func loadPDF() {
-        let urlRequest = URLRequest(url: self.pdfUrl)
-        self.pdfWebView.load(urlRequest)
+        if let pdfDocument = PDFDocument(url: self.pdfUrl) {
+            self.pdfView.document = pdfDocument
+            self.pdfView.autoScales = true
+            switch self.mediaType {
+            case .video:
+                if let url = self.videoUrl {
+                    self.videoPlayer.setVideoUrl(url, startPlaying: true)
+                }
+            case .audio:
+                if let url = self.audioUrl {
+                    self.audioPlayer.setAudioUrl(url, startPlaying: true)
+                }
+            }
+        }
     }
     
     //====================================================
@@ -389,37 +408,38 @@ extension LessonPlayerViewController: WKUIDelegate {
     
 }
 
-extension LessonPlayerViewController: WKNavigationDelegate {
+extension LessonPlayerViewController: PDFViewDelegate {
     
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        switch self.mediaType {
-        case .video:
-            if let url = self.videoUrl {
-                self.videoPlayer.setVideoUrl(url, startPlaying: true)
-            }
-        case .audio:
-            if let url = self.audioUrl {
-                self.audioPlayer.setAudioUrl(url, startPlaying: true)
-            }
-        }
-    }
     
-    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        print("webView, didFail navigation, withError: \(error.localizedDescription)")
-    }
-    
-    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
-        print("webView, didFailProvisionalNavigation navigation, withError: \(error.localizedDescription)")
-    }
+//    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+//        switch self.mediaType {
+//        case .video:
+//            if let url = self.videoUrl {
+//                self.videoPlayer.setVideoUrl(url, startPlaying: true)
+//            }
+//        case .audio:
+//            if let url = self.audioUrl {
+//                self.audioPlayer.setAudioUrl(url, startPlaying: true)
+//            }
+//        }
+//    }
+//
+//    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+//        print("webView, didFail navigation, withError: \(error.localizedDescription)")
+//    }
+//
+//    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+//        print("webView, didFailProvisionalNavigation navigation, withError: \(error.localizedDescription)")
+//    }
 }
 
 extension LessonPlayerViewController: AudioPlayerDelegate, VideoPlayerDelegate {
     func videoPlayerModeDidChange(newMode: VideoPlayerMode) {
         self.videoPlayerMode = newMode
-        if UIDevice.current.orientation == .landscapeLeft || UIDevice.current.orientation == .landscapeRight || UIDevice.current.orientation == .portraitUpsideDown{
+        if UIScreen.main.bounds.height <  UIScreen.main.bounds.width {
             self.setLandscapeMode()
         }
-        else if UIDevice.current.orientation == .portrait || UIDevice.current.orientation == .unknown {
+        else  {
             self.setPortraitMode()
         }
     }

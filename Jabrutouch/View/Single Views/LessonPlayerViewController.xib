@@ -29,11 +29,11 @@
                 <outlet property="landscapeDownloadButton" destination="dFl-wk-OQD" id="JTA-rF-ReX"/>
                 <outlet property="landscapeHeaderView" destination="WR2-vv-yUg" id="2B4-jn-tSs"/>
                 <outlet property="landscapePhotoButton" destination="etC-d3-PiM" id="fmJ-sX-AbM"/>
-                <outlet property="pdfWebView" destination="Gfw-eM-Nxd" id="cMl-Y9-nww"/>
-                <outlet property="pdfWebViewBottomConstraint" destination="cSf-66-tVJ" id="L8A-II-Wup"/>
-                <outlet property="pdfWebViewLeadingConstraint" destination="BhF-uz-7FW" id="4a6-N7-6dU"/>
-                <outlet property="pdfWebViewTopConstraint" destination="xdK-i0-PoC" id="82a-RQ-91r"/>
-                <outlet property="pdfWebViewTrailingConstraint" destination="8SS-ti-8p8" id="RV9-DS-LsH"/>
+                <outlet property="pdfView" destination="REd-5W-jRm" id="Ll8-h1-Eq0"/>
+                <outlet property="pdfViewBottomConstraint" destination="0XX-xF-AtX" id="USm-Dj-zvX"/>
+                <outlet property="pdfViewLeadingConstraint" destination="1Mm-ON-hHc" id="yMG-OA-Pdt"/>
+                <outlet property="pdfViewTopConstraint" destination="Dve-NG-2YA" id="pbp-EZ-W1x"/>
+                <outlet property="pdfViewTrailingConstraint" destination="e28-ep-zpo" id="Jtd-JP-exe"/>
                 <outlet property="portraitBackButton" destination="6YO-P4-mQY" id="J39-Zl-qHE"/>
                 <outlet property="portraitChatButton" destination="kiR-IP-Whh" id="i3D-g2-LX3"/>
                 <outlet property="portraitDownloadButton" destination="kEK-g4-PtD" id="Fe3-fa-gfJ"/>
@@ -49,14 +49,10 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gfw-eM-Nxd">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="REd-5W-jRm" customClass="PDFView">
                     <rect key="frame" x="0.0" y="97" width="414" height="765"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <wkWebViewConfiguration key="configuration">
-                        <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                        <wkPreferences key="preferences"/>
-                    </wkWebViewConfiguration>
-                </wkWebView>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WR2-vv-yUg">
                     <rect key="frame" x="0.0" y="44" width="53" height="818"/>
                     <subviews>
@@ -191,13 +187,13 @@
                                     </connections>
                                 </slider>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--:--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3HV-ge-hZE">
-                                    <rect key="frame" x="20" y="-1" width="22.5" height="14"/>
+                                    <rect key="frame" x="20" y="-1.5" width="24" height="14.5"/>
                                     <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="12"/>
                                     <color key="textColor" red="0.45098039215686275" green="0.45098039215686275" blue="0.45098039215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DCe-9U-JAe">
-                                    <rect key="frame" x="364" y="-7" width="30" height="26"/>
+                                    <rect key="frame" x="364" y="-7.5" width="30" height="27"/>
                                     <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="12"/>
                                     <state key="normal" title="--:--">
                                         <color key="titleColor" red="0.45098039220000002" green="0.45098039220000002" blue="0.45098039220000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -257,20 +253,20 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Gfw-eM-Nxd" secondAttribute="trailing" id="8SS-ti-8p8"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="REd-5W-jRm" secondAttribute="bottom" id="0XX-xF-AtX"/>
+                <constraint firstItem="REd-5W-jRm" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="1Mm-ON-hHc"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="1fO-cN-dWy" secondAttribute="bottom" constant="16" id="AEk-oh-hda"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="PVv-ui-sj5" secondAttribute="trailing" id="AHo-e0-XTU"/>
-                <constraint firstItem="Gfw-eM-Nxd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="BhF-uz-7FW"/>
+                <constraint firstItem="REd-5W-jRm" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="53" id="Dve-NG-2YA"/>
                 <constraint firstItem="PVv-ui-sj5" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="SIC-Hk-Jsf"/>
-                <constraint firstItem="1fO-cN-dWy" firstAttribute="centerX" secondItem="Gfw-eM-Nxd" secondAttribute="centerX" id="UAu-dH-2Jt"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Gfw-eM-Nxd" secondAttribute="bottom" id="cSf-66-tVJ"/>
-                <constraint firstItem="1fO-cN-dWy" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Gfw-eM-Nxd" secondAttribute="leading" constant="16" id="hvU-Vh-lJl"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="REd-5W-jRm" secondAttribute="trailing" id="e28-ep-zpo"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="WR2-vv-yUg" secondAttribute="bottom" id="iAd-aq-D71"/>
-                <constraint firstItem="1fO-cN-dWy" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="Gfw-eM-Nxd" secondAttribute="trailing" constant="16" id="ki9-RM-qUa"/>
+                <constraint firstItem="1fO-cN-dWy" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="REd-5W-jRm" secondAttribute="trailing" constant="16" id="nLB-Yl-5Lq"/>
+                <constraint firstItem="REd-5W-jRm" firstAttribute="centerX" secondItem="1fO-cN-dWy" secondAttribute="centerX" id="psp-4L-XA4"/>
                 <constraint firstItem="PVv-ui-sj5" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="rZF-OB-FHz"/>
                 <constraint firstItem="WR2-vv-yUg" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="sqe-Iq-KoO"/>
                 <constraint firstItem="WR2-vv-yUg" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="xSg-Om-Niq"/>
-                <constraint firstItem="Gfw-eM-Nxd" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="53" id="xdK-i0-PoC"/>
+                <constraint firstItem="1fO-cN-dWy" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="REd-5W-jRm" secondAttribute="leading" constant="16" id="ymV-Oi-mhY"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
         </view>

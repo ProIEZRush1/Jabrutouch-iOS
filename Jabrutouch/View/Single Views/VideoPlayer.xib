@@ -21,6 +21,7 @@
             <connections>
                 <outlet property="accessoriesContainer" destination="P4k-Wt-S6h" id="pRd-ab-hxE"/>
                 <outlet property="buttonsStackView" destination="uh7-i3-IvM" id="ENN-c1-210"/>
+                <outlet property="buttonsStackViewLeadingConstraint" destination="Jem-YU-vVp" id="7PN-ba-xRa"/>
                 <outlet property="currentTimeLabel" destination="BUM-AC-ghR" id="hnn-0S-c3f"/>
                 <outlet property="endTimeButton" destination="Ee5-mQ-d5J" id="W34-E9-LCk"/>
                 <outlet property="forwardButton" destination="BDz-GM-WjT" id="Px4-oC-gMV"/>
@@ -94,7 +95,7 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="262" id="lIe-z7-6bA"/>
+                        <constraint firstAttribute="width" priority="750" constant="262" id="lIe-z7-6bA"/>
                     </constraints>
                 </stackView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P4k-Wt-S6h">
@@ -160,15 +161,15 @@
                             <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </toolbar>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HZF-U0-KFb">
-                            <rect key="frame" x="12" y="12" width="60" height="60"/>
+                            <rect key="frame" x="12" y="12" width="40" height="40"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="60" id="q44-Rc-HIx"/>
-                                <constraint firstAttribute="height" constant="60" id="zBj-Ga-zjR"/>
+                                <constraint firstAttribute="width" constant="40" id="q44-Rc-HIx"/>
+                                <constraint firstAttribute="height" constant="40" id="zBj-Ga-zjR"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="SFProDisplay-Medium" family="SF Pro Display" pointSize="20"/>
+                            <fontDescription key="fontDescription" name="SFProDisplay-Medium" family="SF Pro Display" pointSize="16"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <inset key="imageEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
-                            <state key="normal" title="1.5" image="multiply"/>
+                            <state key="normal" title="1.5" image="multiply_small"/>
                             <connections>
                                 <action selector="playbackSpeedButtonPressed:" destination="-1" eventType="touchUpInside" id="3Sd-3a-23X"/>
                             </connections>
@@ -245,6 +246,7 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="uh7-i3-IvM" secondAttribute="bottom" id="IiH-rz-WZt"/>
+                <constraint firstItem="uh7-i3-IvM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="leading" constant="152" id="Jem-YU-vVp"/>
                 <constraint firstItem="P4k-Wt-S6h" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Udb-2u-9R6"/>
                 <constraint firstItem="uh7-i3-IvM" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Yt2-Ur-Voi"/>
                 <constraint firstAttribute="trailing" secondItem="uh7-i3-IvM" secondAttribute="trailing" id="hv6-qZ-Y3G"/>
@@ -261,6 +263,7 @@
         <image name="forward10_large" width="34" height="35"/>
         <image name="fullScreen" width="17" height="17.5"/>
         <image name="multiply" width="12.5" height="12"/>
+        <image name="multiply_small" width="10.5" height="10.5"/>
         <image name="next_large" width="20" height="22.5"/>
         <image name="play" width="27" height="28"/>
         <image name="play_large" width="50" height="52"/>

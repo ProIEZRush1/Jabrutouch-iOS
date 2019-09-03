@@ -51,6 +51,7 @@ class VideoPlayer: UIView {
     
     
     @IBOutlet private weak var buttonsStackView: UIStackView!
+    @IBOutlet private weak var buttonsStackViewLeadingConstraint: NSLayoutConstraint!
     @IBOutlet private weak var playPauseButton: UIButton!
     @IBOutlet private weak var forwardButton: UIButton!
     @IBOutlet private weak var rewindButton: UIButton!
@@ -119,6 +120,8 @@ class VideoPlayer: UIView {
     }
     
     override func awakeFromNib() {
+        
+        
         self.playPauseButtonItem.isEnabled = false
         self.forwardButtonItem.isEnabled = false
         self.rewindButtonItem.isEnabled = false
@@ -150,6 +153,7 @@ class VideoPlayer: UIView {
         self.videoLayer = AVPlayerLayer(player: nil)
         self.videoLayer.frame = self.videoView.layer.bounds
         self.videoView.layer.addSublayer(self.videoLayer)
+        self.videoView.clipsToBounds = true
     }
     
     private func setupToolbar() {
@@ -170,7 +174,7 @@ class VideoPlayer: UIView {
     
     private func addBorders() {
         self.playbackSpeedButton.layer.cornerRadius = self.playbackSpeedButton.bounds.width/2
-        self.playbackSpeedButton.layer.borderWidth = 3.0
+        self.playbackSpeedButton.layer.borderWidth = 2.0
         self.playbackSpeedButton.layer.borderColor = UIColor.white.cgColor
         self.playbackSpeedButton.clipsToBounds = true
     }
@@ -190,10 +194,10 @@ class VideoPlayer: UIView {
             // Set Video Layer
             self.videoView.snp.removeConstraints()
             self.videoView.snp.makeConstraints { (maker) in
-                maker.top.equalToSuperview()
-                maker.bottom.equalToSuperview().inset(15.0)
-                maker.leading.equalToSuperview()
-                maker.trailing.equalToSuperview()
+                maker.top.equalTo(self.view.snp.top)
+                maker.bottom.equalTo(self.view.snp.bottom).inset(15.0)
+                maker.leading.equalTo(self.view.snp.leading)
+                maker.trailing.equalTo(self.view.snp.trailing)
             }
             
             self.slider.snp.removeConstraints()
@@ -201,10 +205,14 @@ class VideoPlayer: UIView {
                 maker.bottom.equalToSuperview()
                 maker.trailing.equalToSuperview()
                 maker.leading.equalToSuperview()
+                maker.height.equalTo(30.0)
             }
+            self.view.layer.cornerRadius = 0.0
+            self.view.clipsToBounds = true
         case .small:
             self.accessoriesContainer.isHidden = true
             self.buttonsStackView.isHidden = false
+            
             self.videoView.snp.removeConstraints()
             self.videoView.snp.makeConstraints { (maker) in
                 maker.top.equalTo(self.view.snp.top)
@@ -212,6 +220,12 @@ class VideoPlayer: UIView {
                 maker.leading.equalTo(self.view.snp.leading)
                 maker.width.equalTo(self.videoView.snp.height).multipliedBy(self.videoAspectRatio)
             }
+            
+            let videoViewWidth = self.videoView.frame.height * self.videoAspectRatio
+            self.buttonsStackViewLeadingConstraint.constant = videoViewWidth
+            
+            self.view.layer.cornerRadius = 15.0
+            self.view.clipsToBounds = true
         case .fullScreen:
             self.accessoriesContainer.isHidden = true
             self.buttonsStackView.isHidden = true
@@ -229,7 +243,11 @@ class VideoPlayer: UIView {
                 maker.leading.equalTo(self.currentTimeLabel.snp.trailing).offset(8.0)
                 maker.trailing.equalTo(self.endTimeButton.snp.leading).inset(8.0)
                 maker.centerY.equalTo(self.currentTimeLabel.snp.centerY)
+                maker.height.equalTo(30.0)
             }
+            
+            self.view.layer.cornerRadius = 0.0
+            self.view.clipsToBounds = true
         }
         
         UIView.animate(withDuration: 0.4) {
