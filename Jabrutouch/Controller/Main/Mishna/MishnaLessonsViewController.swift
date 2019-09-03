@@ -315,6 +315,10 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
         self.present(playerVC, animated: true) {
             
         }
+        
+        if let mishnaLesson = lesson as? JTMishnaLesson, let masechetName = self.masechetName, let masechetId = self.masechetId, let chapter = self.chapter  {
+            ContentRepository.shared.lessonWatched(mishnaLesson, masechetName: masechetName, masechetId: "\(masechetId)", chapter: "\(chapter)")
+        }
     }
 }
 

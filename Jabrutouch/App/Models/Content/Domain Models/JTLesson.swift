@@ -8,7 +8,9 @@
 
 import Foundation
 
-class JTLesson: NSObject  {
+class JTLesson: Hashable  {
+    
+    
     
     //============================================
     // MARK: - Stored Properties
@@ -70,6 +72,7 @@ class JTLesson: NSObject  {
             }
         }
     }            
+    
     
     //============================================
     // MARK: - Computed Properties
@@ -190,5 +193,16 @@ class JTLesson: NSObject  {
         values["gallery"] = self.gallery
         values["presenter"] = self.presenter?.values
         return values
+    }
+    
+    //============================================
+    // MARK: - Hashable
+    //============================================
+    static func == (lhs: JTLesson, rhs: JTLesson) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.id)
     }
 }

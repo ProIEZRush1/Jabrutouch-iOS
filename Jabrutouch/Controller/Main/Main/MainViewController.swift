@@ -28,8 +28,8 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     
     private var modalsPresentingVC: ModalsContainerViewController!
     private var currentPresentedModal: MainModal?
-    private var gemaraHistory: [JTDownload] = []
-    private var mishnaHistory: [JTDownload] = []
+    private var gemaraHistory: [JTGemaraLessonRecord] = []
+    private var mishnaHistory: [JTMishnaLessonRecord] = []
     private var todaysDafToHeaderConstraint: NSLayoutConstraint?
     
     //========================================
@@ -94,12 +94,12 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.roundCorners()
         self.setShadows()
         self.setConstraints()
-        self.setDataForDev() // Only for Dev
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.setContent()
         setView()
     }
     
@@ -151,18 +151,14 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.view.layoutIfNeeded()
     }
     
-    private func setDataForDev() {
-        gemaraHistory.append(JTDownload(book: "Pesachim", chapter: "A", number: "11", hasAudio: true, hasVideo: true))
-        gemaraHistory.append(JTDownload(book: "Iruvin", chapter: "C", number: "2", hasAudio: true, hasVideo: true))
-        gemaraHistory.append(JTDownload(book: "Brachot", chapter: "D", number: "5", hasAudio: true, hasVideo: true))
-        mishnaHistory.append(JTDownload(book: "Rosh Hashana", chapter: "B", number: "12", hasAudio: true, hasVideo: true))
-        mishnaHistory.append(JTDownload(book: "Shabbat", chapter: "E", number: "3", hasAudio: true, hasVideo: true))
-    }
-    
     private func setConstraints() {
         todaysDafToHeaderConstraint = todaysDafContainer.topAnchor.constraint(equalTo: headerContainer.bottomAnchor, constant: 55)
     }
     
+    private func setContent() {
+        self.gemaraHistory = ContentRepository.shared.lastWatchedGemaraLessons
+        self.mishnaHistory = ContentRepository.shared.lastWatchedMishnaLessons
+    }
     //========================================
     // MARK: - Collection Views
     //========================================
@@ -178,18 +174,25 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mainCollectionCell",
                                                             for: indexPath) as? MainCollectionCellViewController else { return UICollectionViewCell() }
-        var download: JTDownload
         if collectionView == gemaraCollectionView {
-            download = gemaraHistory[indexPath.row]
+            let lessonRecord = gemaraHistory[indexPath.row]
+            
+            cell.masechetLabel.text = lessonRecord.masechetName
+            cell.chapterLabel.text = nil
+            cell.numberLabel.text = "\(lessonRecord.lesson.page)"
+            cell.audio.isHidden = !lessonRecord.lesson.isAudioDownloaded
+            cell.video.isHidden = !lessonRecord.lesson.isVideoDownloaded
         } else {
-            download = mishnaHistory[indexPath.row]
+            let lessonRecord = mishnaHistory[indexPath.row]
+            
+            cell.masechetLabel.text = lessonRecord.masechetName
+            cell.chapterLabel.text = lessonRecord.chapter
+            cell.numberLabel.text = "\(lessonRecord.lesson.mishna)"
+            cell.audio.isHidden = !lessonRecord.lesson.isAudioDownloaded
+            cell.video.isHidden = !lessonRecord.lesson.isVideoDownloaded
         }
         
-        cell.masechetLabel.text = download.book
-        cell.chapterLabel.text = download.chapter
-        cell.numberLabel.text = download.number
-        cell.audio.isHidden = !download.hasAudio
-        cell.video.isHidden = !download.hasVideo
+        
         cell.delegate = self
         cell.selectedRow = indexPath.row
         cell.isFirstCollection = collectionView == gemaraCollectionView
@@ -424,27 +427,31 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
     func cellPressed(selectedRow: Int, isFirstCollection: Bool) {
         print("Cell pressed")
         if isFirstCollection {
-            print(gemaraHistory[selectedRow].book + gemaraHistory[selectedRow].chapter + gemaraHistory[selectedRow].number)
+
         } else {
-            print(mishnaHistory[selectedRow].book + mishnaHistory[selectedRow].chapter + mishnaHistory[selectedRow].number)
+
         }
     }
     
     func audioPressed(selectedRow: Int, isFirstCollection: Bool) {
         print("Audio pressed")
         if isFirstCollection {
-            print(gemaraHistory[selectedRow].book + gemaraHistory[selectedRow].chapter + gemaraHistory[selectedRow].number)
+            let record = self.gemaraHistory[selectedRow]
+            self.playLesson(record.lesson, mediaType: .audio)
         } else {
-            print(mishnaHistory[selectedRow].book + mishnaHistory[selectedRow].chapter + mishnaHistory[selectedRow].number)
+            let record = self.mishnaHistory[selectedRow]
+            self.playLesson(record.lesson, mediaType: .audio)
         }
     }
     
     func videoPressed(selectedRow: Int, isFirstCollection: Bool) {
         print("Video pressed")
         if isFirstCollection {
-            print(gemaraHistory[selectedRow].book + gemaraHistory[selectedRow].chapter + gemaraHistory[selectedRow].number)
+            let record = self.gemaraHistory[selectedRow]
+            self.playLesson(record.lesson, mediaType: .video)
         } else {
-            print(mishnaHistory[selectedRow].book + mishnaHistory[selectedRow].chapter + mishnaHistory[selectedRow].number)
+            let record = self.mishnaHistory[selectedRow]
+            self.playLesson(record.lesson, mediaType: .video)
         }
     }
     
@@ -454,6 +461,20 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
             DispatchQueue.main.async {
                 self.navigateToSignIn()
             }
+        }
+    }
+    
+    //======================================================
+    // MARK: - Player
+    //======================================================
+    
+    private func playLesson(_ lesson: JTLesson, mediaType: JTLessonMediaType) {
+        guard let pdfUrl = lesson.textURL else { return    }
+        let audioUrl = lesson.audioURL
+        let videoUrl = lesson.videoURL
+        let playerVC = LessonPlayerViewController(pdfUrl: pdfUrl, videoUrl: videoUrl, audioUrl: audioUrl, mediaType: mediaType)
+        self.present(playerVC, animated: true) {
+            
         }
     }
 }

@@ -11,6 +11,6 @@ import Foundation
 struct JTSederDownloadedGemaraLessons {
     var sederId: String
     var sederName: String
-    var lessons: [JTDownloadedGemaraLesson]
+    var records: [JTGemaraLessonRecord]
     var order: Int
 }

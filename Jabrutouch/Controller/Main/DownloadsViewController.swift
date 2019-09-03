@@ -183,13 +183,13 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == gemaraTableView {
             if gemaraOpenSections.contains(section) {
-                return gemaraDownloads[section].lessons.count
+                return gemaraDownloads[section].records.count
             } else {
                 return 0
             }
         } else {
             if mishnaOpenSections.contains(section) {
-                return mishnaDownloads[section].lessons.count
+                return mishnaDownloads[section].records.count
             } else {
                 return 0
             }
@@ -230,12 +230,12 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
             headerCell.isFirstTable = true
             isExpanded = gemaraOpenSections.contains(section)
             sectionName = self.gemaraDownloads[section].sederName
-            sectionRowsCount = self.gemaraDownloads[section].lessons.count
+            sectionRowsCount = self.gemaraDownloads[section].records.count
         } else {
             headerCell.isFirstTable = false
             isExpanded = mishnaOpenSections.contains(section)
             sectionName = self.mishnaDownloads[section].sederName
-            sectionRowsCount = self.mishnaDownloads[section].lessons.count
+            sectionRowsCount = self.mishnaDownloads[section].records.count
         }
         
         if isExpanded {
@@ -253,7 +253,7 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.indexPath = indexPath
         if tableView == gemaraTableView {
             cell.isFirstTable = true
-            let lesson = self.gemaraDownloads[indexPath.section].lessons[indexPath.row]
+            let lesson = self.gemaraDownloads[indexPath.section].records[indexPath.row]
             cell.book.text = lesson.masechetName
             cell.chapter.text = ""
             cell.number.text = "\(lesson.lesson.page)"
@@ -262,7 +262,7 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
             cell.videoButton.isHidden = !lesson.lesson.isVideoDownloaded
         } else {
             cell.isFirstTable = false
-            let lesson = self.mishnaDownloads[indexPath.section].lessons[indexPath.row]
+            let lesson = self.mishnaDownloads[indexPath.section].records[indexPath.row]
             cell.book.text = lesson.masechetName
             cell.chapter.text = lesson.chapter
             cell.number.text = "\(lesson.lesson.mishna)"
@@ -356,12 +356,12 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
                 if let indexPath = self.gemaraTableView.indexPath(for: cell) {
                    
                     // Remove from storage
-                    let downloadedLesson = self.gemaraDownloads[indexPath.section].lessons[indexPath.row]
+                    let downloadedLesson = self.gemaraDownloads[indexPath.section].records[indexPath.row]
                     ContentRepository.shared.removeLessonFromDownloaded(downloadedLesson.lesson, sederId: "\(self.gemaraDownloads[indexPath.section].sederId)", masechetId: downloadedLesson.masechetId)
                     
                     // Refresh local data and view
-                    self.gemaraDownloads[indexPath.section].lessons.remove(at: indexPath.row)
-                    if self.gemaraDownloads[indexPath.section].lessons.count == 0 {
+                    self.gemaraDownloads[indexPath.section].records.remove(at: indexPath.row)
+                    if self.gemaraDownloads[indexPath.section].records.count == 0 {
                         self.gemaraDownloads.remove(at: indexPath.section)
                         self.gemaraTableView.deleteSections([indexPath.section], with: .bottom)
                         self.reloadRelevantSections(indexPath.section, self.gemaraDownloads, self.gemaraTableView)
@@ -372,12 +372,12 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
             } else {
                 if let indexPath = self.mishnaTableView.indexPath(for: cell) {
                    // Remove from storage
-                    let downloadedLesson = self.mishnaDownloads[indexPath.section].lessons[indexPath.row]
+                    let downloadedLesson = self.mishnaDownloads[indexPath.section].records[indexPath.row]
                     ContentRepository.shared.removeLessonFromDownloaded(downloadedLesson.lesson, sederId: "\(self.mishnaDownloads[indexPath.section].sederId)", masechetId: downloadedLesson.masechetId, chapter: downloadedLesson.chapter)
 
                     // Refresh local data and view
-                    self.mishnaDownloads[indexPath.section].lessons.remove(at: indexPath.row)
-                    if self.mishnaDownloads[indexPath.section].lessons.count == 0 {
+                    self.mishnaDownloads[indexPath.section].records.remove(at: indexPath.row)
+                    if self.mishnaDownloads[indexPath.section].records.count == 0 {
                         self.mishnaDownloads.remove(at: indexPath.section)
                         self.mishnaTableView.deleteSections([indexPath.section], with: .bottom)
                         self.reloadRelevantSections(indexPath.section, self.mishnaDownloads, self.mishnaTableView)
@@ -393,24 +393,45 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func playAudioPressed(atIndexPath indexPath: IndexPath, lessonType: JTLessonType) {
         var lesson: JTLesson!
+        var masechetName: String?
+        var masechetId: String?
+        var chapter: String?
+        
         switch lessonType {
         case .gemara:
-            lesson = self.gemaraDownloads[indexPath.section].lessons[indexPath.row].lesson
+            lesson = self.gemaraDownloads[indexPath.section].records[indexPath.row].lesson
+            masechetName = self.gemaraDownloads[indexPath.section].records[indexPath.row].masechetName
+            masechetId = self.gemaraDownloads[indexPath.section].records[indexPath.row].masechetId
+            
         case .mishna:
-            lesson = self.mishnaDownloads[indexPath.section].lessons[indexPath.row].lesson
+            lesson = self.mishnaDownloads[indexPath.section].records[indexPath.row].lesson
+            masechetName = self.mishnaDownloads[indexPath.section].records[indexPath.row].masechetName
+            masechetId = self.mishnaDownloads[indexPath.section].records[indexPath.row].masechetId
+            chapter = self.mishnaDownloads[indexPath.section].records[indexPath.row].chapter
+
         }
-        self.playLesson(lesson, mediaType: .audio)
+        self.playLesson(lesson, mediaType: .audio, masechetName: masechetName, masechetId: masechetId, chapter: chapter)
     }
     
     func playVideoPressed(atIndexPath indexPath: IndexPath, lessonType: JTLessonType) {
         var lesson: JTLesson!
+        var masechetName: String?
+        var masechetId: String?
+        var chapter: String?
         switch lessonType {
         case .gemara:
-            lesson = self.gemaraDownloads[indexPath.section].lessons[indexPath.row].lesson
+            lesson = self.gemaraDownloads[indexPath.section].records[indexPath.row].lesson
+            masechetName = self.gemaraDownloads[indexPath.section].records[indexPath.row].masechetName
+            masechetId = self.gemaraDownloads[indexPath.section].records[indexPath.row].masechetId
+
         case .mishna:
-            lesson = self.mishnaDownloads[indexPath.section].lessons[indexPath.row].lesson
+            lesson = self.mishnaDownloads[indexPath.section].records[indexPath.row].lesson
+            masechetName = self.mishnaDownloads[indexPath.section].records[indexPath.row].masechetName
+            masechetId = self.mishnaDownloads[indexPath.section].records[indexPath.row].masechetId
+            chapter = self.mishnaDownloads[indexPath.section].records[indexPath.row].chapter
+
         }
-        self.playLesson(lesson, mediaType: .video)
+        self.playLesson(lesson, mediaType: .video, masechetName: masechetName, masechetId: masechetId, chapter: chapter)
     }
     
     // Help function attempted to avoid code reuse in cellDeletePressed() (Crashes app when deleting first a row in the middle of a section and then deleting all the rows of this section)
@@ -491,13 +512,21 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     // MARK: - Player
     //======================================================
     
-    private func playLesson(_ lesson: JTLesson, mediaType: JTLessonMediaType) {
+    private func playLesson(_ lesson: JTLesson, mediaType: JTLessonMediaType, masechetName: String?, masechetId: String?, chapter: String? ) {
         guard let pdfUrl = lesson.textURL else { return    }
         let audioUrl = lesson.audioURL
         let videoUrl = lesson.videoURL
         let playerVC = LessonPlayerViewController(pdfUrl: pdfUrl, videoUrl: videoUrl, audioUrl: audioUrl, mediaType: mediaType)
         self.present(playerVC, animated: true) {
             
+        }
+        
+        if let mishnaLesson = lesson as? JTMishnaLesson, let masechetName = masechetName, let masechetId = masechetId, let chapter = chapter  {
+            ContentRepository.shared.lessonWatched(mishnaLesson, masechetName: masechetName, masechetId: "\(masechetId)", chapter: "\(chapter)")
+        }
+        
+        else if let gemaraLesson = lesson as? JTGemaraLesson, let masechetName = masechetName, let masechetId = masechetId  {
+            ContentRepository.shared.lessonWatched(gemaraLesson, masechetName: masechetName, masechetId: "\(masechetId)")
         }
     }
     

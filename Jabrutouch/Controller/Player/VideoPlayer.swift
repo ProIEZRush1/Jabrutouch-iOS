@@ -127,6 +127,7 @@ class VideoPlayer: UIView {
         self.setupVideoLayer()
         self.setupToolbar()
         self.setupSliders()
+        self.addBorders()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -166,9 +167,19 @@ class VideoPlayer: UIView {
             
         }
     }
+    
+    private func addBorders() {
+        self.playbackSpeedButton.layer.cornerRadius = self.playbackSpeedButton.bounds.width/2
+        self.playbackSpeedButton.layer.borderWidth = 3.0
+        self.playbackSpeedButton.layer.borderColor = UIColor.white.cgColor
+        self.playbackSpeedButton.clipsToBounds = true
+    }
+    
     //----------------------------------------------------
     // MARK: - Methods
     //----------------------------------------------------
+    
+   
     
     func setMode(_ mode: VideoPlayerMode) {
         self.mode = mode
@@ -409,6 +420,7 @@ class VideoPlayer: UIView {
         self.playPauseButtonItem.image = #imageLiteral(resourceName: "pause")
         self.playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
         player.play()
+        player.rate = self.currentSpeed.rate
         self.startTimeUpdateTimer()
         self.hideAccessoriesView()
     }
@@ -435,22 +447,22 @@ class VideoPlayer: UIView {
     private func changePlaybackSpeed(_ speed: PlaybackSpeed) {
         guard let player = self.player else { return }
         self.currentSpeed = speed
-        player.pause()
+
         switch speed {
         case .regular:
-            player.rate = 1.0
             self.playbackSpeedButton.setTitle("1", for: .normal)
             self.playbackSpeedButtonLandscape.setTitle("1", for: .normal)
         case .oneAndAHalf:
-            player.rate = 1.5
             self.playbackSpeedButton.setTitle("1.5", for: .normal)
             self.playbackSpeedButtonLandscape.setTitle("1.5", for: .normal)
         case .double:
-            player.rate = 2.0
             self.playbackSpeedButton.setTitle("2", for: .normal)
             self.playbackSpeedButtonLandscape.setTitle("2", for: .normal)
         }
-        self.play()
+        
+        if player.isPlaying {
+            player.rate = self.currentSpeed.rate
+        }
     }
     
     @objc private func updateTime() {

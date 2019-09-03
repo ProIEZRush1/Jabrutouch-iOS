@@ -36,11 +36,16 @@ class ContentRepository {
     //========================================
     private var lessonsInDownload: [Int: Float] = [:]
     private var shas: [JTSeder] = []
+    
     private var gemaraLessons: [String:[String:JTGemaraLesson]] = [:]
     private var mishnaLessons: [String:[String:[String:JTMishnaLesson]]] = [:]
+    
     private var downloadedGemaraLessons: [SederId:[MasechetId:Set<JTGemaraLesson>]] = [:]
     private var downloadedMishnaLessons: [SederId:[MasechetId:[Chapter:Set<JTMishnaLesson>]]] = [:]
     private var delegates: [ContentRepositoryDownloadDelegate] = []
+    
+    var lastWatchedGemaraLessons: [JTGemaraLessonRecord] = []
+    var lastWatchedMishnaLessons: [JTMishnaLessonRecord] = []
     
     private static var repository: ContentRepository?
     
@@ -72,6 +77,13 @@ class ContentRepository {
         return url
     }
     
+    var lastWatchedLessonsStorageUrl: URL? {
+        guard let directoryUrl = FileDirectory.cache.url else { return nil }
+        let filename = "lastWatchedLessons.json"
+        let url = directoryUrl.appendingPathComponent(filename)
+        return url
+    }
+    
     var shasStorageUrl: URL? {
         guard let directoryUrl = FileDirectory.cache.url else { return nil }
         let filename = "shas.json"
@@ -87,6 +99,10 @@ class ContentRepository {
         self.loadDownloadedLessonsFromStorage()
         self.gemaraLessons = self.loadGemaraLessonsFromStorage()
         self.mishnaLessons = self.loadMishnaLessonsFromStorage()
+        
+        let lastWatchedLessons = self.loadLastWatchedLessonsStorage()
+        self.lastWatchedGemaraLessons = lastWatchedLessons.gemaraLessons
+        self.lastWatchedMishnaLessons = lastWatchedLessons.mishnaLessons
     }
     
     //========================================
@@ -213,14 +229,14 @@ class ContentRepository {
         var downloadedLessons:[JTSederDownloadedGemaraLessons] = []
         for (sederId,masechtotDict) in self.downloadedGemaraLessons {
             guard let seder = self.getSederById(sederId: sederId) else {continue}
-            var lessons: [JTDownloadedGemaraLesson] = []
+            var lessons: [JTGemaraLessonRecord] = []
             for (masechetId, _lessons) in masechtotDict {
                 guard let masechet = self.getMasechetById(sederId: sederId, masechetId: masechetId) else { continue }
                 for lesson in _lessons {
-                    lessons.append(JTDownloadedGemaraLesson(lesson: lesson, masechetName: masechet.name, masechetId: masechetId))
+                    lessons.append(JTGemaraLessonRecord(lesson: lesson, masechetName: masechet.name, masechetId: masechetId))
                 }
             }
-            downloadedLessons.append(JTSederDownloadedGemaraLessons(sederId: sederId, sederName: seder.name, lessons: lessons, order: seder.order))
+            downloadedLessons.append(JTSederDownloadedGemaraLessons(sederId: sederId, sederName: seder.name, records: lessons, order: seder.order))
         }
         downloadedLessons.sort{$0.order < $1.order}
         return downloadedLessons
@@ -230,19 +246,47 @@ class ContentRepository {
         var downloadedLessons:[JTSederDownloadedMishnaLessons] = []
         for (sederId,masechtotDict) in self.downloadedMishnaLessons {
             guard let seder = self.getSederById(sederId: sederId) else {continue}
-            var lessons: [JTDownloadedMishnaLesson] = []
+            var lessons: [JTMishnaLessonRecord] = []
             for (masechetId, chapters) in masechtotDict {
                 guard let masechet = self.getMasechetById(sederId: sederId, masechetId: masechetId) else { continue }
                 for (chapter,_lessons) in chapters {
                     for lesson in _lessons {
-                        lessons.append(JTDownloadedMishnaLesson(lesson: lesson, masechetName: masechet.name, masechetId: masechetId, chapter: chapter))
+                        lessons.append(JTMishnaLessonRecord(lesson: lesson, masechetName: masechet.name, masechetId: masechetId, chapter: chapter))
                     }
                 }
             }
-            downloadedLessons.append(JTSederDownloadedMishnaLessons(sederId: sederId, sederName: seder.name, lessons: lessons, order: seder.order))
+            downloadedLessons.append(JTSederDownloadedMishnaLessons(sederId: sederId, sederName: seder.name, records: lessons, order: seder.order))
         }
         downloadedLessons.sort{$0.order < $1.order}
         return downloadedLessons
+    }
+    
+    //========================================
+    // MARK: - Watch History
+    //========================================
+    func lessonWatched(_ gemaraLesson: JTGemaraLesson, masechetName: String, masechetId: String) {
+        let record = JTGemaraLessonRecord(lesson: gemaraLesson, masechetName: masechetName, masechetId: masechetId)
+        if self.lastWatchedGemaraLessons.contains(record) == false {
+            self.lastWatchedGemaraLessons.insert(record, at: 0)
+            if self.lastWatchedGemaraLessons.count > 4 {
+                self.lastWatchedGemaraLessons.removeLast()
+            }
+        }
+        
+        self.updateLastWatchedLessonsStorage()
+    }
+    
+    func lessonWatched(_ mishnaLesson: JTMishnaLesson, masechetName: String, masechetId: String, chapter: String) {
+        let record = JTMishnaLessonRecord(lesson: mishnaLesson, masechetName: masechetName, masechetId: masechetId, chapter: chapter)
+
+        if self.lastWatchedMishnaLessons.contains(record) == false {
+            self.lastWatchedMishnaLessons.insert(record, at: 0)
+            if self.lastWatchedMishnaLessons.count > 4 {
+                self.lastWatchedGemaraLessons.removeLast()
+            }
+        }
+        
+        self.updateLastWatchedLessonsStorage()
     }
     //========================================
     // MARK: - Download content methods
@@ -436,6 +480,20 @@ class ContentRepository {
         
     }
     
+    private func updateLastWatchedLessonsStorage() {
+        guard let url = self.lastWatchedLessonsStorageUrl else { return }
+        let mappedGemaraLessons = self.lastWatchedGemaraLessons.map{$0.values}
+        let mappedMishnaLessons = self.lastWatchedMishnaLessons.map{$0.values}
+        let content: [String : Any] = ["gemara": mappedGemaraLessons, "mishna": mappedMishnaLessons]
+        do {
+            try self.saveContentToFile(content: content, url: url)
+        }
+        catch {
+            
+        }
+        
+    }
+    
     private func updateShasStorage(shas: [JTSeder]) {
         guard let url = self.shasStorageUrl else { return }
         let content = ["shas":shas.map{$0.values}]
@@ -458,6 +516,27 @@ class ContentRepository {
         }
         catch {
             return []
+        }
+        
+    }
+    
+    private func loadLastWatchedLessonsStorage() -> (gemaraLessons: [JTGemaraLessonRecord], mishnaLessons: [JTMishnaLessonRecord]) {
+        guard let url = self.lastWatchedLessonsStorageUrl else { return ([],[]) }
+        do {
+            let contentString = try String(contentsOf: url)
+            guard let content = Utils.convertStringToDictionary(contentString) as? [String:Any] else { return ([],[]) }
+            var gemaraLessons: [JTGemaraLessonRecord] = []
+            var mishnaLessons: [JTMishnaLessonRecord] = []
+            if let gemaraLessonsValues = content["gemara"] as? [[String:Any]] {
+                gemaraLessons = gemaraLessonsValues.compactMap{JTGemaraLessonRecord(values: $0)}
+            }
+            if let mishnaLessonsValues = content["mishna"] as? [[String:Any]] {
+                mishnaLessons = mishnaLessonsValues.compactMap{JTMishnaLessonRecord(values: $0)}
+            }
+            return (gemaraLessons, mishnaLessons)
+        }
+        catch {
+            return ([],[])
         }
         
     }

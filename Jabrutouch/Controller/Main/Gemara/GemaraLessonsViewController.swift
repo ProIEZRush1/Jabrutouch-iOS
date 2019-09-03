@@ -311,6 +311,10 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
         self.present(playerVC, animated: true) {
             
         }
+        
+        if let gemaraLesson = lesson as? JTGemaraLesson, let masechetName = self.masechetName, let masechetId = self.masechetId  {
+            ContentRepository.shared.lessonWatched(gemaraLesson, masechetName: masechetName, masechetId: "\(masechetId)")
+        }
     }
 }
 

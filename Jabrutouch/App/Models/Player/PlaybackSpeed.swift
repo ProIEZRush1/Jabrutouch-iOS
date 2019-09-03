@@ -12,4 +12,15 @@ enum PlaybackSpeed {
     case regular
     case oneAndAHalf
     case double
+    
+    var rate: Float {
+        switch self {
+        case .regular:
+            return 1.0
+        case .oneAndAHalf:
+            return 1.5
+        case .double:
+            return 2.0
+        }
+    }
 }

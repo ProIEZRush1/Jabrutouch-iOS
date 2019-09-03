@@ -419,7 +419,7 @@ extension LessonPlayerViewController: AudioPlayerDelegate, VideoPlayerDelegate {
         if UIDevice.current.orientation == .landscapeLeft || UIDevice.current.orientation == .landscapeRight || UIDevice.current.orientation == .portraitUpsideDown{
             self.setLandscapeMode()
         }
-        else if UIDevice.current.orientation == .portrait {
+        else if UIDevice.current.orientation == .portrait || UIDevice.current.orientation == .unknown {
             self.setPortraitMode()
         }
     }
