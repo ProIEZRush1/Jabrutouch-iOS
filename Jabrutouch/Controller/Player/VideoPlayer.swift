@@ -458,7 +458,7 @@ class VideoPlayer: UIView {
         }
     }
     
-    private func play() {
+    func play() {
         guard let player = self.player else { return }
         self.playPauseButtonItem.image = #imageLiteral(resourceName: "pause")
         self.playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)

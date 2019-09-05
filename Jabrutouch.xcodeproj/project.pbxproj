@@ -316,7 +316,7 @@
 		21ED3BDB23048970009D8E3D /* GetGemaraLessonsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGemaraLessonsResponse.swift; sourceTree = "<group>"; };
 		21F89DCB2319645500540658 /* PDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PDFKit.framework; path = System/Library/Frameworks/PDFKit.framework; sourceTree = SDKROOT; };
 		21F89DCD231B173500540658 /* VideoPlayer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoPlayer.xib; sourceTree = "<group>"; };
-		4628E0E123215DEC00D963E6 /* DonatedAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DonatedAlert.swift; path = "../../View/Single Views/DonatedAlert.swift"; sourceTree = "<group>"; };
+		4628E0E123215DEC00D963E6 /* DonatedAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonatedAlert.swift; sourceTree = "<group>"; };
 		4628E0E323215E1200D963E6 /* DonatedAlert.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DonatedAlert.xib; sourceTree = "<group>"; };
 		715A51EC96A60C90B07F8038 /* Pods-Jabrutouch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jabrutouch.debug.xcconfig"; path = "Target Support Files/Pods-Jabrutouch/Pods-Jabrutouch.debug.xcconfig"; sourceTree = "<group>"; };
 		C0F9377FF1E3DA5E9F901D68 /* Pods_Jabrutouch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jabrutouch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -496,6 +496,7 @@
 		212ECEA4230F3687005AEB36 /* Player */ = {
 			isa = PBXGroup;
 			children = (
+				4628E0E123215DEC00D963E6 /* DonatedAlert.swift */,
 				212ECEA5230F36BF005AEB36 /* LessonPlayerViewController.swift */,
 				212ECEB32317C78F005AEB36 /* VideoPlayer.swift */,
 				212ECEB52317CD6E005AEB36 /* AudioPlayer.swift */,
@@ -805,7 +806,6 @@
 				219BFF2E22E5A11800ABBEE2 /* TextFieldWithPadding.swift */,
 				21407C8822F72632002F9690 /* TextFieldWithDeleteDelegate.swift */,
 				21999F35231823FF003DB1B4 /* CustomTrackHeightSlider.swift */,
-				4628E0E123215DEC00D963E6 /* DonatedAlert.swift */,
 			);
 			path = "Custom Controlles";
 			sourceTree = "<group>";

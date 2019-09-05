@@ -232,7 +232,7 @@ class AudioPlayer: UIView {
         }
         
     }
-    private func play() {
+    func play() {
         guard let player = self.player else { return }
         self.playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
         player.play()

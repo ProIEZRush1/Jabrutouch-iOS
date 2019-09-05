@@ -306,9 +306,14 @@ class ContentRepository {
         }
         else {
             for i in 0..<self.lastWatchedGemaraLessons.count {
-                self.lastWatchedGemaraLessons.remove(at: i)
-                self.lastWatchedGemaraLessons.insert(record, at: 0)
-                break
+                if self.lastWatchedGemaraLessons[i] == record {
+                    self.lastWatchedGemaraLessons.remove(at: i)
+                    self.lastWatchedGemaraLessons.insert(record, at: 0)
+                    break
+                }
+                else {
+                    continue
+                }
             }
         }
         
@@ -326,9 +331,14 @@ class ContentRepository {
         }
         else {
             for i in 0..<self.lastWatchedMishnaLessons.count {
-                self.lastWatchedMishnaLessons.remove(at: i)
-                self.lastWatchedMishnaLessons.insert(record, at: 0)
-                break
+                if self.lastWatchedMishnaLessons[i] == record {
+                    self.lastWatchedMishnaLessons.remove(at: i)
+                    self.lastWatchedMishnaLessons.insert(record, at: 0)
+                    break
+                }
+                else {
+                    continue
+                }
             }
         }
         
