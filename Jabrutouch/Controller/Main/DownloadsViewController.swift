@@ -403,7 +403,7 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
             lesson = self.gemaraDownloads[indexPath.section].records[indexPath.row].lesson
             masechetName = self.gemaraDownloads[indexPath.section].records[indexPath.row].masechetName
             masechetId = self.gemaraDownloads[indexPath.section].records[indexPath.row].masechetId
-            sederId = self.mishnaDownloads[indexPath.section].records[indexPath.row].sederId
+            sederId = self.gemaraDownloads[indexPath.section].records[indexPath.row].sederId
             
         case .mishna:
             lesson = self.mishnaDownloads[indexPath.section].records[indexPath.row].lesson

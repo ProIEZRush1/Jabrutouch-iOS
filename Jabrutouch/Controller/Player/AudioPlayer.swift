@@ -8,6 +8,7 @@
 
 import UIKit
 import AVKit
+import MediaPlayer
 
 protocol AudioPlayerInterface {
     var isPlaying: Bool { get }
@@ -142,6 +143,7 @@ class AudioPlayer: UIView {
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
             try AVAudioSession.sharedInstance().setActive(true)
+            self.setupRemoteTransportControls()
         }
         
         catch {
@@ -294,6 +296,33 @@ class AudioPlayer: UIView {
         self.slider.value = Float(percentage)
         self.delegate?.currentTimeDidChange(currentTime: player.currentTime, duration: player.duration)
     }
+    
+    //----------------------------------------------------
+    // MARK: - Command Center
+    //----------------------------------------------------
+    
+    func setupRemoteTransportControls() {
+        // Get the shared MPRemoteCommandCenter
+        let commandCenter = MPRemoteCommandCenter.shared()
+        
+        // Add handler for Play/Pause Commande
+        commandCenter.playCommand.addTarget { [unowned self] event in
+            guard let player = self.player else {
+                return .commandFailed
+            }
+           player.play()
+            return .success
+        }
+        
+        commandCenter.pauseCommand.addTarget { [unowned self] event in
+            guard let player = self.player else {
+                return .commandFailed
+            }
+            player.pause()
+            return .success
+        }
+    }
+
 }
 
 

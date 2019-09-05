@@ -8,6 +8,7 @@
 
 import UIKit
 import AVKit
+import MediaPlayer
 
 enum VideoPlayerMode {
     case regular
@@ -71,9 +72,7 @@ class VideoPlayer: UIView {
     private let videoAspectRatio: CGFloat = (480/270)
     private var endTimeDisplayType: EndTimeDisplayMode = .duration
     
-    private var player: AVPlayer? {
-        return self.videoLayer.player
-    }
+    private var player: AVPlayer?
     
     //----------------------------------------------------
     // MARK: - Initializers
@@ -132,6 +131,9 @@ class VideoPlayer: UIView {
         self.setupToolbar()
         self.setupSliders()
         self.addBorders()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.applicationWillResignActive), name: UIApplication.willResignActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.applicationWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -268,21 +270,25 @@ class VideoPlayer: UIView {
         self.playbackSpeedButton.isEnabled = true
         
         if self.player == nil {
-            self.videoLayer.player = AVPlayer(url: url)
-            self.videoLayer.player?.addObserver(self, forKeyPath: "timeControlStatus", options: [.old, .new], context: nil)
+            self.player = AVPlayer(url: url)
+            self.player?.addObserver(self, forKeyPath: "timeControlStatus", options: [.old, .new], context: nil)
+            self.videoLayer.player = self.player
         }
         else {
             let currentTime = self.player!.currentTime
             self.player?.removeObserver(self, forKeyPath: "timeControlStatus")
-            self.videoLayer.player = AVPlayer(url: url)
-            self.videoLayer.player?.addObserver(self, forKeyPath: "timeControlStatus", options: [.old, .new], context: nil)
+            self.player = AVPlayer(url: url)
+            self.player?.addObserver(self, forKeyPath: "timeControlStatus", options: [.old, .new], context: nil)
             self.setCurrentTime(currentTime)
             self.changePlaybackSpeed(self.currentSpeed)
+            self.videoLayer.player = self.player
         }
         
         do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: .default, options: .mixWithOthers)
             try AVAudioSession.sharedInstance().setActive(true)
+            
+            self.setupRemoteTransportControls()
         }
             
         catch {
@@ -297,8 +303,10 @@ class VideoPlayer: UIView {
     func stopAndRelease() {
         self.player?.removeObserver(self, forKeyPath: "timeControlStatus")
         self.player?.pause()
+        self.player = nil
         self.videoLayer.player = nil
         self.stopTimeUpdateTimer()
+        NotificationCenter.default.removeObserver(self)
     }
     //----------------------------------------------------
     // MARK: - @IBActions
@@ -571,6 +579,45 @@ class VideoPlayer: UIView {
             }
         }
     }
+    
+    //----------------------------------------------------
+    // MARK: - Command Center
+    //----------------------------------------------------
+    
+    func setupRemoteTransportControls() {
+        // Get the shared MPRemoteCommandCenter
+        let commandCenter = MPRemoteCommandCenter.shared()
+        
+        // Add handler for Play/Pause Commande
+        commandCenter.playCommand.addTarget { [unowned self] event in
+            guard let player = self.player else {
+                return .commandFailed
+            }
+            player.play()
+            return .success
+        }
+        
+        commandCenter.pauseCommand.addTarget { [unowned self] event in
+            guard let player = self.player else {
+                return .commandFailed
+            }
+            player.pause()
+            return .success
+        }
+    }
+    
+    //----------------------------------------------------
+    // MARK: - Notification observations
+    //----------------------------------------------------
+    
+    @objc func applicationWillResignActive() {
+        self.videoLayer.player = nil
+    }
+    
+    @objc func applicationWillEnterForeground() {
+        self.videoLayer.player = self.player
+    }
+
 }
 
 extension VideoPlayer: VideoPlayerInterface {
