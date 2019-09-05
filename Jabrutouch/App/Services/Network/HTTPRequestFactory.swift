@@ -129,12 +129,18 @@ class HttpRequestsFactory {
     
     //{"event":"watch", "category": "Gemara", "media_type": "video", "page_id":"141" , "duration": 2, "online": 1}
     
-    class func createPostAnalyticEventRequest(token: String, event: String, category:String, mediaType: String, pageId: String, duration: Int, online: Int) -> URLRequest?{
+    class func createPostAnalyticEventRequest(token: String, event: String, category:String, mediaType: String, pageId: String, duration: Int64?, online: Int?) -> URLRequest?{
         guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
         let link = baseUrl.appendingPathComponent("user/analytics/").absoluteString
         guard let url = self.createUrl(fromLink: link, urlParams: nil) else { return nil }
         
-        let body: [String:Any] = ["event": event, "category": category, "media_type": mediaType, "page_id": pageId, "duration": duration, "online": online]
+        var body: [String:Any] = ["event": event, "category": category, "media_type": mediaType, "page_id": pageId]
+        if let _duration = duration {
+            body["duration"] =  _duration
+        }
+        if let _online = online {
+            body["online"] = _online
+        }
         let additionalHeaders: [String:String] = ["Authorization": "token \(token)"]
         let request = self.createRequest(url, method: .post, body: body, additionalHeaders: additionalHeaders)
         return request

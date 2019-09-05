@@ -28,6 +28,8 @@
 		212ECEB42317C790005AEB36 /* VideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212ECEB32317C78F005AEB36 /* VideoPlayer.swift */; };
 		212ECEB62317CD6E005AEB36 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212ECEB52317CD6E005AEB36 /* AudioPlayer.swift */; };
 		212ECEB82317DC57005AEB36 /* AudioPlayer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 212ECEB72317DC57005AEB36 /* AudioPlayer.xib */; };
+		213016B72321940F00B9DD2B /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213016B62321940F00B9DD2B /* AnalyticsManager.swift */; };
+		213016B9232198E800B9DD2B /* PostAnalyticsEventResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213016B8232198E800B9DD2B /* PostAnalyticsEventResponse.swift */; };
 		2131969622F38B1200B0AF5F /* JTError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2131969222F38B1200B0AF5F /* JTError.swift */; };
 		2131969722F38B1200B0AF5F /* APIResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2131969322F38B1200B0AF5F /* APIResult.swift */; };
 		2131969822F38B1200B0AF5F /* ServerGenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2131969422F38B1200B0AF5F /* ServerGenericResponse.swift */; };
@@ -196,6 +198,8 @@
 		212ECEB32317C78F005AEB36 /* VideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayer.swift; sourceTree = "<group>"; };
 		212ECEB52317CD6E005AEB36 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		212ECEB72317DC57005AEB36 /* AudioPlayer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AudioPlayer.xib; sourceTree = "<group>"; };
+		213016B62321940F00B9DD2B /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
+		213016B8232198E800B9DD2B /* PostAnalyticsEventResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAnalyticsEventResponse.swift; sourceTree = "<group>"; };
 		2131969222F38B1200B0AF5F /* JTError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JTError.swift; sourceTree = "<group>"; };
 		2131969322F38B1200B0AF5F /* APIResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIResult.swift; sourceTree = "<group>"; };
 		2131969422F38B1200B0AF5F /* ServerGenericResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerGenericResponse.swift; sourceTree = "<group>"; };
@@ -304,10 +308,7 @@
 		21CC093D22F04C4000E8FE27 /* daf_yomi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = daf_yomi.json; sourceTree = "<group>"; };
 		21CC094022F05D1500E8FE27 /* DafYomi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DafYomi.swift; sourceTree = "<group>"; };
 		21CC094322F05D8A00E8FE27 /* DafYomiRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DafYomiRepository.swift; sourceTree = "<group>"; };
-		21E0BE912304132300F820D4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		21E0BE922304132300F820D4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		21E0BE932304217800F820D4 /* JTMishnaMasechetItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTMishnaMasechetItem.swift; sourceTree = "<group>"; };
-		21ED3BCA230424A2009D8E3D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		21ED3BCB23042A3C009D8E3D /* JTMishnaChapterItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTMishnaChapterItem.swift; sourceTree = "<group>"; };
 		21ED3BD02304847A009D8E3D /* JTLessonPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTLessonPresenter.swift; sourceTree = "<group>"; };
 		21ED3BD32304858C009D8E3D /* JTMishnaLesson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTMishnaLesson.swift; sourceTree = "<group>"; };
@@ -550,6 +551,7 @@
 				2126D6D92303E81700CB501D /* GetMasechtotResponse.swift */,
 				21ED3BD723048835009D8E3D /* GetMishnaLessonsResponse.swift */,
 				21ED3BDB23048970009D8E3D /* GetGemaraLessonsResponse.swift */,
+				213016B8232198E800B9DD2B /* PostAnalyticsEventResponse.swift */,
 			);
 			path = "API Response models";
 			sourceTree = "<group>";
@@ -838,6 +840,7 @@
 			children = (
 				213196B222F6DAC600B0AF5F /* LoginManager.swift */,
 				219BFF3722E5B72000ABBEE2 /* LocalizationManager.swift */,
+				213016B62321940F00B9DD2B /* AnalyticsManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -1041,7 +1044,6 @@
 			knownRegions = (
 				Base,
 				es,
-				en,
 			);
 			mainGroup = 2133C1EB22DB5B8200F910B9;
 			productRefGroup = 2133C1F522DB5B8200F910B9 /* Products */;
@@ -1181,6 +1183,7 @@
 				21ED3BD12304847A009D8E3D /* JTLessonPresenter.swift in Sources */,
 				219BFF2F22E5A11900ABBEE2 /* TextFieldWithPadding.swift in Sources */,
 				2126D6D623033CF800CB501D /* JTSeder.swift in Sources */,
+				213016B72321940F00B9DD2B /* AnalyticsManager.swift in Sources */,
 				FBD9375122F328CC00BC94DC /* LessonDownloadCellController.swift in Sources */,
 				21999F36231823FF003DB1B4 /* CustomTrackHeightSlider.swift in Sources */,
 				212ECEB42317C790005AEB36 /* VideoPlayer.swift in Sources */,
@@ -1224,6 +1227,7 @@
 				21419CB4230D894B00145F1F /* DownloadTask.swift in Sources */,
 				219BFF2722E50A0A00ABBEE2 /* DownloadsNavigationController.swift in Sources */,
 				2131969C22F38B2E00B0AF5F /* UserDefaultsProvider.swift in Sources */,
+				213016B9232198E800B9DD2B /* PostAnalyticsEventResponse.swift in Sources */,
 				21419CBD230EAF9C00145F1F /* JTMishnaLessonRecord.swift in Sources */,
 				21678D7C22E085CB007BC74C /* DonationsViewController.swift in Sources */,
 				2145858F22EF7D980062F830 /* API.swift in Sources */,
@@ -1280,7 +1284,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				2133C1FC22DB5B8200F910B9 /* Base */,
-				21E0BE922304132300F820D4 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1289,7 +1292,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				2133C20122DB5B8500F910B9 /* Base */,
-				21E0BE912304132300F820D4 /* en */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -1298,7 +1300,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				2133C21822DCA5DB00F910B9 /* es */,
-				21ED3BCA230424A2009D8E3D /* en */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

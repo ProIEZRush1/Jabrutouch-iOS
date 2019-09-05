@@ -17,6 +17,7 @@ enum VideoPlayerMode {
 }
 
 protocol VideoPlayerInterface {
+    var watchDuration: TimeInterval { get }
     var isPlaying: Bool { get }
     var duration: TimeInterval { get }
     var currentTime: TimeInterval { get }
@@ -73,7 +74,8 @@ class VideoPlayer: UIView {
     private var endTimeDisplayType: EndTimeDisplayMode = .duration
     
     private var player: AVPlayer?
-    
+    private(set) var watchDuration: TimeInterval = 0.0
+    private var startPlayDate: Date?
     //----------------------------------------------------
     // MARK: - Initializers
     //----------------------------------------------------
@@ -299,7 +301,7 @@ class VideoPlayer: UIView {
     
     func stopAndRelease() {
         self.player?.removeObserver(self, forKeyPath: "timeControlStatus")
-        self.player?.pause()
+        self.pause()
         self.player = nil
         self.videoLayer.player = nil
         self.stopTimeUpdateTimer()
@@ -466,6 +468,7 @@ class VideoPlayer: UIView {
         player.rate = self.currentSpeed.rate
         self.startTimeUpdateTimer()
         self.hideAccessoriesView()
+        self.startPlayDate = Date()
     }
     
     private func pause() {
@@ -473,6 +476,11 @@ class VideoPlayer: UIView {
         self.playPauseButtonItem.image = #imageLiteral(resourceName: "play_large")
         self.playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
         self.stopTimeUpdateTimer()
+        
+        if let date = self.startPlayDate {
+            let duration = Date().timeIntervalSince(date)
+            self.watchDuration += duration
+        }
     }
     
     private func forward(_ time: TimeInterval) {

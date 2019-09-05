@@ -155,7 +155,7 @@ class LessonPlayerViewController: UIViewController {
         
         self.audioPlayer.stopAndRelease()
         self.videoPlayer.stopAndRelease()
-        
+        self.postWatchAnalyticEvent()
         NotificationCenter.default.removeObserver(self)
         ContentRepository.shared.removeDelegate(self)
     }
@@ -168,6 +168,33 @@ class LessonPlayerViewController: UIViewController {
         }
         else  {
             self.setPortraitMode()
+        }
+    }
+    
+    private func postWatchAnalyticEvent() {
+        var watchDuration: TimeInterval!
+        var category: AnalyticsEventCategory!
+        var online: Bool!
+        
+        switch self.mediaType {
+        case .audio:
+            watchDuration = self.audioPlayer.watchDuration
+            online = self.lesson.isAudioDownloaded
+        case .video:
+            watchDuration = self.videoPlayer.watchDuration
+            online = self.lesson.isVideoDownloaded
+        }
+        
+        if let _ = self.lesson as? JTGemaraLesson {
+            category = .gemara
+        }
+        
+        else if let _ = self.lesson as? JTMishnaLesson {
+            category = .mishna
+        }
+        
+        AnalyticsManager.shared.postEvent(eventType: .watch, category: category, mediaType: self.mediaType, lessonId: self.lesson.id, duration: Int64(watchDuration), online: online) { (result: Result<Any, JTError>) in
+            
         }
     }
     //====================================================

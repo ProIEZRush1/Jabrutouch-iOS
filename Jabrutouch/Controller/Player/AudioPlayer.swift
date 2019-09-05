@@ -11,6 +11,7 @@ import AVKit
 import MediaPlayer
 
 protocol AudioPlayerInterface {
+    var watchDuration: TimeInterval { get }
     var isPlaying: Bool { get }
     var duration: TimeInterval { get }
     var currentTime: TimeInterval { get }
@@ -51,6 +52,8 @@ class AudioPlayer: UIView {
     private var currentSpeed: PlaybackSpeed = .regular
     private var url: URL?
     private var player: AVPlayer?
+    private(set) var watchDuration: TimeInterval = 0.0
+    private var startPlayDate: Date?
     
     //----------------------------------------------------
     // MARK: - Initializers
@@ -112,10 +115,9 @@ class AudioPlayer: UIView {
  
     func stopAndRelease() {
         self.player?.removeObserver(self, forKeyPath: "timeControlStatus")
-        self.player?.pause()
+        self.pause()
         self.player = nil
         self.stopTimeUpdateTimer()
-//        self.removeRemoteTransportControls()
     }
     //----------------------------------------------------
     // MARK: - Methods
@@ -237,13 +239,18 @@ class AudioPlayer: UIView {
         self.playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
         player.play()
         self.startTimeUpdateTimer()
+        self.startPlayDate = Date()
     }
     
     private func pause() {
         self.player?.pause()
         self.playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
         self.stopTimeUpdateTimer()
-
+        
+        if let date = self.startPlayDate {
+            let duration = Date().timeIntervalSince(date)
+            self.watchDuration += duration
+        }
     }
     
     private func forward(_ time: TimeInterval) {
@@ -308,18 +315,12 @@ class AudioPlayer: UIView {
         
         // Add handler for Play/Pause Commande
         commandCenter.playCommand.addTarget { [unowned self] event in
-            guard let player = self.player else {
-                return .commandFailed
-            }
-           player.play()
+            self.play()
             return .success
         }
         
         commandCenter.pauseCommand.addTarget { [unowned self] event in
-            guard let player = self.player else {
-                return .commandFailed
-            }
-            player.pause()
+            self.pause()
             return .success
         }
         

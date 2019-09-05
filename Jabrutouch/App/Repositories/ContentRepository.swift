@@ -13,9 +13,9 @@ typealias MasechetId = String
 typealias Chapter = String
 typealias LessonId = String
 
-enum JTLessonMediaType {
-    case audio
-    case video
+enum JTLessonMediaType: String {
+    case audio = "audio"
+    case video = "video"
 }
 
 protocol ContentRepositoryDownloadDelegate: class {
