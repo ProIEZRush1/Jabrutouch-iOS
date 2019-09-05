@@ -161,6 +161,8 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     private func setContent() {
         self.gemaraHistory = ContentRepository.shared.lastWatchedGemaraLessons
         self.mishnaHistory = ContentRepository.shared.lastWatchedMishnaLessons
+        self.gemaraCollectionView.reloadData()
+        self.mishnaCollectionView.reloadData()
     }
     //========================================
     // MARK: - Collection Views

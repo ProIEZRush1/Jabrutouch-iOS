@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct JTMishnaLessonRecord: Hashable {
+struct JTMishnaLessonRecord: Equatable {
     var lesson: JTMishnaLesson
     var masechetName: String
     var masechetId: String
@@ -55,5 +55,12 @@ struct JTMishnaLessonRecord: Hashable {
         values["chapter"] = self.chapter
         values["sederId"] = self.sederId
         return values
+    }
+    
+    //============================================
+    // MARK: - Equatable
+    //============================================
+    static func == (lhs: JTMishnaLessonRecord, rhs: JTMishnaLessonRecord) -> Bool {
+        return lhs.lesson.id == rhs.lesson.id
     }
 }
