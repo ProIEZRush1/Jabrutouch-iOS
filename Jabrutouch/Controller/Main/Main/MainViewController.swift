@@ -32,6 +32,8 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     private var mishnaHistory: [JTMishnaLessonRecord] = []
     private var todaysDafToHeaderConstraint: NSLayoutConstraint?
     private var isFirstTime: Bool = UserDefaultsProvider.shared.firstTime
+    
+    private var activityView: ActivityView?
     //========================================
     // MARK: - @IBOutlets
     //========================================
@@ -159,6 +161,8 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     private func setContent() {
         self.gemaraHistory = ContentRepository.shared.lastWatchedGemaraLessons
         self.mishnaHistory = ContentRepository.shared.lastWatchedMishnaLessons
+        self.gemaraCollectionView.reloadData()
+        self.mishnaCollectionView.reloadData()
     }
     //========================================
     // MARK: - Collection Views
@@ -294,11 +298,43 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     }
     
     @IBAction func todaysDafAudioPressed(_ sender: Any) {
-        
+        self.showActivityView()
+        let todaysDaf = DafYomiRepository.shared.getTodaysDaf()
+        guard let data = ContentRepository.shared.getMasechetByName(todaysDaf.masechet) else {
+            self.removeActivityView()
+            return
+        }
+        ContentRepository.shared.getGemaraLesson(masechetId: data.masechet.id, page: todaysDaf.daf) { (result: Result<JTGemaraLesson, JTError>) in
+            DispatchQueue.main.async {
+                self.removeActivityView()
+                switch result {
+                case .success(let lesson):
+                    self.playLesson(lesson, mediaType: .audio, sederId: "\(data.seder.id)", masechetId: "\(data.masechet.id)", chapter: nil)
+                case .failure:
+                    break
+                }
+            }
+        }
     }
     
     @IBAction func todaysDafVideoPressed(_ sender: Any) {
-        
+        self.showActivityView()
+        let todaysDaf = DafYomiRepository.shared.getTodaysDaf()
+        guard let data = ContentRepository.shared.getMasechetByName(todaysDaf.masechet) else {
+            self.removeActivityView()
+            return
+        }
+        ContentRepository.shared.getGemaraLesson(masechetId: data.masechet.id, page: todaysDaf.daf) { (result: Result<JTGemaraLesson, JTError>) in
+            DispatchQueue.main.async {
+                self.removeActivityView()
+                switch result {
+                case .success(let lesson):
+                    self.playLesson(lesson, mediaType: .video, sederId: "\(data.seder.id)", masechetId: "\(data.masechet.id)", chapter: nil)
+                case .failure:
+                    break
+                }
+            }
+        }
     }
     
     //========================================
@@ -394,6 +430,25 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         }
         
 
+    }
+    
+    //============================================================
+    // MARK: - ActivityView
+    //============================================================
+    
+    private func showActivityView() {
+        DispatchQueue.main.async {
+            if self.activityView == nil {
+                self.activityView = Utils.showActivityView(inView: self.view, withFrame: self.view.frame, text: nil)
+            }
+        }
+    }
+    private func removeActivityView() {
+        DispatchQueue.main.async {
+            if let view = self.activityView {
+                Utils.removeActivityView(view)
+            }
+        }
     }
 }
 

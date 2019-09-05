@@ -127,6 +127,7 @@ class Utils {
     }
     
     class func convertTimeInSecondsToDisplayString(_ time: TimeInterval) -> String {
+        if time.isNaN { return "--:--"}
         let minutes = Int(time/60)
         let seconds = Int(time.truncatingRemainder(dividingBy: 60))
         let minutesString = minutes < 10 ? "0\(minutes)" : "\(minutes)"

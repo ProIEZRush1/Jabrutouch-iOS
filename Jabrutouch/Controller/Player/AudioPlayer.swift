@@ -8,8 +8,10 @@
 
 import UIKit
 import AVKit
+import MediaPlayer
 
 protocol AudioPlayerInterface {
+    var watchDuration: TimeInterval { get }
     var isPlaying: Bool { get }
     var duration: TimeInterval { get }
     var currentTime: TimeInterval { get }
@@ -50,6 +52,8 @@ class AudioPlayer: UIView {
     private var currentSpeed: PlaybackSpeed = .regular
     private var url: URL?
     private var player: AVPlayer?
+    private(set) var watchDuration: TimeInterval = 0.0
+    private var startPlayDate: Date?
     
     //----------------------------------------------------
     // MARK: - Initializers
@@ -111,7 +115,7 @@ class AudioPlayer: UIView {
  
     func stopAndRelease() {
         self.player?.removeObserver(self, forKeyPath: "timeControlStatus")
-        self.player?.pause()
+        self.pause()
         self.player = nil
         self.stopTimeUpdateTimer()
     }
@@ -142,6 +146,7 @@ class AudioPlayer: UIView {
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
             try AVAudioSession.sharedInstance().setActive(true)
+//            self.setupRemoteTransportControls()
         }
         
         catch {
@@ -229,18 +234,23 @@ class AudioPlayer: UIView {
         }
         
     }
-    private func play() {
+    func play() {
         guard let player = self.player else { return }
         self.playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
         player.play()
         self.startTimeUpdateTimer()
+        self.startPlayDate = Date()
     }
     
     private func pause() {
         self.player?.pause()
         self.playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
         self.stopTimeUpdateTimer()
-
+        
+        if let date = self.startPlayDate {
+            let duration = Date().timeIntervalSince(date)
+            self.watchDuration += duration
+        }
     }
     
     private func forward(_ time: TimeInterval) {
@@ -293,6 +303,38 @@ class AudioPlayer: UIView {
         let percentage = player.currentTime/player.duration
         self.slider.value = Float(percentage)
         self.delegate?.currentTimeDidChange(currentTime: player.currentTime, duration: player.duration)
+    }
+    
+    //----------------------------------------------------
+    // MARK: - Command Center
+    //----------------------------------------------------
+    
+    private func setupRemoteTransportControls() {
+        // Get the shared MPRemoteCommandCenter
+        let commandCenter = MPRemoteCommandCenter.shared()
+        
+        // Add handler for Play/Pause Commande
+        commandCenter.playCommand.addTarget { [unowned self] event in
+            self.play()
+            return .success
+        }
+        
+        commandCenter.pauseCommand.addTarget { [unowned self] event in
+            self.pause()
+            return .success
+        }
+        
+        commandCenter.playCommand.isEnabled = true
+        commandCenter.pauseCommand.isEnabled = true
+    }
+
+    private func removeRemoteTransportControls() {
+        let commandCenter = MPRemoteCommandCenter.shared()
+        
+        commandCenter.playCommand.removeTarget(self)
+        commandCenter.pauseCommand.removeTarget(self)
+        commandCenter.playCommand.isEnabled = false
+        commandCenter.pauseCommand.isEnabled = false
     }
 }
 

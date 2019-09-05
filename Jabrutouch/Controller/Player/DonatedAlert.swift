@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol DonatedAlertDelegate: class {
+    func didDismiss()
+}
+
 class DonatedAlert: UIViewController {
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var startBtn: UIButton!
@@ -16,6 +20,7 @@ class DonatedAlert: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var location: UILabel!
     
+    weak var delegate: DonatedAlertDelegate?
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setStrings()
@@ -37,7 +42,11 @@ class DonatedAlert: UIViewController {
         self.startBtn.layer.cornerRadius = 18
     }
     
-    
+    @IBAction func startButtonPressed(_ sender: UIButton) {
+        self.dismiss(animated: true) {
+            self.delegate?.didDismiss()
+        }
+    }
     /*
     // MARK: - Navigation
 

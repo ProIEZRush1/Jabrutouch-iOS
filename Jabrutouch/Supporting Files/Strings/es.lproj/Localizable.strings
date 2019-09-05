@@ -6,7 +6,7 @@
  Copyright © 2019 Ravtech. All rights reserved.
  */
 
-"welcomeToJabrutouch" = "Welcome to \nJabrutouch";
+"welcomeToJabrutouch" = "Btoieuncvhenido a \nJabrutouch";
 "jabrutouch" = "Jabrutouch";
 "learnTalmudAndGemara" = "Learn Talmud and Gemara";
 "giveTheGiftOfLearning" = "Give the gift of learning";
@@ -19,8 +19,8 @@
 
 "main" = "Main";
 "downloads" = "Downloads";
-"gemara" = "Gemara";
-"mishna" = "Mishna";
+"gemara" = "Guemará";
+"mishna" = "Mishná";
 "donations" = "Donations";
 
 "viewAllTheLessons" = "View all the lessons";
@@ -46,12 +46,12 @@
 "signInPC" = "Sign In";
 "signUpPC" = "Sign Up";
 
-"profile" = "Profile";
-"about" = "About";
-"messagesCenter" = "Messages Center";
-"donationsCenter" = "Donations Center";
-"donate" = "Donate";
-"logout" = "Log Out";
+"profile" = "Perfil";
+"about" = "Sobre nosotros";
+"messagesCenter" = "Centro de mensajes";
+"donationsCenter" = "Centro de regalos";
+"donate" = "Regalar";
+"logout" = "Cerrar sesión";
 
 "passwordMissing" = "Password is missing";
 "usernameInvalid" = "Username must be a valid email or phone number";

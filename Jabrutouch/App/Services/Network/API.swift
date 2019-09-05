@@ -79,6 +79,16 @@ class API {
         }
     }
     
+    class func getGemarahLesson(masechetId:Int, page: Int, authToken: String, completionHandler:@escaping (_ response: APIResult<GetGemaraLessonResponse>)->Void) {
+        guard let request = HttpRequestsFactory.createGetGemaraLessonRequest(masechetId: masechetId, page: page, token: authToken) else {
+            completionHandler(APIResult.failure(.unableToCreateRequest))
+            return
+        }
+        HttpServiceProvider.shared.excecuteRequest(request: request) { (data, response, error) in
+            self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
+        }
+    }
+    
     class func getGemarahMasechetLessons(masechetId:Int, authToken: String, completionHandler:@escaping (_ response: APIResult<GetGemaraLessonsResponse>)->Void) {
         guard let request = HttpRequestsFactory.createGetGemaraMasechetLessonsRequest(masechetId: masechetId, token: authToken) else {
             completionHandler(APIResult.failure(.unableToCreateRequest))
@@ -91,6 +101,20 @@ class API {
     
     class func getMishnaLessons(masechetId:Int, chapter: Int, authToken: String, completionHandler:@escaping (_ response: APIResult<GetMishnaLessonsResponse>)->Void) {
         guard let request = HttpRequestsFactory.createGetMishnaLessonsRequest(masechetId: masechetId, chapter: chapter, token: authToken) else {
+            completionHandler(APIResult.failure(.unableToCreateRequest))
+            return
+        }
+        HttpServiceProvider.shared.excecuteRequest(request: request) { (data, response, error) in
+            self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
+        }
+    }
+    
+    //========================================
+    // MARK: - Analytics
+    //========================================
+    
+    class func postAnalyticsEvent(token: String, eventType: String, category: String, mediaType: String, lessonId: String, duration:Int64?, online: Int?, completionHandler:@escaping (_ response: APIResult<PostAnalyticsEventResponse>)->Void) {
+        guard let request = HttpRequestsFactory.createPostAnalyticEventRequest(token: token, event: eventType, category: category, mediaType: mediaType, pageId: lessonId, duration: duration, online: online) else {
             completionHandler(APIResult.failure(.unableToCreateRequest))
             return
         }

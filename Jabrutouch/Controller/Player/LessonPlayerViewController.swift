@@ -79,6 +79,9 @@ class LessonPlayerViewController: UIViewController {
     private let videoAspectRatio: CGFloat = 270/480
     
     private var activityView: ActivityView?
+    
+    private var shouldStartPlay: Bool = false
+    private var didSetMediaUrl: Bool = false
     //====================================================
     // MARK: - LifeCycle
     //====================================================
@@ -119,6 +122,9 @@ class LessonPlayerViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        self.presentDonateAlert()
+
         self.showActivityView()
         self.roundCorners()
         self.setPlayers()
@@ -138,6 +144,7 @@ class LessonPlayerViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         DispatchQueue.main.async {
             self.loadPDF()
         }
@@ -148,7 +155,7 @@ class LessonPlayerViewController: UIViewController {
         
         self.audioPlayer.stopAndRelease()
         self.videoPlayer.stopAndRelease()
-        
+        self.postWatchAnalyticEvent()
         NotificationCenter.default.removeObserver(self)
         ContentRepository.shared.removeDelegate(self)
     }
@@ -163,10 +170,43 @@ class LessonPlayerViewController: UIViewController {
             self.setPortraitMode()
         }
     }
+    
+    private func postWatchAnalyticEvent() {
+        var watchDuration: TimeInterval!
+        var category: AnalyticsEventCategory!
+        var online: Bool!
+        
+        switch self.mediaType {
+        case .audio:
+            watchDuration = self.audioPlayer.watchDuration
+            online = self.lesson.isAudioDownloaded
+        case .video:
+            watchDuration = self.videoPlayer.watchDuration
+            online = self.lesson.isVideoDownloaded
+        }
+        
+        if let _ = self.lesson as? JTGemaraLesson {
+            category = .gemara
+        }
+        
+        else if let _ = self.lesson as? JTMishnaLesson {
+            category = .mishna
+        }
+        
+        AnalyticsManager.shared.postEvent(eventType: .watch, category: category, mediaType: self.mediaType, lessonId: self.lesson.id, duration: Int64(watchDuration), online: online) { (result: Result<Any, JTError>) in
+            
+        }
+    }
     //====================================================
     // MARK: - Setup
     //====================================================
-    
+    private func presentDonateAlert() {
+        let alertVC = DonatedAlert()
+        alertVC.modalTransitionStyle = .crossDissolve
+        alertVC.delegate = self
+        alertVC.modalPresentationStyle = .overFullScreen
+        self.present(alertVC, animated: true, completion: nil)
+    }
     private func setPortraitMode() {
         
         // Set header view
@@ -391,7 +431,7 @@ class LessonPlayerViewController: UIViewController {
         if let pdfDocument = PDFDocument(url: pdfUrl) {
             self.pdfView.document = pdfDocument
             self.pdfView.autoScales = true
-            self.setMediaURL(startPlaying: true)
+            self.setMediaURL(startPlaying: self.shouldStartPlay)
         }
     }
     
@@ -406,6 +446,7 @@ class LessonPlayerViewController: UIViewController {
                 self.audioPlayer.setAudioUrl(url, startPlaying: startPlaying)
             }
         }
+        self.didSetMediaUrl = true
     }
     //====================================================
     // MARK: - @IBActions
@@ -534,6 +575,22 @@ extension LessonPlayerViewController: ContentRepositoryDownloadDelegate {
             print("GemaraLessonsViewController downloadProgress, progress: \(progress)")
             self.portraitDownlaodProgressView.value = CGFloat(progress*100)
             self.landscapeDownlaodProgressView.value = CGFloat(progress*100)
+        }
+    }
+}
+
+extension LessonPlayerViewController: DonatedAlertDelegate {
+    func didDismiss() {
+        if self.didSetMediaUrl == false {
+            self.shouldStartPlay = true
+        }
+        else {
+            switch self.mediaType {
+            case .video:
+                self.videoPlayer.play()
+            case .audio:
+                self.audioPlayer.play()
+            }
         }
     }
 }
