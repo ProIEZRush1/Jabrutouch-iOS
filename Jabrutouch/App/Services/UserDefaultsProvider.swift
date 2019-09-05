@@ -15,6 +15,7 @@ class UserDefaultsProvider {
         case currentPassword = "CurrentPassword"
         case currentUser = "CurrentUser"
         case seenWalkThrough = "SeenWalkThrough"
+        case firstTime = "firstTime"
     }
     
     static private var provider: UserDefaultsProvider?
@@ -71,6 +72,16 @@ class UserDefaultsProvider {
         }
         set (value){
             self.defaults.set(value, forKey: UserDefaultsKeys.seenWalkThrough.rawValue)
+            self.defaults.synchronize()
+        }
+    }
+    
+    var firstTime: Bool {
+        get {
+            return self.defaults.bool(forKey: "firstTime")
+        }
+        set (value) {
+            self.defaults.set(value, forKey: "firstTime")
             self.defaults.synchronize()
         }
     }

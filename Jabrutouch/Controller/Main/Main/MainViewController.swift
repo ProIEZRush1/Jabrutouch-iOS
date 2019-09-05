@@ -31,7 +31,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     private var gemaraHistory: [JTGemaraLessonRecord] = []
     private var mishnaHistory: [JTMishnaLessonRecord] = []
     private var todaysDafToHeaderConstraint: NSLayoutConstraint?
-    
+    private var isFirstTime: Bool = UserDefaultsProvider.shared.firstTime
     //========================================
     // MARK: - @IBOutlets
     //========================================
@@ -94,6 +94,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.roundCorners()
         self.setShadows()
         self.setConstraints()
+        UserDefaultsProvider.shared.firstTime = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -137,10 +138,10 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     }
     
     private func setView() {
-        welcomeLabel.isHidden = (gemaraHistory.count != 0 && mishnaHistory.count != 0)
-        welcomeImage.isHidden = (gemaraHistory.count != 0 && mishnaHistory.count != 0)
+        welcomeLabel.isHidden = !self.isFirstTime
+        welcomeImage.isHidden = !self.isFirstTime
         
-        if (gemaraHistory.count == 0 && mishnaHistory.count == 0) {
+        if self.isFirstTime {
             todaysDafToHeaderConstraint?.isActive = false
             todaysDafToWelcomeConstraint?.isActive = true
         } else {
@@ -180,8 +181,8 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
             cell.masechetLabel.text = lessonRecord.masechetName
             cell.chapterLabel.text = nil
             cell.numberLabel.text = "\(lessonRecord.lesson.page)"
-            cell.audio.isHidden = !lessonRecord.lesson.isAudioDownloaded
-            cell.video.isHidden = !lessonRecord.lesson.isVideoDownloaded
+            cell.audio.image = lessonRecord.lesson.isAudioDownloaded ? #imageLiteral(resourceName: "RedAudio") : #imageLiteral(resourceName: "Audio")
+            cell.video.image = lessonRecord.lesson.isVideoDownloaded ? #imageLiteral(resourceName: "RedVideo") : #imageLiteral(resourceName: "Video")
         } else {
             let lessonRecord = mishnaHistory[indexPath.row]
             
