@@ -249,13 +249,17 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func playAudioPressed(selectedRow: Int) {
-        let lesson = self.lessons[selectedRow]
-        self.playLesson(lesson, mediaType: .audio)
+        DispatchQueue.main.async {
+            let lesson = self.lessons[selectedRow]
+            self.playLesson(lesson, mediaType: .audio)
+        }
     }
     
     func playVideoPressed(selectedRow: Int) {
-        let lesson = self.lessons[selectedRow]
-        self.playLesson(lesson, mediaType: .video)
+        DispatchQueue.main.async {
+            let lesson = self.lessons[selectedRow]
+            self.playLesson(lesson, mediaType: .video)
+        }
     }
     
     func downloadAudioPressed(selectedRow: Int) {

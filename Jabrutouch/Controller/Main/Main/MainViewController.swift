@@ -434,24 +434,26 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
     }
     
     func audioPressed(selectedRow: Int, isFirstCollection: Bool) {
-        print("Audio pressed")
-        if isFirstCollection {
-            let record = self.gemaraHistory[selectedRow]
-            self.playLesson(record.lesson, mediaType: .audio)
-        } else {
-            let record = self.mishnaHistory[selectedRow]
-            self.playLesson(record.lesson, mediaType: .audio)
+        DispatchQueue.main.async {
+            if isFirstCollection {
+                let record = self.gemaraHistory[selectedRow]
+                self.playLesson(record.lesson, mediaType: .audio)
+            } else {
+                let record = self.mishnaHistory[selectedRow]
+                self.playLesson(record.lesson, mediaType: .audio)
+            }
         }
     }
     
     func videoPressed(selectedRow: Int, isFirstCollection: Bool) {
-        print("Video pressed")
-        if isFirstCollection {
-            let record = self.gemaraHistory[selectedRow]
-            self.playLesson(record.lesson, mediaType: .video)
-        } else {
-            let record = self.mishnaHistory[selectedRow]
-            self.playLesson(record.lesson, mediaType: .video)
+        DispatchQueue.main.async {
+            if isFirstCollection {
+                let record = self.gemaraHistory[selectedRow]
+                self.playLesson(record.lesson, mediaType: .video)
+            } else {
+                let record = self.mishnaHistory[selectedRow]
+                self.playLesson(record.lesson, mediaType: .video)
+            }
         }
     }
     

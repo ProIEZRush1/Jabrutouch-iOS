@@ -48,7 +48,7 @@ class AudioPlayer: UIView {
     private var timeUpdateTimer: Timer?
     private var currentSpeed: PlaybackSpeed = .regular
     private var url: URL?
-    private var player: AVAudioPlayer?
+    private var player: AVPlayer?
     
     //----------------------------------------------------
     // MARK: - Initializers
@@ -109,7 +109,8 @@ class AudioPlayer: UIView {
     }
  
     func stopAndRelease() {
-        self.player?.stop()
+        self.player?.pause()
+        self.player = nil
         self.stopTimeUpdateTimer()
     }
     //----------------------------------------------------
@@ -124,14 +125,8 @@ class AudioPlayer: UIView {
         self.playbackSpeedButton.isEnabled = true
         
         if self.player == nil {
-            do {
-                self.player = try AVAudioPlayer(contentsOf: url)
-                self.player?.enableRate = true
-            }
-            catch let error {
-                print("failed instanciating player, with error: \(error.localizedDescription)")
-                return
-            }
+            self.player = AVPlayer(url: url)
+
         }
         
         if startPlaying {
@@ -218,7 +213,6 @@ class AudioPlayer: UIView {
     private func play() {
         guard let player = self.player else { return }
         self.playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
-        player.prepareToPlay()
         player.play()
         self.startTimeUpdateTimer()
     }
@@ -245,19 +239,19 @@ class AudioPlayer: UIView {
     private func changePlaybackSpeed(_ speed: PlaybackSpeed) {
         guard let player = self.player else { return }
         self.currentSpeed = speed
-        player.pause()
+
         switch speed {
         case .regular:
-            player.rate = 1.0
             self.playbackSpeedButton.setTitle("1", for: .normal)
         case .oneAndAHalf:
-            player.rate = 1.5
             self.playbackSpeedButton.setTitle("1.5", for: .normal)
         case .double:
-            player.rate = 2.0
             self.playbackSpeedButton.setTitle("2", for: .normal)
         }
-        self.play()
+        
+        if player.isPlaying {
+            player.rate = self.currentSpeed.rate
+        }
     }
     
     @objc private func updateTime() {
@@ -286,8 +280,7 @@ extension AudioPlayer: AudioPlayerInterface {
     
     func setCurrentTime(_ time: TimeInterval) {
         guard let player = self.player else { return }
-        self.play()
-        player.currentTime = time
-        player.play(atTime: time)
+        let _time = CMTime(seconds: time, preferredTimescale: 1)
+        player.seek(to: _time)
     }
 }

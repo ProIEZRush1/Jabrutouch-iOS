@@ -115,8 +115,9 @@ class JTLesson: Hashable  {
     }
     
     private var audioRemoteURL: URL? {
-        var fullLink = "\(AWSS3Provider.appS3BaseUrl)\(AWSS3Provider.appS3BucketName)/\(self.audioLink)"
-        fullLink = fullLink.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        var fullLink = "\(AWSS3Provider.appS3BaseUrl)\(self.audioLink)"
+//        fullLink = fullLink.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        fullLink = fullLink.replacingOccurrences(of: " ", with: "%20")
         return URL(string: fullLink)
     }
     
@@ -125,8 +126,9 @@ class JTLesson: Hashable  {
     }
     
     private var textRemoteURL: URL? {
-        var fullLink = "\(AWSS3Provider.appS3BaseUrl)\(AWSS3Provider.appS3BucketName)/\(self.textLink)"
-        fullLink = fullLink.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        var fullLink = "\(AWSS3Provider.appS3BaseUrl)\(self.textLink)"
+//        fullLink = fullLink.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        fullLink = fullLink.replacingOccurrences(of: " ", with: "%20")
         return URL(string: fullLink)
     }
     

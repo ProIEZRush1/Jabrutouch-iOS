@@ -410,7 +410,10 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
             chapter = self.mishnaDownloads[indexPath.section].records[indexPath.row].chapter
 
         }
-        self.playLesson(lesson, mediaType: .audio, masechetName: masechetName, masechetId: masechetId, chapter: chapter)
+        
+        DispatchQueue.main.async {
+            self.playLesson(lesson, mediaType: .audio, masechetName: masechetName, masechetId: masechetId, chapter: chapter)
+        }
     }
     
     func playVideoPressed(atIndexPath indexPath: IndexPath, lessonType: JTLessonType) {
@@ -431,7 +434,10 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
             chapter = self.mishnaDownloads[indexPath.section].records[indexPath.row].chapter
 
         }
-        self.playLesson(lesson, mediaType: .video, masechetName: masechetName, masechetId: masechetId, chapter: chapter)
+        
+        DispatchQueue.main.async {
+            self.playLesson(lesson, mediaType: .video, masechetName: masechetName, masechetId: masechetId, chapter: chapter)
+        }
     }
     
     // Help function attempted to avoid code reuse in cellDeletePressed() (Crashes app when deleting first a row in the middle of a section and then deleting all the rows of this section)
