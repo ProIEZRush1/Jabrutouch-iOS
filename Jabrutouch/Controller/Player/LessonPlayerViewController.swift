@@ -12,7 +12,7 @@ import SnapKit
 import PDFKit
 
 class LessonPlayerViewController: UIViewController {
-
+    
     //====================================================
     // MARK: - @IBOutlets
     //====================================================
@@ -68,8 +68,10 @@ class LessonPlayerViewController: UIViewController {
     
     private let audioPlayerPortraitWidth: CGFloat = 301.0
     private let audioPlayerLandscapeWidth: CGFloat = 600.0
-   
+    
     private let videoAspectRatio: CGFloat = 270/480
+    
+    private var activityView: ActivityView?
     //====================================================
     // MARK: - LifeCycle
     //====================================================
@@ -104,15 +106,17 @@ class LessonPlayerViewController: UIViewController {
         super.viewDidLoad()
         
         self.pdfView.delegate = self
-        self.loadPDF()
-        self.roundCorners()
-        self.setPlayers()
-        self.setShadows()
-        self.setPortraitHeader()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        self.showActivityView()
+        self.roundCorners()
+        self.setPlayers()
+        self.setShadows()
+        self.setPortraitHeader()
         
         self.setPortraitHeaderViewHeight()
         self.setPortraitMode()
@@ -121,7 +125,14 @@ class LessonPlayerViewController: UIViewController {
         self.pdfView.backgroundColor = UIColor.clear
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.orientationDidChange(_:)), name: UIDevice.orientationDidChangeNotification, object: nil)
-
+        
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        DispatchQueue.main.async {
+            self.loadPDF()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -191,7 +202,7 @@ class LessonPlayerViewController: UIViewController {
             }
             self.videoPlayer.layer.cornerRadius = 0.0
             Utils.dropViewShadow(view: self.videoPlayer, shadowColor: UIColor.clear, shadowRadius: 0, shadowOffset: CGSize(width: 0.0, height: 12))
-
+            
         case .regular:
             self.videoPlayer.snp.makeConstraints { (maker: ConstraintMaker) in
                 maker.top.equalTo(self.portraitHeaderView.snp.bottom)
@@ -201,7 +212,7 @@ class LessonPlayerViewController: UIViewController {
             }
             self.videoPlayer.layer.cornerRadius = 0.0
             Utils.dropViewShadow(view: self.videoPlayer, shadowColor: UIColor.clear, shadowRadius: 0, shadowOffset: CGSize(width: 0.0, height: 12))
-
+            
         case .small:
             self.videoPlayer.snp.makeConstraints { (maker: ConstraintMaker) in
                 maker.bottom.equalTo(self.view.snp.bottom).inset(16.0)
@@ -220,7 +231,7 @@ class LessonPlayerViewController: UIViewController {
             self.view.layoutIfNeeded()
         }
         self.videoPlayer.setMode(self.videoPlayerMode)
-
+        
     }
     
     private func setLandscapeMode() {
@@ -299,7 +310,7 @@ class LessonPlayerViewController: UIViewController {
         let shadowOffset = CGSize(width: 0.0, height: 12)
         Utils.dropViewShadow(view: self.audioPlayerContainer, shadowColor: Colors.playerShadowColor, shadowRadius: 36, shadowOffset: shadowOffset)
         Utils.dropViewShadow(view: self.videoPlayer, shadowColor: Colors.playerShadowColor, shadowRadius: 36, shadowOffset: shadowOffset)
-
+        
     }
     
     private func setPortraitHeader() {
@@ -350,6 +361,7 @@ class LessonPlayerViewController: UIViewController {
     //====================================================
     
     private func loadPDF() {
+        
         if let pdfDocument = PDFDocument(url: self.pdfUrl) {
             self.pdfView.document = pdfDocument
             self.pdfView.autoScales = true
@@ -364,6 +376,8 @@ class LessonPlayerViewController: UIViewController {
                 }
             }
         }
+        
+        
     }
     
     //====================================================
@@ -383,7 +397,7 @@ class LessonPlayerViewController: UIViewController {
     }
     
     @IBAction func chatButtonPressed(_ sender: UIButton) {
-
+        
     }
     
     @IBAction func audioEndTimeButtonPressed(_ sender: UIButton) {
@@ -401,6 +415,24 @@ class LessonPlayerViewController: UIViewController {
         self.audioPlayer.setCurrentTime(time)
     }
     
+    //============================================================
+    // MARK: - ActivityView
+    //============================================================
+    
+    private func showActivityView() {
+        DispatchQueue.main.async {
+            if self.activityView == nil {
+                self.activityView = Utils.showActivityView(inView: self.view, withFrame: self.view.frame, text: nil)
+            }
+        }
+    }
+    private func removeActivityView() {
+        DispatchQueue.main.async {
+            if let view = self.activityView {
+                Utils.removeActivityView(view)
+            }
+        }
+    }
 }
 
 extension LessonPlayerViewController: WKUIDelegate {
@@ -410,27 +442,6 @@ extension LessonPlayerViewController: WKUIDelegate {
 
 extension LessonPlayerViewController: PDFViewDelegate {
     
-    
-//    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-//        switch self.mediaType {
-//        case .video:
-//            if let url = self.videoUrl {
-//                self.videoPlayer.setVideoUrl(url, startPlaying: true)
-//            }
-//        case .audio:
-//            if let url = self.audioUrl {
-//                self.audioPlayer.setAudioUrl(url, startPlaying: true)
-//            }
-//        }
-//    }
-//
-//    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-//        print("webView, didFail navigation, withError: \(error.localizedDescription)")
-//    }
-//
-//    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
-//        print("webView, didFailProvisionalNavigation navigation, withError: \(error.localizedDescription)")
-//    }
 }
 
 extension LessonPlayerViewController: AudioPlayerDelegate, VideoPlayerDelegate {
@@ -449,7 +460,7 @@ extension LessonPlayerViewController: AudioPlayerDelegate, VideoPlayerDelegate {
     }
     
     func didStartPlaying() {
-        
+        self.removeActivityView()
     }
     
     func didFinishPlaying() {

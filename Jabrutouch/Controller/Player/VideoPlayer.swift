@@ -268,6 +268,7 @@ class VideoPlayer: UIView {
         
         if self.player == nil {
             self.videoLayer.player = AVPlayer(url: url)
+            self.videoLayer.player?.addObserver(self, forKeyPath: "timeControlStatus", options: [.old, .new], context: nil)
         }
         
         if startPlaying {
@@ -535,6 +536,21 @@ class VideoPlayer: UIView {
             title = "-\(title)"
         }
         self.endTimeButton.setTitle(title, for: .normal)
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        guard let avPlayer = self.player else { return }
+        if object as AnyObject? === avPlayer {
+            if keyPath == "timeControlStatus" {
+                if #available(iOS 10.0, *) {
+                    if avPlayer.timeControlStatus == .playing {
+                        self.delegate?.didStartPlaying()
+                    } else {
+                        
+                    }
+                }
+            }
+        }
     }
 }
 

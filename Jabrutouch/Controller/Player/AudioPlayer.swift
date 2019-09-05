@@ -126,7 +126,7 @@ class AudioPlayer: UIView {
         
         if self.player == nil {
             self.player = AVPlayer(url: url)
-
+            self.player?.addObserver(self, forKeyPath: "timeControlStatus", options: [.old, .new], context: nil)
         }
         
         if startPlaying {
@@ -251,6 +251,21 @@ class AudioPlayer: UIView {
         
         if player.isPlaying {
             player.rate = self.currentSpeed.rate
+        }
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        guard let avPlayer = self.player else { return }
+        if object as AnyObject? === avPlayer {
+            if keyPath == "timeControlStatus" {
+                if #available(iOS 10.0, *) {
+                    if avPlayer.timeControlStatus == .playing {
+                        self.delegate?.didStartPlaying()
+                    } else {
+                        
+                    }
+                }
+            }
         }
     }
     
