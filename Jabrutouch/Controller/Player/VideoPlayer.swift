@@ -280,6 +280,15 @@ class VideoPlayer: UIView {
             self.changePlaybackSpeed(self.currentSpeed)
         }
         
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
+            try AVAudioSession.sharedInstance().setActive(true)
+        }
+            
+        catch {
+            
+        }
+        
         if startPlaying {
             self.play()
         }

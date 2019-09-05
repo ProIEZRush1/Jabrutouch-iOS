@@ -138,6 +138,16 @@ class AudioPlayer: UIView {
             self.setCurrentTime(currentTime)
             self.changePlaybackSpeed(self.currentSpeed)
         }
+        
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
+            try AVAudioSession.sharedInstance().setActive(true)
+        }
+        
+        catch {
+            
+        }
+        
         if startPlaying {
             self.play()
         }
