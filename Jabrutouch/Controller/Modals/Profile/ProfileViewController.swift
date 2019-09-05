@@ -16,7 +16,6 @@ class ProfileViewController: UIViewController {
     
     var user: JTUser?
     var mainViewController: MainViewController?
-    
     //========================================
     // MARK: - @IBOutlets
     //========================================
@@ -48,9 +47,10 @@ class ProfileViewController: UIViewController {
     //========================================
     
     private func setStrings() {
-        self.nameLabel.text = user?.firstName ?? "" // + " " + user?.lastName ?? ""  // TODO Debug: XCode doesn't accept this expression
-        self.emailLabel.text = user?.email
-        self.phoneLabel.text = user?.phoneNumber // Debug: phone number is without two first numbers
+        guard self.user != nil else { return }
+        self.nameLabel.text = "\(user!.firstName) \(user!.lastName)"
+        self.emailLabel.text = user!.email
+        self.phoneLabel.text = user!.phoneNumber // Debug: phone number is without two first numbers
     }
     
     private func roundCorners() {
@@ -72,7 +72,6 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func logoutPressed(_ sender: Any) {
-        // TODO Popup Logout ALert
-        dismiss(animated: true, completion: nil)
+        self.mainViewController?.optionSelected(option: .signOut)
     }
 }
