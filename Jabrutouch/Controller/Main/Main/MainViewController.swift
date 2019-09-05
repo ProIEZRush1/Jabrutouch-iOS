@@ -437,10 +437,10 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
         DispatchQueue.main.async {
             if isFirstCollection {
                 let record = self.gemaraHistory[selectedRow]
-                self.playLesson(record.lesson, mediaType: .audio)
+                self.playLesson(record.lesson, mediaType: .audio, sederId: record.sederId, masechetId: record.masechetId, chapter: nil)
             } else {
                 let record = self.mishnaHistory[selectedRow]
-                self.playLesson(record.lesson, mediaType: .audio)
+                self.playLesson(record.lesson, mediaType: .audio, sederId: record.sederId, masechetId: record.masechetId, chapter: record.chapter)
             }
         }
     }
@@ -449,10 +449,10 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
         DispatchQueue.main.async {
             if isFirstCollection {
                 let record = self.gemaraHistory[selectedRow]
-                self.playLesson(record.lesson, mediaType: .video)
+                self.playLesson(record.lesson, mediaType: .video, sederId: record.sederId, masechetId: record.masechetId, chapter: nil)
             } else {
                 let record = self.mishnaHistory[selectedRow]
-                self.playLesson(record.lesson, mediaType: .video)
+                self.playLesson(record.lesson, mediaType: .video, sederId: record.sederId, masechetId: record.masechetId, chapter: record.chapter)
             }
         }
     }
@@ -470,11 +470,8 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
     // MARK: - Player
     //======================================================
     
-    private func playLesson(_ lesson: JTLesson, mediaType: JTLessonMediaType) {
-        guard let pdfUrl = lesson.textURL else { return    }
-        let audioUrl = lesson.audioURL
-        let videoUrl = lesson.videoURL
-        let playerVC = LessonPlayerViewController(pdfUrl: pdfUrl, videoUrl: videoUrl, audioUrl: audioUrl, mediaType: mediaType)
+    private func playLesson(_ lesson: JTLesson, mediaType: JTLessonMediaType, sederId: String, masechetId: String, chapter: String?) {
+        let playerVC = LessonPlayerViewController(lesson: lesson, mediaType: mediaType, sederId: sederId, masechetId:masechetId, chapter:chapter)
         self.present(playerVC, animated: true) {
             
         }

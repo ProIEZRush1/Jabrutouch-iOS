@@ -270,7 +270,7 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
             self.lessons[selectedRow].isDownloading = true
             self.toggleEditingMode()
             ContentRepository.shared.lessonStartedDownloading(lesson.id)
-            ContentRepository.shared.downloadMishnaLesson(lesson, mediaType: .audio, delegate: ContentRepository.shared)
+            ContentRepository.shared.downloadLesson(lesson, mediaType: .audio, delegate: ContentRepository.shared)
         }
     }
     
@@ -282,7 +282,7 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
             self.lessons[selectedRow].isDownloading = true
             self.toggleEditingMode()
             ContentRepository.shared.lessonStartedDownloading(lesson.id)
-            ContentRepository.shared.downloadMishnaLesson(lesson, mediaType: .video, delegate: ContentRepository.shared)
+            ContentRepository.shared.downloadLesson(lesson, mediaType: .video, delegate: ContentRepository.shared)
         }
     }
     
@@ -312,16 +312,14 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     private func playLesson(_ lesson: JTLesson, mediaType: JTLessonMediaType) {
-        guard let pdfUrl = lesson.textURL else { return    }
-        let audioUrl = lesson.audioURL
-        let videoUrl = lesson.videoURL
-        let playerVC = LessonPlayerViewController(pdfUrl: pdfUrl, videoUrl: videoUrl, audioUrl: audioUrl, mediaType: mediaType)
+        guard let sederId = self.sederId, let masechetId = self.masechetId, let chapter = self.chapter else { return }
+        let playerVC = LessonPlayerViewController(lesson: lesson, mediaType: mediaType, sederId: sederId, masechetId: "\(masechetId)", chapter: "\(chapter)")
         self.present(playerVC, animated: true) {
             
         }
         
-        if let mishnaLesson = lesson as? JTMishnaLesson, let masechetName = self.masechetName, let masechetId = self.masechetId, let chapter = self.chapter  {
-            ContentRepository.shared.lessonWatched(mishnaLesson, masechetName: masechetName, masechetId: "\(masechetId)", chapter: "\(chapter)")
+        if let mishnaLesson = lesson as? JTMishnaLesson, let masechetName = self.masechetName  {
+            ContentRepository.shared.lessonWatched(mishnaLesson, masechetName: masechetName, masechetId: "\(masechetId)", chapter: "\(chapter)" ,sederId: sederId)
         }
     }
 }

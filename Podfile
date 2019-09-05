@@ -8,4 +8,5 @@ target 'Jabrutouch' do
   # Pods for Jabrutouch
   pod 'AWSS3'
   pod 'SnapKit', '~> 5.0.0'
+  pod 'UICircularProgressRing'
 end

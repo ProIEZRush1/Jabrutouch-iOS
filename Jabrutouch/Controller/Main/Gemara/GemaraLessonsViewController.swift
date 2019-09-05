@@ -263,7 +263,7 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
             self.lessons[selectedRow].isDownloading = true
             self.toggleEditingMode()
             ContentRepository.shared.lessonStartedDownloading(lesson.id)
-            ContentRepository.shared.downloadGemaraLesson(lesson, mediaType: .audio, delegate: ContentRepository.shared)
+            ContentRepository.shared.downloadLesson(lesson, mediaType: .audio, delegate: ContentRepository.shared)
         }
     }
     
@@ -275,7 +275,7 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
             self.lessons[selectedRow].isDownloading = true
             self.toggleEditingMode()
             ContentRepository.shared.lessonStartedDownloading(lesson.id)
-            ContentRepository.shared.downloadGemaraLesson(lesson, mediaType: .video, delegate: ContentRepository.shared)
+            ContentRepository.shared.downloadLesson(lesson, mediaType: .video, delegate: ContentRepository.shared)
         }
     }
     
@@ -309,16 +309,14 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
     //======================================================
     
     private func playLesson(_ lesson: JTLesson, mediaType: JTLessonMediaType) {
-        guard let pdfUrl = lesson.textURL else { return    }
-        let audioUrl = lesson.audioURL
-        let videoUrl = lesson.videoURL
-        let playerVC = LessonPlayerViewController(pdfUrl: pdfUrl, videoUrl: videoUrl, audioUrl: audioUrl, mediaType: mediaType)
+        guard let sederId = self.sederId, let masechetId = self.masechetId else { return }
+        let playerVC = LessonPlayerViewController(lesson: lesson, mediaType: mediaType, sederId: sederId, masechetId: "\(masechetId)", chapter: nil)
         self.present(playerVC, animated: true) {
             
         }
         
-        if let gemaraLesson = lesson as? JTGemaraLesson, let masechetName = self.masechetName, let masechetId = self.masechetId  {
-            ContentRepository.shared.lessonWatched(gemaraLesson, masechetName: masechetName, masechetId: "\(masechetId)")
+        if let gemaraLesson = lesson as? JTGemaraLesson, let masechetName = self.masechetName  {
+            ContentRepository.shared.lessonWatched(gemaraLesson, masechetName: masechetName, masechetId: "\(masechetId)", sederId: sederId)
         }
     }
 }

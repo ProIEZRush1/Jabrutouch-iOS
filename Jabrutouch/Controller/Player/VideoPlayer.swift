@@ -16,6 +16,7 @@ enum VideoPlayerMode {
 }
 
 protocol VideoPlayerInterface {
+    var isPlaying: Bool { get }
     var duration: TimeInterval { get }
     var currentTime: TimeInterval { get }
     func setCurrentTime(_ currentTime: TimeInterval)
@@ -270,6 +271,14 @@ class VideoPlayer: UIView {
             self.videoLayer.player = AVPlayer(url: url)
             self.videoLayer.player?.addObserver(self, forKeyPath: "timeControlStatus", options: [.old, .new], context: nil)
         }
+        else {
+            let currentTime = self.player!.currentTime
+            self.player?.removeObserver(self, forKeyPath: "timeControlStatus")
+            self.videoLayer.player = AVPlayer(url: url)
+            self.videoLayer.player?.addObserver(self, forKeyPath: "timeControlStatus", options: [.old, .new], context: nil)
+            self.setCurrentTime(currentTime)
+            self.changePlaybackSpeed(self.currentSpeed)
+        }
         
         if startPlaying {
             self.play()
@@ -277,6 +286,7 @@ class VideoPlayer: UIView {
     }
     
     func stopAndRelease() {
+        self.player?.removeObserver(self, forKeyPath: "timeControlStatus")
         self.player?.pause()
         self.videoLayer.player = nil
         self.stopTimeUpdateTimer()
@@ -555,6 +565,10 @@ class VideoPlayer: UIView {
 }
 
 extension VideoPlayer: VideoPlayerInterface {
+    
+    var isPlaying: Bool {
+        return self.player?.isPlaying ?? false
+    }
     var duration: TimeInterval {
         guard let player = self.player else { return 0.0}
         return player.duration

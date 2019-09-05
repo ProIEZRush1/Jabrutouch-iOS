@@ -25,7 +25,9 @@
                 <outlet property="audioSlider" destination="qLG-Mb-rc7" id="zZI-VA-Qeq"/>
                 <outlet property="audioSliderContainer" destination="g9a-z6-oSS" id="QkP-tQ-oIH"/>
                 <outlet property="landscapeBackButton" destination="cGw-63-Nnm" id="DZj-pX-owV"/>
+                <outlet property="landscapeButtonsStackView" destination="lza-jw-Xcp" id="JwU-4N-m1B"/>
                 <outlet property="landscapeChatButton" destination="xFx-hS-NpJ" id="CkI-bj-eEs"/>
+                <outlet property="landscapeDownlaodProgressView" destination="iXS-nr-aOH" id="NxB-TP-cEi"/>
                 <outlet property="landscapeDownloadButton" destination="dFl-wk-OQD" id="JTA-rF-ReX"/>
                 <outlet property="landscapeHeaderView" destination="WR2-vv-yUg" id="2B4-jn-tSs"/>
                 <outlet property="landscapePhotoButton" destination="etC-d3-PiM" id="fmJ-sX-AbM"/>
@@ -35,7 +37,9 @@
                 <outlet property="pdfViewTopConstraint" destination="Dve-NG-2YA" id="pbp-EZ-W1x"/>
                 <outlet property="pdfViewTrailingConstraint" destination="e28-ep-zpo" id="Jtd-JP-exe"/>
                 <outlet property="portraitBackButton" destination="6YO-P4-mQY" id="J39-Zl-qHE"/>
+                <outlet property="portraitButtonsStackView" destination="WbF-Cb-2TC" id="jlO-5H-E05"/>
                 <outlet property="portraitChatButton" destination="kiR-IP-Whh" id="i3D-g2-LX3"/>
+                <outlet property="portraitDownlaodProgressView" destination="fUW-2f-Iiz" id="2XC-Bc-zwT"/>
                 <outlet property="portraitDownloadButton" destination="kEK-g4-PtD" id="Fe3-fa-gfJ"/>
                 <outlet property="portraitHeaderView" destination="PVv-ui-sj5" id="zkT-8J-sfx"/>
                 <outlet property="portraitHeaderViewHeightConstraint" destination="YEt-6E-Ier" id="DOK-L1-OV9"/>
@@ -67,11 +71,45 @@
                                 <action selector="backButtonPressed:" destination="-1" eventType="touchUpInside" id="ic5-lp-HpW"/>
                             </connections>
                         </button>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="lza-jw-Xcp">
-                            <rect key="frame" x="0.0" y="620" width="53" height="198"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="lza-jw-Xcp">
+                            <rect key="frame" x="0.0" y="554" width="53" height="264"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dFl-wk-OQD">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iXS-nr-aOH" customClass="UICircularProgressRing" customModule="UICircularProgressRing">
                                     <rect key="frame" x="0.0" y="0.0" width="53" height="66"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="66" id="2Eb-YO-AxX"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="outerRingColor">
+                                            <color key="value" red="0.16862745100000001" green="0.1764705882" blue="0.66274509800000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="minValue">
+                                            <real key="value" value="0.0"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="maxValue">
+                                            <real key="value" value="100"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="innerRingColor">
+                                            <color key="value" red="1" green="0.37254901959999998" blue="0.31372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="shouldShowValueText" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="outerRingWidth">
+                                            <real key="value" value="1"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="startAngle">
+                                            <real key="value" value="270"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="value">
+                                            <real key="value" value="0.0"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dFl-wk-OQD">
+                                    <rect key="frame" x="0.0" y="66" width="53" height="66"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="66" id="NjJ-pd-7tv"/>
+                                    </constraints>
                                     <color key="tintColor" red="1" green="0.37254901959999998" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <state key="normal" image="Download"/>
                                     <connections>
@@ -79,7 +117,10 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xFx-hS-NpJ">
-                                    <rect key="frame" x="0.0" y="66" width="53" height="66"/>
+                                    <rect key="frame" x="0.0" y="132" width="53" height="66"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="66" id="yR0-eN-L3w"/>
+                                    </constraints>
                                     <color key="tintColor" red="1" green="0.37254901959999998" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <state key="normal" image="chat"/>
                                     <connections>
@@ -87,7 +128,10 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="etC-d3-PiM">
-                                    <rect key="frame" x="0.0" y="132" width="53" height="66"/>
+                                    <rect key="frame" x="0.0" y="198" width="53" height="66"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="66" id="leI-uy-SCI"/>
+                                    </constraints>
                                     <color key="tintColor" red="1" green="0.37254901959999998" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <state key="normal" image="photo"/>
                                     <connections>
@@ -95,9 +139,6 @@
                                     </connections>
                                 </button>
                             </subviews>
-                            <constraints>
-                                <constraint firstAttribute="width" secondItem="lza-jw-Xcp" secondAttribute="height" multiplier="53:198" id="NHW-It-tUg"/>
-                            </constraints>
                         </stackView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -129,10 +170,44 @@
                                     </connections>
                                 </button>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="WbF-Cb-2TC">
-                                    <rect key="frame" x="216" y="0.0" width="198" height="53"/>
+                                    <rect key="frame" x="150" y="0.0" width="264" height="53"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kEK-g4-PtD">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fUW-2f-Iiz" customClass="UICircularProgressRing" customModule="UICircularProgressRing">
                                             <rect key="frame" x="0.0" y="0.0" width="66" height="53"/>
+                                            <color key="backgroundColor" red="1" green="0.9962601069" blue="0.27453694830000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="66" id="PF5-wR-fhx"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="shouldShowValueText" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="innerRingColor">
+                                                    <color key="value" red="1" green="0.37254901959999998" blue="0.31372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="outerRingWidth">
+                                                    <real key="value" value="1"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="minValue">
+                                                    <real key="value" value="0.0"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="maxValue">
+                                                    <real key="value" value="100"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="value">
+                                                    <real key="value" value="0.0"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="startAngle">
+                                                    <real key="value" value="270"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="outerRingColor">
+                                                    <color key="value" red="0.16862745100000001" green="0.1764705882" blue="0.66274509800000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kEK-g4-PtD">
+                                            <rect key="frame" x="66" y="0.0" width="66" height="53"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="66" id="QFU-jz-bck"/>
+                                            </constraints>
                                             <color key="tintColor" red="1" green="0.37254901959999998" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <state key="normal" image="Download"/>
                                             <connections>
@@ -140,7 +215,10 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kiR-IP-Whh">
-                                            <rect key="frame" x="66" y="0.0" width="66" height="53"/>
+                                            <rect key="frame" x="132" y="0.0" width="66" height="53"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="66" id="UyL-QM-fzo"/>
+                                            </constraints>
                                             <color key="tintColor" red="1" green="0.37254901959999998" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <state key="normal" image="chat"/>
                                             <connections>
@@ -148,7 +226,10 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gK7-YQ-sez">
-                                            <rect key="frame" x="132" y="0.0" width="66" height="53"/>
+                                            <rect key="frame" x="198" y="0.0" width="66" height="53"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="66" id="qMh-3O-Clf"/>
+                                            </constraints>
                                             <color key="tintColor" red="1" green="0.37254901959999998" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <state key="normal" image="photo"/>
                                             <connections>
@@ -157,7 +238,14 @@
                                         </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="width" secondItem="WbF-Cb-2TC" secondAttribute="height" multiplier="198:53" id="4xd-VY-VS2"/>
+                                        <constraint firstAttribute="bottom" secondItem="fUW-2f-Iiz" secondAttribute="bottom" id="5A0-bG-oTd"/>
+                                        <constraint firstItem="kiR-IP-Whh" firstAttribute="top" secondItem="WbF-Cb-2TC" secondAttribute="top" id="CkA-4R-KLq"/>
+                                        <constraint firstItem="kEK-g4-PtD" firstAttribute="top" secondItem="WbF-Cb-2TC" secondAttribute="top" id="GMl-O2-RG7"/>
+                                        <constraint firstItem="gK7-YQ-sez" firstAttribute="top" secondItem="WbF-Cb-2TC" secondAttribute="top" id="QM9-f5-gER"/>
+                                        <constraint firstAttribute="bottom" secondItem="gK7-YQ-sez" secondAttribute="bottom" id="hZ8-Kh-Kfo"/>
+                                        <constraint firstAttribute="bottom" secondItem="kEK-g4-PtD" secondAttribute="bottom" id="mhj-sp-siZ"/>
+                                        <constraint firstAttribute="bottom" secondItem="kiR-IP-Whh" secondAttribute="bottom" id="rln-Aa-83T"/>
+                                        <constraint firstItem="fUW-2f-Iiz" firstAttribute="top" secondItem="WbF-Cb-2TC" secondAttribute="top" id="w9T-fe-xDd"/>
                                     </constraints>
                                 </stackView>
                             </subviews>
@@ -187,13 +275,13 @@
                                     </connections>
                                 </slider>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--:--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3HV-ge-hZE">
-                                    <rect key="frame" x="20" y="-1" width="22.5" height="14"/>
+                                    <rect key="frame" x="20" y="-1.5" width="24" height="14.5"/>
                                     <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="12"/>
                                     <color key="textColor" red="0.45098039215686275" green="0.45098039215686275" blue="0.45098039215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DCe-9U-JAe">
-                                    <rect key="frame" x="364" y="-7" width="30" height="26"/>
+                                    <rect key="frame" x="364" y="-7.5" width="30" height="27"/>
                                     <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="12"/>
                                     <state key="normal" title="--:--">
                                         <color key="titleColor" red="0.45098039220000002" green="0.45098039220000002" blue="0.45098039220000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

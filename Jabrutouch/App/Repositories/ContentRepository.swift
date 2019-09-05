@@ -233,7 +233,7 @@ class ContentRepository {
             for (masechetId, _lessons) in masechtotDict {
                 guard let masechet = self.getMasechetById(sederId: sederId, masechetId: masechetId) else { continue }
                 for lesson in _lessons {
-                    lessons.append(JTGemaraLessonRecord(lesson: lesson, masechetName: masechet.name, masechetId: masechetId))
+                    lessons.append(JTGemaraLessonRecord(lesson: lesson, masechetName: masechet.name, masechetId: masechetId, sederId: sederId))
                 }
             }
             downloadedLessons.append(JTSederDownloadedGemaraLessons(sederId: sederId, sederName: seder.name, records: lessons, order: seder.order))
@@ -251,7 +251,7 @@ class ContentRepository {
                 guard let masechet = self.getMasechetById(sederId: sederId, masechetId: masechetId) else { continue }
                 for (chapter,_lessons) in chapters {
                     for lesson in _lessons {
-                        lessons.append(JTMishnaLessonRecord(lesson: lesson, masechetName: masechet.name, masechetId: masechetId, chapter: chapter))
+                        lessons.append(JTMishnaLessonRecord(lesson: lesson, masechetName: masechet.name, masechetId: masechetId, chapter: chapter, sederId: sederId))
                     }
                 }
             }
@@ -264,8 +264,8 @@ class ContentRepository {
     //========================================
     // MARK: - Watch History
     //========================================
-    func lessonWatched(_ gemaraLesson: JTGemaraLesson, masechetName: String, masechetId: String) {
-        let record = JTGemaraLessonRecord(lesson: gemaraLesson, masechetName: masechetName, masechetId: masechetId)
+    func lessonWatched(_ gemaraLesson: JTGemaraLesson, masechetName: String, masechetId: String, sederId: String) {
+        let record = JTGemaraLessonRecord(lesson: gemaraLesson, masechetName: masechetName, masechetId: masechetId, sederId: sederId)
         if self.lastWatchedGemaraLessons.contains(record) == false {
             self.lastWatchedGemaraLessons.insert(record, at: 0)
             if self.lastWatchedGemaraLessons.count > 4 {
@@ -276,8 +276,8 @@ class ContentRepository {
         self.updateLastWatchedLessonsStorage()
     }
     
-    func lessonWatched(_ mishnaLesson: JTMishnaLesson, masechetName: String, masechetId: String, chapter: String) {
-        let record = JTMishnaLessonRecord(lesson: mishnaLesson, masechetName: masechetName, masechetId: masechetId, chapter: chapter)
+    func lessonWatched(_ mishnaLesson: JTMishnaLesson, masechetName: String, masechetId: String, chapter: String, sederId: String) {
+        let record = JTMishnaLessonRecord(lesson: mishnaLesson, masechetName: masechetName, masechetId: masechetId, chapter: chapter, sederId: sederId)
 
         if self.lastWatchedMishnaLessons.contains(record) == false {
             self.lastWatchedMishnaLessons.insert(record, at: 0)
@@ -371,23 +371,7 @@ class ContentRepository {
     }
     
     
-    func downloadGemaraLesson(_ lesson: JTGemaraLesson, mediaType: JTLessonMediaType, delegate: DownloadTaskDelegate?) {
-        let downloadTask = DownloadTask(id: lesson.id, delegate: delegate)
-        switch mediaType {
-        case .audio:
-            downloadTask.filesToDownload.append((lesson.audioLink, .s3, lesson.audioLocalFileName))
-        case .video:
-            downloadTask.filesToDownload.append((lesson.videoLink, .vimeo, lesson.videoLoaclFileName))
-        }
-        
-        if lesson.isTextFileDownloaded == false {
-            downloadTask.filesToDownload.append((lesson.textLink, .s3, lesson.textLocalFileName))
-        }
-        
-        downloadTask.execute()
-    }
-    
-    func downloadMishnaLesson(_ lesson: JTMishnaLesson, mediaType: JTLessonMediaType, delegate: DownloadTaskDelegate?) {
+    func downloadLesson(_ lesson: JTLesson, mediaType: JTLessonMediaType, delegate: DownloadTaskDelegate?) {
         let downloadTask = DownloadTask(id: lesson.id, delegate: delegate)
         switch mediaType {
         case .audio:

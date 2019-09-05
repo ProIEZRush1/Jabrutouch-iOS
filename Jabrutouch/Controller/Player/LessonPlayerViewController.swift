@@ -10,6 +10,7 @@ import UIKit
 import WebKit
 import SnapKit
 import PDFKit
+import UICircularProgressRing
 
 class LessonPlayerViewController: UIViewController {
     
@@ -24,6 +25,9 @@ class LessonPlayerViewController: UIViewController {
     @IBOutlet weak var portraitDownloadButton: UIButton!
     @IBOutlet weak var portraitChatButton: UIButton!
     @IBOutlet weak var portraitPhotoButton: UIButton!
+    @IBOutlet weak var portraitDownlaodProgressView: UICircularProgressRing!
+    @IBOutlet weak var portraitButtonsStackView: UIStackView!
+    
     @IBOutlet weak var audioSliderContainer: UIView!
     @IBOutlet weak var audioSlider: UISlider!
     @IBOutlet weak var audioCurrentTimeLabel: UILabel!
@@ -35,6 +39,8 @@ class LessonPlayerViewController: UIViewController {
     @IBOutlet weak var landscapeDownloadButton: UIButton!
     @IBOutlet weak var landscapeChatButton: UIButton!
     @IBOutlet weak var landscapePhotoButton: UIButton!
+    @IBOutlet weak var landscapeDownlaodProgressView: UICircularProgressRing!
+    @IBOutlet weak var landscapeButtonsStackView: UIStackView!
     
     // Audio Player
     @IBOutlet weak var audioPlayerContainer: UIView!
@@ -54,11 +60,12 @@ class LessonPlayerViewController: UIViewController {
     // MARK: - Properties
     //====================================================
     
-    var pdfUrl: URL
-    var videoUrl: URL?
-    var audioUrl: URL?
-    var mediaType: JTLessonMediaType
-    var endTimeDisplayType: EndTimeDisplayMode = .duration
+    private var lesson: JTLesson
+    private var mediaType: JTLessonMediaType
+    private var endTimeDisplayType: EndTimeDisplayMode = .duration
+    private var sederId: String
+    private var masechetId: String
+    private var chapter: String?
     
     private var videoPlayerMode: VideoPlayerMode = .regular
     
@@ -76,10 +83,11 @@ class LessonPlayerViewController: UIViewController {
     // MARK: - LifeCycle
     //====================================================
     
-    init(pdfUrl: URL, videoUrl: URL?, audioUrl: URL?, mediaType: JTLessonMediaType) {
-        self.pdfUrl = pdfUrl
-        self.videoUrl = videoUrl
-        self.audioUrl = audioUrl
+    init(lesson: JTLesson, mediaType: JTLessonMediaType, sederId: String, masechetId: String, chapter: String?) {
+        self.lesson = lesson
+        self.sederId = sederId
+        self.masechetId = masechetId
+        self.chapter = chapter
         self.mediaType = mediaType
         
         super.init(nibName: "LessonPlayerViewController", bundle: Bundle.main)
@@ -116,6 +124,7 @@ class LessonPlayerViewController: UIViewController {
         self.roundCorners()
         self.setPlayers()
         self.setShadows()
+        self.setToolBar()
         self.setPortraitHeader()
         
         self.setPortraitHeaderViewHeight()
@@ -125,7 +134,7 @@ class LessonPlayerViewController: UIViewController {
         self.pdfView.backgroundColor = UIColor.clear
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.orientationDidChange(_:)), name: UIDevice.orientationDidChangeNotification, object: nil)
-        
+        ContentRepository.shared.addDelegate(self)
         
     }
     
@@ -142,6 +151,7 @@ class LessonPlayerViewController: UIViewController {
         self.videoPlayer.stopAndRelease()
         
         NotificationCenter.default.removeObserver(self)
+        ContentRepository.shared.removeDelegate(self)
     }
     
     @objc func orientationDidChange(_ notification: Notification) {
@@ -338,6 +348,23 @@ class LessonPlayerViewController: UIViewController {
         }
     }
     
+    func setToolBar() {
+        self.portraitButtonsStackView.alignment = .trailing
+        self.landscapeButtonsStackView.alignment = .bottom
+        
+        self.landscapeDownlaodProgressView.isHidden = true
+        self.portraitDownlaodProgressView.isHidden = true
+        
+        switch self.mediaType {
+        case .audio:
+            self.portraitDownloadButton.isHidden = self.lesson.isAudioDownloaded
+            self.landscapeDownloadButton.isHidden = self.lesson.isAudioDownloaded
+        case .video:
+            self.portraitDownloadButton.isHidden = self.lesson.isVideoDownloaded
+            self.landscapeDownloadButton.isHidden = self.lesson.isVideoDownloaded
+        }
+    }
+    
     private func updateAudioSliderTimes(currentTime: TimeInterval, duration: TimeInterval) {
         let percentage = Float(currentTime/duration)
         self.audioSlider.value = percentage
@@ -361,25 +388,26 @@ class LessonPlayerViewController: UIViewController {
     //====================================================
     
     private func loadPDF() {
-        
-        if let pdfDocument = PDFDocument(url: self.pdfUrl) {
+        guard let pdfUrl = self.lesson.textURL else { return }
+        if let pdfDocument = PDFDocument(url: pdfUrl) {
             self.pdfView.document = pdfDocument
             self.pdfView.autoScales = true
-            switch self.mediaType {
-            case .video:
-                if let url = self.videoUrl {
-                    self.videoPlayer.setVideoUrl(url, startPlaying: true)
-                }
-            case .audio:
-                if let url = self.audioUrl {
-                    self.audioPlayer.setAudioUrl(url, startPlaying: true)
-                }
-            }
+            self.setMediaURL(startPlaying: true)
         }
-        
-        
     }
     
+    private func setMediaURL(startPlaying: Bool) {
+        switch self.mediaType {
+        case .video:
+            if let url = self.lesson.videoURL {
+                self.videoPlayer.setVideoUrl(url, startPlaying: startPlaying)
+            }
+        case .audio:
+            if let url = self.lesson.audioURL {
+                self.audioPlayer.setAudioUrl(url, startPlaying: startPlaying)
+            }
+        }
+    }
     //====================================================
     // MARK: - @IBActions
     //====================================================
@@ -389,6 +417,16 @@ class LessonPlayerViewController: UIViewController {
     }
     
     @IBAction func downloadButtonPressed(_ sender: UIButton) {
+        
+        self.portraitDownloadButton.isHidden = true
+        self.landscapeDownloadButton.isHidden = true
+        
+        self.portraitDownlaodProgressView.isHidden = false
+        self.landscapeDownlaodProgressView.isHidden = false
+
+        ContentRepository.shared.downloadLesson(lesson, mediaType: self.mediaType, delegate: ContentRepository.shared)
+        
+        ContentRepository.shared.lessonStartedDownloading(self.lesson.id)
         
     }
     
@@ -468,4 +506,35 @@ extension LessonPlayerViewController: AudioPlayerDelegate, VideoPlayerDelegate {
     }
     
     
+}
+
+
+extension LessonPlayerViewController: ContentRepositoryDownloadDelegate {
+    func downloadCompleted(downloadId: Int) {
+        ContentRepository.shared.lessonEndedDownloading(lesson.id)
+        if let gemaraLesson = self.lesson as? JTGemaraLesson {
+            ContentRepository.shared.addLessonToDownloaded(gemaraLesson, sederId: self.sederId, masechetId: self.masechetId)
+        }
+        if let mishnaLesson = self.lesson as? JTMishnaLesson, let chapter = self.chapter {
+            ContentRepository.shared.addLessonToDownloaded(mishnaLesson, sederId: self.sederId, masechetId: self.masechetId, chapter: chapter)
+        }
+        
+        self.portraitDownlaodProgressView.isHidden = true
+        self.landscapeDownlaodProgressView.isHidden = true
+        switch self.mediaType {
+        case .audio:
+            self.setMediaURL(startPlaying: self.audioPlayer.isPlaying)
+        case .video:
+            self.setMediaURL(startPlaying: self.videoPlayer.isPlaying)
+        }
+        
+    }
+    
+    func downloadProgress(downloadId: Int, progress: Float) {
+        if downloadId == self.lesson.id {
+            print("GemaraLessonsViewController downloadProgress, progress: \(progress)")
+            self.portraitDownlaodProgressView.value = CGFloat(progress*100)
+            self.landscapeDownlaodProgressView.value = CGFloat(progress*100)
+        }
+    }
 }

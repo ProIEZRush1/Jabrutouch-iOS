@@ -10,6 +10,7 @@ import UIKit
 import AVKit
 
 protocol AudioPlayerInterface {
+    var isPlaying: Bool { get }
     var duration: TimeInterval { get }
     var currentTime: TimeInterval { get }
     func setCurrentTime(_ currentTime: TimeInterval)
@@ -109,6 +110,7 @@ class AudioPlayer: UIView {
     }
  
     func stopAndRelease() {
+        self.player?.removeObserver(self, forKeyPath: "timeControlStatus")
         self.player?.pause()
         self.player = nil
         self.stopTimeUpdateTimer()
@@ -128,7 +130,14 @@ class AudioPlayer: UIView {
             self.player = AVPlayer(url: url)
             self.player?.addObserver(self, forKeyPath: "timeControlStatus", options: [.old, .new], context: nil)
         }
-        
+        else {
+            let currentTime = self.player!.currentTime
+            self.player?.removeObserver(self, forKeyPath: "timeControlStatus")
+            self.player = AVPlayer(url: url)
+            self.player?.addObserver(self, forKeyPath: "timeControlStatus", options: [.old, .new], context: nil)
+            self.setCurrentTime(currentTime)
+            self.changePlaybackSpeed(self.currentSpeed)
+        }
         if startPlaying {
             self.play()
         }
@@ -283,6 +292,10 @@ extension AudioPlayer: AVAudioPlayerDelegate {
 }
 
 extension AudioPlayer: AudioPlayerInterface {
+    var isPlaying: Bool {
+        return self.player?.isPlaying ?? false
+    }
+    
     var duration: TimeInterval {
         guard let player = self.player else { return 0.0}
         return player.duration

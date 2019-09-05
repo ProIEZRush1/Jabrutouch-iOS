@@ -12,11 +12,13 @@ struct JTGemaraLessonRecord: Hashable {
     var lesson: JTGemaraLesson
     var masechetName: String
     var masechetId: String
+    var sederId: String
     
-    init(lesson: JTGemaraLesson, masechetName: String, masechetId: String) {
+    init(lesson: JTGemaraLesson, masechetName: String, masechetId: String, sederId: String) {
         self.lesson = lesson
         self.masechetName = masechetName
         self.masechetId = masechetId
+        self.sederId = sederId
     }
     
     init?(values: [String:Any]) {
@@ -33,6 +35,10 @@ struct JTGemaraLessonRecord: Hashable {
         if let masechetId = values["masechetId"] as? String {
             self.masechetId = masechetId
         } else { return nil }
+        
+        if let sederId = values["sederId"] as? String {
+            self.sederId = sederId
+        } else { return nil }
     }
     
     var values: [String:Any] {
@@ -40,6 +46,7 @@ struct JTGemaraLessonRecord: Hashable {
         values["lesson"] = self.lesson.values
         values["masechetName"] = masechetName
         values["masechetId"] = self.masechetId
+        values["sederId"] = self.sederId
         return values
     }
 }

@@ -394,49 +394,54 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     func playAudioPressed(atIndexPath indexPath: IndexPath, lessonType: JTLessonType) {
         var lesson: JTLesson!
         var masechetName: String?
-        var masechetId: String?
+        var masechetId: String!
         var chapter: String?
+        var sederId: String!
         
         switch lessonType {
         case .gemara:
             lesson = self.gemaraDownloads[indexPath.section].records[indexPath.row].lesson
             masechetName = self.gemaraDownloads[indexPath.section].records[indexPath.row].masechetName
             masechetId = self.gemaraDownloads[indexPath.section].records[indexPath.row].masechetId
+            sederId = self.mishnaDownloads[indexPath.section].records[indexPath.row].sederId
             
         case .mishna:
             lesson = self.mishnaDownloads[indexPath.section].records[indexPath.row].lesson
             masechetName = self.mishnaDownloads[indexPath.section].records[indexPath.row].masechetName
             masechetId = self.mishnaDownloads[indexPath.section].records[indexPath.row].masechetId
             chapter = self.mishnaDownloads[indexPath.section].records[indexPath.row].chapter
-
+            sederId = self.mishnaDownloads[indexPath.section].records[indexPath.row].sederId
         }
         
         DispatchQueue.main.async {
-            self.playLesson(lesson, mediaType: .audio, masechetName: masechetName, masechetId: masechetId, chapter: chapter)
+            self.playLesson(lesson, mediaType: .audio, masechetName: masechetName, sederId: sederId, masechetId: masechetId, chapter: chapter)
         }
     }
     
     func playVideoPressed(atIndexPath indexPath: IndexPath, lessonType: JTLessonType) {
         var lesson: JTLesson!
         var masechetName: String?
-        var masechetId: String?
+        var masechetId: String!
         var chapter: String?
+        var sederId: String!
+        
         switch lessonType {
         case .gemara:
             lesson = self.gemaraDownloads[indexPath.section].records[indexPath.row].lesson
             masechetName = self.gemaraDownloads[indexPath.section].records[indexPath.row].masechetName
             masechetId = self.gemaraDownloads[indexPath.section].records[indexPath.row].masechetId
-
+            sederId = self.gemaraDownloads[indexPath.section].records[indexPath.row].sederId
         case .mishna:
             lesson = self.mishnaDownloads[indexPath.section].records[indexPath.row].lesson
             masechetName = self.mishnaDownloads[indexPath.section].records[indexPath.row].masechetName
             masechetId = self.mishnaDownloads[indexPath.section].records[indexPath.row].masechetId
             chapter = self.mishnaDownloads[indexPath.section].records[indexPath.row].chapter
+            sederId = self.mishnaDownloads[indexPath.section].records[indexPath.row].sederId
 
         }
         
         DispatchQueue.main.async {
-            self.playLesson(lesson, mediaType: .video, masechetName: masechetName, masechetId: masechetId, chapter: chapter)
+            self.playLesson(lesson, mediaType: .video, masechetName: masechetName, sederId: sederId, masechetId: masechetId, chapter: chapter)
         }
     }
     
@@ -518,21 +523,18 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     // MARK: - Player
     //======================================================
     
-    private func playLesson(_ lesson: JTLesson, mediaType: JTLessonMediaType, masechetName: String?, masechetId: String?, chapter: String? ) {
-        guard let pdfUrl = lesson.textURL else { return    }
-        let audioUrl = lesson.audioURL
-        let videoUrl = lesson.videoURL
-        let playerVC = LessonPlayerViewController(pdfUrl: pdfUrl, videoUrl: videoUrl, audioUrl: audioUrl, mediaType: mediaType)
+    private func playLesson(_ lesson: JTLesson, mediaType: JTLessonMediaType, masechetName: String?, sederId: String, masechetId: String, chapter: String? ) {
+        let playerVC = LessonPlayerViewController(lesson: lesson, mediaType: mediaType, sederId: sederId, masechetId: masechetId, chapter: chapter)
         self.present(playerVC, animated: true) {
             
         }
         
-        if let mishnaLesson = lesson as? JTMishnaLesson, let masechetName = masechetName, let masechetId = masechetId, let chapter = chapter  {
-            ContentRepository.shared.lessonWatched(mishnaLesson, masechetName: masechetName, masechetId: "\(masechetId)", chapter: "\(chapter)")
+        if let mishnaLesson = lesson as? JTMishnaLesson, let masechetName = masechetName, let chapter = chapter  {
+            ContentRepository.shared.lessonWatched(mishnaLesson, masechetName: masechetName, masechetId: "\(masechetId)", chapter: "\(chapter)", sederId: sederId)
         }
         
-        else if let gemaraLesson = lesson as? JTGemaraLesson, let masechetName = masechetName, let masechetId = masechetId  {
-            ContentRepository.shared.lessonWatched(gemaraLesson, masechetName: masechetName, masechetId: "\(masechetId)")
+        else if let gemaraLesson = lesson as? JTGemaraLesson, let masechetName = masechetName  {
+            ContentRepository.shared.lessonWatched(gemaraLesson, masechetName: masechetName, masechetId: "\(masechetId)", sederId: sederId)
         }
     }
     

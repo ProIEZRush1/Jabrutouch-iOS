@@ -13,12 +13,14 @@ struct JTMishnaLessonRecord: Hashable {
     var masechetName: String
     var masechetId: String
     var chapter: String
+    var sederId: String
     
-    init(lesson: JTMishnaLesson, masechetName: String, masechetId: String, chapter: String) {
+    init(lesson: JTMishnaLesson, masechetName: String, masechetId: String, chapter: String, sederId: String) {
         self.lesson = lesson
         self.masechetName = masechetName
         self.masechetId = masechetId
         self.chapter = chapter
+        self.sederId = sederId
     }
     
     init?(values: [String:Any]) {
@@ -39,6 +41,10 @@ struct JTMishnaLessonRecord: Hashable {
         if let masechetId = values["masechetId"] as? String {
             self.masechetId = masechetId
         } else { return nil }
+        
+        if let sederId = values["sederId"] as? String {
+            self.sederId = sederId
+        } else { return nil }
     }
     
     var values: [String:Any] {
@@ -47,6 +53,7 @@ struct JTMishnaLessonRecord: Hashable {
         values["masechetName"] = masechetName
         values["masechetId"] = self.masechetId
         values["chapter"] = self.chapter
+        values["sederId"] = self.sederId
         return values
     }
 }
