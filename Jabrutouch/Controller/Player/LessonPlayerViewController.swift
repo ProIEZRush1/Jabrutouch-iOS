@@ -119,23 +119,22 @@ class LessonPlayerViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         self.showActivityView()
         self.roundCorners()
         self.setPlayers()
         self.setShadows()
         self.setToolBar()
         self.setPortraitHeader()
-        
+
         self.setPortraitHeaderViewHeight()
         self.setPortraitMode()
-        
+
         self.pdfView.isOpaque = false
         self.pdfView.backgroundColor = UIColor.clear
-        
+
         NotificationCenter.default.addObserver(self, selector: #selector(self.orientationDidChange(_:)), name: UIDevice.orientationDidChangeNotification, object: nil)
         ContentRepository.shared.addDelegate(self)
-        
+
     }
     
     override func viewDidAppear(_ animated: Bool) {

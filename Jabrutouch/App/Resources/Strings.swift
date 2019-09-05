@@ -256,4 +256,10 @@ class Strings {
     class var minutesShorthand: String {
         return NSLocalizedString("minutesShorthand", comment: "")
     }
+    class var donatedTitle: String {
+        return NSLocalizedString("donatedTitle", comment: "")
+    }
+    class var donatedBtn: String {
+        return NSLocalizedString("donatedBtn", comment: "")
+    }
 }
