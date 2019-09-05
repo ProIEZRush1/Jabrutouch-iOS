@@ -100,6 +100,15 @@ class HttpRequestsFactory {
         return request
     }
     
+    class func createGetGemaraLessonRequest(masechetId: Int,page: Int, token: String) -> URLRequest?{
+        guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
+        let link = baseUrl.appendingPathComponent("gemara/masechet/\(masechetId)/page/\(page)/").absoluteString
+        guard let url = self.createUrl(fromLink: link, urlParams: nil) else { return nil }
+        let additionalHeaders: [String:String] = ["Authorization": "token \(token)"]
+        let request = self.createRequest(url, method: .get, body: nil, additionalHeaders: additionalHeaders)
+        return request
+    }
+    
     class func createGetGemaraMasechetLessonsRequest(masechetId: Int, token: String) -> URLRequest?{
         guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
         let link = baseUrl.appendingPathComponent("gemara/masechet/\(masechetId)/").absoluteString

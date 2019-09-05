@@ -115,6 +115,7 @@ class AudioPlayer: UIView {
         self.player?.pause()
         self.player = nil
         self.stopTimeUpdateTimer()
+//        self.removeRemoteTransportControls()
     }
     //----------------------------------------------------
     // MARK: - Methods
@@ -143,7 +144,7 @@ class AudioPlayer: UIView {
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
             try AVAudioSession.sharedInstance().setActive(true)
-            self.setupRemoteTransportControls()
+//            self.setupRemoteTransportControls()
         }
         
         catch {
@@ -301,7 +302,7 @@ class AudioPlayer: UIView {
     // MARK: - Command Center
     //----------------------------------------------------
     
-    func setupRemoteTransportControls() {
+    private func setupRemoteTransportControls() {
         // Get the shared MPRemoteCommandCenter
         let commandCenter = MPRemoteCommandCenter.shared()
         
@@ -321,8 +322,19 @@ class AudioPlayer: UIView {
             player.pause()
             return .success
         }
+        
+        commandCenter.playCommand.isEnabled = true
+        commandCenter.pauseCommand.isEnabled = true
     }
 
+    private func removeRemoteTransportControls() {
+        let commandCenter = MPRemoteCommandCenter.shared()
+        
+        commandCenter.playCommand.removeTarget(self)
+        commandCenter.pauseCommand.removeTarget(self)
+        commandCenter.playCommand.isEnabled = false
+        commandCenter.pauseCommand.isEnabled = false
+    }
 }
 
 

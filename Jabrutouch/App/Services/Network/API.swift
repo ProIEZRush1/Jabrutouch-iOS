@@ -79,6 +79,16 @@ class API {
         }
     }
     
+    class func getGemarahLesson(masechetId:Int, page: Int, authToken: String, completionHandler:@escaping (_ response: APIResult<GetGemaraLessonResponse>)->Void) {
+        guard let request = HttpRequestsFactory.createGetGemaraLessonRequest(masechetId: masechetId, page: page, token: authToken) else {
+            completionHandler(APIResult.failure(.unableToCreateRequest))
+            return
+        }
+        HttpServiceProvider.shared.excecuteRequest(request: request) { (data, response, error) in
+            self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
+        }
+    }
+    
     class func getGemarahMasechetLessons(masechetId:Int, authToken: String, completionHandler:@escaping (_ response: APIResult<GetGemaraLessonsResponse>)->Void) {
         guard let request = HttpRequestsFactory.createGetGemaraMasechetLessonsRequest(masechetId: masechetId, token: authToken) else {
             completionHandler(APIResult.failure(.unableToCreateRequest))

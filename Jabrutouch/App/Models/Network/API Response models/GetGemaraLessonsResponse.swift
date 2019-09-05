@@ -21,3 +21,17 @@ struct GetGemaraLessonsResponse: APIResponseModel {
         }
     }
 }
+
+struct GetGemaraLessonResponse: APIResponseModel {
+    
+    var lesson: JTGemaraLesson
+    
+    init?(values: [String : Any]) {
+        if let lesson = JTGemaraLesson(values: values) {
+            self.lesson = lesson
+        }
+        else {
+            return nil
+        }
+    }
+}

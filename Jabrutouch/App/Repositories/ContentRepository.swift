@@ -156,6 +156,28 @@ class ContentRepository {
         return nil
     }
     
+    func getGemaraLesson(masechetId: Int, page:Int, forceRefresh:Bool = true, completion: @escaping (_ result:
+        Result<JTGemaraLesson,JTError>)->Void) {
+        
+        
+//        if let lessonsDict = self.gemaraLessons["\(masechetId)"] {
+//
+//        }
+        
+        self.loadGemaraLesson(masechetId: masechetId, page: page) { (result:Result<JTGemaraLesson, JTError>) in
+            switch result {
+            case .success(let lesson):
+                DispatchQueue.main.async {
+                    completion(.success(lesson))
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    completion(.failure(error))
+                }
+            }
+        }
+    }
+    
     func getGemaraLessons(masechetId: Int, forceRefresh:Bool = true, completion: @escaping (_ result:
         Result<[JTGemaraLesson],JTError>)->Void) {
         
@@ -261,6 +283,16 @@ class ContentRepository {
         return downloadedLessons
     }
     
+    func getMasechetByName(_ masechetName: String) -> (masechet: JTMasechet, seder: JTSeder)? {
+        for seder in self.shas {
+            for masechet in seder.masechtot {
+                if masechet.name == masechetName {
+                    return (masechet, seder)
+                }
+            }
+        }
+        return nil
+    }
     //========================================
     // MARK: - Watch History
     //========================================
@@ -560,6 +592,22 @@ class ContentRepository {
             }
         }
     }
+    
+    private func loadGemaraLesson(masechetId: Int, page: Int, completion: @escaping (_ result: Result<JTGemaraLesson,JTError>)->Void) {
+        guard let authToken = UserDefaultsProvider.shared.currentUser?.token else {
+            completion(.failure(.authTokenMissing))
+            return
+        }
+        API.getGemarahLesson(masechetId: masechetId, page: page, authToken: authToken) { (result: APIResult<GetGemaraLessonResponse>) in
+            switch result {
+            case .success(let response):
+                completion(.success(response.lesson))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
     
     private func loadMishnaLessons(masechetId: Int, chapter: Int, completion: @escaping (_ result: Result<[JTMishnaLesson],JTError>)->Void) {
         guard let authToken = UserDefaultsProvider.shared.currentUser?.token else {

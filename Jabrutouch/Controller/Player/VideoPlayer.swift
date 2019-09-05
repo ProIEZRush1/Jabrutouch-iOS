@@ -287,10 +287,7 @@ class VideoPlayer: UIView {
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: .default, options: .mixWithOthers)
             try AVAudioSession.sharedInstance().setActive(true)
-            
-            self.setupRemoteTransportControls()
         }
-            
         catch {
             
         }
@@ -584,7 +581,7 @@ class VideoPlayer: UIView {
     // MARK: - Command Center
     //----------------------------------------------------
     
-    func setupRemoteTransportControls() {
+    private func setupRemoteTransportControls() {
         // Get the shared MPRemoteCommandCenter
         let commandCenter = MPRemoteCommandCenter.shared()
         
@@ -606,6 +603,11 @@ class VideoPlayer: UIView {
         }
     }
     
+    private func removeRemoteTransportControls() {
+        let commandCenter = MPRemoteCommandCenter.shared()
+        commandCenter.playCommand.removeTarget(self)
+        commandCenter.pauseCommand.removeTarget(self)
+    }
     //----------------------------------------------------
     // MARK: - Notification observations
     //----------------------------------------------------
