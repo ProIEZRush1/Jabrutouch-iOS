@@ -119,6 +119,7 @@
 		21678D7C22E085CB007BC74C /* DonationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21678D7B22E085CB007BC74C /* DonationsViewController.swift */; };
 		216A0E6E22EEFD1400F7FBC1 /* HttpServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A0E6D22EEFD1400F7FBC1 /* HttpServiceProvider.swift */; };
 		216A0E7022EEFDA300F7FBC1 /* HTTPRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A0E6F22EEFDA300F7FBC1 /* HTTPRequestFactory.swift */; };
+		2176ADEF2321AD0600DA8F3A /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2176ADEE2321AD0600DA8F3A /* Application.swift */; };
 		21999F36231823FF003DB1B4 /* CustomTrackHeightSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21999F35231823FF003DB1B4 /* CustomTrackHeightSlider.swift */; };
 		21999F3923185D39003DB1B4 /* PlaybackSpeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21999F3823185D39003DB1B4 /* PlaybackSpeed.swift */; };
 		21999F3B23185F1C003DB1B4 /* EndTimeDisplayMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21999F3A23185F1C003DB1B4 /* EndTimeDisplayMode.swift */; };
@@ -291,6 +292,10 @@
 		21678D7B22E085CB007BC74C /* DonationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DonationsViewController.swift; path = ../DonationsViewController.swift; sourceTree = "<group>"; };
 		216A0E6D22EEFD1400F7FBC1 /* HttpServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpServiceProvider.swift; sourceTree = "<group>"; };
 		216A0E6F22EEFDA300F7FBC1 /* HTTPRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequestFactory.swift; sourceTree = "<group>"; };
+		2176ADEB2321ACAC00DA8F3A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		2176ADEC2321ACAC00DA8F3A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		2176ADED2321ACBB00DA8F3A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2176ADEE2321AD0600DA8F3A /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		21999F35231823FF003DB1B4 /* CustomTrackHeightSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTrackHeightSlider.swift; sourceTree = "<group>"; };
 		21999F3823185D39003DB1B4 /* PlaybackSpeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackSpeed.swift; sourceTree = "<group>"; };
 		21999F3A23185F1C003DB1B4 /* EndTimeDisplayMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndTimeDisplayMode.swift; sourceTree = "<group>"; };
@@ -660,6 +665,7 @@
 			children = (
 				2133C1F722DB5B8200F910B9 /* AppDelegate.swift */,
 				219BFF2B22E59F4500ABBEE2 /* Extensions.swift */,
+				2176ADEE2321AD0600DA8F3A /* Application.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -1044,6 +1050,7 @@
 			knownRegions = (
 				Base,
 				es,
+				en,
 			);
 			mainGroup = 2133C1EB22DB5B8200F910B9;
 			productRefGroup = 2133C1F522DB5B8200F910B9 /* Products */;
@@ -1235,6 +1242,7 @@
 				2120BE2322DF279D004854DB /* ValidateVerificationCodeViewController.swift in Sources */,
 				212ECEB62317CD6E005AEB36 /* AudioPlayer.swift in Sources */,
 				2131969822F38B1200B0AF5F /* ServerGenericResponse.swift in Sources */,
+				2176ADEF2321AD0600DA8F3A /* Application.swift in Sources */,
 				2131969622F38B1200B0AF5F /* JTError.swift in Sources */,
 				21CC094422F05D8A00E8FE27 /* DafYomiRepository.swift in Sources */,
 				21ED3BD823048835009D8E3D /* GetMishnaLessonsResponse.swift in Sources */,
@@ -1284,6 +1292,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				2133C1FC22DB5B8200F910B9 /* Base */,
+				2176ADEC2321ACAC00DA8F3A /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1292,6 +1301,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				2133C20122DB5B8500F910B9 /* Base */,
+				2176ADEB2321ACAC00DA8F3A /* en */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -1300,6 +1310,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				2133C21822DCA5DB00F910B9 /* es */,
+				2176ADED2321ACBB00DA8F3A /* en */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

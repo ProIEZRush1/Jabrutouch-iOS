@@ -16,6 +16,7 @@ class UserDefaultsProvider {
         case currentUser = "CurrentUser"
         case seenWalkThrough = "SeenWalkThrough"
         case firstTime = "firstTime"
+        case appLanguages = "AppleLanguages"
     }
     
     static private var provider: UserDefaultsProvider?
@@ -23,7 +24,11 @@ class UserDefaultsProvider {
     private let defaults = UserDefaults.standard
     
     private init() {
-        self.defaults.register(defaults: [UserDefaultsKeys.seenWalkThrough.rawValue: false])
+        self.defaults.register(defaults: [
+            UserDefaultsKeys.seenWalkThrough.rawValue: false,
+            UserDefaultsKeys.appLanguages.rawValue: ["es"]
+            ]
+        )
     }
     
     class var shared: UserDefaultsProvider {
@@ -82,6 +87,16 @@ class UserDefaultsProvider {
         }
         set (value) {
             self.defaults.set(value, forKey: "firstTime")
+            self.defaults.synchronize()
+        }
+    }
+    
+    var appLanguageCode: String {
+        get {
+            return (self.defaults.object(forKey: UserDefaultsKeys.appLanguages.rawValue) as! [String]).first!
+        }
+        set (languageCode) {
+            self.defaults.set([languageCode], forKey: UserDefaultsKeys.appLanguages.rawValue)
             self.defaults.synchronize()
         }
     }

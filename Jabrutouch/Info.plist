@@ -95,5 +95,8 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+    <key>NSPrincipalClass</key>
+    <string>Application</string>
+
 </dict>
 </plist>

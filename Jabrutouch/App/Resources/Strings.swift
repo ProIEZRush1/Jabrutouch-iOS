@@ -262,4 +262,8 @@ class Strings {
     class var donatedBtn: String {
         return NSLocalizedString("donatedBtn", comment: "")
     }
+    
+    class var signInTitle: String {
+        return NSLocalizedString("signInTitle", comment: "")
+    }
 }

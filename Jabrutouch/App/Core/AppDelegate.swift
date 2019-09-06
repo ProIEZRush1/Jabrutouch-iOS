@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         
         print(UserDefaultsProvider.shared.currentUser?.token ?? "")
+        print((UserDefaults.standard.object(forKey: "AppleLanguages") as! [String]).first!)
         // Initialize
         _ = ContentRepository.shared
         return true
