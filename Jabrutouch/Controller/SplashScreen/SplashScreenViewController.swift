@@ -118,6 +118,10 @@ class SplashScreenViewController: UIViewController {
     }
     
     @objc func failedLoadingShas(_ notification: Notification) {
+        if UserDefaultsProvider.shared.seenWalkThrough == false {
+            self.navigateToWalkThrough()
+            return
+        }
         if let username = UserDefaultsProvider.shared.currentUsername, let password = UserDefaultsProvider.shared.currentPassword {
             self.attemptSignIn(username: username, password: password)
         }

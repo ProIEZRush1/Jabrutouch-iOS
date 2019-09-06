@@ -41,6 +41,7 @@
 "emailAddress" = "Email address";
 "alreadyHaveAnAccountSignIn" = "Already have an account? Sign in";
 
+"signInTitle" = "Sign in";
 "signIn" = "Sign in";
 "signUp" = "Sign up";
 "signInPC" = "Sign In";
@@ -49,6 +50,7 @@
 "profile" = "Profile";
 "about" = "About";
 "messagesCenter" = "Messages Center";
+"messages" = "Messages";
 "donationsCenter" = "Donations Center";
 "donate" = "Donate";
 "logout" = "Log Out";

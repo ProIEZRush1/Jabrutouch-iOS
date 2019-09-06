@@ -147,6 +147,7 @@
 		21F89DCE231B173500540658 /* VideoPlayer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21F89DCD231B173500540658 /* VideoPlayer.xib */; };
 		4628E0E223215DEC00D963E6 /* DonatedAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4628E0E123215DEC00D963E6 /* DonatedAlert.swift */; };
 		4628E0E423215E1200D963E6 /* DonatedAlert.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4628E0E323215E1200D963E6 /* DonatedAlert.xib */; };
+		4628E0E72322954800D963E6 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4628E0E62322953300D963E6 /* Application.swift */; };
 		F7AEA20A7CC7E87A1BEC48AF /* Pods_Jabrutouch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0F9377FF1E3DA5E9F901D68 /* Pods_Jabrutouch.framework */; };
 		FB51711422F19C3F003BCAFC /* MishnaMasechetCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB51711322F19C3F003BCAFC /* MishnaMasechetCellController.swift */; };
 		FB51711622F19FD2003BCAFC /* JTMishnaMasechet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB51711522F19FD2003BCAFC /* JTMishnaMasechet.swift */; };
@@ -320,6 +321,7 @@
 		4628E0E123215DEC00D963E6 /* DonatedAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonatedAlert.swift; sourceTree = "<group>"; };
 		4628E0E323215E1200D963E6 /* DonatedAlert.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DonatedAlert.xib; sourceTree = "<group>"; };
 		4628E0E52321B51800D963E6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4628E0E62322953300D963E6 /* Application.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		715A51EC96A60C90B07F8038 /* Pods-Jabrutouch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jabrutouch.debug.xcconfig"; path = "Target Support Files/Pods-Jabrutouch/Pods-Jabrutouch.debug.xcconfig"; sourceTree = "<group>"; };
 		C0F9377FF1E3DA5E9F901D68 /* Pods_Jabrutouch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jabrutouch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F71C57777BA59A6B8E3F7474 /* Pods-Jabrutouch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jabrutouch.release.xcconfig"; path = "Target Support Files/Pods-Jabrutouch/Pods-Jabrutouch.release.xcconfig"; sourceTree = "<group>"; };
@@ -660,6 +662,7 @@
 			isa = PBXGroup;
 			children = (
 				2133C1F722DB5B8200F910B9 /* AppDelegate.swift */,
+				4628E0E62322953300D963E6 /* Application.swift */,
 				219BFF2B22E59F4500ABBEE2 /* Extensions.swift */,
 			);
 			path = Core;
@@ -1237,6 +1240,7 @@
 				2120BE2322DF279D004854DB /* ValidateVerificationCodeViewController.swift in Sources */,
 				212ECEB62317CD6E005AEB36 /* AudioPlayer.swift in Sources */,
 				2131969822F38B1200B0AF5F /* ServerGenericResponse.swift in Sources */,
+				4628E0E72322954800D963E6 /* Application.swift in Sources */,
 				2131969622F38B1200B0AF5F /* JTError.swift in Sources */,
 				21CC094422F05D8A00E8FE27 /* DafYomiRepository.swift in Sources */,
 				21ED3BD823048835009D8E3D /* GetMishnaLessonsResponse.swift in Sources */,
