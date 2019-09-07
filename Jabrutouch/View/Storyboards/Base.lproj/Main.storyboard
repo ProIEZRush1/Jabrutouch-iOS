@@ -199,23 +199,18 @@
                                     <action selector="backButtonPressed:" destination="6YE-v2-5Hc" eventType="touchUpInside" id="Gtc-Gv-3rC"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To be added" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mJ2-Er-mNl">
-                                <rect key="frame" x="72" y="144" width="270" height="84"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="84" id="L0o-9x-7Br"/>
-                                    <constraint firstAttribute="width" constant="270" id="s65-z1-1Ve"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <color key="textColor" red="0.1764705882" green="0.16862745100000001" blue="0.66274509800000003" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="Donation" translatesAutoresizingMaskIntoConstraints="NO" id="H7X-My-WbT">
+                                <rect key="frame" x="0.0" y="97" width="414" height="850"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="mJ2-Er-mNl" firstAttribute="centerX" secondItem="mSO-ge-iO5" secondAttribute="centerX" id="CgE-UF-0hM"/>
+                            <constraint firstItem="H7X-My-WbT" firstAttribute="top" secondItem="JQF-YX-CLf" secondAttribute="bottom" id="5IU-Nl-vW4"/>
+                            <constraint firstItem="H7X-My-WbT" firstAttribute="trailing" secondItem="mSO-ge-iO5" secondAttribute="trailing" id="5t4-Za-KQa"/>
                             <constraint firstItem="JQF-YX-CLf" firstAttribute="top" secondItem="mSO-ge-iO5" secondAttribute="top" id="Jzo-DF-Foh"/>
                             <constraint firstItem="JQF-YX-CLf" firstAttribute="leading" secondItem="mSO-ge-iO5" secondAttribute="leading" id="L4o-K6-5wH"/>
-                            <constraint firstItem="mJ2-Er-mNl" firstAttribute="top" secondItem="mSO-ge-iO5" secondAttribute="top" constant="100" id="mBs-MJ-3Nr"/>
+                            <constraint firstItem="mSO-ge-iO5" firstAttribute="bottom" secondItem="H7X-My-WbT" secondAttribute="bottom" id="VKS-iE-h07"/>
+                            <constraint firstItem="H7X-My-WbT" firstAttribute="leading" secondItem="mSO-ge-iO5" secondAttribute="leading" id="lgi-dQ-pUt"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mSO-ge-iO5"/>
                     </view>
@@ -379,6 +374,9 @@
                                                 <rect key="frame" x="378" y="31" width="16" height="18"/>
                                                 <color key="tintColor" red="0.1764705882" green="0.16862745100000001" blue="0.66274509800000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" image="messages"/>
+                                                <connections>
+                                                    <action selector="chatPressed:" destination="hlJ-VD-Lqd" eventType="touchUpInside" id="2V9-w4-3Z4"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1178,6 +1176,7 @@
     <resources>
         <image name="Audio" width="35" height="36.5"/>
         <image name="Avatar" width="83.5" height="83.5"/>
+        <image name="Donation" width="414" height="584"/>
         <image name="Donations" width="41.5" height="36.5"/>
         <image name="DownloadsNatural" width="42.5" height="42.5"/>
         <image name="GemaraNatural" width="32.5" height="36"/>
