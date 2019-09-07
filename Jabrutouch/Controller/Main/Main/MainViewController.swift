@@ -18,6 +18,8 @@ enum MainModal {
 
 protocol MainModalDelegate : class {
     func dismissMainModal()
+    func presentAllGemara()
+    func presentAllMishna()
 }
 
 class MainViewController: UIViewController, MainModalDelegate, UICollectionViewDataSource {
@@ -421,6 +423,13 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         }
     }
     
+    func presentAllGemara() {
+        self.presentGemaraViewController()
+    }
+    
+    func presentAllMishna() {
+        self.presentMishnaViewController()
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "embedModalsVC" {
             self.modalsPresentingVC = segue.destination as? ModalsContainerViewController

@@ -147,6 +147,9 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     fileprivate func setViewAllButtonShape() {
         Utils.setViewShape(view: gemaraViewAllLessonsButton, viewBorderWidht: 0.57, viewBorderColor: UIColor(red: 0.18, green: 0.17, blue: 0.66, alpha: 1), viewCornerRadius: 10.32)
         gemaraViewAllLessonsButton.translatesAutoresizingMaskIntoConstraints = false
+        Utils.setViewShape(view: mishnaViewAllLessonsButton, viewBorderWidht: 0.57, viewBorderColor: UIColor(red: 0.18, green: 0.17, blue: 0.66, alpha: 1), viewCornerRadius: 10.32)
+        mishnaViewAllLessonsButton.translatesAutoresizingMaskIntoConstraints = false
+
     }
     
     fileprivate func setViewsShadow() {
@@ -517,6 +520,12 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @IBAction func backPressed(_ sender: Any) {
         self.delegate?.dismissMainModal()
+    }
+    @IBAction func gemaraAllSessonsPressed(_ sender: Any) {
+        self.delegate?.presentAllGemara()
+    }
+    @IBAction func mishnaAllLessonsPressed(_ sender: Any) {
+        self.delegate?.presentAllMishna()
     }
     
     //======================================================
