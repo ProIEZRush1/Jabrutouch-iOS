@@ -269,4 +269,11 @@ class Strings {
     class var inDevelopment: String {
         return NSLocalizedString("inDevelopment", comment: "")
     }
+    class var aboutText: String {
+        return NSLocalizedString("aboutText", comment: "")
+    }
+    class var aboutUs: String {
+        return NSLocalizedString("aboutUs", comment: "")
+    }
+
 }

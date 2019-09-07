@@ -482,9 +482,17 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
             presentMishnaViewController()
         case .gemara:
             presentGemaraViewController()
+        case .about:
+            presentAboutUs()
         default:
             presentInDevelopmentAlert()
         }
+    }
+    
+    func presentAboutUs() {
+        let aboutViewController = Storyboards.Main.aboutViewController
+        aboutViewController.modalTransitionStyle = .partialCurl
+        self.present(aboutViewController, animated: true)
     }
     
     func presentLogoutAlert() {
