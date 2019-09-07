@@ -15,16 +15,16 @@
 "emailOrPhoneNumber" = "Eumbaeil ro teléfono";
 "password" = "Contraseña";
 "dontHaveAccount" = "Don't have account? Sign up";
-"forgotPassword" = "Forgot Password?";
+"forgotPassword" = "¿Olvidaste tu contraseña?";
 
 "main" = "Main";
-"downloads" = "Downloads";
+"downloads" = "Descargas";
 "gemara" = "Guemará";
 "mishna" = "Mishná";
-"donations" = "Donations";
+"donations" = "Regalos";
 
-"viewAllTheLessons" = "View all the lessons";
-"noDownloadedFilesYet" = "No downloaded files yet";
+"viewAllTheLessons" = "Ver todas las clases";
+"noDownloadedFilesYet" = "No hay descargas todavía";
 "verification" = "Verificación";
 "weWillSendOTP" = "Te enviaremos un código para verificar tu número de teléfono";
 "country" = "PAÍS";
@@ -33,17 +33,17 @@
 
 "verificationCode" = "Código de verificación";
 "enterTheVerificationCodeSentTo" = "ionntr ocdoudcee s eeln ct ótodigo enviado al";
-"resendCode" = "Didn’t get the code? Send again";
+"resendCode" = "¿No recibiste el código? Enviar otra vez";
 "sendAgain" = "Send again";
 
-"firstName" = "First name";
-"surname" = "Surname";
+"firstName" = "Nombre";
+"surname" = "Apellido";
 "emailAddress" = "Email address";
-"alreadyHaveAnAccountSignIn" = "Already have an account? Sign in";
+"alreadyHaveAnAccountSignIn" = "¿Ya tienes una cuenta? Entrar";
 
 "signInTitle" = "Iniciar sesión";
-"signIn" = "Entrar";
-"signUp" = "Sign up";
+"signIn" = "Iniciar sesión";
+"signUp" = "Crear cuenta";
 "signInPC" = "Entrar";
 "signUpPC" = "Sign Up";
 
@@ -60,7 +60,7 @@
 "usernameMissing" = "Username is missing.";
 "ok" = "OK";
 "error" = "Error";
-"signOut" = "Sign Out";
+"signOut" = "Cerrar sesión";
 "phoneNumberMissing" = "Phone number is missing";
 "phoneNumberInvalid" = "Phone Number is invalid";
 "pleaseSelectCountry" = "please select country";
@@ -70,14 +70,14 @@
 "emailInvalid" = "Email is invalid";
 "missingField" = "Missing Field";
 "invalidField" = "Invalid Field";
-"todaysDafYomi" = "Today’s daf yomi";
+"todaysDafYomi" = "DAF YOMI DE HOY";
 "page" = "Page";
 "pages" = "Pages";
-"chapter" = "Chapter";
-"chapters" = "Chapters";
+"chapter" = "Capítulo";
+"chapters" = "Capítulos";
 "seder"  = "Seder";
 "mishnayot" = "Mishnayot";
-"minutesShorthand" = "min";
+"minutesShorthand" = "min.";
 "donatedTitle" = "Has recibido esta\nclase como regalo de:";
 "donatedBtn" = "Dale las gracias y empieza la clase";
 "inDevelopment"="En desarrollo";
