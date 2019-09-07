@@ -136,6 +136,10 @@ class VideoPlayer: UIView {
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.applicationWillResignActive), name: UIApplication.willResignActiveNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.applicationWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+        
+        // temp
+        self.nextButtonItem.isEnabled = false
+        self.previousButtonItem.isEnabled = false
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
