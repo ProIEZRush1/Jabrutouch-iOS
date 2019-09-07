@@ -336,6 +336,9 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
             }
         }
     }
+    @IBAction func chatPressed(_ sender: Any) {
+        self.presentInDevelopmentAlert()
+    }
     
     //========================================
     // MARK: - Navigation
@@ -406,6 +409,11 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.currentPresentedModal = .donations
     }
     
+    private func presentInDevelopmentAlert() {
+        Utils.showAlertMessage(Strings.inDevelopment, viewControler: self)
+        
+    }
+    
     func dismissMainModal() {
         self.modalsPresentingVC.dismiss(animated: true) {
             self.view.bringSubviewToFront(self.mainContainer)
@@ -466,7 +474,7 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
         case .gemara:
             presentGemaraViewController()
         default:
-            break
+            presentInDevelopmentAlert()
         }
     }
     

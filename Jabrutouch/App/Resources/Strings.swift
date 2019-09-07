@@ -266,4 +266,7 @@ class Strings {
     class var signInTitle: String {
         return NSLocalizedString("signInTitle", comment: "")
     }
+    class var inDevelopment: String {
+        return NSLocalizedString("inDevelopment", comment: "")
+    }
 }
