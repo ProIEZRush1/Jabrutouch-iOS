@@ -132,6 +132,7 @@ class API {
             completionHandler(APIResult.failure(.serverError(_error)))
         }
         else if let _data = data {
+            
             guard let values = Utils.convertDataToDictionary(_data) else {
                 completionHandler(APIResult.failure(.unableToParseResponse))
                 return

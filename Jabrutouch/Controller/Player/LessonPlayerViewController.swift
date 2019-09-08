@@ -145,7 +145,7 @@ class LessonPlayerViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        DispatchQueue.main.async {
+        DispatchQueue(label: "player_loader", qos: .utility, attributes: .concurrent, autoreleaseFrequency: .inherit, target: nil).async {
             self.loadPDF()
         }
     }
@@ -430,9 +430,11 @@ class LessonPlayerViewController: UIViewController {
     private func loadPDF() {
         guard let pdfUrl = self.lesson.textURL else { return }
         if let pdfDocument = PDFDocument(url: pdfUrl) {
-            self.pdfView.document = pdfDocument
-            self.pdfView.autoScales = true
-            self.setMediaURL(startPlaying: self.shouldStartPlay)
+            DispatchQueue.main.async {
+                self.pdfView.document = pdfDocument
+                self.pdfView.autoScales = true
+                self.setMediaURL(startPlaying: self.shouldStartPlay)
+            }
         }
     }
     
