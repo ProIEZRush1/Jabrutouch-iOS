@@ -33,7 +33,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     private var gemaraHistory: [JTGemaraLessonRecord] = []
     private var mishnaHistory: [JTMishnaLessonRecord] = []
     private var todaysDafToHeaderConstraint: NSLayoutConstraint?
-    private var isFirstTime: Bool = UserDefaultsProvider.shared.firstTime
+    private var isNotFirstTime: Bool = UserDefaultsProvider.shared.notFirstTime
     
     private var activityView: ActivityView?
     //========================================
@@ -93,12 +93,11 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.setStrings()
         self.roundCorners()
         self.setShadows()
         self.setConstraints()
-        UserDefaultsProvider.shared.firstTime = false
+        UserDefaultsProvider.shared.notFirstTime = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -142,10 +141,10 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     }
     
     private func setView() {
-        welcomeLabel.isHidden = !self.isFirstTime
-        welcomeImage.isHidden = !self.isFirstTime
+        welcomeLabel.isHidden = self.isNotFirstTime
+        welcomeImage.isHidden = self.isNotFirstTime
         
-        if self.isFirstTime {
+        if !self.isNotFirstTime {
             todaysDafToHeaderConstraint?.isActive = false
             todaysDafToWelcomeConstraint?.isActive = true
         } else {
