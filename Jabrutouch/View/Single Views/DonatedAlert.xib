@@ -43,8 +43,8 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="65" id="qKG-sj-VWA"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="18"/>
-                            <inset key="titleEdgeInsets" minX="18" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="17"/>
+                            <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <state key="normal" title="Button" image="Heart">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
@@ -53,10 +53,7 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cbO-5P-D5Q">
-                            <rect key="frame" x="85.5" y="50" width="210" height="29"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="210" id="Oaq-OI-jvB"/>
-                            </constraints>
+                            <rect key="frame" x="162" y="50" width="57" height="29"/>
                             <fontDescription key="fontDescription" name="SFProDisplay-Medium" family="SF Pro Display" pointSize="24"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>

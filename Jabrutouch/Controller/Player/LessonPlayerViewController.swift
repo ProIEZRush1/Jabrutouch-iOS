@@ -422,6 +422,7 @@ class LessonPlayerViewController: UIViewController {
         }
         self.audioEndTimeButton.setTitle(title, for: .normal)
     }
+    
     //====================================================
     // MARK: - Content setup
     //====================================================
@@ -471,11 +472,12 @@ class LessonPlayerViewController: UIViewController {
     }
     
     @IBAction func photoButtonPressed(_ sender: UIButton) {
-        
+        Utils.showAlertMessage(Strings.inDevelopment, viewControler: self)
     }
     
     @IBAction func chatButtonPressed(_ sender: UIButton) {
-        
+        Utils.showAlertMessage(Strings.inDevelopment, viewControler: self)
+
     }
     
     @IBAction func audioEndTimeButtonPressed(_ sender: UIButton) {

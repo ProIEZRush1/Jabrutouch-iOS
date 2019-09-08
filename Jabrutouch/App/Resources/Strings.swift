@@ -266,6 +266,7 @@ class Strings {
     class var signInTitle: String {
         return NSLocalizedString("signInTitle", comment: "")
     }
+
     
     class var welcomeToTheNewJabrutouch: String {
         return NSLocalizedString("welcomeToTheNewJabrutouch!", comment: "")
@@ -278,6 +279,17 @@ class Strings {
     class var recentPagesOnMishna: String {
         return NSLocalizedString("recentPagesOnMishna", comment: "")
     }
+
+    class var inDevelopment: String {
+        return NSLocalizedString("inDevelopment", comment: "")
+    }
+    class var aboutText: String {
+        return NSLocalizedString("aboutText", comment: "")
+    }
+    class var aboutUs: String {
+        return NSLocalizedString("aboutUs", comment: "")
+    }
+
 }
 
 

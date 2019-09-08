@@ -82,6 +82,7 @@
 "donatedTitle" = "This lesson was\ndonated to you by:";
 "donatedBtn" = "Appreciate and start lesson";
 
+
 "yesterday" = "Yesterday";
 "areYouSure" = "Are you sure?";
 "youWontBeAbleToUseThisAccountAnymore" = "You won´t be able to use this account anymore";
@@ -119,7 +120,7 @@
 "emailSent" = "Email sent";
 "weSentAnEmailTo" = "We sent an email to";
 "pleaseCheckYourMailboxForFurtherInstructions" = "Please check your mailbox for further instructions";
-"ok" = "OK";
+
 "newMessage"  = "New Message";
 "sendAMessageToSystemSupport" = "Send a message to system support";
 "askAQuestionFromTheRabbi" = "Ask a question from the Rabbi";
@@ -140,3 +141,8 @@
 "contributeLessonsAndMakeAMizva" = "Contribute lessons and make a Mizva by helping jews all over the world learn Talmud";
 "xStudentsThankedYouForUsingYourDonationToLearn" = "%d students thanked you for using your donation to learn";
 "receipt" = "Receipt";
+
+"inDevelopment"="In development";
+"aboutUs" = "About Us";
+"aboutText" = "El término jabruta (lit: 'amistad'  o 'compañerismo') es el nombre con el que se conoce la técnica de estudio judía, dinámica e interactiva, mediante la cual, dos estudiantes o compañeros de estudio, analizan, comentan y debaten juntos un texto de Torá. La jabruta es el método de estudio del Talmud por excelencia.\n\nDebido a las características señaladas, hemos creído que \"Jabruta\" era el término idóneo y más apropiado para darle nombre a nuestra plataforma.\n\nLa meta principal de una jabruta es estudiar el Talmud eliminando el aura de oscuridad y confusión que para muchos esconde su estudio. Tenemos la plena convicción de que el Talmud se puede estudiar con claridad y convertirse en una experiencia inspiradora y entretenida. Para ello, hemos recurrido a los recursos tecnológicos más innovadores que nos ofrece el mundo actual.\n\nDesde que lanzamos hace once años nuestra revolucionaria iniciativa para enseñar Talmud en la red, la respuesta que hemos recibido ha sido, definitivamente, increíble.\n\nEn 2012, nuestro estimado amigo Eduardo Alfie de México, reunió a un grupo de personas que dedicaron en memoria de Alberto Saba Z\"L la primera versión de Jabrutouch iPad. Un año más tarde, y tras un éxito rotundo, conocimos a quien hoy es otro gran amigo, Jacobo Cojab, también de México. Él y su hermano apoyaron generosamente el desarrollo de la aplicación para teléfonos móviles facilitando el estudio del Talmud a miles de personas de todo el mundo desde cualquier dispositivo móvil. A todos ellos les estaremos eternamente agradecidos por habernos ayudado a convertir este gran proyecto en una realidad.\n\nHoy, con la experiencia adquirida y gracias a las nuevas posibilidades que nos ofrece la tecnología actual, damos la bienvenida a la nueva versión de Jabrutouch. Hemos creado una nueva plataforma de estudio, más potente y variada, que irá mejorando y actualizándose conforme a los deseos y peticiones de los usuarios.\n\nJabrutouch es un proyecto ambicioso y en constante desarrollo que, día a día, no deja de crecer y agregar más contenidos a su plataforma para ofrecer nuevas alternativas y llegar a más audiencias. Su alcance es tan grande, que se ha convertido en una herramienta de estudio popular en personas de toda condición que forman el mundo judío hispanoparlante.\n\nNo hay mejor recompensa que el agradecimiento por un trabajo bien hecho. Y la mejor prueba son las innumerables y sorprendentes muestras de agradecimiento que recibimos en todo tipo de lugares como sinagogas o incluso aeropuertos donde la gente se acerca para decirnos \"Hola, yo estudio con Jabrutouch\" o simplemente \"Gracias por haber hecho esto\". Historias como estas son el motor que nos impulsa a seguir trabajando.\n\n\nGracias,\n\nEl Equipo de Jabrutouch";
+

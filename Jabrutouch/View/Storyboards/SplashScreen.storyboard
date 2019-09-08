@@ -9,11 +9,6 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="SF-Pro-Display-Bold.otf">
-            <string>SFProDisplay-Bold</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Splash Screen View Controller-->
         <scene sceneID="X2E-qG-2lL">
@@ -23,23 +18,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jabrutouch" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1eE-Iz-hU3">
-                                <rect key="frame" x="128" y="244" width="158.5" height="36"/>
-                                <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="30"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="splash" translatesAutoresizingMaskIntoConstraints="NO" id="bT4-j1-sLH">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="906"/>
+                            </imageView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="vBZ-IG-GeV">
                                 <rect key="frame" x="188.5" y="434.5" width="37" height="37"/>
-                                <color key="color" red="0.58039215690000001" green="0.58823529409999997" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="1eE-Iz-hU3" firstAttribute="centerX" secondItem="YAX-wK-hNL" secondAttribute="centerX" id="8uA-W9-OPW"/>
+                            <constraint firstItem="bT4-j1-sLH" firstAttribute="leading" secondItem="YAX-wK-hNL" secondAttribute="leading" id="GZQ-6V-o4M"/>
                             <constraint firstItem="vBZ-IG-GeV" firstAttribute="centerX" secondItem="joU-nI-APl" secondAttribute="centerX" id="N18-Cx-yD1"/>
                             <constraint firstItem="vBZ-IG-GeV" firstAttribute="centerY" secondItem="joU-nI-APl" secondAttribute="centerY" id="O9U-6o-CLL"/>
-                            <constraint firstItem="1eE-Iz-hU3" firstAttribute="top" secondItem="joU-nI-APl" secondAttribute="top" constant="200" id="buS-Wi-EzG"/>
+                            <constraint firstAttribute="bottom" secondItem="bT4-j1-sLH" secondAttribute="bottom" constant="-10" id="SxT-06-AAO"/>
+                            <constraint firstItem="bT4-j1-sLH" firstAttribute="top" secondItem="YAX-wK-hNL" secondAttribute="top" id="gzk-1b-CiQ"/>
+                            <constraint firstAttribute="trailing" secondItem="bT4-j1-sLH" secondAttribute="trailing" id="luo-XV-lId"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="joU-nI-APl"/>
                     </view>
@@ -49,7 +43,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p4y-BU-FyG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-110" y="-77"/>
+            <point key="canvasLocation" x="-110.14492753623189" y="-77.008928571428569"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="splash" width="422" height="744"/>
+    </resources>
 </document>

@@ -18,6 +18,8 @@ enum MainModal {
 
 protocol MainModalDelegate : class {
     func dismissMainModal()
+    func presentAllGemara()
+    func presentAllMishna()
 }
 
 class MainViewController: UIViewController, MainModalDelegate, UICollectionViewDataSource {
@@ -342,6 +344,9 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
             }
         }
     }
+    @IBAction func chatPressed(_ sender: Any) {
+        self.presentInDevelopmentAlert()
+    }
     
     //========================================
     // MARK: - Navigation
@@ -412,6 +417,11 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.currentPresentedModal = .donations
     }
     
+    private func presentInDevelopmentAlert() {
+        Utils.showAlertMessage(Strings.inDevelopment, viewControler: self)
+        
+    }
+    
     func dismissMainModal() {
         self.modalsPresentingVC.dismiss(animated: true) {
             self.view.bringSubviewToFront(self.mainContainer)
@@ -419,6 +429,13 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         }
     }
     
+    func presentAllGemara() {
+        self.presentGemaraViewController()
+    }
+    
+    func presentAllMishna() {
+        self.presentMishnaViewController()
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "embedModalsVC" {
             self.modalsPresentingVC = segue.destination as? ModalsContainerViewController
@@ -471,9 +488,17 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
             presentMishnaViewController()
         case .gemara:
             presentGemaraViewController()
+        case .about:
+            presentAboutUs()
         default:
-            break
+            presentInDevelopmentAlert()
         }
+    }
+    
+    func presentAboutUs() {
+        let aboutViewController = Storyboards.Main.aboutViewController
+        aboutViewController.modalTransitionStyle = .partialCurl
+        self.present(aboutViewController, animated: true)
     }
     
     func presentLogoutAlert() {

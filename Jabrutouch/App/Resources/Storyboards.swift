@@ -32,5 +32,9 @@ class Storyboards {
         class var  mainViewController: MainViewController {
             return self.mainStoryboard().instantiateViewController(withIdentifier: "MainViewController") as! MainViewController
         }
+        
+        class var aboutViewController: AboutViewController {
+            return self.mainStoryboard().instantiateViewController(withIdentifier: "AboutVC") as! AboutViewController
+        }
     }
 }
