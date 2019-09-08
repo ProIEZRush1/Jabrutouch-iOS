@@ -275,5 +275,38 @@ class Strings {
     class var aboutUs: String {
         return NSLocalizedString("aboutUs", comment: "")
     }
-
+    class var areYouSure: String {
+        return NSLocalizedString("areYouSure", comment: "")
+    }
+    class var walkthrough1Text: String {
+        return NSLocalizedString("walkthrough1Text", comment: "")
+    }
+    class var walkthrough2Text: String {
+        return NSLocalizedString("walkthrough2Text", comment: "")
+    }
+    class var walkthrough3Text: String {
+        return NSLocalizedString("walkthrough3Text", comment: "")
+    }
+    class var walkthrough4Text: String {
+        return NSLocalizedString("walkthrough4Text", comment: "")
+    }
+    class var recentsGemara: String {
+        return NSLocalizedString("recentsGemara", comment: "")
+    }
+    class var recentsMishna: String {
+        return NSLocalizedString("recentsMishna", comment: "")
+    }
+    class var done: String {
+        return NSLocalizedString("done", comment: "")
+    }
+    class var delete: String {
+        return NSLocalizedString("delete", comment: "")
+    }
+    class var welcomeToNewJabrutouch: String {
+        return NSLocalizedString("welcomeToNewJabrutouch", comment: "")
+    }
+    class var noLessons: String {
+        return NSLocalizedString("noLessons", comment: "")
+    }
 }
+

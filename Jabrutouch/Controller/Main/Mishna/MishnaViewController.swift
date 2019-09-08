@@ -14,6 +14,7 @@ class MishnaViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // MARK: - @IBOutlets and Fields
     //========================================
     
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     var openSections: Set<Int> = []
@@ -35,7 +36,7 @@ class MishnaViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.register(UINib(nibName: "DownloadsHeaderCell", bundle: nil), forHeaderFooterViewReuseIdentifier: "headerCell")
         tableView.delegate = self
         tableView.dataSource = self
-        
+        self.titleLabel.text = Strings.mishna
         self.setInitialOpenSections()
     }
     

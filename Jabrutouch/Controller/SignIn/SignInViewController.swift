@@ -50,7 +50,7 @@ class SignInViewController: UIViewController {
     //============================================================
     
     private func setStrings() {
-        self.titleLabel.text = Strings.signInPC
+        self.titleLabel.text = Strings.signIn
         self.usernameTF.placeholder = Strings.emailOrPhoneNumber
         self.passwordTF.placeholder = Strings.password
         self.signInButton.setTitle(Strings.signInPC, for: .normal)
@@ -88,7 +88,7 @@ class SignInViewController: UIViewController {
     }
     
     @IBAction func forgotPasswordButtonPressed(_ sender: UIButton) {
-        
+        Utils.showAlertMessage(Strings.inDevelopment, viewControler: self)
     }
     
     //============================================================

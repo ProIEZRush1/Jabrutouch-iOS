@@ -13,6 +13,9 @@
         <array key="SF-Pro-Display-Bold.otf">
             <string>SFProDisplay-Bold</string>
         </array>
+        <array key="SF-Pro-Display-Medium.otf">
+            <string>SFProDisplay-Medium</string>
+        </array>
     </customFonts>
     <scenes>
         <!--Walk Through View Controller-->
@@ -80,17 +83,27 @@
                                                         <constraint firstItem="NzG-Az-oVs" firstAttribute="centerY" secondItem="xvi-nm-709" secondAttribute="centerY" id="sE1-Zl-sUG"/>
                                                     </constraints>
                                                 </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ves-67-sN0">
+                                                    <rect key="frame" x="23" y="773.5" width="368" height="26.5"/>
+                                                    <fontDescription key="fontDescription" name="SFProDisplay-Medium" family="SF Pro Display" pointSize="22"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </view>
                                         <constraints>
                                             <constraint firstItem="g2p-18-V4Y" firstAttribute="top" secondItem="6cM-Ir-mQV" secondAttribute="top" constant="40" id="1f0-AU-9tZ"/>
                                             <constraint firstAttribute="trailing" secondItem="xvi-nm-709" secondAttribute="trailing" id="8Xp-bi-H05"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="ves-67-sN0" secondAttribute="bottom" constant="10" id="AGt-ua-aJz"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="ves-67-sN0" secondAttribute="trailing" constant="15" id="QsW-Pn-rYZ"/>
                                             <constraint firstItem="g2p-18-V4Y" firstAttribute="leading" secondItem="6cM-Ir-mQV" secondAttribute="leadingMargin" id="Uyn-HZ-IoN"/>
+                                            <constraint firstItem="ves-67-sN0" firstAttribute="leading" secondItem="6cM-Ir-mQV" secondAttribute="leadingMargin" constant="15" id="ZYf-Ec-WQP"/>
                                             <constraint firstItem="xvi-nm-709" firstAttribute="leading" secondItem="6cM-Ir-mQV" secondAttribute="leading" id="r8N-OY-9Hk"/>
                                             <constraint firstItem="xvi-nm-709" firstAttribute="top" secondItem="6cM-Ir-mQV" secondAttribute="top" constant="160" id="rkw-3l-PHu"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="g2p-18-V4Y" secondAttribute="trailing" id="vaK-Jz-YDY"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="textLabel" destination="ves-67-sN0" id="8hC-vZ-BKX"/>
                                             <outlet property="titleLabel" destination="g2p-18-V4Y" id="ctH-9m-AXc"/>
                                             <outletCollection property="imageViews" destination="JHx-AD-xqb" collectionClass="NSMutableArray" id="9d5-mo-64G"/>
                                             <outletCollection property="imageViews" destination="NzG-Az-oVs" collectionClass="NSMutableArray" id="l8q-Gq-E4x"/>

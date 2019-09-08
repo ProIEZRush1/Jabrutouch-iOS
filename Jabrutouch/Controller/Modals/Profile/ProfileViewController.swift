@@ -24,6 +24,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var phoneLabel: UILabel!
+    @IBOutlet weak var phoneTiitleLabel: UILabel!
     @IBOutlet weak var logoutBtn: UIButton!
     
     //========================================
@@ -51,6 +52,8 @@ class ProfileViewController: UIViewController {
         self.nameLabel.text = "\(user!.firstName) \(user!.lastName)"
         self.emailLabel.text = user!.email
         self.phoneLabel.text = user!.phoneNumber // Debug: phone number is without two first numbers
+        self.phoneTiitleLabel.text = Strings.phoneNumber
+        self.logoutBtn.setTitle(Strings.logout.uppercased(), for: .normal)
     }
     
     private func roundCorners() {

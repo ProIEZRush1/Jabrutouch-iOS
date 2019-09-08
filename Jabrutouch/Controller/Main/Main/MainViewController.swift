@@ -61,7 +61,9 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     @IBOutlet weak private var todaysDafLabel: UILabel!
     @IBOutlet weak private var todaysDateLabel: UILabel!
     @IBOutlet weak var todaysDafToWelcomeConstraint: NSLayoutConstraint!
-    
+    // Recents
+    @IBOutlet weak var recentsGemara: UILabel!
+    @IBOutlet weak var resentsMishna: UILabel!
     // Tab bar buttons
     @IBOutlet weak private var downloadsImageView: UIImageView!
     @IBOutlet weak private var downloadsLabel: UILabel!
@@ -121,7 +123,8 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         dateFormatter.calendar = calendar
         dateFormatter.dateStyle = .long
         self.todaysDateLabel.text = dateFormatter.string(from: Date())
-        
+        self.recentsGemara.text = Strings.recentsGemara
+        self.resentsMishna.text = Strings.recentsMishna
         
         // Main tabs
         self.downloadsLabel.text = Strings.downloads
@@ -129,6 +132,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.mishnaLabel.text = Strings.mishna
         self.donationsLabel.text = Strings.donations
         self.titleLabel.text = Strings.jabrutouch
+        self.welcomeLabel.text = Strings.welcomeToNewJabrutouch
     }
     
     private func roundCorners() {

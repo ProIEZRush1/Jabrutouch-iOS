@@ -519,6 +519,7 @@
                         <outlet property="mishnaNoDownloadedFilesMessage" destination="jn9-50-JQa" id="LV6-C1-5XZ"/>
                         <outlet property="mishnaTableView" destination="JXu-tQ-O0q" id="TAt-d4-uv6"/>
                         <outlet property="mishnaViewAllLessonsButton" destination="Dj4-bR-2Vk" id="3EZ-eu-oK8"/>
+                        <outlet property="titleLabel" destination="WFQ-tq-a9Y" id="zIB-Ek-bV4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p42-VI-XV0" userLabel="First Responder" sceneMemberID="firstResponder"/>

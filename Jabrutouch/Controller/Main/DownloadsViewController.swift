@@ -31,6 +31,7 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var mishnaTableView: UITableView!
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var gemaraLeadingConsraint: NSLayoutConstraint!
+    @IBOutlet weak var titleLabel: UILabel!
     
     var delegate: MainModalDelegate?
     fileprivate var grayUpArrowXCentererdToGemara: NSLayoutConstraint?
@@ -69,6 +70,7 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         tableViewsMap[GEMARA] = gemaraTableView
         tableViewsMap[MISHNA] = mishnaTableView
         setViews()
+        setStrings()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -82,6 +84,16 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     // MARK: - Setup
     //========================================
     
+    fileprivate func setStrings() {
+        self.gemaraButton.setTitle(Strings.gemara, for: .normal)
+        self.mishnaButton.setTitle(Strings.mishna, for: .normal)
+        self.deleteButton.setTitle(Strings.delete, for: .normal)
+        self.gemaraViewAllLessonsButton.setTitle(Strings.viewAllTheLessons, for: .normal)
+        self.mishnaViewAllLessonsButton.setTitle(Strings.viewAllTheLessons, for: .normal)
+        self.gemaraNoDownloadedFilesMessage.text = Strings.noDownloadedFilesYet
+        self.mishnaNoDownloadedFilesMessage.text = Strings.noDownloadedFilesYet
+        self.titleLabel.text = Strings.downloads
+    }
     
     fileprivate func setSelectedPage() {
         setButtonsColorAndFont()
@@ -509,9 +521,9 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         isDeleting = !isDeleting
         
         if isDeleting {
-            deleteButton.setTitle("Done",for: .normal)
+            deleteButton.setTitle(Strings.done,for: .normal)
         } else {
-            deleteButton.setTitle("Delete",for: .normal)
+            deleteButton.setTitle(Strings.delete,for: .normal)
         }
         
         gemaraTableView.reloadData()

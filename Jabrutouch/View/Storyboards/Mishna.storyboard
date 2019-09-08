@@ -51,7 +51,7 @@
                                     <action selector="backPressed:" destination="oWF-jv-w6q" eventType="touchUpInside" id="VcA-UM-4eq"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NEN-u1-6dp" userLabel="Loupe Button">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NEN-u1-6dp" userLabel="Loupe Button">
                                 <rect key="frame" x="348" y="44" width="66" height="53"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Loupe Button"/>
                                 <constraints>
@@ -163,6 +163,7 @@
                     <navigationItem key="navigationItem" id="bO5-ia-xOs"/>
                     <connections>
                         <outlet property="tableView" destination="msA-Fl-Df0" id="ufA-C6-GX8"/>
+                        <outlet property="titleLabel" destination="xz9-An-ENt" id="STp-Zs-b91"/>
                         <segue destination="D18-8v-Y5I" kind="show" identifier="showMishnaChapters" id="Vfl-EI-Cw7"/>
                     </connections>
                 </viewController>

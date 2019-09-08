@@ -38,6 +38,8 @@ class LessonDownloadCellController: UITableViewCell {
     
     @objc private func cellPressed() {
         delegate?.cellPressed(selectedRow: selectedRow)
+        delegate?.playVideoPressed(selectedRow: selectedRow)
+
     }
     
     @IBAction func playAudioButtonPressed(_ sender: UIButton) {
