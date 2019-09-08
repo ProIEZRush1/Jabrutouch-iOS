@@ -266,4 +266,18 @@ class Strings {
     class var signInTitle: String {
         return NSLocalizedString("signInTitle", comment: "")
     }
+    
+    class var welcomeToTheNewJabrutouch: String {
+        return NSLocalizedString("welcomeToTheNewJabrutouch!", comment: "")
+    }
+    
+    class var recentPagesOnGemara: String {
+        return NSLocalizedString("recentPagesOnGemara", comment: "")
+    }
+    
+    class var recentPagesOnMishna: String {
+        return NSLocalizedString("recentPagesOnMishna", comment: "")
+    }
 }
+
+

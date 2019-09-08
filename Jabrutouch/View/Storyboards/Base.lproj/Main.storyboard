@@ -985,6 +985,7 @@
                         <outlet property="downloadsLabel" destination="JHT-9r-OyC" id="ctC-Iu-de2"/>
                         <outlet property="gemaraButton" destination="Jme-3j-dBL" id="Dkf-AZ-XBI"/>
                         <outlet property="gemaraCollectionView" destination="GeA-bb-mjo" id="C1a-my-t99"/>
+                        <outlet property="gemaraCollectionViewTitle" destination="Wzb-dy-Imq" id="LT0-eW-I5h"/>
                         <outlet property="gemaraImageView" destination="fau-za-HIW" id="bo8-I4-jWL"/>
                         <outlet property="gemaraLabel" destination="L4b-Gk-dkC" id="4Zn-18-fMh"/>
                         <outlet property="headerContainer" destination="Wg6-HG-Y9Y" id="sYv-yy-QE0"/>
@@ -993,6 +994,7 @@
                         <outlet property="messagesButton" destination="wjw-gw-FoJ" id="sDY-0h-H12"/>
                         <outlet property="mishnaButton" destination="MMO-Yi-9hU" id="lZr-WX-udo"/>
                         <outlet property="mishnaCollectionView" destination="78c-YM-Txo" id="cBM-0U-Vmv"/>
+                        <outlet property="mishnaCollectionViewTitle" destination="TQ2-2v-sxn" id="3le-WH-rv9"/>
                         <outlet property="mishnaImageView" destination="AYo-I6-pyK" id="g3X-ag-CRl"/>
                         <outlet property="mishnaLabel" destination="bgp-mR-fuJ" id="Lpk-9C-0O2"/>
                         <outlet property="modalsContainer" destination="Hqr-vP-VSo" id="DYM-YC-mRC"/>
@@ -1069,19 +1071,19 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="emailaddress@address.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="enP-y2-8fU">
-                                                        <rect key="frame" x="85" y="110.5" width="244.5" height="21.5"/>
+                                                        <rect key="frame" x="94" y="110.5" width="226.5" height="21"/>
                                                         <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="18"/>
                                                         <color key="textColor" red="0.17254901959999999" green="0.16862745100000001" blue="0.33725490200000002" alpha="0.88" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="phone number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sq9-H9-eHL">
-                                                        <rect key="frame" x="19" y="153" width="112" height="20"/>
+                                                        <rect key="frame" x="19" y="152.5" width="104.5" height="19"/>
                                                         <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="16"/>
                                                         <color key="textColor" red="1" green="0.37254901959999998" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+3566334344343" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qpw-IH-LCX">
-                                                        <rect key="frame" x="231" y="152" width="164" height="22"/>
+                                                        <rect key="frame" x="254" y="151.5" width="141" height="21"/>
                                                         <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="18"/>
                                                         <color key="textColor" red="0.17254901959999999" green="0.16862745100000001" blue="0.33725490200000002" alpha="0.88" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>

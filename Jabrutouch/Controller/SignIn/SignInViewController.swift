@@ -50,7 +50,7 @@ class SignInViewController: UIViewController {
     //============================================================
     
     private func setStrings() {
-        self.titleLabel.text = Strings.signInPC
+        self.titleLabel.text = Strings.signInTitle
         self.usernameTF.placeholder = Strings.emailOrPhoneNumber
         self.passwordTF.placeholder = Strings.password
         self.signInButton.setTitle(Strings.signInPC, for: .normal)
