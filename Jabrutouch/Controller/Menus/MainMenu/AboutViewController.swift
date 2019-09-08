@@ -10,12 +10,10 @@ import UIKit
 
 class AboutViewController: UIViewController {
     @IBOutlet weak var aboutText: UITextView!
-    @IBOutlet weak var titleLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         aboutText.text = Strings.aboutText
-        titleLabel.text = Strings.aboutUs
         aboutText.dataDetectorTypes = .all
         // Do any additional setup after loading the view.
     }
