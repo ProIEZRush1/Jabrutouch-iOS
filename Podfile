@@ -9,4 +9,6 @@ target 'Jabrutouch' do
   pod 'AWSS3'
   pod 'SnapKit', '~> 5.0.0'
   pod 'UICircularProgressRing'
+  pod 'Fabric'
+  pod 'Crashlytics'
 end
