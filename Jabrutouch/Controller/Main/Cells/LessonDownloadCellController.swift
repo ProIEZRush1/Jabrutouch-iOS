@@ -63,7 +63,9 @@ class LessonDownloadCellController: UITableViewCell {
     func setEditingIfNeeded(lesson: JTLesson, isCurrentlyEditing: Bool) {
         self.animateImagesVisibilityIfNeeded(lesson, isCurrentlyEditing: isCurrentlyEditing)
         UIView.animate(withDuration: 0.3) {
-            if isCurrentlyEditing && !lesson.isDownloading {
+            let isDownloading = lesson.isDownloadingAudio || lesson.isDownloadingVideo
+
+            if isCurrentlyEditing && !isDownloading {
                 self.cellViewTrailingConstraint.constant = UIScreen.main.bounds.size.width / 2 - 20
             } else {
                 self.cellViewTrailingConstraint.constant = 18
@@ -101,12 +103,16 @@ class LessonDownloadCellController: UITableViewCell {
     }
     
     private func setDownloadModeForLesson(_ lesson: JTLesson) {
-        self.downloadProgressView.value = CGFloat((lesson.downloadProgress ?? 0.0)*100)
-        self.downloadProgressView.isHidden = !lesson.isDownloading
-        self.playAudioButton.isEnabled = !lesson.isDownloading
-        self.playVideoButton.isEnabled = !lesson.isDownloading
-        self.audioImage.alpha = lesson.isDownloading ? 0.3 : 1.0
-        self.videoImage.alpha = lesson.isDownloading ? 0.3 : 1.0
+        let progress = lesson.audioDownloadProgress ?? lesson.videoDownloadProgress ?? 0.0
+        let isDownloading = lesson.isDownloadingAudio || lesson.isDownloadingVideo
+        self.downloadProgressView.value = CGFloat(progress*100)
+       
+        self.downloadProgressView.isHidden = !isDownloading
+        self.downloadAudioButton.isEnabled = !isDownloading
+        self.downloadVideoButton.isEnabled = !isDownloading
+        
+        self.downloadAudioButtonImageView.alpha = lesson.isDownloadingAudio ? 0.3 : 1.0
+        self.downloadVideoButtonImageView.alpha = lesson.isDownloadingVideo ? 0.3 : 1.0
     }
     
     private func setImagesForLesson(_ lesson: JTLesson) {

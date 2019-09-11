@@ -19,8 +19,8 @@ enum JTLessonMediaType: String {
 }
 
 protocol ContentRepositoryDownloadDelegate: class {
-    func downloadCompleted(downloadId: Int)
-    func downloadProgress(downloadId: Int, progress: Float)
+    func downloadCompleted(downloadId: Int, mediaType: JTLessonMediaType)
+    func downloadProgress(downloadId: Int, progress: Float, mediaType: JTLessonMediaType)
 }
 
 enum ContentFileSource {
@@ -34,7 +34,8 @@ class ContentRepository {
     //========================================
     // MARK: - Properties
     //========================================
-    private var lessonsInDownload: [Int: Float] = [:]
+    private var lessonsInAudioDownload: [Int: Float] = [:]
+    private var lessonsInVideoDownload: [Int: Float] = [:]
     private var shas: [JTSeder] = []
     
     private var gemaraLessons: [String:[String:JTGemaraLesson]] = [:]
@@ -347,19 +348,43 @@ class ContentRepository {
     //========================================
     // MARK: - Download content methods
     //========================================
-    func getLessonDownloadProgress(_ lessonId: Int) -> Float? {
-        return self.lessonsInDownload[lessonId]
+    func getLessonDownloadProgress(_ lessonId: Int, mediaType: JTLessonMediaType) -> Float? {
+        switch mediaType {
+        case .audio:
+            return self.lessonsInAudioDownload[lessonId]
+        case .video:
+            return self.lessonsInVideoDownload[lessonId]
+        }
+        
     }
-    func lessonStartedDownloading(_ lessonId: Int) {
-        self.lessonsInDownload[lessonId] = 0.0
+    func lessonStartedDownloading(_ lessonId: Int, mediaType: JTLessonMediaType) {
+        switch mediaType {
+        case .audio:
+            self.lessonsInAudioDownload[lessonId] = 0.0
+        case .video:
+            self.lessonsInVideoDownload[lessonId] = 0.0
+        }
+        
     }
     
-    func lessonEndedDownloading(_ lessonId: Int) {
-        self.lessonsInDownload.removeValue(forKey: lessonId)
+    func lessonEndedDownloading(_ lessonId: Int, mediaType: JTLessonMediaType) {
+        switch mediaType {
+        case .audio:
+            self.lessonsInAudioDownload.removeValue(forKey: lessonId)
+        case .video:
+            self.lessonsInVideoDownload.removeValue(forKey: lessonId)
+        }
+        
     }
     
-    func lessonDownloadProgress(_ lessonId: Int, progress: Float) {
-        self.lessonsInDownload[lessonId] = progress
+    func lessonDownloadProgress(_ lessonId: Int, progress: Float, mediaType: JTLessonMediaType) {
+        switch mediaType {
+        case .audio:
+            self.lessonsInAudioDownload[lessonId] = progress
+        case .video:
+            self.lessonsInVideoDownload[lessonId] = progress
+        }
+        
     }
     func addLessonToDownloaded(_ lesson: JTGemaraLesson, sederId: String, masechetId: String) {
         if let _ = self.downloadedGemaraLessons[sederId] {
@@ -428,7 +453,7 @@ class ContentRepository {
     
     
     func downloadLesson(_ lesson: JTLesson, mediaType: JTLessonMediaType, delegate: DownloadTaskDelegate?) {
-        let downloadTask = DownloadTask(id: lesson.id, delegate: delegate)
+        let downloadTask = DownloadTask(id: lesson.id, delegate: delegate, mediaType: mediaType)
         switch mediaType {
         case .audio:
             downloadTask.filesToDownload.append((lesson.audioLink ?? "", .s3, lesson.audioLocalFileName))
@@ -685,18 +710,18 @@ class ContentRepository {
 }
 
 extension ContentRepository: DownloadTaskDelegate {
-    func downloadCompleted(downloadId: Int) {
+    func downloadCompleted(downloadId: Int, mediaType: JTLessonMediaType) {
         DispatchQueue.main.async {
             for delegate in self.delegates {
-                delegate.downloadCompleted(downloadId: downloadId)
+                delegate.downloadCompleted(downloadId: downloadId, mediaType: mediaType)
             }
         }
     }
     
-    func downloadProgress(downloadId: Int, progress: Float) {
+    func downloadProgress(downloadId: Int, progress: Float, mediaType: JTLessonMediaType) {
         DispatchQueue.main.async {
             for delegate in self.delegates {
-                delegate.downloadProgress(downloadId: downloadId, progress: progress )
+                delegate.downloadProgress(downloadId: downloadId, progress: progress, mediaType: mediaType )
             }
         }
     }

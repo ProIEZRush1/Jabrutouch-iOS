@@ -88,9 +88,13 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
     
     func syncDownloadData() {
         for i in 0..<self.lessons.count {
-            if let progress = ContentRepository.shared.getLessonDownloadProgress(self.lessons[i].id) {
-                self.lessons[i].isDownloading = true
-                self.lessons[i].downloadProgress = progress
+            if let progress = ContentRepository.shared.getLessonDownloadProgress(self.lessons[i].id, mediaType: .audio) {
+                self.lessons[i].isDownloadingAudio = true
+                self.lessons[i].audioDownloadProgress = progress
+            }
+            else if let progress = ContentRepository.shared.getLessonDownloadProgress(self.lessons[i].id, mediaType: .video) {
+                self.lessons[i].isDownloadingVideo = true
+                self.lessons[i].videoDownloadProgress = progress
             }
         }
     }
@@ -195,9 +199,9 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
         if lesson.isAudioDownloaded {
             alreadyDownloadedMediaAlert()
         } else {
-            self.lessons[selectedRow].isDownloading = true
+            self.lessons[selectedRow].isDownloadingAudio = true
             self.toggleEditingMode()
-            ContentRepository.shared.lessonStartedDownloading(lesson.id)
+            ContentRepository.shared.lessonStartedDownloading(lesson.id, mediaType: .audio)
             ContentRepository.shared.downloadLesson(lesson, mediaType: .audio, delegate: ContentRepository.shared)
         }
     }
@@ -207,9 +211,9 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
         if lesson.isVideoDownloaded {
             alreadyDownloadedMediaAlert()
         } else {
-            self.lessons[selectedRow].isDownloading = true
+            self.lessons[selectedRow].isDownloadingVideo = true
             self.toggleEditingMode()
-            ContentRepository.shared.lessonStartedDownloading(lesson.id)
+            ContentRepository.shared.lessonStartedDownloading(lesson.id, mediaType: .video)
             ContentRepository.shared.downloadLesson(lesson, mediaType: .video, delegate: ContentRepository.shared)
         }
     }
@@ -257,24 +261,37 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
 }
 
 extension GemaraLessonsViewController: ContentRepositoryDownloadDelegate {
-    func downloadCompleted(downloadId: Int) {
+    func downloadCompleted(downloadId: Int, mediaType: JTLessonMediaType) {
         guard let index = self.lessons.firstIndex(where: {$0.id == downloadId}) else { return }
         guard let sederId = self.sederId else { return }
         guard let masechetId = self.masechetId else { return }
         
         let lesson = self.lessons[index]
-        ContentRepository.shared.lessonEndedDownloading(lesson.id)
         ContentRepository.shared.addLessonToDownloaded(lesson, sederId: sederId, masechetId: "\(masechetId)")
-        self.lessons[index].isDownloading = false
-        self.lessons[index].downloadProgress = nil
+        ContentRepository.shared.lessonEndedDownloading(lesson.id, mediaType: mediaType)
+        switch mediaType {
+        case .audio:
+            self.lessons[index].isDownloadingAudio = false
+            self.lessons[index].audioDownloadProgress = nil
+        case .video:
+            self.lessons[index].isDownloadingVideo = false
+            self.lessons[index].videoDownloadProgress = nil
+        }
+        
         self.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
-        print("GemaraLessonsViewController downloadCompleted, downloadId: \(downloadId)")
     }
     
-    func downloadProgress(downloadId: Int, progress: Float) {
+    func downloadProgress(downloadId: Int, progress: Float, mediaType: JTLessonMediaType) {
         guard let index = self.lessons.firstIndex(where: {$0.id == downloadId}) else { return }
-        self.lessons[index].downloadProgress = progress
-        ContentRepository.shared.lessonDownloadProgress(downloadId, progress: progress)
+        
+        switch mediaType {
+        case .audio:
+            self.lessons[index].audioDownloadProgress = progress
+        case .video:
+            self.lessons[index].videoDownloadProgress = progress
+        }
+        
+        ContentRepository.shared.lessonDownloadProgress(downloadId, progress: progress, mediaType: mediaType)
         
         // Update cell progress
         guard let cell = self.tableView.cellForRow(at:  IndexPath(row: index, section: 0)) as? LessonDownloadCellController else { return }

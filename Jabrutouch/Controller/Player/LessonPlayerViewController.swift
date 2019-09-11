@@ -143,14 +143,13 @@ class LessonPlayerViewController: UIViewController {
             self.presentDonateAlert()
         }
         
-        self.disableHeaderButtons()
         self.showActivityView()
         self.roundCorners()
         self.setPlayers()
         self.setShadows()
         self.setToolBar()
         self.setPortraitHeader()
-
+        self.disableHeaderButtons()
         self.setPortraitHeaderViewHeight()
         self.setPortraitMode()
 
@@ -418,16 +417,54 @@ class LessonPlayerViewController: UIViewController {
         self.portraitButtonsStackView.alignment = .trailing
         self.landscapeButtonsStackView.alignment = .bottom
         
-        self.landscapeDownlaodProgressView.isHidden = true
-        self.portraitDownloadProgressView.isHidden = true
-        
         switch self.mediaType {
         case .audio:
-            self.portraitDownloadButton.isHidden = self.lesson.isAudioDownloaded
-            self.landscapeDownloadButton.isHidden = self.lesson.isAudioDownloaded
+            if self.lesson.isDownloadingAudio {
+                self.landscapeDownlaodProgressView.isHidden = false
+                self.portraitDownloadProgressView.isHidden = false
+                
+                self.portraitDownloadButton.isHidden = true
+                self.landscapeDownloadButton.isHidden = true
+                
+                let progress = lesson.audioDownloadProgress ?? 0.0
+                self.portraitDownloadProgressView.value = CGFloat(progress*100)
+                self.landscapeDownlaodProgressView.value = CGFloat(progress*100)
+            }
+            else {
+                self.landscapeDownlaodProgressView.isHidden = true
+                self.portraitDownloadProgressView.isHidden = true
+                
+                self.portraitDownloadButton.isHidden = self.lesson.isAudioDownloaded
+                self.landscapeDownloadButton.isHidden = self.lesson.isAudioDownloaded
+                
+                self.portraitDownloadButton.isEnabled = !self.lesson.isDownloadingVideo
+                self.landscapeDownloadButton.isEnabled = !self.lesson.isDownloadingVideo
+            }
+            
         case .video:
-            self.portraitDownloadButton.isHidden = self.lesson.isVideoDownloaded
-            self.landscapeDownloadButton.isHidden = self.lesson.isVideoDownloaded
+            if self.lesson.isDownloadingVideo {
+                self.landscapeDownlaodProgressView.isHidden = false
+                self.portraitDownloadProgressView.isHidden = false
+                
+                self.portraitDownloadButton.isHidden = true
+                self.landscapeDownloadButton.isHidden = true
+                
+                let progress = lesson.videoDownloadProgress ?? 0.0
+                self.portraitDownloadProgressView.value = CGFloat(progress*100)
+                self.landscapeDownlaodProgressView.value = CGFloat(progress*100)
+            }
+            else {
+                self.landscapeDownlaodProgressView.isHidden = true
+                self.portraitDownloadProgressView.isHidden = true
+                
+                self.portraitDownloadButton.isHidden = self.lesson.isVideoDownloaded
+                self.landscapeDownloadButton.isHidden = self.lesson.isVideoDownloaded
+                
+                self.portraitDownloadButton.isEnabled = !self.lesson.isDownloadingAudio
+                self.landscapeDownloadButton.isEnabled = !self.lesson.isDownloadingAudio
+
+            }
+            
         }
     }
     
@@ -465,8 +502,15 @@ class LessonPlayerViewController: UIViewController {
     }
     
     private func enableHeaderButtons() {
-        self.portraitDownloadButton.isEnabled = true
-        self.landscapeDownloadButton.isEnabled = true
+        switch self.mediaType {
+        case .audio:
+            self.portraitDownloadButton.isEnabled = !self.lesson.isDownloadingVideo
+            self.landscapeDownloadButton.isEnabled = !self.lesson.isDownloadingVideo
+        case .video:
+            self.portraitDownloadButton.isEnabled = !self.lesson.isDownloadingAudio
+            self.landscapeDownloadButton.isEnabled = !self.lesson.isDownloadingAudio
+        }
+        
         
         self.portraitChatButton.isEnabled = true
         self.landscapeChatButton.isEnabled = true
@@ -523,7 +567,7 @@ class LessonPlayerViewController: UIViewController {
 
         ContentRepository.shared.downloadLesson(lesson, mediaType: self.mediaType, delegate: ContentRepository.shared)
         
-        ContentRepository.shared.lessonStartedDownloading(self.lesson.id)
+        ContentRepository.shared.lessonStartedDownloading(self.lesson.id, mediaType: self.mediaType)
         
     }
     
@@ -610,8 +654,8 @@ extension LessonPlayerViewController: AudioPlayerDelegate, VideoPlayerDelegate {
 
 
 extension LessonPlayerViewController: ContentRepositoryDownloadDelegate {
-    func downloadCompleted(downloadId: Int) {
-        ContentRepository.shared.lessonEndedDownloading(lesson.id)
+    func downloadCompleted(downloadId: Int, mediaType: JTLessonMediaType) {
+        ContentRepository.shared.lessonEndedDownloading(lesson.id, mediaType: mediaType)
         if let gemaraLesson = self.lesson as? JTGemaraLesson {
             ContentRepository.shared.addLessonToDownloaded(gemaraLesson, sederId: self.sederId, masechetId: self.masechetId)
         }
@@ -630,9 +674,8 @@ extension LessonPlayerViewController: ContentRepositoryDownloadDelegate {
         
     }
     
-    func downloadProgress(downloadId: Int, progress: Float) {
+    func downloadProgress(downloadId: Int, progress: Float, mediaType: JTLessonMediaType) {
         if downloadId == self.lesson.id {
-            print("GemaraLessonsViewController downloadProgress, progress: \(progress)")
             self.portraitDownloadProgressView.value = CGFloat(progress*100)
             self.landscapeDownlaodProgressView.value = CGFloat(progress*100)
         }
