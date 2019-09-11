@@ -1,7 +1,7 @@
 //בעזרת ה׳ החונן לאדם דעת
 //  DownloadsViewController.swift
 //  Jabrutouch
-//
+//e
 //  Created by Yoni Reiss on 18/07/2019.
 //  Copyright © 2019 Ravtech. All rights reserved.
 //
@@ -31,6 +31,7 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var mishnaTableView: UITableView!
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var gemaraLeadingConsraint: NSLayoutConstraint!
+    @IBOutlet weak var titleLabel: UILabel!
     
     var delegate: MainModalDelegate?
     fileprivate var grayUpArrowXCentererdToGemara: NSLayoutConstraint?
@@ -62,6 +63,7 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         
         setTableViews()
         setViews()
+        setStrings()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,6 +77,16 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     // MARK: - Setup
     //========================================
     
+    fileprivate func setStrings() {
+        self.gemaraButton.setTitle(Strings.gemara, for: .normal)
+        self.mishnaButton.setTitle(Strings.mishna, for: .normal)
+        self.deleteButton.setTitle(Strings.delete, for: .normal)
+        self.gemaraViewAllLessonsButton.setTitle(Strings.viewAllTheLessons, for: .normal)
+        self.mishnaViewAllLessonsButton.setTitle(Strings.viewAllTheLessons, for: .normal)
+        self.gemaraNoDownloadedFilesMessage.text = Strings.noDownloadedFilesYet
+        self.mishnaNoDownloadedFilesMessage.text = Strings.noDownloadedFilesYet
+        self.titleLabel.text = Strings.downloads
+    }
     
     fileprivate func setSelectedPage() {
         setButtonsColorAndFont()

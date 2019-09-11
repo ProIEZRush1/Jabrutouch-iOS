@@ -46,6 +46,11 @@ class MishnaChapterViewController: UIViewController, UITableViewDelegate, UITabl
     private func setContent() {
         if let id = self.masechetId {
             self.masechet = ContentRepository.shared.getMishanMasechet(masechetId: id)
+            if self.masechet?.chapters.isEmpty ?? true {
+                Utils.showAlertMessage(Strings.noLessons, title: nil, viewControler: self) { (acton) in
+                    self.navigationController?.popViewController(animated: true)
+                }
+            }
             self.tableView.reloadData()
         }
     }

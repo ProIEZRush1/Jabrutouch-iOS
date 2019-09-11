@@ -14,6 +14,7 @@ class AlertViewController: UIViewController {
     // MARK: - @IBOutlets and Fields
     //========================================
     
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
@@ -27,7 +28,8 @@ class AlertViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.titleLabel.text = Strings.areYouSure
+        self.logoutButton.setTitle(Strings.logout, for: .normal)
         self.setCorners()
     }
     

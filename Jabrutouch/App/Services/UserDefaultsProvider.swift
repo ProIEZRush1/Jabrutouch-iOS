@@ -15,7 +15,7 @@ class UserDefaultsProvider {
         case currentPassword = "CurrentPassword"
         case currentUser = "CurrentUser"
         case seenWalkThrough = "SeenWalkThrough"
-        case firstTime = "firstTime"
+        case notFirstTime = "notFirstTime"
         case appLanguages = "AppleLanguages"
     }
     
@@ -81,12 +81,12 @@ class UserDefaultsProvider {
         }
     }
     
-    var firstTime: Bool {
+    var notFirstTime: Bool {
         get {
-            return self.defaults.bool(forKey: "firstTime")
+            return self.defaults.bool(forKey: UserDefaultsKeys.notFirstTime.rawValue)
         }
         set (value) {
-            self.defaults.set(value, forKey: "firstTime")
+            self.defaults.set(value, forKey: UserDefaultsKeys.notFirstTime.rawValue)
             self.defaults.synchronize()
         }
     }

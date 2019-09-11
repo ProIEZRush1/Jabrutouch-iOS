@@ -72,7 +72,7 @@
                             </connections>
                         </button>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="lza-jw-Xcp">
-                            <rect key="frame" x="0.0" y="554" width="53" height="264"/>
+                            <rect key="frame" x="0.0" y="620" width="53" height="198"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iXS-nr-aOH" customClass="UICircularProgressRing" customModule="UICircularProgressRing">
                                     <rect key="frame" x="0.0" y="0.0" width="53" height="66"/>
@@ -127,7 +127,7 @@
                                         <action selector="chatButtonPressed:" destination="-1" eventType="touchUpInside" id="3Sq-ZS-RMu"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="etC-d3-PiM">
+                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="etC-d3-PiM">
                                     <rect key="frame" x="0.0" y="198" width="53" height="66"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="66" id="leI-uy-SCI"/>
@@ -170,7 +170,7 @@
                                     </connections>
                                 </button>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="WbF-Cb-2TC">
-                                    <rect key="frame" x="150" y="0.0" width="264" height="53"/>
+                                    <rect key="frame" x="216" y="0.0" width="198" height="53"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fUW-2f-Iiz" customClass="UICircularProgressRing" customModule="UICircularProgressRing">
                                             <rect key="frame" x="0.0" y="0.0" width="66" height="53"/>
@@ -225,7 +225,7 @@
                                                 <action selector="chatButtonPressed:" destination="-1" eventType="touchUpInside" id="Pd7-ks-kom"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gK7-YQ-sez">
+                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gK7-YQ-sez">
                                             <rect key="frame" x="198" y="0.0" width="66" height="53"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="66" id="qMh-3O-Clf"/>

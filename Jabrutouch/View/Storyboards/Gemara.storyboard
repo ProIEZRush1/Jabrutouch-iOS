@@ -51,7 +51,7 @@
                                     <action selector="backPressed:" destination="w5P-xi-dck" eventType="touchUpInside" id="u48-Dk-NXB"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C6e-xc-Jym" userLabel="Loupe Button">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C6e-xc-Jym" userLabel="Loupe Button">
                                 <rect key="frame" x="348" y="44" width="66" height="53"/>
                                 <accessibility key="accessibilityConfiguration" identifier="GVC Loupe Btn"/>
                                 <constraints>
@@ -163,6 +163,7 @@
                     <navigationItem key="navigationItem" id="NnZ-PU-wDL"/>
                     <connections>
                         <outlet property="tableView" destination="qqP-TU-LAx" id="yYf-wK-O49"/>
+                        <outlet property="titleLabel" destination="pNI-SS-Jyu" id="l6e-5p-mfT"/>
                         <segue destination="sTY-0t-VEK" kind="show" identifier="showGemaraLessons" id="DuB-YU-8TA"/>
                     </connections>
                 </viewController>
@@ -179,7 +180,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pesachim" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dw0-zC-7ck">
-                                <rect key="frame" x="145.5" y="51" width="123" height="33"/>
+                                <rect key="frame" x="144.5" y="51" width="125" height="33"/>
                                 <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="28"/>
                                 <color key="textColor" red="0.17254901959999999" green="0.16862745100000001" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>

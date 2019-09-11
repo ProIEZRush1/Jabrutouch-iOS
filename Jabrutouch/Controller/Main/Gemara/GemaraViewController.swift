@@ -15,6 +15,7 @@ class GemaraViewController: UIViewController, UITableViewDelegate, UITableViewDa
     //========================================
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var titleLabel: UILabel!
     
     var delegate: MainModalDelegate?
     var openSections: Set<Int> = []
@@ -34,6 +35,7 @@ class GemaraViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         self.setTableView()
         self.setInitialOpenSections()
+        self.titleLabel.text = Strings.gemara
     }
     
     //========================================

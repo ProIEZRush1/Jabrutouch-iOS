@@ -7,10 +7,16 @@
 */
 
 "welcomeToJabrutouch" = "Welcome to \nJabrutouch";
+"welcomeToNewJabrutouch" = "¡Bienvenido al nuevo \nJabrutouch!";
+
 "jabrutouch" = "Jabrutouch";
 "learnTalmudAndGemara" = "Learn Talmud and Gemara";
 "giveTheGiftOfLearning" = "Give the gift of learning";
 "askTheRabbiJoinTheJabruta" = "Ask the Rabbi,\n join the Jabruta";
+"walkthrough1Text" = "Tu plataforma para estudiar Mishná y Guemará en cualquier lugar";
+"walkthrough2Text" = "Elige tu clase en audio o video.\nEstudia a tu gusto y a tu ritmo.";
+"walkthrough3Text" = "Con el sistema C.A.F puedes apoyar personalmente este gran proyecto.";
+"walkthrough4Text" = "Si te surge alguna pregunta, puedes resolverla con sólo apretar un botón";
 
 "emailOrPhoneNumber" = "Email or phone number";
 "password" = "Password";
@@ -46,6 +52,8 @@
 "signUp" = "Sign up";
 "signInPC" = "Sign In";
 "signUpPC" = "Sign Up";
+"recentsGemara" = "ÚLTIMAS PÁGINAS DE GUEMARÁ";
+"recentsMishna" = "ÚLTIMAS PÁGINAS DE MISHNÁ";
 
 "profile" = "Profile";
 "about" = "About";
@@ -151,3 +159,8 @@
 "pleaseConfirm" = "Please Confirm";
 "deleteThisDownload" = "Delete this download(s)?";
 "yes" = "Yes";
+
+"areYouSure"="Are you sure?";
+"done" = "Done";
+"delete" = "Delete";
+"noLessons" = "No lessons";
