@@ -39,8 +39,8 @@
                 <outlet property="portraitBackButton" destination="6YO-P4-mQY" id="J39-Zl-qHE"/>
                 <outlet property="portraitButtonsStackView" destination="WbF-Cb-2TC" id="jlO-5H-E05"/>
                 <outlet property="portraitChatButton" destination="kiR-IP-Whh" id="i3D-g2-LX3"/>
-                <outlet property="portraitDownlaodProgressView" destination="fUW-2f-Iiz" id="2XC-Bc-zwT"/>
                 <outlet property="portraitDownloadButton" destination="kEK-g4-PtD" id="Fe3-fa-gfJ"/>
+                <outlet property="portraitDownloadProgressView" destination="fUW-2f-Iiz" id="2XC-Bc-zwT"/>
                 <outlet property="portraitHeaderView" destination="PVv-ui-sj5" id="zkT-8J-sfx"/>
                 <outlet property="portraitHeaderViewHeightConstraint" destination="YEt-6E-Ier" id="DOK-L1-OV9"/>
                 <outlet property="portraitPhotoButton" destination="gK7-YQ-sez" id="hmO-hO-p5s"/>

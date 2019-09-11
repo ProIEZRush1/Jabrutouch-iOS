@@ -471,12 +471,6 @@
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CMX-b5-my3">
-                                                            <rect key="frame" x="168" y="27" width="42" height="21"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Audio" translatesAutoresizingMaskIntoConstraints="NO" id="4N3-XG-gV8">
                                                             <rect key="frame" x="269" y="29.5" width="21" height="16"/>
                                                             <constraints>
@@ -527,12 +521,45 @@
                                                                 <action selector="playVideoButtonTouchedUp:" destination="zpL-YV-WaS" eventType="touchUpOutside" id="UiX-i6-zmP"/>
                                                             </connections>
                                                         </button>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y0a-Fb-JWh" customClass="UICircularProgressRing" customModule="UICircularProgressRing">
+                                                            <rect key="frame" x="166.5" y="7.5" width="60" height="60"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="60" id="7U5-cq-L8i"/>
+                                                                <constraint firstAttribute="width" constant="60" id="Ycr-ig-JGK"/>
+                                                            </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="shouldShowValueText" value="YES"/>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="innerRingColor">
+                                                                    <color key="value" red="1" green="0.37254901959999998" blue="0.31372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="outerRingWidth">
+                                                                    <real key="value" value="1"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="minValue">
+                                                                    <real key="value" value="0.0"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="maxValue">
+                                                                    <real key="value" value="100"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="value">
+                                                                    <real key="value" value="0.0"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="startAngle">
+                                                                    <real key="value" value="270"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="outerRingColor">
+                                                                    <color key="value" red="0.16862745100000001" green="0.1764705882" blue="0.66274509800000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </view>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.99607843139999996" green="0.99607843139999996" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
                                                     <accessibility key="accessibilityConfiguration" identifier="Mishna Leson Cell Content"/>
                                                     <constraints>
                                                         <constraint firstItem="5qk-2s-D53" firstAttribute="leading" secondItem="UKg-qS-8kR" secondAttribute="trailing" id="00M-io-kbF"/>
                                                         <constraint firstItem="fua-4O-pDP" firstAttribute="leading" secondItem="BEz-O8-4hd" secondAttribute="trailing" constant="50" id="335-t8-hb4"/>
+                                                        <constraint firstItem="Y0a-Fb-JWh" firstAttribute="centerY" secondItem="OLh-nb-C0S" secondAttribute="centerY" id="4X5-ZN-r6S"/>
                                                         <constraint firstItem="VB4-BN-dkY" firstAttribute="centerY" secondItem="UKg-qS-8kR" secondAttribute="centerY" id="55E-fD-zbv"/>
                                                         <constraint firstItem="UKg-qS-8kR" firstAttribute="leading" secondItem="4N3-XG-gV8" secondAttribute="trailing" constant="33" id="5bQ-M7-z40"/>
                                                         <constraint firstItem="Tez-4Z-to1" firstAttribute="centerX" secondItem="4N3-XG-gV8" secondAttribute="centerX" id="7Cc-eG-At6"/>
@@ -543,11 +570,10 @@
                                                         <constraint firstItem="hbR-Kg-6gP" firstAttribute="centerY" secondItem="OLh-nb-C0S" secondAttribute="centerY" multiplier="1.3:1" id="MtH-p7-EX5"/>
                                                         <constraint firstItem="BEz-O8-4hd" firstAttribute="leading" secondItem="OLh-nb-C0S" secondAttribute="leading" constant="26" id="RrV-uI-YS6"/>
                                                         <constraint firstAttribute="trailing" secondItem="UKg-qS-8kR" secondAttribute="trailing" constant="25" id="SqK-zw-IJD"/>
-                                                        <constraint firstItem="CMX-b5-my3" firstAttribute="centerY" secondItem="OLh-nb-C0S" secondAttribute="centerY" id="cC6-wf-aCe"/>
+                                                        <constraint firstItem="Y0a-Fb-JWh" firstAttribute="leading" secondItem="45m-7C-8f3" secondAttribute="trailing" constant="8" id="aki-qr-Dpo"/>
                                                         <constraint firstItem="hbR-Kg-6gP" firstAttribute="leading" secondItem="4N3-XG-gV8" secondAttribute="trailing" id="fJx-zg-86v"/>
                                                         <constraint firstItem="BEz-O8-4hd" firstAttribute="centerY" secondItem="OLh-nb-C0S" secondAttribute="centerY" id="gE1-r4-cum"/>
                                                         <constraint firstAttribute="height" constant="75" id="iYz-xn-ha4"/>
-                                                        <constraint firstItem="CMX-b5-my3" firstAttribute="centerX" secondItem="OLh-nb-C0S" secondAttribute="centerX" id="nln-yG-yLR"/>
                                                         <constraint firstItem="4N3-XG-gV8" firstAttribute="centerY" secondItem="OLh-nb-C0S" secondAttribute="centerY" id="pZF-yf-XAg"/>
                                                         <constraint firstItem="45m-7C-8f3" firstAttribute="leading" secondItem="fua-4O-pDP" secondAttribute="trailing" constant="7" id="qt0-YF-Yqn"/>
                                                         <constraint firstItem="45m-7C-8f3" firstAttribute="centerY" secondItem="OLh-nb-C0S" secondAttribute="centerY" id="s8P-2J-Kgu"/>
@@ -585,7 +611,7 @@
                                             <outlet property="downloadAudioButton" destination="ufI-f0-6Z8" id="0YS-7Z-hGz"/>
                                             <outlet property="downloadAudioButtonImageView" destination="ng7-wN-7ut" id="qXb-es-ir1"/>
                                             <outlet property="downloadButtonsContainerView" destination="Gds-RT-u9W" id="oT2-2C-C8K"/>
-                                            <outlet property="downloadProgressPercentageLabel" destination="CMX-b5-my3" id="Ree-jH-aRS"/>
+                                            <outlet property="downloadProgressView" destination="Y0a-Fb-JWh" id="W4o-VL-wg5"/>
                                             <outlet property="downloadVideoButton" destination="3QU-cv-qyG" id="URZ-Or-OLc"/>
                                             <outlet property="downloadVideoButtonImageView" destination="iDk-8f-50Q" id="qKx-gi-9pM"/>
                                             <outlet property="lessonLength" destination="45m-7C-8f3" id="7cX-nM-SDy"/>

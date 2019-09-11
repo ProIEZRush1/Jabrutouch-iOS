@@ -26,8 +26,10 @@ class JTLesson: Hashable  {
     var gallery: [String]
     var presenter: JTLesssonPresenter?
     
-    var isDownloading = false
-    var downloadProgress: Float?
+    var isDownloadingAudio = false
+    var isDownloadingVideo = false
+    var audioDownloadProgress: Float?
+    var videoDownloadProgress: Float?
     //============================================
     // MARK: - Initializer
     //============================================

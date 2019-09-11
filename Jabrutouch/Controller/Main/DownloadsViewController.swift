@@ -550,7 +550,7 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     //======================================================
     
     private func playLesson(_ lesson: JTLesson, mediaType: JTLessonMediaType, masechetName: String?, sederId: String, masechetId: String, chapter: String? ) {
-        let playerVC = LessonPlayerViewController(lesson: lesson, mediaType: mediaType, sederId: sederId, masechetId: masechetId, chapter: chapter)
+        let playerVC = LessonPlayerViewController(lesson: lesson, mediaType: mediaType, sederId: sederId, masechetId: masechetId, chapter: chapter, shouldDisplayDonationPopUp: false)
         self.present(playerVC, animated: true) {
             
         }

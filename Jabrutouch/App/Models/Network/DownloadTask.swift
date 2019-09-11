@@ -9,8 +9,8 @@
 import Foundation
 
 protocol DownloadTaskDelegate: class {
-    func downloadCompleted(downloadId: Int)
-    func downloadProgress(downloadId: Int, progress: Float)
+    func downloadCompleted(downloadId: Int, mediaType: JTLessonMediaType)
+    func downloadProgress(downloadId: Int, progress: Float, mediaType: JTLessonMediaType)
 }
 
 class DownloadTask {
@@ -19,13 +19,14 @@ class DownloadTask {
     var filesDownloadProgress: [String:(totalBytesDownloaded: Int64, totalBytes: Int64)] = [:]
     var filesDownloadedSuccessfully = 0
     var filesFailedDownloading = 0
-    
+    var mediaType: JTLessonMediaType
     weak var delegate: DownloadTaskDelegate?
     
-    init(id: Int, delegate: DownloadTaskDelegate?) {
+    init(id: Int, delegate: DownloadTaskDelegate?, mediaType: JTLessonMediaType) {
         self.id = id
         self.filesToDownload = []
         self.delegate = delegate
+        self.mediaType = mediaType
     }
     
     func execute() {
@@ -79,13 +80,13 @@ class DownloadTask {
         }
         let progress: Float = Float(downloadedBytes) / Float(totalBytes)
         DispatchQueue.main.async {
-            self.delegate?.downloadProgress(downloadId: self.id, progress: progress)
+            self.delegate?.downloadProgress(downloadId: self.id, progress: progress, mediaType: self.mediaType)
         }
     }
     
     func downloadComplete() {
         DispatchQueue.main.async {
-            self.delegate?.downloadCompleted(downloadId: self.id)
+            self.delegate?.downloadCompleted(downloadId: self.id, mediaType: self.mediaType)
         }
     }
 }
