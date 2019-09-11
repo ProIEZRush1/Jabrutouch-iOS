@@ -149,7 +149,7 @@ class LessonPlayerViewController: UIViewController {
         self.setShadows()
         self.setToolBar()
         self.setPortraitHeader()
-        self.disableHeaderButtons()
+        
         self.setPortraitHeaderViewHeight()
         self.setPortraitMode()
 
@@ -436,9 +436,6 @@ class LessonPlayerViewController: UIViewController {
                 
                 self.portraitDownloadButton.isHidden = self.lesson.isAudioDownloaded
                 self.landscapeDownloadButton.isHidden = self.lesson.isAudioDownloaded
-                
-                self.portraitDownloadButton.isEnabled = !self.lesson.isDownloadingVideo
-                self.landscapeDownloadButton.isEnabled = !self.lesson.isDownloadingVideo
             }
             
         case .video:
@@ -459,13 +456,12 @@ class LessonPlayerViewController: UIViewController {
                 
                 self.portraitDownloadButton.isHidden = self.lesson.isVideoDownloaded
                 self.landscapeDownloadButton.isHidden = self.lesson.isVideoDownloaded
-                
-                self.portraitDownloadButton.isEnabled = !self.lesson.isDownloadingAudio
-                self.landscapeDownloadButton.isEnabled = !self.lesson.isDownloadingAudio
-
+            
             }
             
         }
+        
+        self.disableHeaderButtons()
     }
     
     private func updateAudioSliderTimes(currentTime: TimeInterval, duration: TimeInterval) {
