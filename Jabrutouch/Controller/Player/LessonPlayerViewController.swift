@@ -56,6 +56,7 @@ class LessonPlayerViewController: UIViewController {
     @IBOutlet weak var pdfViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var pdfViewLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var pdfViewTrailingConstraint: NSLayoutConstraint!
+    
     //====================================================
     // MARK: - Properties
     //====================================================
@@ -82,6 +83,20 @@ class LessonPlayerViewController: UIViewController {
     
     private var shouldStartPlay: Bool = false
     private var didSetMediaUrl: Bool = false
+    
+    private var activityViewPortraitFrame: CGRect {
+        let y = self.portraitHeaderView.frame.maxY
+        return CGRect(x: 0, y: y, width: self.view.frame.width, height: self.view.frame.height - y)
+    }
+    
+    private var activityViewLandscapeFrame: CGRect {
+        let x = self.landscapeHeaderView.frame.maxX
+        return CGRect(x: x, y: 0, width: self.view.frame.width - x, height: self.view.frame.height)
+    }
+    
+    private var isLandscape: Bool {
+        return UIScreen.main.bounds.height < UIScreen.main.bounds.width
+    }
     //====================================================
     // MARK: - LifeCycle
     //====================================================
@@ -124,7 +139,7 @@ class LessonPlayerViewController: UIViewController {
         super.viewWillAppear(animated)
         
         self.presentDonateAlert()
-
+        self.disableHeaderButtons()
         self.showActivityView()
         self.roundCorners()
         self.setPlayers()
@@ -163,7 +178,7 @@ class LessonPlayerViewController: UIViewController {
     @objc func orientationDidChange(_ notification: Notification) {
         print(UIDevice.current.orientation.rawValue)
         print(self.view.frame)
-        if UIScreen.main.bounds.height < UIScreen.main.bounds.width {
+        if self.isLandscape {
             self.setLandscapeMode()
         }
         else  {
@@ -278,6 +293,10 @@ class LessonPlayerViewController: UIViewController {
         UIView.animate(withDuration: 0.4) {
             self.view.updateConstraints()
             self.view.layoutIfNeeded()
+            
+            if self.activityView != nil {
+                self.activityView?.frame = self.activityViewPortraitFrame
+            }
         }
         self.videoPlayer.setMode(self.videoPlayerMode)
         
@@ -324,6 +343,10 @@ class LessonPlayerViewController: UIViewController {
         UIView.animate(withDuration: 0.4) {
             self.view.updateConstraints()
             self.view.layoutIfNeeded()
+            
+            if self.activityView != nil {
+                self.activityView?.frame = self.activityViewLandscapeFrame
+            }
         }
         if self.videoPlayerMode == .regular || self.videoPlayerMode == .small{
             self.videoPlayer.setMode(.small)
@@ -423,6 +446,33 @@ class LessonPlayerViewController: UIViewController {
         self.audioEndTimeButton.setTitle(title, for: .normal)
     }
     
+    private func disableHeaderButtons() {
+        self.portraitDownloadButton.isEnabled = false
+        self.landscapeDownloadButton.isEnabled = false
+        
+        self.portraitChatButton.isEnabled = false
+        self.landscapeChatButton.isEnabled = false
+        
+        self.portraitPhotoButton.isEnabled = false
+        self.landscapePhotoButton.isEnabled = false
+        
+        self.audioSlider.isEnabled = false
+        self.audioEndTimeButton.isEnabled = false
+    }
+    
+    private func enableHeaderButtons() {
+        self.portraitDownloadButton.isEnabled = true
+        self.landscapeDownloadButton.isEnabled = true
+        
+        self.portraitChatButton.isEnabled = true
+        self.landscapeChatButton.isEnabled = true
+        
+        self.portraitPhotoButton.isEnabled = true
+        self.landscapePhotoButton.isEnabled = true
+        
+        self.audioSlider.isEnabled = true
+        self.audioEndTimeButton.isEnabled = true
+    }
     //====================================================
     // MARK: - Content setup
     //====================================================
@@ -504,7 +554,8 @@ class LessonPlayerViewController: UIViewController {
     private func showActivityView() {
         DispatchQueue.main.async {
             if self.activityView == nil {
-                self.activityView = Utils.showActivityView(inView: self.view, withFrame: self.view.frame, text: nil)
+                let frame = self.isLandscape ? self.activityViewLandscapeFrame : self.activityViewPortraitFrame
+                self.activityView = Utils.showActivityView(inView: self.view, withFrame: frame, text: nil)
             }
         }
     }
@@ -542,6 +593,7 @@ extension LessonPlayerViewController: AudioPlayerDelegate, VideoPlayerDelegate {
     }
     
     func didStartPlaying() {
+        self.enableHeaderButtons()
         self.removeActivityView()
     }
     

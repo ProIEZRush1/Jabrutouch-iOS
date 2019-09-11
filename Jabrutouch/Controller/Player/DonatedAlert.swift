@@ -13,6 +13,10 @@ protocol DonatedAlertDelegate: class {
 }
 
 class DonatedAlert: UIViewController {
+    
+    //====================================================
+    // MARK: - @IBOutlets
+    //====================================================
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var startBtn: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
@@ -20,7 +24,20 @@ class DonatedAlert: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var location: UILabel!
     
+    //====================================================
+    // MARK: - Properties
+    //====================================================
+    
     weak var delegate: DonatedAlertDelegate?
+    
+    //====================================================
+    // MARK: - Life Cycle
+    //====================================================
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return [.portrait]
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setStrings()
@@ -32,6 +49,9 @@ class DonatedAlert: UIViewController {
         Bundle.main.loadNibNamed("DonatedAlert", owner: self, options: nil)
     }
 
+    //====================================================
+    // MARK: - Setup
+    //====================================================
     func setStrings() {
         self.titleLabel.text = Strings.donatedTitle
         self.startBtn.setTitle(Strings.donatedBtn, for: .normal)
@@ -42,19 +62,14 @@ class DonatedAlert: UIViewController {
         self.startBtn.layer.cornerRadius = 18
     }
     
+    //====================================================
+    // MARK: - @IBActions
+    //====================================================
+    
     @IBAction func startButtonPressed(_ sender: UIButton) {
         self.dismiss(animated: true) {
             self.delegate?.didDismiss()
         }
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

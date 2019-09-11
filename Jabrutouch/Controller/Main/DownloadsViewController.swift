@@ -59,15 +59,8 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         initialGrayUpArrowXCentererdToGemara.isActive = false
         grayUpArrowXCentererdToGemara = grayUpArrow.centerXAnchor.constraint(equalTo: gemaraButton.centerXAnchor)
         grayUpArrowXCentererdToMishna = grayUpArrow.centerXAnchor.constraint(equalTo: mishnaButton.centerXAnchor)
-        gemaraTableView.register(UINib(nibName: "DownloadsHeaderCell", bundle: nil), forHeaderFooterViewReuseIdentifier: "headerCell")
-        mishnaTableView.register(UINib(nibName: "DownloadsHeaderCell", bundle: nil), forHeaderFooterViewReuseIdentifier: "headerCell")
-        gemaraTableView.delegate = self
-        gemaraTableView.dataSource = self
-        mishnaTableView.delegate = self
-        mishnaTableView.dataSource = self
         
-        tableViewsMap[GEMARA] = gemaraTableView
-        tableViewsMap[MISHNA] = mishnaTableView
+        setTableViews()
         setViews()
     }
     
@@ -170,6 +163,18 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         self.mishnaDownloads = ContentRepository.shared.getDownloadedMishnaLessons()
         self.gemaraTableView.reloadData()
         self.mishnaTableView.reloadData()
+    }
+    
+    private func setTableViews() {
+        gemaraTableView.register(UINib(nibName: "DownloadsHeaderCell", bundle: nil), forHeaderFooterViewReuseIdentifier: "headerCell")
+        mishnaTableView.register(UINib(nibName: "DownloadsHeaderCell", bundle: nil), forHeaderFooterViewReuseIdentifier: "headerCell")
+        gemaraTableView.delegate = self
+        gemaraTableView.dataSource = self
+        mishnaTableView.delegate = self
+        mishnaTableView.dataSource = self
+        
+        tableViewsMap[GEMARA] = gemaraTableView
+        tableViewsMap[MISHNA] = mishnaTableView
     }
     //=======================================================
     // MARK: - UITableView Data Source and Delegate section
@@ -353,8 +358,8 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     
     // Note: coudln't avoid code reuse by writing help function or dictionaries
     func cellDeletePressed(_ cell: DownloadsCellController) {
-        let alert = UIAlertController(title: "Please Confirm", message: "Delete this download(s)?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default, handler: { action in
+        let alert = UIAlertController(title: Strings.pleaseConfirm, message: Strings.deleteThisDownload, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: Strings.yes, style: UIAlertAction.Style.default, handler: { action in
             if cell.isFirstTable {
                 if let indexPath = self.gemaraTableView.indexPath(for: cell) {
                    
@@ -390,7 +395,7 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
                 }
             }
         }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: Strings.cancel, style: UIAlertAction.Style.cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     
@@ -509,9 +514,9 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         isDeleting = !isDeleting
         
         if isDeleting {
-            deleteButton.setTitle("Done",for: .normal)
+            deleteButton.setTitle(Strings.done,for: .normal)
         } else {
-            deleteButton.setTitle("Delete",for: .normal)
+            deleteButton.setTitle(Strings.delete,for: .normal)
         }
         
         gemaraTableView.reloadData()

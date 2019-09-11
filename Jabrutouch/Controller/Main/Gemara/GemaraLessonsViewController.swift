@@ -27,6 +27,7 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
     
     private var activityView: ActivityView?
     
+    
     //========================================
     // MARK: - LifeCycle
     //========================================
@@ -211,7 +212,7 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
         
         if isCurrentlyEditing {
             downloadButton.setImage(nil, for: .normal)
-            downloadButton.setTitle("Done", for: .normal)
+            downloadButton.setTitle(Strings.done, for: .normal)
         } else {
             downloadButton.setImage(UIImage(named: "Download"), for: .normal)
             downloadButton.setTitle("", for: .normal)
