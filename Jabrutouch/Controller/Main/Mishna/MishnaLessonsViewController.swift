@@ -130,6 +130,7 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
         setCellImages(cell, lesson: lesson)
         setEditingIfNeeded(cell, lesson: lesson)
         setCellDownloadMode(cell, lesson: lesson)
+        cell.setHiddenButtonsForLesson(lesson)
         
         cell.downloadButtonsContainerView.layoutIfNeeded()
         cell.cellView.layoutIfNeeded()
@@ -350,7 +351,7 @@ extension MishnaLessonsViewController: ContentRepositoryDownloadDelegate {
         setCellImages(cell, lesson: self.lessons[index])
         setEditingIfNeeded(cell, lesson: self.lessons[index])
         setCellDownloadMode(cell, lesson: self.lessons[index])
-        
+        cell.setHiddenButtonsForLesson(self.lessons[index])
         print("GemaraLessonsViewController downloadProgress, progress: \(progress)")
     }
 }

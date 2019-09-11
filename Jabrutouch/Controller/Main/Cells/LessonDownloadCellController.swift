@@ -30,6 +30,18 @@ class LessonDownloadCellController: UITableViewCell {
     var selectedRow: Int = 0
     weak var delegate: MishnaLessonCellDelegate?
     
+    func setHiddenButtonsForLesson(_ lesson: JTLesson) {
+        self.playAudioButton.isHidden = (lesson.audioURL == nil)
+        self.playVideoButton.isHidden = (lesson.videoURL == nil)
+        self.audioImage.isHidden = (lesson.audioURL == nil)
+        self.videoImage.isHidden = (lesson.videoURL == nil)
+        
+        self.downloadAudioButton.isHidden = (lesson.audioURL == nil)
+        self.downloadVideoButton.isHidden = (lesson.videoURL == nil)
+        self.downloadAudioButtonImageView.isHidden = (lesson.audioURL == nil)
+        self.downloadVideoButtonImageView.isHidden = (lesson.videoURL == nil)
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         let cellGestureRecognizer = (UITapGestureRecognizer(target: self, action: #selector(cellPressed)))

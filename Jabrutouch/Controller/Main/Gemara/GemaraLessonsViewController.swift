@@ -127,7 +127,7 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
         setCellImages(cell, lesson: lesson)
         setCellEditingIfNeeded(cell, lesson: lesson)
         setCellDownloadMode(cell, lesson: lesson)
-        
+        cell.setHiddenButtonsForLesson(lesson)
         
         cell.downloadButtonsContainerView.layoutIfNeeded()
         cell.cellView.layoutIfNeeded()
@@ -206,7 +206,7 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
         cell.audioImage.alpha = lesson.isDownloading ? 0.3 : 1.0
         cell.videoImage.alpha = lesson.isDownloading ? 0.3 : 1.0
     }
-    
+        
     private func toggleEditingMode() {
         isCurrentlyEditing = !isCurrentlyEditing
         
@@ -347,8 +347,8 @@ extension GemaraLessonsViewController: ContentRepositoryDownloadDelegate {
         setCellImages(cell, lesson: self.lessons[index])
         setCellEditingIfNeeded(cell, lesson: self.lessons[index])
         setCellDownloadMode(cell, lesson: self.lessons[index])
+        cell.setHiddenButtonsForLesson(self.lessons[index])
 //        self.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
-        print("GemaraLessonsViewController downloadProgress, progress: \(progress)")
     }
 }
 

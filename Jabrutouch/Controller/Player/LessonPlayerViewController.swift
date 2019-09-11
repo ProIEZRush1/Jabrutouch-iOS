@@ -81,9 +81,9 @@ class LessonPlayerViewController: UIViewController {
     
     private var activityView: ActivityView?
     
-    private var shouldStartPlay: Bool = false
     private var didSetMediaUrl: Bool = false
-    
+    private var shouldStartPlay: Bool
+    private var shouldDisplayDonationPopUp: Bool
     private var activityViewPortraitFrame: CGRect {
         let y = self.portraitHeaderView.frame.maxY
         return CGRect(x: 0, y: y, width: self.view.frame.width, height: self.view.frame.height - y)
@@ -101,13 +101,14 @@ class LessonPlayerViewController: UIViewController {
     // MARK: - LifeCycle
     //====================================================
     
-    init(lesson: JTLesson, mediaType: JTLessonMediaType, sederId: String, masechetId: String, chapter: String?) {
+    init(lesson: JTLesson, mediaType: JTLessonMediaType, sederId: String, masechetId: String, chapter: String?, shouldDisplayDonationPopUp: Bool = true) {
         self.lesson = lesson
         self.sederId = sederId
         self.masechetId = masechetId
         self.chapter = chapter
         self.mediaType = mediaType
-        
+        self.shouldDisplayDonationPopUp = shouldDisplayDonationPopUp
+        self.shouldStartPlay = !shouldDisplayDonationPopUp
         super.init(nibName: "LessonPlayerViewController", bundle: Bundle.main)
     }
     
@@ -138,7 +139,10 @@ class LessonPlayerViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.presentDonateAlert()
+        if self.shouldDisplayDonationPopUp {
+            self.presentDonateAlert()
+        }
+        
         self.disableHeaderButtons()
         self.showActivityView()
         self.roundCorners()

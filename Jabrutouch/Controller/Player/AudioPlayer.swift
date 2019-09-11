@@ -315,7 +315,7 @@ class AudioPlayer: UIView {
         let commandCenter = MPRemoteCommandCenter.shared()
         
         // Add handler for Play/Pause Commande
-        commandCenter.playCommand.addTarget(self, action: #selector(self.play))        
+        commandCenter.playCommand.addTarget(self, action: #selector(self.play))
         commandCenter.pauseCommand.addTarget(self, action: #selector(self.pause))
         
         commandCenter.playCommand.isEnabled = true
