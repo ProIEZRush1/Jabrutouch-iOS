@@ -118,6 +118,7 @@ class AudioPlayer: UIView {
         self.pause()
         self.player = nil
         self.stopTimeUpdateTimer()
+        self.removeRemoteTransportControls()
     }
     //----------------------------------------------------
     // MARK: - Methods
@@ -146,7 +147,7 @@ class AudioPlayer: UIView {
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
             try AVAudioSession.sharedInstance().setActive(true)
-//            self.setupRemoteTransportControls()
+            self.setupRemoteTransportControls()
         }
         
         catch {
@@ -234,7 +235,7 @@ class AudioPlayer: UIView {
         }
         
     }
-    func play() {
+    @objc func play() {
         guard let player = self.player else { return }
         self.playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
         player.play()
@@ -242,7 +243,7 @@ class AudioPlayer: UIView {
         self.startPlayDate = Date()
     }
     
-    private func pause() {
+    @objc  func pause() {
         self.player?.pause()
         self.playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
         self.stopTimeUpdateTimer()
@@ -314,15 +315,8 @@ class AudioPlayer: UIView {
         let commandCenter = MPRemoteCommandCenter.shared()
         
         // Add handler for Play/Pause Commande
-        commandCenter.playCommand.addTarget { [unowned self] event in
-            self.play()
-            return .success
-        }
-        
-        commandCenter.pauseCommand.addTarget { [unowned self] event in
-            self.pause()
-            return .success
-        }
+        commandCenter.playCommand.addTarget(self, action: #selector(self.play))        
+        commandCenter.pauseCommand.addTarget(self, action: #selector(self.pause))
         
         commandCenter.playCommand.isEnabled = true
         commandCenter.pauseCommand.isEnabled = true

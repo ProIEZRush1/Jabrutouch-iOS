@@ -431,13 +431,13 @@ class ContentRepository {
         let downloadTask = DownloadTask(id: lesson.id, delegate: delegate)
         switch mediaType {
         case .audio:
-            downloadTask.filesToDownload.append((lesson.audioLink, .s3, lesson.audioLocalFileName))
+            downloadTask.filesToDownload.append((lesson.audioLink ?? "", .s3, lesson.audioLocalFileName))
         case .video:
-            downloadTask.filesToDownload.append((lesson.videoLink, .vimeo, lesson.videoLoaclFileName))
+            downloadTask.filesToDownload.append((lesson.videoLink ?? "", .vimeo, lesson.videoLoaclFileName))
         }
         
         if lesson.isTextFileDownloaded == false {
-            downloadTask.filesToDownload.append((lesson.textLink, .s3, lesson.textLocalFileName))
+            downloadTask.filesToDownload.append((lesson.textLink ?? "", .s3, lesson.textLocalFileName))
         }
         
         downloadTask.execute()
