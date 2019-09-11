@@ -72,4 +72,279 @@ class Strings {
     class var donations: String {
         return NSLocalizedString("donations", comment: "")
     }
+    
+    class var viewAllTheLessons: String {
+        return NSLocalizedString("viewAllTheLessons", comment: "")
+    }
+    
+    class var noDownloadedFilesYet: String {
+        return NSLocalizedString("noDownloadedFilesYet", comment: "")
+    }
+    
+    class var verification: String {
+        return NSLocalizedString("verification", comment: "")
+    }
+    
+    class var weWillSendOTP: String {
+        return NSLocalizedString("weWillSendOTP", comment: "")
+    }
+    
+    class var country: String {
+        return NSLocalizedString("country", comment: "")
+    }
+    
+    class var phoneNumber: String {
+        return NSLocalizedString("phoneNumber", comment: "")
+    }
+    
+    class var send: String {
+        return NSLocalizedString("send", comment: "")
+    }
+    
+    class var verificationCode: String {
+        return NSLocalizedString("verificationCode", comment: "")
+    }
+    
+    class var enterTheVerificationCodeSentTo: String {
+        return NSLocalizedString("enterTheVerificationCodeSentTo", comment: "")
+    }
+    
+    class var resendCode: String {
+        return NSLocalizedString("resendCode", comment: "")
+    }
+    
+    class var sendAgain: String {
+        return NSLocalizedString("sendAgain", comment: "")
+    }
+    
+    class var firstName: String {
+        return NSLocalizedString("firstName", comment: "")
+    }
+    
+    class var surname: String {
+        return NSLocalizedString("surname", comment: "")
+    }
+    
+    class var emailAddress: String {
+        return NSLocalizedString("emailAddress", comment: "")
+    }
+    
+    class var alreadyHaveAnAccountSignIn: String {
+        return NSLocalizedString("alreadyHaveAnAccountSignIn", comment: "")
+    }
+    
+    class var signInPC: String {
+        return NSLocalizedString("signInPC", comment: "")
+    }
+    
+    class var signUpPC: String {
+        return NSLocalizedString("signUpPC", comment: "")
+    }
+    
+    class var profile: String {
+        return NSLocalizedString("profile", comment: "")
+    }
+    
+    class var about: String {
+        return NSLocalizedString("about", comment: "")
+    }
+    
+    class var messagesCenter: String {
+        return NSLocalizedString("messagesCenter", comment: "")
+    }
+    
+    class var donationsCenter: String {
+        return NSLocalizedString("donationsCenter", comment: "")
+    }
+    
+    class var donate: String {
+        return NSLocalizedString("donate", comment: "")
+    }
+    
+    class var logout: String {
+        return NSLocalizedString("logout", comment: "")
+    }
+    
+    class var passwordMissing: String {
+        return NSLocalizedString("passwordMissing", comment: "")
+    }
+    
+    class var usernameInvalid: String {
+        return NSLocalizedString("usernameInvalid", comment: "")
+    }
+    
+    class var usernameMissing: String {
+        return NSLocalizedString("usernameMissing", comment: "")
+    }
+    
+    class var ok: String {
+        return NSLocalizedString("ok", comment: "")
+    }
+    
+    class var error: String {
+        return NSLocalizedString("error", comment: "")
+    }
+    
+    class var signOut: String {
+        return NSLocalizedString("signOut", comment: "")
+    }
+    
+    class var phoneNumberMissing: String {
+        return NSLocalizedString("phoneNumberMissing", comment: "")
+    }
+    
+    class var phoneNumberInvalid: String {
+        return NSLocalizedString("phoneNumberInvalid", comment: "")
+    }
+    
+    class var pleaseSelectCountry: String {
+        return NSLocalizedString("pleaseSelectCountry", comment: "")
+    }
+    
+    class var firstNameMissing: String {
+        return NSLocalizedString("firstNameMissing", comment: "")
+    }
+    
+    class var lastNameMissing: String {
+        return NSLocalizedString("lastNameMissing", comment: "")
+    }
+    
+    class var emailIsMissing: String {
+        return NSLocalizedString("emailIsMissing", comment: "")
+    }
+    
+    class var emailInvalid: String {
+        return NSLocalizedString("emailInvalid", comment: "")
+    }
+    
+    class var missingField: String {
+        return NSLocalizedString("missingField", comment: "")
+    }
+    
+    class var invalidField: String {
+        return NSLocalizedString("invalidField", comment: "")
+    }
+    
+    class var todaysDafYomi: String {
+        return NSLocalizedString("todaysDafYomi", comment: "")
+    }
+    
+    class var pages: String {
+        return NSLocalizedString("pages", comment: "")
+    }
+    
+    class var page: String {
+        return NSLocalizedString("page", comment: "")
+    }
+    
+    class var chapter: String {
+        return NSLocalizedString("chapter", comment: "")
+    }
+    
+    class var chapters: String {
+        return NSLocalizedString("chapters", comment: "")
+    }
+    
+    class var seder: String {
+        return NSLocalizedString("seder", comment: "")
+    }
+    
+    class var mishnayot: String {
+        return NSLocalizedString("mishnayot", comment: "")
+    }
+    
+    class var minutesShorthand: String {
+        return NSLocalizedString("minutesShorthand", comment: "")
+    }
+    class var donatedTitle: String {
+        return NSLocalizedString("donatedTitle", comment: "")
+    }
+    class var donatedBtn: String {
+        return NSLocalizedString("donatedBtn", comment: "")
+    }
+    
+    class var signInTitle: String {
+        return NSLocalizedString("signInTitle", comment: "")
+    }
+    
+    class var welcomeToTheNewJabrutouch: String {
+        return NSLocalizedString("welcomeToTheNewJabrutouch!", comment: "")
+    }
+    
+    class var recentPagesOnGemara: String {
+        return NSLocalizedString("recentPagesOnGemara", comment: "")
+    }
+    
+    class var recentPagesOnMishna: String {
+        return NSLocalizedString("recentPagesOnMishna", comment: "")
+    }
+
+    class var inDevelopment: String {
+        return NSLocalizedString("inDevelopment", comment: "")
+    }
+   
+    class var aboutText: String {
+        return NSLocalizedString("aboutText", comment: "")
+    }
+ 
+    class var aboutUs: String {
+        return NSLocalizedString("aboutUs", comment: "")
+    }
+
+    class var done: String {
+        return NSLocalizedString("done", comment: "")
+    }
+    
+    class var cancel: String {
+        return NSLocalizedString("cancel", comment: "")
+    }
+    
+    class var delete: String {
+        return NSLocalizedString("delete", comment: "")
+    }
+    
+    class var pleaseConfirm: String {
+        return NSLocalizedString("pleaseConfirm", comment: "")
+    }
+    
+    class var deleteThisDownload: String {
+        return NSLocalizedString("deleteThisDownload", comment: "")
+    }
+    
+    class var yes: String {
+        return NSLocalizedString("yes", comment: "")
+    }
+    
+    class var areYouSure: String {
+        return NSLocalizedString("areYouSure", comment: "")
+    }
+    class var walkthrough1Text: String {
+        return NSLocalizedString("walkthrough1Text", comment: "")
+    }
+    class var walkthrough2Text: String {
+        return NSLocalizedString("walkthrough2Text", comment: "")
+    }
+    class var walkthrough3Text: String {
+        return NSLocalizedString("walkthrough3Text", comment: "")
+    }
+    
+    class var walkthrough4Text: String {
+        return NSLocalizedString("walkthrough4Text", comment: "")
+    }
+    
+    class var recentsGemara: String {
+        return NSLocalizedString("recentsGemara", comment: "")
+    }
+    
+    class var recentsMishna: String {
+        return NSLocalizedString("recentsMishna", comment: "")
+    }
+    
+    class var welcomeToNewJabrutouch: String {
+        return NSLocalizedString("welcomeToNewJabrutouch", comment: "")
+    }
+        
+    class var noLessons: String {
+        return NSLocalizedString("noLessons", comment: "")
+    }
 }

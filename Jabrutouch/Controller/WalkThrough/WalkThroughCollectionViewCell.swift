@@ -12,6 +12,7 @@ class WalkThroughCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet var imageViews: [UIImageView]!
+    @IBOutlet weak var textLabel: UILabel!
     
     func setIndex(_ index: Int) {
         self.setTitle(index)
@@ -22,12 +23,16 @@ class WalkThroughCollectionViewCell: UICollectionViewCell {
         switch index {
         case 0:
             self.titleLabel.text = Strings.welcomeToJabrutouch
+            self.textLabel.text = Strings.walkthrough1Text
         case 1:
             self.titleLabel.text = Strings.learnTalmudAndGemara
+            self.textLabel.text = Strings.walkthrough2Text
         case 2:
             self.titleLabel.text = Strings.giveTheGiftOfLearning
+            self.textLabel.text = Strings.walkthrough3Text
         case 3:
             self.titleLabel.text = Strings.askTheRabbiJoinTheJabruta
+            self.textLabel.text = Strings.walkthrough4Text
         default:
             break
         }

@@ -1,5 +1,5 @@
 //בעזרת ה׳ החונן לאדם דעת
-//  JBBarPageIndicator.swift
+//  JTBarPageIndicator.swift
 //  Jabrutouch
 //
 //  Created by Yoni Reiss on 16/07/2019.
@@ -9,7 +9,7 @@
 import UIKit
 
 @IBDesignable
-class JBBarPageIndicator: UIView {
+class JTBarPageIndicator: UIView {
 
     @IBInspectable var selectedIndex: Int = 0 {
         didSet {

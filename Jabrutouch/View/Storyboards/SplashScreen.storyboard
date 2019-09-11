@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GDy-cJ-b4M">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Splash Screen View Controller-->
+        <scene sceneID="X2E-qG-2lL">
+            <objects>
+                <viewController storyboardIdentifier="SplashScreenViewController" id="GDy-cJ-b4M" customClass="SplashScreenViewController" customModule="Jabrutouch" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YAX-wK-hNL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="splash" translatesAutoresizingMaskIntoConstraints="NO" id="bT4-j1-sLH">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="906"/>
+                            </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="vBZ-IG-GeV">
+                                <rect key="frame" x="188.5" y="434.5" width="37" height="37"/>
+                                <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="bT4-j1-sLH" firstAttribute="leading" secondItem="YAX-wK-hNL" secondAttribute="leading" id="GZQ-6V-o4M"/>
+                            <constraint firstItem="vBZ-IG-GeV" firstAttribute="centerX" secondItem="joU-nI-APl" secondAttribute="centerX" id="N18-Cx-yD1"/>
+                            <constraint firstItem="vBZ-IG-GeV" firstAttribute="centerY" secondItem="joU-nI-APl" secondAttribute="centerY" id="O9U-6o-CLL"/>
+                            <constraint firstAttribute="bottom" secondItem="bT4-j1-sLH" secondAttribute="bottom" constant="-10" id="SxT-06-AAO"/>
+                            <constraint firstItem="bT4-j1-sLH" firstAttribute="top" secondItem="YAX-wK-hNL" secondAttribute="top" id="gzk-1b-CiQ"/>
+                            <constraint firstAttribute="trailing" secondItem="bT4-j1-sLH" secondAttribute="trailing" id="luo-XV-lId"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="joU-nI-APl"/>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="vBZ-IG-GeV" id="IWL-Dc-wy7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p4y-BU-FyG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-110.14492753623189" y="-77.008928571428569"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="splash" width="422" height="744"/>
+    </resources>
+</document>
