@@ -25,7 +25,7 @@ class LessonPlayerViewController: UIViewController {
     @IBOutlet weak var portraitDownloadButton: UIButton!
     @IBOutlet weak var portraitChatButton: UIButton!
     @IBOutlet weak var portraitPhotoButton: UIButton!
-    @IBOutlet weak var portraitDownlaodProgressView: UICircularProgressRing!
+    @IBOutlet weak var portraitDownloadProgressView: UICircularProgressRing!
     @IBOutlet weak var portraitButtonsStackView: UIStackView!
     
     @IBOutlet weak var audioSliderContainer: UIView!
@@ -419,7 +419,7 @@ class LessonPlayerViewController: UIViewController {
         self.landscapeButtonsStackView.alignment = .bottom
         
         self.landscapeDownlaodProgressView.isHidden = true
-        self.portraitDownlaodProgressView.isHidden = true
+        self.portraitDownloadProgressView.isHidden = true
         
         switch self.mediaType {
         case .audio:
@@ -518,7 +518,7 @@ class LessonPlayerViewController: UIViewController {
         self.portraitDownloadButton.isHidden = true
         self.landscapeDownloadButton.isHidden = true
         
-        self.portraitDownlaodProgressView.isHidden = false
+        self.portraitDownloadProgressView.isHidden = false
         self.landscapeDownlaodProgressView.isHidden = false
 
         ContentRepository.shared.downloadLesson(lesson, mediaType: self.mediaType, delegate: ContentRepository.shared)
@@ -619,7 +619,7 @@ extension LessonPlayerViewController: ContentRepositoryDownloadDelegate {
             ContentRepository.shared.addLessonToDownloaded(mishnaLesson, sederId: self.sederId, masechetId: self.masechetId, chapter: chapter)
         }
         
-        self.portraitDownlaodProgressView.isHidden = true
+        self.portraitDownloadProgressView.isHidden = true
         self.landscapeDownlaodProgressView.isHidden = true
         switch self.mediaType {
         case .audio:
@@ -633,7 +633,7 @@ extension LessonPlayerViewController: ContentRepositoryDownloadDelegate {
     func downloadProgress(downloadId: Int, progress: Float) {
         if downloadId == self.lesson.id {
             print("GemaraLessonsViewController downloadProgress, progress: \(progress)")
-            self.portraitDownlaodProgressView.value = CGFloat(progress*100)
+            self.portraitDownloadProgressView.value = CGFloat(progress*100)
             self.landscapeDownlaodProgressView.value = CGFloat(progress*100)
         }
     }

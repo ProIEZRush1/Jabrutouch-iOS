@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UICircularProgressRing
 
 class LessonDownloadCellController: UITableViewCell {
     
@@ -18,7 +19,7 @@ class LessonDownloadCellController: UITableViewCell {
     @IBOutlet weak var downloadButtonsContainerView: UIView!
     @IBOutlet weak var lessonNumber: UILabel!
     @IBOutlet weak var lessonLength: UILabel!
-    @IBOutlet weak var downloadProgressPercentageLabel: UILabel!
+    @IBOutlet weak var downloadProgressView: UICircularProgressRing!
     @IBOutlet weak var audioImage: UIImageView!
     @IBOutlet weak var videoImage: UIImageView!
     @IBOutlet weak var redAudioVImage: UIImageView!
@@ -100,9 +101,8 @@ class LessonDownloadCellController: UITableViewCell {
     }
     
     private func setDownloadModeForLesson(_ lesson: JTLesson) {
-        let downloadProgress = "\(Int((lesson.downloadProgress ?? 0.0) * 100))%"
-        self.downloadProgressPercentageLabel.text = downloadProgress
-        self.downloadProgressPercentageLabel.isHidden = !lesson.isDownloading
+        self.downloadProgressView.value = CGFloat((lesson.downloadProgress ?? 0.0)*100)
+        self.downloadProgressView.isHidden = !lesson.isDownloading
         self.playAudioButton.isEnabled = !lesson.isDownloading
         self.playVideoButton.isEnabled = !lesson.isDownloading
         self.audioImage.alpha = lesson.isDownloading ? 0.3 : 1.0
