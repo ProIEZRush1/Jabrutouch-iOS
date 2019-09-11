@@ -19,9 +19,9 @@ class JTLesson: Hashable  {
     var id: Int
     var chapter: Int
     var duration: Int
-    var audioLink: String
-    var videoLink: String
-    var textLink: String
+    var audioLink: String?
+    var videoLink: String?
+    var textLink: String?
     var videoPart: [String]
     var gallery: [String]
     var presenter: JTLesssonPresenter?
@@ -48,15 +48,15 @@ class JTLesson: Hashable  {
         
         if let audioLink = values["audio"] as? String {
             self.audioLink = audioLink
-        } else { return nil }
+        }
         
         if let videoLink = values["video"] as? String {
             self.videoLink = videoLink
-        } else { return nil }
+        }
         
         if let textLink = values["page"] as? String {
             self.textLink = textLink
-        } else { return nil }
+        }
         
         if let videoPart = values["video_part"] as? [String] {
             self.videoPart = videoPart
@@ -115,18 +115,21 @@ class JTLesson: Hashable  {
     }
     
     private var audioRemoteURL: URL? {
-        var fullLink = "\(AWSS3Provider.appS3BaseUrl)\(self.audioLink)"
+        guard let link = self.audioLink else { return nil }
+        var fullLink = "\(AWSS3Provider.appS3BaseUrl)\(link)"
 //        fullLink = fullLink.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         fullLink = fullLink.replacingOccurrences(of: " ", with: "%20")
         return URL(string: fullLink)
     }
     
     private var videoRemoteURL: URL? {
-        return URL(string: self.videoLink)
+        guard let link = self.videoLink else { return nil }
+        return URL(string: link)
     }
     
     private var textRemoteURL: URL? {
-        var fullLink = "\(AWSS3Provider.appS3BaseUrl)\(self.textLink)"
+        guard let link = self.textLink else { return nil }
+        var fullLink = "\(AWSS3Provider.appS3BaseUrl)\(link)"
 //        fullLink = fullLink.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         fullLink = fullLink.replacingOccurrences(of: " ", with: "%20")
         return URL(string: fullLink)
