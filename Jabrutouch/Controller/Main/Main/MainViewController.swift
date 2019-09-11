@@ -33,7 +33,10 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     private var gemaraHistory: [JTGemaraLessonRecord] = []
     private var mishnaHistory: [JTMishnaLessonRecord] = []
     private var todaysDafToHeaderConstraint: NSLayoutConstraint?
-    private var isNotFirstTime: Bool = UserDefaultsProvider.shared.notFirstTime
+    
+    private var contentAvailable: Bool {
+        return self.gemaraHistory.count > 0 || self.mishnaHistory.count > 0
+    }
     
     private var activityView: ActivityView?
     //========================================
@@ -63,7 +66,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     @IBOutlet weak var todaysDafToWelcomeConstraint: NSLayoutConstraint!
     // Recents
     @IBOutlet weak var recentsGemara: UILabel!
-    @IBOutlet weak var resentsMishna: UILabel!
+    @IBOutlet weak var recentsMishna: UILabel!
     // Tab bar buttons
     @IBOutlet weak private var downloadsImageView: UIImageView!
     @IBOutlet weak private var downloadsLabel: UILabel!
@@ -126,7 +129,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         dateFormatter.dateStyle = .long
         self.todaysDateLabel.text = dateFormatter.string(from: Date())
         self.recentsGemara.text = Strings.recentsGemara
-        self.resentsMishna.text = Strings.recentsMishna
+        self.recentsMishna.text = Strings.recentsMishna
         
         // Main tabs
         self.downloadsLabel.text = Strings.downloads
@@ -147,10 +150,12 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     }
     
     private func setView() {
-        welcomeLabel.isHidden = self.isNotFirstTime
-        welcomeImage.isHidden = self.isNotFirstTime
+        welcomeLabel.isHidden = self.contentAvailable
+        welcomeImage.isHidden = self.contentAvailable
+        recentsGemara.isHidden = !self.contentAvailable
+        recentsMishna.isHidden = !self.contentAvailable
         
-        if !self.isNotFirstTime {
+        if !self.contentAvailable {
             todaysDafToHeaderConstraint?.isActive = false
             todaysDafToWelcomeConstraint?.isActive = true
         } else {
@@ -316,7 +321,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
                 self.removeActivityView()
                 switch result {
                 case .success(let lesson):
-                    self.playLesson(lesson, mediaType: .audio, sederId: "\(data.seder.id)", masechetId: "\(data.masechet.id)", chapter: nil)
+                    self.playLesson(lesson, mediaType: .audio, sederId: "\(data.seder.id)", masechetId: "\(data.masechet.id)", chapter: nil, masechetName: todaysDaf.masechet)
                 case .failure:
                     break
                 }
@@ -336,7 +341,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
                 self.removeActivityView()
                 switch result {
                 case .success(let lesson):
-                    self.playLesson(lesson, mediaType: .video, sederId: "\(data.seder.id)", masechetId: "\(data.masechet.id)", chapter: nil)
+                    self.playLesson(lesson, mediaType: .video, sederId: "\(data.seder.id)", masechetId: "\(data.masechet.id)", chapter: nil, masechetName: todaysDaf.masechet)
                 case .failure:
                     break
                 }
@@ -523,10 +528,10 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
         DispatchQueue.main.async {
             if isFirstCollection {
                 let record = self.gemaraHistory[selectedRow]
-                self.playLesson(record.lesson, mediaType: .audio, sederId: record.sederId, masechetId: record.masechetId, chapter: nil)
+                self.playLesson(record.lesson, mediaType: .audio, sederId: record.sederId, masechetId: record.masechetId, chapter: nil, masechetName: nil)
             } else {
                 let record = self.mishnaHistory[selectedRow]
-                self.playLesson(record.lesson, mediaType: .audio, sederId: record.sederId, masechetId: record.masechetId, chapter: record.chapter)
+                self.playLesson(record.lesson, mediaType: .audio, sederId: record.sederId, masechetId: record.masechetId, chapter: record.chapter, masechetName: nil)
             }
         }
     }
@@ -535,10 +540,10 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
         DispatchQueue.main.async {
             if isFirstCollection {
                 let record = self.gemaraHistory[selectedRow]
-                self.playLesson(record.lesson, mediaType: .video, sederId: record.sederId, masechetId: record.masechetId, chapter: nil)
+                self.playLesson(record.lesson, mediaType: .video, sederId: record.sederId, masechetId: record.masechetId, chapter: nil, masechetName: nil)
             } else {
                 let record = self.mishnaHistory[selectedRow]
-                self.playLesson(record.lesson, mediaType: .video, sederId: record.sederId, masechetId: record.masechetId, chapter: record.chapter)
+                self.playLesson(record.lesson, mediaType: .video, sederId: record.sederId, masechetId: record.masechetId, chapter: record.chapter, masechetName: nil)
             }
         }
     }
@@ -556,10 +561,14 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
     // MARK: - Player
     //======================================================
     
-    private func playLesson(_ lesson: JTLesson, mediaType: JTLessonMediaType, sederId: String, masechetId: String, chapter: String?) {
+    private func playLesson(_ lesson: JTLesson, mediaType: JTLessonMediaType, sederId: String, masechetId: String, chapter: String?, masechetName: String?) {
         let playerVC = LessonPlayerViewController(lesson: lesson, mediaType: mediaType, sederId: sederId, masechetId:masechetId, chapter:chapter)
         self.present(playerVC, animated: true) {
             
+        }
+        
+        if let gemaraLesson = lesson as? JTGemaraLesson, let _masechetName = masechetName  {
+            ContentRepository.shared.lessonWatched(gemaraLesson, masechetName: _masechetName, masechetId: "\(masechetId)", sederId: sederId)
         }
     }
 }
