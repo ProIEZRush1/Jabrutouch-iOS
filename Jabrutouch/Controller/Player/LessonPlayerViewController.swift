@@ -496,7 +496,7 @@ class LessonPlayerViewController: UIViewController {
             }
         case .audio:
             if let url = self.lesson.audioURL {
-                self.audioPlayer.setAudioUrl(url, startPlaying: startPlaying)
+                self.audioPlayer.setAudioUrl(url, startPlaying: startPlaying, mediaName: "")
             }
         }
         self.didSetMediaUrl = true

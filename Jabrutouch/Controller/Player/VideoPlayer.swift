@@ -135,7 +135,7 @@ class VideoPlayer: UIView {
         self.addBorders()
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.applicationWillResignActive), name: UIApplication.willResignActiveNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.applicationWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.applicationDidBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
         
         // temp
         self.nextButtonItem.isEnabled = false
@@ -293,6 +293,7 @@ class VideoPlayer: UIView {
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: .default, options: .mixWithOthers)
             try AVAudioSession.sharedInstance().setActive(true)
+            self.setupRemoteTransportControls()
         }
         catch {
             
@@ -464,7 +465,7 @@ class VideoPlayer: UIView {
         }
     }
     
-    func play() {
+    @objc func play() {
         guard let player = self.player else { return }
         self.playPauseButtonItem.image = #imageLiteral(resourceName: "pause")
         self.playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
@@ -475,7 +476,7 @@ class VideoPlayer: UIView {
         self.startPlayDate = Date()
     }
     
-    private func pause() {
+    @objc private func pause() {
         self.player?.pause()
         self.playPauseButtonItem.image = #imageLiteral(resourceName: "play_large")
         self.playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
@@ -486,7 +487,10 @@ class VideoPlayer: UIView {
             self.watchDuration += duration
         }
     }
-    
+    @objc func changePlaybackPosition(_ event: MPChangePlaybackPositionCommandEvent) {
+        self.setCurrentTime(event.positionTime)
+    }
+
     private func forward(_ time: TimeInterval) {
         guard let player = self.player else { return }
         let newTime = min(player.currentTime + time, player.duration)
@@ -596,30 +600,61 @@ class VideoPlayer: UIView {
     private func setupRemoteTransportControls() {
         // Get the shared MPRemoteCommandCenter
         let commandCenter = MPRemoteCommandCenter.shared()
-        
+        self.setupNowPlaying()
         // Add handler for Play/Pause Commande
-        commandCenter.playCommand.addTarget { [unowned self] event in
-            guard let player = self.player else {
-                return .commandFailed
-            }
-            player.play()
-            return .success
-        }
-        
-        commandCenter.pauseCommand.addTarget { [unowned self] event in
-            guard let player = self.player else {
-                return .commandFailed
-            }
-            player.pause()
-            return .success
-        }
+        commandCenter.playCommand.addTarget(self, action: #selector(self.play))
+        commandCenter.pauseCommand.addTarget(self, action: #selector(self.pause))
+        commandCenter.changePlaybackPositionCommand.addTarget(self, action: #selector(self.changePlaybackPosition(_:)))
+        commandCenter.playCommand.isEnabled = true
+        commandCenter.pauseCommand.isEnabled = true
+        commandCenter.changePlaybackPositionCommand.isEnabled = true
+
+//        commandCenter.playCommand.addTarget { [unowned self] event in
+//            guard let player = self.player else {
+//                return .commandFailed
+//            }
+//            player.play()
+//            return .success
+//        }
+//
+//        commandCenter.pauseCommand.addTarget { [unowned self] event in
+//            guard let player = self.player else {
+//                return .commandFailed
+//            }
+//            player.pause()
+//            return .success
+//        }
     }
     
     private func removeRemoteTransportControls() {
         let commandCenter = MPRemoteCommandCenter.shared()
         commandCenter.playCommand.removeTarget(self)
         commandCenter.pauseCommand.removeTarget(self)
+        commandCenter.changePlaybackPositionCommand.removeTarget(self)
+        commandCenter.playCommand.isEnabled = false
+        commandCenter.pauseCommand.isEnabled = false
+        commandCenter.changePlaybackPositionCommand.isEnabled = false
     }
+    
+    func setupNowPlaying() {
+        // Define Now Playing Info
+        var nowPlayingInfo = [String : Any]()
+        //        nowPlayingInfo[MPMediaItemPropertyTitle] = self.mediaName
+        
+//        if let image = UIImage(named: "lockscreen") {
+//            nowPlayingInfo[MPMediaItemPropertyArtwork] =
+//                MPMediaItemArtwork(boundsSize: image.size) { size in
+//                    return image
+//            }
+//        }
+        nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = player?.currentTime().seconds
+        nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = player?.duration
+        nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = player?.rate
+        
+        // Set the metadata
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
+    }
+
     //----------------------------------------------------
     // MARK: - Notification observations
     //----------------------------------------------------
@@ -628,7 +663,7 @@ class VideoPlayer: UIView {
         self.videoLayer.player = nil
     }
     
-    @objc func applicationWillEnterForeground() {
+    @objc func applicationDidBecomeActive() {
         self.videoLayer.player = self.player
     }
 

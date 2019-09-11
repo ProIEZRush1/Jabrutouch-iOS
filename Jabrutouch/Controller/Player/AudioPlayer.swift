@@ -54,7 +54,7 @@ class AudioPlayer: UIView {
     private var player: AVPlayer?
     private(set) var watchDuration: TimeInterval = 0.0
     private var startPlayDate: Date?
-    
+    private var mediaName: String?
     //----------------------------------------------------
     // MARK: - Initializers
     //----------------------------------------------------
@@ -124,8 +124,9 @@ class AudioPlayer: UIView {
     // MARK: - Methods
     //----------------------------------------------------
     
-    func setAudioUrl(_ url: URL, startPlaying: Bool) {
+    func setAudioUrl(_ url: URL, startPlaying: Bool, mediaName: String) {
         self.url = url
+        self.mediaName = mediaName
         self.playPauseButton.isEnabled = true
         self.forwardButton.isEnabled = true
         self.rewindButton.isEnabled = true
@@ -284,6 +285,11 @@ class AudioPlayer: UIView {
         }
     }
     
+    @objc func changePlaybackPosition(_ event: MPChangePlaybackPositionCommandEvent) {
+        self.setCurrentTime(event.positionTime)
+    }
+    
+
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         guard let avPlayer = self.player else { return }
         if object as AnyObject? === avPlayer {
@@ -304,6 +310,7 @@ class AudioPlayer: UIView {
         let percentage = player.currentTime/player.duration
         self.slider.value = Float(percentage)
         self.delegate?.currentTimeDidChange(currentTime: player.currentTime, duration: player.duration)
+        setupNowPlaying()
     }
     
     //----------------------------------------------------
@@ -313,13 +320,14 @@ class AudioPlayer: UIView {
     private func setupRemoteTransportControls() {
         // Get the shared MPRemoteCommandCenter
         let commandCenter = MPRemoteCommandCenter.shared()
-        
+        self.setupNowPlaying()
         // Add handler for Play/Pause Commande
         commandCenter.playCommand.addTarget(self, action: #selector(self.play))        
         commandCenter.pauseCommand.addTarget(self, action: #selector(self.pause))
-        
+        commandCenter.changePlaybackPositionCommand.addTarget(self, action: #selector(self.changePlaybackPosition(_:)))
         commandCenter.playCommand.isEnabled = true
         commandCenter.pauseCommand.isEnabled = true
+        commandCenter.changePlaybackPositionCommand.isEnabled = true
     }
 
     private func removeRemoteTransportControls() {
@@ -327,8 +335,29 @@ class AudioPlayer: UIView {
         
         commandCenter.playCommand.removeTarget(self)
         commandCenter.pauseCommand.removeTarget(self)
+        commandCenter.changePlaybackPositionCommand.removeTarget(self)
         commandCenter.playCommand.isEnabled = false
         commandCenter.pauseCommand.isEnabled = false
+        commandCenter.changePlaybackPositionCommand.isEnabled = false
+    }
+
+    func setupNowPlaying() {
+        // Define Now Playing Info
+        var nowPlayingInfo = [String : Any]()
+//        nowPlayingInfo[MPMediaItemPropertyTitle] = self.mediaName
+        
+//        if let image = UIImage(named: "lockscreen") {
+//            nowPlayingInfo[MPMediaItemPropertyArtwork] =
+//                MPMediaItemArtwork(boundsSize: image.size) { size in
+//                    return image
+//            }
+//        }
+        nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = player?.currentTime().seconds
+        nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = player?.duration
+        nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = player?.rate
+        
+        // Set the metadata
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
     }
 }
 
