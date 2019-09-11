@@ -10,6 +10,10 @@ import UIKit
 
 class LessonDownloadCellController: UITableViewCell {
     
+    //=====================================================
+    // MARK: - @IBOutlets
+    //=====================================================
+    
     @IBOutlet weak var cellView: UIView!
     @IBOutlet weak var downloadButtonsContainerView: UIView!
     @IBOutlet weak var lessonNumber: UILabel!
@@ -27,10 +31,63 @@ class LessonDownloadCellController: UITableViewCell {
     @IBOutlet weak var downloadVideoButtonImageView: UIImageView!
     @IBOutlet weak var cellViewTrailingConstraint: NSLayoutConstraint!
     
+    //=====================================================
+    // MARK: - Properties
+    //=====================================================
     var selectedRow: Int = 0
     weak var delegate: MishnaLessonCellDelegate?
     
-    func setHiddenButtonsForLesson(_ lesson: JTLesson) {
+    //=====================================================
+    // MARK: - LifeCycle
+    //=====================================================
+   
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        let cellGestureRecognizer = (UITapGestureRecognizer(target: self, action: #selector(cellPressed)))
+        cellView.addGestureRecognizer(cellGestureRecognizer)
+    }
+    
+    //=====================================================
+    // MARK: - Setup
+    //=====================================================
+    func setLesson(_ lesson: JTLesson) {
+        self.setHiddenButtonsForLesson(lesson)
+        self.setImagesForLesson(lesson)
+        self.setDownloadModeForLesson(lesson)
+        
+        self.downloadButtonsContainerView.layoutIfNeeded()
+        self.cellView.layoutIfNeeded()
+    }
+    
+    func setEditingIfNeeded(lesson: JTLesson, isCurrentlyEditing: Bool) {
+        self.animateImagesVisibilityIfNeeded(lesson, isCurrentlyEditing: isCurrentlyEditing)
+        UIView.animate(withDuration: 0.3) {
+            if isCurrentlyEditing && !lesson.isDownloading {
+                self.cellViewTrailingConstraint.constant = UIScreen.main.bounds.size.width / 2 - 20
+            } else {
+                self.cellViewTrailingConstraint.constant = 18
+            }
+        }
+
+    }
+    private func animateImagesVisibilityIfNeeded(_ lesson: JTLesson, isCurrentlyEditing: Bool) {
+        if (self.audioImage.isHidden) == !isCurrentlyEditing { // Animate only when a change occurred
+            UIView.animate(withDuration: 0.2, delay: isCurrentlyEditing ? 0 : 0.1, animations: {
+                if lesson.isAudioDownloaded  { // Animate only when suppose to be visible
+                    self.redAudioVImage.isHidden = isCurrentlyEditing ? true : false
+                }
+                if lesson.isVideoDownloaded {
+                    self.redVideoVImage.isHidden = isCurrentlyEditing ? true : false
+                }
+                self.audioImage.isHidden = isCurrentlyEditing ? true : false
+                self.videoImage.isHidden = isCurrentlyEditing ? true : false
+                self.playAudioButton.isHidden = isCurrentlyEditing ? true : false
+                self.playVideoButton.isHidden = isCurrentlyEditing ? true : false
+            })
+        }
+    }
+    
+    private func setHiddenButtonsForLesson(_ lesson: JTLesson) {
         self.playAudioButton.isHidden = (lesson.audioURL == nil)
         self.playVideoButton.isHidden = (lesson.videoURL == nil)
         self.audioImage.isHidden = (lesson.audioURL == nil)
@@ -42,11 +99,42 @@ class LessonDownloadCellController: UITableViewCell {
         self.downloadVideoButtonImageView.isHidden = (lesson.videoURL == nil)
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        let cellGestureRecognizer = (UITapGestureRecognizer(target: self, action: #selector(cellPressed)))
-        cellView.addGestureRecognizer(cellGestureRecognizer)
+    private func setDownloadModeForLesson(_ lesson: JTLesson) {
+        let downloadProgress = "\(Int((lesson.downloadProgress ?? 0.0) * 100))%"
+        self.downloadProgressPercentageLabel.text = downloadProgress
+        self.downloadProgressPercentageLabel.isHidden = !lesson.isDownloading
+        self.playAudioButton.isEnabled = !lesson.isDownloading
+        self.playVideoButton.isEnabled = !lesson.isDownloading
+        self.audioImage.alpha = lesson.isDownloading ? 0.3 : 1.0
+        self.videoImage.alpha = lesson.isDownloading ? 0.3 : 1.0
     }
+    
+    private func setImagesForLesson(_ lesson: JTLesson) {
+        if lesson.isAudioDownloaded {
+            self.audioImage?.image = UIImage(named: "RedAudio")
+            self.redAudioVImage.isHidden = false
+        } else {
+            self.audioImage?.image = UIImage(named: "Audio")
+            self.redAudioVImage.isHidden = true
+        }
+        
+        self.downloadAudioButtonImageView.isHidden = lesson.isAudioDownloaded
+        
+        if lesson.isVideoDownloaded {
+            self.videoImage?.image = UIImage(named: "RedVideo")
+            self.redVideoVImage.isHidden = false
+        } else {
+            self.videoImage?.image = UIImage(named: "Video")
+            self.redVideoVImage.isHidden = true
+        }
+        
+        self.downloadVideoButtonImageView.isHidden = lesson.isVideoDownloaded
+    }
+    
+    
+    //=====================================================
+    // MARK: - @IBActions
+    //=====================================================
     
     @objc private func cellPressed() {
         delegate?.cellPressed(selectedRow: selectedRow)
