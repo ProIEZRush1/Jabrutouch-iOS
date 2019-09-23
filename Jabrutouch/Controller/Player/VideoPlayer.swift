@@ -300,13 +300,13 @@ class VideoPlayer: UIView {
         }
         
         if startPlaying {
-            self.play()
+            let _ = self.play()
         }
     }
     
     func stopAndRelease() {
         self.player?.removeObserver(self, forKeyPath: "timeControlStatus")
-        self.pause()
+        let _ = self.pause()
         self.player = nil
         self.videoLayer.player = nil
         self.stopTimeUpdateTimer()
@@ -319,7 +319,7 @@ class VideoPlayer: UIView {
     @IBAction func playPauseButtonPressed(_ sender: Any) {
         guard let player = self.player else { return }
         if player.isPlaying {
-            self.pause()
+            let _ = self.pause()
             switch self.mode {
             case .regular, .fullScreen:
                 self.showAccessoriesView()
@@ -328,7 +328,7 @@ class VideoPlayer: UIView {
             }
         }
         else {
-            self.play()
+            let _ = self.play()
         }
         
         
@@ -465,8 +465,8 @@ class VideoPlayer: UIView {
         }
     }
     
-    @objc func play() {
-        guard let player = self.player else { return }
+    @objc func play() -> MPRemoteCommandHandlerStatus {
+        guard let player = self.player else { return .commandFailed }
         self.playPauseButtonItem.image = #imageLiteral(resourceName: "pause")
         self.playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
         player.play()
@@ -474,9 +474,10 @@ class VideoPlayer: UIView {
         self.startTimeUpdateTimer()
         self.hideAccessoriesView()
         self.startPlayDate = Date()
+        return .success
     }
     
-    @objc private func pause() {
+    @objc private func pause() -> MPRemoteCommandHandlerStatus {
         self.player?.pause()
         self.playPauseButtonItem.image = #imageLiteral(resourceName: "play_large")
         self.playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
@@ -486,9 +487,11 @@ class VideoPlayer: UIView {
             let duration = Date().timeIntervalSince(date)
             self.watchDuration += duration
         }
+        return .success
     }
-    @objc func changePlaybackPosition(_ event: MPChangePlaybackPositionCommandEvent) {
+    @objc func changePlaybackPosition(_ event: MPChangePlaybackPositionCommandEvent) -> MPRemoteCommandHandlerStatus {
         self.setCurrentTime(event.positionTime)
+        return .success
     }
 
     private func forward(_ time: TimeInterval) {

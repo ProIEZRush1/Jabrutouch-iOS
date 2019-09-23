@@ -84,6 +84,7 @@ class LessonPlayerViewController: UIViewController {
     private var didSetMediaUrl: Bool = false
     private var shouldStartPlay: Bool
     private var shouldDisplayDonationPopUp: Bool
+
     private var activityViewPortraitFrame: CGRect {
         let y = self.portraitHeaderView.frame.maxY
         return CGRect(x: 0, y: y, width: self.view.frame.width, height: self.view.frame.height - y)
@@ -686,9 +687,9 @@ extension LessonPlayerViewController: DonatedAlertDelegate {
         else {
             switch self.mediaType {
             case .video:
-                self.videoPlayer.play()
+                let _ = self.videoPlayer.play()
             case .audio:
-                self.audioPlayer.play()
+                let _ = self.audioPlayer.play()
             }
         }
     }

@@ -251,6 +251,7 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
     private func playLesson(_ lesson: JTLesson, mediaType: JTLessonMediaType) {
         guard let sederId = self.sederId, let masechetId = self.masechetId, let chapter = self.chapter else { return }
         let playerVC = LessonPlayerViewController(lesson: lesson, mediaType: mediaType, sederId: sederId, masechetId: "\(masechetId)", chapter: "\(chapter)")
+        playerVC.modalPresentationStyle = .fullScreen
         self.present(playerVC, animated: true) {
             
         }

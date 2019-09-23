@@ -501,7 +501,6 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
     
     func presentAboutUs() {
         let aboutViewController = Storyboards.Main.aboutViewController
-        aboutViewController.modalTransitionStyle = .partialCurl
         self.present(aboutViewController, animated: true)
     }
     
@@ -563,6 +562,7 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
     
     private func playLesson(_ lesson: JTLesson, mediaType: JTLessonMediaType, sederId: String, masechetId: String, chapter: String?, masechetName: String?) {
         let playerVC = LessonPlayerViewController(lesson: lesson, mediaType: mediaType, sederId: sederId, masechetId:masechetId, chapter:chapter)
+        playerVC.modalPresentationStyle = .fullScreen
         self.present(playerVC, animated: true) {
             
         }

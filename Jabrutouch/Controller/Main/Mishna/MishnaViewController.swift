@@ -75,6 +75,9 @@ class MishnaViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if sedarim[indexPath.section].masechtot.count - 1 == indexPath.row {
+            return 80
+        }
         return 67
     }
     
@@ -82,9 +85,9 @@ class MishnaViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let headerCell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "headerCell") as! HeaderCellController
         
         if self.openSections.contains(section) {
-            headerCell.arrowImage?.image = UIImage(named: "Black&BlueUpArrow")
+            headerCell.arrowImage?.image = UIImage(named: "DarkGrayUpArrow")
         } else {
-            headerCell.arrowImage?.image = UIImage(named: "Black&BlueDownArrow")
+            headerCell.arrowImage?.image = UIImage(named: "DarkGrayDownArrow")
         }
         
         headerCell.titleLabel?.text = "Seder " + sedarim[section].name
@@ -106,8 +109,8 @@ class MishnaViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.indexPath = indexPath
         cell.delegate = self
         Utils.setViewShape(view: cell.cellView, viewCornerRadius: 18)
-        let shadowOffset = CGSize(width: 0.0, height: 12)
-        Utils.dropViewShadow(view: cell.cellView, shadowColor: Colors.shadowColor, shadowRadius: 36, shadowOffset: shadowOffset)
+        let shadowOffset = CGSize(width: 0.0, height: 5)
+        Utils.dropViewShadow(view: cell.cellView, shadowColor: Colors.shadowColor, shadowRadius: 15, shadowOffset: shadowOffset)
         cell.cellView.layoutIfNeeded()
         
         return cell
