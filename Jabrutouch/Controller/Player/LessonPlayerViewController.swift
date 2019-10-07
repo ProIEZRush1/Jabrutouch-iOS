@@ -212,7 +212,7 @@ class LessonPlayerViewController: UIViewController {
             category = .mishna
         }
         
-        AnalyticsManager.shared.postEvent(eventType: .watch, category: category, mediaType: self.mediaType, lessonId: self.lesson.id, duration: Int64(watchDuration), online: online) { (result: Result<Any, JTError>) in
+        AnalyticsManager.shared.postEvent(eventType: .watch, category: category, mediaType: self.mediaType, lessonId: self.lesson.id, duration: Int64(watchDuration) * 1000, online: online) { (result: Result<Any, JTError>) in
             
         }
     }
