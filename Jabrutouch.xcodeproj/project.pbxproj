@@ -149,6 +149,11 @@
 		4628E0E423215E1200D963E6 /* DonatedAlert.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4628E0E323215E1200D963E6 /* DonatedAlert.xib */; };
 		4628E0E72322954800D963E6 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4628E0E62322953300D963E6 /* Application.swift */; };
 		4628E0E923245BF600D963E6 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4628E0E823245BF600D963E6 /* AboutViewController.swift */; };
+		831D8426234B73C800A9DF8C /* PersonalDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831D8425234B73C700A9DF8C /* PersonalDetailsCell.swift */; };
+		831D8428234B75F800A9DF8C /* DonationInformationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831D8427234B75F800A9DF8C /* DonationInformationCell.swift */; };
+		831D842A234B766A00A9DF8C /* GeneralInformationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831D8429234B766A00A9DF8C /* GeneralInformationCell.swift */; };
+		831D842C234B782800A9DF8C /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831D842B234B782800A9DF8C /* ButtonCell.swift */; };
+		831D842F234F3A2000A9DF8C /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831D842E234F3A2000A9DF8C /* EditProfileViewController.swift */; };
 		F7AEA20A7CC7E87A1BEC48AF /* Pods_Jabrutouch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0F9377FF1E3DA5E9F901D68 /* Pods_Jabrutouch.framework */; };
 		FB51711422F19C3F003BCAFC /* MishnaMasechetCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB51711322F19C3F003BCAFC /* MishnaMasechetCellController.swift */; };
 		FB51711622F19FD2003BCAFC /* JTMishnaMasechet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB51711522F19FD2003BCAFC /* JTMishnaMasechet.swift */; };
@@ -325,6 +330,11 @@
 		4628E0E62322953300D963E6 /* Application.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		4628E0E823245BF600D963E6 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		715A51EC96A60C90B07F8038 /* Pods-Jabrutouch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jabrutouch.debug.xcconfig"; path = "Target Support Files/Pods-Jabrutouch/Pods-Jabrutouch.debug.xcconfig"; sourceTree = "<group>"; };
+		831D8425234B73C700A9DF8C /* PersonalDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalDetailsCell.swift; sourceTree = "<group>"; };
+		831D8427234B75F800A9DF8C /* DonationInformationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonationInformationCell.swift; sourceTree = "<group>"; };
+		831D8429234B766A00A9DF8C /* GeneralInformationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralInformationCell.swift; sourceTree = "<group>"; };
+		831D842B234B782800A9DF8C /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
+		831D842E234F3A2000A9DF8C /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		C0F9377FF1E3DA5E9F901D68 /* Pods_Jabrutouch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jabrutouch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F71C57777BA59A6B8E3F7474 /* Pods-Jabrutouch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jabrutouch.release.xcconfig"; path = "Target Support Files/Pods-Jabrutouch/Pods-Jabrutouch.release.xcconfig"; sourceTree = "<group>"; };
 		FB51711322F19C3F003BCAFC /* MishnaMasechetCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MishnaMasechetCellController.swift; sourceTree = "<group>"; };
@@ -531,6 +541,7 @@
 			children = (
 				FBB434FD22FB2CA4008EE211 /* ProfileViewController.swift */,
 				FB6877C122FC49AE0096465D /* AlertViewController.swift */,
+				831D842E234F3A2000A9DF8C /* EditProfileViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -538,6 +549,7 @@
 		212ECEB22312F954005AEB36 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				831D842D234B782F00A9DF8C /* profileCells */,
 				FBDEF16C22E89E3B00A300DA /* HeaderCellController.swift */,
 				FBD9375022F328CC00BC94DC /* LessonDownloadCellController.swift */,
 			);
@@ -943,6 +955,17 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		831D842D234B782F00A9DF8C /* profileCells */ = {
+			isa = PBXGroup;
+			children = (
+				831D8425234B73C700A9DF8C /* PersonalDetailsCell.swift */,
+				831D8427234B75F800A9DF8C /* DonationInformationCell.swift */,
+				831D8429234B766A00A9DF8C /* GeneralInformationCell.swift */,
+				831D842B234B782800A9DF8C /* ButtonCell.swift */,
+			);
+			path = profileCells;
+			sourceTree = "<group>";
+		};
 		9A9C05757DCAA6D93F172828 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1254,12 +1277,14 @@
 				21419CB4230D894B00145F1F /* DownloadTask.swift in Sources */,
 				219BFF2722E50A0A00ABBEE2 /* DownloadsNavigationController.swift in Sources */,
 				2131969C22F38B2E00B0AF5F /* UserDefaultsProvider.swift in Sources */,
+				831D8428234B75F800A9DF8C /* DonationInformationCell.swift in Sources */,
 				213016B9232198E800B9DD2B /* PostAnalyticsEventResponse.swift in Sources */,
 				21419CBD230EAF9C00145F1F /* JTMishnaLessonRecord.swift in Sources */,
 				21678D7C22E085CB007BC74C /* DonationsViewController.swift in Sources */,
 				2145858F22EF7D980062F830 /* API.swift in Sources */,
 				2120BE1D22DF273F004854DB /* SignInViewController.swift in Sources */,
 				2120BE2322DF279D004854DB /* ValidateVerificationCodeViewController.swift in Sources */,
+				831D842A234B766A00A9DF8C /* GeneralInformationCell.swift in Sources */,
 				212ECEB62317CD6E005AEB36 /* AudioPlayer.swift in Sources */,
 				2131969822F38B1200B0AF5F /* ServerGenericResponse.swift in Sources */,
 				4628E0E72322954800D963E6 /* Application.swift in Sources */,
@@ -1283,8 +1308,10 @@
 				2120BE1F22DF2758004854DB /* SignUpViewController.swift in Sources */,
 				213196AD22F38B6800B0AF5F /* JTCommunity.swift in Sources */,
 				FBDEF16D22E89E3B00A300DA /* HeaderCellController.swift in Sources */,
+				831D842C234B782800A9DF8C /* ButtonCell.swift in Sources */,
 				21E0BE942304217800F820D4 /* JTMishnaMasechetItem.swift in Sources */,
 				2133C22422DDCCD500F910B9 /* JBBarPageIndicator.swift in Sources */,
+				831D842F234F3A2000A9DF8C /* EditProfileViewController.swift in Sources */,
 				21ED3BCC23042A3C009D8E3D /* JTMishnaChapterItem.swift in Sources */,
 				213196A922F38B3E00B0AF5F /* ResendCodeResponse.swift in Sources */,
 				213196A622F38B3E00B0AF5F /* ValidateCodeResponse.swift in Sources */,
@@ -1294,6 +1321,7 @@
 				21999F3B23185F1C003DB1B4 /* EndTimeDisplayMode.swift in Sources */,
 				216A0E7022EEFDA300F7FBC1 /* HTTPRequestFactory.swift in Sources */,
 				213196B122F38B9E00B0AF5F /* ActivityView.swift in Sources */,
+				831D8426234B73C800A9DF8C /* PersonalDetailsCell.swift in Sources */,
 				2133C1F822DB5B8200F910B9 /* AppDelegate.swift in Sources */,
 				FB51711F22F1AE0B003BCAFC /* JTLessonDownload.swift in Sources */,
 				21678D7822E08594007BC74C /* GemaraViewController.swift in Sources */,
