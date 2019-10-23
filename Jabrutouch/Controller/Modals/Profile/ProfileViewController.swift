@@ -84,7 +84,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     //========================================
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 6
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -92,8 +92,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         case 0:
             return 1
         case 1:
-            return 7
+            return 1
         case 2:
+            return 1
+        case 3:
+            return 7
+        case 4:
+            return 1
+        case 5:
             return 3
         default:
             return 1
@@ -113,6 +119,18 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
             return cell
         case 1:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "DonationInformationCell") as? DonationInformationCell else { return UITableViewCell() }
+            cell.donatedLabel.text = "20"
+            cell.learedLabel.text = "5"
+            return cell
+        case 2:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "completionProgress") as? CompletionProgressCell else { return UITableViewCell() }
+            let count = 80.0
+            let progress = CGFloat(count/100)
+            cell.completionPercentage.text = "\(Int(count))% Full"
+            cell.progressView.progress = progress
+            return cell
+        case 3:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "GeneralInformationCell") as? GeneralInformationCell else { return UITableViewCell() }
             switch indexPath.row {
             case 0:
@@ -139,15 +157,19 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             default:
                 break
             }
+            return cell
+            
+        case 4:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "InterestsCell") as? InterestsCell else { return UITableViewCell() }
             
             return cell
-        case 2:
+        case 5:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell") as? ButtonCell else { return UITableViewCell() }
             switch indexPath.row {
             case 0:
                 cell.button.setTitle(Strings.logout.uppercased(), for: .normal)
                 cell.button.backgroundColor = #colorLiteral(red: 0.1764705882, green: 0.168627451, blue: 0.662745098, alpha: 1)
-                cell.button.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                cell.button.setTitleColor(.white, for: .normal)
             case 1:
                 cell.button.setTitle("change password", for: .normal)
                 cell.button.setTitleColor(#colorLiteral(red: 0.1764705882, green: 0.168627451, blue: 0.662745098, alpha: 1), for: .normal)
@@ -172,8 +194,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         case 0:
             return 150
         case 1:
-            return 50
+            return 170
         case 2:
+            return 100
+        case 3:
+            return 50
+        case 4:
+            return 200
+        case 5:
             return 50
         default:
             return 150
@@ -181,9 +209,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
-        case 0, 1:
+        case 0, 1, 2, 3, 4:
             break
-        case 2:
+        case 5:
             switch indexPath.row {
             case 0:
                 self.mainViewController?.optionSelected(option: .signOut)

@@ -55,17 +55,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window = UIWindow()
         }
         let window = self.window!
-        if animated {
-            UIView.transition(with: window, duration: 0.3, options: [.transitionCrossDissolve], animations: {
+        DispatchQueue.main.async {
+            if animated {
+                UIView.transition(with: window, duration: 0.3, options: [.transitionCrossDissolve], animations: {
+                    window.rootViewController = viewController
+                }) { (Bool) in
+                    window.makeKeyAndVisible()
+                }
+            }
+            else {
                 window.rootViewController = viewController
-            }) { (Bool) in
                 window.makeKeyAndVisible()
             }
-        }
-        else {
-            window.rootViewController = viewController
-            window.makeKeyAndVisible()
-        }
+        }        
     }
 }
 

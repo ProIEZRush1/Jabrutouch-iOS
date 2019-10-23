@@ -154,6 +154,11 @@
 		831D842A234B766A00A9DF8C /* GeneralInformationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831D8429234B766A00A9DF8C /* GeneralInformationCell.swift */; };
 		831D842C234B782800A9DF8C /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831D842B234B782800A9DF8C /* ButtonCell.swift */; };
 		831D842F234F3A2000A9DF8C /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831D842E234F3A2000A9DF8C /* EditProfileViewController.swift */; };
+		83C08AF1235EF05100F64F25 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83C08AF0235EF05100F64F25 /* Profile.storyboard */; };
+		83C08AF3235F09E100F64F25 /* CompletionProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C08AF2235F09E100F64F25 /* CompletionProgressCell.swift */; };
+		83C08AF5235F13D100F64F25 /* JBProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C08AF4235F13D100F64F25 /* JBProgressBar.swift */; };
+		83C08AF723604EBF00F64F25 /* InterestsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C08AF623604EBF00F64F25 /* InterestsCell.swift */; };
+		83C08AF92360562300F64F25 /* TopicCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C08AF82360562300F64F25 /* TopicCollectionViewCell.swift */; };
 		F7AEA20A7CC7E87A1BEC48AF /* Pods_Jabrutouch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0F9377FF1E3DA5E9F901D68 /* Pods_Jabrutouch.framework */; };
 		FB51711422F19C3F003BCAFC /* MishnaMasechetCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB51711322F19C3F003BCAFC /* MishnaMasechetCellController.swift */; };
 		FB51711622F19FD2003BCAFC /* JTMishnaMasechet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB51711522F19FD2003BCAFC /* JTMishnaMasechet.swift */; };
@@ -335,6 +340,11 @@
 		831D8429234B766A00A9DF8C /* GeneralInformationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralInformationCell.swift; sourceTree = "<group>"; };
 		831D842B234B782800A9DF8C /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
 		831D842E234F3A2000A9DF8C /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		83C08AF0235EF05100F64F25 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		83C08AF2235F09E100F64F25 /* CompletionProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionProgressCell.swift; sourceTree = "<group>"; };
+		83C08AF4235F13D100F64F25 /* JBProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JBProgressBar.swift; sourceTree = "<group>"; };
+		83C08AF623604EBF00F64F25 /* InterestsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestsCell.swift; sourceTree = "<group>"; };
+		83C08AF82360562300F64F25 /* TopicCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicCollectionViewCell.swift; sourceTree = "<group>"; };
 		C0F9377FF1E3DA5E9F901D68 /* Pods_Jabrutouch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jabrutouch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F71C57777BA59A6B8E3F7474 /* Pods-Jabrutouch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jabrutouch.release.xcconfig"; path = "Target Support Files/Pods-Jabrutouch/Pods-Jabrutouch.release.xcconfig"; sourceTree = "<group>"; };
 		FB51711322F19C3F003BCAFC /* MishnaMasechetCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MishnaMasechetCellController.swift; sourceTree = "<group>"; };
@@ -749,6 +759,7 @@
 				FB67A5DE22E4723F009E4DF9 /* Download.storyboard */,
 				FBFB161522F0794600362012 /* Mishna.storyboard */,
 				FBB18FAB22F85019006886FD /* Gemara.storyboard */,
+				83C08AF0235EF05100F64F25 /* Profile.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -826,6 +837,7 @@
 				219BFF2E22E5A11800ABBEE2 /* TextFieldWithPadding.swift */,
 				21407C8822F72632002F9690 /* TextFieldWithDeleteDelegate.swift */,
 				21999F35231823FF003DB1B4 /* CustomTrackHeightSlider.swift */,
+				83C08AF4235F13D100F64F25 /* JBProgressBar.swift */,
 			);
 			path = "Custom Controlles";
 			sourceTree = "<group>";
@@ -962,6 +974,9 @@
 				831D8427234B75F800A9DF8C /* DonationInformationCell.swift */,
 				831D8429234B766A00A9DF8C /* GeneralInformationCell.swift */,
 				831D842B234B782800A9DF8C /* ButtonCell.swift */,
+				83C08AF2235F09E100F64F25 /* CompletionProgressCell.swift */,
+				83C08AF623604EBF00F64F25 /* InterestsCell.swift */,
+				83C08AF82360562300F64F25 /* TopicCollectionViewCell.swift */,
 			);
 			path = profileCells;
 			sourceTree = "<group>";
@@ -1118,6 +1133,7 @@
 				219BFF3122E5B67C00ABBEE2 /* countries.json in Resources */,
 				21678D5B22DF2CED007BC74C /* SF-Pro-Rounded-Light.otf in Resources */,
 				21678D5C22DF2CED007BC74C /* SF-Pro-Rounded-Medium.otf in Resources */,
+				83C08AF1235EF05100F64F25 /* Profile.storyboard in Resources */,
 				21678D5D22DF2CED007BC74C /* SF-Pro-Rounded-Regular.otf in Resources */,
 				21678D5E22DF2CED007BC74C /* SF-Pro-Rounded-Semibold.otf in Resources */,
 				21678D5F22DF2CED007BC74C /* SF-Pro-Rounded-Thin.otf in Resources */,
@@ -1309,6 +1325,7 @@
 				213196AD22F38B6800B0AF5F /* JTCommunity.swift in Sources */,
 				FBDEF16D22E89E3B00A300DA /* HeaderCellController.swift in Sources */,
 				831D842C234B782800A9DF8C /* ButtonCell.swift in Sources */,
+				83C08AF5235F13D100F64F25 /* JBProgressBar.swift in Sources */,
 				21E0BE942304217800F820D4 /* JTMishnaMasechetItem.swift in Sources */,
 				2133C22422DDCCD500F910B9 /* JBBarPageIndicator.swift in Sources */,
 				831D842F234F3A2000A9DF8C /* EditProfileViewController.swift in Sources */,
@@ -1318,11 +1335,14 @@
 				21419CB0230D50CB00145F1F /* AWSS3Provider.swift in Sources */,
 				2126D6E3230404BD00CB501D /* GemaraNavigationController.swift in Sources */,
 				2131969D22F38B2E00B0AF5F /* FilesManagementProvider.swift in Sources */,
+				83C08AF92360562300F64F25 /* TopicCollectionViewCell.swift in Sources */,
 				21999F3B23185F1C003DB1B4 /* EndTimeDisplayMode.swift in Sources */,
 				216A0E7022EEFDA300F7FBC1 /* HTTPRequestFactory.swift in Sources */,
 				213196B122F38B9E00B0AF5F /* ActivityView.swift in Sources */,
+				83C08AF723604EBF00F64F25 /* InterestsCell.swift in Sources */,
 				831D8426234B73C800A9DF8C /* PersonalDetailsCell.swift in Sources */,
 				2133C1F822DB5B8200F910B9 /* AppDelegate.swift in Sources */,
+				83C08AF3235F09E100F64F25 /* CompletionProgressCell.swift in Sources */,
 				FB51711F22F1AE0B003BCAFC /* JTLessonDownload.swift in Sources */,
 				21678D7822E08594007BC74C /* GemaraViewController.swift in Sources */,
 				2126D6DC2303EA8600CB501D /* ContentRepository.swift in Sources */,
