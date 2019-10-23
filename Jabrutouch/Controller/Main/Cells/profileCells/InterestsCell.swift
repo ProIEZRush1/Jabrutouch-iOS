@@ -11,6 +11,7 @@ import UIKit
 class InterestsCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.collectionView.dataSource = self
@@ -33,25 +34,23 @@ class InterestsCell: UITableViewCell, UICollectionViewDelegate, UICollectionView
             return UICollectionViewCell()
         }
         
-//        let label = UILabel()
-//               label.font = UIFont.systemFont(ofSize: 14) //Your font and size
-//               label.numberOfLines = 0
-//               label.text = "Topic \(indexPath.item + 1)" // Your text
-//               let width = label.sizeThatFits(CGSize(width: 300, height: 600)).width
-
         cell.topicLabel.text = "Topic \(indexPath.item + 1)"
-//        cell.topicLabel.frame.size.width = width + 10.0
         cell.topicLabel.layer.cornerRadius = cell.topicLabel.bounds.height/2
-        cell.topicLabel.sizeToFit()
-        cell.topicLabel.adjustsFontSizeToFitWidth = true
+        cell.topicLabel.clipsToBounds = true
         
-//        cell.topicLabel.clipsToBounds = true
-        cell.topicLabel.layer.shadowColor = #colorLiteral(red: 0.1, green: 0.12, blue: 0.57, alpha: 0.8).cgColor
-        cell.topicLabel.layer.shadowOffset = CGSize(width: 0, height: 12)
-        cell.topicLabel.layer.shadowOpacity = 1.0
-        cell.topicLabel.layer.shadowRadius = 36
-//        cell.topicLabel.layer.masksToBounds = false
-//        cell.topicLabel.translatesAutoresizingMaskIntoConstraints = false
+        let color = #colorLiteral(red: 0.1, green: 0.12, blue: 0.57, alpha: 0.4)
+        cell.shadowView.layer.shadowPath = UIBezierPath(roundedRect: cell.shadowView.bounds, cornerRadius: cell.shadowView.bounds.height/2).cgPath
+
+        Utils.dropViewShadow(view: cell.shadowView, shadowColor: color, shadowRadius: 36, shadowOffset: CGSize(width: 0, height: 12))
+
+
+//        cell.shadowView.layer.shadowColor = #colorLiteral(red: 0.1, green: 0.12, blue: 0.57, alpha: 0.5).cgColor
+//        cell.shadowView.layer.shadowOffset = CGSize(width: 0, height: 12)
+//        cell.shadowView.layer.shadowOpacity = 1.0
+//        cell.shadowView.layer.shadowRadius = 36
+//        cell.shadowView.clipsToBounds = false
+//        cell.shadowView.layer.masksToBounds = false
+//        cell.shadowView.translatesAutoresizingMaskIntoConstraints = false
         return cell
     }
     

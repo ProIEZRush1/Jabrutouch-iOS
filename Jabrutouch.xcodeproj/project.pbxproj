@@ -159,6 +159,7 @@
 		83C08AF5235F13D100F64F25 /* JBProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C08AF4235F13D100F64F25 /* JBProgressBar.swift */; };
 		83C08AF723604EBF00F64F25 /* InterestsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C08AF623604EBF00F64F25 /* InterestsCell.swift */; };
 		83C08AF92360562300F64F25 /* TopicCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C08AF82360562300F64F25 /* TopicCollectionViewCell.swift */; };
+		83C08AFD23607E3E00F64F25 /* LabelWithPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C08AFC23607E3E00F64F25 /* LabelWithPadding.swift */; };
 		F7AEA20A7CC7E87A1BEC48AF /* Pods_Jabrutouch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0F9377FF1E3DA5E9F901D68 /* Pods_Jabrutouch.framework */; };
 		FB51711422F19C3F003BCAFC /* MishnaMasechetCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB51711322F19C3F003BCAFC /* MishnaMasechetCellController.swift */; };
 		FB51711622F19FD2003BCAFC /* JTMishnaMasechet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB51711522F19FD2003BCAFC /* JTMishnaMasechet.swift */; };
@@ -345,6 +346,7 @@
 		83C08AF4235F13D100F64F25 /* JBProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JBProgressBar.swift; sourceTree = "<group>"; };
 		83C08AF623604EBF00F64F25 /* InterestsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestsCell.swift; sourceTree = "<group>"; };
 		83C08AF82360562300F64F25 /* TopicCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicCollectionViewCell.swift; sourceTree = "<group>"; };
+		83C08AFC23607E3E00F64F25 /* LabelWithPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelWithPadding.swift; sourceTree = "<group>"; };
 		C0F9377FF1E3DA5E9F901D68 /* Pods_Jabrutouch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jabrutouch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F71C57777BA59A6B8E3F7474 /* Pods-Jabrutouch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jabrutouch.release.xcconfig"; path = "Target Support Files/Pods-Jabrutouch/Pods-Jabrutouch.release.xcconfig"; sourceTree = "<group>"; };
 		FB51711322F19C3F003BCAFC /* MishnaMasechetCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MishnaMasechetCellController.swift; sourceTree = "<group>"; };
@@ -838,6 +840,7 @@
 				21407C8822F72632002F9690 /* TextFieldWithDeleteDelegate.swift */,
 				21999F35231823FF003DB1B4 /* CustomTrackHeightSlider.swift */,
 				83C08AF4235F13D100F64F25 /* JBProgressBar.swift */,
+				83C08AFC23607E3E00F64F25 /* LabelWithPadding.swift */,
 			);
 			path = "Custom Controlles";
 			sourceTree = "<group>";
@@ -1344,6 +1347,7 @@
 				2133C1F822DB5B8200F910B9 /* AppDelegate.swift in Sources */,
 				83C08AF3235F09E100F64F25 /* CompletionProgressCell.swift in Sources */,
 				FB51711F22F1AE0B003BCAFC /* JTLessonDownload.swift in Sources */,
+				83C08AFD23607E3E00F64F25 /* LabelWithPadding.swift in Sources */,
 				21678D7822E08594007BC74C /* GemaraViewController.swift in Sources */,
 				2126D6DC2303EA8600CB501D /* ContentRepository.swift in Sources */,
 				219BFF4422E7186D00ABBEE2 /* MenuTableViewCell.swift in Sources */,

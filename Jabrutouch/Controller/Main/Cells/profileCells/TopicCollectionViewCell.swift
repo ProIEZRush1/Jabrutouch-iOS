@@ -10,6 +10,7 @@ import UIKit
 
 class TopicCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var topicLabel: UILabel!
+    @IBOutlet weak var topicLabel: LabelWithPadding!
+    @IBOutlet weak var shadowView: UIView!
     
 }
