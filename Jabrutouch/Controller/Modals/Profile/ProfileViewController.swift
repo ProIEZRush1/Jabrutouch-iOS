@@ -8,7 +8,8 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AlertViewDelegate {
+    
   
     //========================================
     // MARK: - Properties
@@ -122,6 +123,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "DonationInformationCell") as? DonationInformationCell else { return UITableViewCell() }
             cell.donatedLabel.text = "20"
             cell.learedLabel.text = "5"
+            cell.containerView.clipsToBounds = false
             return cell
         case 2:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "completionProgress") as? CompletionProgressCell else { return UITableViewCell() }
@@ -214,7 +216,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         case 5:
             switch indexPath.row {
             case 0:
-                self.mainViewController?.optionSelected(option: .signOut)
+//                self.mainViewController?.optionSelected(option: .signOut)
+                self.presentLogoutAlert()
             case 1:
                 print("change password selected")
             case 2:
@@ -226,4 +229,22 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             break
         }
     }
+    
+    func presentLogoutAlert() {
+           let storyboard = UIStoryboard(name: "Main", bundle: nil)
+           let myAlert = storyboard.instantiateViewController(withIdentifier: "alertView") as! AlertViewController
+           myAlert.delegate = self
+           myAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+           myAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+           self.present(myAlert, animated: true, completion: nil)
+       }
+    
+    func okPressed() {
+        LoginManager.shared.signOut {
+            DispatchQueue.main.async {
+                self.mainViewController?.navigateToSignIn()
+            }
+        }
+    }
+    
 }
