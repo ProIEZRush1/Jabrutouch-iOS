@@ -209,6 +209,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             return 150
         }
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
         case 0, 1, 2, 3, 4:

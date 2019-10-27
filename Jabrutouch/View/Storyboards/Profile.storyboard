@@ -22,11 +22,11 @@
             <objects>
                 <viewController id="QQm-6t-H9d" customClass="EditProfileViewController" customModule="Jabrutouch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RJZ-kH-Qz8">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PsN-CX-oc9" userLabel="headerView">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="75"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="75"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EDk-yD-4SW">
                                         <rect key="frame" x="138.5" y="21" width="137" height="33"/>
@@ -41,6 +41,9 @@
                                             <constraint firstAttribute="height" constant="53" id="X40-JS-mZA"/>
                                         </constraints>
                                         <state key="normal" image="LeftArrow"/>
+                                        <connections>
+                                            <action selector="backPressed:" destination="QQm-6t-H9d" eventType="touchUpInside" id="khi-Vu-aKJ"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C4O-rJ-eKk">
                                         <rect key="frame" x="362" y="22.5" width="37" height="30"/>
@@ -62,8 +65,8 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5NU-XS-Vdg">
-                                <rect key="frame" x="0.0" y="75" width="414" height="733"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="0.0" y="119" width="414" height="743"/>
+                                <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="completionProgress" rowHeight="60" id="m1B-aa-ERe" customClass="CompletionProgressCell" customModule="Jabrutouch" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="60"/>
@@ -73,7 +76,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50% Full" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gme-he-Bom">
-                                                    <rect key="frame" x="307.5" y="19" width="66.5" height="35"/>
+                                                    <rect key="frame" x="327.5" y="12.5" width="66.5" height="35"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="35" id="23x-KK-As9"/>
                                                     </constraints>
@@ -82,7 +85,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MFc-yJ-HwL" customClass="JBProgressBar" customModule="Jabrutouch" customModuleProvider="target">
-                                                    <rect key="frame" x="42" y="30" width="243.5" height="13"/>
+                                                    <rect key="frame" x="20" y="23.5" width="285.5" height="13"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="13" id="Cu0-0b-IXb"/>
                                                     </constraints>
@@ -100,9 +103,9 @@
                                             <constraints>
                                                 <constraint firstItem="Gme-he-Bom" firstAttribute="leading" secondItem="MFc-yJ-HwL" secondAttribute="trailing" constant="22" id="TKS-st-eEB"/>
                                                 <constraint firstItem="MFc-yJ-HwL" firstAttribute="centerY" secondItem="Gme-he-Bom" secondAttribute="centerY" id="aPT-E0-OLu"/>
-                                                <constraint firstItem="Gme-he-Bom" firstAttribute="trailing" secondItem="l19-2j-N1D" secondAttribute="trailingMargin" constant="-20" id="b4r-gp-dJv"/>
-                                                <constraint firstItem="MFc-yJ-HwL" firstAttribute="leading" secondItem="l19-2j-N1D" secondAttribute="leadingMargin" constant="22" id="oaj-cv-uwy"/>
-                                                <constraint firstItem="Gme-he-Bom" firstAttribute="top" secondItem="l19-2j-N1D" secondAttribute="topMargin" constant="8" id="pY7-xD-f9W"/>
+                                                <constraint firstItem="Gme-he-Bom" firstAttribute="trailing" secondItem="l19-2j-N1D" secondAttribute="trailing" constant="-20" id="b4r-gp-dJv"/>
+                                                <constraint firstItem="Gme-he-Bom" firstAttribute="centerY" secondItem="l19-2j-N1D" secondAttribute="centerY" id="cMc-sY-998"/>
+                                                <constraint firstItem="MFc-yJ-HwL" firstAttribute="leading" secondItem="l19-2j-N1D" secondAttribute="leading" constant="20" id="oaj-cv-uwy"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -111,8 +114,124 @@
                                             <outlet property="progressView" destination="MFc-yJ-HwL" id="qUF-Uq-NC6"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="editPersonalDetails" rowHeight="100" id="xbZ-Kv-Xz2" customClass="EditPersonalDetailsCell" customModule="Jabrutouch" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="88" width="414" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xbZ-Kv-Xz2" id="r0C-gx-rWk">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NbJ-7K-M6g">
+                                                    <rect key="frame" x="297" y="1.5" width="97" height="97"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="97" id="avE-3R-IE6"/>
+                                                        <constraint firstAttribute="height" constant="97" id="jIp-dg-ZUJ"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Ct-Z4-PzS" customClass="TextFieldWithPadding" customModule="Jabrutouch" customModuleProvider="target">
+                                                    <rect key="frame" x="20" y="1.5" width="257" height="43"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="43" id="lFp-nL-4nJ"/>
+                                                    </constraints>
+                                                    <color key="textColor" red="0.16862745098039217" green="0.16862745098039217" blue="0.3411764705882353" alpha="0.88" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="leadingPadding">
+                                                            <real key="value" value="17"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="trailingPadding">
+                                                            <real key="value" value="17"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </textField>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HhH-Y8-K39" customClass="TextFieldWithPadding" customModule="Jabrutouch" customModuleProvider="target">
+                                                    <rect key="frame" x="20" y="55.5" width="257" height="43"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="43" id="RWh-TH-qGK"/>
+                                                    </constraints>
+                                                    <color key="textColor" red="0.17000000000000001" green="0.17000000000000001" blue="0.34000000000000002" alpha="0.88" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="leadingPadding">
+                                                            <real key="value" value="17"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="trailingPadding">
+                                                            <real key="value" value="17"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="HhH-Y8-K39" firstAttribute="leading" secondItem="r0C-gx-rWk" secondAttribute="leading" constant="20" id="3x0-uP-STc"/>
+                                                <constraint firstItem="NbJ-7K-M6g" firstAttribute="leading" secondItem="9Ct-Z4-PzS" secondAttribute="trailing" constant="20" id="7MB-UP-c0b"/>
+                                                <constraint firstItem="HhH-Y8-K39" firstAttribute="bottom" secondItem="NbJ-7K-M6g" secondAttribute="bottom" id="aB4-nl-rWr"/>
+                                                <constraint firstItem="9Ct-Z4-PzS" firstAttribute="leading" secondItem="r0C-gx-rWk" secondAttribute="leading" constant="20" id="b16-3n-pEv"/>
+                                                <constraint firstItem="9Ct-Z4-PzS" firstAttribute="top" secondItem="NbJ-7K-M6g" secondAttribute="top" id="ek2-BS-ctj"/>
+                                                <constraint firstItem="NbJ-7K-M6g" firstAttribute="centerY" secondItem="r0C-gx-rWk" secondAttribute="centerY" id="fI2-2i-hDW"/>
+                                                <constraint firstItem="NbJ-7K-M6g" firstAttribute="leading" secondItem="HhH-Y8-K39" secondAttribute="trailing" constant="20" id="nB4-9N-fwQ"/>
+                                                <constraint firstAttribute="trailing" secondItem="NbJ-7K-M6g" secondAttribute="trailing" constant="20" id="p2u-LQ-rfQ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="firstNameTextField" destination="9Ct-Z4-PzS" id="pVR-h5-r7w"/>
+                                            <outlet property="lastNameTextField" destination="HhH-Y8-K39" id="xXs-Gr-nAd"/>
+                                            <outlet property="profileImage" destination="NbJ-7K-M6g" id="2lA-Lo-3QQ"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="editGeneralInformation" rowHeight="50" id="XuH-w2-wFa" customClass="EditGeneralInformationCell" customModule="Jabrutouch" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="188" width="414" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XuH-w2-wFa" id="0n8-A5-Qur">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kXX-3Y-Bdc">
+                                                    <rect key="frame" x="20" y="2.5" width="374" height="45"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ex-Nd-F3u">
+                                                            <rect key="frame" x="20" y="14" width="37" height="17"/>
+                                                            <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="14"/>
+                                                            <color key="textColor" red="0.17000000000000001" green="0.17000000000000001" blue="0.34000000000000002" alpha="0.88" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Black&amp;BlueDownArrow" translatesAutoresizingMaskIntoConstraints="NO" id="uxL-sq-QKl">
+                                                            <rect key="frame" x="343" y="17" width="11" height="11"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="11" id="BhC-aa-nIb"/>
+                                                                <constraint firstAttribute="width" constant="11" id="OJf-G0-BvR"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <constraints>
+                                                        <constraint firstItem="9Ex-Nd-F3u" firstAttribute="centerY" secondItem="kXX-3Y-Bdc" secondAttribute="centerY" id="EpS-tP-9dA"/>
+                                                        <constraint firstAttribute="height" constant="45" id="Hdw-GF-TVR"/>
+                                                        <constraint firstItem="9Ex-Nd-F3u" firstAttribute="leading" secondItem="kXX-3Y-Bdc" secondAttribute="leading" constant="20" id="MmL-yK-xjA"/>
+                                                        <constraint firstItem="uxL-sq-QKl" firstAttribute="centerY" secondItem="kXX-3Y-Bdc" secondAttribute="centerY" id="heM-hT-qCk"/>
+                                                        <constraint firstAttribute="trailing" secondItem="uxL-sq-QKl" secondAttribute="trailing" constant="20" id="sLo-XB-ubT"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="kXX-3Y-Bdc" firstAttribute="leading" secondItem="0n8-A5-Qur" secondAttribute="leading" constant="20" id="4np-bI-pgS"/>
+                                                <constraint firstItem="kXX-3Y-Bdc" firstAttribute="centerY" secondItem="0n8-A5-Qur" secondAttribute="centerY" id="K7M-R3-K8Y"/>
+                                                <constraint firstAttribute="trailing" secondItem="kXX-3Y-Bdc" secondAttribute="trailing" constant="20" id="h8i-4u-l4P"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="arrowImage" destination="uxL-sq-QKl" id="s20-4w-Qh1"/>
+                                            <outlet property="contanerView" destination="kXX-3Y-Bdc" id="GJU-8y-ytq"/>
+                                            <outlet property="titleLabel" destination="9Ex-Nd-F3u" id="2vn-oN-NLc"/>
+                                        </connections>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="InterestsCell" rowHeight="200" id="aW5-j6-bd1" customClass="InterestsCell" customModule="Jabrutouch" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="88" width="414" height="200"/>
+                                        <rect key="frame" x="0.0" y="238" width="414" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aW5-j6-bd1" id="fC6-1E-hvQ">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
@@ -226,7 +345,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PVN-na-Mo9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="649" y="234"/>
+            <point key="canvasLocation" x="647.82608695652175" y="233.70535714285714"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="laE-tR-yhN">
@@ -682,7 +801,7 @@
                     <connections>
                         <outlet property="profileImage" destination="zce-kx-l9g" id="OK4-3E-93l"/>
                         <outlet property="tableView" destination="nTA-G2-CeG" id="7FV-j5-PSA"/>
-                        <segue destination="QQm-6t-H9d" kind="presentation" identifier="toEditProfile" id="s8U-5P-Klr"/>
+                        <segue destination="QQm-6t-H9d" kind="presentation" identifier="toEditProfile" modalPresentationStyle="fullScreen" id="s8U-5P-Klr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bB6-Om-AEr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -692,6 +811,7 @@
     </scenes>
     <resources>
         <image name="Avatar" width="83.5" height="83.5"/>
+        <image name="Black&amp;BlueDownArrow" width="15.5" height="9"/>
         <image name="LeftArrow" width="27.5" height="19.5"/>
         <image name="location" width="16" height="19.5"/>
     </resources>

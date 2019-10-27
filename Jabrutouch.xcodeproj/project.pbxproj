@@ -154,6 +154,8 @@
 		831D842A234B766A00A9DF8C /* GeneralInformationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831D8429234B766A00A9DF8C /* GeneralInformationCell.swift */; };
 		831D842C234B782800A9DF8C /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831D842B234B782800A9DF8C /* ButtonCell.swift */; };
 		831D842F234F3A2000A9DF8C /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831D842E234F3A2000A9DF8C /* EditProfileViewController.swift */; };
+		833708442365AB1500E995C3 /* EditPersonalDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833708432365AB1500E995C3 /* EditPersonalDetailsCell.swift */; };
+		833708462365BA9E00E995C3 /* EditGeneralInformationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833708452365BA9E00E995C3 /* EditGeneralInformationCell.swift */; };
 		83C08AF1235EF05100F64F25 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83C08AF0235EF05100F64F25 /* Profile.storyboard */; };
 		83C08AF3235F09E100F64F25 /* CompletionProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C08AF2235F09E100F64F25 /* CompletionProgressCell.swift */; };
 		83C08AF5235F13D100F64F25 /* JBProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C08AF4235F13D100F64F25 /* JBProgressBar.swift */; };
@@ -341,6 +343,8 @@
 		831D8429234B766A00A9DF8C /* GeneralInformationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralInformationCell.swift; sourceTree = "<group>"; };
 		831D842B234B782800A9DF8C /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
 		831D842E234F3A2000A9DF8C /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		833708432365AB1500E995C3 /* EditPersonalDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPersonalDetailsCell.swift; sourceTree = "<group>"; };
+		833708452365BA9E00E995C3 /* EditGeneralInformationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGeneralInformationCell.swift; sourceTree = "<group>"; };
 		83C08AF0235EF05100F64F25 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		83C08AF2235F09E100F64F25 /* CompletionProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionProgressCell.swift; sourceTree = "<group>"; };
 		83C08AF4235F13D100F64F25 /* JBProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JBProgressBar.swift; sourceTree = "<group>"; };
@@ -980,6 +984,8 @@
 				83C08AF2235F09E100F64F25 /* CompletionProgressCell.swift */,
 				83C08AF623604EBF00F64F25 /* InterestsCell.swift */,
 				83C08AF82360562300F64F25 /* TopicCollectionViewCell.swift */,
+				833708432365AB1500E995C3 /* EditPersonalDetailsCell.swift */,
+				833708452365BA9E00E995C3 /* EditGeneralInformationCell.swift */,
 			);
 			path = profileCells;
 			sourceTree = "<group>";
@@ -1268,6 +1274,7 @@
 				212ECEAA2312548D005AEB36 /* JTLesson.swift in Sources */,
 				FBB18FAE22F85773006886FD /* GemaraMasechetCellController.swift in Sources */,
 				213196AA22F38B3E00B0AF5F /* LoginResponse.swift in Sources */,
+				833708442365AB1500E995C3 /* EditPersonalDetailsCell.swift in Sources */,
 				212ECEAC2312585A005AEB36 /* JTLessonType.swift in Sources */,
 				219BFF2922E50C0B00ABBEE2 /* ModalsContainerViewController.swift in Sources */,
 				FB6877C222FC49AE0096465D /* AlertViewController.swift in Sources */,
@@ -1323,6 +1330,7 @@
 				21678D7622E08565007BC74C /* DownloadsViewController.swift in Sources */,
 				219BFF3822E5B72000ABBEE2 /* LocalizationManager.swift in Sources */,
 				213196A522F38B3E00B0AF5F /* SignUpResponse.swift in Sources */,
+				833708462365BA9E00E995C3 /* EditGeneralInformationCell.swift in Sources */,
 				21419CB7230DD8C100145F1F /* JTSederDownloadedGemaraLessons.swift in Sources */,
 				2120BE1F22DF2758004854DB /* SignUpViewController.swift in Sources */,
 				213196AD22F38B6800B0AF5F /* JTCommunity.swift in Sources */,
