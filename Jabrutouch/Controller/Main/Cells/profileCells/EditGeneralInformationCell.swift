@@ -13,6 +13,7 @@ class EditGeneralInformationCell: UITableViewCell {
     @IBOutlet weak var contanerView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var arrowImage: UIImageView!
+    @IBOutlet weak var textField: UITextField!
     
     override func awakeFromNib() {
         super.awakeFromNib()

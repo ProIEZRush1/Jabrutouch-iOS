@@ -9,25 +9,106 @@
 import UIKit
 
 class EditProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-   
+    
+    //============================================================
+    // MARK: - Properties
+    //============================================================
+    var birthday: String?
+    var datePicker: UIDatePicker?
     var user: JTUser?
+    private var countriesPicker: UIPickerView?
+    private var currentCountry = LocalizationManager.shared.getDefaultCountry()
+    
+//    var selectedDay:Int = 0
+//    var selectedMonth:Int = 0
+//    var selectedYear:Int = 0
+//
+//    var birthdate:String {
+//        let selectedDay =  self.selectedDay < 10 ? "0\(self.selectedDay)" : "\(self.selectedDay)"
+//        let selectedMonth =  self.selectedMonth < 10 ? "0\(self.selectedMonth)" : "\(self.selectedMonth)"
+//        return "\(selectedDay)-\(selectedMonth)-\(selectedYear)"
+//    }
+//
+    //============================================================
+    // MARK: - Outlets
+    //============================================================
     @IBOutlet weak var tableView: UITableView!
+    
+    //============================================================
+    // MARK: - LifeCycle
+    //============================================================
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.initCountriesPicker()
+        
         user = UserDefaultsProvider.shared.currentUser
-        // Do any additional setup after loading the view.
     }
     
+    //============================================================
+    // MARK: - Setup
+    //============================================================
+    
+    private func initCountriesPicker() {
+        self.countriesPicker = UIPickerView()
+        self.countriesPicker?.backgroundColor = Colors.offwhiteLight
+        self.countriesPicker?.dataSource = self
+        self.countriesPicker?.delegate = self
+    }
+    
+    
+    //============================================================
+    // MARK: - @IBActions
+    //============================================================
+    
     @IBAction func backPressed(_ sender: Any) {
-           dismiss(animated: true, completion: nil)
-       }
-       
+        dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func doneButtonPressed(_ sender: Any) {
         
     }
+    
+    @objc func keyboardDonePressed(_ sender: Any) {
+        if let index = self.countriesPicker?.selectedRow(inComponent: 0) {
+            self.currentCountry = LocalizationManager.shared.getCountries()[index]
+        }
+        self.view.endEditing(true)
+    }
+    
+    @objc func keyboardCancelPressed(_ sender: Any) {
+        self.view.endEditing(true)
+    }
+    
+    @objc func handleDatePicker(sender: UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MMM yyyy"
+        self.birthday = dateFormatter.string(from: sender.date)
+    }
+    
+    @objc func donePressed(_ sender: UITextField) {
+//        guard let date = self.datePicker?.date else { return }
+//        let calendar = Calendar(identifier: .gregorian)
+        //        let components = calendar.dateComponents([.day,.month, .year], from: date)
+//        self.selectedDay = calendar.component(.day, from: date)
+//        self.selectedMonth = calendar.component(.month, from: date)
+//        self.selectedYear = calendar.component(.year, from: date)
+
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "dd/MM/yyyy"
+        sender.resignFirstResponder()
+    }
+//
+//    @objc func datePickerValueChanged(_ sender:UIDatePicker) {
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "dd/MM/yyyy"
+//        //        dateOfBirthTF.text = dateFormatter.string(from: sender.date)
+//    }
+    //============================================================
+    // MARK: - tabel view
+    //============================================================
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 4
@@ -69,41 +150,65 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
             
             switch indexPath.row {
             case 0:
+                cell.titleLabel.isHidden = false
                 cell.titleLabel.text = user?.email
                 cell.titleLabel.textColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
                 cell.arrowImage.isHidden = true
+                cell.textField.isHidden = true
             case 1:
-                cell.titleLabel.text = "Country"
+                cell.titleLabel.isHidden = false
+                cell.titleLabel.text = LocalizationManager.shared.getDefaultCountry()?.fullDisplayName
                 cell.titleLabel.textColor = #colorLiteral(red: 0.17, green: 0.17, blue: 0.34, alpha: 0.88)
                 cell.arrowImage.isHidden = false
+                cell.textField.isHidden = true
             case 2:
+                cell.titleLabel.isHidden = false
                 cell.titleLabel.text = user?.phoneNumber
                 cell.titleLabel.textColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
                 cell.arrowImage.isHidden = true
+                cell.textField.isHidden = true
             case 3:
-                cell.titleLabel.text = "Birthday"
+                cell.titleLabel.isHidden = true
                 cell.titleLabel.textColor = #colorLiteral(red: 0.17, green: 0.17, blue: 0.34, alpha: 0.88)
                 cell.arrowImage.isHidden = true
+                cell.textField.tag = 1
+                if self.user?.birthdayString == "" {
+                    cell.textField.text = "Birthday"
+                } else {
+                    cell.textField.text = self.user?.birthdayString
+                }
+//                cell.textField.text = self.birthdate
+                cell.textField.isHidden = false
             case 4:
+                cell.titleLabel.isHidden = false
                 cell.titleLabel.text = "Community"
                 cell.titleLabel.textColor = #colorLiteral(red: 0.17, green: 0.17, blue: 0.34, alpha: 0.88)
                 cell.arrowImage.isHidden = false
+                cell.textField.isHidden = true
             case 5:
+                cell.titleLabel.isHidden = false
                 cell.titleLabel.text = "Religious Level"
                 cell.titleLabel.textColor = #colorLiteral(red: 0.17, green: 0.17, blue: 0.34, alpha: 0.88)
                 cell.arrowImage.isHidden = false
+                cell.textField.isHidden = true
             case 6:
+                cell.titleLabel.isHidden = false
                 cell.titleLabel.text = "Education"
                 cell.titleLabel.textColor = #colorLiteral(red: 0.17, green: 0.17, blue: 0.34, alpha: 0.88)
                 cell.arrowImage.isHidden = false
+                cell.textField.isHidden = true
             case 7:
+                cell.titleLabel.isHidden = false
                 cell.titleLabel.text = "Occupation"
                 cell.titleLabel.textColor = #colorLiteral(red: 0.17, green: 0.17, blue: 0.34, alpha: 0.88)
                 cell.arrowImage.isHidden = false
+                cell.textField.isHidden = true
             case 8:
-                cell.titleLabel.text = "Second Email Address"
-                cell.titleLabel.textColor = #colorLiteral(red: 0.17, green: 0.17, blue: 0.34, alpha: 0.88)
+                cell.textField.isHidden = false
+                cell.titleLabel.isHidden = true
                 cell.arrowImage.isHidden = true
+                cell.textField.textColor = #colorLiteral(red: 0.17, green: 0.17, blue: 0.34, alpha: 0.88)
+                cell.textField.text = "Second Email Address"
             default:
                 break
             }
@@ -133,30 +238,90 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
-     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            switch indexPath.section {
-            case 0, 1, 3:
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.section {
+        case 0, 1, 3:
+            break
+        case 2:
+            switch indexPath.row {
+            case 0, 2, 3:
                 break
-            case 2:
-                switch indexPath.row {
-                case 0, 2:
-                    break
-                case 1:
-                    print("change password selected")
-                case 4:
-                    print("remove account selected")
-                case 5:
-                    print("remove account selected")
-                case 6:
-                    print("remove account selected")
-                case 7:
-                    print("remove account selected")
-                default:
-                    break
-                }
+            case 1:
+                // open countries picker
+                print("country selected")
+            case 4:
+                // open community picker
+                print("community selected")
+            case 5:
+                // open religious level picker
+                print("religious level selected")
+            case 6:
+                // open education picker
+                print("education selected")
+            case 7:
+                // open occupation picker
+                print("occupation selected")
             default:
                 break
             }
+        default:
+            break
         }
-
+    }
+    
 }
+
+extension EditProfileViewController: UIPickerViewDelegate {
+    
+}
+
+extension EditProfileViewController: UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return LocalizationManager.shared.getCountries().count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        let country = LocalizationManager.shared.getCountries()[row]
+        
+        return country.fullDisplayName
+    }
+    
+}
+
+extension EditProfileViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return true
+    }
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField.tag == 1 {
+            let datePickerView = UIDatePicker()
+            datePickerView.datePickerMode = .date
+            textField.inputView = datePickerView
+            datePickerView.addTarget(self, action: #selector(handleDatePicker(sender:)), for: .valueChanged)
+
+//            self.datePicker = UIDatePicker()
+//            self.datePicker?.calendar = Calendar(identifier: .gregorian)
+//            self.datePicker?.datePickerMode = .date
+//            self.datePicker?.addTarget(self, action: #selector(self.datePickerValueChanged(_:)), for: .valueChanged)
+//            textField.inputView = self.datePicker
+//
+            let keyboardToolbar = UIToolbar()
+            keyboardToolbar.sizeToFit()
+            let flexBarButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+            let doneBarButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.donePressed(_:)))
+            keyboardToolbar.items = [flexBarButton, doneBarButton]
+            textField.inputAccessoryView = keyboardToolbar
+            
+        }
+        
+    }
+}
+

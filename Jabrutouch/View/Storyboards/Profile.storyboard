@@ -50,6 +50,9 @@
                                         <state key="normal" title="Done">
                                             <color key="titleColor" red="0.1764705882" green="0.16862745100000001" blue="0.66274509800000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="doneButtonPressed:" destination="QQm-6t-H9d" eventType="touchUpInside" id="dCF-YT-xB0"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -199,6 +202,14 @@
                                                             <color key="textColor" red="0.17000000000000001" green="0.17000000000000001" blue="0.34000000000000002" alpha="0.88" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WLq-XB-cWa">
+                                                            <rect key="frame" x="20" y="14" width="37" height="17"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits"/>
+                                                            <connections>
+                                                                <outlet property="delegate" destination="QQm-6t-H9d" id="t4S-hD-BEO"/>
+                                                            </connections>
+                                                        </textField>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Black&amp;BlueDownArrow" translatesAutoresizingMaskIntoConstraints="NO" id="uxL-sq-QKl">
                                                             <rect key="frame" x="343" y="17" width="11" height="11"/>
                                                             <constraints>
@@ -209,9 +220,13 @@
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <constraints>
+                                                        <constraint firstItem="WLq-XB-cWa" firstAttribute="trailing" secondItem="9Ex-Nd-F3u" secondAttribute="trailing" id="5pw-iZ-Pc5"/>
                                                         <constraint firstItem="9Ex-Nd-F3u" firstAttribute="centerY" secondItem="kXX-3Y-Bdc" secondAttribute="centerY" id="EpS-tP-9dA"/>
                                                         <constraint firstAttribute="height" constant="45" id="Hdw-GF-TVR"/>
                                                         <constraint firstItem="9Ex-Nd-F3u" firstAttribute="leading" secondItem="kXX-3Y-Bdc" secondAttribute="leading" constant="20" id="MmL-yK-xjA"/>
+                                                        <constraint firstItem="WLq-XB-cWa" firstAttribute="leading" secondItem="9Ex-Nd-F3u" secondAttribute="leading" id="QgD-d5-sWx"/>
+                                                        <constraint firstItem="WLq-XB-cWa" firstAttribute="top" secondItem="9Ex-Nd-F3u" secondAttribute="top" id="blr-wK-4wr"/>
+                                                        <constraint firstItem="WLq-XB-cWa" firstAttribute="bottom" secondItem="9Ex-Nd-F3u" secondAttribute="bottom" id="gUC-4K-FeZ"/>
                                                         <constraint firstItem="uxL-sq-QKl" firstAttribute="centerY" secondItem="kXX-3Y-Bdc" secondAttribute="centerY" id="heM-hT-qCk"/>
                                                         <constraint firstAttribute="trailing" secondItem="uxL-sq-QKl" secondAttribute="trailing" constant="20" id="sLo-XB-ubT"/>
                                                     </constraints>
@@ -227,6 +242,7 @@
                                         <connections>
                                             <outlet property="arrowImage" destination="uxL-sq-QKl" id="s20-4w-Qh1"/>
                                             <outlet property="contanerView" destination="kXX-3Y-Bdc" id="GJU-8y-ytq"/>
+                                            <outlet property="textField" destination="WLq-XB-cWa" id="43c-m5-pV4"/>
                                             <outlet property="titleLabel" destination="9Ex-Nd-F3u" id="2vn-oN-NLc"/>
                                         </connections>
                                     </tableViewCell>
