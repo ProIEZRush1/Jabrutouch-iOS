@@ -172,18 +172,6 @@
                                 <action selector="playbackSpeedButtonPressed:" destination="-1" eventType="touchUpInside" id="3Sd-3a-23X"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TdK-mw-Ild">
-                            <rect key="frame" x="368" y="183.5" width="30" height="30"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="30" id="I5r-eJ-xQu"/>
-                                <constraint firstAttribute="height" constant="30" id="wHS-74-uxe"/>
-                            </constraints>
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <state key="normal" image="fullScreen"/>
-                            <connections>
-                                <action selector="fullscreenButtonPressed:" destination="-1" eventType="touchUpInside" id="sbS-zh-Uxc"/>
-                            </connections>
-                        </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--:--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BUM-AC-ghR">
                             <rect key="frame" x="20" y="187.5" width="60" height="21.5"/>
                             <constraints>
@@ -218,6 +206,18 @@
                                 <action selector="sliderValueChanged:" destination="-1" eventType="valueChanged" id="mRg-oF-MZV"/>
                             </connections>
                         </slider>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TdK-mw-Ild">
+                            <rect key="frame" x="368" y="183.5" width="30" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="I5r-eJ-xQu"/>
+                                <constraint firstAttribute="height" constant="30" id="wHS-74-uxe"/>
+                            </constraints>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal" image="fullScreen"/>
+                            <connections>
+                                <action selector="fullscreenButtonPressed:" destination="-1" eventType="touchUpInside" id="sbS-zh-Uxc"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>

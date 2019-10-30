@@ -173,7 +173,7 @@ class VideoPlayer: UIView {
     }
     
     private func setupSliders() {
-        self.slider.setThumbImage(#imageLiteral(resourceName: "thumb"), for: .normal)        
+        self.slider.setThumbImage(#imageLiteral(resourceName: "newThumb"), for: .normal)        
         
         if let image = Utils.linearGradientImage(size: self.slider.frame.size, colors: [Colors.appBlue, Colors.appOrange]) {
             self.slider.setMinimumTrackImage(image, for: .normal)
