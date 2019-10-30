@@ -176,6 +176,17 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.gemaraCollectionView.reloadData()
         self.mishnaCollectionView.reloadData()
     }
+    
+    private func setDefaulteIcons() {
+        self.downloadsImageView.image = #imageLiteral(resourceName: "DownloadsNatural")
+        self.gemaraImageView.image = #imageLiteral(resourceName: "GemaraNatural")
+        self.mishnaImageView.image = #imageLiteral(resourceName: "MishnaNatural")
+        self.donationsImageView.image = #imageLiteral(resourceName: "Donations")
+        self.downloadsLabel.textColor = #colorLiteral(red: 0.4734545946, green: 0.6921172738, blue: 0.9352924824, alpha: 1)
+        self.gemaraLabel.textColor = #colorLiteral(red: 0.4734545946, green: 0.6921172738, blue: 0.9352924824, alpha: 1)
+        self.mishnaLabel.textColor = #colorLiteral(red: 0.4734545946, green: 0.6921172738, blue: 0.9352924824, alpha: 1)
+        self.donationsLabel.textColor = #colorLiteral(red: 0.4734545946, green: 0.6921172738, blue: 0.9352924824, alpha: 1)
+    }
     //========================================
     // MARK: - Collection Views
     //========================================
@@ -226,8 +237,10 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     //========================================
     
     @IBAction func downloadsButtonTouchedDown(_ sender: UIButton) {
-        self.downloadsImageView.alpha = 0.3
-        self.downloadsLabel.alpha = 0.3
+        self.downloadsImageView.image = #imageLiteral(resourceName: "Downloads Natural Blue")
+        self.downloadsLabel.textColor = #colorLiteral(red: 0.18, green: 0.17, blue: 0.66, alpha: 1)
+//        self.downloadsImageView.alpha = 0.3
+//        self.downloadsLabel.alpha = 0.3
     }
     
     @IBAction func downloadsButtonTouchedUp(_ sender: UIButton) {
@@ -246,8 +259,10 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     }
     
     @IBAction func gemaraButtonTouchedDown(_ sender: UIButton) {
-        self.gemaraImageView.alpha = 0.3
-        self.gemaraLabel.alpha = 0.3
+//        self.gemaraImageView.alpha = 0.3
+//        self.gemaraLabel.alpha = 0.3
+        self.gemaraLabel.textColor = #colorLiteral(red: 0.18, green: 0.17, blue: 0.66, alpha: 1)
+        self.gemaraImageView.image = #imageLiteral(resourceName: "Gemara natural Blue")
     }
     
     @IBAction func gemaraButtonTouchedUp(_ sender: UIButton) {
@@ -266,8 +281,10 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     }
     
     @IBAction func mishnaButtonTouchedDown(_ sender: UIButton) {
-        self.mishnaImageView.alpha = 0.3
-        self.mishnaLabel.alpha = 0.3
+//        self.mishnaImageView.alpha = 0.3
+//        self.mishnaLabel.alpha = 0.3
+        self.mishnaLabel.textColor = #colorLiteral(red: 0.18, green: 0.17, blue: 0.66, alpha: 1)
+        self.mishnaImageView.image = #imageLiteral(resourceName: "Mishna natural Blue")
     }
     
     @IBAction func mishnaButtonTouchedUp(_ sender: UIButton) {
@@ -286,8 +303,10 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     }
     
     @IBAction func donationsButtonTouchedDown(_ sender: UIButton) {
-        self.donationsImageView.alpha = 0.3
-        self.donationsLabel.alpha = 0.3
+//        self.donationsImageView.alpha = 0.3
+//        self.donationsLabel.alpha = 0.3
+        self.donationsLabel.textColor = #colorLiteral(red: 0.18, green: 0.17, blue: 0.66, alpha: 1)
+        self.donationsImageView.image = #imageLiteral(resourceName: "Keter-prs Blue")
     }
     
     @IBAction func donationsButtonTouchedUp(_ sender: UIButton) {
@@ -430,6 +449,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.modalsPresentingVC.dismiss(animated: true) {
             self.view.bringSubviewToFront(self.mainContainer)
             self.currentPresentedModal = nil
+            self.setDefaulteIcons()
         }
     }
     
