@@ -276,7 +276,7 @@ class LessonPlayerViewController: UIViewController {
                 maker.top.equalTo(self.portraitHeaderView.snp.bottom)
                 maker.leading.equalTo(self.view.snp.leading)
                 maker.trailing.equalTo(self.view.snp.trailing)
-                maker.height.equalTo(self.videoPlayer.snp.width).multipliedBy(self.videoAspectRatio).offset(15.0)
+                maker.height.equalTo(self.videoPlayer.snp.width).multipliedBy(self.videoAspectRatio).offset(24.0)
             }
             self.videoPlayer.layer.cornerRadius = 0.0
             Utils.dropViewShadow(view: self.videoPlayer, shadowColor: UIColor.clear, shadowRadius: 0, shadowOffset: CGSize(width: 0.0, height: 12))

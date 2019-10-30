@@ -204,7 +204,7 @@ class VideoPlayer: UIView {
             self.videoView.snp.removeConstraints()
             self.videoView.snp.makeConstraints { (maker) in
                 maker.top.equalTo(self.view.snp.top)
-                maker.bottom.equalTo(self.view.snp.bottom).inset(15.0)
+                maker.bottom.equalTo(self.view.snp.bottom).inset(24.0)
                 maker.leading.equalTo(self.view.snp.leading)
                 maker.trailing.equalTo(self.view.snp.trailing)
             }
@@ -214,7 +214,7 @@ class VideoPlayer: UIView {
                 maker.bottom.equalToSuperview()
                 maker.trailing.equalToSuperview()
                 maker.leading.equalToSuperview()
-                maker.height.equalTo(30.0)
+                maker.height.equalTo(48.0)
             }
             self.view.layer.cornerRadius = 0.0
             self.view.clipsToBounds = true
@@ -241,7 +241,14 @@ class VideoPlayer: UIView {
             
             self.videoView.snp.removeConstraints()
             self.videoView.snp.makeConstraints { (maker) in
-                maker.top.equalTo(self.view.snp.top)
+                maker.top.equalTo(self.safeAreaLayoutGuide.snp.top)
+                maker.bottom.equalTo(self.view.snp.bottom)
+                maker.leading.equalTo(self.view.snp.leading)
+                maker.trailing.equalTo(self.view.snp.trailing)
+            }
+            
+            self.accessoriesContainer.snp.makeConstraints { (maker) in
+                maker.top.equalTo(self.safeAreaLayoutGuide.snp.top)
                 maker.bottom.equalTo(self.view.snp.bottom)
                 maker.leading.equalTo(self.view.snp.leading)
                 maker.trailing.equalTo(self.view.snp.trailing)
@@ -250,7 +257,7 @@ class VideoPlayer: UIView {
             self.slider.snp.removeConstraints()
             self.slider.snp.makeConstraints { (maker) in
                 maker.leading.equalTo(self.currentTimeLabel.snp.trailing).offset(8.0)
-                maker.trailing.equalTo(self.endTimeButton.snp.leading).inset(8.0)
+                maker.trailing.equalTo(self.endTimeButton.snp.leading).inset(-8.0)
                 maker.centerY.equalTo(self.currentTimeLabel.snp.centerY)
                 maker.height.equalTo(30.0)
             }
