@@ -63,6 +63,8 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     @IBOutlet weak private var todaysDafTitleLabel: UILabel!
     @IBOutlet weak private var todaysDafLabel: UILabel!
     @IBOutlet weak private var todaysDateLabel: UILabel!
+    @IBOutlet weak var todaysDafAudio: UIButton!
+    @IBOutlet weak var todaysDafVideo: UIButton!
     @IBOutlet weak var todaysDafToWelcomeConstraint: NSLayoutConstraint!
     // Recents
     @IBOutlet weak var recentsGemara: UILabel!
@@ -105,6 +107,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.setShadows()
         self.setConstraints()
         UserDefaultsProvider.shared.notFirstTime = true
+        self.setButtonsBackground()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -187,6 +190,16 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.mishnaLabel.textColor = #colorLiteral(red: 0.4734545946, green: 0.6921172738, blue: 0.9352924824, alpha: 1)
         self.donationsLabel.textColor = #colorLiteral(red: 0.4734545946, green: 0.6921172738, blue: 0.9352924824, alpha: 1)
     }
+    
+    func setButtonsBackground() {
+        self.todaysDafAudio.setImage(#imageLiteral(resourceName: "audio-nat"), for: .normal)
+        self.todaysDafAudio.setImage(#imageLiteral(resourceName: "audio-prs"), for: .highlighted)
+        
+        self.todaysDafVideo.setImage(#imageLiteral(resourceName: "video-nat"), for: .normal)
+        self.todaysDafVideo.setImage(#imageLiteral(resourceName: "video-prs"), for: .highlighted)
+
+        
+    }
     //========================================
     // MARK: - Collection Views
     //========================================
@@ -208,8 +221,18 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
             cell.masechetLabel.text = lessonRecord.masechetName
             cell.chapterLabel.text = nil
             cell.numberLabel.text = "\(lessonRecord.lesson.page)"
-            cell.audio.image = lessonRecord.lesson.isAudioDownloaded ? #imageLiteral(resourceName: "RedAudio") : #imageLiteral(resourceName: "Audio")
-            cell.video.image = lessonRecord.lesson.isVideoDownloaded ? #imageLiteral(resourceName: "RedVideo") : #imageLiteral(resourceName: "Video")
+            if lessonRecord.lesson.isAudioDownloaded {
+                cell.audioButton.setImage(#imageLiteral(resourceName: "audio-downloaded"), for: .normal)
+            } else {
+                cell.audioButton.setImage(#imageLiteral(resourceName: "audio-nat"), for: .normal)
+            }
+            if lessonRecord.lesson.isVideoDownloaded{
+                cell.videoButton.setImage(#imageLiteral(resourceName: "video-downloaded") , for: .normal)
+            } else {
+                cell.videoButton.setImage(#imageLiteral(resourceName: "video-nat") , for: .normal)
+            }
+//            cell.audio.image = lessonRecord.lesson.isAudioDownloaded ? #imageLiteral(resourceName: "audio-downloaded") : #imageLiteral(resourceName: "audio-nat")
+//            cell.video.image = lessonRecord.lesson.isVideoDownloaded ? #imageLiteral(resourceName: "video-downloaded") : #imageLiteral(resourceName: "video-nat")
         } else {
             let lessonRecord = mishnaHistory[indexPath.row]
             
@@ -231,16 +254,37 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         return cell
     }
     
+    func setIcons(string: String) {
+        self.downloadsLabel.textColor = #colorLiteral(red: 0.4734545946, green: 0.6921172738, blue: 0.9352924824, alpha: 1)
+        self.gemaraLabel.textColor = #colorLiteral(red: 0.4734545946, green: 0.6921172738, blue: 0.9352924824, alpha: 1)
+        self.mishnaLabel.textColor = #colorLiteral(red: 0.4734545946, green: 0.6921172738, blue: 0.9352924824, alpha: 1)
+        self.donationsLabel.textColor = #colorLiteral(red: 0.4734545946, green: 0.6921172738, blue: 0.9352924824, alpha: 1)
+        self.gemaraImageView.image = #imageLiteral(resourceName: "GemaraNatural")
+        self.mishnaImageView.image = #imageLiteral(resourceName: "MishnaNatural")
+        self.donationsImageView.image = #imageLiteral(resourceName: "Donations")
+        self.downloadsImageView.image = #imageLiteral(resourceName: "DownloadsNatural")
+        if string == "downloads" {
+            self.downloadsImageView.image = #imageLiteral(resourceName: "Downloads Natural Blue")
+            self.downloadsLabel.textColor = #colorLiteral(red: 0.18, green: 0.17, blue: 0.66, alpha: 1)
+        } else if string == "gemara"{
+            self.gemaraLabel.textColor = #colorLiteral(red: 0.18, green: 0.17, blue: 0.66, alpha: 1)
+            self.gemaraImageView.image = #imageLiteral(resourceName: "Gemara natural Blue")
+        } else if string == "mishna" {
+            self.mishnaLabel.textColor = #colorLiteral(red: 0.18, green: 0.17, blue: 0.66, alpha: 1)
+            self.mishnaImageView.image = #imageLiteral(resourceName: "Mishna natural Blue")
+        } else if string == "donations" {
+            self.donationsLabel.textColor = #colorLiteral(red: 0.18, green: 0.17, blue: 0.66, alpha: 1)
+            self.donationsImageView.image = #imageLiteral(resourceName: "Keter-prs Blue")
+        }
+    }
     
     //========================================
     // MARK: - @IBActions
     //========================================
     
     @IBAction func downloadsButtonTouchedDown(_ sender: UIButton) {
-        self.downloadsImageView.image = #imageLiteral(resourceName: "Downloads Natural Blue")
-        self.downloadsLabel.textColor = #colorLiteral(red: 0.18, green: 0.17, blue: 0.66, alpha: 1)
-//        self.downloadsImageView.alpha = 0.3
-//        self.downloadsLabel.alpha = 0.3
+        self.setIcons(string: "downloads")
+
     }
     
     @IBAction func downloadsButtonTouchedUp(_ sender: UIButton) {
@@ -259,10 +303,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     }
     
     @IBAction func gemaraButtonTouchedDown(_ sender: UIButton) {
-//        self.gemaraImageView.alpha = 0.3
-//        self.gemaraLabel.alpha = 0.3
-        self.gemaraLabel.textColor = #colorLiteral(red: 0.18, green: 0.17, blue: 0.66, alpha: 1)
-        self.gemaraImageView.image = #imageLiteral(resourceName: "Gemara natural Blue")
+        self.setIcons(string: "gemara")
     }
     
     @IBAction func gemaraButtonTouchedUp(_ sender: UIButton) {
@@ -281,10 +322,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     }
     
     @IBAction func mishnaButtonTouchedDown(_ sender: UIButton) {
-//        self.mishnaImageView.alpha = 0.3
-//        self.mishnaLabel.alpha = 0.3
-        self.mishnaLabel.textColor = #colorLiteral(red: 0.18, green: 0.17, blue: 0.66, alpha: 1)
-        self.mishnaImageView.image = #imageLiteral(resourceName: "Mishna natural Blue")
+        self.setIcons(string: "mishna")
     }
     
     @IBAction func mishnaButtonTouchedUp(_ sender: UIButton) {
@@ -303,10 +341,8 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     }
     
     @IBAction func donationsButtonTouchedDown(_ sender: UIButton) {
-//        self.donationsImageView.alpha = 0.3
-//        self.donationsLabel.alpha = 0.3
-        self.donationsLabel.textColor = #colorLiteral(red: 0.18, green: 0.17, blue: 0.66, alpha: 1)
-        self.donationsImageView.image = #imageLiteral(resourceName: "Keter-prs Blue")
+        self.setIcons(string: "donations")
+        
     }
     
     @IBAction func donationsButtonTouchedUp(_ sender: UIButton) {
