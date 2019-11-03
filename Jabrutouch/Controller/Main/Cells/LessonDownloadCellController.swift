@@ -115,6 +115,23 @@ class LessonDownloadCellController: UITableViewCell {
         self.downloadVideoButtonImageView.alpha = lesson.isDownloadingVideo ? 0.3 : 1.0
     }
     
+    func setButtonBackground(_ lesson: JTLesson){
+        if !lesson.isAudioDownloaded {
+            self.playAudioButton.setImage(#imageLiteral(resourceName: "audio-prs"), for: .highlighted)
+            self.playVideoButton.setImage(#imageLiteral(resourceName: "video-prs"), for: .highlighted)
+             
+        }
+//        self.playAudioButton.setImage(#imageLiteral(resourceName: "audio-downloaded"), for: .normal)
+//        self.playAudioButton.setImage(#imageLiteral(resourceName: "audio-downloaded"), for: .highlighted)
+//        
+//        self.playAudioButton.setImage(#imageLiteral(resourceName: "audio-nat"), for: .normal)
+//        
+//        self.playVideoButton.setImage(#imageLiteral(resourceName: "video-downloaded"), for: .normal)
+//        self.playVideoButton.setImage(#imageLiteral(resourceName: "video-downloaded"), for: .highlighted)
+//        
+//        self.playVideoButton.setImage(#imageLiteral(resourceName: "video-nat"), for: .normal)
+    }
+    
     private func setImagesForLesson(_ lesson: JTLesson) {
         if lesson.isAudioDownloaded {
             self.audioImage?.image = UIImage(named: "RedAudio")
