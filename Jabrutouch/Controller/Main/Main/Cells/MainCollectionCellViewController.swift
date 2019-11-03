@@ -36,13 +36,12 @@ class MainCollectionCellViewController: UICollectionViewCell {
     }
     
     func setButtonsBackground() {
-        self.audioButton.setBackgroundImage(nil, for: .normal)
-        self.audioButton.setBackgroundImage(#imageLiteral(resourceName: "backgroundShadow"), for: .selected)
+        self.audioButton.setImage(#imageLiteral(resourceName: "audio-nat"), for: .normal)
+        self.audioButton.setImage(#imageLiteral(resourceName: "audio-prs"), for: .highlighted)
         
-        self.videoButton.setBackgroundImage(nil, for: .normal)
-        self.videoButton.setBackgroundImage(#imageLiteral(resourceName: "backgroundShadow"), for: .selected)
+        self.videoButton.setImage(#imageLiteral(resourceName: "video-nat"), for: .normal)
+        self.videoButton.setImage(#imageLiteral(resourceName: "video-prs"), for: .highlighted)
 
-        
     }
     
     @objc private func cellPressed() {
