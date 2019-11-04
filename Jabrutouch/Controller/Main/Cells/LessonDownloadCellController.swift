@@ -53,9 +53,9 @@ class LessonDownloadCellController: UITableViewCell {
     //=====================================================
     func setLesson(_ lesson: JTLesson) {
         self.setHiddenButtonsForLesson(lesson)
-        self.setImagesForLesson(lesson)
+//        self.setImagesForLesson(lesson)
         self.setDownloadModeForLesson(lesson)
-        
+        self.setButtonBackground(lesson)
         self.downloadButtonsContainerView.layoutIfNeeded()
         self.cellView.layoutIfNeeded()
     }
@@ -116,20 +116,27 @@ class LessonDownloadCellController: UITableViewCell {
     }
     
     func setButtonBackground(_ lesson: JTLesson){
-        if !lesson.isAudioDownloaded {
-            self.playAudioButton.setImage(#imageLiteral(resourceName: "audio-prs"), for: .highlighted)
-            self.playVideoButton.setImage(#imageLiteral(resourceName: "video-prs"), for: .highlighted)
+        if lesson.isAudioDownloaded {
+            self.playAudioButton.setImage(#imageLiteral(resourceName: "audio-downloaded"), for: .normal)
+            self.playAudioButton.setImage(#imageLiteral(resourceName: "audio-downloaded"), for: .highlighted)
              
+        } else {
+            self.playAudioButton.setImage(#imageLiteral(resourceName: "audio-nat"), for: .normal)
+            self.playAudioButton.setImage(#imageLiteral(resourceName: "audio-prs"), for: .highlighted)
         }
-//        self.playAudioButton.setImage(#imageLiteral(resourceName: "audio-downloaded"), for: .normal)
-//        self.playAudioButton.setImage(#imageLiteral(resourceName: "audio-downloaded"), for: .highlighted)
-//        
-//        self.playAudioButton.setImage(#imageLiteral(resourceName: "audio-nat"), for: .normal)
-//        
-//        self.playVideoButton.setImage(#imageLiteral(resourceName: "video-downloaded"), for: .normal)
-//        self.playVideoButton.setImage(#imageLiteral(resourceName: "video-downloaded"), for: .highlighted)
-//        
-//        self.playVideoButton.setImage(#imageLiteral(resourceName: "video-nat"), for: .normal)
+        self.downloadAudioButtonImageView.isHidden = lesson.isAudioDownloaded
+        
+        if lesson.isVideoDownloaded {
+            self.playVideoButton.setImage(#imageLiteral(resourceName: "video-downloaded"), for: .normal)
+            self.playVideoButton.setImage(#imageLiteral(resourceName: "video-downloaded"), for: .highlighted)
+    
+        } else {
+            self.playVideoButton.setImage(#imageLiteral(resourceName: "video-nat"), for: .normal)
+            self.playVideoButton.setImage(#imageLiteral(resourceName: "video-prs"), for: .highlighted)
+            
+        }
+        self.downloadVideoButtonImageView.isHidden = lesson.isVideoDownloaded
+
     }
     
     private func setImagesForLesson(_ lesson: JTLesson) {

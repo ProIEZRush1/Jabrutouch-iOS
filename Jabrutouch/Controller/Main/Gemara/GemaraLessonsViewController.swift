@@ -128,7 +128,6 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
         Utils.dropViewShadow(view: cell.downloadButtonsContainerView, shadowColor: Colors.shadowColor, shadowRadius: 36, shadowOffset: shadowOffset)
         
         cell.setLesson(lesson)
-//        cell.setButtonBackground(lesson)
         
         if !isFirstLoading {
             cell.setEditingIfNeeded(lesson: lesson, isCurrentlyEditing: self.isCurrentlyEditing)

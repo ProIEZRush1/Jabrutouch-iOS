@@ -317,25 +317,25 @@
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Audio" translatesAutoresizingMaskIntoConstraints="NO" id="u3X-rD-rwq">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u3X-rD-rwq">
                                                             <rect key="frame" x="269" y="19.5" width="21" height="36.5"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="21" id="2GZ-Zq-isp"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RedV" translatesAutoresizingMaskIntoConstraints="NO" id="KrA-ho-pV5">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KrA-ho-pV5">
                                                             <rect key="frame" x="290" y="43.5" width="8.5" height="11"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="8.6999999999999993" id="n2e-J2-KU0"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Video" translatesAutoresizingMaskIntoConstraints="NO" id="6Bm-rb-6SW">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Bm-rb-6SW">
                                                             <rect key="frame" x="323" y="23.5" width="30" height="28.5"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="30" id="gnw-kJ-QUg"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RedV" translatesAutoresizingMaskIntoConstraints="NO" id="Ipa-QS-RBA">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ipa-QS-RBA">
                                                             <rect key="frame" x="353" y="43.5" width="8.5" height="11"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="8.6999999999999993" id="S8f-SI-R2t"/>
@@ -517,16 +517,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Audio" width="35" height="36.5"/>
         <image name="BlueRightArrow" width="9" height="16"/>
         <image name="Download" width="19.5" height="26"/>
         <image name="DownloadInCircle" width="24.5" height="24"/>
         <image name="GrayTimer" width="15.5" height="17"/>
         <image name="LeftArrow" width="27.5" height="19.5"/>
         <image name="Loupe" width="23" height="22.5"/>
-        <image name="RedV" width="10.5" height="11"/>
         <image name="TransparentAudio" width="23" height="24.5"/>
         <image name="TransparentVideo" width="33" height="19.5"/>
-        <image name="Video" width="49" height="28.5"/>
     </resources>
 </document>
