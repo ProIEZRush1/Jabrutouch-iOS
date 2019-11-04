@@ -6,21 +6,21 @@
  Copyright © 2019 Ravtech. All rights reserved.
  */
 
-"welcomeToJabrutouch" = "Btoieuncvhenido a \nJabrutouch";
+"welcomeToJabrutouch" = "Bienvenido a \nJabrutouch";
 "welcomeToNewJabrutouch" = "¡Bienvenido al nuevo \nJabrutouch!";
 
 "jabrutouch" = "Jabrutouch";
 "learnTalmudAndGemara" = "El Talmud a tu alcance";
-"giveTheGiftOfLearning" = "Rrneignagla sesiones de estudio";
+"giveTheGiftOfLearning" = "Regala sesiones de estudio";
 "askTheRabbiJoinTheJabruta" = "Pregunta al Rav cuando quieras";
 "walkthrough1Text" = "Tu plataforma para estudiar Mishná y Guemará en cualquier lugar";
 "walkthrough2Text" = "Elige tu clase en audio o video.\nEstudia a tu gusto y a tu ritmo.";
 "walkthrough3Text" = "Con el sistema C.A.F puedes apoyar personalmente este gran proyecto.";
 "walkthrough4Text" = "Si te surge alguna pregunta, puedes resolverla con sólo apretar un botón";
 
-"emailOrPhoneNumber" = "Eumbaeil ro teléfono";
+"emailOrPhoneNumber" = "Email o teléfono";
 "password" = "Contraseña";
-"dontHaveAccount" = "Don't have account? Sign up";
+"dontHaveAccount" = "No tienes una cuenta? Crear cuenta";
 "forgotPassword" = "¿Olvidaste tu contraseña?";
 
 "main" = "Main";
@@ -50,6 +50,7 @@
 
 "signInTitle" = "Iniciar sesión";
 "signIn" = "Iniciar sesión";
+"signInCaps" = "INICIAR SESIÓN";
 "signUp" = "Crear cuenta";
 "signInPC" = "Entrar";
 "signUpPC" = "Crear cuenta";
