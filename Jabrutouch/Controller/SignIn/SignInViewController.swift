@@ -53,7 +53,7 @@ class SignInViewController: UIViewController {
         self.titleLabel.text = Strings.signIn
         self.usernameTF.placeholder = Strings.emailOrPhoneNumber
         self.passwordTF.placeholder = Strings.password
-        self.signInButton.setTitle(Strings.signInPC, for: .normal)
+        self.signInButton.setTitle(Strings.signInCaps, for: .normal)
         self.forgotPasswordButton.setTitle(Strings.forgotPassword, for: .normal)
         
         let signUpTitle = NSMutableAttributedString(string: Strings.dontHaveAccount, attributes: [NSAttributedString.Key.foregroundColor: Colors.textMediumBlue])
