@@ -59,6 +59,13 @@ class VideoPlayer: UIView {
     @IBOutlet private weak var forwardButton: UIButton!
     @IBOutlet private weak var rewindButton: UIButton!
     @IBOutlet private weak var playbackSpeedButtonLandscape: UIButton!
+    
+    //Shlomo
+    @IBOutlet private weak var videoPlayerPlayPauseButton: UIButton!
+    @IBOutlet private weak var videoPlayerForwardButton: UIButton!
+    @IBOutlet private weak var videoPlayerRewindButton: UIButton!
+    @IBOutlet private weak var videoPlayerNextButton: UIButton!
+    @IBOutlet private weak var videoPlayerPreviousButton: UIButton!
     //----------------------------------------------------
     // MARK: - Properies
     //----------------------------------------------------
@@ -123,7 +130,6 @@ class VideoPlayer: UIView {
     
     override func awakeFromNib() {
         
-        
         self.playPauseButtonItem.isEnabled = false
         self.forwardButtonItem.isEnabled = false
         self.rewindButtonItem.isEnabled = false
@@ -133,13 +139,15 @@ class VideoPlayer: UIView {
         self.setupToolbar()
         self.setupSliders()
         self.addBorders()
-        
+        self.setVideoButtonsImages()
         NotificationCenter.default.addObserver(self, selector: #selector(self.applicationWillResignActive), name: UIApplication.willResignActiveNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.applicationDidBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
         
         // temp
         self.nextButtonItem.isEnabled = false
         self.previousButtonItem.isEnabled = false
+        self.videoPlayerNextButton.isEnabled = false
+        self.videoPlayerPreviousButton.isEnabled = false
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -186,6 +194,20 @@ class VideoPlayer: UIView {
         self.playbackSpeedButton.layer.borderWidth = 2.0
         self.playbackSpeedButton.layer.borderColor = UIColor.white.cgColor
         self.playbackSpeedButton.clipsToBounds = true
+    }
+    
+    func setVideoButtonsImages() {
+        self.videoPlayerForwardButton.setImage(#imageLiteral(resourceName: "forward10_large"), for: .normal)
+        self.videoPlayerForwardButton.setImage(#imageLiteral(resourceName: "forward-prs"), for: .highlighted)
+        
+        self.videoPlayerRewindButton.setImage(#imageLiteral(resourceName: "rewind10_large"), for: .normal)
+        self.videoPlayerRewindButton.setImage(#imageLiteral(resourceName: "rewind10-prs"), for: .highlighted)
+        
+        self.videoPlayerNextButton.setImage(#imageLiteral(resourceName: "next_large"), for: .normal)
+        self.videoPlayerNextButton.setImage(#imageLiteral(resourceName: "next-prs"), for: .highlighted)
+        
+        self.videoPlayerPreviousButton.setImage(#imageLiteral(resourceName: "previous_large"), for: .normal)
+        self.videoPlayerPreviousButton.setImage(#imageLiteral(resourceName: "previous-prs"), for: .highlighted)
     }
     
     //----------------------------------------------------
@@ -476,6 +498,8 @@ class VideoPlayer: UIView {
         guard let player = self.player else { return .commandFailed }
         self.playPauseButtonItem.image = #imageLiteral(resourceName: "pause")
         self.playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+        self.videoPlayerPlayPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+        self.videoPlayerPlayPauseButton.setImage(#imageLiteral(resourceName: "w-pause-prs"), for: .highlighted)
         player.play()
         player.rate = self.currentSpeed.rate
         self.startTimeUpdateTimer()
@@ -488,6 +512,8 @@ class VideoPlayer: UIView {
         self.player?.pause()
         self.playPauseButtonItem.image = #imageLiteral(resourceName: "play_large")
         self.playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+        self.videoPlayerPlayPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+        self.videoPlayerPlayPauseButton.setImage(#imageLiteral(resourceName: "w-play-prs"), for: .highlighted)
         self.stopTimeUpdateTimer()
         
         if let date = self.startPlayDate {
