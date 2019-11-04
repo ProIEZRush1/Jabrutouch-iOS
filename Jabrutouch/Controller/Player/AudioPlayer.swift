@@ -194,7 +194,8 @@ class AudioPlayer: UIView {
     
     @IBAction func rewindPauseButtonPressed(_ sender: UIButton) {
         DispatchQueue.main.async {
-            self.rewind(30.0)
+            self.rewind(10.0)
+//            self.rewind(30.0)
         }
     }
     
