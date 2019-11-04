@@ -273,7 +273,11 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.indexPath = indexPath
         if tableView == gemaraTableView {
             cell.isFirstTable = true
-            let lesson = self.gemaraDownloads[indexPath.section].records[indexPath.row]
+
+            let lessons = self.gemaraDownloads[indexPath.section].records.sorted(by:{
+                $0.lesson.page < $1.lesson.page
+                })
+            let lesson = lessons[indexPath.row] //self.gemaraDownloads[indexPath.section].records[indexPath.row]
             cell.book.text = lesson.masechetName
             cell.chapter.text = ""
             cell.number.text = "\(lesson.lesson.page)"
@@ -282,7 +286,11 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
             cell.videoButton.isHidden = !lesson.lesson.isVideoDownloaded
         } else {
             cell.isFirstTable = false
-            let lesson = self.mishnaDownloads[indexPath.section].records[indexPath.row]
+            let lessons = self.mishnaDownloads[indexPath.section].records.sorted(by:{
+                $0.lesson.mishna < $1.lesson.mishna
+                })
+            let lesson = lessons[indexPath.row]
+//            let lesson = self.mishnaDownloads[indexPath.section].records[indexPath.row]
             cell.book.text = lesson.masechetName
             cell.chapter.text = lesson.chapter
             cell.number.text = "\(lesson.lesson.mishna)"
