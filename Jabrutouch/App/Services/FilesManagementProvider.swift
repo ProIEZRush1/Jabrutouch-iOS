@@ -69,14 +69,15 @@ class FilesManagementProvider {
         }
     }
     
-    func removeFiles(_ urls: [URL]) {
+    func removeFiles(_ urls: [URL], completion: (Result<Void,Error>)->Void) {
         do {
             for url in urls {
                 try FileManager.default.removeItem(at: url)
+                completion(.success(()) )
             }
         }
-        catch {
-            return
+        catch let error{
+            completion(.failure(error))
         }
     }
     

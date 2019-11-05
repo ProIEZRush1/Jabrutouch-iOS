@@ -20,7 +20,7 @@ class MishnaViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var openSections: Set<Int> = []
     var delegate: MainModalDelegate?
     
-    fileprivate var sedarim: [JTMishnaSeder] = ContentRepository.shared.getMishanSeders()
+    fileprivate var sedarim: [JTMishnaSeder] = ContentRepository.shared.getMishnaSeders()
     fileprivate var selectedIndexPath: IndexPath = []
     
     //========================================

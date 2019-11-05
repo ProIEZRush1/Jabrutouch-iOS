@@ -70,9 +70,15 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         super.viewWillAppear(animated)
         setContent()
         setSelectedPage()
-
+        ContentRepository.shared.addDelegate(self)
     }
     
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        ContentRepository.shared.removeDelegate(self)
+    }
     //========================================
     // MARK: - Setup
     //========================================
@@ -175,6 +181,8 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         self.mishnaDownloads = ContentRepository.shared.getDownloadedMishnaLessons()
         self.gemaraTableView.reloadData()
         self.mishnaTableView.reloadData()
+        self.checkIfTableViewEmpty(gemaraDownloads, gemaraTableView)
+        self.checkIfTableViewEmpty(mishnaDownloads, mishnaTableView)
     }
     
     private func setTableViews() {
@@ -391,8 +399,9 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
                     self.gemaraDownloads[indexPath.section].records.remove(at: indexPath.row)
                     if self.gemaraDownloads[indexPath.section].records.count == 0 {
                         self.gemaraDownloads.remove(at: indexPath.section)
-                        self.gemaraTableView.deleteSections([indexPath.section], with: .bottom)
-                        self.reloadRelevantSections(indexPath.section, self.gemaraDownloads, self.gemaraTableView)
+                        self.gemaraTableView.reloadData()
+//                        self.gemaraTableView.deleteSections([indexPath.section], with: .bottom)
+//                        self.reloadRelevantSections(indexPath.section, self.gemaraDownloads, self.gemaraTableView)
                     } else {
                         self.gemaraTableView.deleteRows(at: [indexPath], with: .bottom)
                     }
@@ -407,8 +416,9 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
                     self.mishnaDownloads[indexPath.section].records.remove(at: indexPath.row)
                     if self.mishnaDownloads[indexPath.section].records.count == 0 {
                         self.mishnaDownloads.remove(at: indexPath.section)
-                        self.mishnaTableView.deleteSections([indexPath.section], with: .bottom)
-                        self.reloadRelevantSections(indexPath.section, self.mishnaDownloads, self.mishnaTableView)
+                        self.mishnaTableView.reloadData()
+//                        self.mishnaTableView.deleteSections([indexPath.section], with: .bottom)
+//                        self.reloadRelevantSections(indexPath.section, self.mishnaDownloads, self.mishnaTableView)
                     } else {
                         self.mishnaTableView.deleteRows(at: [indexPath], with: .bottom)
                     }
@@ -572,5 +582,17 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
             ContentRepository.shared.lessonWatched(gemaraLesson, masechetName: masechetName, masechetId: "\(masechetId)", sederId: sederId)
         }
     }
+    
+}
+
+extension DownloadsViewController: ContentRepositoryDownloadDelegate {
+    func downloadCompleted(downloadId: Int, mediaType: JTLessonMediaType) {
+        self.setContent()
+    }
+    
+    func downloadProgress(downloadId: Int, progress: Float, mediaType: JTLessonMediaType) {
+        
+    }
+    
     
 }

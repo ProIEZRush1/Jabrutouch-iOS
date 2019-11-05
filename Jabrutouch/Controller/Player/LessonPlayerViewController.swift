@@ -651,15 +651,7 @@ extension LessonPlayerViewController: AudioPlayerDelegate, VideoPlayerDelegate {
 
 
 extension LessonPlayerViewController: ContentRepositoryDownloadDelegate {
-    func downloadCompleted(downloadId: Int, mediaType: JTLessonMediaType) {
-        ContentRepository.shared.lessonEndedDownloading(lesson.id, mediaType: mediaType)
-        if let gemaraLesson = self.lesson as? JTGemaraLesson {
-            ContentRepository.shared.addLessonToDownloaded(gemaraLesson, sederId: self.sederId, masechetId: self.masechetId)
-        }
-        if let mishnaLesson = self.lesson as? JTMishnaLesson, let chapter = self.chapter {
-            ContentRepository.shared.addLessonToDownloaded(mishnaLesson, sederId: self.sederId, masechetId: self.masechetId, chapter: chapter)
-        }
-        
+    func downloadCompleted(downloadId: Int, mediaType: JTLessonMediaType) {        
         self.portraitDownloadProgressView.isHidden = true
         self.landscapeDownlaodProgressView.isHidden = true
         switch self.mediaType {

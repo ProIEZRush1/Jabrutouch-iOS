@@ -268,8 +268,6 @@ extension GemaraLessonsViewController: ContentRepositoryDownloadDelegate {
         guard let masechetId = self.masechetId else { return }
         
         let lesson = self.lessons[index]
-        ContentRepository.shared.addLessonToDownloaded(lesson, sederId: sederId, masechetId: "\(masechetId)")
-        ContentRepository.shared.lessonEndedDownloading(lesson.id, mediaType: mediaType)
         switch mediaType {
         case .audio:
             self.lessons[index].isDownloadingAudio = false
@@ -292,7 +290,6 @@ extension GemaraLessonsViewController: ContentRepositoryDownloadDelegate {
             self.lessons[index].videoDownloadProgress = progress
         }
         
-        ContentRepository.shared.lessonDownloadProgress(downloadId, progress: progress, mediaType: mediaType)
         
         // Update cell progress
         guard let cell = self.tableView.cellForRow(at:  IndexPath(row: index, section: 0)) as? LessonDownloadCellController else { return }

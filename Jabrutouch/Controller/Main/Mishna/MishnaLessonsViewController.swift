@@ -280,8 +280,6 @@ extension MishnaLessonsViewController: ContentRepositoryDownloadDelegate {
         }
         
         self.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
-        ContentRepository.shared.lessonEndedDownloading(lesson.id, mediaType: mediaType)
-        ContentRepository.shared.addLessonToDownloaded(lesson, sederId: sederId, masechetId: "\(masecetId)", chapter: "\(chapter)")
         print("GemaraLessonsViewController downloadCompleted, downloadId: \(downloadId)")
     }
     
@@ -294,9 +292,7 @@ extension MishnaLessonsViewController: ContentRepositoryDownloadDelegate {
         case .video:
             self.lessons[index].videoDownloadProgress = progress
         }
-        
-        ContentRepository.shared.lessonDownloadProgress(downloadId, progress: progress, mediaType: mediaType)
-        
+                
         // Update cell progress
         guard let cell = self.tableView.cellForRow(at:  IndexPath(row: index, section: 0)) as? LessonDownloadCellController else { return }
         cell.setLesson(self.lessons[index])

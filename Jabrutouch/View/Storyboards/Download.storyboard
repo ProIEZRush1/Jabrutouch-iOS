@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Csn-pr-HK7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Csn-pr-HK7">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -189,25 +189,17 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jyb-sK-pGD" userLabel="Audio">
-                                                            <rect key="frame" x="241.66666666666669" y="17" width="41" height="42"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="42.200000000000003" id="BVA-eN-Wvf"/>
-                                                                <constraint firstAttribute="width" constant="41" id="nLz-cc-lKj"/>
-                                                            </constraints>
+                                                            <rect key="frame" x="171.66666666666666" y="2" width="80.666666666666657" height="72.333333333333329"/>
                                                             <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                                                            <state key="normal" image="Audio"/>
+                                                            <state key="normal" image="audio-nat"/>
                                                             <connections>
                                                                 <action selector="playAudioPressed:" destination="IPO-2W-CTR" eventType="touchUpInside" id="Ryq-YL-O3K"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pTh-16-GT2" userLabel="Video">
-                                                            <rect key="frame" x="297.66666666666669" y="18.666666666666671" width="40.333333333333314" height="39"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="40.200000000000003" id="65M-SU-zjD"/>
-                                                                <constraint firstAttribute="height" constant="39" id="HE8-Fn-Ndg"/>
-                                                            </constraints>
+                                                            <rect key="frame" x="267.33333333333331" y="1" width="70.666666666666686" height="74.333333333333329"/>
                                                             <inset key="contentEdgeInsets" minX="5" minY="11" maxX="5" maxY="11"/>
-                                                            <state key="normal" image="Video"/>
+                                                            <state key="normal" image="video-nat"/>
                                                             <connections>
                                                                 <action selector="playVideoPressed:" destination="IPO-2W-CTR" eventType="touchUpInside" id="kfU-l2-wxm"/>
                                                             </connections>
@@ -550,5 +542,7 @@
         <image name="LeftArrow" width="27.666666030883789" height="19.333333969116211"/>
         <image name="Video" width="21.666666030883789" height="12.666666984558105"/>
         <image name="X" width="15" height="15.666666984558105"/>
+        <image name="audio-nat" width="60.666667938232422" height="52.333332061767578"/>
+        <image name="video-nat" width="60.666667938232422" height="52.333332061767578"/>
     </resources>
 </document>
