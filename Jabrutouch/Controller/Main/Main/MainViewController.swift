@@ -276,7 +276,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
             self.mishnaImageView.image = #imageLiteral(resourceName: "Mishna natural Blue")
         } else if string == "donations" {
             self.donationsLabel.textColor = #colorLiteral(red: 0.18, green: 0.17, blue: 0.66, alpha: 1)
-            self.donationsImageView.image = #imageLiteral(resourceName: "Keter-prs Blue")
+            self.donationsImageView.image = #imageLiteral(resourceName: "DonationsBlue")
         }
     }
     
