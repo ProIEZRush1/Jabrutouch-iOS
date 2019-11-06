@@ -31,6 +31,7 @@ class LessonDownloadCellController: UITableViewCell {
     @IBOutlet weak var downloadAudioButtonImageView: UIImageView!
     @IBOutlet weak var downloadVideoButtonImageView: UIImageView!
     @IBOutlet weak var cellViewTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var cellViewLeadingConstraint: NSLayoutConstraint!
     
     //=====================================================
     // MARK: - Properties
@@ -62,7 +63,7 @@ class LessonDownloadCellController: UITableViewCell {
     
     func setEditingIfNeeded(lesson: JTLesson, isCurrentlyEditing: Bool) {
         self.animateImagesVisibilityIfNeeded(lesson, isCurrentlyEditing: isCurrentlyEditing)
-        UIView.animate(withDuration: 0.3) {
+        UIView.animate(withDuration: 1.0) {
             let isDownloading = lesson.isDownloadingAudio || lesson.isDownloadingVideo
 
             if isCurrentlyEditing && !isDownloading {
@@ -70,6 +71,10 @@ class LessonDownloadCellController: UITableViewCell {
             } else {
                 self.cellViewTrailingConstraint.constant = 18
             }
+//            self.downloadButtonsContainerView.layoutIfNeeded()
+            self.cellView.layoutIfNeeded()
+
+            
         }
 
     }
