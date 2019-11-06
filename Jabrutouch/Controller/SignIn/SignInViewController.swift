@@ -20,6 +20,8 @@ class SignInViewController: UIViewController {
     // MARK: - Outlets
     //============================================================
     @IBOutlet weak private var titleLabel: UILabel!
+    @IBOutlet weak private var usernameView: UIView!
+    @IBOutlet weak private var passwordView: UIView!
     @IBOutlet weak private var usernameTF: UITextField!
     @IBOutlet weak private var passwordTF: UITextField!
     @IBOutlet weak private var signInButton: UIButton!
@@ -66,14 +68,21 @@ class SignInViewController: UIViewController {
         self.signInButton.layer.cornerRadius = self.signInButton.bounds.height/2
         self.usernameTF.layer.cornerRadius = self.usernameTF.bounds.height/2
         self.passwordTF.layer.cornerRadius = self.passwordTF.bounds.height/2
+        self.usernameView.layer.cornerRadius = self.usernameView.bounds.height/2
+        self.passwordView.layer.cornerRadius = self.passwordView.bounds.height/2
     }
     
     private func addBorders() {
-        self.usernameTF.layer.borderColor = Colors.borderGray.cgColor
-        self.usernameTF.layer.borderWidth = 1.0
+        self.usernameView.layer.borderColor = Colors.borderGray.cgColor
+        self.usernameView.layer.borderWidth = 1.0
         
-        self.passwordTF.layer.borderColor = Colors.borderGray.cgColor
-        self.passwordTF.layer.borderWidth = 1.0
+        self.passwordView.layer.borderColor = Colors.borderGray.cgColor
+        self.passwordView.layer.borderWidth = 1.0
+//        self.usernameTF.layer.borderColor = Colors.borderGray.cgColor
+//        self.usernameTF.layer.borderWidth = 1.0
+        
+//        self.passwordTF.layer.borderColor = Colors.borderGray.cgColor
+//        self.passwordTF.layer.borderWidth = 1.0
     }
     //============================================================
     // MARK: - @IBActions

@@ -623,12 +623,8 @@
                                                                             </constraints>
                                                                         </imageView>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XCv-hY-b4u">
-                                                                            <rect key="frame" x="162.5" y="11.5" width="50" height="50"/>
+                                                                            <rect key="frame" x="126.5" y="-16" width="122" height="105"/>
                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                            <constraints>
-                                                                                <constraint firstAttribute="height" constant="50" id="IHp-KO-us0"/>
-                                                                                <constraint firstAttribute="width" constant="50" id="u6k-h3-v8f"/>
-                                                                            </constraints>
                                                                             <state key="normal" image="audio-nat"/>
                                                                         </button>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="syV-Uc-KkF">

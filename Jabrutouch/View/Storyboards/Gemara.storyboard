@@ -304,7 +304,7 @@
                                                             <color key="textColor" red="0.17254901959999999" green="0.16862745100000001" blue="0.33725490200000002" alpha="0.88" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GrayTimer" translatesAutoresizingMaskIntoConstraints="NO" id="HAD-dN-kgf">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timer" translatesAutoresizingMaskIntoConstraints="NO" id="HAD-dN-kgf">
                                                             <rect key="frame" x="94" y="29" width="15" height="17"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="17" id="Y9c-IZ-jj1"/>
@@ -520,10 +520,10 @@
         <image name="BlueRightArrow" width="9" height="16"/>
         <image name="Download" width="19.5" height="26"/>
         <image name="DownloadInCircle" width="24.5" height="24"/>
-        <image name="GrayTimer" width="15.5" height="17"/>
         <image name="LeftArrow" width="27.5" height="19.5"/>
         <image name="Loupe" width="23" height="22.5"/>
         <image name="TransparentAudio" width="23" height="24.5"/>
         <image name="TransparentVideo" width="33" height="19.5"/>
+        <image name="timer" width="15.5" height="17"/>
     </resources>
 </document>
