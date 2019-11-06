@@ -356,7 +356,7 @@
                 <constraint firstItem="1fO-cN-dWy" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="REd-5W-jRm" secondAttribute="leading" constant="16" id="ymV-Oi-mhY"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="139" y="138"/>
+            <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
         </view>
     </objects>
     <resources>
