@@ -139,7 +139,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.gemaraLabel.text = Strings.gemara
         self.mishnaLabel.text = Strings.mishna
         self.donationsLabel.text = Strings.donations
-        self.titleLabel.text = Strings.jabrutouch
+//        self.titleLabel.text = Strings.jabrutouch
         self.welcomeLabel.text = Strings.welcomeToNewJabrutouch        
     }
     
