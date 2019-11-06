@@ -26,6 +26,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var phoneLabel: UILabel!
     @IBOutlet weak var phoneTiitleLabel: UILabel!
     @IBOutlet weak var logoutBtn: UIButton!
+    @IBOutlet weak var versionLabel: UILabel!
     
     //========================================
     // MARK: - LifeCycle
@@ -54,6 +55,9 @@ class ProfileViewController: UIViewController {
         self.phoneLabel.text = user!.phoneNumber // Debug: phone number is without two first numbers
         self.phoneTiitleLabel.text = Strings.phoneNumber
         self.logoutBtn.setTitle(Strings.logout.uppercased(), for: .normal)
+        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+        let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
+        self.versionLabel.text = "Version \(version) (\(build))"
     }
     
     private func roundCorners() {
