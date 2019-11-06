@@ -29,6 +29,10 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak private var signUpButton: UIButton!
     @IBOutlet weak private var signInButton: UIButton!
     
+    @IBOutlet weak var emailView: UIView!
+    @IBOutlet weak var passwordView: UIView!
+    @IBOutlet weak var lastNameView: UIView!
+    @IBOutlet weak var firstNameView: UIView!
     //============================================================
     // MARK: - LifeCycle
     //============================================================
@@ -74,20 +78,36 @@ class SignUpViewController: UIViewController {
         self.lastNameTF.layer.cornerRadius = self.lastNameTF.bounds.height/2
         self.emailTF.layer.cornerRadius = self.emailTF.bounds.height/2
         self.passwordTF.layer.cornerRadius = self.passwordTF.bounds.height/2
+        
+        self.emailView.layer.cornerRadius = self.emailView.bounds.height/2
+        self.passwordView.layer.cornerRadius = self.passwordView.bounds.height/2
+        self.lastNameView.layer.cornerRadius = self.lastNameView.bounds.height/2
+        self.firstNameView.layer.cornerRadius = self.firstNameView.bounds.height/2
     }
     
     private func addBorders() {
-        self.firstNameTF.layer.borderColor = Colors.borderGray.cgColor
-        self.firstNameTF.layer.borderWidth = 1.0
+        self.firstNameView.layer.borderColor = Colors.borderGray.cgColor
+        self.firstNameView.layer.borderWidth = 1.0
         
-        self.lastNameTF.layer.borderColor = Colors.borderGray.cgColor
-        self.lastNameTF.layer.borderWidth = 1.0
+        self.lastNameView.layer.borderColor = Colors.borderGray.cgColor
+        self.lastNameView.layer.borderWidth = 1.0
         
-        self.emailTF.layer.borderColor = Colors.borderGray.cgColor
-        self.emailTF.layer.borderWidth = 1.0
+        self.emailView.layer.borderColor = Colors.borderGray.cgColor
+        self.emailView.layer.borderWidth = 1.0
         
-        self.passwordTF.layer.borderColor = Colors.borderGray.cgColor
-        self.passwordTF.layer.borderWidth = 1.0
+        self.passwordView.layer.borderColor = Colors.borderGray.cgColor
+        self.passwordView.layer.borderWidth = 1.0
+        //        self.firstNameTF.layer.borderColor = Colors.borderGray.cgColor
+        //        self.firstNameTF.layer.borderWidth = 1.0
+        //
+        //        self.lastNameTF.layer.borderColor = Colors.borderGray.cgColor
+        //        self.lastNameTF.layer.borderWidth = 1.0
+        //
+        //        self.emailTF.layer.borderColor = Colors.borderGray.cgColor
+        //        self.emailTF.layer.borderWidth = 1.0
+//
+//        self.passwordTF.layer.borderColor = Colors.borderGray.cgColor
+//        self.passwordTF.layer.borderWidth = 1.0
     }
     
     //============================================================

@@ -32,6 +32,8 @@ class RequestVerificationCodeViewController: UIViewController {
     @IBOutlet weak private var countryTF: UITextField!
     @IBOutlet weak private var phoneNumberTF: UITextField!
     @IBOutlet weak private var sendButton: UIButton!
+    @IBOutlet weak private var countryView: UIView!
+    @IBOutlet weak private var phoneNumberView: UIView!
     
     //============================================================
     // MARK: - LifeCycle
@@ -72,14 +74,21 @@ class RequestVerificationCodeViewController: UIViewController {
         self.sendButton.layer.cornerRadius = self.sendButton.bounds.height/2
         self.countryTF.layer.cornerRadius = self.countryTF.bounds.height/2
         self.phoneNumberTF.layer.cornerRadius = self.phoneNumberTF.bounds.height/2
+        self.countryView.layer.cornerRadius = self.countryView.bounds.height/2
+        self.phoneNumberView.layer.cornerRadius = self.phoneNumberView.bounds.height/2
     }
     
     private func addBorders() {
-        self.countryTF.layer.borderColor = Colors.borderGray.cgColor
-        self.countryTF.layer.borderWidth = 1.0
-        
-        self.phoneNumberTF.layer.borderColor = Colors.borderGray.cgColor
-        self.phoneNumberTF.layer.borderWidth = 1.0
+        self.countryView.layer.borderColor = Colors.borderGray.cgColor
+        self.countryView.layer.borderWidth = 1.0
+
+        self.phoneNumberView.layer.borderColor = Colors.borderGray.cgColor
+        self.phoneNumberView.layer.borderWidth = 1.0
+//        self.countryTF.layer.borderColor = Colors.borderGray.cgColor
+//        self.countryTF.layer.borderWidth = 1.0
+//
+//        self.phoneNumberTF.layer.borderColor = Colors.borderGray.cgColor
+//        self.phoneNumberTF.layer.borderWidth = 1.0
     }
     
     private func initCountriesPicker() {
