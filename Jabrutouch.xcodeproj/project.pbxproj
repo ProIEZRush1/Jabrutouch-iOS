@@ -112,11 +112,9 @@
 		21678D7022DF2CED007BC74C /* SF-Pro-Text-ThinItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 21678D3C22DF2CC7007BC74C /* SF-Pro-Text-ThinItalic.otf */; };
 		21678D7122DF2CED007BC74C /* SF-Pro-Text-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 21678D4422DF2CCA007BC74C /* SF-Pro-Text-Ultralight.otf */; };
 		21678D7222DF2CED007BC74C /* SF-Pro-Text-UltralightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 21678D3522DF2CC5007BC74C /* SF-Pro-Text-UltralightItalic.otf */; };
-		21678D7422E08530007BC74C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21678D7322E08530007BC74C /* MainViewController.swift */; };
 		21678D7622E08565007BC74C /* DownloadsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21678D7522E08565007BC74C /* DownloadsViewController.swift */; };
 		21678D7822E08594007BC74C /* GemaraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21678D7722E08594007BC74C /* GemaraViewController.swift */; };
 		21678D7A22E085B1007BC74C /* MishnaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21678D7922E085B1007BC74C /* MishnaViewController.swift */; };
-		21678D7C22E085CB007BC74C /* DonationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21678D7B22E085CB007BC74C /* DonationsViewController.swift */; };
 		216A0E6E22EEFD1400F7FBC1 /* HttpServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A0E6D22EEFD1400F7FBC1 /* HttpServiceProvider.swift */; };
 		216A0E7022EEFDA300F7FBC1 /* HTTPRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A0E6F22EEFDA300F7FBC1 /* HTTPRequestFactory.swift */; };
 		21999F36231823FF003DB1B4 /* CustomTrackHeightSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21999F35231823FF003DB1B4 /* CustomTrackHeightSlider.swift */; };
@@ -124,7 +122,6 @@
 		21999F3B23185F1C003DB1B4 /* EndTimeDisplayMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21999F3A23185F1C003DB1B4 /* EndTimeDisplayMode.swift */; };
 		219B06FA230408F400A7EBBA /* ServerFieldError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219B06F9230408F400A7EBBA /* ServerFieldError.swift */; };
 		219BFF2722E50A0A00ABBEE2 /* DownloadsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219BFF2622E50A0A00ABBEE2 /* DownloadsNavigationController.swift */; };
-		219BFF2922E50C0B00ABBEE2 /* ModalsContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219BFF2822E50C0B00ABBEE2 /* ModalsContainerViewController.swift */; };
 		219BFF2C22E59F4500ABBEE2 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219BFF2B22E59F4500ABBEE2 /* Extensions.swift */; };
 		219BFF2F22E5A11900ABBEE2 /* TextFieldWithPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219BFF2E22E5A11800ABBEE2 /* TextFieldWithPadding.swift */; };
 		219BFF3122E5B67C00ABBEE2 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = 219BFF3022E5B67C00ABBEE2 /* countries.json */; };
@@ -150,6 +147,10 @@
 		4628E0E72322954800D963E6 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4628E0E62322953300D963E6 /* Application.swift */; };
 		4628E0E923245BF600D963E6 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4628E0E823245BF600D963E6 /* AboutViewController.swift */; };
 		8342BA6C2370528600C3239C /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8342BA6B2370528600C3239C /* Fonts.swift */; };
+		8342BA74237301D800C3239C /* MainCollectionCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8342BA71237301D700C3239C /* MainCollectionCellViewController.swift */; };
+		8342BA75237301D800C3239C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8342BA72237301D700C3239C /* MainViewController.swift */; };
+		8342BA76237301D800C3239C /* ModalsContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8342BA73237301D700C3239C /* ModalsContainerViewController.swift */; };
+		8342BA79237302AE00C3239C /* DonationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8342BA78237302AE00C3239C /* DonationsViewController.swift */; };
 		F7AEA20A7CC7E87A1BEC48AF /* Pods_Jabrutouch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0F9377FF1E3DA5E9F901D68 /* Pods_Jabrutouch.framework */; };
 		FB51711422F19C3F003BCAFC /* MishnaMasechetCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB51711322F19C3F003BCAFC /* MishnaMasechetCellController.swift */; };
 		FB51711622F19FD2003BCAFC /* JTMishnaMasechet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB51711522F19FD2003BCAFC /* JTMishnaMasechet.swift */; };
@@ -167,7 +168,6 @@
 		FBB18FB022F863AF006886FD /* JTGemaraSeder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB18FAF22F863AF006886FD /* JTGemaraSeder.swift */; };
 		FBB18FB222F8649A006886FD /* JTGemaraMasechetItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB18FB122F8649A006886FD /* JTGemaraMasechetItem.swift */; };
 		FBB18FB422F866C8006886FD /* GemaraLessonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB18FB322F866C8006886FD /* GemaraLessonsViewController.swift */; };
-		FBB434FA22FACA47008EE211 /* MainCollectionCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB434F922FACA47008EE211 /* MainCollectionCellViewController.swift */; };
 		FBB434FE22FB2CA4008EE211 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB434FD22FB2CA4008EE211 /* ProfileViewController.swift */; };
 		FBD9374F22F323AA00BC94DC /* MishnaLessonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD9374E22F323AA00BC94DC /* MishnaLessonsViewController.swift */; };
 		FBD9375122F328CC00BC94DC /* LessonDownloadCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD9375022F328CC00BC94DC /* LessonDownloadCellController.swift */; };
@@ -287,11 +287,9 @@
 		21678D4322DF2CCA007BC74C /* SF-Pro-Text-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Thin.otf"; sourceTree = "<group>"; };
 		21678D4422DF2CCA007BC74C /* SF-Pro-Text-Ultralight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Ultralight.otf"; sourceTree = "<group>"; };
 		21678D4522DF2CCB007BC74C /* SF-Pro-Text-RegularItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-RegularItalic.otf"; sourceTree = "<group>"; };
-		21678D7322E08530007BC74C /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		21678D7522E08565007BC74C /* DownloadsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DownloadsViewController.swift; path = ../DownloadsViewController.swift; sourceTree = "<group>"; };
 		21678D7722E08594007BC74C /* GemaraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GemaraViewController.swift; sourceTree = "<group>"; };
 		21678D7922E085B1007BC74C /* MishnaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MishnaViewController.swift; sourceTree = "<group>"; };
-		21678D7B22E085CB007BC74C /* DonationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DonationsViewController.swift; path = ../DonationsViewController.swift; sourceTree = "<group>"; };
 		216A0E6D22EEFD1400F7FBC1 /* HttpServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpServiceProvider.swift; sourceTree = "<group>"; };
 		216A0E6F22EEFDA300F7FBC1 /* HTTPRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequestFactory.swift; sourceTree = "<group>"; };
 		21999F35231823FF003DB1B4 /* CustomTrackHeightSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTrackHeightSlider.swift; sourceTree = "<group>"; };
@@ -299,7 +297,6 @@
 		21999F3A23185F1C003DB1B4 /* EndTimeDisplayMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndTimeDisplayMode.swift; sourceTree = "<group>"; };
 		219B06F9230408F400A7EBBA /* ServerFieldError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerFieldError.swift; sourceTree = "<group>"; };
 		219BFF2622E50A0A00ABBEE2 /* DownloadsNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsNavigationController.swift; sourceTree = "<group>"; };
-		219BFF2822E50C0B00ABBEE2 /* ModalsContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalsContainerViewController.swift; sourceTree = "<group>"; };
 		219BFF2B22E59F4500ABBEE2 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		219BFF2E22E5A11800ABBEE2 /* TextFieldWithPadding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldWithPadding.swift; sourceTree = "<group>"; };
 		219BFF3022E5B67C00ABBEE2 /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
@@ -327,6 +324,10 @@
 		4628E0E823245BF600D963E6 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		715A51EC96A60C90B07F8038 /* Pods-Jabrutouch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jabrutouch.debug.xcconfig"; path = "Target Support Files/Pods-Jabrutouch/Pods-Jabrutouch.debug.xcconfig"; sourceTree = "<group>"; };
 		8342BA6B2370528600C3239C /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		8342BA71237301D700C3239C /* MainCollectionCellViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCollectionCellViewController.swift; sourceTree = "<group>"; };
+		8342BA72237301D700C3239C /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		8342BA73237301D700C3239C /* ModalsContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalsContainerViewController.swift; sourceTree = "<group>"; };
+		8342BA78237302AE00C3239C /* DonationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DonationsViewController.swift; path = Jabrutouch/Controller/Main/DonationsViewController.swift; sourceTree = SOURCE_ROOT; };
 		C0F9377FF1E3DA5E9F901D68 /* Pods_Jabrutouch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jabrutouch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F71C57777BA59A6B8E3F7474 /* Pods-Jabrutouch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jabrutouch.release.xcconfig"; path = "Target Support Files/Pods-Jabrutouch/Pods-Jabrutouch.release.xcconfig"; sourceTree = "<group>"; };
 		FB51711322F19C3F003BCAFC /* MishnaMasechetCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MishnaMasechetCellController.swift; sourceTree = "<group>"; };
@@ -345,7 +346,6 @@
 		FBB18FAF22F863AF006886FD /* JTGemaraSeder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTGemaraSeder.swift; sourceTree = "<group>"; };
 		FBB18FB122F8649A006886FD /* JTGemaraMasechetItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTGemaraMasechetItem.swift; sourceTree = "<group>"; };
 		FBB18FB322F866C8006886FD /* GemaraLessonsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GemaraLessonsViewController.swift; sourceTree = "<group>"; };
-		FBB434F922FACA47008EE211 /* MainCollectionCellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionCellViewController.swift; sourceTree = "<group>"; };
 		FBB434FD22FB2CA4008EE211 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		FBD9374E22F323AA00BC94DC /* MishnaLessonsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MishnaLessonsViewController.swift; sourceTree = "<group>"; };
 		FBD9375022F328CC00BC94DC /* LessonDownloadCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonDownloadCellController.swift; sourceTree = "<group>"; };
@@ -493,14 +493,6 @@
 			path = Notifications;
 			sourceTree = "<group>";
 		};
-		2126D6E4230405EA00CB501D /* Donations */ = {
-			isa = PBXGroup;
-			children = (
-				21678D7B22E085CB007BC74C /* DonationsViewController.swift */,
-			);
-			path = Donations;
-			sourceTree = "<group>";
-		};
 		212ECEA4230F3687005AEB36 /* Player */ = {
 			isa = PBXGroup;
 			children = (
@@ -510,14 +502,6 @@
 				212ECEB52317CD6E005AEB36 /* AudioPlayer.swift */,
 			);
 			path = Player;
-			sourceTree = "<group>";
-		};
-		212ECEAF2312F81B005AEB36 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				FBB434F922FACA47008EE211 /* MainCollectionCellViewController.swift */,
-			);
-			path = Cells;
 			sourceTree = "<group>";
 		};
 		212ECEB02312F92E005AEB36 /* Modals */ = {
@@ -686,11 +670,11 @@
 		2133C21022DCA0D900F910B9 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				219BFF2A22E50CE200ABBEE2 /* Main */,
+				8342BA6F237301D700C3239C /* Main */,
 				FBB18FAA22F84CA2006886FD /* Gemara */,
 				FB51711222F19C07003BCAFC /* Mishna */,
 				21186E9D22E5097700B3049E /* Downloads */,
-				2126D6E4230405EA00CB501D /* Donations */,
+				8342BA772373029300C3239C /* Donations */,
 				212ECEB22312F954005AEB36 /* Cells */,
 			);
 			path = Main;
@@ -798,16 +782,6 @@
 				21999F3A23185F1C003DB1B4 /* EndTimeDisplayMode.swift */,
 			);
 			path = Player;
-			sourceTree = "<group>";
-		};
-		219BFF2A22E50CE200ABBEE2 /* Main */ = {
-			isa = PBXGroup;
-			children = (
-				212ECEAF2312F81B005AEB36 /* Cells */,
-				21678D7322E08530007BC74C /* MainViewController.swift */,
-				219BFF2822E50C0B00ABBEE2 /* ModalsContainerViewController.swift */,
-			);
-			path = Main;
 			sourceTree = "<group>";
 		};
 		219BFF2D22E5A10400ABBEE2 /* Custom Controlles */ = {
@@ -944,6 +918,32 @@
 				FBB18FAD22F85773006886FD /* GemaraMasechetCellController.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		8342BA6F237301D700C3239C /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				8342BA70237301D700C3239C /* Cells */,
+				8342BA72237301D700C3239C /* MainViewController.swift */,
+				8342BA73237301D700C3239C /* ModalsContainerViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		8342BA70237301D700C3239C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				8342BA71237301D700C3239C /* MainCollectionCellViewController.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		8342BA772373029300C3239C /* Donations */ = {
+			isa = PBXGroup;
+			children = (
+				8342BA78237302AE00C3239C /* DonationsViewController.swift */,
+			);
+			path = Donations;
 			sourceTree = "<group>";
 		};
 		9A9C05757DCAA6D93F172828 /* Pods */ = {
@@ -1227,17 +1227,16 @@
 				21ED3BDA230488E3009D8E3D /* JTGemaraLesson.swift in Sources */,
 				21407C8922F72632002F9690 /* TextFieldWithDeleteDelegate.swift in Sources */,
 				212ECEAA2312548D005AEB36 /* JTLesson.swift in Sources */,
+				8342BA75237301D800C3239C /* MainViewController.swift in Sources */,
 				FBB18FAE22F85773006886FD /* GemaraMasechetCellController.swift in Sources */,
 				213196AA22F38B3E00B0AF5F /* LoginResponse.swift in Sources */,
 				212ECEAC2312585A005AEB36 /* JTLessonType.swift in Sources */,
-				219BFF2922E50C0B00ABBEE2 /* ModalsContainerViewController.swift in Sources */,
 				FB6877C222FC49AE0096465D /* AlertViewController.swift in Sources */,
 				FBB18FB422F866C8006886FD /* GemaraLessonsViewController.swift in Sources */,
 				216A0E6E22EEFD1400F7FBC1 /* HttpServiceProvider.swift in Sources */,
 				4628E0E223215DEC00D963E6 /* DonatedAlert.swift in Sources */,
 				21419CBB230EAF5300145F1F /* JTGemaraLessonRecord.swift in Sources */,
 				212ECEA7230F36BF005AEB36 /* LessonPlayerViewController.swift in Sources */,
-				21678D7422E08530007BC74C /* MainViewController.swift in Sources */,
 				213196A822F38B3E00B0AF5F /* APIResponseModel.swift in Sources */,
 				2126D6E12304025A00CB501D /* MishnaNavigationController.swift in Sources */,
 				FBAB071622E74ABD00C8DCD7 /* DownloadsCellController.swift in Sources */,
@@ -1252,6 +1251,7 @@
 				219BFF3522E5B6F700ABBEE2 /* Country.swift in Sources */,
 				FBB18FB022F863AF006886FD /* JTGemaraSeder.swift in Sources */,
 				FB51711D22F1A275003BCAFC /* JTMishnaSeder.swift in Sources */,
+				8342BA74237301D800C3239C /* MainCollectionCellViewController.swift in Sources */,
 				FBAB071922E7579F00C8DCD7 /* JTDownload.swift in Sources */,
 				FBD9374F22F323AA00BC94DC /* MishnaLessonsViewController.swift in Sources */,
 				21419CB4230D894B00145F1F /* DownloadTask.swift in Sources */,
@@ -1259,12 +1259,12 @@
 				2131969C22F38B2E00B0AF5F /* UserDefaultsProvider.swift in Sources */,
 				213016B9232198E800B9DD2B /* PostAnalyticsEventResponse.swift in Sources */,
 				21419CBD230EAF9C00145F1F /* JTMishnaLessonRecord.swift in Sources */,
-				21678D7C22E085CB007BC74C /* DonationsViewController.swift in Sources */,
 				2145858F22EF7D980062F830 /* API.swift in Sources */,
 				2120BE1D22DF273F004854DB /* SignInViewController.swift in Sources */,
 				2120BE2322DF279D004854DB /* ValidateVerificationCodeViewController.swift in Sources */,
 				8342BA6C2370528600C3239C /* Fonts.swift in Sources */,
 				212ECEB62317CD6E005AEB36 /* AudioPlayer.swift in Sources */,
+				8342BA76237301D800C3239C /* ModalsContainerViewController.swift in Sources */,
 				2131969822F38B1200B0AF5F /* ServerGenericResponse.swift in Sources */,
 				4628E0E72322954800D963E6 /* Application.swift in Sources */,
 				2131969622F38B1200B0AF5F /* JTError.swift in Sources */,
@@ -1277,13 +1277,13 @@
 				21678D7A22E085B1007BC74C /* MishnaViewController.swift in Sources */,
 				2126D6D823033D4D00CB501D /* JTMasechet.swift in Sources */,
 				219B06FA230408F400A7EBBA /* ServerFieldError.swift in Sources */,
-				FBB434FA22FACA47008EE211 /* MainCollectionCellViewController.swift in Sources */,
 				2126D6DA2303E81700CB501D /* GetMasechtotResponse.swift in Sources */,
 				4628E0E923245BF600D963E6 /* AboutViewController.swift in Sources */,
 				21678D7622E08565007BC74C /* DownloadsViewController.swift in Sources */,
 				219BFF3822E5B72000ABBEE2 /* LocalizationManager.swift in Sources */,
 				213196A522F38B3E00B0AF5F /* SignUpResponse.swift in Sources */,
 				21419CB7230DD8C100145F1F /* JTSederDownloadedGemaraLessons.swift in Sources */,
+				8342BA79237302AE00C3239C /* DonationsViewController.swift in Sources */,
 				2120BE1F22DF2758004854DB /* SignUpViewController.swift in Sources */,
 				213196AD22F38B6800B0AF5F /* JTCommunity.swift in Sources */,
 				FBDEF16D22E89E3B00A300DA /* HeaderCellController.swift in Sources */,

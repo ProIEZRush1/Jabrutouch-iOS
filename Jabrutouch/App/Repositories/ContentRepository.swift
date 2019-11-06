@@ -761,6 +761,15 @@ extension ContentRepository: DownloadTaskDelegate {
     func downloadCompleted(downloadId: Int, mediaType: JTLessonMediaType) {
         self.lessonEndedDownloading(downloadId, mediaType: mediaType)
         if let (lesson,sederId,masechetId,chapter) = self.getLessonFromLocalStorage(withId: downloadId) {
+            switch mediaType {
+            case .audio:
+                lesson.audioDownloadProgress = 0.0
+                lesson.isDownloadingAudio = false
+            case .video:
+                lesson.videoDownloadProgress = 0.0
+                lesson.isDownloadingVideo = false
+            }
+            
             if let gemaraLesson = lesson as? JTGemaraLesson {
                 self.addLessonToDownloaded(gemaraLesson, sederId: sederId, masechetId: masechetId)
             }
