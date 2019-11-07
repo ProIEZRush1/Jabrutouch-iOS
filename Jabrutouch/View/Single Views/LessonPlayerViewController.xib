@@ -29,6 +29,7 @@
                 <outlet property="landscapeDownloadButton" destination="dFl-wk-OQD" id="JTA-rF-ReX"/>
                 <outlet property="landscapeHeaderView" destination="WR2-vv-yUg" id="2B4-jn-tSs"/>
                 <outlet property="landscapePhotoButton" destination="etC-d3-PiM" id="fmJ-sX-AbM"/>
+                <outlet property="masechetTitleLabel" destination="6aZ-3K-Pk6" id="2LW-ds-IIs"/>
                 <outlet property="pdfView" destination="REd-5W-jRm" id="Ll8-h1-Eq0"/>
                 <outlet property="pdfViewBottomConstraint" destination="0XX-xF-AtX" id="USm-Dj-zvX"/>
                 <outlet property="pdfViewLeadingConstraint" destination="1Mm-ON-hHc" id="yMG-OA-Pdt"/>
@@ -167,6 +168,12 @@
                                         <action selector="backButtonPressed:" destination="-1" eventType="touchUpInside" id="QEM-SJ-Uik"/>
                                     </connections>
                                 </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6aZ-3K-Pk6">
+                                    <rect key="frame" x="75" y="16.5" width="42" height="20.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="WbF-Cb-2TC">
                                     <rect key="frame" x="216" y="0.0" width="198" height="53"/>
                                     <subviews>
@@ -253,7 +260,9 @@
                                 <constraint firstAttribute="bottom" secondItem="WbF-Cb-2TC" secondAttribute="bottom" id="Git-oL-Cq9"/>
                                 <constraint firstItem="6YO-P4-mQY" firstAttribute="leading" secondItem="jXg-7i-mnI" secondAttribute="leading" id="IQy-oE-WWX"/>
                                 <constraint firstItem="WbF-Cb-2TC" firstAttribute="top" secondItem="jXg-7i-mnI" secondAttribute="top" id="JzN-Kq-4jA"/>
+                                <constraint firstItem="6aZ-3K-Pk6" firstAttribute="centerY" secondItem="jXg-7i-mnI" secondAttribute="centerY" id="fQ0-94-FbQ"/>
                                 <constraint firstAttribute="bottom" secondItem="6YO-P4-mQY" secondAttribute="bottom" id="jnW-Iu-sS0"/>
+                                <constraint firstItem="6aZ-3K-Pk6" firstAttribute="leading" secondItem="6YO-P4-mQY" secondAttribute="trailing" constant="10" id="wE1-DN-3C8"/>
                                 <constraint firstAttribute="trailing" secondItem="WbF-Cb-2TC" secondAttribute="trailing" id="x4S-My-ykU"/>
                                 <constraint firstAttribute="height" constant="53" id="yGU-af-0l6"/>
                             </constraints>

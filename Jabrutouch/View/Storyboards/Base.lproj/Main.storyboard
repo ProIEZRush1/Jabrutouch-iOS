@@ -643,12 +643,8 @@
                                                                             <state key="normal" image="audio-nat"/>
                                                                         </button>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="syV-Uc-KkF">
-                                                                            <rect key="frame" x="218" y="11.5" width="50" height="50"/>
+                                                                            <rect key="frame" x="182" y="-16" width="122" height="105"/>
                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                            <constraints>
-                                                                                <constraint firstAttribute="height" constant="50" id="AOq-fA-tWX"/>
-                                                                                <constraint firstAttribute="width" constant="50" id="yyg-pn-pZH"/>
-                                                                            </constraints>
                                                                             <state key="normal" image="video-nat"/>
                                                                         </button>
                                                                     </subviews>
