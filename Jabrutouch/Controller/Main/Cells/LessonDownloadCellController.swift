@@ -63,7 +63,7 @@ class LessonDownloadCellController: UITableViewCell {
     
     func setEditingIfNeeded(lesson: JTLesson, isCurrentlyEditing: Bool) {
         self.animateImagesVisibilityIfNeeded(lesson, isCurrentlyEditing: isCurrentlyEditing)
-        UIView.animate(withDuration: 1.0) {
+        UIView.animate(withDuration: 0.6) {
             let isDownloading = lesson.isDownloadingAudio || lesson.isDownloadingVideo
 
             if isCurrentlyEditing && !isDownloading {
@@ -71,8 +71,7 @@ class LessonDownloadCellController: UITableViewCell {
             } else {
                 self.cellViewTrailingConstraint.constant = 18
             }
-//            self.downloadButtonsContainerView.layoutIfNeeded()
-            self.cellView.layoutIfNeeded()
+            self.layoutIfNeeded()
 
             
         }
