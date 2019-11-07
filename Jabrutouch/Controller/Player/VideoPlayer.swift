@@ -334,8 +334,8 @@ class VideoPlayer: UIView {
     }
     
     func stopAndRelease() {
-        self.player?.removeObserver(self, forKeyPath: "timeControlStatus")
         let _ = self.pause()
+        self.player?.removeObserver(self, forKeyPath: "timeControlStatus")
         self.player = nil
         self.videoLayer.player = nil
         self.stopTimeUpdateTimer()
@@ -504,7 +504,6 @@ class VideoPlayer: UIView {
         player.rate = self.currentSpeed.rate
         self.startTimeUpdateTimer()
         self.hideAccessoriesView()
-        self.startPlayDate = Date()
         return .success
     }
     
@@ -515,11 +514,6 @@ class VideoPlayer: UIView {
         self.videoPlayerPlayPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
         self.videoPlayerPlayPauseButton.setImage(#imageLiteral(resourceName: "w-play-prs"), for: .highlighted)
         self.stopTimeUpdateTimer()
-        
-        if let date = self.startPlayDate {
-            let duration = Date().timeIntervalSince(date)
-            self.watchDuration += duration
-        }
         return .success
     }
     @objc func changePlaybackPosition(_ event: MPChangePlaybackPositionCommandEvent) -> MPRemoteCommandHandlerStatus {
@@ -621,8 +615,13 @@ class VideoPlayer: UIView {
                 if #available(iOS 10.0, *) {
                     if avPlayer.timeControlStatus == .playing {
                         self.delegate?.didStartPlaying()
-                    } else {
-                        
+                        self.startPlayDate = Date()
+                    } else if avPlayer.timeControlStatus == .paused {
+                        if let date = self.startPlayDate {
+                            let duration = Date().timeIntervalSince(date)
+                            self.watchDuration += duration
+                            self.startPlayDate = nil
+                        }
                     }
                 }
             }
