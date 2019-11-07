@@ -114,14 +114,14 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         
         if table == gemaraTableView {
             if isGemaraSelected {
-                deleteButton.isHidden = !isHidden
+//                deleteButton.isHidden = !isHidden
             }
             gemaraBooksImage.isHidden = isHidden
             gemaraNoDownloadedFilesMessage.isHidden = isHidden
             gemaraViewAllLessonsButton.isHidden = isHidden
         } else {
             if !isGemaraSelected {
-                deleteButton.isHidden = !isHidden
+//                deleteButton.isHidden = !isHidden
             }
             mishnaBooksImage.isHidden = isHidden
             mishnaNoDownloadedFilesMessage.isHidden = isHidden
