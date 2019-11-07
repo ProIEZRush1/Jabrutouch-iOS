@@ -267,10 +267,10 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         
         if isExpanded {
-            headerCell.arrowImage?.image = UIImage(named: "Black&BlueUpArrow")
+            headerCell.arrowImage?.image = UIImage(named: "blue_up_arrow")
             headerCell.sectionRowsCountLabel.isHidden = true
         } else {
-            headerCell.arrowImage?.image = UIImage(named: "Black&BlueDownArrow")
+            headerCell.arrowImage?.image = UIImage(named: "blue_down_arrow")
             headerCell.sectionRowsCountLabel.text = String(sectionRowsCount)
             headerCell.sectionRowsCountLabel.isHidden = false
         }

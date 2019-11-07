@@ -559,16 +559,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "6C1927F8-A35B-45AF-B2F8-9EFF1642599E"
+            uuid = "620D37D6-7D3B-441A-9E8B-2754ADF49080"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Jabrutouch/Controller/Player/LessonPlayerViewController.swift"
+            filePath = "Jabrutouch/Controller/Player/DonatedAlert.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "207"
-            endingLineNumber = "207"
-            landmarkName = "postWatchAnalyticEvent()"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "startButtonPressed(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

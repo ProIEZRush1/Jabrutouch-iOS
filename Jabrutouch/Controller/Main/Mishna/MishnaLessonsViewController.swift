@@ -265,11 +265,7 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
 extension MishnaLessonsViewController: ContentRepositoryDownloadDelegate {
     func downloadCompleted(downloadId: Int, mediaType: JTLessonMediaType) {
         guard let index = self.lessons.firstIndex(where: {$0.id == downloadId}) else { return }
-        guard let sederId = self.sederId else { return }
-        guard let masecetId = self.masechetId else { return }
-        guard let chapter = self.chapter else { return }
         
-        let lesson = self.lessons[index]
         switch mediaType {
         case .audio:
             self.lessons[index].isDownloadingAudio = false
