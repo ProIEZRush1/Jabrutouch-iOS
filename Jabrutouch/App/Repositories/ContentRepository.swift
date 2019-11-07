@@ -785,7 +785,7 @@ extension ContentRepository: DownloadTaskDelegate {
         }
     }
     
-    func downloadProgress(downloadId: Int, progress: Float, mediaType: JTLessonMediaType) {
+    func downloadProgress(downloadId: Int, progress: Float, mediaType: JTLessonMediaType) {        
         self.lessonDownloadProgress(downloadId, progress: progress, mediaType: mediaType)
 
         DispatchQueue.main.async {

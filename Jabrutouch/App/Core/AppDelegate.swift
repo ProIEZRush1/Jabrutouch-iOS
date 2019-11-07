@@ -9,6 +9,7 @@
 import UIKit
 import Fabric
 import Crashlytics
+import AWSS3
 
 let appDelegate = UIApplication.shared.delegate as! AppDelegate
 @UIApplicationMain
@@ -49,6 +50,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    func application(_ application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void) {
+        AWSS3TransferUtility.interceptApplication(application, handleEventsForBackgroundURLSession: identifier, completionHandler: completionHandler)
+    }
     
     func setRootViewController(viewController: UIViewController, animated: Bool) {
         if self.window == nil {
