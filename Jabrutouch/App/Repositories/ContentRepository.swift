@@ -281,6 +281,22 @@ class ContentRepository {
         }
         
     }
+//    func getMasechetDownloadedGemaraLessons() -> [JTMasechetDownloadedGemaraLessons] {
+//        var downloadedLessons:[JTMasechetDownloadedGemaraLessons] = []
+//        for (sederId,masechtotDict) in self.downloadedGemaraLessons {
+//            guard let masechet = self.getMasechetById(sederId: sederId, masechetId: <#T##String#>) else {continue}
+//            var lessons: [JTGemaraLessonRecord] = []
+//            for (masechetId, _lessons) in masechtotDict {
+//                guard let masechet = self.getMasechetById(sederId: sederId, masechetId: masechetId) else { continue }
+//                for lesson in _lessons {
+//                    lessons.append(JTGemaraLessonRecord(lesson: lesson, masechetName: masechet.name, masechetId: masechetId, sederId: sederId))
+//                }
+//            }
+//            downloadedLessons.append(JTMasechetDownloadedGemaraLessons(masechetName: "", records: lessons, order: masechet.order))
+//        }
+//        downloadedLessons.sort{$0.order < $1.order}
+//        return downloadedLessons
+//    }
     
     func getDownloadedGemaraLessons() -> [JTSederDownloadedGemaraLessons] {
         var downloadedLessons:[JTSederDownloadedGemaraLessons] = []
@@ -464,13 +480,14 @@ class ContentRepository {
         if self.downloadedGemaraLessons[sederId]?.count == 0 {
             self.downloadedGemaraLessons.removeValue(forKey: sederId)
         }
-        let urls: [URL] = [lesson.textURL, lesson.audioURL, lesson.videoURL].compactMap{$0}
-        FilesManagementProvider.shared.removeFiles(urls) { (_ result) in
+        let urls: [URL] = lesson.localFileUrls
+        FilesManagementProvider.shared.removeFiles(urls) { (url, result) in
             switch result {
             case .success:
                 self.updateDownloadedLessonsStorage()
+                print("Success in removing file: \(url.absoluteString)")
             case .failure(let error):
-                print("Failed removing file, with error: \(error)")
+                print("Failed removing file: \(url.absoluteString), with error: \(error)")
             }
         }
         
@@ -487,13 +504,14 @@ class ContentRepository {
         if self.downloadedMishnaLessons[sederId]?.count == 0 {
             self.downloadedMishnaLessons.removeValue(forKey: sederId)
         }
-        let urls: [URL] = [lesson.textURL, lesson.audioURL, lesson.videoURL].compactMap{$0}
-        FilesManagementProvider.shared.removeFiles(urls){ (_ result) in
+        let urls: [URL] = lesson.localFileUrls
+        FilesManagementProvider.shared.removeFiles(urls){ (url, result) in
             switch result {
             case .success:
                 self.updateDownloadedLessonsStorage()
+                print("Success in removing file: \(url.absoluteString)")
             case .failure(let error):
-                print("Failed removing file, with error: \(error)")
+                print("Failed removing file: \(url.absoluteString), with error: \(error)")
             }
         }
         
@@ -506,7 +524,7 @@ class ContentRepository {
         case .audio:
             downloadTask.filesToDownload.append((lesson.audioLink ?? "", .s3, lesson.audioLocalFileName))
         case .video:
-            downloadTask.filesToDownload.append((lesson.videoLink ?? "", .vimeo, lesson.videoLoaclFileName))
+            downloadTask.filesToDownload.append((lesson.videoLink ?? "", .vimeo, lesson.videoLocalFileName))
         }
         
         if lesson.isTextFileDownloaded == false {

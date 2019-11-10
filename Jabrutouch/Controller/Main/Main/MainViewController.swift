@@ -488,6 +488,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
             self.view.bringSubviewToFront(self.mainContainer)
             self.currentPresentedModal = nil
             self.setDefaulteIcons()
+            self.setContent()
         }
     }
     
