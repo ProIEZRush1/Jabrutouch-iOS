@@ -570,6 +570,14 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     private func playLesson(_ lesson: JTLesson, mediaType: JTLessonMediaType, masechetName: String?, sederId: String, masechetId: String, chapter: String? ) {
         let playerVC = LessonPlayerViewController(lesson: lesson, mediaType: mediaType, sederId: sederId, masechetId: masechetId, chapter: chapter, shouldDisplayDonationPopUp: false)
         playerVC.modalPresentationStyle = .fullScreen
+        if let mishnaLesson = lesson as? JTMishnaLesson {
+            playerVC.masechet = masechetName ?? ""
+                playerVC.daf = "\(mishnaLesson.mishna)"
+        }
+        if let gemaraLesson = lesson as? JTGemaraLesson {
+            playerVC.masechet = masechetName ?? ""
+                playerVC.daf = "\(gemaraLesson.page)"
+        }
         self.present(playerVC, animated: true) {
             
         }

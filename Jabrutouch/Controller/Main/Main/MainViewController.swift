@@ -585,10 +585,10 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
         DispatchQueue.main.async {
             if isFirstCollection {
                 let record = self.gemaraHistory[selectedRow]
-                self.playLesson(record.lesson, mediaType: .audio, sederId: record.sederId, masechetId: record.masechetId, chapter: nil, masechetName: nil)
+                self.playLesson(record.lesson, mediaType: .audio, sederId: record.sederId, masechetId: record.masechetId, chapter: nil, masechetName: record.masechetName)
             } else {
                 let record = self.mishnaHistory[selectedRow]
-                self.playLesson(record.lesson, mediaType: .audio, sederId: record.sederId, masechetId: record.masechetId, chapter: record.chapter, masechetName: nil)
+                self.playLesson(record.lesson, mediaType: .audio, sederId: record.sederId, masechetId: record.masechetId, chapter: record.chapter, masechetName: record.masechetName)
             }
         }
     }
@@ -597,10 +597,10 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
         DispatchQueue.main.async {
             if isFirstCollection {
                 let record = self.gemaraHistory[selectedRow]
-                self.playLesson(record.lesson, mediaType: .video, sederId: record.sederId, masechetId: record.masechetId, chapter: nil, masechetName: nil)
+                self.playLesson(record.lesson, mediaType: .video, sederId: record.sederId, masechetId: record.masechetId, chapter: nil, masechetName: record.masechetName)
             } else {
                 let record = self.mishnaHistory[selectedRow]
-                self.playLesson(record.lesson, mediaType: .video, sederId: record.sederId, masechetId: record.masechetId, chapter: record.chapter, masechetName: nil)
+                self.playLesson(record.lesson, mediaType: .video, sederId: record.sederId, masechetId: record.masechetId, chapter: record.chapter, masechetName: record.masechetName)
             }
         }
     }
@@ -621,6 +621,10 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
     private func playLesson(_ lesson: JTLesson, mediaType: JTLessonMediaType, sederId: String, masechetId: String, chapter: String?, masechetName: String?) {
         let playerVC = LessonPlayerViewController(lesson: lesson, mediaType: mediaType, sederId: sederId, masechetId:masechetId, chapter:chapter)
         playerVC.modalPresentationStyle = .fullScreen
+        playerVC.masechet = masechetName ?? ""
+        if let lesson = lesson as? JTGemaraLesson {
+            playerVC.daf = "\(lesson.page)"
+        }
         self.present(playerVC, animated: true) {
             
         }

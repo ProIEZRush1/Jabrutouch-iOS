@@ -99,6 +99,8 @@ class LessonPlayerViewController: UIViewController {
     private var isLandscape: Bool {
         return UIScreen.main.bounds.height < UIScreen.main.bounds.width
     }
+    var masechet = ""
+    var daf = ""
     //====================================================
     // MARK: - LifeCycle
     //====================================================
@@ -136,7 +138,7 @@ class LessonPlayerViewController: UIViewController {
         
         self.pdfView.delegate = self
         
-        self.masechetTitleLabel.text = ""
+        self.masechetTitleLabel.text = "\(self.masechet) \(self.daf)"
     }
     
     override func viewWillAppear(_ animated: Bool) {

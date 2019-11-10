@@ -251,6 +251,10 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
         guard let sederId = self.sederId, let masechetId = self.masechetId else { return }
         let playerVC = LessonPlayerViewController(lesson: lesson, mediaType: mediaType, sederId: sederId, masechetId: "\(masechetId)", chapter: nil)
         playerVC.modalPresentationStyle = .fullScreen
+        playerVC.masechet = self.masechetName ?? ""
+        if let lesson = lesson as? JTGemaraLesson {
+            playerVC.daf = "\(lesson.page)"
+        }
         self.present(playerVC, animated: true) {
             
         }
