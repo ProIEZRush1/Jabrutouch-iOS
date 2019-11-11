@@ -294,8 +294,8 @@
             filePath = "Jabrutouch/Controller/Main/DownloadsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "580"
-            endingLineNumber = "580"
+            startingLineNumber = "583"
+            endingLineNumber = "583"
             landmarkName = "deletePressed(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -358,8 +358,8 @@
             filePath = "Jabrutouch/Controller/Main/DownloadsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "301"
-            endingLineNumber = "301"
+            startingLineNumber = "304"
+            endingLineNumber = "304"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
             <Locations>
@@ -502,8 +502,8 @@
             filePath = "Jabrutouch/Controller/Main/DownloadsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "369"
-            endingLineNumber = "369"
+            startingLineNumber = "372"
+            endingLineNumber = "372"
             landmarkName = "toggleSection(header:section:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -518,8 +518,8 @@
             filePath = "Jabrutouch/Controller/Main/DownloadsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "389"
-            endingLineNumber = "389"
+            startingLineNumber = "392"
+            endingLineNumber = "392"
             landmarkName = "reloadSection(_:_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -582,8 +582,8 @@
             filePath = "Jabrutouch/Controller/Main/DownloadsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "619"
-            endingLineNumber = "619"
+            startingLineNumber = "622"
+            endingLineNumber = "622"
             landmarkName = "playLesson(_:mediaType:masechetName:sederId:masechetId:chapter:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -614,8 +614,8 @@
             filePath = "Jabrutouch/Controller/Main/DownloadsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "462"
-            endingLineNumber = "462"
+            startingLineNumber = "465"
+            endingLineNumber = "465"
             landmarkName = "playAudioPressed(atIndexPath:lessonType:)"
             landmarkType = "7">
             <Locations>
@@ -662,8 +662,8 @@
             filePath = "Jabrutouch/Controller/Main/DownloadsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "465"
-            endingLineNumber = "465"
+            startingLineNumber = "468"
+            endingLineNumber = "468"
             landmarkName = "playAudioPressed(atIndexPath:lessonType:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -678,8 +678,8 @@
             filePath = "Jabrutouch/Controller/Main/DownloadsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "484"
-            endingLineNumber = "484"
+            startingLineNumber = "487"
+            endingLineNumber = "487"
             landmarkName = "playAudioPressed(atIndexPath:lessonType:)"
             landmarkType = "7">
          </BreakpointContent>

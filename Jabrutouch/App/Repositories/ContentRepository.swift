@@ -42,6 +42,7 @@ class ContentRepository {
     private var mishnaLessons: [String:[String:[String:JTMishnaLesson]]] = [:]
     
     private var downloadedGemaraLessons: [SederId:[MasechetId:Set<JTGemaraLesson>]] = [:]
+    private var downloadedMasechetGemaraLessons: [MasechetId:Set<JTGemaraLesson>] = [:]
     private var downloadedMishnaLessons: [SederId:[MasechetId:[Chapter:Set<JTMishnaLesson>]]] = [:]
     private var downloadDelegates: [ContentRepositoryDownloadDelegate] = []
     

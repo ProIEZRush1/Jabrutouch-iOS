@@ -37,6 +37,7 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     fileprivate var grayUpArrowXCentererdToGemara: NSLayoutConstraint?
     fileprivate var grayUpArrowXCentererdToMishna: NSLayoutConstraint?
     fileprivate var gemaraDownloads: [JTSederDownloadedGemaraLessons] = []
+    fileprivate var masechetGemaraDownloads: [JTMasechetDownloadedGemaraLessons] = []
     fileprivate var mishnaDownloads: [JTSederDownloadedMishnaLessons] = []
     fileprivate var isGemaraSelected = true
     fileprivate var isDeleting = false
