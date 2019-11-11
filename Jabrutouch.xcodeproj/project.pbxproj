@@ -164,6 +164,7 @@
 		8342BA76237301D800C3239C /* ModalsContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8342BA73237301D700C3239C /* ModalsContainerViewController.swift */; };
 		8342BA79237302AE00C3239C /* DonationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8342BA78237302AE00C3239C /* DonationsViewController.swift */; };
 		83CCB12123783F6100C86450 /* JTMasechetDownloadedGemaraLessons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB12023783F6100C86450 /* JTMasechetDownloadedGemaraLessons.swift */; };
+		83CCB1232379EEB700C86450 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB1222379EEB700C86450 /* EditProfileViewController.swift */; };
 		F7AEA20A7CC7E87A1BEC48AF /* Pods_Jabrutouch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0F9377FF1E3DA5E9F901D68 /* Pods_Jabrutouch.framework */; };
 		FB51711422F19C3F003BCAFC /* MishnaMasechetCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB51711322F19C3F003BCAFC /* MishnaMasechetCellController.swift */; };
 		FB51711622F19FD2003BCAFC /* JTMishnaMasechet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB51711522F19FD2003BCAFC /* JTMishnaMasechet.swift */; };
@@ -354,6 +355,7 @@
 		8342BA73237301D700C3239C /* ModalsContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalsContainerViewController.swift; sourceTree = "<group>"; };
 		8342BA78237302AE00C3239C /* DonationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DonationsViewController.swift; path = Jabrutouch/Controller/Main/DonationsViewController.swift; sourceTree = SOURCE_ROOT; };
 		83CCB12023783F6100C86450 /* JTMasechetDownloadedGemaraLessons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTMasechetDownloadedGemaraLessons.swift; sourceTree = "<group>"; };
+		83CCB1222379EEB700C86450 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		C0F9377FF1E3DA5E9F901D68 /* Pods_Jabrutouch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jabrutouch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F71C57777BA59A6B8E3F7474 /* Pods-Jabrutouch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jabrutouch.release.xcconfig"; path = "Target Support Files/Pods-Jabrutouch/Pods-Jabrutouch.release.xcconfig"; sourceTree = "<group>"; };
 		FB51711322F19C3F003BCAFC /* MishnaMasechetCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MishnaMasechetCellController.swift; sourceTree = "<group>"; };
@@ -541,6 +543,7 @@
 		212ECEB12312F93C005AEB36 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				83CCB1222379EEB700C86450 /* EditProfileViewController.swift */,
 				FBB434FD22FB2CA4008EE211 /* ProfileViewController.swift */,
 				FB6877C122FC49AE0096465D /* AlertViewController.swift */,
 			);
@@ -1286,6 +1289,7 @@
 				216A0E6E22EEFD1400F7FBC1 /* HttpServiceProvider.swift in Sources */,
 				538691502379E8E500CC95B5 /* JBProgressBar.swift in Sources */,
 				538691462379E8B500CC95B5 /* TopicCollectionViewCell.swift in Sources */,
+				83CCB1232379EEB700C86450 /* EditProfileViewController.swift in Sources */,
 				4628E0E223215DEC00D963E6 /* DonatedAlert.swift in Sources */,
 				21419CBB230EAF5300145F1F /* JTGemaraLessonRecord.swift in Sources */,
 				5386914A2379E8B500CC95B5 /* ButtonCell.swift in Sources */,

@@ -155,18 +155,21 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
                 cell.titleLabel.textColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
                 cell.arrowImage.isHidden = true
                 cell.textField.isHidden = true
+                cell.contanerViewTopConstraint.constant = 5
             case 1:
                 cell.titleLabel.isHidden = false
                 cell.titleLabel.text = LocalizationManager.shared.getDefaultCountry()?.fullDisplayName
                 cell.titleLabel.textColor = #colorLiteral(red: 0.17, green: 0.17, blue: 0.34, alpha: 0.88)
                 cell.arrowImage.isHidden = false
                 cell.textField.isHidden = true
+                cell.contanerViewBottomConstraint.constant = 5
             case 2:
                 cell.titleLabel.isHidden = false
                 cell.titleLabel.text = user?.phoneNumber
                 cell.titleLabel.textColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
                 cell.arrowImage.isHidden = true
                 cell.textField.isHidden = true
+                cell.contanerViewTopConstraint.constant = 5
             case 3:
                 cell.titleLabel.isHidden = true
                 cell.titleLabel.textColor = #colorLiteral(red: 0.17, green: 0.17, blue: 0.34, alpha: 0.88)
@@ -179,36 +182,42 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
                 }
 //                cell.textField.text = self.birthdate
                 cell.textField.isHidden = false
+                cell.contanerViewTopConstraint.constant = 5
             case 4:
                 cell.titleLabel.isHidden = false
                 cell.titleLabel.text = "Community"
                 cell.titleLabel.textColor = #colorLiteral(red: 0.17, green: 0.17, blue: 0.34, alpha: 0.88)
                 cell.arrowImage.isHidden = false
                 cell.textField.isHidden = true
+                cell.contanerViewBottomConstraint.constant = 5
             case 5:
                 cell.titleLabel.isHidden = false
                 cell.titleLabel.text = "Religious Level"
                 cell.titleLabel.textColor = #colorLiteral(red: 0.17, green: 0.17, blue: 0.34, alpha: 0.88)
                 cell.arrowImage.isHidden = false
                 cell.textField.isHidden = true
+                cell.contanerViewBottomConstraint.constant = 5
             case 6:
                 cell.titleLabel.isHidden = false
                 cell.titleLabel.text = "Education"
                 cell.titleLabel.textColor = #colorLiteral(red: 0.17, green: 0.17, blue: 0.34, alpha: 0.88)
                 cell.arrowImage.isHidden = false
                 cell.textField.isHidden = true
+                cell.contanerViewBottomConstraint.constant = 5
             case 7:
                 cell.titleLabel.isHidden = false
                 cell.titleLabel.text = "Occupation"
                 cell.titleLabel.textColor = #colorLiteral(red: 0.17, green: 0.17, blue: 0.34, alpha: 0.88)
                 cell.arrowImage.isHidden = false
                 cell.textField.isHidden = true
+                cell.contanerViewBottomConstraint.constant = 5
             case 8:
                 cell.textField.isHidden = false
                 cell.titleLabel.isHidden = true
                 cell.arrowImage.isHidden = true
                 cell.textField.textColor = #colorLiteral(red: 0.17, green: 0.17, blue: 0.34, alpha: 0.88)
                 cell.textField.text = "Second Email Address"
+                cell.contanerViewTopConstraint.constant = 5
             default:
                 break
             }
@@ -228,9 +237,9 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
         case 0:
             return 60
         case 1:
-            return 105
+            return 120
         case 2:
-            return 60
+            return 66
         case 3:
             return 200
         default:

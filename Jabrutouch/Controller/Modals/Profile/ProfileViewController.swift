@@ -67,12 +67,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 //        self.phoneLabel.text = user!.phoneNumber // Debug: phone number is without two first numbers
 //        self.phoneTiitleLabel.text = Strings.phoneNumber
 //        self.logoutBtn.setTitle(Strings.logout.uppercased(), for: .normal)
-
-        self.nameLabel.text = "\(user!.firstName) \(user!.lastName)"
-        self.emailLabel.text = user!.email
-        self.phoneLabel.text = user!.phoneNumber // Debug: phone number is without two first numbers
-        self.phoneTiitleLabel.text = Strings.phoneNumber
-        self.logoutBtn.setTitle(Strings.logout.uppercased(), for: .normal)
+//
+//        self.nameLabel.text = "\(user!.firstName) \(user!.lastName)"
+//        self.emailLabel.text = user!.email
+//        self.phoneLabel.text = user!.phoneNumber // Debug: phone number is without two first numbers
+//        self.phoneTiitleLabel.text = Strings.phoneNumber
+//        self.logoutBtn.setTitle(Strings.logout.uppercased(), for: .normal)
         let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
         let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
         self.versionLabel.text = "Version \(version) (\(build))"
