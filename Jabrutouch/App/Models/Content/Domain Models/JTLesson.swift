@@ -88,22 +88,12 @@ class JTLesson: Hashable  {
     
     var isAudioDownloaded: Bool {
         guard let filesNames = FilesManagementProvider.shared.filesList(.cache) else { return false }
-        for fileName in filesNames {
-            if fileName == self.audioLocalFileName {
-                return true
-            }
-        }
-        return false
+        return filesNames.contains(self.audioLocalFileName)
     }
     
     var isVideoDownloaded: Bool {
         guard let filesNames = FilesManagementProvider.shared.filesList(.cache) else { return false }
-        for fileName in filesNames {
-            if fileName == self.videoLoaclFileName {
-                return true
-            }
-        }
-        return false
+        return filesNames.contains(self.videoLocalFileName)
     }
     
     var isTextFileDownloaded: Bool {
@@ -142,7 +132,7 @@ class JTLesson: Hashable  {
     }
     
     private var videoLocalURL: URL? {
-        return FileDirectory.cache.url?.appendingPathComponent(self.videoLoaclFileName)
+        return FileDirectory.cache.url?.appendingPathComponent(self.videoLocalFileName)
     }
     
     private var textLocalURL: URL? {
@@ -153,7 +143,7 @@ class JTLesson: Hashable  {
         return "\(self.id)_aud.mp3"
     }
     
-    var videoLoaclFileName: String {
+    var videoLocalFileName: String {
         return "\(self.id)_vid.mp4"
     }
     
@@ -188,6 +178,19 @@ class JTLesson: Hashable  {
         }
     }
     
+    var localFileUrls: [URL] {
+        var urls = [URL?]()
+        if self.isVideoDownloaded {
+            urls.append(self.videoLocalURL)
+        }
+        if self.isAudioDownloaded {
+            urls.append(self.audioLocalURL)
+        }
+        if self.isAudioDownloaded || self.isVideoDownloaded {
+            urls.append(self.textLocalURL)
+        }
+        return urls.compactMap{$0}
+    }
     var values: [String: Any] {
         var values: [String:Any] = [:]
         values["id"] = self.id

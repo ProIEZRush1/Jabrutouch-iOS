@@ -20,6 +20,8 @@ class SignInViewController: UIViewController {
     // MARK: - Outlets
     //============================================================
     @IBOutlet weak private var titleLabel: UILabel!
+    @IBOutlet weak private var usernameView: UIView!
+    @IBOutlet weak private var passwordView: UIView!
     @IBOutlet weak private var usernameTF: UITextField!
     @IBOutlet weak private var passwordTF: UITextField!
     @IBOutlet weak private var signInButton: UIButton!
@@ -53,7 +55,7 @@ class SignInViewController: UIViewController {
         self.titleLabel.text = Strings.signIn
         self.usernameTF.placeholder = Strings.emailOrPhoneNumber
         self.passwordTF.placeholder = Strings.password
-        self.signInButton.setTitle(Strings.signInPC, for: .normal)
+        self.signInButton.setTitle(Strings.signInCaps, for: .normal)
         self.forgotPasswordButton.setTitle(Strings.forgotPassword, for: .normal)
         
         let signUpTitle = NSMutableAttributedString(string: Strings.dontHaveAccount, attributes: [NSAttributedString.Key.foregroundColor: Colors.textMediumBlue])
@@ -66,20 +68,28 @@ class SignInViewController: UIViewController {
         self.signInButton.layer.cornerRadius = self.signInButton.bounds.height/2
         self.usernameTF.layer.cornerRadius = self.usernameTF.bounds.height/2
         self.passwordTF.layer.cornerRadius = self.passwordTF.bounds.height/2
+        self.usernameView.layer.cornerRadius = self.usernameView.bounds.height/2
+        self.passwordView.layer.cornerRadius = self.passwordView.bounds.height/2
     }
     
     private func addBorders() {
-        self.usernameTF.layer.borderColor = Colors.borderGray.cgColor
-        self.usernameTF.layer.borderWidth = 1.0
+        self.usernameView.layer.borderColor = Colors.borderGray.cgColor
+        self.usernameView.layer.borderWidth = 1.0
         
-        self.passwordTF.layer.borderColor = Colors.borderGray.cgColor
-        self.passwordTF.layer.borderWidth = 1.0
+        self.passwordView.layer.borderColor = Colors.borderGray.cgColor
+        self.passwordView.layer.borderWidth = 1.0
+//        self.usernameTF.layer.borderColor = Colors.borderGray.cgColor
+//        self.usernameTF.layer.borderWidth = 1.0
+        
+//        self.passwordTF.layer.borderColor = Colors.borderGray.cgColor
+//        self.passwordTF.layer.borderWidth = 1.0
     }
     //============================================================
     // MARK: - @IBActions
     //============================================================
     
     @IBAction func signInButtonPressed(_ sender: UIButton) {
+        self.signInButton.backgroundColor = #colorLiteral(red: 0.18, green: 0.17, blue: 0.66, alpha: 1)
         self.validateForm()
     }
     
@@ -102,14 +112,18 @@ class SignInViewController: UIViewController {
         guard let username = self.usernameTF.text else {
             let message = Strings.usernameMissing
             let title = Strings.missingField
-            Utils.showAlertMessage(message,title: title, viewControler:self)
+            Utils.showAlertMessage(message, title: title, viewControler: self) { (acton) in
+                self.signInButton.backgroundColor = #colorLiteral(red: 1, green: 0.37, blue: 0.31, alpha: 1)
+            }
             self.removeActivityView()
             return
         }
         guard username.isEmpty == false else {
             let message = Strings.usernameMissing
             let title = Strings.missingField
-            Utils.showAlertMessage(message,title: title, viewControler:self)
+            Utils.showAlertMessage(message, title: title, viewControler: self) { (acton) in
+                self.signInButton.backgroundColor = #colorLiteral(red: 1, green: 0.37, blue: 0.31, alpha: 1)
+            }
             self.removeActivityView()
             return
         }
@@ -117,14 +131,18 @@ class SignInViewController: UIViewController {
         guard let password = self.passwordTF.text else {
             let message = Strings.passwordMissing
             let title = Strings.missingField
-            Utils.showAlertMessage(message,title: title, viewControler:self)
+            Utils.showAlertMessage(message, title: title, viewControler: self) { (acton) in
+                self.signInButton.backgroundColor = #colorLiteral(red: 1, green: 0.37, blue: 0.31, alpha: 1)
+            }
             self.removeActivityView()
             return
         }
         guard password.isEmpty == false else {
             let message = Strings.passwordMissing
             let title = Strings.missingField
-            Utils.showAlertMessage(message,title: title, viewControler:self)
+            Utils.showAlertMessage(message, title: title, viewControler: self) { (acton) in
+                self.signInButton.backgroundColor = #colorLiteral(red: 1, green: 0.37, blue: 0.31, alpha: 1)
+            }
             self.removeActivityView()
             return
         }
@@ -138,7 +156,9 @@ class SignInViewController: UIViewController {
         else {
             let message = Strings.usernameInvalid
             let title = Strings.invalidField
-            Utils.showAlertMessage(message,title: title, viewControler:self)
+            Utils.showAlertMessage(message, title: title, viewControler: self) { (acton) in
+                self.signInButton.backgroundColor = #colorLiteral(red: 1, green: 0.37, blue: 0.31, alpha: 1)
+            }
             self.removeActivityView()
             return
         }
@@ -200,5 +220,19 @@ extension SignInViewController: UITextFieldDelegate {
             self.validateForm()
         }
         return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.placeholder = ""
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField.text == "" {
+            if textField === self.usernameTF {
+                textField.placeholder = "Email or phone number"
+            } else if textField == self.passwordTF {
+                textField.placeholder = "Password"
+            }
+        }
     }
 }

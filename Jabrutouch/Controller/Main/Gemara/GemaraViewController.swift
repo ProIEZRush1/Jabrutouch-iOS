@@ -89,9 +89,9 @@ class GemaraViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let headerCell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "headerCell") as! HeaderCellController
         
         if openSections.contains(section) {
-            headerCell.arrowImage?.image = UIImage(named: "DarkGrayUpArrow")
+            headerCell.arrowImage?.image = UIImage(named: "blue_up_arrow")
         } else {
-            headerCell.arrowImage?.image = UIImage(named: "DarkGrayDownArrow")
+            headerCell.arrowImage?.image = UIImage(named: "blue_down_arrow")
         }
         
         headerCell.titleLabel?.text = "Seder " + sedarim[section].name

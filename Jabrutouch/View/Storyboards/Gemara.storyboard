@@ -224,34 +224,34 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G7Y-2J-INF">
-                                                    <rect key="frame" x="18" y="0.0" width="378" height="75"/>
+                                                    <rect key="frame" x="18.5" y="0.0" width="377" height="75"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TransparentAudio" translatesAutoresizingMaskIntoConstraints="NO" id="4e2-Wv-IbQ">
-                                                            <rect key="frame" x="259" y="13" width="21" height="49"/>
+                                                            <rect key="frame" x="258" y="13" width="21" height="49"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="21" id="lQa-V9-gQt"/>
                                                             </constraints>
                                                         </imageView>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DownloadInCircle" translatesAutoresizingMaskIntoConstraints="NO" id="NfR-Md-Mpi">
-                                                            <rect key="frame" x="271" y="28.5" width="24" height="48"/>
+                                                            <rect key="frame" x="270" y="28.5" width="24" height="48"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="24" id="Fx7-Vf-CxW"/>
                                                             </constraints>
                                                         </imageView>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TransparentVideo" translatesAutoresizingMaskIntoConstraints="NO" id="LbE-af-XwM">
-                                                            <rect key="frame" x="323" y="18" width="30" height="39"/>
+                                                            <rect key="frame" x="322" y="18" width="30" height="39"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="30" id="4SV-Lo-ZCc"/>
                                                             </constraints>
                                                         </imageView>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DownloadInCircle" translatesAutoresizingMaskIntoConstraints="NO" id="5MK-BE-9jN">
-                                                            <rect key="frame" x="335" y="28.5" width="24" height="48"/>
+                                                            <rect key="frame" x="334" y="28.5" width="24" height="48"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="24" id="7Gp-SZ-N4I"/>
                                                             </constraints>
                                                         </imageView>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xd8-zT-NIm">
-                                                            <rect key="frame" x="244.5" y="12.5" width="50" height="50"/>
+                                                            <rect key="frame" x="243.5" y="12.5" width="50" height="50"/>
                                                             <accessibility key="accessibilityConfiguration" identifier="GLVC Underneath Audio Btn"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="50" id="IxK-r8-KSf"/>
@@ -264,7 +264,7 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QVQ-vs-qnp">
-                                                            <rect key="frame" x="313" y="12.5" width="50" height="50"/>
+                                                            <rect key="frame" x="312" y="12.5" width="50" height="50"/>
                                                             <accessibility key="accessibilityConfiguration" identifier="GLVC Underneath Video Btn"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="50" id="NTX-F6-i7F"/>
@@ -304,7 +304,7 @@
                                                             <color key="textColor" red="0.17254901959999999" green="0.16862745100000001" blue="0.33725490200000002" alpha="0.88" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GrayTimer" translatesAutoresizingMaskIntoConstraints="NO" id="HAD-dN-kgf">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clockGray" translatesAutoresizingMaskIntoConstraints="NO" id="HAD-dN-kgf">
                                                             <rect key="frame" x="94" y="29" width="15" height="17"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="17" id="Y9c-IZ-jj1"/>
@@ -314,40 +314,36 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="56 min" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ocu-AW-QtR">
                                                             <rect key="frame" x="116" y="29" width="42.5" height="17"/>
                                                             <fontDescription key="fontDescription" name="SFProDisplay-Light" family="SF Pro Display" pointSize="14"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="textColor" red="0.27900000000000003" green="0.27900000000000003" blue="0.27900000000000003" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Audio" translatesAutoresizingMaskIntoConstraints="NO" id="u3X-rD-rwq">
-                                                            <rect key="frame" x="269" y="1" width="21" height="73"/>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u3X-rD-rwq">
+                                                            <rect key="frame" x="269" y="19.5" width="21" height="36.5"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="21" id="2GZ-Zq-isp"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RedV" translatesAutoresizingMaskIntoConstraints="NO" id="KrA-ho-pV5">
-                                                            <rect key="frame" x="290" y="38" width="8.5" height="22"/>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KrA-ho-pV5">
+                                                            <rect key="frame" x="290" y="43.5" width="8.5" height="11"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="8.6999999999999993" id="n2e-J2-KU0"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Video" translatesAutoresizingMaskIntoConstraints="NO" id="6Bm-rb-6SW">
-                                                            <rect key="frame" x="323" y="9" width="30" height="57"/>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Bm-rb-6SW">
+                                                            <rect key="frame" x="323" y="23.5" width="30" height="28.5"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="30" id="gnw-kJ-QUg"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RedV" translatesAutoresizingMaskIntoConstraints="NO" id="Ipa-QS-RBA">
-                                                            <rect key="frame" x="353" y="38" width="8.5" height="22"/>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ipa-QS-RBA">
+                                                            <rect key="frame" x="353" y="43.5" width="8.5" height="11"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="8.6999999999999993" id="S8f-SI-R2t"/>
                                                             </constraints>
                                                         </imageView>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YoW-aB-qVp" userLabel="Audio Button">
-                                                            <rect key="frame" x="254.5" y="12.5" width="50" height="50"/>
+                                                            <rect key="frame" x="264.5" y="20.5" width="30" height="34"/>
                                                             <accessibility key="accessibilityConfiguration" identifier="GLVC Audio Btn"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="50" id="HlV-IN-6tp"/>
-                                                                <constraint firstAttribute="width" constant="50" id="MaY-WC-qwb"/>
-                                                            </constraints>
                                                             <connections>
                                                                 <action selector="playAudioButtonPressed:" destination="stx-P0-QHU" eventType="touchUpInside" id="WQc-7C-O9h"/>
                                                                 <action selector="playAudioButtonTouchedDown:" destination="stx-P0-QHU" eventType="touchDown" id="gp3-gj-aS2"/>
@@ -355,12 +351,8 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mz8-2f-iL0" userLabel="Video Button">
-                                                            <rect key="frame" x="313" y="12.5" width="50" height="50"/>
+                                                            <rect key="frame" x="323" y="20.5" width="30" height="34"/>
                                                             <accessibility key="accessibilityConfiguration" identifier="GLVC Video Btn"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="50" id="F6w-Dz-rI3"/>
-                                                                <constraint firstAttribute="width" constant="50" id="gZ8-sE-G0z"/>
-                                                            </constraints>
                                                             <connections>
                                                                 <action selector="playVideoButtonPressed:" destination="stx-P0-QHU" eventType="touchUpInside" id="ZTL-0I-9ga"/>
                                                                 <action selector="playVideoButtonTouchedDown:" destination="stx-P0-QHU" eventType="touchDown" id="XvE-tl-WMF"/>
@@ -439,20 +431,21 @@
                                             <constraints>
                                                 <constraint firstItem="G7Y-2J-INF" firstAttribute="centerY" secondItem="QFU-dG-KeJ" secondAttribute="centerY" id="2NY-RP-olG"/>
                                                 <constraint firstItem="QFU-dG-KeJ" firstAttribute="top" secondItem="T3w-mu-DyN" secondAttribute="top" id="9He-66-pu9"/>
-                                                <constraint firstItem="G7Y-2J-INF" firstAttribute="leading" secondItem="T3w-mu-DyN" secondAttribute="leading" constant="18" id="Ive-fx-fSu"/>
+                                                <constraint firstItem="G7Y-2J-INF" firstAttribute="leading" secondItem="T3w-mu-DyN" secondAttribute="leading" constant="18.5" id="Ive-fx-fSu"/>
                                                 <constraint firstItem="G7Y-2J-INF" firstAttribute="height" secondItem="QFU-dG-KeJ" secondAttribute="height" id="SZL-TP-Qew"/>
                                                 <constraint firstItem="uty-mU-JnL" firstAttribute="top" secondItem="QFU-dG-KeJ" secondAttribute="bottom" id="XIv-hs-FqH"/>
                                                 <constraint firstItem="QFU-dG-KeJ" firstAttribute="leading" secondItem="T3w-mu-DyN" secondAttribute="leading" constant="18" id="hgs-NK-cwn"/>
                                                 <constraint firstAttribute="trailing" secondItem="QFU-dG-KeJ" secondAttribute="trailing" constant="18" id="mWG-sD-vRN"/>
-                                                <constraint firstAttribute="trailing" secondItem="G7Y-2J-INF" secondAttribute="trailing" constant="18" id="sce-sY-kdd"/>
+                                                <constraint firstAttribute="trailing" secondItem="G7Y-2J-INF" secondAttribute="trailing" constant="18.5" id="sce-sY-kdd"/>
                                                 <constraint firstAttribute="trailing" secondItem="uty-mU-JnL" secondAttribute="trailing" id="tWV-6e-qnK"/>
                                                 <constraint firstItem="uty-mU-JnL" firstAttribute="leading" secondItem="T3w-mu-DyN" secondAttribute="leading" id="xGJ-NL-Ak8"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" red="0.996" green="0.996" blue="0.996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="audioImage" destination="u3X-rD-rwq" id="eGX-AX-N11"/>
                                             <outlet property="cellView" destination="QFU-dG-KeJ" id="dnh-lW-UZc"/>
+                                            <outlet property="cellViewLeadingConstraint" destination="hgs-NK-cwn" id="gZd-cF-Vgb"/>
                                             <outlet property="cellViewTrailingConstraint" destination="mWG-sD-vRN" id="UhL-oF-QvJ"/>
                                             <outlet property="downloadAudioButton" destination="Xd8-zT-NIm" id="TiN-1c-GAF"/>
                                             <outlet property="downloadAudioButtonImageView" destination="NfR-Md-Mpi" id="frq-dM-Z2K"/>
@@ -517,16 +510,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Audio" width="35" height="36.5"/>
         <image name="BlueRightArrow" width="9" height="16"/>
         <image name="Download" width="19.5" height="26"/>
         <image name="DownloadInCircle" width="24.5" height="24"/>
-        <image name="GrayTimer" width="15.5" height="17"/>
         <image name="LeftArrow" width="27.5" height="19.5"/>
         <image name="Loupe" width="23" height="22.5"/>
-        <image name="RedV" width="10.5" height="11"/>
         <image name="TransparentAudio" width="23" height="24.5"/>
         <image name="TransparentVideo" width="33" height="19.5"/>
-        <image name="Video" width="49" height="28.5"/>
+        <image name="clockGray" width="15.5" height="17"/>
     </resources>
 </document>

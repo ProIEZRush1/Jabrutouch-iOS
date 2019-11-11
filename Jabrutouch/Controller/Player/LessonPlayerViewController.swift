@@ -41,6 +41,7 @@ class LessonPlayerViewController: UIViewController {
     @IBOutlet weak var landscapePhotoButton: UIButton!
     @IBOutlet weak var landscapeDownlaodProgressView: UICircularProgressRing!
     @IBOutlet weak var landscapeButtonsStackView: UIStackView!
+    @IBOutlet weak var masechetTitleLabel: UILabel!
     
     // Audio Player
     @IBOutlet weak var audioPlayerContainer: UIView!
@@ -98,6 +99,8 @@ class LessonPlayerViewController: UIViewController {
     private var isLandscape: Bool {
         return UIScreen.main.bounds.height < UIScreen.main.bounds.width
     }
+    var masechet = ""
+    var daf = ""
     //====================================================
     // MARK: - LifeCycle
     //====================================================
@@ -135,6 +138,7 @@ class LessonPlayerViewController: UIViewController {
         
         self.pdfView.delegate = self
         
+        self.masechetTitleLabel.text = "\(self.masechet) \(self.daf)"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -276,7 +280,7 @@ class LessonPlayerViewController: UIViewController {
                 maker.top.equalTo(self.portraitHeaderView.snp.bottom)
                 maker.leading.equalTo(self.view.snp.leading)
                 maker.trailing.equalTo(self.view.snp.trailing)
-                maker.height.equalTo(self.videoPlayer.snp.width).multipliedBy(self.videoAspectRatio).offset(15.0)
+                maker.height.equalTo(self.videoPlayer.snp.width).multipliedBy(self.videoAspectRatio).offset(24.0)
             }
             self.videoPlayer.layer.cornerRadius = 0.0
             Utils.dropViewShadow(view: self.videoPlayer, shadowColor: UIColor.clear, shadowRadius: 0, shadowOffset: CGSize(width: 0.0, height: 12))
@@ -286,7 +290,7 @@ class LessonPlayerViewController: UIViewController {
                 maker.bottom.equalTo(self.view.snp.bottom).inset(16.0)
                 maker.centerX.equalToSuperview()
                 maker.width.equalTo(386.0).priority(ConstraintPriority.high)
-                maker.height.equalTo(70.0).priority(ConstraintPriority.high)
+                maker.height.equalTo(69.0).priority(ConstraintPriority.high)
                 maker.trailing.lessThanOrEqualTo(self.view.snp.trailing).inset(16.0).priority(ConstraintPriority.required)
                 maker.leading.greaterThanOrEqualTo(self.view.snp.leading).offset(16.0).priority(ConstraintPriority.required)
             }
@@ -388,6 +392,16 @@ class LessonPlayerViewController: UIViewController {
         Utils.dropViewShadow(view: self.videoPlayer, shadowColor: Colors.playerShadowColor, shadowRadius: 36, shadowOffset: shadowOffset)
         
     }
+    
+//    private func getMasechetName()-> String {
+//       let seders = ContentRepository.shared.getGemaraSeders()
+//        for seder in seders {
+//            for masechet in seder.masechtot{
+//                 return masechet.name
+//            }
+//        }
+//        return ""
+//    }
     
     private func setPortraitHeader() {
         switch self.mediaType {
@@ -651,15 +665,7 @@ extension LessonPlayerViewController: AudioPlayerDelegate, VideoPlayerDelegate {
 
 
 extension LessonPlayerViewController: ContentRepositoryDownloadDelegate {
-    func downloadCompleted(downloadId: Int, mediaType: JTLessonMediaType) {
-        ContentRepository.shared.lessonEndedDownloading(lesson.id, mediaType: mediaType)
-        if let gemaraLesson = self.lesson as? JTGemaraLesson {
-            ContentRepository.shared.addLessonToDownloaded(gemaraLesson, sederId: self.sederId, masechetId: self.masechetId)
-        }
-        if let mishnaLesson = self.lesson as? JTMishnaLesson, let chapter = self.chapter {
-            ContentRepository.shared.addLessonToDownloaded(mishnaLesson, sederId: self.sederId, masechetId: self.masechetId, chapter: chapter)
-        }
-        
+    func downloadCompleted(downloadId: Int, mediaType: JTLessonMediaType) {        
         self.portraitDownloadProgressView.isHidden = true
         self.landscapeDownlaodProgressView.isHidden = true
         switch self.mediaType {
@@ -681,6 +687,7 @@ extension LessonPlayerViewController: ContentRepositoryDownloadDelegate {
 
 extension LessonPlayerViewController: DonatedAlertDelegate {
     func didDismiss() {
+//        self.visualEffectView.isHidden = true
         if self.didSetMediaUrl == false {
             self.shouldStartPlay = true
         }

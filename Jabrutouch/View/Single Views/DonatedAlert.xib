@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -37,21 +35,6 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fy0-g8-vAI">
                     <rect key="frame" x="16.5" y="225.5" width="381" height="445"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mc1-1N-xF7">
-                            <rect key="frame" x="20" y="358" width="341" height="65"/>
-                            <color key="backgroundColor" red="0.1764705882" green="0.16862745100000001" blue="0.66274509800000003" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="65" id="qKG-sj-VWA"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="17"/>
-                            <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" title="Button" image="Heart">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </state>
-                            <connections>
-                                <action selector="startButtonPressed:" destination="-1" eventType="touchUpInside" id="6Cm-zo-reC"/>
-                            </connections>
-                        </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cbO-5P-D5Q">
                             <rect key="frame" x="162" y="50" width="57" height="29"/>
                             <fontDescription key="fontDescription" name="SFProDisplay-Medium" family="SF Pro Display" pointSize="24"/>
@@ -95,6 +78,21 @@
                                 <constraint firstAttribute="width" constant="240" id="dzT-qY-Yiq"/>
                             </constraints>
                         </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mc1-1N-xF7">
+                            <rect key="frame" x="20" y="358" width="341" height="65"/>
+                            <color key="backgroundColor" red="0.1764705882" green="0.16862745100000001" blue="0.66274509800000003" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="65" id="qKG-sj-VWA"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="17"/>
+                            <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="Button" image="Heart">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="startButtonPressed:" destination="-1" eventType="touchUpInside" id="6Cm-zo-reC"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -119,6 +117,7 @@
                 <constraint firstItem="fy0-g8-vAI" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="qoU-8m-o4n"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="140.57971014492756" y="121.875"/>
         </view>
     </objects>
     <resources>

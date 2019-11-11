@@ -114,8 +114,8 @@ class AudioPlayer: UIView {
     }
  
     func stopAndRelease() {
-        self.player?.removeObserver(self, forKeyPath: "timeControlStatus")
         let _ = self.pause()
+        self.player?.removeObserver(self, forKeyPath: "timeControlStatus")
         self.player = nil
         self.stopTimeUpdateTimer()
         self.removeRemoteTransportControls()
@@ -194,7 +194,8 @@ class AudioPlayer: UIView {
     
     @IBAction func rewindPauseButtonPressed(_ sender: UIButton) {
         DispatchQueue.main.async {
-            self.rewind(30.0)
+            self.rewind(10.0)
+//            self.rewind(30.0)
         }
     }
     
@@ -241,7 +242,6 @@ class AudioPlayer: UIView {
         self.playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
         player.play()
         self.startTimeUpdateTimer()
-        self.startPlayDate = Date()
         return .success
     }
     
@@ -249,11 +249,6 @@ class AudioPlayer: UIView {
         self.player?.pause()
         self.playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
         self.stopTimeUpdateTimer()
-        
-        if let date = self.startPlayDate {
-            let duration = Date().timeIntervalSince(date)
-            self.watchDuration += duration
-        }
         return .success
     }
     
@@ -300,8 +295,18 @@ class AudioPlayer: UIView {
                 if #available(iOS 10.0, *) {
                     if avPlayer.timeControlStatus == .playing {
                         self.delegate?.didStartPlaying()
-                    } else {
-                        
+                        self.startPlayDate = Date()
+                        print("Play Date: \(self.startPlayDate!)")
+                    } else if avPlayer.timeControlStatus == .paused {
+                        if let date = self.startPlayDate {
+                            let pauseDate = Date()
+                            let duration = pauseDate.timeIntervalSince(date)
+                            print("Pause Date: \(pauseDate)")
+                            print("Duration: \(duration)")
+                            print("=========================================================")
+                            self.watchDuration += duration
+                            self.startPlayDate = nil
+                        }
                     }
                 }
             }

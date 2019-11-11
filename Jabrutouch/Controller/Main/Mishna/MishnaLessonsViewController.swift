@@ -252,6 +252,10 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
         guard let sederId = self.sederId, let masechetId = self.masechetId, let chapter = self.chapter else { return }
         let playerVC = LessonPlayerViewController(lesson: lesson, mediaType: mediaType, sederId: sederId, masechetId: "\(masechetId)", chapter: "\(chapter)")
         playerVC.modalPresentationStyle = .fullScreen
+        playerVC.masechet = self.masechetName ?? ""
+        if let lesson = lesson as? JTMishnaLesson {
+            playerVC.daf = "\(lesson.mishna)"
+        }
         self.present(playerVC, animated: true) {
             
         }
@@ -265,11 +269,7 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
 extension MishnaLessonsViewController: ContentRepositoryDownloadDelegate {
     func downloadCompleted(downloadId: Int, mediaType: JTLessonMediaType) {
         guard let index = self.lessons.firstIndex(where: {$0.id == downloadId}) else { return }
-        guard let sederId = self.sederId else { return }
-        guard let masecetId = self.masechetId else { return }
-        guard let chapter = self.chapter else { return }
         
-        let lesson = self.lessons[index]
         switch mediaType {
         case .audio:
             self.lessons[index].isDownloadingAudio = false
@@ -280,8 +280,6 @@ extension MishnaLessonsViewController: ContentRepositoryDownloadDelegate {
         }
         
         self.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
-        ContentRepository.shared.lessonEndedDownloading(lesson.id, mediaType: mediaType)
-        ContentRepository.shared.addLessonToDownloaded(lesson, sederId: sederId, masechetId: "\(masecetId)", chapter: "\(chapter)")
         print("GemaraLessonsViewController downloadCompleted, downloadId: \(downloadId)")
     }
     
@@ -294,9 +292,7 @@ extension MishnaLessonsViewController: ContentRepositoryDownloadDelegate {
         case .video:
             self.lessons[index].videoDownloadProgress = progress
         }
-        
-        ContentRepository.shared.lessonDownloadProgress(downloadId, progress: progress, mediaType: mediaType)
-        
+                
         // Update cell progress
         guard let cell = self.tableView.cellForRow(at:  IndexPath(row: index, section: 0)) as? LessonDownloadCellController else { return }
         cell.setLesson(self.lessons[index])

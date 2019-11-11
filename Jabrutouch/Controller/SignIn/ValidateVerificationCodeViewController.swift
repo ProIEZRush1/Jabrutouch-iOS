@@ -57,7 +57,8 @@ class ValidateVerificationCodeViewController: UIViewController {
         self.subtitleLabel.text = Strings.enterTheVerificationCodeSentTo
         self.phoneNumberLabel.text = self.phoneNumber
         let resendButtonTitle = NSMutableAttributedString(string: Strings.resendCode, attributes: [NSAttributedString.Key.foregroundColor: Colors.textMediumBlue])
-        let range = (Strings.resendCode as NSString).range(of: Strings.sendAgain)
+//        let range = (Strings.resendCode as NSString).range(of: Strings.sendAgain)
+        let range = NSRange(location: 25, length: 15)
         resendButtonTitle.addAttributes(
             [NSAttributedString.Key.underlineStyle:NSNumber(value: 1)],
             range: range)
@@ -83,6 +84,14 @@ class ValidateVerificationCodeViewController: UIViewController {
     @IBAction func resendCodeButtonPressed(_ sender: UIButton) {
         self.code = ""
         self.codeTF.text = self.displayCode(fromCode: "")
+        let resendButtonTitle = NSMutableAttributedString(string: Strings.resendCode, attributes: [NSAttributedString.Key.foregroundColor: Colors.textMediumBlue])
+//        let range = (Strings.resendCode as NSString).range(of: Strings.sendAgain)
+        let range = NSRange(location: 25, length: 15)
+        resendButtonTitle.addAttributes(
+            [NSAttributedString.Key.underlineStyle:NSNumber(value: 1), NSAttributedString.Key.foregroundColor: Colors.appOrange],
+            range: range)
+        self.resendButton.setAttributedTitle(resendButtonTitle, for: .normal)
+
         self.resendCode()
     }
     

@@ -136,6 +136,9 @@ class Strings {
     class var signInPC: String {
         return NSLocalizedString("signInPC", comment: "")
     }
+    class var signInCaps: String {
+        return NSLocalizedString("signInCaps", comment: "")
+    }
     
     class var signUpPC: String {
         return NSLocalizedString("signUpPC", comment: "")

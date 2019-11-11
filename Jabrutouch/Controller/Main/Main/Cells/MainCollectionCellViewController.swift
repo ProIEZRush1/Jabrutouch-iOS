@@ -31,6 +31,17 @@ class MainCollectionCellViewController: UICollectionViewCell {
         audioButton.addGestureRecognizer(audioGestureRecognizer)
         let videoGestureRecognizer = (UITapGestureRecognizer(target: self, action: #selector(videoPressed)))
         videoButton.addGestureRecognizer(videoGestureRecognizer)
+        
+        self.setButtonsBackground()
+    }
+    
+    func setButtonsBackground() {
+        self.audioButton.setImage(#imageLiteral(resourceName: "audio-nat"), for: .normal)
+        self.audioButton.setImage(#imageLiteral(resourceName: "audio-prs"), for: .highlighted)
+        
+        self.videoButton.setImage(#imageLiteral(resourceName: "video-nat"), for: .normal)
+        self.videoButton.setImage(#imageLiteral(resourceName: "video-prs"), for: .highlighted)
+
     }
     
     @objc private func cellPressed() {

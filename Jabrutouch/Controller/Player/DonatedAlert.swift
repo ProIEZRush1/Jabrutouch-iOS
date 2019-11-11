@@ -42,6 +42,7 @@ class DonatedAlert: UIViewController {
         super.viewDidLoad()
         self.setStrings()
         self.setCornerRadius()
+        self.setShadow()
         // Do any additional setup after loading the view.
     }
     
@@ -60,6 +61,13 @@ class DonatedAlert: UIViewController {
     func setCornerRadius() {
         self.mainView.layer.cornerRadius = 31
         self.startBtn.layer.cornerRadius = 18
+        
+    }
+    
+    func setShadow() {
+        let shadowOffset = CGSize(width: 0.0, height: 20)
+        let color = #colorLiteral(red: 0.16, green: 0.17, blue: 0.39, alpha: 0.5)
+        Utils.dropViewShadow(view: self.mainView, shadowColor: color, shadowRadius: 31, shadowOffset: shadowOffset)
     }
     
     //====================================================

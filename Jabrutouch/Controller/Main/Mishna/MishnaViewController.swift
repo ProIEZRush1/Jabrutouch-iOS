@@ -20,7 +20,7 @@ class MishnaViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var openSections: Set<Int> = []
     var delegate: MainModalDelegate?
     
-    fileprivate var sedarim: [JTMishnaSeder] = ContentRepository.shared.getMishanSeders()
+    fileprivate var sedarim: [JTMishnaSeder] = ContentRepository.shared.getMishnaSeders()
     fileprivate var selectedIndexPath: IndexPath = []
     
     //========================================
@@ -85,9 +85,9 @@ class MishnaViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let headerCell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "headerCell") as! HeaderCellController
         
         if self.openSections.contains(section) {
-            headerCell.arrowImage?.image = UIImage(named: "DarkGrayUpArrow")
+            headerCell.arrowImage?.image = UIImage(named: "blue_up_arrow")
         } else {
-            headerCell.arrowImage?.image = UIImage(named: "DarkGrayDownArrow")
+            headerCell.arrowImage?.image = UIImage(named: "blue_down_arrow")
         }
         
         headerCell.titleLabel?.text = "Seder " + sedarim[section].name

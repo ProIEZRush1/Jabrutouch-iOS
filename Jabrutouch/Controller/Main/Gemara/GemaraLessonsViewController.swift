@@ -251,6 +251,10 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
         guard let sederId = self.sederId, let masechetId = self.masechetId else { return }
         let playerVC = LessonPlayerViewController(lesson: lesson, mediaType: mediaType, sederId: sederId, masechetId: "\(masechetId)", chapter: nil)
         playerVC.modalPresentationStyle = .fullScreen
+        playerVC.masechet = self.masechetName ?? ""
+        if let lesson = lesson as? JTGemaraLesson {
+            playerVC.daf = "\(lesson.page)"
+        }
         self.present(playerVC, animated: true) {
             
         }
@@ -264,12 +268,10 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
 extension GemaraLessonsViewController: ContentRepositoryDownloadDelegate {
     func downloadCompleted(downloadId: Int, mediaType: JTLessonMediaType) {
         guard let index = self.lessons.firstIndex(where: {$0.id == downloadId}) else { return }
-        guard let sederId = self.sederId else { return }
-        guard let masechetId = self.masechetId else { return }
-        
-        let lesson = self.lessons[index]
-        ContentRepository.shared.addLessonToDownloaded(lesson, sederId: sederId, masechetId: "\(masechetId)")
-        ContentRepository.shared.lessonEndedDownloading(lesson.id, mediaType: mediaType)
+//        guard let sederId = self.sederId else { return }
+//        guard let masechetId = self.masechetId else { return }
+//
+//        let lesson = self.lessons[index]
         switch mediaType {
         case .audio:
             self.lessons[index].isDownloadingAudio = false
@@ -292,7 +294,6 @@ extension GemaraLessonsViewController: ContentRepositoryDownloadDelegate {
             self.lessons[index].videoDownloadProgress = progress
         }
         
-        ContentRepository.shared.lessonDownloadProgress(downloadId, progress: progress, mediaType: mediaType)
         
         // Update cell progress
         guard let cell = self.tableView.cellForRow(at:  IndexPath(row: index, section: 0)) as? LessonDownloadCellController else { return }
