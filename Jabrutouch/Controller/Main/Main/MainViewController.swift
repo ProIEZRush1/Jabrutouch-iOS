@@ -241,8 +241,20 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
             cell.masechetLabel.text = lessonRecord.masechetName
             cell.chapterLabel.text = lessonRecord.chapter
             cell.numberLabel.text = "\(lessonRecord.lesson.mishna)"
-            cell.audio.isHidden = !lessonRecord.lesson.isAudioDownloaded
-            cell.video.isHidden = !lessonRecord.lesson.isVideoDownloaded
+            if lessonRecord.lesson.isAudioDownloaded {
+                cell.audioButton.setImage(#imageLiteral(resourceName: "audio-downloaded"), for: .normal)
+                cell.audioButton.setImage(#imageLiteral(resourceName: "audio-downloaded"), for: .highlighted)
+            } else {
+                cell.audioButton.setImage(#imageLiteral(resourceName: "audio-nat"), for: .normal)
+            }
+            if lessonRecord.lesson.isVideoDownloaded{
+                cell.videoButton.setImage(#imageLiteral(resourceName: "video-downloaded") , for: .normal)
+                cell.videoButton.setImage(#imageLiteral(resourceName: "video-downloaded") , for: .highlighted)
+            } else {
+                cell.videoButton.setImage(#imageLiteral(resourceName: "video-nat") , for: .normal)
+            }
+//            cell.audio.isHidden = !lessonRecord.lesson.isAudioDownloaded
+//            cell.video.isHidden = !lessonRecord.lesson.isVideoDownloaded
         }
         
         
@@ -625,6 +637,9 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
         playerVC.masechet = masechetName ?? ""
         if let lesson = lesson as? JTGemaraLesson {
             playerVC.daf = "\(lesson.page)"
+        }
+        if let lesson = lesson as? JTMishnaLesson {
+            playerVC.daf = "\(lesson.chapter)"
         }
         self.present(playerVC, animated: true) {
             
