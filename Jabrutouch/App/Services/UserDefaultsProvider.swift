@@ -17,6 +17,7 @@ class UserDefaultsProvider {
         case seenWalkThrough = "SeenWalkThrough"
         case notFirstTime = "notFirstTime"
         case appLanguages = "AppleLanguages"
+        case index = "Index"
     }
     
     static private var provider: UserDefaultsProvider?
@@ -97,6 +98,15 @@ class UserDefaultsProvider {
         }
         set (languageCode) {
             self.defaults.set([languageCode], forKey: UserDefaultsKeys.appLanguages.rawValue)
+            self.defaults.synchronize()
+        }
+    }
+    var index: Int {
+        get {
+            return self.defaults.integer(forKey: UserDefaultsKeys.index.rawValue)
+        }
+        set (index) {
+            self.defaults.set(index, forKey: UserDefaultsKeys.index.rawValue)
             self.defaults.synchronize()
         }
     }
