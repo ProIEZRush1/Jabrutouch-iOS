@@ -33,6 +33,7 @@ class EditGeneralInformationCell: UITableViewCell {
     private func roundCorners() {
         self.contanerView.layer.cornerRadius = self.contanerView.bounds.height/2
         self.shadowView.layer.cornerRadius = self.shadowView.bounds.height/2
+        self.textField.layer.cornerRadius = self.textField.bounds.height/2
     }
     
     private func addBorders() {

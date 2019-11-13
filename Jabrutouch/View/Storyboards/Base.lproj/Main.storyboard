@@ -1265,6 +1265,7 @@
     <resources>
         <image name="ABOUT_US_APP_BACKGROUND" width="595" height="842"/>
         <image name="Audio" width="35" height="36.5"/>
+        <image name="Avatar" width="83.5" height="83.5"/>
         <image name="Donation" width="414" height="584"/>
         <image name="Donations" width="41.5" height="36.5"/>
         <image name="DownloadsNatural" width="42.5" height="42.5"/>

@@ -111,7 +111,7 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
     //============================================================
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 5
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -123,6 +123,8 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
         case 2:
             return 9
         case 3:
+            return 1
+        case 4:
             return 1
         default:
             return 1
@@ -224,7 +226,9 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
             return cell
         case 3:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "InterestsCell") as? InterestsCell else { return UITableViewCell() }
-            
+            return cell
+        case 4:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "editPassword") as? EditPasswordCell else { return UITableViewCell() }
             return cell
         default:
             return UITableViewCell()
@@ -239,9 +243,11 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
         case 1:
             return 120
         case 2:
-            return 66
+            return 50
         case 3:
             return 200
+        case 4:
+            return 300
         default:
             return 60
         }
@@ -249,7 +255,7 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
-        case 0, 1, 3:
+        case 0, 1, 3, 4:
             break
         case 2:
             switch indexPath.row {
