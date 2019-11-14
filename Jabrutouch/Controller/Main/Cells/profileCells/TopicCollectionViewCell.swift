@@ -12,5 +12,7 @@ class TopicCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var topicLabel: LabelWithPadding!
     @IBOutlet weak var shadowView: UIView!
+    @IBOutlet weak var containerView: UIView!
+    
     
 }

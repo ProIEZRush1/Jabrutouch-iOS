@@ -42,14 +42,14 @@ class EditPasswordCell: UITableViewCell {
     }
     
     private func addBorders() {
-        self.oldContanerView.layer.borderColor = Colors.borderGray.cgColor
-        self.oldContanerView.layer.borderWidth = 1.0
+        self.oldShadowView.layer.borderColor = Colors.borderGray.cgColor
+        self.oldShadowView.layer.borderWidth = 1.0
         
-        self.newContanerView.layer.borderColor = Colors.borderGray.cgColor
-        self.newContanerView.layer.borderWidth = 1.0
+        self.newShadowView.layer.borderColor = Colors.borderGray.cgColor
+        self.newShadowView.layer.borderWidth = 1.0
         
-        self.confirmContanerView.layer.borderColor = Colors.borderGray.cgColor
-        self.confirmContanerView.layer.borderWidth = 1.0
+        self.confirmShadowView.layer.borderColor = Colors.borderGray.cgColor
+        self.confirmShadowView.layer.borderWidth = 1.0
         
     }
     @IBAction func forgotPasswordPressed(_ sender: UIButton) {

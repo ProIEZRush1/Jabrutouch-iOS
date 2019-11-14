@@ -34,7 +34,7 @@ class InterestsCell: UITableViewCell, UICollectionViewDelegate, UICollectionView
         }
         
         cell.topicLabel.text = "Topic \(indexPath.item + 1)"
-        cell.topicLabel.layer.cornerRadius = cell.topicLabel.bounds.height/2
+        cell.shadowView.layer.cornerRadius = cell.shadowView.bounds.height/2
         cell.topicLabel.clipsToBounds = true
         
         let color = #colorLiteral(red: 0.1, green: 0.12, blue: 0.57, alpha: 0.4)
@@ -44,6 +44,6 @@ class InterestsCell: UITableViewCell, UICollectionViewDelegate, UICollectionView
         
         return cell
     }
-    
+     
 
 }

@@ -223,9 +223,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         case 3:
             return 50
         case 4:
-            return 200
+            return 150
         case 5:
-            return 50
+            return 56
         default:
             return 150
         }
@@ -241,7 +241,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 //                self.mainViewController?.optionSelected(option: .signOut)
                 self.presentLogoutAlert()
             case 1:
-                print("change password selected")
+                self.changePassword()
             case 2:
                 print("remove account selected")
             default:
@@ -268,5 +268,19 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
         }
     }
+    
+    func changePassword() {
+        performSegue(withIdentifier: "toEditProfile", sender: 4)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toEditProfile" {
+            let editProfileVC = segue.destination as! EditProfileViewController
+            if let section = sender as? Int {
+                editProfileVC.section = section
+            }
+        }
+    }
+
     
 }

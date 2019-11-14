@@ -16,6 +16,7 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
     var birthday: String?
     var datePicker: UIDatePicker?
     var user: JTUser?
+    var section: Int = 0
     private var countriesPicker: UIPickerView?
     private var currentCountry = LocalizationManager.shared.getDefaultCountry()
     
@@ -33,6 +34,7 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
     // MARK: - Outlets
     //============================================================
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tabelViewBottomConstrant: NSLayoutConstraint!
     
     //============================================================
     // MARK: - LifeCycle
@@ -45,7 +47,11 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
         self.initCountriesPicker()
         
         user = UserDefaultsProvider.shared.currentUser
+        
+        let indexPath = IndexPath(row: 0, section: self.section)
+        self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
     }
+    
     
     //============================================================
     // MARK: - Setup
@@ -229,6 +235,7 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
             return cell
         case 4:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "editPassword") as? EditPasswordCell else { return UITableViewCell() }
+            cell.oldPasswordTextField.tag = 2
             return cell
         default:
             return UITableViewCell()
@@ -243,7 +250,7 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
         case 1:
             return 120
         case 2:
-            return 50
+            return 66
         case 3:
             return 200
         case 4:
@@ -313,6 +320,7 @@ extension EditProfileViewController: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.tabelViewBottomConstrant.constant = 0
         return true
     }
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -335,6 +343,9 @@ extension EditProfileViewController: UITextFieldDelegate {
             keyboardToolbar.items = [flexBarButton, doneBarButton]
             textField.inputAccessoryView = keyboardToolbar
             
+        }
+        if textField.tag == 2 {
+            self.tabelViewBottomConstrant.constant = 300
         }
         
     }
