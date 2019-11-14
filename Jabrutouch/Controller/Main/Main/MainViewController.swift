@@ -233,6 +233,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
             } else {
                 cell.videoButton.setImage(#imageLiteral(resourceName: "video-nat") , for: .normal)
             }
+            cell.setHiddenButtonsForLesson(lessonRecord.lesson)
 //            cell.audio.image = lessonRecord.lesson.isAudioDownloaded ? #imageLiteral(resourceName: "audio-downloaded") : #imageLiteral(resourceName: "audio-nat")
 //            cell.video.image = lessonRecord.lesson.isVideoDownloaded ? #imageLiteral(resourceName: "video-downloaded") : #imageLiteral(resourceName: "video-nat")
         } else {
@@ -253,6 +254,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
             } else {
                 cell.videoButton.setImage(#imageLiteral(resourceName: "video-nat") , for: .normal)
             }
+            cell.setHiddenButtonsForLesson(lessonRecord.lesson)
 //            cell.audio.isHidden = !lessonRecord.lesson.isAudioDownloaded
 //            cell.video.isHidden = !lessonRecord.lesson.isVideoDownloaded
         }
