@@ -17,7 +17,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
+    var topmostViewController: UIViewController? {
+        guard let window = self.window else { return nil }
+        guard var viewController = window.rootViewController else { return nil }
+        while viewController.children.first != nil || viewController.presentedViewController != nil {
+            if viewController.children.first != nil {
+                viewController = viewController.children.first!
+            }
+            else if viewController.presentedViewController != nil {
+                viewController = viewController.presentedViewController!
+            }
+            
+        }
+        return viewController
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         Fabric.with([Crashlytics.self])

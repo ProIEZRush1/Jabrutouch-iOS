@@ -9,7 +9,7 @@
 import Foundation
 
 protocol DownloadTaskDelegate: class {
-    func downloadCompleted(downloadId: Int, mediaType: JTLessonMediaType)
+    func downloadCompleted(downloadId: Int, mediaType: JTLessonMediaType, success: Bool)
     func downloadProgress(downloadId: Int, progress: Float, mediaType: JTLessonMediaType)
 }
 
@@ -86,7 +86,7 @@ class DownloadTask {
     
     func downloadComplete() {
         DispatchQueue.main.async {
-            self.delegate?.downloadCompleted(downloadId: self.id, mediaType: self.mediaType)
+            self.delegate?.downloadCompleted(downloadId: self.id, mediaType: self.mediaType, success: (self.filesFailedDownloading == 0) )
         }
     }
 }
