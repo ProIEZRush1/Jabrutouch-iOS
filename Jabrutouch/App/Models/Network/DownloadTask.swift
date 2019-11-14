@@ -20,6 +20,7 @@ class DownloadTask {
     var filesDownloadedSuccessfully = 0
     var filesFailedDownloading = 0
     var mediaType: JTLessonMediaType
+    var filesToSave: [(filename:String, data:Data)] = []
     weak var delegate: DownloadTaskDelegate?
     
     init(id: Int, delegate: DownloadTaskDelegate?, mediaType: JTLessonMediaType) {
@@ -42,17 +43,8 @@ class DownloadTask {
                 }) { (result: Result<Data, Error>) in
                     switch result {
                     case .success(let data):
-                        if let url = FileDirectory.cache.url?.appendingPathComponent(file.localFileName) {
-                            do {
-                                try FilesManagementProvider.shared.overwriteFile(path: url, data: data)
-                                self.filesDownloadedSuccessfully += 1
-                            }
-                            catch let error {
-                                print(error)
-                                self.filesFailedDownloading += 1
-                            }
-                        }
-                        
+                        self.filesToSave.append((file.localFileName,data))
+                        self.filesDownloadedSuccessfully += 1
                     case .failure(let error):
                         print(error)
                         self.filesFailedDownloading += 1
@@ -85,8 +77,22 @@ class DownloadTask {
     }
     
     func downloadComplete() {
+        let success = (self.filesFailedDownloading == 0)
+        if success {
+            for file in self.filesToSave {
+                if let url = FileDirectory.cache.url?.appendingPathComponent(file.filename) {
+                    do {
+                        try FilesManagementProvider.shared.overwriteFile(path: url, data: file.data)
+                    }
+                    catch let error {
+                        print(error)
+                    }
+                }
+            }
+        }
+        
         DispatchQueue.main.async {
-            self.delegate?.downloadCompleted(downloadId: self.id, mediaType: self.mediaType, success: (self.filesFailedDownloading == 0) )
+            self.delegate?.downloadCompleted(downloadId: self.id, mediaType: self.mediaType, success: success )
         }
     }
 }
@@ -113,16 +119,8 @@ extension DownloadTask: HttpDownloadTaskDelegate {
         for file in self.filesToDownload {
             if file.fileName == link { localFileName = file.localFileName}
         }
-        if let url = FileDirectory.cache.url?.appendingPathComponent(localFileName) {
-            do {
-                try FilesManagementProvider.shared.overwriteFile(path: url, data: data)
-                self.filesDownloadedSuccessfully += 1
-            }
-            catch let error {
-                print(error)
-                self.filesFailedDownloading += 1
-            }
-        }
+        self.filesToSave.append((localFileName,data))
+        self.filesDownloadedSuccessfully += 1
         
         if self.filesDownloadedSuccessfully + self.filesFailedDownloading == self.filesToDownload.count {
             self.downloadComplete()
