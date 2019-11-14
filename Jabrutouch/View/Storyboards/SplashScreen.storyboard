@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GDy-cJ-b4M">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GDy-cJ-b4M">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,15 +23,38 @@
                                 <rect key="frame" x="188.5" y="434.5" width="37" height="37"/>
                                 <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PJX-hL-w3i">
+                                <rect key="frame" x="87" y="642" width="240" height="100"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Versión Beta" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8sU-1L-iSq">
+                                        <rect key="frame" x="50" y="0.0" width="140" height="100"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="27"/>
+                                        <color key="textColor" red="0.98431372549019602" green="1" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.23137254901960785" green="0.33725490196078434" blue="0.71764705882352942" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="8sU-1L-iSq" secondAttribute="trailing" constant="50" id="1Ra-gd-YUO"/>
+                                    <constraint firstAttribute="height" constant="100" id="D9r-ZA-bVK"/>
+                                    <constraint firstItem="8sU-1L-iSq" firstAttribute="top" secondItem="PJX-hL-w3i" secondAttribute="top" id="DEP-jQ-rqL"/>
+                                    <constraint firstItem="8sU-1L-iSq" firstAttribute="leading" secondItem="PJX-hL-w3i" secondAttribute="leading" constant="50" id="nJ0-XD-eVv"/>
+                                    <constraint firstAttribute="bottom" secondItem="8sU-1L-iSq" secondAttribute="bottom" id="qJG-xj-F2V"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="bT4-j1-sLH" firstAttribute="leading" secondItem="YAX-wK-hNL" secondAttribute="leading" id="GZQ-6V-o4M"/>
                             <constraint firstItem="vBZ-IG-GeV" firstAttribute="centerX" secondItem="joU-nI-APl" secondAttribute="centerX" id="N18-Cx-yD1"/>
                             <constraint firstItem="vBZ-IG-GeV" firstAttribute="centerY" secondItem="joU-nI-APl" secondAttribute="centerY" id="O9U-6o-CLL"/>
+                            <constraint firstItem="PJX-hL-w3i" firstAttribute="leading" secondItem="joU-nI-APl" secondAttribute="leading" constant="87" id="OQE-zX-e4l"/>
                             <constraint firstAttribute="bottom" secondItem="bT4-j1-sLH" secondAttribute="bottom" constant="-10" id="SxT-06-AAO"/>
+                            <constraint firstItem="joU-nI-APl" firstAttribute="bottom" secondItem="PJX-hL-w3i" secondAttribute="bottom" constant="120" id="dHk-Jq-U5K"/>
                             <constraint firstItem="bT4-j1-sLH" firstAttribute="top" secondItem="YAX-wK-hNL" secondAttribute="top" id="gzk-1b-CiQ"/>
+                            <constraint firstItem="joU-nI-APl" firstAttribute="trailing" secondItem="PJX-hL-w3i" secondAttribute="trailing" constant="87" id="kdb-as-cry"/>
                             <constraint firstAttribute="trailing" secondItem="bT4-j1-sLH" secondAttribute="trailing" id="luo-XV-lId"/>
+                            <constraint firstItem="PJX-hL-w3i" firstAttribute="centerX" secondItem="YAX-wK-hNL" secondAttribute="centerX" id="qix-7Z-rpb"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="joU-nI-APl"/>
                     </view>
