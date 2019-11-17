@@ -13,23 +13,14 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
     //============================================================
     // MARK: - Properties
     //============================================================
-    var birthday: String?
-    var datePicker: UIDatePicker?
+//    var birthday: String?
     var user: JTUser?
     var section: Int = 0
+    private var datePicker: UIDatePicker?
     private var countriesPicker: UIPickerView?
     private var currentCountry = LocalizationManager.shared.getDefaultCountry()
-    
-//    var selectedDay:Int = 0
-//    var selectedMonth:Int = 0
-//    var selectedYear:Int = 0
-//
-//    var birthdate:String {
-//        let selectedDay =  self.selectedDay < 10 ? "0\(self.selectedDay)" : "\(self.selectedDay)"
-//        let selectedMonth =  self.selectedMonth < 10 ? "0\(self.selectedMonth)" : "\(self.selectedMonth)"
-//        return "\(selectedDay)-\(selectedMonth)-\(selectedYear)"
-//    }
-//
+    private var birthdate = ""
+
     //============================================================
     // MARK: - Outlets
     //============================================================
@@ -45,6 +36,7 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.initCountriesPicker()
+        self.initDatePicker()
         
         user = UserDefaultsProvider.shared.currentUser
         
@@ -62,6 +54,12 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
         self.countriesPicker?.backgroundColor = Colors.offwhiteLight
         self.countriesPicker?.dataSource = self
         self.countriesPicker?.delegate = self
+    }
+    
+    private func initDatePicker() {
+        self.datePicker = UIDatePicker()
+        self.datePicker?.backgroundColor = Colors.offwhiteLight
+
     }
     
     
@@ -82,6 +80,7 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
             self.currentCountry = LocalizationManager.shared.getCountries()[index]
         }
         self.view.endEditing(true)
+        self.tableView.reloadData()
     }
     
     @objc func keyboardCancelPressed(_ sender: Any) {
@@ -91,27 +90,18 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
     @objc func handleDatePicker(sender: UIDatePicker) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd MMM yyyy"
-        self.birthday = dateFormatter.string(from: sender.date)
+        self.birthdate = dateFormatter.string(from: sender.date)
     }
     
     @objc func donePressed(_ sender: UITextField) {
-//        guard let date = self.datePicker?.date else { return }
-//        let calendar = Calendar(identifier: .gregorian)
-        //        let components = calendar.dateComponents([.day,.month, .year], from: date)
-//        self.selectedDay = calendar.component(.day, from: date)
-//        self.selectedMonth = calendar.component(.month, from: date)
-//        self.selectedYear = calendar.component(.year, from: date)
-
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "dd/MM/yyyy"
-        sender.resignFirstResponder()
+        guard let date = self.datePicker?.date else { return }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        self.birthdate = dateFormatter.string(from: date)
+        self.view.endEditing(true)
+        self.tableView.reloadData()
     }
-//
-//    @objc func datePickerValueChanged(_ sender:UIDatePicker) {
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "dd/MM/yyyy"
-//        //        dateOfBirthTF.text = dateFormatter.string(from: sender.date)
-//    }
+
     //============================================================
     // MARK: - tabel view
     //============================================================
@@ -164,13 +154,16 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
                 cell.arrowImage.isHidden = true
                 cell.textField.isHidden = true
                 cell.contanerViewTopConstraint.constant = 5
+                cell.contanerViewBottomConstraint.constant = 0
             case 1:
-                cell.titleLabel.isHidden = false
-                cell.titleLabel.text = LocalizationManager.shared.getDefaultCountry()?.fullDisplayName
-                cell.titleLabel.textColor = #colorLiteral(red: 0.17, green: 0.17, blue: 0.34, alpha: 0.88)
+                cell.titleLabel.isHidden = true
+                cell.textField.isHidden = false
+                cell.textField.text = self.currentCountry?.fullDisplayName//LocalizationManager.shared.getDefaultCountry()?.fullDisplayName
+                cell.textField.textColor = #colorLiteral(red: 0.17, green: 0.17, blue: 0.34, alpha: 0.88)
+                cell.textField.tag = 1
                 cell.arrowImage.isHidden = false
-                cell.textField.isHidden = true
                 cell.contanerViewBottomConstraint.constant = 5
+                cell.contanerViewTopConstraint.constant = 0
             case 2:
                 cell.titleLabel.isHidden = false
                 cell.titleLabel.text = user?.phoneNumber
@@ -178,19 +171,21 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
                 cell.arrowImage.isHidden = true
                 cell.textField.isHidden = true
                 cell.contanerViewTopConstraint.constant = 5
+                cell.contanerViewBottomConstraint.constant = 0
             case 3:
                 cell.titleLabel.isHidden = true
                 cell.titleLabel.textColor = #colorLiteral(red: 0.17, green: 0.17, blue: 0.34, alpha: 0.88)
                 cell.arrowImage.isHidden = true
-                cell.textField.tag = 1
+                cell.textField.tag = 2
                 if self.user?.birthdayString == "" {
-                    cell.textField.text = "Birthday"
+                    cell.textField.placeholder = "Birthday"
                 } else {
                     cell.textField.text = self.user?.birthdayString
                 }
-//                cell.textField.text = self.birthdate
+                cell.textField.text = self.birthdate
                 cell.textField.isHidden = false
                 cell.contanerViewTopConstraint.constant = 5
+                cell.contanerViewBottomConstraint.constant = 0
             case 4:
                 cell.titleLabel.isHidden = false
                 cell.titleLabel.text = "Community"
@@ -198,6 +193,7 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
                 cell.arrowImage.isHidden = false
                 cell.textField.isHidden = true
                 cell.contanerViewBottomConstraint.constant = 5
+                cell.contanerViewTopConstraint.constant = 0
             case 5:
                 cell.titleLabel.isHidden = false
                 cell.titleLabel.text = "Religious Level"
@@ -205,6 +201,7 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
                 cell.arrowImage.isHidden = false
                 cell.textField.isHidden = true
                 cell.contanerViewBottomConstraint.constant = 5
+                cell.contanerViewTopConstraint.constant = 0
             case 6:
                 cell.titleLabel.isHidden = false
                 cell.titleLabel.text = "Education"
@@ -212,6 +209,7 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
                 cell.arrowImage.isHidden = false
                 cell.textField.isHidden = true
                 cell.contanerViewBottomConstraint.constant = 5
+                cell.contanerViewTopConstraint.constant = 0
             case 7:
                 cell.titleLabel.isHidden = false
                 cell.titleLabel.text = "Occupation"
@@ -219,13 +217,19 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
                 cell.arrowImage.isHidden = false
                 cell.textField.isHidden = true
                 cell.contanerViewBottomConstraint.constant = 5
+                cell.contanerViewTopConstraint.constant = 0
             case 8:
                 cell.textField.isHidden = false
                 cell.titleLabel.isHidden = true
                 cell.arrowImage.isHidden = true
                 cell.textField.textColor = #colorLiteral(red: 0.17, green: 0.17, blue: 0.34, alpha: 0.88)
-                cell.textField.text = "Second Email Address"
+                if self.user?.secondEmail == "" {
+                    cell.textField.text = "Second Email Address"
+                } else {
+                    cell.textField.text = self.user?.secondEmail
+                }
                 cell.contanerViewTopConstraint.constant = 5
+                cell.contanerViewBottomConstraint.constant = 0
             default:
                 break
             }
@@ -235,7 +239,7 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
             return cell
         case 4:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "editPassword") as? EditPasswordCell else { return UITableViewCell() }
-            cell.oldPasswordTextField.tag = 2
+            cell.oldPasswordTextField.tag = 3
             return cell
         default:
             return UITableViewCell()
@@ -261,34 +265,7 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch indexPath.section {
-        case 0, 1, 3, 4:
-            break
-        case 2:
-            switch indexPath.row {
-            case 0, 2, 3:
-                break
-            case 1:
-                // open countries picker
-                print("country selected")
-            case 4:
-                // open community picker
-                print("community selected")
-            case 5:
-                // open religious level picker
-                print("religious level selected")
-            case 6:
-                // open education picker
-                print("education selected")
-            case 7:
-                // open occupation picker
-                print("occupation selected")
-            default:
-                break
-            }
-        default:
-            break
-        }
+        
     }
     
 }
@@ -324,29 +301,31 @@ extension EditProfileViewController: UITextFieldDelegate {
         return true
     }
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField.tag == 1 {
-            let datePickerView = UIDatePicker()
-            datePickerView.datePickerMode = .date
-            textField.inputView = datePickerView
-            datePickerView.addTarget(self, action: #selector(handleDatePicker(sender:)), for: .valueChanged)
+        if textField.tag ==  1 {
+            if let pickerView = self.countriesPicker {
+                textField.inputView = pickerView
+                let accessoryView = Utils.keyboardToolBarWithDoneAndCancelButtons(tintColor: Colors.appBlue, target: self, doneSelector: #selector(self.keyboardDonePressed(_:)), cancelSelector: #selector(self.keyboardCancelPressed(_:)))
+                textField.inputAccessoryView = accessoryView
+            }
+        }
+        
+        if textField.tag == 2 {
+            
+            if let datePickerView = self.datePicker {
 
-//            self.datePicker = UIDatePicker()
-//            self.datePicker?.calendar = Calendar(identifier: .gregorian)
-//            self.datePicker?.datePickerMode = .date
-//            self.datePicker?.addTarget(self, action: #selector(self.datePickerValueChanged(_:)), for: .valueChanged)
-//            textField.inputView = self.datePicker
-//
-            let keyboardToolbar = UIToolbar()
-            keyboardToolbar.sizeToFit()
-            let flexBarButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-            let doneBarButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.donePressed(_:)))
-            keyboardToolbar.items = [flexBarButton, doneBarButton]
-            textField.inputAccessoryView = keyboardToolbar
+                datePickerView.datePickerMode = .date
+                textField.inputView = datePickerView
+                datePickerView.addTarget(self, action: #selector(handleDatePicker(sender:)), for: .valueChanged)
+                let keyboardToolbar = UIToolbar()
+                keyboardToolbar.sizeToFit()
+                let flexBarButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+                let doneBarButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.donePressed(_:)))
+                keyboardToolbar.items = [flexBarButton, doneBarButton]
+                textField.inputAccessoryView = keyboardToolbar
+            }
             
         }
-        if textField.tag == 2 {
-//            let indexPath = IndexPath(row: 0, section: 4)
-//            self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
+        if textField.tag == 3 {
             self.tabelViewBottomConstrant.constant = 300
         }
         
