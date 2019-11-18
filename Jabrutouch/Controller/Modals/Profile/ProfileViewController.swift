@@ -24,16 +24,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var profileImage: UIImageView!
-//    @IBOutlet weak var mainContentView: UIView!
-//    @IBOutlet weak var phoneLabel: UILabel!
-//    @IBOutlet weak var logoutBtn: UIButton!
-
-    @IBOutlet weak var mainContentView: UIView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var emailLabel: UILabel!
-    @IBOutlet weak var phoneLabel: UILabel!
-    @IBOutlet weak var phoneTiitleLabel: UILabel!
-    @IBOutlet weak var logoutBtn: UIButton!
     @IBOutlet weak var versionLabel: UILabel!
 
     
@@ -60,19 +50,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     //========================================
     
     private func setStrings() {
-        guard self.user != nil else { return }
-
-//        self.nameLabel.text = "\(user!.firstName) \(user!.lastName)"
-//        self.emailLabel.text = user!.email
-//        self.phoneLabel.text = user!.phoneNumber // Debug: phone number is without two first numbers
-//        self.phoneTiitleLabel.text = Strings.phoneNumber
-//        self.logoutBtn.setTitle(Strings.logout.uppercased(), for: .normal)
-//
-//        self.nameLabel.text = "\(user!.firstName) \(user!.lastName)"
-//        self.emailLabel.text = user!.email
-//        self.phoneLabel.text = user!.phoneNumber // Debug: phone number is without two first numbers
-//        self.phoneTiitleLabel.text = Strings.phoneNumber
-//        self.logoutBtn.setTitle(Strings.logout.uppercased(), for: .normal)
         let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
         let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
         self.versionLabel.text = "Version \(version) (\(build))"
@@ -137,7 +114,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             if self.user!.country != "" {
                 cell.country.text = self.user!.country
             } else {
-                cell.country.text = "country"
+                cell.country.text = LocalizationManager.shared.getDefaultCountry()?.fullDisplayName//"country"
             }
             return cell
         case 1:
@@ -223,7 +200,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         case 3:
             return 50
         case 4:
-            return 150
+            return 200
         case 5:
             return 56
         default:
@@ -238,7 +215,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         case 5:
             switch indexPath.row {
             case 0:
-//                self.mainViewController?.optionSelected(option: .signOut)
                 self.presentLogoutAlert()
             case 1:
                 self.changePassword()

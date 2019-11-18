@@ -142,6 +142,8 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
             cell.firstNameTextField.text = user?.firstName
             cell.lastNameTextField.text = user?.lastName
             cell.profileImage.image = #imageLiteral(resourceName: "Avatar")
+            let color = #colorLiteral(red: 0.1, green: 0.12, blue: 0.57, alpha: 0.4)
+            Utils.dropViewShadow(view: cell.profileImage, shadowColor: color, shadowRadius: 36, shadowOffset: CGSize(width: 0, height: 12))
             return cell
         case 2:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "editGeneralInformation") as? EditGeneralInformationCell else { return UITableViewCell() }
@@ -158,7 +160,7 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
             case 1:
                 cell.titleLabel.isHidden = true
                 cell.textField.isHidden = false
-                cell.textField.text = self.currentCountry?.fullDisplayName//LocalizationManager.shared.getDefaultCountry()?.fullDisplayName
+                cell.textField.text = self.currentCountry?.fullDisplayName
                 cell.textField.textColor = #colorLiteral(red: 0.17, green: 0.17, blue: 0.34, alpha: 0.88)
                 cell.textField.tag = 1
                 cell.arrowImage.isHidden = false
