@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MessageUI
 
-class SignInViewController: UIViewController {
+class SignInViewController: UIViewController, MFMailComposeViewControllerDelegate {
 
     //============================================================
     // MARK: - Properties
@@ -84,6 +85,32 @@ class SignInViewController: UIViewController {
 //        self.passwordTF.layer.borderColor = Colors.borderGray.cgColor
 //        self.passwordTF.layer.borderWidth = 1.0
     }
+    
+    //============================================================
+    // MARK: - email controller
+    //============================================================
+    func sendEmail() {
+        
+        if( MFMailComposeViewController.canSendMail() ) {
+            let mailComposer = MFMailComposeViewController()
+            let toRecipend = "app@dafyomi.es"
+            mailComposer.mailComposeDelegate = self
+            mailComposer.setToRecipients([toRecipend])
+//          mailComposer.setSubject("Refund request for voucher: \(voucherItem.voucherId)")
+//          mailComposer.setMessageBody("Message from: \(fullName)\n Phone number: \(phoneNumber ?? "") \n\n Hello support,\n\n ", isHTML: false)
+            self.present(mailComposer, animated: true, completion: nil)
+        }
+        else {
+            let message = "Please set an email account"
+            let title = "No mail account found"
+            Utils.showAlertMessage(message, title: title, viewControler: self)
+        }
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+      controller.dismiss(animated: true)
+    }
+    
     //============================================================
     // MARK: - @IBActions
     //============================================================
@@ -98,7 +125,8 @@ class SignInViewController: UIViewController {
     }
     
     @IBAction func forgotPasswordButtonPressed(_ sender: UIButton) {
-        Utils.showAlertMessage(Strings.inDevelopment, viewControler: self)
+//        Utils.showAlertMessage(Strings.inDevelopment, viewControler: self)
+        self.sendEmail()
     }
     
     //============================================================
