@@ -184,6 +184,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="981"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="DonationImage" translatesAutoresizingMaskIntoConstraints="NO" id="H7X-My-WbT">
+                                <rect key="frame" x="0.0" y="44" width="414" height="651"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JQF-YX-CLf" userLabel="Back">
                                 <rect key="frame" x="0.0" y="44" width="66" height="53"/>
                                 <constraints>
@@ -197,13 +200,10 @@
                                     <action selector="backButtonPressed:" destination="6YE-v2-5Hc" eventType="touchUpInside" id="Gtc-Gv-3rC"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="DonationImage" translatesAutoresizingMaskIntoConstraints="NO" id="H7X-My-WbT">
-                                <rect key="frame" x="0.0" y="97" width="414" height="651"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.97599999999999998" green="0.97599999999999998" blue="0.98399999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="H7X-My-WbT" firstAttribute="top" secondItem="JQF-YX-CLf" secondAttribute="bottom" id="5IU-Nl-vW4"/>
+                            <constraint firstItem="H7X-My-WbT" firstAttribute="top" secondItem="JQF-YX-CLf" secondAttribute="top" id="5IU-Nl-vW4"/>
                             <constraint firstItem="H7X-My-WbT" firstAttribute="trailing" secondItem="mSO-ge-iO5" secondAttribute="trailing" id="5t4-Za-KQa"/>
                             <constraint firstItem="JQF-YX-CLf" firstAttribute="top" secondItem="mSO-ge-iO5" secondAttribute="top" id="Jzo-DF-Foh"/>
                             <constraint firstItem="JQF-YX-CLf" firstAttribute="leading" secondItem="mSO-ge-iO5" secondAttribute="leading" id="L4o-K6-5wH"/>
@@ -496,8 +496,8 @@
                                                         <color key="textColor" red="0.17254901960784313" green="0.16862745098039217" blue="0.33725490196078434" alpha="0.88" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adar 21, 5779" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ivd-wy-Oxn">
-                                                        <rect key="frame" x="20" y="55" width="100.5" height="19"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adar 21, 5779" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ivd-wy-Oxn">
+                                                        <rect key="frame" x="20" y="66" width="205" height="19"/>
                                                         <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="16"/>
                                                         <color key="textColor" red="0.50980392156862742" green="0.50980392156862742" blue="0.50980392156862742" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -537,13 +537,13 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="ivd-wy-Oxn" secondAttribute="bottom" constant="16" id="1R3-rm-x6w"/>
+                                                    <constraint firstAttribute="bottom" secondItem="ivd-wy-Oxn" secondAttribute="bottom" constant="5" id="1R3-rm-x6w"/>
                                                     <constraint firstItem="Vqi-r0-05t" firstAttribute="centerY" secondItem="GZK-BL-cQ3" secondAttribute="centerY" id="1hZ-3h-BaI"/>
                                                     <constraint firstItem="On8-WA-0eI" firstAttribute="top" secondItem="GZK-BL-cQ3" secondAttribute="top" constant="16" id="PlY-mK-VqY"/>
                                                     <constraint firstItem="hMJ-6n-DFC" firstAttribute="centerX" secondItem="7su-KL-efv" secondAttribute="centerX" id="UiS-f8-vaU"/>
                                                     <constraint firstAttribute="trailing" secondItem="7su-KL-efv" secondAttribute="trailing" constant="35" id="XWQ-yf-9cd"/>
                                                     <constraint firstItem="7su-KL-efv" firstAttribute="leading" secondItem="Vqi-r0-05t" secondAttribute="trailing" constant="35" id="cX3-gL-pCY"/>
-                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ivd-wy-Oxn" secondAttribute="trailing" constant="20" symbolic="YES" id="e0Q-J5-lqt"/>
+                                                    <constraint firstItem="Vqi-r0-05t" firstAttribute="leading" secondItem="ivd-wy-Oxn" secondAttribute="trailing" constant="20" id="e0Q-J5-lqt"/>
                                                     <constraint firstItem="ivd-wy-Oxn" firstAttribute="leading" secondItem="GZK-BL-cQ3" secondAttribute="leading" constant="20" id="hAt-jy-EhG"/>
                                                     <constraint firstItem="E0U-C0-eco" firstAttribute="centerX" secondItem="Vqi-r0-05t" secondAttribute="centerX" id="hHf-12-Ocq"/>
                                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="On8-WA-0eI" secondAttribute="trailing" constant="20" symbolic="YES" id="kye-lF-OHJ"/>
