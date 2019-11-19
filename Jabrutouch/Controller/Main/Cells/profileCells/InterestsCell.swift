@@ -8,7 +8,7 @@
 
 import UIKit
 
-class InterestsCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
+class InterestsCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -44,6 +44,12 @@ class InterestsCell: UITableViewCell, UICollectionViewDelegate, UICollectionView
         
         return cell
     }
+     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+         let screenWidth = UIScreen.main.bounds.width
+         let scaleFactor = (screenWidth / 3) - 6
+
+         return CGSize(width: scaleFactor, height: scaleFactor)
+     }
      
 
 }
