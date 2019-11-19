@@ -241,6 +241,7 @@ class AudioPlayer: UIView {
         guard let player = self.player else { return .commandFailed }
         self.playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
         player.play()
+        player.rate = self.currentSpeed.rate
         self.startTimeUpdateTimer()
         return .success
     }
