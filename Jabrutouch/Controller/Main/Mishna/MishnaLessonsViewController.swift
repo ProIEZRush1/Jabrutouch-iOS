@@ -253,9 +253,7 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
         let playerVC = LessonPlayerViewController(lesson: lesson, mediaType: mediaType, sederId: sederId, masechetId: "\(masechetId)", chapter: "\(chapter)")
         playerVC.modalPresentationStyle = .fullScreen
         playerVC.masechet = self.masechetName ?? ""
-        if let lesson = lesson as? JTMishnaLesson {
-            playerVC.daf = "\(lesson.mishna)"
-        }
+        playerVC.daf = "\(chapter)"
         self.present(playerVC, animated: true) {
             
         }

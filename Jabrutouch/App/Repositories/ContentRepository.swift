@@ -777,7 +777,7 @@ class ContentRepository {
 }
 
 extension ContentRepository: DownloadTaskDelegate {
-    func downloadCompleted(downloadId: Int, mediaType: JTLessonMediaType) {
+    func downloadCompleted(downloadId: Int, mediaType: JTLessonMediaType, success: Bool) {
         self.lessonEndedDownloading(downloadId, mediaType: mediaType)
         if let (lesson,sederId,masechetId,chapter) = self.getLessonFromLocalStorage(withId: downloadId) {
             switch mediaType {
@@ -788,12 +788,16 @@ extension ContentRepository: DownloadTaskDelegate {
                 lesson.videoDownloadProgress = 0.0
                 lesson.isDownloadingVideo = false
             }
-            
-            if let gemaraLesson = lesson as? JTGemaraLesson {
-                self.addLessonToDownloaded(gemaraLesson, sederId: sederId, masechetId: masechetId)
-            }
-            if let mishnaLesson = lesson as? JTMishnaLesson, let _chapter = chapter {
-                self.addLessonToDownloaded(mishnaLesson, sederId: sederId, masechetId: masechetId, chapter: _chapter)
+            if success {
+                if let gemaraLesson = lesson as? JTGemaraLesson {
+                    self.addLessonToDownloaded(gemaraLesson, sederId: sederId, masechetId: masechetId)
+                }
+                if let mishnaLesson = lesson as? JTMishnaLesson, let _chapter = chapter {
+                    self.addLessonToDownloaded(mishnaLesson, sederId: sederId, masechetId: masechetId, chapter: _chapter)
+                }
+            } else {
+                let VC = appDelegate.topmostViewController
+                Utils.showAlertMessage("Faild Downloding Lesson", viewControler: VC!)
             }
         }
         

@@ -202,10 +202,10 @@
                                 <color key="backgroundColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="mishnaChapterCell" id="ccF-pp-iLd" customClass="MishnaChapterCellController" customModule="Jabrutouch" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="mishnaChapterCell" id="ccF-pp-iLd" customClass="MishnaChapterCellController" customModule="Jabrutouch" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="55.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ccF-pp-iLd" id="W09-sv-sUf">
+                                        <tableViewCellContentView key="contentView" opaque="NO" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ccF-pp-iLd" id="W09-sv-sUf">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -370,10 +370,10 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="lessonDownloadCell" rowHeight="90" id="zpL-YV-WaS" customClass="LessonDownloadCellController" customModule="Jabrutouch" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="lessonDownloadCell" rowHeight="90" id="zpL-YV-WaS" customClass="LessonDownloadCellController" customModule="Jabrutouch" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="55.5" width="414" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zpL-YV-WaS" id="2p8-WQ-qAG">
+                                        <tableViewCellContentView key="contentView" opaque="NO" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zpL-YV-WaS" id="2p8-WQ-qAG">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -458,7 +458,7 @@
                                                             <color key="textColor" red="0.17254901959999999" green="0.16862745100000001" blue="0.33725490200000002" alpha="0.88" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GrayTimer" translatesAutoresizingMaskIntoConstraints="NO" id="fua-4O-pDP">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clockGray" translatesAutoresizingMaskIntoConstraints="NO" id="fua-4O-pDP">
                                                             <rect key="frame" x="94" y="29" width="15" height="17"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="15" id="LoP-tY-ClS"/>
@@ -468,40 +468,36 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="56 min" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="45m-7C-8f3">
                                                             <rect key="frame" x="116" y="29.5" width="42.5" height="16.5"/>
                                                             <fontDescription key="fontDescription" name="SFProDisplay-Light" family="SF Pro Display" pointSize="14"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="textColor" red="0.27900000000000003" green="0.27900000000000003" blue="0.27900000000000003" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Audio" translatesAutoresizingMaskIntoConstraints="NO" id="4N3-XG-gV8">
-                                                            <rect key="frame" x="269" y="1" width="21" height="73"/>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4N3-XG-gV8">
+                                                            <rect key="frame" x="269" y="19.5" width="21" height="36.5"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="21" id="RX7-dm-2eE"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RedV" translatesAutoresizingMaskIntoConstraints="NO" id="hbR-Kg-6gP">
-                                                            <rect key="frame" x="290" y="38" width="8.5" height="22"/>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hbR-Kg-6gP">
+                                                            <rect key="frame" x="290" y="43.5" width="8.5" height="11"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="8.6999999999999993" id="GUb-LE-Opz"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Video" translatesAutoresizingMaskIntoConstraints="NO" id="UKg-qS-8kR">
-                                                            <rect key="frame" x="323" y="9" width="30" height="57"/>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UKg-qS-8kR">
+                                                            <rect key="frame" x="323" y="23.5" width="30" height="28.5"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="30" id="rzU-1A-TRz"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RedV" translatesAutoresizingMaskIntoConstraints="NO" id="5qk-2s-D53">
-                                                            <rect key="frame" x="353" y="38" width="8.5" height="22"/>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5qk-2s-D53">
+                                                            <rect key="frame" x="353" y="43.5" width="8.5" height="11"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="8.6999999999999993" id="hJN-oQ-sdo"/>
                                                             </constraints>
                                                         </imageView>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tez-4Z-to1" userLabel="Audio Button">
-                                                            <rect key="frame" x="254.5" y="12.5" width="50" height="50"/>
+                                                            <rect key="frame" x="264.5" y="20.5" width="30" height="34"/>
                                                             <accessibility key="accessibilityConfiguration" identifier="MLVC Audio Btn"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="50" id="4C8-zq-TKV"/>
-                                                                <constraint firstAttribute="width" constant="50" id="Ql5-rT-6Qk"/>
-                                                            </constraints>
                                                             <connections>
                                                                 <action selector="playAudioButtonPressed:" destination="zpL-YV-WaS" eventType="touchUpInside" id="Mlb-JC-lxb"/>
                                                                 <action selector="playAudioButtonTouchedDown:" destination="zpL-YV-WaS" eventType="touchDown" id="xoP-6W-5Vm"/>
@@ -509,12 +505,8 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VB4-BN-dkY" userLabel="Video Button">
-                                                            <rect key="frame" x="313" y="12.5" width="50" height="50"/>
+                                                            <rect key="frame" x="323" y="20.5" width="30" height="34"/>
                                                             <accessibility key="accessibilityConfiguration" identifier="MLVC Video Btn"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="50" id="Gpt-0Z-yWd"/>
-                                                                <constraint firstAttribute="width" constant="50" id="m9Q-U7-qhP"/>
-                                                            </constraints>
                                                             <connections>
                                                                 <action selector="playVideoButtonPressed:" destination="zpL-YV-WaS" eventType="touchUpInside" id="inb-HV-cko"/>
                                                                 <action selector="playVideoButtonTouchedDown:" destination="zpL-YV-WaS" eventType="touchDown" id="Toy-eJ-HDV"/>
@@ -672,16 +664,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Audio" width="35" height="36.5"/>
         <image name="BlueRightArrow" width="9" height="16"/>
         <image name="Download" width="19.5" height="26"/>
         <image name="DownloadInCircle" width="24.5" height="24"/>
-        <image name="GrayTimer" width="15.5" height="17"/>
         <image name="LeftArrow" width="27.5" height="19.5"/>
         <image name="Loupe" width="23" height="22.5"/>
-        <image name="RedV" width="10.5" height="11"/>
         <image name="TransparentAudio" width="23" height="24.5"/>
         <image name="TransparentVideo" width="33" height="19.5"/>
-        <image name="Video" width="49" height="28.5"/>
+        <image name="clockGray" width="15.5" height="17"/>
     </resources>
 </document>

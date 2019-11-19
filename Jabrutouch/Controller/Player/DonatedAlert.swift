@@ -43,6 +43,7 @@ class DonatedAlert: UIViewController {
         self.setStrings()
         self.setCornerRadius()
         self.setShadow()
+        self.setDonor()
         // Do any additional setup after loading the view.
     }
     
@@ -68,6 +69,56 @@ class DonatedAlert: UIViewController {
         let shadowOffset = CGSize(width: 0.0, height: 20)
         let color = #colorLiteral(red: 0.16, green: 0.17, blue: 0.39, alpha: 0.5)
         Utils.dropViewShadow(view: self.mainView, shadowColor: color, shadowRadius: 31, shadowOffset: shadowOffset)
+    }
+    
+    func setDonor() {
+        let allDonors: [JTDonor] = [JTDonor(firstName: "Simon", lastName: "Hanono", country: "México"),
+                                    JTDonor(firstName: "José", lastName: "Ezban", country: "México"),
+                                    JTDonor(firstName: "Daniel", lastName: "Ezban", country: "México"),
+                                    JTDonor(firstName: "Moises", lastName: "Askenazi", country: "México"),
+                                    JTDonor(firstName: "Moises", lastName: "Esses", country: "México"),
+                                    JTDonor(firstName: "Abraham", lastName: "Hamui", country: "México"),
+                                    JTDonor(firstName: "Abraham", lastName: "Askenazi", country: "México"),
+                                    JTDonor(firstName: "Zury", lastName: "Esses", country: "México"),
+                                    JTDonor(firstName: "José", lastName: "Amkie", country: "México"),
+                                    JTDonor(firstName: "Marcos", lastName: "Ohana", country: "Argentina"),
+                                    JTDonor(firstName: "Jacobo", lastName: "Cojab", country: "México"),
+                                    JTDonor(firstName: "Mauricio", lastName: "Cojab", country: "México"),
+                                    JTDonor(firstName: "Eduardo", lastName: "Alfie", country: "México"),
+                                    JTDonor(firstName: "Sarah", lastName: "Serfaty", country: "Israel"),
+                                    JTDonor(firstName: "Mayer", lastName: "Cherem", country: "Panamá"),
+                                    JTDonor(firstName: "Menahem", lastName: "Nidam", country: "España"),
+                                    JTDonor(firstName: "Manuel", lastName: "Roditi", country: "México"),
+                                    JTDonor(firstName: "Ezra", lastName: "Cohen", country: "Panamá"),
+                                    JTDonor(firstName: "Moises", lastName: "Saba", country: "México"),
+                                    JTDonor(firstName: "Daniel", lastName: "Saba", country: "México"),
+                                    JTDonor(firstName: "Nessim", lastName: "Cojab", country: "Argentina"),
+                                    JTDonor(firstName: "Abraham", lastName: "Benzadon", country: "Venezuela"),
+                                    JTDonor(firstName: "Isaac", lastName: "Sutton", country: "Brasil"),
+                                    JTDonor(firstName: "Abraham", lastName: "Bendahan", country: "U.S.A."),
+                                    JTDonor(firstName: "Emilio", lastName: "Benzadon", country: "U.S.A."),
+                                    JTDonor(firstName: "Moses", lastName: "Garson", country: "Inglaterra"),
+                                    JTDonor(firstName: "Arie", lastName: "Cohen", country: "Chile"),
+                                    JTDonor(firstName: "Familia", lastName: "Benaim", country: "Gibraltar"),
+                                    JTDonor(firstName: "Jacob", lastName: "Benzadon", country: "España"),
+                                    JTDonor(firstName: "Isaac", lastName: "Nidam", country: "España"),
+                                    JTDonor(firstName: "Mercedes", lastName: "Pilo", country: "España"),
+                                    JTDonor(firstName: "Julia B.", lastName: "Nidam", country: "España"),
+                                    JTDonor(firstName: "Victor M.", lastName: "Azrak", country: "Panamá"),
+                                    JTDonor(firstName: "Moises", lastName: "Azrak", country: "Panamá"),
+                                    JTDonor(firstName: "David", lastName: "Azrak", country: "Panamá"),
+                                    JTDonor(firstName: "Michael", lastName: "Harari", country: "Panamá"),
+                                    JTDonor(firstName: "Max Joe", lastName: "Harari", country: "Panamá"),]
+        
+        let index = UserDefaultsProvider.shared.index
+        self.nameLabel.text = "\(allDonors[index].firstName) \(allDonors[index].lastName)"
+        self.location.text = allDonors[index].country
+        
+        if index == allDonors.count {
+            UserDefaultsProvider.shared.index = 0
+        } else {
+            UserDefaultsProvider.shared.index = index + 1
+        }
     }
     
     //====================================================

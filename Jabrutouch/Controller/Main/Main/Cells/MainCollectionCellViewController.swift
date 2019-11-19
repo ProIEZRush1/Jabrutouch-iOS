@@ -55,6 +55,11 @@ class MainCollectionCellViewController: UICollectionViewCell {
     @objc private func videoPressed() {
         delegate?.videoPressed(selectedRow: selectedRow, isFirstCollection: isFirstCollection)
     }
+    
+    func setHiddenButtonsForLesson(_ lesson: JTLesson) {
+       self.audioButton.isHidden = (lesson.audioURL == nil)
+       self.videoButton.isHidden = (lesson.videoURL == nil)
+    }
 }
 
 protocol MainCollectionCellDelegate: class {
