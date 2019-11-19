@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EditProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class EditProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
     //============================================================
     // MARK: - Properties
@@ -20,7 +20,9 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
     private var countriesPicker: UIPickerView?
     private var currentCountry = LocalizationManager.shared.getDefaultCountry()
     private var birthdate = ""
+    var myImagePicker: ImagePicker!
 
+    
     //============================================================
     // MARK: - Outlets
     //============================================================
@@ -42,6 +44,7 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
         
         let indexPath = IndexPath(row: 0, section: self.section)
         self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
+        self.myImagePicker = ImagePicker(presentationController: self, delegate: self)
     }
     
     
@@ -101,6 +104,10 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
         self.view.endEditing(true)
         self.tableView.reloadData()
     }
+    
+    @objc func profileImageButtonPressed(_ sender: UIButton){
+        self.myImagePicker.present(from: sender)
+    }
 
     //============================================================
     // MARK: - tabel view
@@ -141,9 +148,10 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "editPersonalDetails") as? EditPersonalDetailsCell else { return UITableViewCell() }
             cell.firstNameTextField.text = user?.firstName
             cell.lastNameTextField.text = user?.lastName
-            cell.profileImage.image = #imageLiteral(resourceName: "Avatar")
-            let color = #colorLiteral(red: 0.1, green: 0.12, blue: 0.57, alpha: 0.4)
-            Utils.dropViewShadow(view: cell.profileImage, shadowColor: color, shadowRadius: 36, shadowOffset: CGSize(width: 0, height: 12))
+            cell.profileImage.image = user?.profileImage ?? #imageLiteral(resourceName: "Avatar")
+            
+            cell.profileImageButton.addTarget(self, action: #selector(profileImageButtonPressed(_:)), for: .touchUpInside)
+           
             return cell
         case 2:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "editGeneralInformation") as? EditGeneralInformationCell else { return UITableViewCell() }
@@ -330,6 +338,24 @@ extension EditProfileViewController: UITextFieldDelegate {
         if textField.tag == 3 {
             self.tabelViewBottomConstrant.constant = 300
         }
+        
+    }
+}
+
+extension EditProfileViewController: ImagePickerDelegate {
+
+    func didSelect(image: UIImage?) {
+        if let url = self.user?.profileImageFileURL, let data = image?.pngData() {
+            do {
+               try  FilesManagementProvider.shared.overwriteFile(path: url, data: data)
+            }
+            catch {
+                
+            }
+        }
+        self.user?.profileImage = image
+        self.user?.imageLink = "link"
+        self.tableView.reloadData()
         
     }
 }

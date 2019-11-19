@@ -26,7 +26,15 @@ struct JTUser {
     var secondEmail: String
     var isPresenter: Bool
     var token: String
+    var profileImage: UIImage?
     
+    var profileImageFileName: String {
+        return "profile_image_\(self.id)"
+    }
+    
+    var profileImageFileURL: URL? {
+        return FileDirectory.cache.url?.appendingPathComponent(self.profileImageFileName)
+    }
     init?(values: [String:Any]) {
         if let id = values["id"] as? Int {
             self.id = id
@@ -67,6 +75,7 @@ struct JTUser {
         self.secondEmail = values["second_email"] as? String ?? ""
         self.isPresenter = values["is_presenter"] as? Bool ?? false
         
+        self.loadProfileImageFromLocalFile()
     }
     
     var values: [String:Any] {
@@ -88,5 +97,18 @@ struct JTUser {
         values["is_presenter"] = self.isPresenter
         values["token"] = self.token
         return values
+    }
+    
+    private mutating func loadProfileImageFromLocalFile() {
+        if let url = self.profileImageFileURL {
+            do{
+                let data = try Data(contentsOf: url)
+                self.profileImage = UIImage(data: data)
+            }
+            catch {
+                
+            }
+        }
+            
     }
 }

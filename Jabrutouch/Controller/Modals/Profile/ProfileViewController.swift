@@ -37,12 +37,17 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        user = UserDefaultsProvider.shared.currentUser
+        self.user = UserDefaultsProvider.shared.currentUser
         self.setStrings()
         self.roundCorners()
-        self.setShadows()
+        self.setProfilImage()
         self.tableView.delegate = self
         self.tableView.dataSource = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.user = UserDefaultsProvider.shared.currentUser
+        self.setProfilImage()
     }
     
     //========================================
@@ -58,12 +63,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     private func roundCorners() {
         self.tableView.layer.cornerRadius = 15
-//        self.logoutBtn.layer.cornerRadius = 10
+        self.profileImage.layer.cornerRadius = self.profileImage.bounds.height/2
+        self.profileImage.clipsToBounds = true
     }
     
-    private func setShadows() {
-//        let shadowOffset = CGSize(width: 0.0, height: 12)
-//        Utils.dropViewShadow(view: self.mainContentView, shadowColor: Colors.shadowColor, shadowRadius: 36, shadowOffset: shadowOffset)
+    private func setProfilImage() {
+       self.profileImage.image = user?.profileImage ?? #imageLiteral(resourceName: "Avatar")
     }
     
     //========================================
@@ -114,7 +119,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             if self.user!.country != "" {
                 cell.country.text = self.user!.country
             } else {
-                cell.country.text = LocalizationManager.shared.getDefaultCountry()?.fullDisplayName//"country"
+                cell.country.text = LocalizationManager.shared.getDefaultCountry()?.fullDisplayName
             }
             return cell
         case 1:
