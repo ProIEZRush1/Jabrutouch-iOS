@@ -166,6 +166,7 @@
 		83605BA52382B01A00B93603 /* JTImageRepsitory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83605BA42382B01A00B93603 /* JTImageRepsitory.swift */; };
 		83605BA72382DCD200B93603 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83605BA62382DCD200B93603 /* ImagePicker.swift */; };
 		83605BA82384361400B93603 /* JTDonor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB124237C0F9E00C86450 /* JTDonor.swift */; };
+		83605BAA23846E3700B93603 /* OldProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83605BA923846E3700B93603 /* OldProfileViewController.swift */; };
 		839CB4CB2381C91B0086554B /* SelectInterestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839CB4CA2381C91B0086554B /* SelectInterestViewController.swift */; };
 		83CCB12123783F6100C86450 /* JTMasechetDownloadedGemaraLessons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB12023783F6100C86450 /* JTMasechetDownloadedGemaraLessons.swift */; };
 		83CCB1232379EEB700C86450 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB1222379EEB700C86450 /* EditProfileViewController.swift */; };
@@ -362,6 +363,7 @@
 		8342BA78237302AE00C3239C /* DonationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DonationsViewController.swift; path = Jabrutouch/Controller/Main/DonationsViewController.swift; sourceTree = SOURCE_ROOT; };
 		83605BA42382B01A00B93603 /* JTImageRepsitory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTImageRepsitory.swift; sourceTree = "<group>"; };
 		83605BA62382DCD200B93603 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		83605BA923846E3700B93603 /* OldProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldProfileViewController.swift; sourceTree = "<group>"; };
 		839CB4CA2381C91B0086554B /* SelectInterestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectInterestViewController.swift; sourceTree = "<group>"; };
 		83CCB12023783F6100C86450 /* JTMasechetDownloadedGemaraLessons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTMasechetDownloadedGemaraLessons.swift; sourceTree = "<group>"; };
 		83CCB1222379EEB700C86450 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
@@ -560,6 +562,7 @@
 				FB6877C122FC49AE0096465D /* AlertViewController.swift */,
 				83CCB128237DA32D00C86450 /* ForgotPasswordViewController.swift */,
 				839CB4CA2381C91B0086554B /* SelectInterestViewController.swift */,
+				83605BA923846E3700B93603 /* OldProfileViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1304,6 +1307,7 @@
 				FBB18FAE22F85773006886FD /* GemaraMasechetCellController.swift in Sources */,
 				213196AA22F38B3E00B0AF5F /* LoginResponse.swift in Sources */,
 				212ECEAC2312585A005AEB36 /* JTLessonType.swift in Sources */,
+				83605BAA23846E3700B93603 /* OldProfileViewController.swift in Sources */,
 				FB6877C222FC49AE0096465D /* AlertViewController.swift in Sources */,
 				FBB18FB422F866C8006886FD /* GemaraLessonsViewController.swift in Sources */,
 				216A0E6E22EEFD1400F7FBC1 /* HttpServiceProvider.swift in Sources */,

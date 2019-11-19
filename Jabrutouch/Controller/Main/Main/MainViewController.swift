@@ -439,6 +439,9 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     private func presentProfile() {
         self.performSegue(withIdentifier: "presentProfile", sender: self)
     }
+    private func presentOldProfile() {
+        self.performSegue(withIdentifier: "presentOldProfile", sender: self)
+    }
     
     private func presentDownloadsViewController() {
         if self.currentPresentedModal != nil && self.currentPresentedModal != .downloads {
@@ -528,6 +531,10 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
             let profileVC = segue.destination as? ProfileViewController
             profileVC?.mainViewController = self
         }
+        else if segue.identifier == "presentOldProfile" {
+            let profileVC = segue.destination as? OldProfileViewController
+//            profileVC?.mainViewController = self
+        }
         
 
     }
@@ -558,7 +565,8 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
     func optionSelected(option: MenuOption) {
         switch option {
         case .profile:
-            presentProfile()
+//            presentProfile()
+            presentOldProfile()
         case .signOut:
             presentLogoutAlert()
         case .mishna:
