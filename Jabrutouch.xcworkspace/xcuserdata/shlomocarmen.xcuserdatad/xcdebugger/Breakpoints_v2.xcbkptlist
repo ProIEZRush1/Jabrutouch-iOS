@@ -230,8 +230,8 @@
             filePath = "Jabrutouch/Controller/Main/Main/MainViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "307"
-            endingLineNumber = "307"
+            startingLineNumber = "330"
+            endingLineNumber = "330"
             landmarkName = "downloadsButtonTouchedUp(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -360,7 +360,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "198"
             endingLineNumber = "198"
-            landmarkName = "downloadAudioPressed(selectedRow:)"
+            landmarkName = "playVideoPressed(selectedRow:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -392,7 +392,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "149"
             endingLineNumber = "149"
-            landmarkName = "toggleEditingMode()"
+            landmarkName = "tableView(_:willDisplay:forRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -712,7 +712,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "190"
             endingLineNumber = "190"
-            landmarkName = "playAudioPressed(selectedRow:)"
+            landmarkName = "cellPressed(selectedRow:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -728,7 +728,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "252"
             endingLineNumber = "252"
-            landmarkName = "playLesson(_:mediaType:)"
+            landmarkName = "removeActivityView()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -992,7 +992,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "E137D41B-B704-4656-A4D0-2A1B41068961"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Jabrutouch/Controller/Main/Gemara/GemaraLessonsViewController.swift"

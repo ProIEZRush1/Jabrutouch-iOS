@@ -21,7 +21,7 @@ class JBProgressBar: UIView {
     
     @IBInspectable var startColor: UIColor = UIColor(red: 0.3, green: 0.31, blue: 0.82, alpha: 1)
     @IBInspectable var endColor: UIColor = UIColor(red: 1, green: 0.37, blue: 0.31, alpha: 1)
-    @IBInspectable var barTint: UIColor = .lightGray
+    @IBInspectable var barTint: UIColor = #colorLiteral(red: 0.831, green: 0.863, blue: 0.906, alpha: 0.33)
     
     override func draw(_ rect: CGRect) {
         guard let context = UIGraphicsGetCurrentContext() else { return }
