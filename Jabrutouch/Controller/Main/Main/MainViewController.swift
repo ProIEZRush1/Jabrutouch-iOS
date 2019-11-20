@@ -58,6 +58,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     @IBOutlet weak var welcomeImage: UIImageView!
     
     // Todays Daf Yomi
+    @IBOutlet weak private var todaysDafProgressBar: JBProgressBar!
     @IBOutlet weak private var todaysDafOuterContainer: UIView!
     @IBOutlet weak private var todaysDafContainer: UIView!
     @IBOutlet weak private var todaysDafTitleLabel: UILabel!
@@ -108,6 +109,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.setConstraints()
         UserDefaultsProvider.shared.notFirstTime = true
         self.setButtonsBackground()
+        self.setTodaysDafProgressBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -120,6 +122,14 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     //========================================
     // MARK: - Setup
     //========================================
+    private func setTodaysDafProgressBar() {
+        let count = 80.0
+        let progress = CGFloat(count/100)
+        self.todaysDafProgressBar.progress = progress
+        self.todaysDafProgressBar.rounded = false
+        self.todaysDafProgressBar.layer.cornerRadius = 10
+        self.todaysDafProgressBar.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+    }
     
     private func setStrings() {
         
@@ -234,6 +244,13 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
                 cell.videoButton.setImage(#imageLiteral(resourceName: "video-nat") , for: .normal)
             }
             cell.setHiddenButtonsForLesson(lessonRecord.lesson)
+            let count = 60.0
+            let progress = CGFloat(count/100)
+            cell.mainProgressBar.progress = progress
+            cell.mainProgressBar.rounded = false
+            cell.mainProgressBar.layer.cornerRadius = 8
+            cell.mainProgressBar.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+
 //            cell.audio.image = lessonRecord.lesson.isAudioDownloaded ? #imageLiteral(resourceName: "audio-downloaded") : #imageLiteral(resourceName: "audio-nat")
 //            cell.video.image = lessonRecord.lesson.isVideoDownloaded ? #imageLiteral(resourceName: "video-downloaded") : #imageLiteral(resourceName: "video-nat")
         } else {
@@ -255,6 +272,12 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
                 cell.videoButton.setImage(#imageLiteral(resourceName: "video-nat") , for: .normal)
             }
             cell.setHiddenButtonsForLesson(lessonRecord.lesson)
+            let count = 20.0
+            let progress = CGFloat(count/100)
+            cell.mainProgressBar.progress = progress
+            cell.mainProgressBar.rounded = false
+            cell.mainProgressBar.layer.cornerRadius = 8
+            cell.mainProgressBar.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
 //            cell.audio.isHidden = !lessonRecord.lesson.isAudioDownloaded
 //            cell.video.isHidden = !lessonRecord.lesson.isVideoDownloaded
         }
@@ -533,7 +556,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         }
         else if segue.identifier == "presentOldProfile" {
             let profileVC = segue.destination as? OldProfileViewController
-//            profileVC?.mainViewController = self
+            profileVC?.mainViewController = self
         }
         
 
@@ -565,8 +588,8 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
     func optionSelected(option: MenuOption) {
         switch option {
         case .profile:
-//            presentProfile()
-            presentOldProfile()
+            presentProfile()
+//            presentOldProfile()
         case .signOut:
             presentLogoutAlert()
         case .mishna:

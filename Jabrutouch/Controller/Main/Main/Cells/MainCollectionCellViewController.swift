@@ -10,6 +10,7 @@ import UIKit
 
 class MainCollectionCellViewController: UICollectionViewCell {
     
+    @IBOutlet weak var mainProgressBar: JBProgressBar!
     @IBOutlet weak var cellView: UIView!
     @IBOutlet weak var masechetLabel: UILabel!
     @IBOutlet weak var chapterLabel: UILabel!

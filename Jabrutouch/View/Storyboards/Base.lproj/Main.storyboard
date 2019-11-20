@@ -504,7 +504,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adar 21, 5779" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ivd-wy-Oxn">
-                                                        <rect key="frame" x="20" y="65.5" width="205" height="19.5"/>
+                                                        <rect key="frame" x="20" y="60.5" width="205" height="19.5"/>
                                                         <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="16"/>
                                                         <color key="textColor" red="0.50980392156862742" green="0.50980392156862742" blue="0.50980392156862742" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -544,7 +544,7 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="ivd-wy-Oxn" secondAttribute="bottom" constant="5" id="1R3-rm-x6w"/>
+                                                    <constraint firstAttribute="bottom" secondItem="ivd-wy-Oxn" secondAttribute="bottom" constant="10" id="1R3-rm-x6w"/>
                                                     <constraint firstItem="Vqi-r0-05t" firstAttribute="centerY" secondItem="GZK-BL-cQ3" secondAttribute="centerY" id="1hZ-3h-BaI"/>
                                                     <constraint firstItem="On8-WA-0eI" firstAttribute="top" secondItem="GZK-BL-cQ3" secondAttribute="top" constant="16" id="PlY-mK-VqY"/>
                                                     <constraint firstItem="hMJ-6n-DFC" firstAttribute="centerX" secondItem="7su-KL-efv" secondAttribute="centerX" id="UiS-f8-vaU"/>
@@ -560,6 +560,13 @@
                                                     <constraint firstItem="hMJ-6n-DFC" firstAttribute="centerY" secondItem="GZK-BL-cQ3" secondAttribute="centerY" id="z0N-aW-o6y"/>
                                                 </constraints>
                                             </view>
+                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4M6-ek-WIk" customClass="JBProgressBar" customModule="Jabrutouch" customModuleProvider="target">
+                                                <rect key="frame" x="23" y="113" width="366" height="5"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="5" id="nY7-1E-Qwa"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <accessibility key="accessibilityConfiguration" identifier="MVC Todays Daf"/>
@@ -570,7 +577,10 @@
                                             <constraint firstItem="fI9-Bx-Pnq" firstAttribute="top" secondItem="1qD-92-wJ1" secondAttribute="top" id="7XC-0Z-Lbj"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fI9-Bx-Pnq" secondAttribute="trailing" constant="20" symbolic="YES" id="IxQ-Bw-hGJ"/>
                                             <constraint firstItem="GZK-BL-cQ3" firstAttribute="top" secondItem="fI9-Bx-Pnq" secondAttribute="bottom" constant="8" id="Sqm-Yr-Bcp"/>
+                                            <constraint firstItem="4M6-ek-WIk" firstAttribute="leading" secondItem="GZK-BL-cQ3" secondAttribute="leading" id="bbh-DS-Qhw"/>
+                                            <constraint firstItem="GZK-BL-cQ3" firstAttribute="bottom" secondItem="4M6-ek-WIk" secondAttribute="bottom" id="f0j-57-MvQ"/>
                                             <constraint firstAttribute="bottom" secondItem="GZK-BL-cQ3" secondAttribute="bottom" constant="20" id="hQH-hB-416"/>
+                                            <constraint firstItem="4M6-ek-WIk" firstAttribute="trailing" secondItem="GZK-BL-cQ3" secondAttribute="trailing" id="kRS-N9-cps"/>
                                             <constraint firstItem="fI9-Bx-Pnq" firstAttribute="leading" secondItem="1qD-92-wJ1" secondAttribute="leading" constant="21" id="tkL-eK-8Xp"/>
                                         </constraints>
                                     </view>
@@ -646,6 +656,13 @@
                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <state key="normal" image="video-nat"/>
                                                                         </button>
+                                                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8To-zs-zm6" customClass="JBProgressBar" customModule="Jabrutouch" customModuleProvider="target">
+                                                                            <rect key="frame" x="0.0" y="69" width="280" height="4"/>
+                                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="height" constant="4" id="h8P-oN-oCw"/>
+                                                                            </constraints>
+                                                                        </view>
                                                                     </subviews>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <accessibility key="accessibilityConfiguration" identifier="MVC G Cell Content"/>
@@ -659,6 +676,7 @@
                                                                         <constraint firstItem="0LD-gf-OPV" firstAttribute="leading" secondItem="lzJ-9m-l3z" secondAttribute="leading" constant="18" id="L38-0h-98Q"/>
                                                                         <constraint firstItem="JxG-bL-Jme" firstAttribute="centerY" secondItem="lzJ-9m-l3z" secondAttribute="centerY" id="MvN-US-Wqx"/>
                                                                         <constraint firstItem="XCv-hY-b4u" firstAttribute="centerY" secondItem="lzJ-9m-l3z" secondAttribute="centerY" id="Ode-ff-hA5"/>
+                                                                        <constraint firstAttribute="bottom" secondItem="8To-zs-zm6" secondAttribute="bottom" id="RlN-Cl-gxN"/>
                                                                         <constraint firstAttribute="width" constant="280" id="YQi-Zv-1eJ"/>
                                                                         <constraint firstItem="syV-Uc-KkF" firstAttribute="centerY" secondItem="lzJ-9m-l3z" secondAttribute="centerY" id="Ytw-PD-Cmd"/>
                                                                         <constraint firstAttribute="height" constant="73" id="b0s-7x-n9R"/>
@@ -666,6 +684,8 @@
                                                                         <constraint firstItem="XCv-hY-b4u" firstAttribute="centerX" secondItem="Auq-u1-yTw" secondAttribute="centerX" id="kJw-Bo-Z1g"/>
                                                                         <constraint firstItem="JxG-bL-Jme" firstAttribute="leading" secondItem="MEy-to-IP2" secondAttribute="trailing" constant="3" id="kSy-rV-Og6"/>
                                                                         <constraint firstAttribute="trailing" secondItem="KsI-AG-M2p" secondAttribute="trailing" constant="22" id="ksN-tb-aPm"/>
+                                                                        <constraint firstItem="8To-zs-zm6" firstAttribute="leading" secondItem="lzJ-9m-l3z" secondAttribute="leading" id="mq7-dM-fhb"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="8To-zs-zm6" secondAttribute="trailing" id="pLX-rm-BUj"/>
                                                                         <constraint firstItem="KsI-AG-M2p" firstAttribute="centerY" secondItem="lzJ-9m-l3z" secondAttribute="centerY" id="xCP-yx-kiX"/>
                                                                     </constraints>
                                                                 </view>
@@ -681,6 +701,7 @@
                                                             <outlet property="audioButton" destination="XCv-hY-b4u" id="qcx-EI-QtJ"/>
                                                             <outlet property="cellView" destination="lzJ-9m-l3z" id="7Mf-St-H9z"/>
                                                             <outlet property="chapterLabel" destination="MEy-to-IP2" id="Dn2-QP-0tX"/>
+                                                            <outlet property="mainProgressBar" destination="8To-zs-zm6" id="0oR-Mv-kEX"/>
                                                             <outlet property="masechetLabel" destination="0LD-gf-OPV" id="mqA-4B-P0u"/>
                                                             <outlet property="numberLabel" destination="JxG-bL-Jme" id="sML-ei-svp"/>
                                                             <outlet property="video" destination="KsI-AG-M2p" id="omS-Tb-I9W"/>
@@ -779,6 +800,13 @@
                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <state key="normal" image="video-nat"/>
                                                                         </button>
+                                                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xpF-CB-VKi" customClass="JBProgressBar" customModule="Jabrutouch" customModuleProvider="target">
+                                                                            <rect key="frame" x="0.0" y="69" width="280" height="4"/>
+                                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="height" constant="4" id="SOX-xm-Ovw"/>
+                                                                            </constraints>
+                                                                        </view>
                                                                     </subviews>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <accessibility key="accessibilityConfiguration" identifier="MVC G Cell Content"/>
@@ -787,6 +815,8 @@
                                                                         <constraint firstItem="fJx-ws-v8h" firstAttribute="centerX" secondItem="j3j-Wd-rfb" secondAttribute="centerX" id="5ek-uf-3tl"/>
                                                                         <constraint firstItem="HS3-rE-qol" firstAttribute="centerY" secondItem="qYi-is-ptc" secondAttribute="centerY" id="9yh-wl-DkH"/>
                                                                         <constraint firstItem="GUW-ye-jee" firstAttribute="centerX" secondItem="HS3-rE-qol" secondAttribute="centerX" id="AJO-Rf-FSa"/>
+                                                                        <constraint firstAttribute="bottom" secondItem="xpF-CB-VKi" secondAttribute="bottom" id="CAa-EN-G1H"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="xpF-CB-VKi" secondAttribute="trailing" id="FjL-dx-eZZ"/>
                                                                         <constraint firstAttribute="width" constant="280" id="HYH-yz-Ld7"/>
                                                                         <constraint firstItem="GUW-ye-jee" firstAttribute="centerY" secondItem="qYi-is-ptc" secondAttribute="centerY" id="LQP-Lh-phV"/>
                                                                         <constraint firstItem="fJx-ws-v8h" firstAttribute="centerY" secondItem="qYi-is-ptc" secondAttribute="centerY" id="SB8-R7-Bvy"/>
@@ -800,6 +830,7 @@
                                                                         <constraint firstItem="dyN-VG-ugU" firstAttribute="centerY" secondItem="qYi-is-ptc" secondAttribute="centerY" id="o6e-WB-lW2"/>
                                                                         <constraint firstItem="dyN-VG-ugU" firstAttribute="leading" secondItem="qYi-is-ptc" secondAttribute="leading" constant="18" id="qaa-RY-MLl"/>
                                                                         <constraint firstItem="Jbd-Xp-SQr" firstAttribute="leading" secondItem="OvF-IO-qci" secondAttribute="trailing" constant="3" id="rWh-Vg-x2R"/>
+                                                                        <constraint firstItem="xpF-CB-VKi" firstAttribute="leading" secondItem="qYi-is-ptc" secondAttribute="leading" id="v72-sv-545"/>
                                                                     </constraints>
                                                                 </view>
                                                             </subviews>
@@ -814,6 +845,7 @@
                                                             <outlet property="audioButton" destination="GUW-ye-jee" id="byZ-2T-HCF"/>
                                                             <outlet property="cellView" destination="qYi-is-ptc" id="0w8-1n-7dS"/>
                                                             <outlet property="chapterLabel" destination="OvF-IO-qci" id="vRu-Rx-bXB"/>
+                                                            <outlet property="mainProgressBar" destination="xpF-CB-VKi" id="8wc-P4-vR9"/>
                                                             <outlet property="masechetLabel" destination="dyN-VG-ugU" id="gFl-iW-5gk"/>
                                                             <outlet property="numberLabel" destination="Jbd-Xp-SQr" id="NXx-2F-NwS"/>
                                                             <outlet property="video" destination="j3j-Wd-rfb" id="JQd-PS-qGy"/>
@@ -1061,6 +1093,7 @@
                         <outlet property="todaysDafContainer" destination="GZK-BL-cQ3" id="9VR-oo-mKc"/>
                         <outlet property="todaysDafLabel" destination="On8-WA-0eI" id="iaH-Vh-vnf"/>
                         <outlet property="todaysDafOuterContainer" destination="1qD-92-wJ1" id="hPU-Iy-sDv"/>
+                        <outlet property="todaysDafProgressBar" destination="4M6-ek-WIk" id="bEe-kC-rFC"/>
                         <outlet property="todaysDafTitleLabel" destination="fI9-Bx-Pnq" id="QyQ-7b-jmX"/>
                         <outlet property="todaysDafToWelcomeConstraint" destination="Ws7-NO-XTz" id="ifV-Yh-jaU"/>
                         <outlet property="todaysDafVideo" destination="hMJ-6n-DFC" id="onb-IB-eNN"/>
@@ -1097,10 +1130,10 @@
             </objects>
             <point key="canvasLocation" x="6" y="-716"/>
         </scene>
-        <!--Profile View Controller-->
+        <!--Old Profile View Controller-->
         <scene sceneID="fkm-xc-iGI">
             <objects>
-                <viewController storyboardIdentifier="Profile" id="aWT-VA-QZb" customClass="ProfileViewController" customModule="Jabrutouch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Profile" id="aWT-VA-QZb" customClass="OldProfileViewController" customModule="Jabrutouch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="J33-j9-3p7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
