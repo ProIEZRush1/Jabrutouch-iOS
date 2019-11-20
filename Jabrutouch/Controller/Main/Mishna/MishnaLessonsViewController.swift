@@ -135,7 +135,13 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
             cell.setEditingIfNeeded(lesson: lesson, isCurrentlyEditing: self.isCurrentlyEditing)
             self.view.layoutIfNeeded()
         }
-        
+        let count = 10.0
+        let progress = CGFloat(count/100)
+        cell.lessonProgressBar.progress = progress
+        cell.lessonProgressBar.rounded = false
+        cell.lessonProgressBar.layer.cornerRadius = 8
+        cell.lessonProgressBar.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+       
         return cell
     }
     

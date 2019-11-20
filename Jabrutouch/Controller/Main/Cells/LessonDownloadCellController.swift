@@ -15,6 +15,7 @@ class LessonDownloadCellController: UITableViewCell {
     // MARK: - @IBOutlets
     //=====================================================
     
+    @IBOutlet weak var lessonProgressBar: JBProgressBar!
     @IBOutlet weak var cellView: UIView!
     @IBOutlet weak var downloadButtonsContainerView: UIView!
     @IBOutlet weak var lessonNumber: UILabel!
@@ -31,6 +32,7 @@ class LessonDownloadCellController: UITableViewCell {
     @IBOutlet weak var downloadAudioButtonImageView: UIImageView!
     @IBOutlet weak var downloadVideoButtonImageView: UIImageView!
     @IBOutlet weak var cellViewTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var progressBarTrailingConstraint: NSLayoutConstraint!
     @IBOutlet weak var cellViewLeadingConstraint: NSLayoutConstraint!
     
     //=====================================================
