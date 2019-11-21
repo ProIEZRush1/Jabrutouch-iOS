@@ -28,10 +28,12 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     // MARK: - Properties
     //========================================
     
+    var user = UserRepository.shared.getCurrentUser()
     private var modalsPresentingVC: ModalsContainerViewController!
     private var currentPresentedModal: MainModal?
     private var gemaraHistory: [JTGemaraLessonRecord] = []
     private var mishnaHistory: [JTMishnaLessonRecord] = []
+    private var gemaraWatched: [JTLessonWatched] = []
     private var todaysDafToHeaderConstraint: NSLayoutConstraint?
     
     private var contentAvailable: Bool {
@@ -115,6 +117,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+//        self.gemaraWatched = self.user.lessonWatched
         self.setContent()
         setView()
     }
