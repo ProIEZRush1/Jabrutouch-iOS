@@ -104,21 +104,14 @@ class LoginManager {
     //==========================================
     
     private func userDidSignUp(user: JTUser, password: String) {
-        UserDefaultsProvider.shared.currentPassword = password
-        UserDefaultsProvider.shared.currentPassword = password
-        UserDefaultsProvider.shared.currentPassword = password
-        
+        UserRepository.shared.setCurrentUser(user, password: password)
     }
     
     private func userDidSignIn(user: JTUser, password: String) {
-        UserDefaultsProvider.shared.currentUsername = user.email
-        UserDefaultsProvider.shared.currentPassword = password
-        UserDefaultsProvider.shared.currentUser = user
+        UserRepository.shared.setCurrentUser(user, password: password)
     }
     
     private func userDidSignOut() {
-        UserDefaultsProvider.shared.currentUsername = nil
-        UserDefaultsProvider.shared.currentPassword = nil
-        UserDefaultsProvider.shared.currentUser = nil
+        UserRepository.shared.clearCurrentUser()
     }
 }

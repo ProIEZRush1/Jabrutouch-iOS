@@ -37,7 +37,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.user = UserDefaultsProvider.shared.currentUser
         self.setStrings()
         self.roundCorners()
         self.setProfilImage()
@@ -46,7 +45,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.user = UserDefaultsProvider.shared.currentUser
+        self.user = UserRepository.shared.getCurrentUser()
         self.setProfilImage()
     }
     

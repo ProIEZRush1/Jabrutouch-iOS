@@ -40,7 +40,7 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
         self.initCountriesPicker()
         self.initDatePicker()
         
-        user = UserDefaultsProvider.shared.currentUser
+        user = UserRepository.shared.getCurrentUser()
         
         let indexPath = IndexPath(row: 0, section: self.section)
         self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)

@@ -17,7 +17,7 @@ class LessonPlayerViewController: UIViewController {
     //====================================================
     // MARK: - @IBOutlets
     //====================================================
-    
+    var user: JTUser?
     // Portrait Header View
     @IBOutlet weak var portraitHeaderView: UIView!
     @IBOutlet weak var portraitHeaderViewHeightConstraint: NSLayoutConstraint!
@@ -137,7 +137,7 @@ class LessonPlayerViewController: UIViewController {
         super.viewDidLoad()
         
         self.pdfView.delegate = self
-        
+        self.user = UserRepository.shared.getCurrentUser()
         self.masechetTitleLabel.text = "\(self.masechet) \(self.daf)"
     }
     
@@ -219,6 +219,10 @@ class LessonPlayerViewController: UIViewController {
         AnalyticsManager.shared.postEvent(eventType: .watch, category: category, mediaType: self.mediaType, lessonId: self.lesson.id, duration: Int64(watchDuration) * 1000, online: online) { (result: Result<Any, JTError>) in
             
         }
+        guard var lessonWatched = JTLessonWatched(values: ["lessonId": lesson.id, "duration": watchDuration]) else { return }
+        self.user?.lessonWatched.append(lessonWatched)
+        UserRepository.shared.updateCurrentUser(self.user!)
+        
     }
     //====================================================
     // MARK: - Setup

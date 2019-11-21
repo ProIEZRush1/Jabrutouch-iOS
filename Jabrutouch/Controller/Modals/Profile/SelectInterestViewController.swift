@@ -20,7 +20,7 @@ class SelectInterestViewController: UIViewController, UICollectionViewDelegate, 
         super.viewDidLoad()
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
-        user = UserDefaultsProvider.shared.currentUser
+        self.user = UserRepository.shared.getCurrentUser()
       
     }
     

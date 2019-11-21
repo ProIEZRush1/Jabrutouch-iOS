@@ -167,7 +167,9 @@
 		83605BA72382DCD200B93603 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83605BA62382DCD200B93603 /* ImagePicker.swift */; };
 		83605BA82384361400B93603 /* JTDonor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB124237C0F9E00C86450 /* JTDonor.swift */; };
 		83605BAA23846E3700B93603 /* OldProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83605BA923846E3700B93603 /* OldProfileViewController.swift */; };
+		83605BAC23853BCC00B93603 /* JTLessonWatched.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83605BAB23853BCC00B93603 /* JTLessonWatched.swift */; };
 		839CB4CB2381C91B0086554B /* SelectInterestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839CB4CA2381C91B0086554B /* SelectInterestViewController.swift */; };
+		839E1E7C238588C100578C60 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839E1E7B238588C100578C60 /* UserRepository.swift */; };
 		83CCB12123783F6100C86450 /* JTMasechetDownloadedGemaraLessons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB12023783F6100C86450 /* JTMasechetDownloadedGemaraLessons.swift */; };
 		83CCB1232379EEB700C86450 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB1222379EEB700C86450 /* EditProfileViewController.swift */; };
 		83CCB127237C8D6F00C86450 /* EditPasswordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB126237C8D6F00C86450 /* EditPasswordCell.swift */; };
@@ -364,7 +366,9 @@
 		83605BA42382B01A00B93603 /* JTImageRepsitory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTImageRepsitory.swift; sourceTree = "<group>"; };
 		83605BA62382DCD200B93603 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		83605BA923846E3700B93603 /* OldProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldProfileViewController.swift; sourceTree = "<group>"; };
+		83605BAB23853BCC00B93603 /* JTLessonWatched.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTLessonWatched.swift; sourceTree = "<group>"; };
 		839CB4CA2381C91B0086554B /* SelectInterestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectInterestViewController.swift; sourceTree = "<group>"; };
+		839E1E7B238588C100578C60 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		83CCB12023783F6100C86450 /* JTMasechetDownloadedGemaraLessons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTMasechetDownloadedGemaraLessons.swift; sourceTree = "<group>"; };
 		83CCB1222379EEB700C86450 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		83CCB124237C0F9E00C86450 /* JTDonor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTDonor.swift; sourceTree = "<group>"; };
@@ -920,6 +924,7 @@
 				21CC094322F05D8A00E8FE27 /* DafYomiRepository.swift */,
 				2126D6DB2303EA8600CB501D /* ContentRepository.swift */,
 				83605BA42382B01A00B93603 /* JTImageRepsitory.swift */,
+				839E1E7B238588C100578C60 /* UserRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -948,6 +953,7 @@
 				21419CBA230EAF5300145F1F /* JTGemaraLessonRecord.swift */,
 				21419CBC230EAF9C00145F1F /* JTMishnaLessonRecord.swift */,
 				83CCB12023783F6100C86450 /* JTMasechetDownloadedGemaraLessons.swift */,
+				83605BAB23853BCC00B93603 /* JTLessonWatched.swift */,
 			);
 			path = "App Models";
 			sourceTree = "<group>";
@@ -1296,6 +1302,7 @@
 				2133C22122DCFEB500F910B9 /* WalkThroughCollectionViewCell.swift in Sources */,
 				2126D6DF2303EC5400CB501D /* NotificationsNames.swift in Sources */,
 				219BFF2C22E59F4500ABBEE2 /* Extensions.swift in Sources */,
+				83605BAC23853BCC00B93603 /* JTLessonWatched.swift in Sources */,
 				2120BE2122DF2787004854DB /* RequestVerificationCodeViewController.swift in Sources */,
 				21ED3BDA230488E3009D8E3D /* JTGemaraLesson.swift in Sources */,
 				21407C8922F72632002F9690 /* TextFieldWithDeleteDelegate.swift in Sources */,
@@ -1354,6 +1361,7 @@
 				538691452379E8B500CC95B5 /* PersonalDetailsCell.swift in Sources */,
 				2131969622F38B1200B0AF5F /* JTError.swift in Sources */,
 				538691512379E8E500CC95B5 /* LabelWithPadding.swift in Sources */,
+				839E1E7C238588C100578C60 /* UserRepository.swift in Sources */,
 				21CC094422F05D8A00E8FE27 /* DafYomiRepository.swift in Sources */,
 				21ED3BD823048835009D8E3D /* GetMishnaLessonsResponse.swift in Sources */,
 				2133C21B22DCA5FC00F910B9 /* Strings.swift in Sources */,
