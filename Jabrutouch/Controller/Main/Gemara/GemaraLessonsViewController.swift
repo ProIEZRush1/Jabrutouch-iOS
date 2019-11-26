@@ -24,6 +24,7 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
     var sederId: String?
     var isCurrentlyEditing: Bool = false
     var isFirstLoading: Bool = false
+    private var lessonWatched: [JTLessonWatched] = []
     
     private var activityView: ActivityView?
     
@@ -45,7 +46,7 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        self.lessonWatched = UserDefaultsProvider.shared.lessonWatched
         self.setContent()
         ContentRepository.shared.addDelegate(self)
     }
@@ -133,13 +134,16 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
             cell.setEditingIfNeeded(lesson: lesson, isCurrentlyEditing: self.isCurrentlyEditing)
             self.view.layoutIfNeeded()
         }
-        let count = 50.0
-        let progress = CGFloat(count/100)
-        cell.lessonProgressBar.progress = progress
-        cell.lessonProgressBar.rounded = false
-        cell.lessonProgressBar.layer.cornerRadius = 8
-        cell.lessonProgressBar.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
-        
+        if self.lessonWatched.count > 0 {
+            for lessonWatched in self.lessonWatched {
+                if lessonWatched.lessonId == lesson.id {
+                    let count = lessonWatched.duration / Double(lesson.duration)
+                    Utils.setProgressbar(count: count, view: cell.lessonProgressBar, rounded: false, cornerRadius: 8, bottomRadius: true)
+                    break
+                }
+                Utils.setProgressbar(count: 0.0, view: cell.lessonProgressBar, rounded: false, cornerRadius: 8, bottomRadius: true)
+            }
+        }
         return cell
     }
     
