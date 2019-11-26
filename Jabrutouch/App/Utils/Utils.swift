@@ -174,6 +174,17 @@ class Utils {
 
     }
     
+    class func setProgressbar(count: Double, view: JBProgressBar, rounded: Bool, cornerRadius: CGFloat, bottomRadius: Bool) {
+        let count = count
+        let progress = CGFloat(count)
+        view.progress = progress
+        view.rounded = rounded
+        view.layer.cornerRadius = cornerRadius
+        if bottomRadius {
+            view.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+        }
+    }
+    
     // MARK: - Validation
     
     class func validateEmail(_ email: String) -> Bool {
