@@ -28,12 +28,11 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     // MARK: - Properties
     //========================================
     
-    var user = UserRepository.shared.getCurrentUser()
     private var modalsPresentingVC: ModalsContainerViewController!
     private var currentPresentedModal: MainModal?
     private var gemaraHistory: [JTGemaraLessonRecord] = []
     private var mishnaHistory: [JTMishnaLessonRecord] = []
-    private var gemaraWatched: [JTLessonWatched] = []
+    private var lessonWatched: [JTLessonWatched] = []
     private var todaysDafToHeaderConstraint: NSLayoutConstraint?
     
     private var contentAvailable: Bool {
@@ -111,13 +110,12 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.setConstraints()
         UserDefaultsProvider.shared.notFirstTime = true
         self.setButtonsBackground()
-        self.setTodaysDafProgressBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-//        self.gemaraWatched = self.user.lessonWatched
+        self.setTodaysDafProgressBar()
+        self.lessonWatched = UserDefaultsProvider.shared.lessonWatched
         self.setContent()
         setView()
     }
@@ -126,12 +124,22 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     // MARK: - Setup
     //========================================
     private func setTodaysDafProgressBar() {
-        let count = 80.0
-        let progress = CGFloat(count/100)
-        self.todaysDafProgressBar.progress = progress
-        self.todaysDafProgressBar.rounded = false
-        self.todaysDafProgressBar.layer.cornerRadius = 10
-        self.todaysDafProgressBar.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+        let todaysDaf = DafYomiRepository.shared.getTodaysDaf()
+        guard let data = ContentRepository.shared.getMasechetByName(todaysDaf.masechet) else { return }
+        ContentRepository.shared.getGemaraLesson(masechetId: data.masechet.id, page: todaysDaf.daf) { (result: Result<JTGemaraLesson, JTError>) in
+            switch result {
+            case .success(let lesson):
+                for lessonWatched in self.lessonWatched {
+                    if lessonWatched.lessonId == lesson.id {
+                        let count = lessonWatched.duration / Double(lesson.duration)
+                        Utils.setProgressbar(count: count, view: self.todaysDafProgressBar, rounded: false, cornerRadius: 10, bottomRadius: true)
+                        break
+                    }
+                }
+            case .failure:
+                break
+            }
+        }
     }
     
     private func setStrings() {
@@ -247,12 +255,15 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
                 cell.videoButton.setImage(#imageLiteral(resourceName: "video-nat") , for: .normal)
             }
             cell.setHiddenButtonsForLesson(lessonRecord.lesson)
-            let count = 60.0
-            let progress = CGFloat(count/100)
-            cell.mainProgressBar.progress = progress
-            cell.mainProgressBar.rounded = false
-            cell.mainProgressBar.layer.cornerRadius = 8
-            cell.mainProgressBar.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+            if self.lessonWatched.count > 0 {
+                for lesson in self.lessonWatched {
+                    if lesson.lessonId == lessonRecord.lesson.id {
+                        let count = lesson.duration / Double(lessonRecord.lesson.duration)
+                        Utils.setProgressbar(count: count, view: cell.mainProgressBar, rounded: false, cornerRadius: 8, bottomRadius: true)
+                        break
+                    }
+                }
+            }
 
 //            cell.audio.image = lessonRecord.lesson.isAudioDownloaded ? #imageLiteral(resourceName: "audio-downloaded") : #imageLiteral(resourceName: "audio-nat")
 //            cell.video.image = lessonRecord.lesson.isVideoDownloaded ? #imageLiteral(resourceName: "video-downloaded") : #imageLiteral(resourceName: "video-nat")
@@ -275,12 +286,15 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
                 cell.videoButton.setImage(#imageLiteral(resourceName: "video-nat") , for: .normal)
             }
             cell.setHiddenButtonsForLesson(lessonRecord.lesson)
-            let count = 20.0
-            let progress = CGFloat(count/100)
-            cell.mainProgressBar.progress = progress
-            cell.mainProgressBar.rounded = false
-            cell.mainProgressBar.layer.cornerRadius = 8
-            cell.mainProgressBar.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+            if self.lessonWatched.count > 0 {
+                for lesson in self.lessonWatched {
+                    if lesson.lessonId == lessonRecord.lesson.id {
+                        let count = lesson.duration / Double(lessonRecord.lesson.duration)
+                        Utils.setProgressbar(count: count, view: cell.mainProgressBar, rounded: false, cornerRadius: 8, bottomRadius: true)
+                        break
+                    }
+                }
+            }
 //            cell.audio.isHidden = !lessonRecord.lesson.isAudioDownloaded
 //            cell.video.isHidden = !lessonRecord.lesson.isVideoDownloaded
         }
