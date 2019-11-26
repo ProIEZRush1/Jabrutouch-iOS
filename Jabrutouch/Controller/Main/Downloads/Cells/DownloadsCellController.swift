@@ -10,6 +10,7 @@ import UIKit
 
 class DownloadsCellController: UITableViewCell {
     
+    @IBOutlet weak var progressBar: JBProgressBar!
     @IBOutlet weak var cellView: UIView!
     @IBOutlet weak var book: UILabel!
     @IBOutlet weak var chapter: UILabel!
