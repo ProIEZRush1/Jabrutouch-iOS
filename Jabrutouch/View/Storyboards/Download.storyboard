@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Csn-pr-HK7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Csn-pr-HK7">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -204,6 +204,13 @@
                                                                 <action selector="playVideoPressed:" destination="IPO-2W-CTR" eventType="touchUpInside" id="kfU-l2-wxm"/>
                                                             </connections>
                                                         </button>
+                                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YE4-qK-Pnh" customClass="JBProgressBar" customModule="Jabrutouch" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="72" width="348" height="4"/>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="4" id="cIa-zT-1sC"/>
+                                                            </constraints>
+                                                        </view>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <accessibility key="accessibilityConfiguration" identifier="Cell View Content"/>
@@ -213,7 +220,10 @@
                                                         <constraint firstAttribute="height" constant="76" id="9oP-YD-Z4t"/>
                                                         <constraint firstItem="ZQv-Uz-0ue" firstAttribute="leading" secondItem="6IX-7g-KOM" secondAttribute="trailing" constant="5" id="F6Y-bd-pjZ"/>
                                                         <constraint firstItem="6IX-7g-KOM" firstAttribute="leading" secondItem="YtL-SC-a2e" secondAttribute="trailing" constant="5" id="KXz-7c-ygz"/>
+                                                        <constraint firstAttribute="trailing" secondItem="YE4-qK-Pnh" secondAttribute="trailing" id="LqP-lz-OLR"/>
+                                                        <constraint firstAttribute="bottom" secondItem="YE4-qK-Pnh" secondAttribute="bottom" id="Mxd-7p-Rlt"/>
                                                         <constraint firstAttribute="trailing" secondItem="pTh-16-GT2" secondAttribute="trailing" constant="10" id="UNp-GN-7lF"/>
+                                                        <constraint firstItem="YE4-qK-Pnh" firstAttribute="leading" secondItem="tys-3p-kx8" secondAttribute="leading" id="XMn-H7-HUR"/>
                                                         <constraint firstItem="YtL-SC-a2e" firstAttribute="centerY" secondItem="tys-3p-kx8" secondAttribute="centerY" id="Zgv-GJ-gS8"/>
                                                         <constraint firstItem="pTh-16-GT2" firstAttribute="leading" secondItem="jyb-sK-pGD" secondAttribute="trailing" constant="15" id="dnM-pd-3qW"/>
                                                         <constraint firstItem="6IX-7g-KOM" firstAttribute="centerY" secondItem="YtL-SC-a2e" secondAttribute="centerY" id="hsq-HW-E4h"/>
@@ -252,6 +262,7 @@
                                             <outlet property="chapter" destination="6IX-7g-KOM" id="z2F-SI-1Z0"/>
                                             <outlet property="deleteButton" destination="fJy-Q9-W6e" id="QFK-et-KoK"/>
                                             <outlet property="number" destination="ZQv-Uz-0ue" id="Akp-Fb-MoG"/>
+                                            <outlet property="progressBar" destination="YE4-qK-Pnh" id="hMa-40-e24"/>
                                             <outlet property="videoButton" destination="pTh-16-GT2" id="9HY-6G-pPD"/>
                                         </connections>
                                     </tableViewCell>
@@ -306,10 +317,18 @@
                                                                 <action selector="playVideoPressed:" destination="7dV-xT-Hbu" eventType="touchUpInside" id="0aW-zi-96X"/>
                                                             </connections>
                                                         </button>
+                                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lr4-Mo-fWL" customClass="JBProgressBar" customModule="Jabrutouch" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="72" width="348" height="4"/>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="4" id="spP-bX-ALl"/>
+                                                            </constraints>
+                                                        </view>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <accessibility key="accessibilityConfiguration" identifier="Cell View Content"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="Lr4-Mo-fWL" secondAttribute="trailing" id="1a0-jp-t1y"/>
                                                         <constraint firstAttribute="trailing" secondItem="gCk-Wa-Bj7" secondAttribute="trailing" constant="10" id="6x1-1b-uxy"/>
                                                         <constraint firstItem="xBH-Gp-bmk" firstAttribute="leading" secondItem="y4d-u8-PqE" secondAttribute="trailing" constant="5" id="ADJ-CS-pBm"/>
                                                         <constraint firstItem="efs-vY-7eU" firstAttribute="centerY" secondItem="1jW-un-djR" secondAttribute="centerY" id="KHk-bD-PXI"/>
@@ -319,8 +338,10 @@
                                                         <constraint firstItem="gCk-Wa-Bj7" firstAttribute="centerY" secondItem="1jW-un-djR" secondAttribute="centerY" id="cWk-GX-aG3"/>
                                                         <constraint firstItem="xBH-Gp-bmk" firstAttribute="centerY" secondItem="y4d-u8-PqE" secondAttribute="centerY" id="ehX-ym-ZiH"/>
                                                         <constraint firstItem="y4d-u8-PqE" firstAttribute="leading" secondItem="1jW-un-djR" secondAttribute="leading" constant="26" id="lOK-jq-lCL"/>
+                                                        <constraint firstAttribute="bottom" secondItem="Lr4-Mo-fWL" secondAttribute="bottom" id="oxY-iX-IOi"/>
                                                         <constraint firstItem="gCk-Wa-Bj7" firstAttribute="leading" secondItem="efs-vY-7eU" secondAttribute="trailing" constant="15" id="ute-q9-PXo"/>
                                                         <constraint firstItem="DGe-9V-cpb" firstAttribute="leading" secondItem="xBH-Gp-bmk" secondAttribute="trailing" constant="5" id="vxJ-tM-h8L"/>
+                                                        <constraint firstItem="Lr4-Mo-fWL" firstAttribute="leading" secondItem="1jW-un-djR" secondAttribute="leading" id="xCw-Cn-HWn"/>
                                                     </constraints>
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ebl-Bk-flN" userLabel="Delete">
@@ -365,6 +386,7 @@
                                             <outlet property="chapter" destination="xBH-Gp-bmk" id="zLS-ru-qTi"/>
                                             <outlet property="deleteButton" destination="ebl-Bk-flN" id="VIC-N7-eNB"/>
                                             <outlet property="number" destination="DGe-9V-cpb" id="hPa-8w-gXn"/>
+                                            <outlet property="progressBar" destination="Lr4-Mo-fWL" id="pGQ-Cv-0MT"/>
                                             <outlet property="videoButton" destination="gCk-Wa-Bj7" id="mMm-vR-aAa"/>
                                         </connections>
                                     </tableViewCell>

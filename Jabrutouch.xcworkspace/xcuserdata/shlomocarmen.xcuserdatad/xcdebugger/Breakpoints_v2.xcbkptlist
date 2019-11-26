@@ -230,25 +230,9 @@
             filePath = "Jabrutouch/Controller/Main/Main/MainViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "333"
-            endingLineNumber = "333"
+            startingLineNumber = "348"
+            endingLineNumber = "348"
             landmarkName = "downloadsButtonTouchedUp(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "0242CD9A-E370-4A11-9304-4B1000576233"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Jabrutouch/Controller/Main/DownloadsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "583"
-            endingLineNumber = "583"
-            landmarkName = "deletePressed(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -294,73 +278,9 @@
             filePath = "Jabrutouch/Controller/Player/VideoPlayer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "378"
-            endingLineNumber = "378"
+            startingLineNumber = "381"
+            endingLineNumber = "381"
             landmarkName = "rewindButtonPressed(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "D23DBB3F-4714-490F-B58C-365D83565654"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Jabrutouch/Controller/Main/DownloadsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "304"
-            endingLineNumber = "304"
-            landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "D23DBB3F-4714-490F-B58C-365D83565654 - 9e1813759e5a15ff"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Jabrutouch.DownloadsViewController.tableView(_: __C.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __C.UITableViewCell"
-                  moduleName = "Jabrutouch"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/shlomocarmen/Projects/jabrutouch_ios/Jabrutouch/Controller/Main/DownloadsViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "276"
-                  endingLineNumber = "276"
-                  offsetFromSymbolStart = "1176">
-               </Location>
-               <Location
-                  uuid = "D23DBB3F-4714-490F-B58C-365D83565654 - 7792b6417ed0513a"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Jabrutouch.JTSederDownloadedGemaraLessons) -&gt; Swift.Bool in Jabrutouch.DownloadsViewController.tableView(_: __C.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __C.UITableViewCell"
-                  moduleName = "Jabrutouch"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/shlomocarmen/Projects/jabrutouch_ios/Jabrutouch/Controller/Main/DownloadsViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "276"
-                  endingLineNumber = "276"
-                  offsetFromSymbolStart = "20">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "5FE936E2-1B70-4C0F-8AC9-93E48CE9CD02"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Jabrutouch/Controller/Main/Gemara/GemaraLessonsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "198"
-            endingLineNumber = "198"
-            landmarkName = "playVideoPressed(selectedRow:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -377,54 +297,6 @@
             startingLineNumber = "68"
             endingLineNumber = "68"
             landmarkName = "setShadow()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "53CC5314-8B6A-4A88-AA1B-90FFD5A52E62"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Jabrutouch/Controller/Main/Gemara/GemaraLessonsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "149"
-            endingLineNumber = "149"
-            landmarkName = "tableView(_:willDisplay:forRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "5D94E2A0-B5C9-4814-A676-9AA1CF24168E"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Jabrutouch/Controller/Main/DownloadsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "372"
-            endingLineNumber = "372"
-            landmarkName = "toggleSection(header:section:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "820AFD8E-74C0-4039-AE4A-1F8145C0537C"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Jabrutouch/Controller/Main/DownloadsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "392"
-            endingLineNumber = "392"
-            landmarkName = "reloadSection(_:_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -454,8 +326,8 @@
             filePath = "Jabrutouch/Controller/Player/AudioPlayer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "176"
-            endingLineNumber = "176"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
             landmarkName = "playPauseButtonPressed(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -479,102 +351,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "416A53A7-FB78-48F0-92D5-18D94631BB29"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Jabrutouch/Controller/Main/DownloadsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "622"
-            endingLineNumber = "622"
-            landmarkName = "playLesson(_:mediaType:masechetName:sederId:masechetId:chapter:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "1D2D22B9-712A-424C-956B-D4A3434AE923"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Jabrutouch/Controller/Main/DownloadsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "465"
-            endingLineNumber = "465"
-            landmarkName = "playAudioPressed(atIndexPath:lessonType:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "1D2D22B9-712A-424C-956B-D4A3434AE923 - bfe3da533dd8dac9"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Jabrutouch.DownloadsViewController.playAudioPressed(atIndexPath: Foundation.IndexPath, lessonType: Jabrutouch.JTLessonType) -&gt; ()"
-                  moduleName = "Jabrutouch"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/shlomocarmen/Projects/jabrutouch_ios/Jabrutouch/Controller/Main/DownloadsViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "441"
-                  endingLineNumber = "441"
-                  offsetFromSymbolStart = "503">
-               </Location>
-               <Location
-                  uuid = "1D2D22B9-712A-424C-956B-D4A3434AE923 - c6b41f010b7f36c3"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Jabrutouch.JTGemaraLessonRecord, Jabrutouch.JTGemaraLessonRecord) -&gt; Swift.Bool in Jabrutouch.DownloadsViewController.playAudioPressed(atIndexPath: Foundation.IndexPath, lessonType: Jabrutouch.JTLessonType) -&gt; ()"
-                  moduleName = "Jabrutouch"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/shlomocarmen/Projects/jabrutouch_ios/Jabrutouch/Controller/Main/DownloadsViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "442"
-                  endingLineNumber = "442"
-                  offsetFromSymbolStart = "34">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "AF55DFF4-3049-4587-B7C4-E8C3591459C2"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Jabrutouch/Controller/Main/DownloadsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "468"
-            endingLineNumber = "468"
-            landmarkName = "playAudioPressed(atIndexPath:lessonType:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "6F6FB9D4-C7E8-4576-AD7B-A913754526B7"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Jabrutouch/Controller/Main/DownloadsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "487"
-            endingLineNumber = "487"
-            landmarkName = "playAudioPressed(atIndexPath:lessonType:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "48FB277A-FFD5-43B4-B662-74F42CEF01B8"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -585,150 +361,6 @@
             startingLineNumber = "113"
             endingLineNumber = "113"
             landmarkName = "setDonor()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "8C86EB6C-2345-454D-BE20-DFF6ACCB7EC7"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Jabrutouch/Controller/Main/Mishna/MishnaLessonsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "02A05E7A-7423-4D80-9B75-077ABB6810D3"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Jabrutouch/Controller/Main/Mishna/MishnaLessonsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
-            landmarkName = "setContent()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "02A05E7A-7423-4D80-9B75-077ABB6810D3 - 9fa379e38a8c97d4"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Jabrutouch.MishnaLessonsViewController.(setContent in _A246CD63045943518335AE5645C87B9D)() -&gt; ()"
-                  moduleName = "Jabrutouch"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/shlomocarmen/Projects/jabrutouch_ios/Jabrutouch/Controller/Main/Mishna/MishnaLessonsViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "75"
-                  endingLineNumber = "75"
-                  offsetFromSymbolStart = "232">
-               </Location>
-               <Location
-                  uuid = "02A05E7A-7423-4D80-9B75-077ABB6810D3 - b6dd7887fd78618"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;Swift.Array&lt;Jabrutouch.JTMishnaLesson&gt;, Jabrutouch.JTError&gt;) -&gt; () in Jabrutouch.MishnaLessonsViewController.(setContent in _A246CD63045943518335AE5645C87B9D)() -&gt; ()"
-                  moduleName = "Jabrutouch"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/shlomocarmen/Projects/jabrutouch_ios/Jabrutouch/Controller/Main/Mishna/MishnaLessonsViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "77"
-                  endingLineNumber = "77"
-                  offsetFromSymbolStart = "301">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "91E1BE63-7C09-4E61-A336-EEE7C6A2C914"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Jabrutouch/Controller/Main/Mishna/MishnaLessonsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
-            landmarkName = "setContent()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "91E1BE63-7C09-4E61-A336-EEE7C6A2C914 - b6dd7887fd78618"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;Swift.Array&lt;Jabrutouch.JTMishnaLesson&gt;, Jabrutouch.JTError&gt;) -&gt; () in Jabrutouch.MishnaLessonsViewController.(setContent in _A246CD63045943518335AE5645C87B9D)() -&gt; ()"
-                  moduleName = "Jabrutouch"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/shlomocarmen/Projects/jabrutouch_ios/Jabrutouch/Controller/Main/Mishna/MishnaLessonsViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "79"
-                  endingLineNumber = "79"
-                  offsetFromSymbolStart = "364">
-               </Location>
-               <Location
-                  uuid = "91E1BE63-7C09-4E61-A336-EEE7C6A2C914 - b6dd7887fd78618"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;Swift.Array&lt;Jabrutouch.JTMishnaLesson&gt;, Jabrutouch.JTError&gt;) -&gt; () in Jabrutouch.MishnaLessonsViewController.(setContent in _A246CD63045943518335AE5645C87B9D)() -&gt; ()"
-                  moduleName = "Jabrutouch"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/shlomocarmen/Projects/jabrutouch_ios/Jabrutouch/Controller/Main/Mishna/MishnaLessonsViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "79"
-                  endingLineNumber = "79"
-                  offsetFromSymbolStart = "418">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "40B948B2-B630-41C6-A845-8728FC953D0D"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Jabrutouch/Controller/Main/Mishna/MishnaLessonsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "190"
-            endingLineNumber = "190"
-            landmarkName = "cellPressed(selectedRow:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "C21C4C8C-C620-49A3-BBFD-CEC8F59A0CA4"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Jabrutouch/Controller/Main/Mishna/MishnaLessonsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "252"
-            endingLineNumber = "252"
-            landmarkName = "removeActivityView()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -790,25 +422,9 @@
             filePath = "Jabrutouch/Controller/Player/LessonPlayerViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "544"
-            endingLineNumber = "544"
+            startingLineNumber = "558"
+            endingLineNumber = "558"
             landmarkName = "loadPDF()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "AE5EDA43-77C7-4682-8CAD-DFE9DC4A8D13"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Jabrutouch/Controller/Main/DownloadsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "319"
-            endingLineNumber = "319"
-            landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -950,8 +566,8 @@
             filePath = "Jabrutouch/Controller/Player/VideoPlayer.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "407"
-            endingLineNumber = "407"
+            startingLineNumber = "410"
+            endingLineNumber = "410"
             landmarkName = "minimizeButtonPressed(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -959,32 +575,192 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E137D41B-B704-4656-A4D0-2A1B41068961"
+            uuid = "BB5074A5-958F-411B-A543-5FED642F714A"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Jabrutouch/Controller/Main/Gemara/GemaraLessonsViewController.swift"
+            filePath = "Jabrutouch/App/Repositories/UserRepository.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
-            landmarkName = "setContent()"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "getCurrentUser()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "888CD237-6B31-4C44-A241-BAFFD186BD78"
+            uuid = "128227E7-4C35-45A2-9337-25DD1A272F5F"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Jabrutouch/Controller/Main/Gemara/GemaraLessonsViewController.swift"
+            filePath = "Jabrutouch/App/Models/User/JTUser.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "257"
-            endingLineNumber = "257"
-            landmarkName = "playLesson(_:mediaType:)"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "values"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "128227E7-4C35-45A2-9337-25DD1A272F5F - ba53c8555ef1bbb9"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Jabrutouch.JTUser.values.getter : Swift.Dictionary&lt;Swift.String, Any&gt;"
+                  moduleName = "Jabrutouch"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shlomocarmen/Projects/jabrutouch_ios/Jabrutouch/App/Models/User/JTUser.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "105"
+                  endingLineNumber = "105"
+                  offsetFromSymbolStart = "2540">
+               </Location>
+               <Location
+                  uuid = "128227E7-4C35-45A2-9337-25DD1A272F5F - b833ce5cad528152"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Jabrutouch.JTLessonWatched) -&gt; Swift.Dictionary&lt;Swift.String, Any&gt; in Jabrutouch.JTUser.values.getter : Swift.Dictionary&lt;Swift.String, Any&gt;"
+                  moduleName = "Jabrutouch"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shlomocarmen/Projects/jabrutouch_ios/Jabrutouch/App/Models/User/JTUser.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "105"
+                  endingLineNumber = "105"
+                  offsetFromSymbolStart = "60">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A431F943-5CF0-46DB-9895-886EDBC5BD95"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Jabrutouch/App/Models/User/JTUser.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "init(values:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A431F943-5CF0-46DB-9895-886EDBC5BD95 - 7484fbf87e86edf8"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Jabrutouch.JTUser.init(values: Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; Swift.Optional&lt;Jabrutouch.JTUser&gt;"
+                  moduleName = "Jabrutouch"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shlomocarmen/Projects/jabrutouch_ios/Jabrutouch/App/Models/User/JTUser.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "71"
+                  endingLineNumber = "71"
+                  offsetFromSymbolStart = "2992">
+               </Location>
+               <Location
+                  uuid = "A431F943-5CF0-46DB-9895-886EDBC5BD95 - 85892df0e05e1979"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; Swift.Optional&lt;Jabrutouch.JTLessonWatched&gt; in Jabrutouch.JTUser.init(values: Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; Swift.Optional&lt;Jabrutouch.JTUser&gt;"
+                  moduleName = "Jabrutouch"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shlomocarmen/Projects/jabrutouch_ios/Jabrutouch/App/Models/User/JTUser.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "71"
+                  endingLineNumber = "71"
+                  offsetFromSymbolStart = "28">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EC699341-14C0-419B-9C03-7A46A4E193DE"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Jabrutouch/Controller/SignIn/SignUpViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "211"
+            endingLineNumber = "211"
+            landmarkName = "attemptSignUp(userId:firstName:lastName:phoneNumber:email:password:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "EC699341-14C0-419B-9C03-7A46A4E193DE - e83d1841bf9d0401"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Jabrutouch.SignUpViewController.(attemptSignUp in _347C487B770F89A5EAC426FAC4DB0207)(userId: Swift.Int, firstName: Swift.String, lastName: Swift.String, phoneNumber: Swift.String, email: Swift.String, password: Swift.String) -&gt; ()"
+                  moduleName = "Jabrutouch"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shlomocarmen/Projects/jabrutouch_ios/Jabrutouch/Controller/SignIn/SignUpViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "211"
+                  endingLineNumber = "211"
+                  offsetFromSymbolStart = "368">
+               </Location>
+               <Location
+                  uuid = "EC699341-14C0-419B-9C03-7A46A4E193DE - a0ff8c6a665efe55"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Jabrutouch.JTUser, Swift.Error&gt;) -&gt; () in Jabrutouch.SignUpViewController.(attemptSignUp in _347C487B770F89A5EAC426FAC4DB0207)(userId: Swift.Int, firstName: Swift.String, lastName: Swift.String, phoneNumber: Swift.String, email: Swift.String, password: Swift.String) -&gt; ()"
+                  moduleName = "Jabrutouch"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shlomocarmen/Projects/jabrutouch_ios/Jabrutouch/Controller/SignIn/SignUpViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "212"
+                  endingLineNumber = "212"
+                  offsetFromSymbolStart = "168">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "51C6D890-CA2E-4B52-A360-B6897560952A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Jabrutouch/App/Repositories/DafYomiRepository.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "getDafYomiByOffset(offset:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F59FF625-EAE2-4720-9DD4-C7EB3DEC13CB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Jabrutouch/Controller/Player/AudioPlayer.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "307"
+            endingLineNumber = "307"
+            landmarkName = "observeValue(forKeyPath:of:change:context:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

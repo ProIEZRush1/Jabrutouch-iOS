@@ -20,10 +20,7 @@ struct JTLessonWatched {
         if let duration = values["duration"] as? Double {
             self.duration = duration
         } else { return nil }
-        
-        self.lessonId = values["lessonId"] as? Int ?? 0
-        self.duration = values["duration"] as? Double ?? 0.0
-        
+
     }
     
     

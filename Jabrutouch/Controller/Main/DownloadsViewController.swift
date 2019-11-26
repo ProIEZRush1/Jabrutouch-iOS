@@ -45,6 +45,7 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     fileprivate let GEMARA = "Gemara"
     fileprivate let MISHNA = "Mishna"
     fileprivate var isReloadingSection =  false
+    private var lessonWatched: [JTLessonWatched] = []
     
     fileprivate var gemaraOpenSections: Set<Int> = []
     fileprivate var mishnaOpenSections: Set<Int> = []
@@ -72,6 +73,7 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         setContent(openSections: true)
         setSelectedPage()
         ContentRepository.shared.addDelegate(self)
+        self.lessonWatched = UserDefaultsProvider.shared.lessonWatched
     }
     
     
@@ -298,26 +300,43 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
             let lessons = self.gemaraDownloads[indexPath.section].records.sorted(by:{
                 $0.lesson.page < $1.lesson.page
                 })
-            let lesson = lessons[indexPath.row] //self.gemaraDownloads[indexPath.section].records[indexPath.row]
+            let lesson = lessons[indexPath.row]
             cell.book.text = lesson.masechetName
             cell.chapter.text = ""
             cell.number.text = "\(lesson.lesson.page)"
             cell.delegate = self
             cell.audioButton.isHidden = !lesson.lesson.isAudioDownloaded
             cell.videoButton.isHidden = !lesson.lesson.isVideoDownloaded
+            if self.lessonWatched.count > 0 {
+                for _lesson in self.lessonWatched {
+                    if _lesson.lessonId == lesson.lesson.id {
+                        let count = _lesson.duration / Double(lesson.lesson.duration)
+                        Utils.setProgressbar(count: count, view: cell.progressBar, rounded: false, cornerRadius: 8, bottomRadius: true)
+                        break
+                    }
+                }
+            }
         } else {
             cell.isFirstTable = false
             let lessons = self.mishnaDownloads[indexPath.section].records.sorted(by:{
                 $0.lesson.mishna < $1.lesson.mishna
                 })
             let lesson = lessons[indexPath.row]
-//            let lesson = self.mishnaDownloads[indexPath.section].records[indexPath.row]
             cell.book.text = lesson.masechetName
             cell.chapter.text = lesson.chapter
             cell.number.text = "\(lesson.lesson.mishna)"
             cell.delegate = self
             cell.audioButton.isHidden = !lesson.lesson.isAudioDownloaded
             cell.videoButton.isHidden = !lesson.lesson.isVideoDownloaded
+            if self.lessonWatched.count > 0 {
+                for _lesson in self.lessonWatched {
+                    if _lesson.lessonId == lesson.lesson.id {
+                        let count = _lesson.duration / Double(lesson.lesson.duration)
+                        Utils.setProgressbar(count: count, view: cell.progressBar, rounded: false, cornerRadius: 8, bottomRadius: true)
+                        break
+                    }
+                }
+            }
         }
 
         
