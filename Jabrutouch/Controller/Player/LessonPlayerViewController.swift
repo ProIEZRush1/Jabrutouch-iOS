@@ -179,6 +179,7 @@ class LessonPlayerViewController: UIViewController {
         self.audioPlayer.stopAndRelease()
         self.videoPlayer.stopAndRelease()
         self.postWatchAnalyticEvent()
+        self.saveLessonLocation()
         NotificationCenter.default.removeObserver(self)
         ContentRepository.shared.removeDelegate(self)
     }
@@ -219,10 +220,29 @@ class LessonPlayerViewController: UIViewController {
         AnalyticsManager.shared.postEvent(eventType: .watch, category: category, mediaType: self.mediaType, lessonId: self.lesson.id, duration: Int64(watchDuration) * 1000, online: online) { (result: Result<Any, JTError>) in
             
         }
-        guard var lessonWatched = JTLessonWatched(values: ["lessonId": lesson.id, "duration": watchDuration]) else { return }
-        self.user?.lessonWatched.append(lessonWatched)
-        UserRepository.shared.updateCurrentUser(self.user!)
-        
+    }
+    
+    private func saveLessonLocation() {
+        var watchLocation: TimeInterval!
+        switch self.mediaType {
+        case .audio:
+            watchLocation = self.audioPlayer.watchLocation
+        case .video:
+            watchLocation = self.videoPlayer.watchLocation
+        }
+        var lessonWatchedList = UserDefaultsProvider.shared.lessonWatched
+        for (index, _lesson) in lessonWatchedList.enumerated() {
+            if _lesson.lessonId == lesson.id{
+                lessonWatchedList[index].duration = watchLocation ?? 0.0
+                UserDefaultsProvider.shared.lessonWatched = lessonWatchedList
+                return
+            }
+        }
+        let values = ["lessonId": lesson.id, "duration": watchLocation ?? 0.0] as [String : Any]
+        guard let lessonWatched = JTLessonWatched(values: values) else { return }
+        lessonWatchedList.append(lessonWatched)
+        UserDefaultsProvider.shared.lessonWatched = lessonWatchedList
+
     }
     //====================================================
     // MARK: - Setup

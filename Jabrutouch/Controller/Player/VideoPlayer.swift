@@ -82,6 +82,7 @@ class VideoPlayer: UIView {
     
     private var player: AVPlayer?
     private(set) var watchDuration: TimeInterval = 0.0
+    private(set) var watchLocation: TimeInterval = 0.0
     private var startPlayDate: Date?
     //----------------------------------------------------
     // MARK: - Initializers
@@ -335,6 +336,8 @@ class VideoPlayer: UIView {
     
     func stopAndRelease() {
         let _ = self.pause()
+        guard let player = self.player else { return }
+        self.watchLocation = player.currentTime
         self.player?.removeObserver(self, forKeyPath: "timeControlStatus")
         self.player = nil
         self.videoLayer.player = nil
