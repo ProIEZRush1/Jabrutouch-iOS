@@ -22,8 +22,8 @@ class JTLesson: Hashable  {
     var audioLink: String?
     var videoLink: String?
     var textLink: String?
-    var videoPart: [String]
-    var gallery: [String]
+    var videoPart: [JTVideoPart] = []
+    var gallery: [JTGallery] = []
     var presenter: JTLesssonPresenter?
     
     var isDownloadingAudio = false
@@ -60,12 +60,12 @@ class JTLesson: Hashable  {
             self.textLink = textLink
         }
         
-        if let videoPart = values["video_part"] as? [String] {
-            self.videoPart = videoPart
+        if let videoPartValues = values["video_part"] as? [[String: Any]] {
+            self.videoPart = videoPartValues.compactMap{JTVideoPart(values: $0)}
         } else { return nil }
         
-        if let gallery = values["gallery"] as? [String] {
-            self.gallery = gallery
+        if let galleryValues = values["gallery"] as? [[String: Any]] {
+            self.gallery = galleryValues.compactMap{JTGallery(values: $0)}
         } else { return nil }
         
         if let presenterValues = values["presenter"] as? [String: Any] {
@@ -199,13 +199,13 @@ class JTLesson: Hashable  {
         values["audio"] = self.audioLink
         values["video"] = self.videoLink
         values["page"]  = self.textLink
-        values["video_part"] = self.videoPart
-        values["gallery"] = self.gallery
+        values["video_part"] = self.videoPart.map{$0.values}
+        values["gallery"] = self.gallery.map{$0.values}
         values["presenter"] = self.presenter?.values
         return values
     }
     
-    //============================================
+    //============================z================
     // MARK: - Hashable
     //============================================
     static func == (lhs: JTLesson, rhs: JTLesson) -> Bool {
