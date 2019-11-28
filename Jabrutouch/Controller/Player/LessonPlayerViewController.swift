@@ -62,6 +62,8 @@ class LessonPlayerViewController: UIViewController {
     // MARK: - Properties
     //====================================================
     
+    var gallery:[String] = []
+    private var lessonWatched: [JTLessonWatched] = []
     private var lesson: JTLesson
     private var mediaType: JTLessonMediaType
     private var endTimeDisplayType: EndTimeDisplayMode = .duration
@@ -147,7 +149,7 @@ class LessonPlayerViewController: UIViewController {
         if self.shouldDisplayDonationPopUp {
             self.presentDonateAlert()
         }
-        
+        self.lessonWatched = UserDefaultsProvider.shared.lessonWatched
         self.showActivityView()
         self.roundCorners()
         self.setPlayers()
@@ -170,6 +172,8 @@ class LessonPlayerViewController: UIViewController {
         super.viewDidAppear(animated)
         DispatchQueue(label: "player_loader", qos: .utility, attributes: .concurrent, autoreleaseFrequency: .inherit, target: nil).async {
             self.loadPDF()
+            self.setUpGallery()
+            self.setVideoParts()
         }
     }
     
@@ -247,6 +251,31 @@ class LessonPlayerViewController: UIViewController {
     //====================================================
     // MARK: - Setup
     //====================================================
+    
+    private func setUpGallery() {
+        if self.lesson.gallery.count > 0 {
+            DispatchQueue.main.async {
+                self.portraitPhotoButton.isHidden = false
+            }
+        }
+    }
+    
+    private func setVideoParts() {
+        DispatchQueue.main.async {
+            self.videoPlayer.firstVideoPart.isHidden = true
+            self.videoPlayer.secondVideoPart.isHidden = true
+            if self.lesson.videoPart.count > 0 {
+                self.videoPlayer.setVideoPartsUI()
+                if let firstPart = Double(self.lesson.videoPart[0].videoPart){
+                    self.videoPlayer.firstPart = firstPart // Double(self.lesson.duration)
+                }
+                if let secondPart = Double(self.lesson.videoPart[1].videoPart){
+                    self.videoPlayer.secondPart = secondPart // Double(self.lesson.duration)
+                }
+            }
+        }
+    }
+    
     private func presentDonateAlert() {
         let alertVC = DonatedAlert()
         alertVC.modalTransitionStyle = .crossDissolve
@@ -433,7 +462,7 @@ class LessonPlayerViewController: UIViewController {
             self.audioSliderContainer.isHidden = true
         case .audio:
             self.audioSliderContainer.isHidden = false
-            if let image = Utils.linearGradientImage(size: self.audioSlider.frame.size, colors: [Colors.appBlue, Colors.appOrange]) {
+            if let image = Utils.linearGradientImage(endXPoint: self.audioPlayer.currentTime, size: self.audioSlider.frame.size, colors: [Colors.appBlue, Colors.appOrange]) {
                 self.audioSlider.setMinimumTrackImage(image, for: .normal)
             }
         }
@@ -520,6 +549,10 @@ class LessonPlayerViewController: UIViewController {
             title = "-\(title)"
         }
         self.audioEndTimeButton.setTitle(title, for: .normal)
+        let endXPoint =  self.audioPlayer.currentTime / self.audioPlayer.duration
+        if let image = Utils.linearGradientImage(endXPoint: endXPoint, size: self.audioSlider.frame.size, colors: [Colors.appBlue, Colors.appOrange]) {
+            self.audioSlider.setMinimumTrackImage(image, for: .normal)
+        }
     }
     
     private func disableHeaderButtons() {
@@ -567,6 +600,19 @@ class LessonPlayerViewController: UIViewController {
                 self.pdfView.document = pdfDocument
                 self.pdfView.autoScales = true
                 self.setMediaURL(startPlaying: self.shouldStartPlay)
+                self.maHaytaHadeke()
+            }
+        }
+    }
+    
+    private func maHaytaHadeke(){
+        if self.lessonWatched.count > 0 {
+            for _lesson in self.lessonWatched {
+                if _lesson.lessonId == self.lesson.id {
+                    let percentage = _lesson.duration / Double(self.lesson.duration)
+                    self.audioPlayer.seek(percentage: percentage)
+                    self.videoPlayer.seek(percentage: percentage)
+                }
             }
         }
     }
@@ -607,7 +653,14 @@ class LessonPlayerViewController: UIViewController {
     }
     
     @IBAction func photoButtonPressed(_ sender: UIButton) {
-        Utils.showAlertMessage(Strings.inDevelopment, viewControler: self)
+        let galleryViewController = Storyboards.Gallery.galleryViewController
+        
+        for image in self.lesson.gallery {
+            self.gallery.append(image.imageLink)
+        }
+        galleryViewController.images = self.gallery
+        galleryViewController.modalPresentationStyle = .fullScreen
+        self.present(galleryViewController, animated: true)
     }
     
     @IBAction func chatButtonPressed(_ sender: UIButton) {

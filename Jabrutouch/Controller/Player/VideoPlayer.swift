@@ -36,22 +36,25 @@ class VideoPlayer: UIView {
     //----------------------------------------------------
     // MARK: - @IBOutlets
     //----------------------------------------------------
+    @IBOutlet private weak var videoProgressBar: JBProgressBar!
     @IBOutlet private weak var videoView: UIView!
-    
     @IBOutlet private weak var accessoriesContainer: UIView!
     @IBOutlet private weak var toolBar: UIToolbar!
     @IBOutlet private weak var playPauseButtonItem: UIBarButtonItem!
     @IBOutlet private weak var forwardButtonItem: UIBarButtonItem!
     @IBOutlet private weak var rewindButtonItem: UIBarButtonItem!
-    @IBOutlet private weak var nextButtonItem: UIBarButtonItem!
-    @IBOutlet private weak var previousButtonItem: UIBarButtonItem!
+    @IBOutlet weak var nextButtonItem: UIBarButtonItem!
+    @IBOutlet weak var previousButtonItem: UIBarButtonItem!
     @IBOutlet private weak var playbackSpeedButton: UIButton!
     @IBOutlet private weak var minimizeButton: UIButton!
     @IBOutlet private weak var fullscreenButton: UIButton!
     @IBOutlet private weak var currentTimeLabel: UILabel!
     @IBOutlet private weak var endTimeButton: UIButton!
     @IBOutlet private weak var slider: UISlider!
-    
+    @IBOutlet weak var firstVideoPart: UIView!
+    @IBOutlet weak var firstVideoPartLeadingConstrant: NSLayoutConstraint!
+    @IBOutlet weak var secondVideoPartTrallingConstrant: NSLayoutConstraint!
+    @IBOutlet weak var secondVideoPart: UIView!
     
     @IBOutlet private weak var buttonsStackView: UIStackView!
     @IBOutlet private weak var buttonsStackViewLeadingConstraint: NSLayoutConstraint!
@@ -64,8 +67,8 @@ class VideoPlayer: UIView {
     @IBOutlet private weak var videoPlayerPlayPauseButton: UIButton!
     @IBOutlet private weak var videoPlayerForwardButton: UIButton!
     @IBOutlet private weak var videoPlayerRewindButton: UIButton!
-    @IBOutlet private weak var videoPlayerNextButton: UIButton!
-    @IBOutlet private weak var videoPlayerPreviousButton: UIButton!
+    @IBOutlet weak var videoPlayerNextButton: UIButton!
+    @IBOutlet weak var videoPlayerPreviousButton: UIButton!
     //----------------------------------------------------
     // MARK: - Properies
     //----------------------------------------------------
@@ -84,6 +87,8 @@ class VideoPlayer: UIView {
     private(set) var watchDuration: TimeInterval = 0.0
     private(set) var watchLocation: TimeInterval = 0.0
     private var startPlayDate: Date?
+    var firstPart: Double = 0.0
+    var secondPart: Double = 0.0
     //----------------------------------------------------
     // MARK: - Initializers
     //----------------------------------------------------
@@ -182,9 +187,8 @@ class VideoPlayer: UIView {
     }
     
     private func setupSliders() {
-        self.slider.setThumbImage(#imageLiteral(resourceName: "newThumb"), for: .normal)        
-        
-        if let image = Utils.linearGradientImage(size: self.slider.frame.size, colors: [Colors.appBlue, Colors.appOrange]) {
+        self.slider.setThumbImage(#imageLiteral(resourceName: "newThumb"), for: .normal)
+        if let image = Utils.linearGradientImage(endXPoint: 1.0, size: self.slider.frame.size, colors: [Colors.appBlue, Colors.appOrange]) {
             self.slider.setMinimumTrackImage(image, for: .normal)
             
         }
@@ -211,6 +215,20 @@ class VideoPlayer: UIView {
         self.videoPlayerPreviousButton.setImage(#imageLiteral(resourceName: "previous-prs"), for: .highlighted)
     }
     
+    func setVideoPartsUI() {
+        self.firstVideoPart.isHidden = false
+        self.secondVideoPart.isHidden = false
+        self.nextButtonItem.isEnabled = true
+        self.previousButtonItem.isEnabled = true
+        self.videoPlayerNextButton.isEnabled = true
+        self.videoPlayerPreviousButton.isEnabled = true
+    }
+
+    func setVideoPartsLocation(leading: CGFloat, tralling: CGFloat) {
+        self.firstVideoPartLeadingConstrant.constant = leading
+        self.secondVideoPartTrallingConstrant.constant = tralling
+    }
+    
     //----------------------------------------------------
     // MARK: - Methods
     //----------------------------------------------------
@@ -221,6 +239,7 @@ class VideoPlayer: UIView {
         self.mode = mode
         switch mode {
         case .regular:
+            self.videoProgressBar.isHidden = true
             self.accessoriesContainer.isHidden = true
             self.buttonsStackView.isHidden = true
             // Set Video Layer
@@ -244,6 +263,7 @@ class VideoPlayer: UIView {
         case .small:
             self.accessoriesContainer.isHidden = true
             self.buttonsStackView.isHidden = false
+            self.videoProgressBar.isHidden = false
             
             self.videoView.snp.removeConstraints()
             self.videoView.snp.makeConstraints { (maker) in
@@ -258,9 +278,12 @@ class VideoPlayer: UIView {
             
             self.view.layer.cornerRadius = 15.0
             self.view.clipsToBounds = true
+            
+            self.progressUpdateTimer()
         case .fullScreen:
             self.accessoriesContainer.isHidden = true
             self.buttonsStackView.isHidden = true
+            self.videoProgressBar.isHidden = true
             
             self.videoView.snp.removeConstraints()
             self.videoView.snp.makeConstraints { (maker) in
@@ -284,6 +307,21 @@ class VideoPlayer: UIView {
                 maker.centerY.equalTo(self.currentTimeLabel.snp.centerY)
                 maker.height.equalTo(30.0)
             }
+            
+//            self.firstVideoPart.snp.removeConstraints()
+//            self.firstVideoPart.snp.makeConstraints { (maker) in
+//                maker.leading.equalTo(self.currentTimeLabel.snp.trailing).offset(50.0)
+//                maker.trailing.equalTo(self.currentTimeLabel.snp.trailing).offset(53.0)
+//                maker.centerY.equalTo(self.currentTimeLabel.snp.centerY)
+//                maker.height.equalTo(11.0)
+//            }
+//            self.secondVideoPart.snp.removeConstraints()
+//            self.secondVideoPart.snp.makeConstraints { (maker) in
+//                maker.leading.equalTo(self.endTimeButton.snp.leading).offset(50.0)
+//                maker.trailing.equalTo(self.endTimeButton.snp.leading).offset(53.0)
+//                maker.centerY.equalTo(self.currentTimeLabel.snp.centerY)
+//                maker.height.equalTo(11.0)
+//            }
             
             self.view.layer.cornerRadius = 0.0
             self.view.clipsToBounds = true
@@ -413,7 +451,13 @@ class VideoPlayer: UIView {
     @IBAction func previousButtonPressed(_ sender: Any) {
         switch self.mode {
         case .regular, .fullScreen:
-            self.showAccessoriesView()
+            if self.currentTime > self.firstPart && self.currentTime < self.secondPart {
+                self.setCurrentTime(firstPart)
+            }
+            else if self.currentTime > self.firstPart && self.currentTime > self.secondPart{
+                self.setCurrentTime(self.secondPart)
+            }
+           
         case .small:
             break
         }
@@ -422,7 +466,12 @@ class VideoPlayer: UIView {
     @IBAction func nextButtonPressed(_ sender: Any) {
         switch self.mode {
         case .regular, .fullScreen:
-            self.showAccessoriesView()
+            if self.currentTime < self.firstPart {
+                self.setCurrentTime(firstPart)
+            }
+            else if self.currentTime > self.firstPart && self.currentTime < self.secondPart{
+                self.setCurrentTime(self.secondPart)
+            }
         case .small:
             break
         }
@@ -464,6 +513,13 @@ class VideoPlayer: UIView {
     // MARK: - Actions
     //----------------------------------------------------
     
+    func seek(percentage: Double) {
+        guard let player = self.player else { return }
+        let time = player.duration * percentage
+        self.setCurrentTime(time)
+        self.slider.value = Float(percentage)
+    }
+    
     private func startHideAccessoriesTimer() {
         DispatchQueue.main.async{
             self.hideAccessoriesTimer?.invalidate()
@@ -485,6 +541,16 @@ class VideoPlayer: UIView {
             self.timeUpdateTimer?.invalidate()
             self.timeUpdateTimer = nil
             self.timeUpdateTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.updateTime), userInfo: nil, repeats: true)
+            
+            self.timeUpdateTimer?.fire()
+        }
+    }
+    
+    private func progressUpdateTimer() {
+        DispatchQueue.main.async{
+            self.timeUpdateTimer?.invalidate()
+            self.timeUpdateTimer = nil
+            self.timeUpdateTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.updateProgress), userInfo: nil, repeats: true)
             
             self.timeUpdateTimer?.fire()
         }
@@ -563,6 +629,12 @@ class VideoPlayer: UIView {
         self.updateSliderAndTimeLabels()
     }
     
+    @objc private func updateProgress() {
+        guard let player = self.player else { return }
+        let count = self.currentTime / player.duration
+        Utils.setProgressbar(count: count, view: self.videoProgressBar, rounded: false, cornerRadius: 8, bottomRadius: true)
+    }
+    
     private func showAccessoriesView() {
         self.accessoriesContainer.isHidden = false
         UIView.animate(withDuration: 0.3, animations: {
@@ -609,6 +681,12 @@ class VideoPlayer: UIView {
             title = "-\(title)"
         }
         self.endTimeButton.setTitle(title, for: .normal)
+        
+        let endXPoint = currentTime / duration
+        if let image = Utils.linearGradientImage(endXPoint: endXPoint, size: self.slider.frame.size, colors: [Colors.appBlue, Colors.appOrange]) {
+            self.slider.setMinimumTrackImage(image, for: .normal)
+            
+        }
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {

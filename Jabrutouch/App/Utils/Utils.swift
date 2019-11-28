@@ -102,7 +102,7 @@ class Utils {
     
     class func convertDictionaryToString(_ dictionary:Dictionary<String,Any>)->String?{
         do {
-            let data = try JSONSerialization.data(withJSONObject: dictionary, options: JSONSerialization.WritingOptions(rawValue: 0))
+            let data = try JSONSerialization.data(withJSONObject: dictionary, options: JSONSerialization.WritingOptions.prettyPrinted)
             let string = String(data: data, encoding: String.Encoding.utf8)
             return string
         }
@@ -205,13 +205,14 @@ class Utils {
         }
     }
     
-    class func linearGradientImage(size: CGSize, colors: [UIColor]) -> UIImage? {
+    class func linearGradientImage(endXPoint:Double, size: CGSize, colors: [UIColor]) -> UIImage? {
         let gradientLayer = CAGradientLayer()
         let frame = CGRect.init(x:0, y:0, width:size.width, height: size.height)
         gradientLayer.frame = frame
         gradientLayer.colors = colors.map{$0.cgColor}
+        gradientLayer.locations = [0.54, 1]
         gradientLayer.startPoint = CGPoint.init(x:0.0, y:0.5)
-        gradientLayer.endPoint = CGPoint.init(x:1.0, y:0.5)
+        gradientLayer.endPoint = CGPoint.init(x:endXPoint, y:0.5)
         UIGraphicsBeginImageContextWithOptions(gradientLayer.frame.size, gradientLayer.isOpaque, 0.0);
         gradientLayer.render(in: UIGraphicsGetCurrentContext()!)
         if let image = UIGraphicsGetImageFromCurrentImageContext() {

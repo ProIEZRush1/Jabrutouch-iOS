@@ -108,7 +108,7 @@ class AudioPlayer: UIView {
         self.playbackSpeedButton.isEnabled = false
         
         self.slider.setThumbImage(#imageLiteral(resourceName: "thumb"), for: .normal)
-        if let image = Utils.linearGradientImage(size: self.slider.frame.size, colors: [Colors.appBlue, Colors.appOrange]) {
+        if let image = Utils.linearGradientImage(endXPoint: 0.0, size: self.slider.frame.size, colors: [Colors.appBlue, Colors.appOrange]) {
             self.slider.setMinimumTrackImage(image, for: .normal)
             
         }
@@ -222,6 +222,13 @@ class AudioPlayer: UIView {
     // MARK: - Actions
     //----------------------------------------------------
     
+    func seek(percentage: Double) {
+        guard let player = self.player else { return }
+        let time = player.duration * percentage
+        self.setCurrentTime(time)
+        self.slider.value = Float(percentage)
+    }
+    
     private func startTimeUpdateTimer() {
         
         DispatchQueue.main.async{
@@ -300,14 +307,10 @@ class AudioPlayer: UIView {
                     if avPlayer.timeControlStatus == .playing {
                         self.delegate?.didStartPlaying()
                         self.startPlayDate = Date()
-                        print("Play Date: \(self.startPlayDate!)")
                     } else if avPlayer.timeControlStatus == .paused {
                         if let date = self.startPlayDate {
                             let pauseDate = Date()
                             let duration = pauseDate.timeIntervalSince(date)
-                            print("Pause Date: \(pauseDate)")
-                            print("Duration: \(duration)")
-                            print("=========================================================")
                             self.watchDuration += duration
                             self.startPlayDate = nil
                         }

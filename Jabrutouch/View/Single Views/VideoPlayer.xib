@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -22,6 +22,8 @@
                 <outlet property="buttonsStackViewLeadingConstraint" destination="Jem-YU-vVp" id="7PN-ba-xRa"/>
                 <outlet property="currentTimeLabel" destination="BUM-AC-ghR" id="hnn-0S-c3f"/>
                 <outlet property="endTimeButton" destination="Ee5-mQ-d5J" id="W34-E9-LCk"/>
+                <outlet property="firstVideoPart" destination="FKE-wm-tBV" id="w2X-fg-fXH"/>
+                <outlet property="firstVideoPartLeadingConstrant" destination="hYV-0e-jeb" id="NZy-uT-Xq4"/>
                 <outlet property="forwardButton" destination="BDz-GM-WjT" id="Px4-oC-gMV"/>
                 <outlet property="forwardButtonItem" destination="S9F-k2-N9t" id="VmK-Zl-cVy"/>
                 <outlet property="fullscreenButton" destination="TdK-mw-Ild" id="sI2-OH-fLo"/>
@@ -34,6 +36,8 @@
                 <outlet property="previousButtonItem" destination="qUd-B3-5hv" id="zYK-33-Ak2"/>
                 <outlet property="rewindButton" destination="U8M-Eb-G7z" id="SwF-hJ-4QK"/>
                 <outlet property="rewindButtonItem" destination="HHV-Qj-fAS" id="y49-Cy-Ah0"/>
+                <outlet property="secondVideoPart" destination="d0b-p7-wgo" id="MlZ-uH-qkz"/>
+                <outlet property="secondVideoPartTrallingConstrant" destination="gDW-Bc-1m0" id="VMF-I5-pI3"/>
                 <outlet property="slider" destination="Ygl-v4-Nyr" id="NPG-JX-85R"/>
                 <outlet property="toolBar" destination="uWL-dk-0Mw" id="UgE-kR-czU"/>
                 <outlet property="videoPlayerForwardButton" destination="Yku-Wj-tPq" id="0Bf-fr-Gzm"/>
@@ -41,6 +45,7 @@
                 <outlet property="videoPlayerPlayPauseButton" destination="e8x-bQ-dUL" id="4ui-TP-gYa"/>
                 <outlet property="videoPlayerPreviousButton" destination="aw9-TP-r98" id="6c6-d8-gXY"/>
                 <outlet property="videoPlayerRewindButton" destination="HtV-XW-UfD" id="HLj-vP-Nxs"/>
+                <outlet property="videoProgressBar" destination="KR7-ci-2U1" id="rmx-Ja-uXR"/>
                 <outlet property="videoView" destination="ApY-Nn-eGr" id="HwC-RS-eBg"/>
             </connections>
         </placeholder>
@@ -245,7 +250,7 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--:--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BUM-AC-ghR">
-                            <rect key="frame" x="20" y="188" width="60" height="21"/>
+                            <rect key="frame" x="20" y="187.5" width="60" height="21.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="60" id="8mP-00-l1h"/>
                             </constraints>
@@ -290,12 +295,29 @@
                                 <action selector="fullscreenButtonPressed:" destination="-1" eventType="touchUpInside" id="sbS-zh-Uxc"/>
                             </connections>
                         </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d0b-p7-wgo" userLabel="secondVideoPart">
+                            <rect key="frame" x="304" y="210" width="3" height="11"/>
+                            <color key="backgroundColor" red="1" green="0.81699999999999995" blue="0.34499999999999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="11" id="VB1-rF-bIM"/>
+                                <constraint firstAttribute="width" constant="3" id="Z0F-yt-a9S"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FKE-wm-tBV" userLabel="firstVideoPart">
+                            <rect key="frame" x="67" y="210" width="3" height="11"/>
+                            <color key="backgroundColor" red="1" green="0.81699999999999995" blue="0.34499999999999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="11" id="aAb-4D-Yh4"/>
+                                <constraint firstAttribute="width" constant="3" id="yJ9-qu-5xf"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="v5f-Pd-ZsM" secondAttribute="bottom" constant="24" id="0Fz-cG-AaK"/>
                         <constraint firstItem="BUM-AC-ghR" firstAttribute="leading" secondItem="P4k-Wt-S6h" secondAttribute="leading" constant="20" id="1Kz-ky-Tep"/>
                         <constraint firstItem="TdK-mw-Ild" firstAttribute="leading" secondItem="Ee5-mQ-d5J" secondAttribute="trailing" constant="4" id="1du-Zf-Ovv"/>
+                        <constraint firstAttribute="bottom" secondItem="FKE-wm-tBV" secondAttribute="bottom" constant="23" id="2xX-Jg-9fx"/>
                         <constraint firstItem="FBO-oO-qzf" firstAttribute="centerY" secondItem="P4k-Wt-S6h" secondAttribute="centerY" id="6lu-If-bAX"/>
                         <constraint firstItem="v5f-Pd-ZsM" firstAttribute="leading" secondItem="P4k-Wt-S6h" secondAttribute="leading" id="Awi-Cv-ufk"/>
                         <constraint firstItem="HZF-U0-KFb" firstAttribute="top" secondItem="P4k-Wt-S6h" secondAttribute="top" constant="12" id="C1s-V6-FFP"/>
@@ -308,8 +330,11 @@
                         <constraint firstAttribute="bottom" secondItem="BUM-AC-ghR" secondAttribute="bottom" constant="35" id="QhH-4W-YiD"/>
                         <constraint firstAttribute="trailing" secondItem="v5f-Pd-ZsM" secondAttribute="trailing" id="T5h-KX-KEg"/>
                         <constraint firstItem="HZF-U0-KFb" firstAttribute="leading" secondItem="P4k-Wt-S6h" secondAttribute="leading" constant="12" id="cOu-i0-eKd"/>
+                        <constraint firstAttribute="trailing" secondItem="d0b-p7-wgo" secondAttribute="trailing" constant="68" id="gDW-Bc-1m0"/>
                         <constraint firstItem="FBO-oO-qzf" firstAttribute="centerX" secondItem="P4k-Wt-S6h" secondAttribute="centerX" id="hAN-wL-5zO"/>
+                        <constraint firstItem="FKE-wm-tBV" firstAttribute="leading" secondItem="P4k-Wt-S6h" secondAttribute="leading" constant="67" id="hYV-0e-jeb"/>
                         <constraint firstAttribute="trailing" secondItem="TdK-mw-Ild" secondAttribute="trailing" constant="16" id="nuj-lc-PGu"/>
+                        <constraint firstAttribute="bottom" secondItem="d0b-p7-wgo" secondAttribute="bottom" constant="23" id="q1H-ke-Nyh"/>
                         <constraint firstItem="SPE-vx-Ftw" firstAttribute="top" secondItem="P4k-Wt-S6h" secondAttribute="top" priority="16" constant="16" id="qp7-jU-xQk"/>
                         <constraint firstAttribute="trailing" secondItem="uWL-dk-0Mw" secondAttribute="trailing" id="rnt-Wz-9tl"/>
                         <constraint firstItem="BUM-AC-ghR" firstAttribute="centerY" secondItem="TdK-mw-Ild" secondAttribute="centerY" id="sml-X3-sdd"/>
@@ -320,17 +345,27 @@
                         </mask>
                     </variation>
                 </view>
+                <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KR7-ci-2U1" customClass="JBProgressBar" customModule="Jabrutouch" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="240" width="375" height="4"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="4" id="0rU-pf-7yJ"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="KR7-ci-2U1" secondAttribute="trailing" id="DYx-HH-y6D"/>
                 <constraint firstAttribute="bottom" secondItem="uh7-i3-IvM" secondAttribute="bottom" id="IiH-rz-WZt"/>
                 <constraint firstItem="uh7-i3-IvM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="leading" constant="152" id="Jem-YU-vVp"/>
                 <constraint firstItem="P4k-Wt-S6h" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Udb-2u-9R6"/>
                 <constraint firstItem="uh7-i3-IvM" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Yt2-Ur-Voi"/>
+                <constraint firstItem="KR7-ci-2U1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="eqJ-C1-6A7"/>
                 <constraint firstAttribute="trailing" secondItem="uh7-i3-IvM" secondAttribute="trailing" id="hv6-qZ-Y3G"/>
                 <constraint firstItem="P4k-Wt-S6h" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ii9-rS-qGJ"/>
                 <constraint firstAttribute="trailing" secondItem="P4k-Wt-S6h" secondAttribute="trailing" id="j24-kF-wCG"/>
                 <constraint firstAttribute="bottom" secondItem="P4k-Wt-S6h" secondAttribute="bottom" id="lcR-3x-Fhf"/>
+                <constraint firstAttribute="bottom" secondItem="KR7-ci-2U1" secondAttribute="bottom" id="n8Q-WN-mPi"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="139" y="143"/>
