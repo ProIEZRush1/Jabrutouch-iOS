@@ -110,15 +110,17 @@ class DonatedAlert: UIViewController {
                                     JTDonor(firstName: "Michael", lastName: "Harari", country: "Panamá"),
                                     JTDonor(firstName: "Max Joe", lastName: "Harari", country: "Panamá"),]
         
-        let index = UserDefaultsProvider.shared.index
-        self.nameLabel.text = "\(allDonors[index].firstName) \(allDonors[index].lastName)"
-        self.location.text = allDonors[index].country
         
+        var index = UserDefaultsProvider.shared.index
         if index == allDonors.count {
             UserDefaultsProvider.shared.index = 0
+            index = 0
         } else {
             UserDefaultsProvider.shared.index = index + 1
         }
+        self.nameLabel.text = "\(allDonors[index].firstName) \(allDonors[index].lastName)"
+        self.location.text = allDonors[index].country
+        
     }
     
     //====================================================
