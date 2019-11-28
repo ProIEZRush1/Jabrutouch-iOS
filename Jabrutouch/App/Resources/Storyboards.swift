@@ -37,4 +37,12 @@ class Storyboards {
             return self.mainStoryboard().instantiateViewController(withIdentifier: "AboutVC") as! AboutViewController
         }
     }
+    
+    class Gallery {
+        private class func galleryStoryboard() -> UIStoryboard { return UIStoryboard(name: "Gallery", bundle: Bundle.main) }
+        
+        class var  galleryViewController: GalleryViewController {
+            return self.galleryStoryboard().instantiateViewController(withIdentifier: "GalleryViewController") as! GalleryViewController
+        }
+    }
 }
