@@ -62,7 +62,8 @@ class LessonPlayerViewController: UIViewController {
     // MARK: - Properties
     //====================================================
     
-    var gallery:[String] = []
+    var gallery: [String] = []
+    var videoParts: [String] = []
     private var lessonWatched: [JTLessonWatched] = []
     private var lesson: JTLesson
     private var mediaType: JTLessonMediaType
@@ -103,6 +104,7 @@ class LessonPlayerViewController: UIViewController {
     }
     var masechet = ""
     var daf = ""
+
     //====================================================
     // MARK: - LifeCycle
     //====================================================
@@ -173,7 +175,7 @@ class LessonPlayerViewController: UIViewController {
         DispatchQueue(label: "player_loader", qos: .utility, attributes: .concurrent, autoreleaseFrequency: .inherit, target: nil).async {
             self.loadPDF()
             self.setUpGallery()
-            self.setVideoParts()
+            
         }
     }
     
@@ -260,17 +262,48 @@ class LessonPlayerViewController: UIViewController {
         }
     }
     
+    func setLessonParts(part: Double) {
+        
+        let customView = UIView()
+        
+        let width = self.audioSlider.bounds.width
+        let y = self.audioSlider.bounds.midY - 6
+        let x = CGFloat((part / self.audioPlayer.duration) * Double(width))
+        customView.frame = CGRect.init(x: x, y: y, width: 4, height: 6)
+        customView.backgroundColor = #colorLiteral(red: 1, green: 0.817, blue: 0.345, alpha: 0.66)
+        self.audioSlider.addSubview(customView)
+    }
+    
     private func setVideoParts() {
-        DispatchQueue.main.async {
-            self.videoPlayer.firstVideoPart.isHidden = true
-            self.videoPlayer.secondVideoPart.isHidden = true
-            if self.lesson.videoPart.count > 0 {
-                self.videoPlayer.setVideoPartsUI()
-                if let firstPart = Double(self.lesson.videoPart[0].videoPart){
-                    self.videoPlayer.firstPart = firstPart // Double(self.lesson.duration)
+        switch self.mediaType {
+        case .audio:
+            DispatchQueue.main.async {
+                if self.lesson.videoPart.count > 0 {
+                    for part in self.lesson.videoPart {
+                        if let part = Double(part.videoPart) {
+                            self.setLessonParts(part: part)
+                        }
+                    }
                 }
-                if let secondPart = Double(self.lesson.videoPart[1].videoPart){
-                    self.videoPlayer.secondPart = secondPart // Double(self.lesson.duration)
+            }
+        case .video:
+            DispatchQueue.main.async {
+                self.videoPlayer.firstVideoPart.isHidden = true
+                self.videoPlayer.secondVideoPart.isHidden = true
+                if self.lesson.videoPart.count > 0 {
+                    self.videoPlayer.setVideoPartsUI()
+                    for part in self.lesson.videoPart {
+                        self.videoParts.append(part.videoPart)
+                    }
+                    self.videoPlayer.videoParts = self.videoParts
+//                    if let firstPart = Double(self.lesson.videoPart[0].videoPart){
+//                        self.videoPlayer.firstPart = firstPart
+//                        self.videoPlayer.setFirstPartLocation(leading: firstPart)
+//                    }
+//                    if let secondPart = Double(self.lesson.videoPart[1].videoPart){
+//                        self.videoPlayer.secondPart = secondPart
+//                        self.videoPlayer.setSecondPartLocation(tralling: secondPart)
+//                    }
                 }
             }
         }
@@ -446,16 +479,6 @@ class LessonPlayerViewController: UIViewController {
         
     }
     
-//    private func getMasechetName()-> String {
-//       let seders = ContentRepository.shared.getGemaraSeders()
-//        for seder in seders {
-//            for masechet in seder.masechtot{
-//                 return masechet.name
-//            }
-//        }
-//        return ""
-//    }
-    
     private func setPortraitHeader() {
         switch self.mediaType {
         case .video:
@@ -601,6 +624,7 @@ class LessonPlayerViewController: UIViewController {
                 self.pdfView.autoScales = true
                 self.setMediaURL(startPlaying: self.shouldStartPlay)
                 self.maHaytaHadeke()
+                self.setVideoParts()
             }
         }
     }
