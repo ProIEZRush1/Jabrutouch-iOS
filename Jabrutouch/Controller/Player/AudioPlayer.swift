@@ -107,8 +107,8 @@ class AudioPlayer: UIView {
         self.rewindButton.isEnabled = false
         self.playbackSpeedButton.isEnabled = false
         
-        self.slider.setThumbImage(#imageLiteral(resourceName: "thumb"), for: .normal)
-        if let image = Utils.linearGradientImage(endXPoint: 0.0, size: self.slider.frame.size, colors: [Colors.appBlue, Colors.appOrange]) {
+        self.slider.setThumbImage(#imageLiteral(resourceName: "newThumb"), for: .normal)
+        if let image = Utils.linearGradientImage(endXPoint: 1.0, size: self.slider.frame.size, colors: [Colors.appBlue, Colors.appOrange]) {
             self.slider.setMinimumTrackImage(image, for: .normal)
             
         }
@@ -326,6 +326,10 @@ class AudioPlayer: UIView {
         self.slider.value = Float(percentage)
         self.delegate?.currentTimeDidChange(currentTime: player.currentTime, duration: player.duration)
         setupNowPlaying()
+        if let image = Utils.linearGradientImage(endXPoint: percentage, size: self.slider.frame.size, colors: [Colors.appBlue, Colors.appOrange]) {
+            self.slider.setMinimumTrackImage(image, for: .normal)
+            
+        }
     }
     
     //----------------------------------------------------
