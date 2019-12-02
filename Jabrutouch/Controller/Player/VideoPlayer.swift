@@ -36,8 +36,8 @@ class VideoPlayer: UIView {
     //----------------------------------------------------
     // MARK: - @IBOutlets
     //----------------------------------------------------
-    @IBOutlet private weak var videoProgressBar: JBProgressBar!
-    @IBOutlet private weak var videoView: UIView!
+    @IBOutlet weak var videoProgressBar: JBProgressBar!
+    @IBOutlet weak var videoView: UIView!
     @IBOutlet private weak var accessoriesContainer: UIView!
     @IBOutlet private weak var toolBar: UIToolbar!
     @IBOutlet private weak var playPauseButtonItem: UIBarButtonItem!
@@ -50,12 +50,8 @@ class VideoPlayer: UIView {
     @IBOutlet private weak var fullscreenButton: UIButton!
     @IBOutlet private weak var currentTimeLabel: UILabel!
     @IBOutlet private weak var endTimeButton: UIButton!
-    @IBOutlet private weak var slider: UISlider!
-    @IBOutlet weak var firstVideoPart: UIView!
-    @IBOutlet weak var firstVideoPartLeadingConstrant: NSLayoutConstraint!
-    @IBOutlet weak var secondVideoPartTrallingConstrant: NSLayoutConstraint!
-    @IBOutlet weak var secondVideoPart: UIView!
-    
+    @IBOutlet weak var slider: UISlider!
+   
     @IBOutlet private weak var buttonsStackView: UIStackView!
     @IBOutlet private weak var buttonsStackViewLeadingConstraint: NSLayoutConstraint!
     @IBOutlet private weak var playPauseButton: UIButton!
@@ -87,8 +83,7 @@ class VideoPlayer: UIView {
     private(set) var watchDuration: TimeInterval = 0.0
     private(set) var watchLocation: TimeInterval = 0.0
     private var startPlayDate: Date?
-    var firstPart: Double = 0.0
-    var secondPart: Double = 0.0
+    var videoParts: [Double] = []
     //----------------------------------------------------
     // MARK: - Initializers
     //----------------------------------------------------
@@ -216,19 +211,12 @@ class VideoPlayer: UIView {
     }
     
     func setVideoPartsUI() {
-        self.firstVideoPart.isHidden = false
-        self.secondVideoPart.isHidden = false
         self.nextButtonItem.isEnabled = true
         self.previousButtonItem.isEnabled = true
         self.videoPlayerNextButton.isEnabled = true
         self.videoPlayerPreviousButton.isEnabled = true
     }
 
-    func setVideoPartsLocation(leading: CGFloat, tralling: CGFloat) {
-        self.firstVideoPartLeadingConstrant.constant = leading
-        self.secondVideoPartTrallingConstrant.constant = tralling
-    }
-    
     //----------------------------------------------------
     // MARK: - Methods
     //----------------------------------------------------
@@ -307,22 +295,7 @@ class VideoPlayer: UIView {
                 maker.centerY.equalTo(self.currentTimeLabel.snp.centerY)
                 maker.height.equalTo(30.0)
             }
-            
-//            self.firstVideoPart.snp.removeConstraints()
-//            self.firstVideoPart.snp.makeConstraints { (maker) in
-//                maker.leading.equalTo(self.currentTimeLabel.snp.trailing).offset(50.0)
-//                maker.trailing.equalTo(self.currentTimeLabel.snp.trailing).offset(53.0)
-//                maker.centerY.equalTo(self.currentTimeLabel.snp.centerY)
-//                maker.height.equalTo(11.0)
-//            }
-//            self.secondVideoPart.snp.removeConstraints()
-//            self.secondVideoPart.snp.makeConstraints { (maker) in
-//                maker.leading.equalTo(self.endTimeButton.snp.leading).offset(50.0)
-//                maker.trailing.equalTo(self.endTimeButton.snp.leading).offset(53.0)
-//                maker.centerY.equalTo(self.currentTimeLabel.snp.centerY)
-//                maker.height.equalTo(11.0)
-//            }
-            
+                        
             self.view.layer.cornerRadius = 0.0
             self.view.clipsToBounds = true
         }
@@ -451,13 +424,13 @@ class VideoPlayer: UIView {
     @IBAction func previousButtonPressed(_ sender: Any) {
         switch self.mode {
         case .regular, .fullScreen:
-            if self.currentTime > self.firstPart && self.currentTime < self.secondPart {
-                self.setCurrentTime(firstPart)
+            let sortedArray = self.videoParts.sorted{$0 > $1}
+            for part in sortedArray {
+                if self.currentTime > part {
+                    self.setCurrentTime(part)
+                    break
+                }
             }
-            else if self.currentTime > self.firstPart && self.currentTime > self.secondPart{
-                self.setCurrentTime(self.secondPart)
-            }
-           
         case .small:
             break
         }
@@ -466,11 +439,12 @@ class VideoPlayer: UIView {
     @IBAction func nextButtonPressed(_ sender: Any) {
         switch self.mode {
         case .regular, .fullScreen:
-            if self.currentTime < self.firstPart {
-                self.setCurrentTime(firstPart)
-            }
-            else if self.currentTime > self.firstPart && self.currentTime < self.secondPart{
-                self.setCurrentTime(self.secondPart)
+            let sortedArray = self.videoParts.sorted()
+            for part in sortedArray {
+                if self.currentTime < part {
+                    self.setCurrentTime(part)
+                    break
+                }
             }
         case .small:
             break

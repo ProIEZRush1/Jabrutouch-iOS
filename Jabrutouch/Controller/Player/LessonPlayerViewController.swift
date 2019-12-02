@@ -104,6 +104,7 @@ class LessonPlayerViewController: UIViewController {
     }
     var masechet = ""
     var daf = ""
+    var lessonParts: [Double] = []
 
     //====================================================
     // MARK: - LifeCycle
@@ -191,8 +192,10 @@ class LessonPlayerViewController: UIViewController {
     }
     
     @objc func orientationDidChange(_ notification: Notification) {
+        print("orientationDidChange, userInfo: \(notification.userInfo ?? [:])")
         print(UIDevice.current.orientation.rawValue)
         print(self.view.frame)
+        print(self.videoPlayer.slider.frame)
         if self.isLandscape {
             self.setLandscapeMode()
         }
@@ -262,48 +265,70 @@ class LessonPlayerViewController: UIViewController {
         }
     }
     
-    func setLessonParts(part: Double) {
-        
-        let customView = UIView()
-        
-        let width = self.audioSlider.bounds.width
-        let y = self.audioSlider.bounds.midY - 6
-        let x = CGFloat((part / self.audioPlayer.duration) * Double(width))
-        customView.frame = CGRect.init(x: x, y: y, width: 4, height: 6)
-        customView.backgroundColor = #colorLiteral(red: 1, green: 0.817, blue: 0.345, alpha: 0.66)
-        self.audioSlider.addSubview(customView)
+    func setLessonParts(parts: [Double], view: UIView, width: CGFloat, height:CGFloat, sender: String) {
+        for subView in view.subviews {
+            if subView is JBView {
+                subView.removeFromSuperview()
+            }
+        }
+        if sender == "audio" {
+            for part in self.lessonParts {
+                
+                let customView = JBView()
+                let y = view.bounds.midY - height
+                let x = CGFloat((part / self.audioPlayer.duration) * Double(view.bounds.width))
+                customView.frame = CGRect.init(x: x, y: y, width: width, height: height)
+                customView.backgroundColor = #colorLiteral(red: 1, green: 0.817, blue: 0.345, alpha: 0.66)
+                view.addSubview(customView)
+            }
+        }
+        else if sender == "video" {
+            for part in self.lessonParts {
+                
+                let customView = JBView()
+                let y = view.bounds.midY - height
+                let x = CGFloat((part / self.videoPlayer.duration) * Double(view.bounds.width))
+                customView.frame = CGRect.init(x: x, y: y, width: width, height: height)
+                customView.backgroundColor = #colorLiteral(red: 1, green: 0.817, blue: 0.345, alpha: 0.66)
+                view.addSubview(customView)
+            }
+        }
+        else if sender == "videoSmall" {
+            for part in self.lessonParts {
+                
+                let customView = JBView()
+                let x = CGFloat((part / self.videoPlayer.duration) * Double(view.bounds.width + 2))
+                customView.frame = CGRect.init(x: x, y: 0.0, width: width, height: height)
+                customView.backgroundColor = #colorLiteral(red: 0.178, green: 0.168, blue: 0.663, alpha: 0.5)
+                view.addSubview(customView)
+            }
+        }
     }
     
-    private func setVideoParts() {
+    private func initLessonParts() {
         switch self.mediaType {
         case .audio:
             DispatchQueue.main.async {
                 if self.lesson.videoPart.count > 0 {
                     for part in self.lesson.videoPart {
                         if let part = Double(part.videoPart) {
-                            self.setLessonParts(part: part)
+                            self.lessonParts.append(part)
                         }
+                        self.setLessonParts(parts: self.lessonParts, view: self.audioSlider, width: 4, height: 6, sender: "audio")
                     }
                 }
             }
         case .video:
             DispatchQueue.main.async {
-                self.videoPlayer.firstVideoPart.isHidden = true
-                self.videoPlayer.secondVideoPart.isHidden = true
                 if self.lesson.videoPart.count > 0 {
                     self.videoPlayer.setVideoPartsUI()
                     for part in self.lesson.videoPart {
-                        self.videoParts.append(part.videoPart)
+                        if let part = Double(part.videoPart){
+                            self.lessonParts.append(part)
+                        }
+                        self.setLessonParts(parts: self.lessonParts, view: self.videoPlayer.slider, width: 4, height: 16, sender: "video")
                     }
-                    self.videoPlayer.videoParts = self.videoParts
-//                    if let firstPart = Double(self.lesson.videoPart[0].videoPart){
-//                        self.videoPlayer.firstPart = firstPart
-//                        self.videoPlayer.setFirstPartLocation(leading: firstPart)
-//                    }
-//                    if let secondPart = Double(self.lesson.videoPart[1].videoPart){
-//                        self.videoPlayer.secondPart = secondPart
-//                        self.videoPlayer.setSecondPartLocation(tralling: secondPart)
-//                    }
+                    self.videoPlayer.videoParts = self.lessonParts
                 }
             }
         }
@@ -316,6 +341,7 @@ class LessonPlayerViewController: UIViewController {
         alertVC.modalPresentationStyle = .overFullScreen
         self.present(alertVC, animated: true, completion: nil)
     }
+    
     private func setPortraitMode() {
         
         // Set header view
@@ -394,6 +420,21 @@ class LessonPlayerViewController: UIViewController {
         }
         self.videoPlayer.setMode(self.videoPlayerMode)
         
+        // Set lesson parts
+        switch self.mediaType {
+        case .audio:
+            self.setLessonParts(parts: self.lessonParts, view: self.audioSlider, width: 4, height: 6, sender: "audio")
+        case .video:
+            switch self.videoPlayerMode {
+            case .fullScreen:
+                self.setLessonParts(parts: self.lessonParts, view: self.videoPlayer.slider, width: 4, height: 16, sender: "video")
+            case .regular:
+                self.setLessonParts(parts: self.lessonParts, view: self.videoPlayer.slider, width: 4, height: 16, sender: "video")
+            case .small:
+                self.setLessonParts(parts: self.lessonParts, view: self.videoPlayer.videoProgressBar, width: 4, height: 4, sender: "videoSmall")
+            }
+        }
+        
     }
     
     private func setLandscapeMode() {
@@ -447,6 +488,21 @@ class LessonPlayerViewController: UIViewController {
         }
         else {
             self.videoPlayer.setMode(.fullScreen)
+        }
+        
+        // Set lesson parts
+        switch self.mediaType {
+        case .audio:
+            self.setLessonParts(parts: self.lessonParts, view: self.audioPlayer.slider, width: 4, height: 6, sender: "audio")
+        case .video:
+            switch self.videoPlayerMode {
+            case .fullScreen:
+                 self.setLessonParts(parts: self.lessonParts, view: self.videoPlayer.slider, width: 4, height: 16, sender: "video")
+            case .regular:
+                self.setLessonParts(parts: self.lessonParts, view: self.videoPlayer.slider, width: 4, height: 16, sender: "video")
+            case .small:
+                self.setLessonParts(parts: self.lessonParts, view: self.videoPlayer.videoProgressBar, width: 4, height: 4, sender: "videoSmall")
+            }
         }
         
     }
@@ -624,7 +680,7 @@ class LessonPlayerViewController: UIViewController {
                 self.pdfView.autoScales = true
                 self.setMediaURL(startPlaying: self.shouldStartPlay)
                 self.maHaytaHadeke()
-                self.setVideoParts()
+                self.initLessonParts()
             }
         }
     }

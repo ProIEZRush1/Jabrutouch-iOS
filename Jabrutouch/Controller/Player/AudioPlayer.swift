@@ -41,7 +41,7 @@ class AudioPlayer: UIView {
     @IBOutlet private weak var forwardButton: UIButton!
     @IBOutlet private weak var rewindButton: UIButton!
     @IBOutlet private weak var playbackSpeedButton: UIButton!
-    @IBOutlet private weak var slider: UISlider!
+    @IBOutlet weak var slider: UISlider!
     //----------------------------------------------------
     // MARK: - Properies
     //----------------------------------------------------
@@ -123,6 +123,7 @@ class AudioPlayer: UIView {
         self.stopTimeUpdateTimer()
         self.removeRemoteTransportControls()
     }
+    
     //----------------------------------------------------
     // MARK: - Methods
     //----------------------------------------------------

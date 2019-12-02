@@ -173,6 +173,7 @@
 		836A8845238FD00100F68539 /* Gallery.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 836A8844238FD00100F68539 /* Gallery.storyboard */; };
 		836A8847238FD26400F68539 /* GalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836A8846238FD26400F68539 /* GalleryCell.swift */; };
 		836A88492390136000F68539 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836A88482390136000F68539 /* GalleryViewController.swift */; };
+		836A884B23951CA700F68539 /* JBView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836A884A23951CA700F68539 /* JBView.swift */; };
 		839CB4CB2381C91B0086554B /* SelectInterestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839CB4CA2381C91B0086554B /* SelectInterestViewController.swift */; };
 		839E1E7C238588C100578C60 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839E1E7B238588C100578C60 /* UserRepository.swift */; };
 		83CCB12123783F6100C86450 /* JTMasechetDownloadedGemaraLessons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB12023783F6100C86450 /* JTMasechetDownloadedGemaraLessons.swift */; };
@@ -377,6 +378,7 @@
 		836A8844238FD00100F68539 /* Gallery.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Gallery.storyboard; sourceTree = "<group>"; };
 		836A8846238FD26400F68539 /* GalleryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCell.swift; sourceTree = "<group>"; };
 		836A88482390136000F68539 /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
+		836A884A23951CA700F68539 /* JBView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JBView.swift; sourceTree = "<group>"; };
 		839CB4CA2381C91B0086554B /* SelectInterestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectInterestViewController.swift; sourceTree = "<group>"; };
 		839E1E7B238588C100578C60 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		83CCB12023783F6100C86450 /* JTMasechetDownloadedGemaraLessons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTMasechetDownloadedGemaraLessons.swift; sourceTree = "<group>"; };
@@ -858,6 +860,7 @@
 				219BFF2E22E5A11800ABBEE2 /* TextFieldWithPadding.swift */,
 				21407C8822F72632002F9690 /* TextFieldWithDeleteDelegate.swift */,
 				21999F35231823FF003DB1B4 /* CustomTrackHeightSlider.swift */,
+				836A884A23951CA700F68539 /* JBView.swift */,
 			);
 			path = "Custom Controlles";
 			sourceTree = "<group>";
@@ -1336,6 +1339,7 @@
 				5386914C2379E8B500CC95B5 /* EditGeneralInformationCell.swift in Sources */,
 				83CCB129237DA32D00C86450 /* ForgotPasswordViewController.swift in Sources */,
 				538691492379E8B500CC95B5 /* CompletionProgressCell.swift in Sources */,
+				836A884B23951CA700F68539 /* JBView.swift in Sources */,
 				8342BA75237301D800C3239C /* MainViewController.swift in Sources */,
 				FBB18FAE22F85773006886FD /* GemaraMasechetCellController.swift in Sources */,
 				213196AA22F38B3E00B0AF5F /* LoginResponse.swift in Sources */,
