@@ -738,7 +738,7 @@ class LessonPlayerViewController: UIViewController {
     @IBAction func photoButtonPressed(_ sender: UIButton) {
         let galleryViewController = Storyboards.Gallery.galleryViewController
         galleryViewController.images = self.gallery
-        galleryViewController.modalPresentationStyle = .fullScreen
+        galleryViewController.modalPresentationStyle = .overFullScreen
         self.present(galleryViewController, animated: true)
     }
     
