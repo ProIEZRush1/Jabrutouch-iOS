@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GalleryViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource {
+class GalleryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
 
     @IBOutlet weak var backButton: UIButton!
@@ -26,6 +26,10 @@ class GalleryViewController: UIViewController,UICollectionViewDelegate, UICollec
         self.setPageController()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        self.images = []
+    }
+    
     @IBAction func backButtonPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -33,14 +37,18 @@ class GalleryViewController: UIViewController,UICollectionViewDelegate, UICollec
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.images.count
     }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        if scrollView.contentOffset.x < scrollView.bounds.width*0.5 {
+//            self.pageControl.currentPage = 0
+//        }
+    }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "galleryCell", for: indexPath) as? GalleryCell else {
             return UICollectionViewCell()
         }
-        if self.activityView == nil {
-            self.activityView = Utils.showActivityView(inView: cell.imageView, withFrame: cell.imageView.frame, text: nil)
-        }
+        self.activityView = Utils.showActivityView(inView: cell.imageView, withFrame: cell.imageView.frame, text: nil)
+
         self.pageControl.currentPage = indexPath.item
         let fileName = "\(self.images[indexPath.item])"
         self.getImage(fileName: fileName) { (_ result: Result<UIImage, Error>) in
@@ -66,7 +74,7 @@ class GalleryViewController: UIViewController,UICollectionViewDelegate, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = UIScreen.main.bounds.width - 10
+        let width = UIScreen.main.bounds.width
         let height = CGFloat(290)
         return CGSize(width: width, height: height)
     }

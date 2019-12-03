@@ -144,6 +144,9 @@ class LessonPlayerViewController: UIViewController {
         self.pdfView.delegate = self
         self.user = UserRepository.shared.getCurrentUser()
         self.masechetTitleLabel.text = "\(self.masechet) \(self.daf)"
+        for image in self.lesson.gallery {
+            self.gallery.append(image.imageLink)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -734,10 +737,6 @@ class LessonPlayerViewController: UIViewController {
     
     @IBAction func photoButtonPressed(_ sender: UIButton) {
         let galleryViewController = Storyboards.Gallery.galleryViewController
-        
-        for image in self.lesson.gallery {
-            self.gallery.append(image.imageLink)
-        }
         galleryViewController.images = self.gallery
         galleryViewController.modalPresentationStyle = .fullScreen
         self.present(galleryViewController, animated: true)
