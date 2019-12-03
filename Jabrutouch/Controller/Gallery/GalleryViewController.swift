@@ -38,9 +38,12 @@ class GalleryViewController: UIViewController, UICollectionViewDelegate, UIColle
         return self.images.count
     }
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        if scrollView.contentOffset.x < scrollView.bounds.width*0.5 {
-//            self.pageControl.currentPage = 0
-//        }
+        let xOffset = scrollView.contentOffset.x
+        let itemsOffset = xOffset/UIScreen.main.bounds.width
+        let itemsOffsetRounded = itemsOffset.rounded()
+        let currentItem = Int(itemsOffsetRounded)
+        
+        self.pageControl.currentPage = currentItem
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -48,8 +51,6 @@ class GalleryViewController: UIViewController, UICollectionViewDelegate, UIColle
             return UICollectionViewCell()
         }
         self.activityView = Utils.showActivityView(inView: cell.imageView, withFrame: cell.imageView.frame, text: nil)
-
-        self.pageControl.currentPage = indexPath.item
         let fileName = "\(self.images[indexPath.item])"
         self.getImage(fileName: fileName) { (_ result: Result<UIImage, Error>) in
             switch result {
@@ -89,7 +90,6 @@ class GalleryViewController: UIViewController, UICollectionViewDelegate, UIColle
                 }
                 else {
                     DispatchQueue.main.async {
-//                        Utils.showAlertMessage("cant show image", viewControler: self)
                         if let view = self.activityView {
                             Utils.removeActivityView(view)
                         }
