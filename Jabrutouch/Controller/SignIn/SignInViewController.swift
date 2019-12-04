@@ -125,8 +125,7 @@ class SignInViewController: UIViewController, MFMailComposeViewControllerDelegat
     }
     
     @IBAction func forgotPasswordButtonPressed(_ sender: UIButton) {
-//        Utils.showAlertMessage(Strings.inDevelopment, viewControler: self)
-        self.sendEmail()
+        self.navigateToForgotPassword()
     }
     
     //============================================================
@@ -235,6 +234,21 @@ class SignInViewController: UIViewController, MFMailComposeViewControllerDelegat
         appDelegate.setRootViewController(viewController: mainViewController, animated: true)
     }
     
+    func navigateToSignUp() {
+        self.performSegue(withIdentifier: "toSignUp", sender: self)
+    }
+    
+    private func navigateToForgotPassword() {
+        self.performSegue(withIdentifier: "toForgotPassword", sender: self)
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toForgotPassword" {
+            let forgotPasswordVC = segue.destination as? ForgotPasswordViewController
+            forgotPasswordVC?.signInViewController = self
+        }
+    }
     
 }
 

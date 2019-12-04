@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1bu-tt-Nqu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1bu-tt-Nqu">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -110,17 +110,6 @@
                                     <action selector="signInButtonPressed:" destination="1bu-tt-Nqu" eventType="touchUpInside" id="UPL-vr-XNd"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xP2-zt-sRm">
-                                <rect key="frame" x="124" y="798" width="166" height="34"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="18"/>
-                                <state key="normal" title="Forogot Password?">
-                                    <color key="titleColor" red="0.16862745098039217" green="0.1764705882352941" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="forgotPasswordButtonPressed:" destination="1bu-tt-Nqu" eventType="touchUpInside" id="zrS-Hb-piw"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sTO-wd-a9K">
                                 <rect key="frame" x="70.5" y="748" width="273" height="34"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -131,6 +120,17 @@
                                 <connections>
                                     <action selector="signUpButtonPressed:" destination="1bu-tt-Nqu" eventType="touchUpInside" id="If6-VX-GZe"/>
                                     <segue destination="tg4-dy-NvP" kind="presentation" id="upP-T1-tbJ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xP2-zt-sRm">
+                                <rect key="frame" x="124" y="798" width="166" height="34"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="18"/>
+                                <state key="normal" title="Forogot Password?">
+                                    <color key="titleColor" red="0.16862745098039217" green="0.1764705882352941" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="forgotPasswordButtonPressed:" destination="1bu-tt-Nqu" eventType="touchUpInside" id="zrS-Hb-piw"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -164,11 +164,21 @@
                         <outlet property="titleLabel" destination="Ja3-jh-CEE" id="541-8v-SnV"/>
                         <outlet property="usernameTF" destination="Jtn-FF-X5v" id="SHn-S0-Jc2"/>
                         <outlet property="usernameView" destination="Nt8-0t-jyw" id="2hq-kz-oDU"/>
+                        <segue destination="tg4-dy-NvP" kind="presentation" identifier="toSignUp" id="MPA-RC-bJt"/>
+                        <segue destination="NWD-8o-1p5" kind="presentation" identifier="toForgotPassword" modalPresentationStyle="overFullScreen" id="q1d-f7-GzE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2pj-Fw-XGS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="854" y="74"/>
+            <point key="canvasLocation" x="648" y="-7"/>
+        </scene>
+        <!--ForgotPassword-->
+        <scene sceneID="EEL-83-aPq">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ForgotPassword" id="NWD-8o-1p5" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wA1-7h-bob" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1554" y="168"/>
         </scene>
         <!--Request Verification Code View Controller-->
         <scene sceneID="4YU-yq-dv4">
@@ -642,4 +652,7 @@
         <image name="LeftArrow" width="27.5" height="19.5"/>
         <image name="blueDownArrow" width="11.5" height="10.5"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="MPA-RC-bJt"/>
+    </inferredMetricsTieBreakers>
 </document>
