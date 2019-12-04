@@ -165,7 +165,7 @@ class LessonPlayerViewController: UIViewController {
         
         self.setPortraitHeaderViewHeight()
         self.setPortraitMode()
-
+        self.setUpGallery()
         self.pdfView.isOpaque = false
         self.pdfView.backgroundColor = UIColor.clear
 
@@ -178,7 +178,6 @@ class LessonPlayerViewController: UIViewController {
         super.viewDidAppear(animated)
         DispatchQueue(label: "player_loader", qos: .utility, attributes: .concurrent, autoreleaseFrequency: .inherit, target: nil).async {
             self.loadPDF()
-            self.setUpGallery()
             
         }
     }
@@ -261,9 +260,11 @@ class LessonPlayerViewController: UIViewController {
     //====================================================
     
     private func setUpGallery() {
-        if self.lesson.gallery.count > 0 {
-            DispatchQueue.main.async {
-                self.portraitPhotoButton.isHidden = false
+        DispatchQueue.main.async {
+            if self.lesson.gallery.count > 0 {
+                self.portraitPhotoButton.setImage(#imageLiteral(resourceName: "photo"), for: .normal)
+            } else {
+                self.portraitPhotoButton.setImage(#imageLiteral(resourceName: "grayGalleryIcon"), for: .normal)
             }
         }
     }
@@ -736,10 +737,13 @@ class LessonPlayerViewController: UIViewController {
     }
     
     @IBAction func photoButtonPressed(_ sender: UIButton) {
-        let galleryViewController = Storyboards.Gallery.galleryViewController
-        galleryViewController.images = self.gallery
-        galleryViewController.modalPresentationStyle = .overFullScreen
-        self.present(galleryViewController, animated: true)
+        if self.gallery.count > 0 {
+            let galleryViewController = Storyboards.Gallery.galleryViewController
+            galleryViewController.modalTransitionStyle = .partialCurl
+            galleryViewController.images = self.gallery
+            galleryViewController.modalPresentationStyle = .overFullScreen
+            self.present(galleryViewController, animated: true)
+        }
     }
     
     @IBAction func chatButtonPressed(_ sender: UIButton) {

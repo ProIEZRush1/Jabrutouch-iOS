@@ -169,13 +169,13 @@
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6aZ-3K-Pk6">
-                                    <rect key="frame" x="75" y="16" width="44.5" height="21"/>
+                                    <rect key="frame" x="75" y="16" width="41.5" height="21.5"/>
                                     <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="18"/>
                                     <color key="textColor" red="0.17399999999999999" green="0.17000000000000001" blue="0.33800000000000002" alpha="0.88" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="WbF-Cb-2TC">
-                                    <rect key="frame" x="216" y="0.0" width="198" height="53"/>
+                                    <rect key="frame" x="150" y="0.0" width="264" height="53"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fUW-2f-Iiz" customClass="UICircularProgressRing" customModule="UICircularProgressRing">
                                             <rect key="frame" x="0.0" y="0.0" width="66" height="53"/>
@@ -230,13 +230,13 @@
                                                 <action selector="chatButtonPressed:" destination="-1" eventType="touchUpInside" id="Pd7-ks-kom"/>
                                             </connections>
                                         </button>
-                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gK7-YQ-sez">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gK7-YQ-sez">
                                             <rect key="frame" x="198" y="0.0" width="66" height="53"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="66" id="qMh-3O-Clf"/>
                                             </constraints>
                                             <color key="tintColor" red="1" green="0.37254901959999998" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
-                                            <state key="normal" image="photo"/>
+                                            <state key="normal" image="grayGalleryIcon"/>
                                             <connections>
                                                 <action selector="photoButtonPressed:" destination="-1" eventType="touchUpInside" id="icy-9M-LOV"/>
                                             </connections>
@@ -283,13 +283,13 @@
                                     </connections>
                                 </slider>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--:--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3HV-ge-hZE">
-                                    <rect key="frame" x="20" y="-1" width="22.5" height="14"/>
+                                    <rect key="frame" x="20" y="-1.5" width="24" height="14.5"/>
                                     <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="12"/>
                                     <color key="textColor" red="0.45098039215686275" green="0.45098039215686275" blue="0.45098039215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DCe-9U-JAe">
-                                    <rect key="frame" x="364" y="-7" width="30" height="26"/>
+                                    <rect key="frame" x="364" y="-7.5" width="30" height="27"/>
                                     <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="12"/>
                                     <state key="normal" title="--:--">
                                         <color key="titleColor" red="0.45098039220000002" green="0.45098039220000002" blue="0.45098039220000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -372,6 +372,7 @@
         <image name="Download" width="19.5" height="26"/>
         <image name="LeftArrow" width="27.5" height="19.5"/>
         <image name="chat" width="33" height="29"/>
+        <image name="grayGalleryIcon" width="30.5" height="24.5"/>
         <image name="photo" width="30.5" height="24.5"/>
     </resources>
 </document>
