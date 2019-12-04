@@ -63,6 +63,16 @@ class HttpRequestsFactory {
         return request
     }
     
+    class func forgotPasswordRequest(email: String?) -> URLRequest?{
+        guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
+        if email == nil { return nil }
+        let link = baseUrl.appendingPathComponent("reset_password/").absoluteString
+        let body: [String:Any] = [ "email": email ?? ""]
+        guard let url = self.createUrl(fromLink: link, urlParams: nil) else { return nil }
+        let request = self.createRequest(url, method: .post, body: body, additionalHeaders: nil)
+        return request
+    }
+    
     //==========================================
     // MARK: - User Flow
     //==========================================

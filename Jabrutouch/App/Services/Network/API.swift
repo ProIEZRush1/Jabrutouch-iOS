@@ -65,6 +65,16 @@ class API {
         }
     }
     
+    class func forgotPassword(email: String?, completionHandler:@escaping (_ response: APIResult<ForgotPasswordResponse>)->Void) {
+        guard let request = HttpRequestsFactory.forgotPasswordRequest(email: email) else {
+            completionHandler(APIResult.failure(.unableToCreateRequest))
+            return
+        }
+        HttpServiceProvider.shared.excecuteRequest(request: request) { (data, response, error) in
+            self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
+        }
+    }
+    
     //========================================
     // MARK: - Content
     //========================================

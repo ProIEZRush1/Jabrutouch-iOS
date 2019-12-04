@@ -99,6 +99,20 @@ class LoginManager {
         }
     }
     
+    func forgotPassword(email: String, completion:@escaping (_ result: Result<String,Error>)->Void){
+        API.forgotPassword(email: email) { (result:APIResult<ForgotPasswordResponse>) in
+            switch result {
+            case .success(let response):
+                
+                DispatchQueue.main.async {
+                    completion(.success(response.message))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
     //==========================================
     // MARK: - Private methods
     //==========================================
