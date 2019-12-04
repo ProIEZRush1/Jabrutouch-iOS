@@ -174,6 +174,8 @@
 		836A8847238FD26400F68539 /* GalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836A8846238FD26400F68539 /* GalleryCell.swift */; };
 		836A88492390136000F68539 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836A88482390136000F68539 /* GalleryViewController.swift */; };
 		836A884B23951CA700F68539 /* JBView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836A884A23951CA700F68539 /* JBView.swift */; };
+		836A884D23968C8E00F68539 /* ForgotPassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 836A884C23968C8D00F68539 /* ForgotPassword.storyboard */; };
+		836A88502396A4E800F68539 /* ForgotPasswordResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836A884F2396A4E800F68539 /* ForgotPasswordResponse.swift */; };
 		839CB4CB2381C91B0086554B /* SelectInterestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839CB4CA2381C91B0086554B /* SelectInterestViewController.swift */; };
 		839E1E7C238588C100578C60 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839E1E7B238588C100578C60 /* UserRepository.swift */; };
 		83CCB12123783F6100C86450 /* JTMasechetDownloadedGemaraLessons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB12023783F6100C86450 /* JTMasechetDownloadedGemaraLessons.swift */; };
@@ -379,6 +381,8 @@
 		836A8846238FD26400F68539 /* GalleryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCell.swift; sourceTree = "<group>"; };
 		836A88482390136000F68539 /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		836A884A23951CA700F68539 /* JBView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JBView.swift; sourceTree = "<group>"; };
+		836A884C23968C8D00F68539 /* ForgotPassword.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ForgotPassword.storyboard; sourceTree = "<group>"; };
+		836A884F2396A4E800F68539 /* ForgotPasswordResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordResponse.swift; sourceTree = "<group>"; };
 		839CB4CA2381C91B0086554B /* SelectInterestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectInterestViewController.swift; sourceTree = "<group>"; };
 		839E1E7B238588C100578C60 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		83CCB12023783F6100C86450 /* JTMasechetDownloadedGemaraLessons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTMasechetDownloadedGemaraLessons.swift; sourceTree = "<group>"; };
@@ -576,7 +580,6 @@
 				83CCB1222379EEB700C86450 /* EditProfileViewController.swift */,
 				FBB434FD22FB2CA4008EE211 /* ProfileViewController.swift */,
 				FB6877C122FC49AE0096465D /* AlertViewController.swift */,
-				83CCB128237DA32D00C86450 /* ForgotPasswordViewController.swift */,
 				839CB4CA2381C91B0086554B /* SelectInterestViewController.swift */,
 				83605BA923846E3700B93603 /* OldProfileViewController.swift */,
 			);
@@ -606,6 +609,7 @@
 				21ED3BD723048835009D8E3D /* GetMishnaLessonsResponse.swift */,
 				21ED3BDB23048970009D8E3D /* GetGemaraLessonsResponse.swift */,
 				213016B8232198E800B9DD2B /* PostAnalyticsEventResponse.swift */,
+				836A884F2396A4E800F68539 /* ForgotPasswordResponse.swift */,
 			);
 			path = "API Response models";
 			sourceTree = "<group>";
@@ -696,6 +700,7 @@
 		2133C20B22DCA07000F910B9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				836A884E23968F7800F68539 /* ForgotPassword */,
 				836A883D238F05F600F68539 /* Gallery */,
 				213196BC22F6EA3E00B0AF5F /* SplashScreen */,
 				2133C21122DCA0E000F910B9 /* WalkThrough */,
@@ -791,6 +796,7 @@
 				FBFB161522F0794600362012 /* Mishna.storyboard */,
 				FBB18FAB22F85019006886FD /* Gemara.storyboard */,
 				836A8844238FD00100F68539 /* Gallery.storyboard */,
+				836A884C23968C8D00F68539 /* ForgotPassword.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -1049,6 +1055,14 @@
 			path = Gallery;
 			sourceTree = "<group>";
 		};
+		836A884E23968F7800F68539 /* ForgotPassword */ = {
+			isa = PBXGroup;
+			children = (
+				83CCB128237DA32D00C86450 /* ForgotPasswordViewController.swift */,
+			);
+			path = ForgotPassword;
+			sourceTree = "<group>";
+		};
 		9A9C05757DCAA6D93F172828 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1185,6 +1199,7 @@
 				21678D4B22DF2CEC007BC74C /* SF-Pro-Display-HeavyItalic.otf in Resources */,
 				21678D4C22DF2CEC007BC74C /* SF-Pro-Display-Light.otf in Resources */,
 				21678D4D22DF2CEC007BC74C /* SF-Pro-Display-LightItalic.otf in Resources */,
+				836A884D23968C8E00F68539 /* ForgotPassword.storyboard in Resources */,
 				21678D4E22DF2CEC007BC74C /* SF-Pro-Display-Medium.otf in Resources */,
 				21678D4F22DF2CEC007BC74C /* SF-Pro-Display-MediumItalic.otf in Resources */,
 				21678D5022DF2CEC007BC74C /* SF-Pro-Display-Regular.otf in Resources */,
@@ -1364,6 +1379,7 @@
 				210628B922F6EAE6008BBD8C /* SplashScreenViewController.swift in Sources */,
 				FB51711A22F1A100003BCAFC /* JTMishnaChapter.swift in Sources */,
 				FB51711422F19C3F003BCAFC /* MishnaMasechetCellController.swift in Sources */,
+				836A88502396A4E800F68539 /* ForgotPasswordResponse.swift in Sources */,
 				2133C22622DDCD3E00F910B9 /* Colors.swift in Sources */,
 				FB51712322F1D7CC003BCAFC /* MishnaChapterCellController.swift in Sources */,
 				213196AE22F38B6800B0AF5F /* JTUser.swift in Sources */,
