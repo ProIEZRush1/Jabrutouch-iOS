@@ -183,7 +183,7 @@ class VideoPlayer: UIView {
     
     private func setupSliders() {
         self.slider.setThumbImage(#imageLiteral(resourceName: "newThumb"), for: .normal)
-        if let image = Utils.linearGradientImage(endXPoint: 1.0, size: self.slider.frame.size, colors: [Colors.appBlue, Colors.appOrange]) {
+        if let image = Utils.linearGradientImage(endXPoint: 0.0, size: self.slider.frame.size, colors: [Colors.appBlue, Colors.appOrange]) {
             self.slider.setMinimumTrackImage(image, for: .normal)
             
         }
@@ -430,6 +430,12 @@ class VideoPlayer: UIView {
                     self.setCurrentTime(part)
                     break
                 }
+            }
+            if let lastPart = sortedArray.last {
+                if self.currentTime < lastPart  {
+                    self.setCurrentTime(0.0)
+                }
+                
             }
         case .small:
             break

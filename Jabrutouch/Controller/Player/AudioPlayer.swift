@@ -108,7 +108,7 @@ class AudioPlayer: UIView {
         self.playbackSpeedButton.isEnabled = false
         
         self.slider.setThumbImage(#imageLiteral(resourceName: "newThumb"), for: .normal)
-        if let image = Utils.linearGradientImage(endXPoint: 1.0, size: self.slider.frame.size, colors: [Colors.appBlue, Colors.appOrange]) {
+        if let image = Utils.linearGradientImage(endXPoint: 0.0, size: self.slider.frame.size, colors: [Colors.appBlue, Colors.appOrange]) {
             self.slider.setMinimumTrackImage(image, for: .normal)
             
         }
