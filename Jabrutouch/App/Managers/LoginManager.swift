@@ -99,13 +99,13 @@ class LoginManager {
         }
     }
     
-    func forgotPassword(email: String, completion:@escaping (_ result: Result<String,Error>)->Void){
+    func forgotPassword(email: String, completion:@escaping (_ result: Result<ForgotPasswordResponse,Error>)->Void){
         API.forgotPassword(email: email) { (result:APIResult<ForgotPasswordResponse>) in
             switch result {
             case .success(let response):
                 
                 DispatchQueue.main.async {
-                    completion(.success(response.message))
+                    completion(.success(response))
                 }
             case .failure(let error):
                 completion(.failure(error))

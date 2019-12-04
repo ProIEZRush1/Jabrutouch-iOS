@@ -559,54 +559,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "EC699341-14C0-419B-9C03-7A46A4E193DE"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Jabrutouch/Controller/SignIn/SignUpViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "211"
-            endingLineNumber = "211"
-            landmarkName = "attemptSignUp(userId:firstName:lastName:phoneNumber:email:password:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "EC699341-14C0-419B-9C03-7A46A4E193DE - e83d1841bf9d0401"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Jabrutouch.SignUpViewController.(attemptSignUp in _347C487B770F89A5EAC426FAC4DB0207)(userId: Swift.Int, firstName: Swift.String, lastName: Swift.String, phoneNumber: Swift.String, email: Swift.String, password: Swift.String) -&gt; ()"
-                  moduleName = "Jabrutouch"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/shlomocarmen/Projects/jabrutouch_ios/Jabrutouch/Controller/SignIn/SignUpViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "211"
-                  endingLineNumber = "211"
-                  offsetFromSymbolStart = "368">
-               </Location>
-               <Location
-                  uuid = "EC699341-14C0-419B-9C03-7A46A4E193DE - a0ff8c6a665efe55"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;Jabrutouch.JTUser, Swift.Error&gt;) -&gt; () in Jabrutouch.SignUpViewController.(attemptSignUp in _347C487B770F89A5EAC426FAC4DB0207)(userId: Swift.Int, firstName: Swift.String, lastName: Swift.String, phoneNumber: Swift.String, email: Swift.String, password: Swift.String) -&gt; ()"
-                  moduleName = "Jabrutouch"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/shlomocarmen/Projects/jabrutouch_ios/Jabrutouch/Controller/SignIn/SignUpViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "212"
-                  endingLineNumber = "212"
-                  offsetFromSymbolStart = "168">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "51C6D890-CA2E-4B52-A360-B6897560952A"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -1293,6 +1245,70 @@
             startingLineNumber = "99"
             endingLineNumber = "99"
             landmarkName = "sendButtonPressed(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "991BC2B0-F973-447D-BA11-B2D1DE1C5055"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Jabrutouch/App/Managers/LoginManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "forgotPassword(email:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "991BC2B0-F973-447D-BA11-B2D1DE1C5055 - 599458083180936"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Jabrutouch.APIResult&lt;Jabrutouch.ForgotPasswordResponse&gt;) -&gt; () in Jabrutouch.LoginManager.forgotPassword(email: Swift.String, completion: (Swift.Result&lt;Any, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Jabrutouch"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shlomocarmen/Projects/jabrutouch_ios/Jabrutouch/App/Managers/LoginManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "107"
+                  endingLineNumber = "107"
+                  offsetFromSymbolStart = "548">
+               </Location>
+               <Location
+                  uuid = "991BC2B0-F973-447D-BA11-B2D1DE1C5055 - 4af513515c739a9f"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #1 (Jabrutouch.APIResult&lt;Jabrutouch.ForgotPasswordResponse&gt;) -&gt; () in Jabrutouch.LoginManager.forgotPassword(email: Swift.String, completion: (Swift.Result&lt;Any, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Jabrutouch"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shlomocarmen/Projects/jabrutouch_ios/Jabrutouch/App/Managers/LoginManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "108"
+                  endingLineNumber = "108"
+                  offsetFromSymbolStart = "140">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "12FEB29F-4D9C-4279-B1D1-A1EA8CC687F6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Jabrutouch/Controller/ForgotPassword/ForgotPasswordViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "forgotPassword(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
