@@ -609,8 +609,8 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
     func optionSelected(option: MenuOption) {
         switch option {
         case .profile:
-            presentProfile()
-//            presentOldProfile()
+//            presentProfile()
+            presentOldProfile()
         case .signOut:
             presentLogoutAlert()
         case .mishna:
