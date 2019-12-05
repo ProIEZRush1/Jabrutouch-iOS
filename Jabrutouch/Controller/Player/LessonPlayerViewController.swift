@@ -664,7 +664,7 @@ class LessonPlayerViewController: UIViewController {
             self.landscapeDownloadButton.isEnabled = !self.lesson.isDownloadingAudio
         }
         
-        
+        self.portraitChatButton.tintColor = #colorLiteral(red: 0.286, green: 0.286, blue: 0.286, alpha: 1)
         self.portraitChatButton.isEnabled = true
         self.landscapeChatButton.isEnabled = true
         
@@ -749,7 +749,7 @@ class LessonPlayerViewController: UIViewController {
     }
     
     @IBAction func chatButtonPressed(_ sender: UIButton) {
-        Utils.showAlertMessage(Strings.inDevelopment, viewControler: self)
+//        Utils.showAlertMessage(Strings.inDevelopment, viewControler: self)
 
     }
     
