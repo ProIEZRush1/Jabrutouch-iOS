@@ -68,6 +68,8 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     @IBOutlet weak var todaysDafAudio: UIButton!
     @IBOutlet weak var todaysDafVideo: UIButton!
     @IBOutlet weak var todaysDafToWelcomeConstraint: NSLayoutConstraint!
+    @IBOutlet weak var shadaysDafShadowView: UIView!
+    
     // Recents
     @IBOutlet weak var recentsGemara: UILabel!
     @IBOutlet weak var recentsMishna: UILabel!
@@ -132,7 +134,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
                 for lessonWatched in self.lessonWatched {
                     if lessonWatched.lessonId == lesson.id {
                         let count = lessonWatched.duration / Double(lesson.duration)
-                        Utils.setProgressbar(count: count, view: self.todaysDafProgressBar, rounded: false, cornerRadius: 10, bottomRadius: true)
+                        Utils.setProgressbar(count: count, view: self.todaysDafProgressBar, rounded: false, cornerRadius: 0, bottomRadius: true)
                         break
                     }
                 }
@@ -166,11 +168,12 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     
     private func roundCorners() {
         self.todaysDafContainer.layer.cornerRadius = 15
+        self.shadaysDafShadowView.layer.cornerRadius = 15
     }
     
     private func setShadows() {
         let shadowOffset = CGSize(width: 0.0, height: 12)
-        Utils.dropViewShadow(view: self.todaysDafContainer, shadowColor: Colors.shadowColor, shadowRadius: 36, shadowOffset: shadowOffset)
+        Utils.dropViewShadow(view: self.shadaysDafShadowView, shadowColor: Colors.shadowColor, shadowRadius: 36, shadowOffset: shadowOffset)
     }
     
     private func setView() {
@@ -259,7 +262,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
                 for lesson in self.lessonWatched {
                     if lesson.lessonId == lessonRecord.lesson.id {
                         let count = lesson.duration / Double(lessonRecord.lesson.duration)
-                        Utils.setProgressbar(count: count, view: cell.mainProgressBar, rounded: false, cornerRadius: 8, bottomRadius: true)
+                        Utils.setProgressbar(count: count, view: cell.mainProgressBar, rounded: false, cornerRadius: 0, bottomRadius: true)
                         break
                     }
                 }
@@ -290,7 +293,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
                 for lesson in self.lessonWatched {
                     if lesson.lessonId == lessonRecord.lesson.id {
                         let count = lesson.duration / Double(lessonRecord.lesson.duration)
-                        Utils.setProgressbar(count: count, view: cell.mainProgressBar, rounded: false, cornerRadius: 8, bottomRadius: true)
+                        Utils.setProgressbar(count: count, view: cell.mainProgressBar, rounded: false, cornerRadius: 0, bottomRadius: true)
                         break
                     }
                 }
@@ -304,8 +307,9 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         cell.selectedRow = indexPath.row
         cell.isFirstCollection = collectionView == gemaraCollectionView
         Utils.setViewShape(view: cell.cellView, viewCornerRadius: 18)
+        Utils.setViewShape(view: cell.cellViewShadowView, viewCornerRadius: 18)
         let shadowOffset = CGSize(width: 0, height: 5)
-        Utils.dropViewShadow(view: cell.cellView, shadowColor: Colors.brightShadowColor, shadowRadius: 10, shadowOffset: shadowOffset)
+        Utils.dropViewShadow(view: cell.cellViewShadowView, shadowColor: Colors.brightShadowColor, shadowRadius: 10, shadowOffset: shadowOffset)
         
         return cell
     }

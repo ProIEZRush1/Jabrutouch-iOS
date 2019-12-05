@@ -19,6 +19,7 @@ class DownloadsCellController: UITableViewCell {
     @IBOutlet weak var videoButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var cellTrailingConstraint: NSLayoutConstraint! // 21 or 45
+    @IBOutlet weak var cellShadowView: UIView!
     
     weak var delegate: DownloadsCellDelegate?
     var indexPath: IndexPath?

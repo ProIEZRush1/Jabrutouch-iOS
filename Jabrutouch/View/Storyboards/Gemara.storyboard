@@ -211,12 +211,12 @@
                                     <action selector="downloadPressed:" destination="sTY-0t-VEK" eventType="touchUpInside" id="Q4S-54-xei"/>
                                 </connections>
                             </button>
-                            <tableView contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="ULS-cP-Bih">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="ULS-cP-Bih">
                                 <rect key="frame" x="0.0" y="109" width="414" height="753"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="lessonDownloadCell" rowHeight="90" id="stx-P0-QHU" customClass="LessonDownloadCellController" customModule="Jabrutouch" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="lessonDownloadCell" rowHeight="90" id="stx-P0-QHU" customClass="LessonDownloadCellController" customModule="Jabrutouch" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="55.5" width="414" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="stx-P0-QHU" id="T3w-mu-DyN">
@@ -295,7 +295,7 @@
                                                         <constraint firstItem="5MK-BE-9jN" firstAttribute="centerY" secondItem="G7Y-2J-INF" secondAttribute="centerY" multiplier="1.4:1" id="wE1-uO-yca"/>
                                                     </constraints>
                                                 </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QFU-dG-KeJ" userLabel="Cell Content">
+                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QFU-dG-KeJ" userLabel="Cell Content">
                                                     <rect key="frame" x="18" y="0.0" width="378" height="75"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FVx-hy-G7W">

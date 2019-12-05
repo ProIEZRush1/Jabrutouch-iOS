@@ -167,7 +167,11 @@
                                                         <constraint firstAttribute="height" constant="13" id="Tv9-Dp-rpL"/>
                                                     </constraints>
                                                 </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tys-3p-kx8">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hiA-KJ-fsk">
+                                                    <rect key="frame" x="21" y="0.0" width="348" height="76"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                </view>
+                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tys-3p-kx8">
                                                     <rect key="frame" x="21" y="0.0" width="348" height="76"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shabbat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YtL-SC-a2e">
@@ -204,7 +208,7 @@
                                                                 <action selector="playVideoPressed:" destination="IPO-2W-CTR" eventType="touchUpInside" id="kfU-l2-wxm"/>
                                                             </connections>
                                                         </button>
-                                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YE4-qK-Pnh" customClass="JBProgressBar" customModule="Jabrutouch" customModuleProvider="target">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YE4-qK-Pnh" customClass="JBProgressBar" customModule="Jabrutouch" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="72" width="348" height="4"/>
                                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                             <constraints>
@@ -245,18 +249,23 @@
                                                 <constraint firstItem="QP1-7F-oEE" firstAttribute="width" secondItem="tgY-Hl-LHG" secondAttribute="width" id="0o1-6K-ngb"/>
                                                 <constraint firstItem="tys-3p-kx8" firstAttribute="leading" secondItem="tgY-Hl-LHG" secondAttribute="leading" constant="21" id="8QL-hp-Qtb"/>
                                                 <constraint firstItem="tys-3p-kx8" firstAttribute="top" secondItem="tgY-Hl-LHG" secondAttribute="top" id="9S2-KG-cVf"/>
+                                                <constraint firstItem="hiA-KJ-fsk" firstAttribute="height" secondItem="tys-3p-kx8" secondAttribute="height" id="COO-ft-J0r"/>
+                                                <constraint firstItem="hiA-KJ-fsk" firstAttribute="centerX" secondItem="tys-3p-kx8" secondAttribute="centerX" id="DnP-57-1Qd"/>
                                                 <constraint firstAttribute="bottom" secondItem="QP1-7F-oEE" secondAttribute="bottom" id="G1m-yZ-EVa"/>
                                                 <constraint firstItem="QP1-7F-oEE" firstAttribute="top" secondItem="tys-3p-kx8" secondAttribute="bottom" id="J23-T7-3kp"/>
+                                                <constraint firstItem="hiA-KJ-fsk" firstAttribute="width" secondItem="tys-3p-kx8" secondAttribute="width" id="PsB-Vp-w8G"/>
                                                 <constraint firstAttribute="trailing" secondItem="fJy-Q9-W6e" secondAttribute="trailing" id="QcT-W5-8Cc"/>
                                                 <constraint firstItem="fJy-Q9-W6e" firstAttribute="centerY" secondItem="tys-3p-kx8" secondAttribute="centerY" id="ZDW-N6-34h"/>
                                                 <constraint firstItem="QP1-7F-oEE" firstAttribute="centerX" secondItem="tgY-Hl-LHG" secondAttribute="centerX" id="n7a-pY-uax"/>
                                                 <constraint firstAttribute="trailing" secondItem="tys-3p-kx8" secondAttribute="trailing" constant="45" id="uUz-tN-R8v"/>
+                                                <constraint firstItem="hiA-KJ-fsk" firstAttribute="centerY" secondItem="tys-3p-kx8" secondAttribute="centerY" id="vG6-is-DlH"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="audioButton" destination="jyb-sK-pGD" id="pSB-gC-KhJ"/>
                                             <outlet property="book" destination="YtL-SC-a2e" id="J2K-qm-Grn"/>
+                                            <outlet property="cellShadowView" destination="hiA-KJ-fsk" id="vwM-Vr-5uO"/>
                                             <outlet property="cellTrailingConstraint" destination="uUz-tN-R8v" id="6vn-zw-GZM"/>
                                             <outlet property="cellView" destination="tys-3p-kx8" id="Xq4-eI-fW7"/>
                                             <outlet property="chapter" destination="6IX-7g-KOM" id="z2F-SI-1Z0"/>
@@ -280,7 +289,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="89"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1jW-un-djR">
+                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1jW-un-djR">
                                                     <rect key="frame" x="21" y="0.0" width="348" height="76"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shabbat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y4d-u8-PqE">
@@ -317,7 +326,7 @@
                                                                 <action selector="playVideoPressed:" destination="7dV-xT-Hbu" eventType="touchUpInside" id="0aW-zi-96X"/>
                                                             </connections>
                                                         </button>
-                                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lr4-Mo-fWL" customClass="JBProgressBar" customModule="Jabrutouch" customModuleProvider="target">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lr4-Mo-fWL" customClass="JBProgressBar" customModule="Jabrutouch" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="72" width="348" height="4"/>
                                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                             <constraints>

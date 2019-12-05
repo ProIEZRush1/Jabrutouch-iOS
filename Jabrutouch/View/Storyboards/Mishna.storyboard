@@ -449,7 +449,7 @@
                                                         <constraint firstItem="xC0-m1-ums" firstAttribute="centerY" secondItem="Gds-RT-u9W" secondAttribute="centerY" id="kRX-12-aL8"/>
                                                     </constraints>
                                                 </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OLh-nb-C0S" userLabel="Cell Content">
+                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OLh-nb-C0S" userLabel="Cell Content">
                                                     <rect key="frame" x="18" y="0.0" width="378" height="75"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BEz-O8-4hd">

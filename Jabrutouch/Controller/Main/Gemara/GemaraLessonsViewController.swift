@@ -138,10 +138,10 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
             for lessonWatched in self.lessonWatched {
                 if lessonWatched.lessonId == lesson.id {
                     let count = lessonWatched.duration / Double(lesson.duration)
-                    Utils.setProgressbar(count: count, view: cell.lessonProgressBar, rounded: false, cornerRadius: 8, bottomRadius: true)
+                    Utils.setProgressbar(count: count, view: cell.lessonProgressBar, rounded: false, cornerRadius: 0, bottomRadius: true)
                     break
                 }
-                Utils.setProgressbar(count: 0.0, view: cell.lessonProgressBar, rounded: false, cornerRadius: 8, bottomRadius: true)
+                Utils.setProgressbar(count: 0.0, view: cell.lessonProgressBar, rounded: false, cornerRadius: 0, bottomRadius: true)
             }
         }
         return cell

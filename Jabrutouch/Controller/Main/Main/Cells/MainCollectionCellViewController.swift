@@ -19,6 +19,7 @@ class MainCollectionCellViewController: UICollectionViewCell {
     @IBOutlet weak var video: UIImageView!
     @IBOutlet weak var audioButton: UIButton!
     @IBOutlet weak var videoButton: UIButton!
+    @IBOutlet weak var cellViewShadowView: UIView!
     
     var isFirstCollection: Bool = true // When two collections are used in single screen
     var selectedRow: Int = 0

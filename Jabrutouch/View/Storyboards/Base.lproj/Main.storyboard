@@ -492,7 +492,11 @@
                                                 <color key="textColor" red="0.1764705882352941" green="0.16862745098039217" blue="0.66274509803921566" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GZK-BL-cQ3">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sxt-av-8Bo">
+                                                <rect key="frame" x="23" y="28" width="366" height="90"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            </view>
+                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GZK-BL-cQ3">
                                                 <rect key="frame" x="23" y="28" width="366" height="90"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="On8-WA-0eI">
@@ -541,6 +545,13 @@
                                                             <action selector="todaysDafVideoPressed:" destination="hlJ-VD-Lqd" eventType="touchUpInside" id="7A9-G3-VlE"/>
                                                         </connections>
                                                     </button>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4M6-ek-WIk" customClass="JBProgressBar" customModule="Jabrutouch" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="85" width="366" height="5"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="5" id="nY7-1E-Qwa"/>
+                                                        </constraints>
+                                                    </view>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -549,22 +560,18 @@
                                                     <constraint firstItem="On8-WA-0eI" firstAttribute="top" secondItem="GZK-BL-cQ3" secondAttribute="top" constant="16" id="PlY-mK-VqY"/>
                                                     <constraint firstItem="hMJ-6n-DFC" firstAttribute="centerX" secondItem="7su-KL-efv" secondAttribute="centerX" id="UiS-f8-vaU"/>
                                                     <constraint firstAttribute="trailing" secondItem="7su-KL-efv" secondAttribute="trailing" constant="35" id="XWQ-yf-9cd"/>
+                                                    <constraint firstAttribute="trailing" secondItem="4M6-ek-WIk" secondAttribute="trailing" id="ZpZ-NP-Qqh"/>
                                                     <constraint firstItem="7su-KL-efv" firstAttribute="leading" secondItem="Vqi-r0-05t" secondAttribute="trailing" constant="35" id="cX3-gL-pCY"/>
                                                     <constraint firstItem="Vqi-r0-05t" firstAttribute="leading" secondItem="ivd-wy-Oxn" secondAttribute="trailing" constant="20" id="e0Q-J5-lqt"/>
                                                     <constraint firstItem="ivd-wy-Oxn" firstAttribute="leading" secondItem="GZK-BL-cQ3" secondAttribute="leading" constant="20" id="hAt-jy-EhG"/>
                                                     <constraint firstItem="E0U-C0-eco" firstAttribute="centerX" secondItem="Vqi-r0-05t" secondAttribute="centerX" id="hHf-12-Ocq"/>
+                                                    <constraint firstItem="4M6-ek-WIk" firstAttribute="leading" secondItem="GZK-BL-cQ3" secondAttribute="leading" id="jAQ-XQ-qiT"/>
                                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="On8-WA-0eI" secondAttribute="trailing" constant="20" symbolic="YES" id="kye-lF-OHJ"/>
                                                     <constraint firstItem="E0U-C0-eco" firstAttribute="centerY" secondItem="GZK-BL-cQ3" secondAttribute="centerY" id="mI6-Qn-wps"/>
                                                     <constraint firstItem="On8-WA-0eI" firstAttribute="leading" secondItem="GZK-BL-cQ3" secondAttribute="leading" constant="20" id="tvG-PX-hrA"/>
                                                     <constraint firstItem="7su-KL-efv" firstAttribute="centerY" secondItem="GZK-BL-cQ3" secondAttribute="centerY" id="ueU-fS-70e"/>
+                                                    <constraint firstAttribute="bottom" secondItem="4M6-ek-WIk" secondAttribute="bottom" id="vKL-sS-5SR"/>
                                                     <constraint firstItem="hMJ-6n-DFC" firstAttribute="centerY" secondItem="GZK-BL-cQ3" secondAttribute="centerY" id="z0N-aW-o6y"/>
-                                                </constraints>
-                                            </view>
-                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4M6-ek-WIk" customClass="JBProgressBar" customModule="Jabrutouch" customModuleProvider="target">
-                                                <rect key="frame" x="23" y="113" width="366" height="5"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="5" id="nY7-1E-Qwa"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -575,12 +582,13 @@
                                             <constraint firstAttribute="height" constant="138" id="2ew-Im-mKS"/>
                                             <constraint firstItem="GZK-BL-cQ3" firstAttribute="leading" secondItem="1qD-92-wJ1" secondAttribute="leading" constant="23" id="6m5-vc-P4Z"/>
                                             <constraint firstItem="fI9-Bx-Pnq" firstAttribute="top" secondItem="1qD-92-wJ1" secondAttribute="top" id="7XC-0Z-Lbj"/>
+                                            <constraint firstItem="sxt-av-8Bo" firstAttribute="centerY" secondItem="GZK-BL-cQ3" secondAttribute="centerY" id="BDk-4t-khA"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fI9-Bx-Pnq" secondAttribute="trailing" constant="20" symbolic="YES" id="IxQ-Bw-hGJ"/>
                                             <constraint firstItem="GZK-BL-cQ3" firstAttribute="top" secondItem="fI9-Bx-Pnq" secondAttribute="bottom" constant="8" id="Sqm-Yr-Bcp"/>
-                                            <constraint firstItem="4M6-ek-WIk" firstAttribute="leading" secondItem="GZK-BL-cQ3" secondAttribute="leading" id="bbh-DS-Qhw"/>
-                                            <constraint firstItem="GZK-BL-cQ3" firstAttribute="bottom" secondItem="4M6-ek-WIk" secondAttribute="bottom" id="f0j-57-MvQ"/>
                                             <constraint firstAttribute="bottom" secondItem="GZK-BL-cQ3" secondAttribute="bottom" constant="20" id="hQH-hB-416"/>
-                                            <constraint firstItem="4M6-ek-WIk" firstAttribute="trailing" secondItem="GZK-BL-cQ3" secondAttribute="trailing" id="kRS-N9-cps"/>
+                                            <constraint firstItem="sxt-av-8Bo" firstAttribute="height" secondItem="GZK-BL-cQ3" secondAttribute="height" id="meE-ND-vX8"/>
+                                            <constraint firstItem="sxt-av-8Bo" firstAttribute="centerX" secondItem="GZK-BL-cQ3" secondAttribute="centerX" id="qeH-Vb-ZAS"/>
+                                            <constraint firstItem="sxt-av-8Bo" firstAttribute="width" secondItem="GZK-BL-cQ3" secondAttribute="width" id="s9T-UR-8lT"/>
                                             <constraint firstItem="fI9-Bx-Pnq" firstAttribute="leading" secondItem="1qD-92-wJ1" secondAttribute="leading" constant="21" id="tkL-eK-8Xp"/>
                                         </constraints>
                                     </view>
@@ -613,7 +621,11 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="285" height="98"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
-                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lzJ-9m-l3z" userLabel="Cell Content">
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qb5-lL-SOh">
+                                                                    <rect key="frame" x="0.0" y="7.5" width="280" height="73"/>
+                                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                </view>
+                                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lzJ-9m-l3z" userLabel="Cell Content">
                                                                     <rect key="frame" x="0.0" y="7.5" width="280" height="73"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Rosh Hashana" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0LD-gf-OPV">
@@ -694,12 +706,17 @@
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="lzJ-9m-l3z" firstAttribute="top" secondItem="9EE-0e-zH9" secondAttribute="top" constant="7.5" id="Dfi-wx-Zsn"/>
+                                                            <constraint firstItem="Qb5-lL-SOh" firstAttribute="centerX" secondItem="lzJ-9m-l3z" secondAttribute="centerX" id="TAN-8l-Nbg"/>
+                                                            <constraint firstItem="Qb5-lL-SOh" firstAttribute="height" secondItem="lzJ-9m-l3z" secondAttribute="height" id="bAB-kX-mrT"/>
+                                                            <constraint firstItem="Qb5-lL-SOh" firstAttribute="width" secondItem="lzJ-9m-l3z" secondAttribute="width" id="cQQ-wB-PPg"/>
+                                                            <constraint firstItem="Qb5-lL-SOh" firstAttribute="centerY" secondItem="lzJ-9m-l3z" secondAttribute="centerY" id="eJ3-pe-b9G"/>
                                                             <constraint firstAttribute="trailing" secondItem="lzJ-9m-l3z" secondAttribute="trailing" constant="5" id="xZ5-tk-Gab"/>
                                                         </constraints>
                                                         <connections>
                                                             <outlet property="audio" destination="Auq-u1-yTw" id="hnc-NP-GPb"/>
                                                             <outlet property="audioButton" destination="XCv-hY-b4u" id="qcx-EI-QtJ"/>
                                                             <outlet property="cellView" destination="lzJ-9m-l3z" id="7Mf-St-H9z"/>
+                                                            <outlet property="cellViewShadowView" destination="Qb5-lL-SOh" id="F5o-Pc-qHO"/>
                                                             <outlet property="chapterLabel" destination="MEy-to-IP2" id="Dn2-QP-0tX"/>
                                                             <outlet property="mainProgressBar" destination="8To-zs-zm6" id="0oR-Mv-kEX"/>
                                                             <outlet property="masechetLabel" destination="0LD-gf-OPV" id="mqA-4B-P0u"/>
@@ -757,7 +774,11 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="285" height="98"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
-                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qYi-is-ptc" userLabel="Cell Content">
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="slz-og-H0c">
+                                                                    <rect key="frame" x="0.0" y="7.5" width="280" height="73"/>
+                                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                </view>
+                                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qYi-is-ptc" userLabel="Cell Content">
                                                                     <rect key="frame" x="0.0" y="7.5" width="280" height="73"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Rosh Hashana" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dyN-VG-ugU">
@@ -837,13 +858,18 @@
                                                         </view>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
+                                                            <constraint firstItem="slz-og-H0c" firstAttribute="centerY" secondItem="qYi-is-ptc" secondAttribute="centerY" id="6Na-Af-VyD"/>
                                                             <constraint firstItem="qYi-is-ptc" firstAttribute="top" secondItem="X1u-o6-IXf" secondAttribute="top" constant="7.5" id="adA-jg-zwt"/>
+                                                            <constraint firstItem="slz-og-H0c" firstAttribute="centerX" secondItem="qYi-is-ptc" secondAttribute="centerX" id="ife-BG-Nzd"/>
+                                                            <constraint firstItem="slz-og-H0c" firstAttribute="height" secondItem="qYi-is-ptc" secondAttribute="height" id="try-Ya-Vip"/>
+                                                            <constraint firstItem="slz-og-H0c" firstAttribute="width" secondItem="qYi-is-ptc" secondAttribute="width" id="vrZ-aT-oAA"/>
                                                             <constraint firstAttribute="trailing" secondItem="qYi-is-ptc" secondAttribute="trailing" constant="5" id="xVo-f9-PB3"/>
                                                         </constraints>
                                                         <connections>
                                                             <outlet property="audio" destination="HS3-rE-qol" id="ZzR-kg-Rqi"/>
                                                             <outlet property="audioButton" destination="GUW-ye-jee" id="byZ-2T-HCF"/>
                                                             <outlet property="cellView" destination="qYi-is-ptc" id="0w8-1n-7dS"/>
+                                                            <outlet property="cellViewShadowView" destination="slz-og-H0c" id="CoP-dG-r80"/>
                                                             <outlet property="chapterLabel" destination="OvF-IO-qci" id="vRu-Rx-bXB"/>
                                                             <outlet property="mainProgressBar" destination="xpF-CB-VKi" id="8wc-P4-vR9"/>
                                                             <outlet property="masechetLabel" destination="dyN-VG-ugU" id="gFl-iW-5gk"/>
@@ -1088,6 +1114,7 @@
                         <outlet property="modalsContainer" destination="Hqr-vP-VSo" id="DYM-YC-mRC"/>
                         <outlet property="recentsGemara" destination="Wzb-dy-Imq" id="a7Q-vC-dy2"/>
                         <outlet property="recentsMishna" destination="TQ2-2v-sxn" id="0lq-sA-XUl"/>
+                        <outlet property="shadaysDafShadowView" destination="sxt-av-8Bo" id="voA-dg-8Xs"/>
                         <outlet property="titleLabel" destination="9mK-Ep-QyN" id="sSc-Pc-qBG"/>
                         <outlet property="todaysDafAudio" destination="E0U-C0-eco" id="ftd-qg-zeP"/>
                         <outlet property="todaysDafContainer" destination="GZK-BL-cQ3" id="9VR-oo-mKc"/>

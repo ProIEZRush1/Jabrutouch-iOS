@@ -311,7 +311,7 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
                 for _lesson in self.lessonWatched {
                     if _lesson.lessonId == lesson.lesson.id {
                         let count = _lesson.duration / Double(lesson.lesson.duration)
-                        Utils.setProgressbar(count: count, view: cell.progressBar, rounded: false, cornerRadius: 8, bottomRadius: true)
+                        Utils.setProgressbar(count: count, view: cell.progressBar, rounded: false, cornerRadius: 0, bottomRadius: true)
                         break
                     }
                 }
@@ -332,7 +332,7 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
                 for _lesson in self.lessonWatched {
                     if _lesson.lessonId == lesson.lesson.id {
                         let count = _lesson.duration / Double(lesson.lesson.duration)
-                        Utils.setProgressbar(count: count, view: cell.progressBar, rounded: false, cornerRadius: 8, bottomRadius: true)
+                        Utils.setProgressbar(count: count, view: cell.progressBar, rounded: false, cornerRadius: 0, bottomRadius: true)
                         break
                     }
                 }
@@ -341,8 +341,9 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
 
         
         Utils.setViewShape(view: cell.cellView, viewCornerRadius: 18)
+        Utils.setViewShape(view: cell.cellShadowView, viewCornerRadius: 18)
         let shadowOffset = CGSize(width: 0.0, height: 12)
-        Utils.dropViewShadow(view: cell.cellView, shadowColor: Colors.shadowColor, shadowRadius: 36, shadowOffset: shadowOffset)
+        Utils.dropViewShadow(view: cell.cellShadowView, shadowColor: Colors.shadowColor, shadowRadius: 36, shadowOffset: shadowOffset)
         animateSizeChangeWhenNeeded(cell)
         
         cell.cellView.layoutIfNeeded()
