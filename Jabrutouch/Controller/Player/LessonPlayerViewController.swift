@@ -262,9 +262,11 @@ class LessonPlayerViewController: UIViewController {
     private func setUpGallery() {
         DispatchQueue.main.async {
             if self.lesson.gallery.count > 0 {
-                self.portraitPhotoButton.setImage(#imageLiteral(resourceName: "photo"), for: .normal)
+//                self.portraitPhotoButton.setImage(#imageLiteral(resourceName: "photo"), for: .normal)
+                self.portraitPhotoButton.tintColor = #colorLiteral(red: 1, green: 0.373, blue: 0.314, alpha: 1)
             } else {
-                self.portraitPhotoButton.setImage(#imageLiteral(resourceName: "grayGalleryIcon"), for: .normal)
+                self.portraitPhotoButton.tintColor = #colorLiteral(red: 0.286, green: 0.286, blue: 0.286, alpha: 1)
+//                self.portraitPhotoButton.setImage(#imageLiteral(resourceName: "grayGalleryIcon"), for: .normal)
             }
         }
     }
@@ -739,8 +741,8 @@ class LessonPlayerViewController: UIViewController {
     @IBAction func photoButtonPressed(_ sender: UIButton) {
         if self.gallery.count > 0 {
             let galleryViewController = Storyboards.Gallery.galleryViewController
-            galleryViewController.modalTransitionStyle = .partialCurl
             galleryViewController.images = self.gallery
+            galleryViewController.modalTransitionStyle = .crossDissolve
             galleryViewController.modalPresentationStyle = .overFullScreen
             self.present(galleryViewController, animated: true)
         }
