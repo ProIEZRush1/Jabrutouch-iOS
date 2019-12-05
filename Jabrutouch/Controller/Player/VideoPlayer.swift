@@ -426,13 +426,13 @@ class VideoPlayer: UIView {
         case .regular, .fullScreen:
             let sortedArray = self.videoParts.sorted{$0 > $1}
             for part in sortedArray {
-                if self.currentTime > part {
+                if self.currentTime > part + 60 {
                     self.setCurrentTime(part)
                     break
                 }
             }
             if let lastPart = sortedArray.last {
-                if self.currentTime < lastPart  {
+                if self.currentTime < lastPart + 60 {
                     self.setCurrentTime(0.0)
                 }
                 
