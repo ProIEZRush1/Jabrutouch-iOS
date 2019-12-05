@@ -464,7 +464,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         }
     }
     @IBAction func chatPressed(_ sender: Any) {
-        self.presentInDevelopmentAlert()
+        self.presentMessages()
     }
     
     //========================================
