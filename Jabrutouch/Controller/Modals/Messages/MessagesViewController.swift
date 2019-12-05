@@ -8,32 +8,100 @@
 
 import UIKit
 
-class MessagesViewController: UIViewController {
+class MessagesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    //========================================
+    // MARK: - Properties
+    //========================================
+    
+    var messagesArray: [String] = []
+    let timeFormatter = DateFormatter()
+    //========================================
+    // MARK: - @IBOutlets
+    //========================================
+    
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var searchButton: UIButton!
+    @IBOutlet weak var noMessagesLabel: UILabel!
+    @IBOutlet weak var newMessage: UIButton!
+    @IBOutlet weak var noMessagesImage: UIImageView!
+    @IBOutlet weak var tableView: UITableView!
+    
+    //========================================
+    // MARK: - LifeCycle
+    //========================================
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.messagesArray.append("test")
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        self.setTableView()
+        
+    }
+    
+    //========================================
+    // MARK: - Setup
+    //========================================
+    
+    func setTableView() {
+        if self.messagesArray.count > 0 {
+            self.noMessagesImage.isHidden = true
+            self.noMessagesLabel.isHidden = true
+        } else {
+            self.tableView.isHidden = true
+        }
+    }
+    
+    func getTime()-> String {
+        let toDay = Date()
+        // Convert Date to timeStemp
+        let timeStemp = toDay.timeIntervalSince1970
+        // Convert timeStemp to Date
+        let toDayAgain = Date(timeIntervalSince1970: timeStemp)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm:ss"
+        let string = dateFormatter.string(from: toDayAgain)
+        
+        return string
 
-        // Do any additional setup after loading the view.
+    }
+    
+    //========================================
+    // MARK: - Table Views
+    //========================================
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.messagesArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "chatCell", for: indexPath) as? ChatCell else { return UITableViewCell() }
+        cell.timeLabel.text = self.getTime()
+        cell.groupName.text = "Jabrutouch Team"
+        cell.message.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        
+        return cell
+    }
+    
+    
+    //========================================
+    // MARK: - @IBActions
+    //========================================
+
+    @IBAction func newMessageButtomPressed(_ sender: Any) {
+        
     }
     
     @IBAction func searchButtonPressed(_ sender: Any) {
+        
     }
     
 
     @IBAction func backButtonPressed(_ sender: Any) {
-        
+        self.dismiss(animated: true, completion: nil)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
