@@ -160,13 +160,21 @@
             </objects>
             <point key="canvasLocation" x="-1109" y="265"/>
         </scene>
+        <!--Messages-->
+        <scene sceneID="fcV-9q-HS4">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Messages" id="yNO-t6-X4Y" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PgF-aS-y97" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-536" y="-664"/>
+        </scene>
         <!--Profile-->
         <scene sceneID="m2c-fd-19a">
             <objects>
                 <viewControllerPlaceholder storyboardName="Profile" id="UeY-nm-KDD" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mZG-0J-rDg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-389" y="-236"/>
+            <point key="canvasLocation" x="-551" y="-580"/>
         </scene>
         <!--Gemara-->
         <scene sceneID="IHn-Qr-1Q9">
@@ -1130,6 +1138,7 @@
                         <segue destination="Jhr-px-5v1" kind="presentation" identifier="presentMenu" animates="NO" modalPresentationStyle="overFullScreen" id="QyC-qE-FwQ"/>
                         <segue destination="UeY-nm-KDD" kind="presentation" identifier="presentProfile" modalPresentationStyle="currentContext" id="eN5-yq-N07"/>
                         <segue destination="aWT-VA-QZb" kind="presentation" identifier="presentOldProfile" modalPresentationStyle="currentContext" id="zG4-O3-ljI"/>
+                        <segue destination="yNO-t6-X4Y" kind="presentation" identifier="toMessages" modalPresentationStyle="currentContext" id="kxv-Gm-dsa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MyD-j7-MvK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1306,7 +1315,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QUi-B1-4XX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1977" y="55"/>
+            <point key="canvasLocation" x="-2191" y="68"/>
         </scene>
     </scenes>
     <resources>

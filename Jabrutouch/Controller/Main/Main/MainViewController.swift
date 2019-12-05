@@ -483,8 +483,13 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     private func presentProfile() {
         self.performSegue(withIdentifier: "presentProfile", sender: self)
     }
+    
     private func presentOldProfile() {
         self.performSegue(withIdentifier: "presentOldProfile", sender: self)
+    }
+    
+    private func presentMessages() {
+        self.performSegue(withIdentifier: "toMessages", sender: self)
     }
     
     private func presentDownloadsViewController() {
@@ -619,6 +624,8 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
             presentGemaraViewController()
         case .about:
             presentAboutUs()
+        case .messageCenter:
+            presentMessages()
         default:
             presentInDevelopmentAlert()
         }

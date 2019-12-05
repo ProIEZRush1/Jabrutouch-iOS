@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Display-Bold.otf">
+            <string>SFProDisplay-Bold</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Messages View Controller-->
+        <scene sceneID="fQA-cT-zcS">
+            <objects>
+                <viewController id="ToI-Uk-hRn" customClass="MessagesViewController" customModule="Jabrutouch" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1OD-iv-8u1">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BBh-KS-PBN">
+                                <rect key="frame" x="0.0" y="44" width="414" height="80"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Messages" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kh4-P9-887">
+                                        <rect key="frame" x="142" y="23.5" width="130.5" height="33.5"/>
+                                        <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="28"/>
+                                        <color key="textColor" red="0.17399999999999999" green="0.17000000000000001" blue="0.33800000000000002" alpha="0.88" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TYN-qb-y8q">
+                                        <rect key="frame" x="18" y="29" width="27.5" height="22"/>
+                                        <state key="normal" image="LeftArrow"/>
+                                        <connections>
+                                            <action selector="backButtonPressed:" destination="ToI-Uk-hRn" eventType="touchUpInside" id="HFI-Af-sBs"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="USz-3I-cqe">
+                                        <rect key="frame" x="347" y="13" width="67" height="54"/>
+                                        <state key="normal" image="Search"/>
+                                        <connections>
+                                            <action selector="searchButtonPressed:" destination="ToI-Uk-hRn" eventType="touchUpInside" id="zZ5-WD-ZL9"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="TYN-qb-y8q" firstAttribute="centerY" secondItem="BBh-KS-PBN" secondAttribute="centerY" id="3S0-W5-JQT"/>
+                                    <constraint firstItem="TYN-qb-y8q" firstAttribute="leading" secondItem="BBh-KS-PBN" secondAttribute="leading" constant="18" id="3bh-s7-L6k"/>
+                                    <constraint firstAttribute="height" constant="80" id="HLu-L6-g1k"/>
+                                    <constraint firstAttribute="trailing" secondItem="USz-3I-cqe" secondAttribute="trailing" id="Tdr-wm-Rfc"/>
+                                    <constraint firstItem="USz-3I-cqe" firstAttribute="centerY" secondItem="BBh-KS-PBN" secondAttribute="centerY" id="beM-DG-ly1"/>
+                                    <constraint firstItem="kh4-P9-887" firstAttribute="centerY" secondItem="BBh-KS-PBN" secondAttribute="centerY" id="jqT-L9-pb2"/>
+                                    <constraint firstItem="kh4-P9-887" firstAttribute="centerX" secondItem="BBh-KS-PBN" secondAttribute="centerX" id="vw5-jy-bid"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="zmJ-hJ-aBV" firstAttribute="trailing" secondItem="BBh-KS-PBN" secondAttribute="trailing" id="GI9-83-dMO"/>
+                            <constraint firstItem="BBh-KS-PBN" firstAttribute="leading" secondItem="zmJ-hJ-aBV" secondAttribute="leading" id="cb3-SJ-cbj"/>
+                            <constraint firstItem="BBh-KS-PBN" firstAttribute="top" secondItem="zmJ-hJ-aBV" secondAttribute="top" id="jKt-bF-NtB"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="zmJ-hJ-aBV"/>
+                    </view>
+                    <connections>
+                        <outlet property="backButton" destination="TYN-qb-y8q" id="OrZ-ST-1ax"/>
+                        <outlet property="searchButton" destination="USz-3I-cqe" id="iPA-gJ-aEb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XGd-X9-wei" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="271" y="-194"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="LeftArrow" width="27.5" height="19.5"/>
+        <image name="Search" width="66.5" height="53.5"/>
+    </resources>
+</document>
