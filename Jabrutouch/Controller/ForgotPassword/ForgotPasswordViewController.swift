@@ -11,7 +11,7 @@ import UIKit
 class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
     
     private var activityView: ActivityView?
-    var emailAdress: String = ""
+    var emailAddress: String = ""
     var isRegisterd: Bool = false
     var signInViewController: SignInViewController?
     var userExsistsMessage: String = ""
@@ -50,7 +50,7 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
     
     func setStrings(){
         self.sentEmailLeibel.text = "We sent an email to"
-        self.emailAddressLabel.text = self.emailAdress
+        self.emailAddressLabel.text = self.emailAddress
         self.checkMailboxLabel.text = "Please check your mailbox for further instructions"
     }
     
@@ -97,6 +97,7 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func sendButtonPressed(_ sender: Any) {
         if let email = self.textField.text {
+            self.emailAddress = email
             self.showActivityView()
             self.forgotPassword(email)
         }
@@ -167,7 +168,7 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.containerViewTopConstrant.constant = 94
         if let emailAdress = textField.text {
-            self.emailAdress = emailAdress
+            self.emailAddress = emailAdress
         }
         self.textField.resignFirstResponder()
         return true
