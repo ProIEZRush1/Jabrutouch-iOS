@@ -146,9 +146,9 @@ class VideoPlayer: UIView {
         
         // temp
         self.nextButtonItem.isEnabled = false
-        self.previousButtonItem.isEnabled = false
+        self.previousButtonItem.isEnabled = true
         self.videoPlayerNextButton.isEnabled = false
-        self.videoPlayerPreviousButton.isEnabled = false
+        self.videoPlayerPreviousButton.isEnabled = true
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -436,6 +436,8 @@ class VideoPlayer: UIView {
                     self.setCurrentTime(0.0)
                 }
                 
+            } else {
+                self.setCurrentTime(0.0)
             }
         case .small:
             break
