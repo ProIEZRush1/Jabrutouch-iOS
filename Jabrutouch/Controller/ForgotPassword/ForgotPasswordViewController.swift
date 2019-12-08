@@ -88,6 +88,7 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
             self.setStrings()
         } else {
             self.isRegisterd = false
+            self.secondTitleLabel.text = ""
             self.secondSubTitleLabel.text = message
             self.userExistsView.isHidden = true
         }
