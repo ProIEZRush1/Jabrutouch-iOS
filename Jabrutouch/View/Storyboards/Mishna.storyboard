@@ -135,6 +135,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
+                                            <outlet property="arrowImageView" destination="hd1-Xv-OYh" id="yz7-G8-eA2"/>
                                             <outlet property="cellView" destination="2Z6-l5-Nif" id="EZs-Nh-Xag"/>
                                             <outlet property="chapterText" destination="eST-bu-QKV" id="GVT-bj-X7Z"/>
                                             <outlet property="chaptersCount" destination="65k-iV-0hn" id="khg-e0-584"/>
