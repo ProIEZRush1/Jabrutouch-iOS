@@ -227,25 +227,25 @@
                                                     <rect key="frame" x="18.5" y="0.0" width="377" height="75"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TransparentAudio" translatesAutoresizingMaskIntoConstraints="NO" id="4e2-Wv-IbQ">
-                                                            <rect key="frame" x="258" y="25.499999999999996" width="21" height="24.500000000000004"/>
+                                                            <rect key="frame" x="258" y="13" width="21" height="49"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="21" id="lQa-V9-gQt"/>
                                                             </constraints>
                                                         </imageView>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DownloadInCircle" translatesAutoresizingMaskIntoConstraints="NO" id="NfR-Md-Mpi">
-                                                            <rect key="frame" x="270" y="40.5" width="24" height="24"/>
+                                                            <rect key="frame" x="270" y="28.5" width="24" height="48"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="24" id="Fx7-Vf-CxW"/>
                                                             </constraints>
                                                         </imageView>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TransparentVideo" translatesAutoresizingMaskIntoConstraints="NO" id="LbE-af-XwM">
-                                                            <rect key="frame" x="322" y="28" width="30" height="19.5"/>
+                                                            <rect key="frame" x="322" y="18" width="30" height="39"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="30" id="4SV-Lo-ZCc"/>
                                                             </constraints>
                                                         </imageView>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DownloadInCircle" translatesAutoresizingMaskIntoConstraints="NO" id="5MK-BE-9jN">
-                                                            <rect key="frame" x="334" y="40.5" width="24" height="24"/>
+                                                            <rect key="frame" x="334" y="28.5" width="24" height="48"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="24" id="7Gp-SZ-N4I"/>
                                                             </constraints>
