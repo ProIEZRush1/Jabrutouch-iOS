@@ -303,7 +303,7 @@ class LessonPlayerViewController: UIViewController {
             for part in self.lessonParts {
                 
                 let customView = JBView()
-                let x = CGFloat((part / self.videoPlayer.duration) * Double(view.bounds.width + 2))
+                let x = CGFloat((part / self.videoPlayer.duration) * Double(view.bounds.width))
                 customView.frame = CGRect.init(x: x, y: 0.0, width: width, height: height)
                 customView.backgroundColor = #colorLiteral(red: 0.178, green: 0.168, blue: 0.663, alpha: 0.5)
                 view.addSubview(customView)
