@@ -36,6 +36,10 @@
 	</dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>This app wants to take pictures.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app wants to use your photos.</string>
 	<key>NSPrincipalClass</key>
 	<string>Application</string>
 	<key>UIAppFonts</key>
@@ -117,9 +121,5 @@
 	</array>
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
-    <key>NSCameraUsageDescription</key>
-    <string>This app wants to take pictures.</string>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>This app wants to use your photos.</string>
 </dict>
 </plist>
