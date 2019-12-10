@@ -137,6 +137,26 @@ class HttpRequestsFactory {
         return request
     }
     
+    class func createGetMessageListRequest(token: String) -> URLRequest?{
+        guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
+        let link = baseUrl.appendingPathComponent("messages/").absoluteString
+        guard let url = self.createUrl(fromLink: link, urlParams: nil) else { return nil }
+        let additionalHeaders: [String:String] = ["Authorization": "token \(token)"]
+        let request = self.createRequest(url, method: .get, body: nil, additionalHeaders: additionalHeaders)
+        return request
+    }
+    
+    class func createMessageRequest(subject: String, image: String, text: String, read: Bool, chatTipe: Int, parentId: Int, fromUser: Int, toUser: Int, token: String) -> URLRequest?{
+           guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
+           let link = baseUrl.appendingPathComponent("messages/").absoluteString
+           let body: [String:Any] = ["subject": subject, "image": image, "text": text, "read": read, "chat_type": chatTipe, "parent_id": parentId, "from_user": fromUser, "to_user": toUser]
+           guard let url = self.createUrl(fromLink: link, urlParams: nil) else { return nil }
+           let additionalHeaders: [String:String] = ["Authorization": "token \(token)"]
+
+           let request = self.createRequest(url, method: .post, body: body, additionalHeaders: additionalHeaders)
+           return request
+       }
+    
     //{"event":"watch", "category": "Gemara", "media_type": "video", "page_id":"141" , "duration": 2, "online": 1}
     
     class func createPostAnalyticEventRequest(token: String, event: String, category:String, mediaType: String, pageId: String, duration: Int64?, online: Int?) -> URLRequest?{
