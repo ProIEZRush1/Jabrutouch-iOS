@@ -23,7 +23,6 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var noMessagesLabel: UILabel!
-    @IBOutlet weak var newMessage: UIButton!
     @IBOutlet weak var noMessagesImage: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     
@@ -86,15 +85,15 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "openChat", sender: self)
+    }
+    
     
     //========================================
     // MARK: - @IBActions
     //========================================
 
-    @IBAction func newMessageButtomPressed(_ sender: Any) {
-        
-    }
-    
     @IBAction func searchButtonPressed(_ sender: Any) {
         
     }
@@ -102,6 +101,19 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
 
     @IBAction func backButtonPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    
+    //========================================
+    // MARK: - navigation
+    //========================================
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "openChat" {
+//            let chatVC = segue.destination as? ChatViewController
+//            chatVC?.titleLabel.text = "test"
+           
+        }
     }
 
 }

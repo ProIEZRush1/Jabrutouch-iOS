@@ -164,6 +164,7 @@
 		833E6225239FB11600EC93C7 /* JTMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833E6224239FB11600EC93C7 /* JTMessage.swift */; };
 		833E6227239FB72A00EC93C7 /* MessagesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833E6226239FB72A00EC93C7 /* MessagesRepository.swift */; };
 		833E6229239FB88C00EC93C7 /* GetMessagesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833E6228239FB88C00EC93C7 /* GetMessagesResponse.swift */; };
+		833E622B239FC33300EC93C7 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833E622A239FC33300EC93C7 /* ChatViewController.swift */; };
 		8342BA6C2370528600C3239C /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8342BA6B2370528600C3239C /* Fonts.swift */; };
 		8342BA74237301D800C3239C /* MainCollectionCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8342BA71237301D700C3239C /* MainCollectionCellViewController.swift */; };
 		8342BA75237301D800C3239C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8342BA72237301D700C3239C /* MainViewController.swift */; };
@@ -378,6 +379,7 @@
 		833E6224239FB11600EC93C7 /* JTMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTMessage.swift; sourceTree = "<group>"; };
 		833E6226239FB72A00EC93C7 /* MessagesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesRepository.swift; sourceTree = "<group>"; };
 		833E6228239FB88C00EC93C7 /* GetMessagesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMessagesResponse.swift; sourceTree = "<group>"; };
+		833E622A239FC33300EC93C7 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		8342BA6B2370528600C3239C /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		8342BA71237301D700C3239C /* MainCollectionCellViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCollectionCellViewController.swift; sourceTree = "<group>"; };
 		8342BA72237301D700C3239C /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -1042,6 +1044,7 @@
 			children = (
 				833E622023992DED00EC93C7 /* MessagesViewController.swift */,
 				833E62222399591400EC93C7 /* ChatCell.swift */,
+				833E622A239FC33300EC93C7 /* ChatViewController.swift */,
 			);
 			path = Messages;
 			sourceTree = "<group>";
@@ -1482,6 +1485,7 @@
 				219BFF4422E7186D00ABBEE2 /* MenuTableViewCell.swift in Sources */,
 				2131969722F38B1200B0AF5F /* APIResult.swift in Sources */,
 				538691472379E8B500CC95B5 /* EditPersonalDetailsCell.swift in Sources */,
+				833E622B239FC33300EC93C7 /* ChatViewController.swift in Sources */,
 				FBDEF16822E8868600A300DA /* JTDownloadGroup.swift in Sources */,
 				5386914B2379E8B500CC95B5 /* InterestsCell.swift in Sources */,
 				83605BA72382DCD200B93603 /* ImagePicker.swift in Sources */,
