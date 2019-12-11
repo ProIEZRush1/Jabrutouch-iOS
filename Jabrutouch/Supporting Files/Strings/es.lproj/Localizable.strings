@@ -23,6 +23,15 @@
 "dontHaveAccount" = "No tienes una cuenta? Crear cuenta";
 "forgotPassword" = "¿Olvidaste tu contraseña?";
 
+"forgotPasswordText" = "Ingresa tu e-mail para recibir una nueva contraseña:";
+"sendNow" = "Enviar";
+"forgotPasswordTitle" = "Recupera tu contraseña";
+"forgotPasswordErrorMessage" = "¡Vaya! Parece que no estás registrado en el sistema. Aunque te hayas registrado previamente en la Web, tendrás que registrarte de vuelta en la aplicación.";
+"forgotPasswordSuccessMessage" = "Acabamos de enviarte una nueva contraseña al siguiente e-mail:";
+"forgotPasswordSuccessTitle" = "E- mail enviado";
+"registerButtonTitle" = "Registrarme";
+
+
 "main" = "Main";
 "downloads" = "Descargas";
 "gemara" = "Guemará";

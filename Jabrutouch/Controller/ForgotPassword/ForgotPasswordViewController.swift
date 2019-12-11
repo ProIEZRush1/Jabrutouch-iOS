@@ -37,7 +37,7 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var userExistsView: UIView!
     @IBOutlet weak var sentEmailLeibel: UILabel!
     @IBOutlet weak var emailAddressLabel: UILabel!
-    @IBOutlet weak var checkMailboxLabel: UILabel!
+//    @IBOutlet weak var checkMailboxLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,12 +46,20 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
         self.setShadow()
         self.roundCornors()
         self.setBorders()
+        self.setStrings()
     }
     
-    func setStrings(){
-        self.sentEmailLeibel.text = "We sent an email to"
+    func setStrings() {
+        self.titleLabel.text = Strings.forgotPasswordTitle
+        self.subTitleLabel.text = Strings.forgotPasswordText
+        self.sendButton.setTitle(Strings.sendNow, for: .normal)
+        self.secondTitleLabel.text = Strings.forgotPasswordSuccessTitle
+    }
+    
+    func setSucssesStrings(){
+        self.sentEmailLeibel.text = Strings.forgotPasswordSuccessMessage//"We sent an email to"
         self.emailAddressLabel.text = self.emailAddress
-        self.checkMailboxLabel.text = "Please check your mailbox for further instructions"
+//        self.checkMailboxLabel.text = "Please check your mailbox for further instructions"
     }
     
     func roundCornors() {
@@ -85,11 +93,13 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
             self.isRegisterd = true
             self.userExistsView.isHidden = false
             self.secondSubTitleLabel.isHidden = true
-            self.setStrings()
+            self.okButton.setTitle("OK", for: .normal)
+            self.setSucssesStrings()
         } else {
             self.isRegisterd = false
             self.secondTitleLabel.text = ""
-            self.secondSubTitleLabel.text = message
+            self.secondSubTitleLabel.text = Strings.forgotPasswordErrorMessage
+            self.okButton.setTitle(Strings.registerButtonTitle, for: .normal)
             self.userExistsView.isHidden = true
         }
         
