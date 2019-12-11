@@ -15,6 +15,7 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
     //========================================
     
     var messagesArray: [String] = []
+//    var messagesArray: [JTChatMessage] = []
     let timeFormatter = DateFormatter()
     //========================================
     // MARK: - @IBOutlets

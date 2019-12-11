@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class ChatViewController: UIViewController {
+class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     //========================================
     // MARK: - Properties
@@ -37,6 +37,7 @@ class ChatViewController: UIViewController {
     @IBOutlet weak var shadowView: UIView!
     @IBOutlet weak var textFieldContainer: UIView!
     
+    @IBOutlet weak var tableView: UITableView!
     //========================================
     // MARK: - LifeCycle
     //========================================
@@ -44,9 +45,11 @@ class ChatViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.playButton.isHidden = true
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
         self.playButton.isEnabled = false
         self.textField.delegate = self
-        //        self.sendMessageButton.setImage(#imageLiteral(resourceName: "mic"), for: .normal)
         self.roundCorners()
         self.setUpRecord()
     }
@@ -81,9 +84,22 @@ class ChatViewController: UIViewController {
         self.shadowView.layer.borderWidth = 1.0
     }
     //========================================
-    // MARK: - collection View
+    // MARK: - table View
     //========================================
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+         guard let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath) as? MessageCell else { return UITableViewCell() }
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150
+    }
     
     //========================================
     // MARK: - @IBActions
@@ -112,7 +128,6 @@ class ChatViewController: UIViewController {
         if textField.text?.isEmpty ?? true {
             self.sendMessageButton.isHidden = true
             self.recordMessageButton.isHidden = false
-            //            self.sendMessageButton.setImage(#imageLiteral(resourceName: "mic"), for: .normal)
         } else {
             self.recordMessageButton.isHidden = true
             self.sendMessageButton.isHidden = false
@@ -138,7 +153,6 @@ extension ChatViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegate {
                               AVNumberOfChannelsKey: 2,
                               AVSampleRateKey: 44100.0 ] as [String : Any]
         
-//        let error: NSError?
         let url = getDocumentDirectory().appendingPathComponent(fileName)
         do {
             self.soundRecorder = try AVAudioRecorder(url: url, settings: recordSettings)
@@ -165,6 +179,7 @@ extension ChatViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegate {
     }
     
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
+        self.playButton.isHidden = false
         self.playButton.isEnabled = true
     }
     
