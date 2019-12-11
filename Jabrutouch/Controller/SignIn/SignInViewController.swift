@@ -41,8 +41,13 @@ class SignInViewController: UIViewController, MFMailComposeViewControllerDelegat
         super.viewDidLoad()
         
         self.setStrings()
-        self.roundCorners()
         self.addBorders()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.view.updateConstraints()
+        self.view.layoutIfNeeded()
+        self.roundCorners()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
