@@ -146,10 +146,10 @@ class HttpRequestsFactory {
         return request
     }
     
-    class func createMessageRequest(subject: String, image: String, text: String, read: Bool, chatTipe: Int, parentId: Int, fromUser: Int, toUser: Int, token: String) -> URLRequest?{
+    class func createMessageRequest(message: String, sentAt: Date, title: String, messageType: Int, toUser: Int, chatId: Int, token: String) -> URLRequest?{
            guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
            let link = baseUrl.appendingPathComponent("messages/").absoluteString
-           let body: [String:Any] = ["subject": subject, "image": image, "text": text, "read": read, "chat_type": chatTipe, "parent_id": parentId, "from_user": fromUser, "to_user": toUser]
+           let body: [String:Any] = ["message": message, "sent_at": sentAt, "title": title, "message_type": messageType, "to_user": toUser, "chat_id": chatId]
            guard let url = self.createUrl(fromLink: link, urlParams: nil) else { return nil }
            let additionalHeaders: [String:String] = ["Authorization": "token \(token)"]
 

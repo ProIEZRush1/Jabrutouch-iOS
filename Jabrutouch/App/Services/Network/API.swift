@@ -123,7 +123,7 @@ class API {
     // MARK: - Messages
     //========================================
     
-    class func getMessages(authToken: String, completionHandler:@escaping (_ response: APIResult<GetMessagesResponse>)->Void) {
+    class func getMessages(authToken: String, completionHandler:@escaping (_ response: APIResult<GetCreateMessageResponse>)->Void) {
         guard let request = HttpRequestsFactory.createGetMessageListRequest(token: authToken) else {
             completionHandler(APIResult.failure(.unableToCreateRequest))
             return
@@ -133,8 +133,8 @@ class API {
         }
     }
     
-    class func gcreateMessages(subject: String, image: String, text: String, read: Bool, chatTipe: Int, parentId: Int, fromUser: Int, toUser: Int, authToken: String, completionHandler:@escaping (_ response: APIResult<GetMessagesResponse>)->Void) {
-           guard let request = HttpRequestsFactory.createMessageRequest(subject: subject, image: image, text: text, read: read, chatTipe: chatTipe, parentId: parentId, fromUser: fromUser, toUser: toUser, token: authToken) else {
+    class func gcreateMessages(message: String, sentAt: Date, title: String, messageType: Int, toUser: Int, chatId: Int, token: String, completionHandler:@escaping (_ response: APIResult<GetMessagesResponse>)->Void) {
+        guard let request = HttpRequestsFactory.createMessageRequest(message: message, sentAt: sentAt, title: title, messageType: messageType, toUser: toUser, chatId: chatId, token: token) else {
                completionHandler(APIResult.failure(.unableToCreateRequest))
                return
            }

@@ -10,12 +10,12 @@ import Foundation
 
 struct GetMessagesResponse: APIResponseModel {
     
-    var messages: [JTMessage]
+    var chats: [JTChatMessage]
     
     init?(values: [String : Any]) {
         
-        if let messages = values["messages"] as? [[String:Any]] {
-            self.messages = messages.compactMap{JTMessage(values: $0)}
+        if let chats = values["chats"] as? [[String:Any]] {
+            self.chats = chats.compactMap{JTChatMessage(values: $0)}
         } else {
             return nil
         }
