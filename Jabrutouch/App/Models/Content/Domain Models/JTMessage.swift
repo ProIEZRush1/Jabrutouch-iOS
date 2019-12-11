@@ -10,53 +10,40 @@ import Foundation
 
 struct JTMessage {
     
-    var id: Int
-    var created: Date
-    var updated: Date
-    var subject: String
-    var imageLink: String
-    var text: String
+    var messageId: Int
+    var sentDate: Date
+    var message: String
     var read: Bool
-    var chatType : Int
-    var parentId : Int
-    var fromUser : Int
-    var toUser : Int
-    
+    var title: String
+    var messageType : Int
+    var fromUser: Int
+    var toUser: Int
+    var chatId: Int
+    var isMine: Bool
+   
     init?(values: [String:Any]) {
-        if let id = values["id"] as? Int {
-            self.id = id
+        if let messageId = values["message_id"] as? Int {
+            self.messageId = messageId
         } else { return nil }
         
-        if let created = values["created"] as? Date {
-            self.created = created
+        if let sentDate = values["sent_at"] as? Date {
+            self.sentDate = sentDate
         } else { return nil }
         
-        if let updated = values["updated"] as? Date {
-            self.updated = updated
-        } else { return nil }
-        
-        if let subject = values["subject"] as? String {
-            self.subject = subject
-        } else { return nil }
-        
-        if let image = values["image"] as? String {
-            self.imageLink = image
-        } else { return nil }
-        
-        if let text = values["text"] as? String {
-            self.text = text
+        if let message = values["message"] as? String {
+            self.message = message
         } else { return nil }
         
         if let read = values["read"] as? Bool {
             self.read = read
         } else { return nil }
         
-        if let chatType = values["chat_type"] as? Int {
-            self.chatType = chatType
+        if let title = values["title"] as? String {
+            self.title = title
         } else { return nil }
         
-        if let parentId = values["parent_id"] as? Int {
-            self.parentId = parentId
+        if let messageType = values["message_type"] as? Int {
+            self.messageType = messageType
         } else { return nil }
         
         if let fromUser = values["from_user"] as? Int {
@@ -67,21 +54,28 @@ struct JTMessage {
             self.toUser = toUser
         } else { return nil }
         
+        if let chatId = values["chat_id"] as? Int {
+            self.chatId = chatId
+        } else { return nil }
+        
+        if let isMine = values["is_mine"] as? Bool {
+            self.isMine = isMine
+        } else { return nil }
+        
     }
     
     var values: [String:Any] {
         var values: [String:Any] = [:]
-        values["id"] = self.id
-        values["created"] = self.created
-        values["updated"] = self.updated
-        values["subject"] = self.subject
-        values["imageLink"] = self.imageLink
-        values["text"] = self.text
+        values["message_id"] = self.messageId
+        values["sent_at"] = self.sentDate
+        values["message"] = self.message
         values["read"] = self.read
-        values["chat_type"] = self.chatType
-        values["parent_id"] = self.parentId
+        values["title"] = self.title
+        values["message_type"] = self.messageType
         values["from_user"] = self.fromUser
         values["to_user"] = self.toUser
+        values["chat_id"] = self.chatId
+        values["is_mine"] = self.isMine
         
         return values
     }
