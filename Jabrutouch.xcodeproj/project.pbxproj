@@ -177,6 +177,9 @@
 		8342BA75237301D800C3239C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8342BA72237301D700C3239C /* MainViewController.swift */; };
 		8342BA76237301D800C3239C /* ModalsContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8342BA73237301D700C3239C /* ModalsContainerViewController.swift */; };
 		8342BA79237302AE00C3239C /* DonationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8342BA78237302AE00C3239C /* DonationsViewController.swift */; };
+		8359192E23A24BFC00F0B4D8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8359192D23A24BFC00F0B4D8 /* GoogleService-Info.plist */; };
+		8359193023A2636000F0B4D8 /* ChatControls.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8359192F23A2636000F0B4D8 /* ChatControls.xib */; };
+		8359193323A2724400F0B4D8 /* ChatControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8359193223A2724400F0B4D8 /* ChatControlsView.swift */; };
 		83605BA52382B01A00B93603 /* JTImageRepsitory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83605BA42382B01A00B93603 /* JTImageRepsitory.swift */; };
 		83605BA72382DCD200B93603 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83605BA62382DCD200B93603 /* ImagePicker.swift */; };
 		83605BA82384361400B93603 /* JTDonor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB124237C0F9E00C86450 /* JTDonor.swift */; };
@@ -399,6 +402,9 @@
 		8342BA72237301D700C3239C /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		8342BA73237301D700C3239C /* ModalsContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalsContainerViewController.swift; sourceTree = "<group>"; };
 		8342BA78237302AE00C3239C /* DonationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DonationsViewController.swift; path = Jabrutouch/Controller/Main/DonationsViewController.swift; sourceTree = SOURCE_ROOT; };
+		8359192D23A24BFC00F0B4D8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8359192F23A2636000F0B4D8 /* ChatControls.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatControls.xib; sourceTree = "<group>"; };
+		8359193223A2724400F0B4D8 /* ChatControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatControlsView.swift; sourceTree = "<group>"; };
 		83605BA42382B01A00B93603 /* JTImageRepsitory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTImageRepsitory.swift; sourceTree = "<group>"; };
 		83605BA62382DCD200B93603 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		83605BA923846E3700B93603 /* OldProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldProfileViewController.swift; sourceTree = "<group>"; };
@@ -662,6 +668,7 @@
 				212ECEB72317DC57005AEB36 /* AudioPlayer.xib */,
 				21F89DCD231B173500540658 /* VideoPlayer.xib */,
 				4628E0E323215E1200D963E6 /* DonatedAlert.xib */,
+				8359192F23A2636000F0B4D8 /* ChatControls.xib */,
 			);
 			path = "Single Views";
 			sourceTree = "<group>";
@@ -799,6 +806,7 @@
 				2126D6D32302D12F00CB501D /* Strings */,
 				2133C1FE22DB5B8500F910B9 /* Assets.xcassets */,
 				2126D6D12302D0E400CB501D /* Info.plist */,
+				8359192D23A24BFC00F0B4D8 /* GoogleService-Info.plist */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -1059,10 +1067,10 @@
 		833E621F23992DCB00EC93C7 /* Messages */ = {
 			isa = PBXGroup;
 			children = (
+				8359193123A2714A00F0B4D8 /* MessagesCells */,
 				833E622023992DED00EC93C7 /* MessagesViewController.swift */,
-				833E62222399591400EC93C7 /* ChatCell.swift */,
 				833E622A239FC33300EC93C7 /* ChatViewController.swift */,
-				833E623923A171AE00EC93C7 /* MessageCell.swift */,
+				8359193223A2724400F0B4D8 /* ChatControlsView.swift */,
 			);
 			path = Messages;
 			sourceTree = "<group>";
@@ -1102,6 +1110,15 @@
 				8342BA78237302AE00C3239C /* DonationsViewController.swift */,
 			);
 			path = Donations;
+			sourceTree = "<group>";
+		};
+		8359193123A2714A00F0B4D8 /* MessagesCells */ = {
+			isa = PBXGroup;
+			children = (
+				833E62222399591400EC93C7 /* ChatCell.swift */,
+				833E623923A171AE00EC93C7 /* MessageCell.swift */,
+			);
+			path = MessagesCells;
 			sourceTree = "<group>";
 		};
 		836A883D238F05F600F68539 /* Gallery */ = {
@@ -1268,6 +1285,7 @@
 				21678D5422DF2CEC007BC74C /* SF-Pro-Display-Thin.otf in Resources */,
 				21678D5522DF2CEC007BC74C /* SF-Pro-Display-ThinItalic.otf in Resources */,
 				21678D5622DF2CEC007BC74C /* SF-Pro-Display-Ultralight.otf in Resources */,
+				8359193023A2636000F0B4D8 /* ChatControls.xib in Resources */,
 				21678D5722DF2CEC007BC74C /* SF-Pro-Display-UltralightItalic.otf in Resources */,
 				21678D5822DF2CEC007BC74C /* SF-Pro-Rounded-Black.otf in Resources */,
 				21678D5922DF2CEC007BC74C /* SF-Pro-Rounded-Bold.otf in Resources */,
@@ -1276,6 +1294,7 @@
 				21678D5B22DF2CED007BC74C /* SF-Pro-Rounded-Light.otf in Resources */,
 				21678D5C22DF2CED007BC74C /* SF-Pro-Rounded-Medium.otf in Resources */,
 				836A8845238FD00100F68539 /* Gallery.storyboard in Resources */,
+				8359192E23A24BFC00F0B4D8 /* GoogleService-Info.plist in Resources */,
 				538691532379E9B100CC95B5 /* Profile.storyboard in Resources */,
 				21678D5D22DF2CED007BC74C /* SF-Pro-Rounded-Regular.otf in Resources */,
 				21678D5E22DF2CED007BC74C /* SF-Pro-Rounded-Semibold.otf in Resources */,
@@ -1393,6 +1412,7 @@
 				836A88492390136000F68539 /* GalleryViewController.swift in Sources */,
 				FB51712122F1D374003BCAFC /* MishnaChapterViewController.swift in Sources */,
 				21ED3BD12304847A009D8E3D /* JTLessonPresenter.swift in Sources */,
+				8359193323A2724400F0B4D8 /* ChatControlsView.swift in Sources */,
 				219BFF2F22E5A11900ABBEE2 /* TextFieldWithPadding.swift in Sources */,
 				836A883C238DB30D00F68539 /* JTGallery.swift in Sources */,
 				2126D6D623033CF800CB501D /* JTSeder.swift in Sources */,

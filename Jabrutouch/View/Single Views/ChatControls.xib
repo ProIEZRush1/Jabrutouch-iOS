@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChatControlsView" customModule="Jabrutouch" customModuleProvider="target">
+            <connections>
+                <outlet property="inputTextView" destination="9tg-3F-Bxw" id="ihg-aU-qjD"/>
+                <outlet property="plaseHolderLabel" destination="d8d-1h-zdC" id="G5o-9G-sIr"/>
+                <outlet property="recordMessageButton" destination="7kT-Lv-2hc" id="gbN-E6-EQG"/>
+                <outlet property="sendMessageButton" destination="Phd-06-aL4" id="fsD-RR-dKT"/>
+                <outlet property="shadowView" destination="rcT-DZ-tuD" id="sc5-sS-VIt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7kT-Lv-2hc">
+                    <rect key="frame" x="341" y="10" width="61" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="61" id="6zc-a9-HSg"/>
+                    </constraints>
+                    <state key="normal" title="Button" image="mic"/>
+                </button>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Phd-06-aL4">
+                    <rect key="frame" x="341" y="33" width="61" height="27"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="61" id="ax4-F5-fcN"/>
+                    </constraints>
+                    <state key="normal" image="Paper Airplane"/>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rcT-DZ-tuD">
+                    <rect key="frame" x="10" y="10" width="321" height="50"/>
+                    <subviews>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9tg-3F-Bxw">
+                            <rect key="frame" x="0.0" y="5" width="321" height="45"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type your message here..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d8d-1h-zdC">
+                            <rect key="frame" x="15" y="14.5" width="301" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" systemColor="placeholderTextColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="d8d-1h-zdC" firstAttribute="leading" secondItem="rcT-DZ-tuD" secondAttribute="leading" constant="15" id="Llf-qM-rF4"/>
+                        <constraint firstItem="9tg-3F-Bxw" firstAttribute="top" secondItem="rcT-DZ-tuD" secondAttribute="top" constant="5" id="VW0-bL-6sJ"/>
+                        <constraint firstAttribute="bottom" secondItem="9tg-3F-Bxw" secondAttribute="bottom" id="WuY-JZ-VDj"/>
+                        <constraint firstAttribute="trailing" secondItem="d8d-1h-zdC" secondAttribute="trailing" constant="5" id="XoU-3D-3kx"/>
+                        <constraint firstItem="d8d-1h-zdC" firstAttribute="centerY" secondItem="rcT-DZ-tuD" secondAttribute="centerY" id="cgR-ZP-nJh"/>
+                        <constraint firstItem="9tg-3F-Bxw" firstAttribute="leading" secondItem="rcT-DZ-tuD" secondAttribute="leading" id="jYz-IZ-KkM"/>
+                        <constraint firstAttribute="trailing" secondItem="9tg-3F-Bxw" secondAttribute="trailing" id="lJZ-62-GLb"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Phd-06-aL4" secondAttribute="bottom" constant="10" id="27d-sw-Qkw"/>
+                <constraint firstAttribute="bottom" secondItem="7kT-Lv-2hc" secondAttribute="bottom" constant="10" id="JRT-VK-PXx"/>
+                <constraint firstAttribute="trailing" secondItem="Phd-06-aL4" secondAttribute="trailing" constant="12" id="JdW-cZ-BJu"/>
+                <constraint firstItem="7kT-Lv-2hc" firstAttribute="leading" secondItem="rcT-DZ-tuD" secondAttribute="trailing" constant="10" id="QV7-uW-kgW"/>
+                <constraint firstAttribute="bottom" secondItem="rcT-DZ-tuD" secondAttribute="bottom" constant="10" id="Rl1-td-VQb"/>
+                <constraint firstAttribute="trailing" secondItem="7kT-Lv-2hc" secondAttribute="trailing" constant="12" id="aFu-dd-IWm"/>
+                <constraint firstItem="rcT-DZ-tuD" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="xav-tU-FJn"/>
+                <constraint firstItem="rcT-DZ-tuD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="yW5-ZR-QcA"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="137.68115942028987" y="141.29464285714286"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Paper Airplane" width="34" height="26.5"/>
+        <image name="mic" width="61.5" height="50"/>
+    </resources>
+</document>

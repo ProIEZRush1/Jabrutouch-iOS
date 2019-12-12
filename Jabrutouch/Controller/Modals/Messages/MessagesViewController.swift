@@ -37,6 +37,7 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
         self.tableView.dataSource = self
         self.messagesArray.append("test")
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         self.setTableView()
         
