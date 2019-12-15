@@ -1290,10 +1290,10 @@
             filePath = "Jabrutouch/Controller/Modals/Messages/MessagesViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
-            landmarkName = "MessagesViewController"
-            landmarkType = "3">
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "getTime()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1306,10 +1306,10 @@
             filePath = "Jabrutouch/Controller/Modals/Messages/MessagesViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
-            landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "MessagesViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1322,8 +1322,8 @@
             filePath = "Jabrutouch/Controller/Modals/Messages/MessagesViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
             landmarkName = "getTime()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1419,6 +1419,38 @@
             startingLineNumber = "52"
             endingLineNumber = "52"
             landmarkName = "setStrings()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "660D404A-2EA4-4250-B59E-B76A4488219B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Jabrutouch/App/Core/AppDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "registerForRemoteNotifications(application:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "538CB500-61E1-44E8-8505-42FB88A6EAD0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Jabrutouch/App/Repositories/MessagesRepository.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "messaging(_:didReceive:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

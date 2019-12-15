@@ -26,5 +26,9 @@ class MessagesRepository: NSObject, MessagingDelegate {
         print("fcmToken: \(fcmToken)")
         self.fcmToken = fcmToken
     }
+    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
+        
+    }
+    
     
 }

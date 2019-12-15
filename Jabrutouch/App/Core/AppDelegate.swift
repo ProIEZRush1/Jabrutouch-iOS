@@ -39,15 +39,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         Fabric.with([Crashlytics.self])
-        FirebaseApp.configure()
-        Messaging.messaging().delegate = MessagesRepository.shared
         
         print(UserDefaultsProvider.shared.currentUser?.token ?? "")
         print((UserDefaults.standard.object(forKey: "AppleLanguages") as! [String]).first!)
         // Initialize
         _ = ContentRepository.shared
+        FirebaseApp.configure()
         registerForPushNotifications(application: application)
+        Messaging.messaging().delegate = MessagesRepository.shared
         return true
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let token = deviceToken.map{ String(format: "%02.2hhx", $0) }.joined()
+        print("Notifications token: " + token)
+//        fcmToken = token
+
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
@@ -145,5 +152,13 @@ extension AppDelegate:UNUserNotificationCenterDelegate{
                 print(n,"getPendingNotificationRequests")
             }
         }
+    }
+   
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .sound])
     }
 }

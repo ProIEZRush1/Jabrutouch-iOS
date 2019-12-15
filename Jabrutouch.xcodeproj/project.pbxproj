@@ -405,6 +405,7 @@
 		8359192D23A24BFC00F0B4D8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8359192F23A2636000F0B4D8 /* ChatControls.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatControls.xib; sourceTree = "<group>"; };
 		8359193223A2724400F0B4D8 /* ChatControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatControlsView.swift; sourceTree = "<group>"; };
+		8359193423A64DC300F0B4D8 /* Jabrutouch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Jabrutouch.entitlements; sourceTree = "<group>"; };
 		83605BA42382B01A00B93603 /* JTImageRepsitory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTImageRepsitory.swift; sourceTree = "<group>"; };
 		83605BA62382DCD200B93603 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		83605BA923846E3700B93603 /* OldProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldProfileViewController.swift; sourceTree = "<group>"; };
@@ -702,6 +703,7 @@
 		2133C1F622DB5B8200F910B9 /* Jabrutouch */ = {
 			isa = PBXGroup;
 			children = (
+				8359193423A64DC300F0B4D8 /* Jabrutouch.entitlements */,
 				2133C20922DCA05B00F910B9 /* App */,
 				2133C20A22DCA06400F910B9 /* View */,
 				2133C20B22DCA07000F910B9 /* Controller */,
@@ -1705,6 +1707,7 @@
 			buildSettings = {
 				API_BASE_URL = "https://jabrutouch.ravtech.co.il/api/";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Jabrutouch/Jabrutouch.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1733,6 +1736,7 @@
 			buildSettings = {
 				API_BASE_URL = "https://jabrutouch.ravtech.co.il/api/";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Jabrutouch/Jabrutouch.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
