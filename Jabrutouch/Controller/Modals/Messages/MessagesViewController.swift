@@ -53,6 +53,7 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
             self.noMessagesLabel.isHidden = true
         } else {
             self.tableView.isHidden = true
+            self.searchButton.isHidden =  true
         }
     }
     
