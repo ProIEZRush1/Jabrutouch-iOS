@@ -10,8 +10,12 @@ import UIKit
 import Fabric
 import Crashlytics
 import AWSS3
+import Firebase
+import FirebaseMessaging
 
 let appDelegate = UIApplication.shared.delegate as! AppDelegate
+let notificatioCenter = UNUserNotificationCenter.current()
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -35,13 +39,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         Fabric.with([Crashlytics.self])
+        FirebaseApp.configure()
+        Messaging.messaging().delegate = MessagesRepository.shared
+        
         print(UserDefaultsProvider.shared.currentUser?.token ?? "")
         print((UserDefaults.standard.object(forKey: "AppleLanguages") as! [String]).first!)
         // Initialize
         _ = ContentRepository.shared
+        registerForPushNotifications(application: application)
         return true
     }
-
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
@@ -68,6 +76,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AWSS3TransferUtility.interceptApplication(application, handleEventsForBackgroundURLSession: identifier, completionHandler: completionHandler)
     }
     
+    func registerForRemoteNotifications(application: UIApplication) {
+        let options:UNAuthorizationOptions = [.alert,.badge,.sound,.carPlay]
+        notificatioCenter.requestAuthorization(options: options, completionHandler: { (granted:Bool, error: Error?) in
+            if granted {
+                DispatchQueue.main.async {
+                    application.registerForRemoteNotifications()
+                    let categories: Set<UNNotificationCategory> = []
+                    notificatioCenter.setNotificationCategories(categories)
+                }
+            }
+        })
+    }
+    
+    func registerForPushNotifications(application:UIApplication) {
+
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
+            (granted, error) in
+            print("Permission granted: \(granted)")
+        }
+        notificatioCenter.delegate = self
+        self.registerForRemoteNotifications(application: application)
+        centerNotificationManager()
+    }
+    
     func setRootViewController(viewController: UIViewController, animated: Bool) {
         if self.window == nil {
             self.window = UIWindow()
@@ -89,3 +121,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
+    
+extension AppDelegate:UNUserNotificationCenterDelegate{
+    
+    func centerNotificationManager(){
+        notificatioCenter.getDeliveredNotifications { (notifications:[UNNotification]) in
+            for n in notifications{
+//                let userInfo = n.request.content.userInfo
+//                //print("## userInfo ## \(userInfo.debugDescription)")
+//                let remoteNotification = userInfo as! [String: AnyObject]
+                //print("## remoteNotification ## \(remoteNotification.debugDescription)")
+//                self.queue.sync {
+//
+//                    let _ = self.parsFCMNotification(messageInfo: n)
+//                }
+
+                print(n,"getDeliveredNotifications")
+            }
+        }
+        
+        notificatioCenter.getPendingNotificationRequests{ (notifications:[UNNotificationRequest]) in
+            for n in notifications{
+                print(n,"getPendingNotificationRequests")
+            }
+        }
+    }
+}
