@@ -12,13 +12,14 @@ import Foundation
 struct JTChatMessage {
     
     var chatId: Int
-    var createdDate: Date
+    var createdDate: Int
     var title: String
     var fromUser: Int
     var toUser: Int
     var chatType : Int
     var lastMessage: String
-    var lastMessageTime: Date
+    var lastMessageTime: Int
+    var image: String
     var messages: [JTMessage]
    
     init?(values: [String:Any]) {
@@ -27,7 +28,7 @@ struct JTChatMessage {
             self.chatId = chatId
         } else { return nil }
                 
-        if let createdDate = values["created_at"] as? Date {
+        if let createdDate = values["created_at"] as? Int {
             self.createdDate = createdDate
         } else { return nil }
         
@@ -51,8 +52,12 @@ struct JTChatMessage {
             self.lastMessage = lastMessage
         } else { return nil }
         
-        if let lastMessageTime = values["last_message_time"] as? Date {
+        if let lastMessageTime = values["last_message_time"] as? Int {
             self.lastMessageTime = lastMessageTime
+        } else { return nil }
+        
+        if let image = values["image"] as? String {
+            self.image = image
         } else { return nil }
         
         if let messagesValues = values["messages"] as? [[String: Any]] {
@@ -72,6 +77,7 @@ struct JTChatMessage {
         values["chat_type"] = self.chatType
         values["last_message"] = self.lastMessage
         values["last_message_time"] = self.lastMessageTime
+        values["image"] = self.image
         values["messages"] = self.messages.map{$0.values}
         
         return values

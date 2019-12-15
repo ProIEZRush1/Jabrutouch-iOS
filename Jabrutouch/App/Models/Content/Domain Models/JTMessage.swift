@@ -11,7 +11,7 @@ import Foundation
 struct JTMessage {
     
     var messageId: Int
-    var sentDate: Date
+    var sentDate: Int
     var message: String
     var read: Bool
     var title: String
@@ -20,13 +20,15 @@ struct JTMessage {
     var toUser: Int
     var chatId: Int
     var isMine: Bool
+    var newChat: Bool
+    var image: String
    
     init?(values: [String:Any]) {
         if let messageId = values["message_id"] as? Int {
             self.messageId = messageId
         } else { return nil }
         
-        if let sentDate = values["sent_at"] as? Date {
+        if let sentDate = values["sent_at"] as? Int {
             self.sentDate = sentDate
         } else { return nil }
         
@@ -62,6 +64,14 @@ struct JTMessage {
             self.isMine = isMine
         } else { return nil }
         
+        if let newChat = values["new_chat"] as? Bool {
+            self.newChat = newChat
+        } else { return nil }
+        
+        if let image = values["image"] as? String {
+            self.image = image
+        } else { return nil }
+        
     }
     
     var values: [String:Any] {
@@ -76,6 +86,8 @@ struct JTMessage {
         values["to_user"] = self.toUser
         values["chat_id"] = self.chatId
         values["is_mine"] = self.isMine
+        values["new_chat"] = self.newChat
+        values["image"] = self.image
         
         return values
     }
