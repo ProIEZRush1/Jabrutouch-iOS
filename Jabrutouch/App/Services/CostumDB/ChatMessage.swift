@@ -332,4 +332,126 @@ struct MessageIdList :SQLTable{
     let created: Int64
 }
 
+/////////////////////////////////////////////////////////////////////////////////////
+
+struct ChatMessage :SQLTable{
+    
+    static var createChatTableStatement = ""
+    
+    static var createStatement: String {
+        return """
+        CREATE TABLE ChatMessage\(createChatTableStatement)
+        (
+        ChatId CHAR(100) NOT NULL UNIQUE,
+        CreateAtDate INT NOT NULL,
+        Title CHAR(255) NOT NULL,
+        FromUserId INT,
+        ToUserId INT,
+        ChatType INT,
+        LastMessage CHAR(255) NOT NULL,
+        LastMessageTime CHAR(55) NOT NULL,
+        UserImage CHAR(100) NOT NULL
+        
+        );
+        """
+    }
+    
+    let chatId: NSString
+    let creatAtDate: Int32
+    let title: NSString
+    let fromUser: Int32
+    let toUser: Int32
+    let chatType: Int32
+    let lastMessage: NSString
+    let lastMessageTime: Int32
+    let userImage: NSString
+    
+    init(chatId: NSString, creatAtDate: Int32, title: NSString, fromUser: Int32, toUser: Int32, chatType: Int32, lastMessage: NSString, lastMessageTime: Int32, userImage: NSString) {
+        
+        self.chatId = chatId
+        self.creatAtDate = creatAtDate
+        self.title = title
+        self.fromUser = fromUser
+        self.toUser = toUser
+        self.chatType = chatType
+        self.lastMessage = lastMessage
+        self.lastMessageTime = lastMessageTime
+        self.userImage = userImage
+        
+    }
+    
+    init(chatId: NSString, chatMessage: JTChatMessage){
+
+        self.chatId = chatId
+        self.creatAtDate = Int32(chatMessage.createdDate)
+        self.title = chatMessage.title as NSString
+        self.fromUser = Int32(chatMessage.fromUser)
+        self.toUser = Int32(chatMessage.toUser)
+        self.chatType = Int32(chatMessage.chatType)
+        self.lastMessage = chatMessage.lastMessage as NSString
+        self.lastMessageTime = Int32(chatMessage.lastMessageTime)
+        self.userImage = chatMessage.image as NSString
+
+    }
+}
+
+
+struct Message :SQLTable{
+    
+    static var createMessageTableStatement = ""
+    
+    static var createStatement: String {
+        return """
+        CREATE TABLE ChatMessage\(createMessageTableStatement)
+        (
+        MessageId CHAR(100) NOT NULL UNIQUE,
+        SendAtDate INT NOT NULL,
+        Message CHAR(255) NOT NULL,
+        Title CHAR(255) NOT NULL,
+        MessageType INT,
+        FromUserId INT,
+        ToUserId INT,
+        ChatId INT,
+        UserImage CHAR(100) NOT NULL
+        
+        );
+        """
+    }
+    
+    let messageId: NSString
+    let sendAtDate: Int32
+    let message: NSString
+    let title: NSString
+    let messageType: Int32
+    let fromUser: Int32
+    let toUser: Int32
+    let userImage: NSString
+    
+    init(messageId: NSString, sendAtDate: Int32, message: NSString, title: NSString, messageType: Int32, fromUser: Int32, toUser: Int32, userImage: NSString) {
+        
+        self.messageId = messageId
+        self.sendAtDate = sendAtDate
+        self.message = message
+        self.title = title
+        self.messageType = messageType
+        self.fromUser = fromUser
+        self.toUser = toUser
+        self.userImage = userImage
+        
+    }
+    
+    init(messageId: NSString, chatMessage: JTMessage){
+
+        self.messageId = messageId
+        self.sendAtDate = Int32(chatMessage.sentDate)
+        self.message = chatMessage.message as NSString
+        self.title = chatMessage.title as NSString
+        self.messageType = Int32(chatMessage.messageType)
+        self.fromUser = Int32(chatMessage.fromUser)
+        self.toUser = Int32(chatMessage.toUser)
+        self.userImage = chatMessage.image as NSString
+
+    }
+}
+
 
