@@ -7,10 +7,12 @@
 //
 
 import Foundation
+import Firebase
+import FirebaseMessaging
 
-
-class MessagesRepository {
+class MessagesRepository: NSObject, MessagingDelegate {
     
+    var fcmToken = ""
     static private var manager: MessagesRepository?
     
     class var shared: MessagesRepository {
@@ -19,4 +21,10 @@ class MessagesRepository {
         }
         return self.manager!
     }
+    
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        print("fcmToken: \(fcmToken)")
+        self.fcmToken = fcmToken
+    }
+    
 }
