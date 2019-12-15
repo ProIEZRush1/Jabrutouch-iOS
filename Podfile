@@ -13,5 +13,6 @@ target 'Jabrutouch' do
   pod 'Crashlytics'
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
+  pod 'Firebase/Messaging'
 
 end
