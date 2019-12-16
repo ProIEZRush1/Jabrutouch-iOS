@@ -167,10 +167,6 @@
 		833E622B239FC33300EC93C7 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833E622A239FC33300EC93C7 /* ChatViewController.swift */; };
 		833E622D23A1344A00EC93C7 /* JTChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833E622C23A1344A00EC93C7 /* JTChatMessage.swift */; };
 		833E622F23A13BE400EC93C7 /* GetCreateMessageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833E622E23A13BE400EC93C7 /* GetCreateMessageResponse.swift */; };
-		833E623223A163EB00EC93C7 /* SQLiteDatabaes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833E623123A163EB00EC93C7 /* SQLiteDatabaes.swift */; };
-		833E623423A1649200EC93C7 /* SQLiteDBIntegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833E623323A1649200EC93C7 /* SQLiteDBIntegration.swift */; };
-		833E623623A1655200EC93C7 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833E623523A1655200EC93C7 /* Helper.swift */; };
-		833E623823A1662B00EC93C7 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833E623723A1662B00EC93C7 /* ChatMessage.swift */; };
 		8342BA6C2370528600C3239C /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8342BA6B2370528600C3239C /* Fonts.swift */; };
 		8342BA74237301D800C3239C /* MainCollectionCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8342BA71237301D700C3239C /* MainCollectionCellViewController.swift */; };
 		8342BA75237301D800C3239C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8342BA72237301D700C3239C /* MainViewController.swift */; };
@@ -181,6 +177,8 @@
 		8359193323A2724400F0B4D8 /* ChatControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8359193223A2724400F0B4D8 /* ChatControlsView.swift */; };
 		8359193823A6943800F0B4D8 /* IncomingMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8359193723A6943800F0B4D8 /* IncomingMessageCell.swift */; };
 		8359193C23A695EB00F0B4D8 /* UserMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8359193B23A695EB00F0B4D8 /* UserMessageCell.swift */; };
+		8359193F23A795BD00F0B4D8 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8359193E23A795BD00F0B4D8 /* CoreDataManager.swift */; };
+		8359194223A7984A00F0B4D8 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8359194023A7984A00F0B4D8 /* DataModel.xcdatamodeld */; };
 		83605BA52382B01A00B93603 /* JTImageRepsitory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83605BA42382B01A00B93603 /* JTImageRepsitory.swift */; };
 		83605BA72382DCD200B93603 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83605BA62382DCD200B93603 /* ImagePicker.swift */; };
 		83605BA82384361400B93603 /* JTDonor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB124237C0F9E00C86450 /* JTDonor.swift */; };
@@ -393,10 +391,6 @@
 		833E622A239FC33300EC93C7 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		833E622C23A1344A00EC93C7 /* JTChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTChatMessage.swift; sourceTree = "<group>"; };
 		833E622E23A13BE400EC93C7 /* GetCreateMessageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCreateMessageResponse.swift; sourceTree = "<group>"; };
-		833E623123A163EB00EC93C7 /* SQLiteDatabaes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteDatabaes.swift; sourceTree = "<group>"; };
-		833E623323A1649200EC93C7 /* SQLiteDBIntegration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteDBIntegration.swift; sourceTree = "<group>"; };
-		833E623523A1655200EC93C7 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
-		833E623723A1662B00EC93C7 /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
 		8342BA6B2370528600C3239C /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		8342BA71237301D700C3239C /* MainCollectionCellViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCollectionCellViewController.swift; sourceTree = "<group>"; };
 		8342BA72237301D700C3239C /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -408,6 +402,8 @@
 		8359193423A64DC300F0B4D8 /* Jabrutouch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Jabrutouch.entitlements; sourceTree = "<group>"; };
 		8359193723A6943800F0B4D8 /* IncomingMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncomingMessageCell.swift; sourceTree = "<group>"; };
 		8359193B23A695EB00F0B4D8 /* UserMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMessageCell.swift; sourceTree = "<group>"; };
+		8359193E23A795BD00F0B4D8 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		8359194123A7984A00F0B4D8 /* DataModal.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModal.xcdatamodel; sourceTree = "<group>"; };
 		83605BA42382B01A00B93603 /* JTImageRepsitory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTImageRepsitory.swift; sourceTree = "<group>"; };
 		83605BA62382DCD200B93603 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		83605BA923846E3700B93603 /* OldProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldProfileViewController.swift; sourceTree = "<group>"; };
@@ -481,7 +477,7 @@
 		2107341B22EEFCA8008479D0 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				833E623023A1616E00EC93C7 /* CostumDB */,
+				8359193D23A7958C00F0B4D8 /* CoreData */,
 				216A0E6C22EEFCF100F7FBC1 /* Network */,
 				2131969B22F38B2D00B0AF5F /* FilesManagementProvider.swift */,
 				21419CAF230D50CA00145F1F /* AWSS3Provider.swift */,
@@ -1079,17 +1075,6 @@
 			path = Messages;
 			sourceTree = "<group>";
 		};
-		833E623023A1616E00EC93C7 /* CostumDB */ = {
-			isa = PBXGroup;
-			children = (
-				833E623123A163EB00EC93C7 /* SQLiteDatabaes.swift */,
-				833E623323A1649200EC93C7 /* SQLiteDBIntegration.swift */,
-				833E623523A1655200EC93C7 /* Helper.swift */,
-				833E623723A1662B00EC93C7 /* ChatMessage.swift */,
-			);
-			path = CostumDB;
-			sourceTree = "<group>";
-		};
 		8342BA6F237301D700C3239C /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -1124,6 +1109,15 @@
 				8359193B23A695EB00F0B4D8 /* UserMessageCell.swift */,
 			);
 			path = MessagesCells;
+			sourceTree = "<group>";
+		};
+		8359193D23A7958C00F0B4D8 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				8359193E23A795BD00F0B4D8 /* CoreDataManager.swift */,
+				8359194023A7984A00F0B4D8 /* DataModel.xcdatamodeld */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		836A883D238F05F600F68539 /* Gallery */ = {
@@ -1426,7 +1420,6 @@
 				21999F36231823FF003DB1B4 /* CustomTrackHeightSlider.swift in Sources */,
 				212ECEB42317C790005AEB36 /* VideoPlayer.swift in Sources */,
 				FBB434FE22FB2CA4008EE211 /* ProfileViewController.swift in Sources */,
-				833E623623A1655200EC93C7 /* Helper.swift in Sources */,
 				21ED3BD42304858C009D8E3D /* JTMishnaLesson.swift in Sources */,
 				21ED3BDC23048970009D8E3D /* GetGemaraLessonsResponse.swift in Sources */,
 				2133C22122DCFEB500F910B9 /* WalkThroughCollectionViewCell.swift in Sources */,
@@ -1470,7 +1463,6 @@
 				FB51711A22F1A100003BCAFC /* JTMishnaChapter.swift in Sources */,
 				FB51711422F19C3F003BCAFC /* MishnaMasechetCellController.swift in Sources */,
 				836A88502396A4E800F68539 /* ForgotPasswordResponse.swift in Sources */,
-				833E623423A1649200EC93C7 /* SQLiteDBIntegration.swift in Sources */,
 				2133C22622DDCD3E00F910B9 /* Colors.swift in Sources */,
 				FB51712322F1D7CC003BCAFC /* MishnaChapterCellController.swift in Sources */,
 				213196AE22F38B6800B0AF5F /* JTUser.swift in Sources */,
@@ -1516,6 +1508,7 @@
 				219B06FA230408F400A7EBBA /* ServerFieldError.swift in Sources */,
 				2126D6DA2303E81700CB501D /* GetMasechtotResponse.swift in Sources */,
 				4628E0E923245BF600D963E6 /* AboutViewController.swift in Sources */,
+				8359193F23A795BD00F0B4D8 /* CoreDataManager.swift in Sources */,
 				21678D7622E08565007BC74C /* DownloadsViewController.swift in Sources */,
 				83CCB127237C8D6F00C86450 /* EditPasswordCell.swift in Sources */,
 				219BFF3822E5B72000ABBEE2 /* LocalizationManager.swift in Sources */,
@@ -1527,11 +1520,9 @@
 				213196AD22F38B6800B0AF5F /* JTCommunity.swift in Sources */,
 				FBDEF16D22E89E3B00A300DA /* HeaderCellController.swift in Sources */,
 				21E0BE942304217800F820D4 /* JTMishnaMasechetItem.swift in Sources */,
-				833E623823A1662B00EC93C7 /* ChatMessage.swift in Sources */,
 				2133C22422DDCCD500F910B9 /* JBBarPageIndicator.swift in Sources */,
 				21ED3BCC23042A3C009D8E3D /* JTMishnaChapterItem.swift in Sources */,
 				213196A922F38B3E00B0AF5F /* ResendCodeResponse.swift in Sources */,
-				833E623223A163EB00EC93C7 /* SQLiteDatabaes.swift in Sources */,
 				213196A622F38B3E00B0AF5F /* ValidateCodeResponse.swift in Sources */,
 				21419CB0230D50CB00145F1F /* AWSS3Provider.swift in Sources */,
 				2126D6E3230404BD00CB501D /* GemaraNavigationController.swift in Sources */,
@@ -1541,6 +1532,7 @@
 				213196B122F38B9E00B0AF5F /* ActivityView.swift in Sources */,
 				2133C1F822DB5B8200F910B9 /* AppDelegate.swift in Sources */,
 				FB51711F22F1AE0B003BCAFC /* JTLessonDownload.swift in Sources */,
+				8359194223A7984A00F0B4D8 /* DataModel.xcdatamodeld in Sources */,
 				21678D7822E08594007BC74C /* GemaraViewController.swift in Sources */,
 				2126D6DC2303EA8600CB501D /* ContentRepository.swift in Sources */,
 				219BFF4422E7186D00ABBEE2 /* MenuTableViewCell.swift in Sources */,
@@ -1784,6 +1776,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8359194023A7984A00F0B4D8 /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8359194123A7984A00F0B4D8 /* DataModal.xcdatamodel */,
+			);
+			currentVersion = 8359194123A7984A00F0B4D8 /* DataModal.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 2133C1EC22DB5B8200F910B9 /* Project object */;
 }
