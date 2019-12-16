@@ -10,12 +10,12 @@ import Foundation
 
 struct GetCreateMessageResponse: APIResponseModel {
     
-    var chat: JTChatMessage
+    var message: JTMessage
     
     init?(values: [String : Any]) {
         
-        if let chat = JTChatMessage(values: values) {
-            self.chat = chat
+        if let message = JTMessage(values: values) {
+            self.message = message
         } else {
             return nil
         }

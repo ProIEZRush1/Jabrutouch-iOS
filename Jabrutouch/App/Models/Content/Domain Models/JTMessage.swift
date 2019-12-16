@@ -11,7 +11,7 @@ import Foundation
 struct JTMessage {
     
     var messageId: Int
-    var sentDate: Int
+    var sentDate: Date
     var message: String
     var read: Bool
     var title: String
@@ -20,7 +20,7 @@ struct JTMessage {
     var toUser: Int
     var chatId: Int
     var isMine: Bool
-    var newChat: Bool
+    
     var image: String
    
     init?(values: [String:Any]) {
@@ -28,7 +28,7 @@ struct JTMessage {
             self.messageId = messageId
         } else { return nil }
         
-        if let sentDate = values["sent_at"] as? Int {
+        if let sentDate = values["sent_at"] as? Date {
             self.sentDate = sentDate
         } else { return nil }
         
@@ -64,12 +64,57 @@ struct JTMessage {
             self.isMine = isMine
         } else { return nil }
         
-        if let newChat = values["new_chat"] as? Bool {
-            self.newChat = newChat
-        } else { return nil }
-        
+       
         if let image = values["image"] as? String {
             self.image = image
+        } else { return nil }
+        
+    }
+    
+    init?(values: NSManagedObject) {
+        
+        if let chatId = values.value(forKey: "chatId") as? Int {
+            self.chatId = chatId
+        } else { return nil }
+        
+        if let sentDate = values.value(forKey: "sendAtDate") as? Date {
+            self.sentDate = sentDate
+        } else { return nil }
+        
+        if let title = values.value(forKey: "title") as? String {
+            self.title = title
+        } else { return nil }
+        
+        if let fromUser = values.value(forKey: "fromUser") as? Int {
+            self.fromUser = fromUser
+        } else { return nil }
+        
+        if let toUser = values.value(forKey: "toUser") as? Int {
+            self.toUser = toUser
+        } else { return nil }
+        
+        if let messageType = values.value(forKey: "messageType") as? Int {
+            self.messageType = messageType
+        } else { return nil }
+        
+        if let message = values.value(forKey: "message")  as? String {
+            self.message = message
+        } else { return nil }
+        
+        if let messageId = values.value(forKey: "messageId") as? Int {
+            self.messageId = messageId
+        } else { return nil }
+        
+        if let image = values.value(forKey: "userImage") as? String {
+            self.image = image
+        } else { return nil }
+        
+        if let read = values.value(forKey: "read") as? Bool {
+            self.read = read
+        } else { return nil }
+        
+        if let isMine = values.value(forKey: "isMine") as? Bool {
+            self.isMine = isMine
         } else { return nil }
         
     }
@@ -86,10 +131,9 @@ struct JTMessage {
         values["to_user"] = self.toUser
         values["chat_id"] = self.chatId
         values["is_mine"] = self.isMine
-        values["new_chat"] = self.newChat
         values["image"] = self.image
         
         return values
     }
-
+    
 }

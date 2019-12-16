@@ -123,7 +123,7 @@ class API {
     // MARK: - Messages
     //========================================
     
-    class func getMessages(authToken: String, completionHandler:@escaping (_ response: APIResult<GetCreateMessageResponse>)->Void) {
+    class func getMessages(authToken: String, completionHandler:@escaping (_ response: APIResult<GetMessagesResponse>)->Void) {
         guard let request = HttpRequestsFactory.createGetMessageListRequest(token: authToken) else {
             completionHandler(APIResult.failure(.unableToCreateRequest))
             return
@@ -133,7 +133,7 @@ class API {
         }
     }
     
-    class func gcreateMessages(message: String, sentAt: Date, title: String, messageType: Int, toUser: Int, chatId: Int, token: String, completionHandler:@escaping (_ response: APIResult<GetMessagesResponse>)->Void) {
+    class func createMessage(message: String, sentAt: Date, title: String, messageType: Int, toUser: Int, chatId: Int, token: String, completionHandler:@escaping (_ response: APIResult<GetCreateMessageResponse>)->Void) {
         guard let request = HttpRequestsFactory.createMessageRequest(message: message, sentAt: sentAt, title: title, messageType: messageType, toUser: toUser, chatId: chatId, token: token) else {
                completionHandler(APIResult.failure(.unableToCreateRequest))
                return

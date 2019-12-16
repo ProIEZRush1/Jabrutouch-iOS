@@ -12,15 +12,16 @@ import Foundation
 struct JTChatMessage {
     
     var chatId: Int
-    var createdDate: Int
+    var createdDate: Date
     var title: String
     var fromUser: Int
     var toUser: Int
     var chatType : Int
     var lastMessage: String
-    var lastMessageTime: Int
+    var lastMessageTime: Date
     var image: String
-    var messages: [JTMessage]
+    var read: Bool
+    var messages: [JTMessage] = []
    
     init?(values: [String:Any]) {
        
@@ -28,7 +29,7 @@ struct JTChatMessage {
             self.chatId = chatId
         } else { return nil }
                 
-        if let createdDate = values["created_at"] as? Int {
+        if let createdDate = values["created_at"] as? Date {
             self.createdDate = createdDate
         } else { return nil }
         
@@ -52,7 +53,7 @@ struct JTChatMessage {
             self.lastMessage = lastMessage
         } else { return nil }
         
-        if let lastMessageTime = values["last_message_time"] as? Int {
+        if let lastMessageTime = values["last_message_time"] as? Date {
             self.lastMessageTime = lastMessageTime
         } else { return nil }
         
@@ -60,11 +61,59 @@ struct JTChatMessage {
             self.image = image
         } else { return nil }
         
+        if let read = values["read"] as? Bool {
+            self.read = read
+        } else { return nil }
+        
         if let messagesValues = values["messages"] as? [[String: Any]] {
             self.messages = messagesValues.compactMap{JTMessage(values: $0)}
         } else { return nil }
         
     }
+    
+    init?(values: NSManagedObject) {
+          
+        if let chatId = values.value(forKey: "chatId") as? Int {
+               self.chatId = chatId
+           } else { return nil }
+                   
+        if let createdDate = values.value(forKey: "creatAtDate") as? Date {
+               self.createdDate = createdDate
+           } else { return nil }
+           
+        if let title = values.value(forKey: "title") as? String {
+               self.title = title
+           } else { return nil }
+                 
+        if let fromUser = values.value(forKey: "fromUser") as? Int {
+               self.fromUser = fromUser
+           } else { return nil }
+           
+        if let toUser = values.value(forKey: "toUser") as? Int {
+               self.toUser = toUser
+           } else { return nil }
+           
+        if let chatType = values.value(forKey: "chatType") as? Int {
+               self.chatType = chatType
+           } else { return nil }
+           
+        if let lastMessage = values.value(forKey: "lastMessage")  as? String {
+               self.lastMessage = lastMessage
+           } else { return nil }
+           
+        if let lastMessageTime = values.value(forKey: "lastMessageTime") as? Date {
+               self.lastMessageTime = lastMessageTime
+           } else { return nil }
+           
+        if let image = values.value(forKey: "userImage") as? String {
+               self.image = image
+           } else { return nil }
+           
+        if let read = values.value(forKey: "read") as? Bool {
+               self.read = read
+           } else { return nil }
+           
+       }
     
     var values: [String:Any] {
         var values: [String:Any] = [:]
@@ -79,6 +128,7 @@ struct JTChatMessage {
         values["last_message_time"] = self.lastMessageTime
         values["image"] = self.image
         values["messages"] = self.messages.map{$0.values}
+        values["read"] = self.read
         
         return values
     }
