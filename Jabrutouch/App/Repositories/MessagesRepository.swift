@@ -26,9 +26,53 @@ class MessagesRepository: NSObject, MessagingDelegate {
         print("fcmToken: \(fcmToken)")
         self.fcmToken = fcmToken
     }
+    
     func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
-        
+        // pars message and save in DB
     }
     
+    func saveMessageInDB(message: JTMessage){
+        CoreDataManager.shared.saveMessage(message: message)
+    }
+    
+    func saveChatInDB(chat: JTChatMessage){
+        CoreDataManager.shared.seveChat(chat: chat)
+    }
+    
+    func sendMessage(message: String, sentAt:Date, title: String, messageType: Int, toUser: Int, chatId: Int, completion: @escaping (_ result: Result<[GetCreateMessageResponse],JTError>)->Void) {
+        guard let authToken = UserDefaultsProvider.shared.currentUser?.token else {
+            completion(.failure(.authTokenMissing))
+            return
+        }
+        API.createMessage(message: message, sentAt: sentAt, title: title, messageType: messageType, toUser: toUser, chatId: chatId, token: authToken) { (result: APIResult<GetCreateMessageResponse>) in
+            switch result {
+            case .success(let response):
+                self.saveMessageInDB(message: response.message)
+            case .failure(let error):
+                completion(.failure(error))
+            }
+
+        }
+    }
+    
+    func getAllMessages(completion: @escaping (_ result: Result<[GetCreateMessageResponse],JTError>)->Void) {
+        guard let authToken = UserDefaultsProvider.shared.currentUser?.token else {
+            completion(.failure(.authTokenMissing))
+            return
+        }
+        API.getMessages(authToken: authToken) { (resolt: APIResult<GetMessagesResponse>) in
+            switch resolt {
+            case .success(let response):
+                for chat in response.chats {
+                    self.saveChatInDB(chat: chat)
+                    for message in chat.messages{
+                        self.saveMessageInDB(message: message)
+                    }
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
     
 }
