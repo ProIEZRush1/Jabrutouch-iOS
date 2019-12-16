@@ -42,10 +42,10 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.playButton.isHidden = true
+//        self.playButton.isHidden = true
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.playButton.isEnabled = false
+//        self.playButton.isEnabled = false
         self.roundCorners()
         
         
@@ -99,13 +99,24 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     //========================================
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-         guard let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath) as? MessageCell else { return UITableViewCell() }
-        
-        return cell
+        switch indexPath.row {
+        case 0:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "incomingMessageCell", for: indexPath) as? IncomingMessageCell else { return UITableViewCell() }
+            
+            return cell
+            
+        case 1:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "userMessageCell", for: indexPath) as? UserMessageCell else { return UITableViewCell() }
+            
+            return cell
+            
+        default:
+            return UITableViewCell()
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

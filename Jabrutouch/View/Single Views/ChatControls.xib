@@ -41,6 +41,9 @@
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9tg-3F-Bxw">
                             <rect key="frame" x="0.0" y="5" width="321" height="45"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="45" id="WTG-OP-jWd"/>
+                            </constraints>
                             <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -54,6 +57,7 @@
                     </subviews>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <constraints>
+                        <constraint firstAttribute="height" constant="50" id="LWT-w1-3Wf"/>
                         <constraint firstItem="d8d-1h-zdC" firstAttribute="leading" secondItem="rcT-DZ-tuD" secondAttribute="leading" constant="15" id="Llf-qM-rF4"/>
                         <constraint firstItem="9tg-3F-Bxw" firstAttribute="top" secondItem="rcT-DZ-tuD" secondAttribute="top" constant="5" id="VW0-bL-6sJ"/>
                         <constraint firstAttribute="bottom" secondItem="9tg-3F-Bxw" secondAttribute="bottom" id="WuY-JZ-VDj"/>

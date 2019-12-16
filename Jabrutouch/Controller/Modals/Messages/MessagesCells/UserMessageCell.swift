@@ -1,14 +1,14 @@
 //
-//  MessageCell.swift
+//  UserMessageCell.swift
 //  Jabrutouch
 //
-//  Created by Shlomo Carmen on 11/12/2019.
+//  Created by Shlomo Carmen on 15/12/2019.
 //  Copyright © 2019 Ravtech. All rights reserved.
 //
 
 import UIKit
 
-class MessageCell: UITableViewCell {
+class UserMessageCell: UITableViewCell {
     
     @IBOutlet weak var messageView: UIView!
     @IBOutlet weak var message: UILabel!
@@ -17,19 +17,18 @@ class MessageCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
         self.roundCorners()
         self.setShadow()
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        
     }
+    
     func roundCorners() {
         self.messageView.layer.cornerRadius = 18
-        
     }
     
     func setShadow(){
@@ -37,5 +36,4 @@ class MessageCell: UITableViewCell {
         self.messageView.layer.shadowPath = UIBezierPath(roundedRect: self.messageView.bounds, cornerRadius: self.messageView.bounds.height/2).cgPath
         Utils.dropViewShadow(view: self.messageView, shadowColor: color, shadowRadius: 36, shadowOffset: CGSize(width: 0, height: 12))
     }
-
 }

@@ -82,8 +82,8 @@ class ChatControlsView: UIView {
     //========================================
     
     func setRoundCorners() {
-        self.inputTextView.layer.cornerRadius = self.inputTextView.bounds.height/2
-        self.shadowView.layer.cornerRadius = self.shadowView.bounds.height/2
+        self.inputTextView.layer.cornerRadius = 22.5
+        self.shadowView.layer.cornerRadius = 25
         
         
         self.shadowView.layer.borderColor = Colors.borderGray.cgColor
@@ -140,7 +140,8 @@ extension ChatControlsView: UITextViewDelegate {
         let demoTextView = UITextView(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: UIScreen.main.bounds.width - 122, height: 66)))
         demoTextView.font = UIFont.systemFont(ofSize: 15)
         demoTextView.text = text
-        let viewSize = demoTextView.sizeThatFits(CGSize(width: UIScreen.main.bounds.width - 122, height: 66))
+        let viewSize = demoTextView.sizeThatFits(CGSize(width: UIScreen.main.bounds.width - 122, height: 50))
+        
         self.view.layoutIfNeeded()
         self.inputTextView.updateConstraints()
         self.view.layoutIfNeeded()
