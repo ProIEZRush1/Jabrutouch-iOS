@@ -4,6 +4,12 @@
 <dict>
 	<key>APIBaseUrl</key>
 	<string>$(API_BASE_URL)</string>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>il.co.jabrutouch.audioTask</string>
+		<string>il.co.jabrutouch.feachTask</string>
+		<string>il.co.jabrutouch.processingTask</string>
+	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
