@@ -9,6 +9,11 @@
 import UIKit
 import AVFoundation
 
+protocol ChatControlsViewDelegate: class {
+    func sendMessageButtonPressed(nessage: String)
+    func textViewChanged()
+}
+
 class ChatControlsView: UIView {
     
     //========================================
@@ -29,6 +34,7 @@ class ChatControlsView: UIView {
     @IBOutlet weak var sendMessageButton: UIButton!
     @IBOutlet weak var recordMessageButton: UIButton!
     @IBOutlet weak var shadowView: UIView!
+    @IBOutlet weak var inputTextContainerView: UIView!
     
     //========================================
     // MARK: - LifeCycle
@@ -84,6 +90,7 @@ class ChatControlsView: UIView {
     
     func setRoundCorners() {
         self.inputTextView.layer.cornerRadius = 22.5
+        self.inputTextContainerView.layer.cornerRadius = 22.5
         self.shadowView.layer.cornerRadius = 25
         
         
@@ -97,11 +104,6 @@ class ChatControlsView: UIView {
     
     @IBAction func sendMessageButtonPressed(_ sender: Any) {
         
-    }
-    
-    @IBAction func playButtonPressed(_ sender: Any) {
-        self.setUpPlayer()
-        self.soundPlayer.play()
     }
     
     @IBAction func recordButtonPressed(_ sender: Any) {
@@ -126,8 +128,12 @@ extension ChatControlsView: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         if inputTextView.text.isEmpty {
             self.plaseHolderLabel.isHidden = false
+            self.sendMessageButton.isHidden = true
+            self.recordMessageButton.isHidden = false
         } else {
             self.plaseHolderLabel.isHidden = true
+            self.recordMessageButton.isHidden = true
+            self.sendMessageButton.isHidden = false
         }
     }
     
@@ -141,7 +147,7 @@ extension ChatControlsView: UITextViewDelegate {
         let demoTextView = UITextView(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: UIScreen.main.bounds.width - 122, height: 66)))
         demoTextView.font = UIFont.systemFont(ofSize: 15)
         demoTextView.text = text
-        let viewSize = demoTextView.sizeThatFits(CGSize(width: UIScreen.main.bounds.width - 122, height: 50))
+//        let viewSize = demoTextView.sizeThatFits(CGSize(width: UIScreen.main.bounds.width - 122, height: 50))
 //        self.inputTextViewHeightConstraint.constant = viewSize.height
         self.view.layoutIfNeeded()
         self.inputTextView.updateConstraints()

@@ -15,9 +15,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     // MARK: - Properties
     //========================================
     
-    var soundRecorder = AVAudioRecorder()
-    var soundPlayer = AVAudioPlayer()
-    var fileName: String = "audioFile.m4a"
+    var messagesArray: [JTMessage] = []
+    var user: JTUser?
     
     private lazy var chatControlsView: ChatControlsView = {
         var view = ChatControlsView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 70))
@@ -32,7 +31,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var backButton: UIButton!
-    @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
     //========================================
@@ -42,18 +40,16 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        self.playButton.isHidden = true
         self.tableView.delegate = self
         self.tableView.dataSource = self
-//        self.playButton.isEnabled = false
         self.roundCorners()
-        
+        self.user = UserRepository.shared.getCurrentUser()
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+//
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -68,11 +64,11 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         return self.chatControlsView
     }
     
-    @objc func keyboardWillShow(_ notification: NSNotification) {
-        if let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-           
-        }
-    }
+//    @objc func keyboardWillShow(_ notification: NSNotification) {
+//        if let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+//
+//        }
+//    }
     
     //========================================
     // MARK: - Setup
@@ -83,9 +79,9 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         
     }
     
-    private func setViewHeight(_ text: String) -> CGFloat {
+    private func getViewHeight(_ text: String) -> CGFloat {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 15)
+        label.font = UIFont.systemFont(ofSize: 18)
         label.numberOfLines = 0
         label.text = text
         
@@ -94,33 +90,74 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     }
     
+    private func getViewWidth(_ text: String) -> CGFloat {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 18)
+        label.numberOfLines = 0
+        label.text = text
+        
+        let width = label.sizeThatFits(CGSize(width: 300, height: 600)).width
+        return width
+
+    }
+    
+    func getTime(lastMessageTime: Date)-> String {
+        
+        let timeStemp = lastMessageTime.timeIntervalSince1970
+        let toDayAgain = Date(timeIntervalSince1970: timeStemp)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm:ss"
+        let string = dateFormatter.string(from: toDayAgain)
+        
+        return string
+        
+    }
+    
+    func getImageFromURL(imageLink: String) {
+        
+    }
+    
     //========================================
     // MARK: - table View
     //========================================
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return self.messagesArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.row {
-        case 0:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "incomingMessageCell", for: indexPath) as? IncomingMessageCell else { return UITableViewCell() }
-            
-            return cell
-            
-        case 1:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "userMessageCell", for: indexPath) as? UserMessageCell else { return UITableViewCell() }
-            
-            return cell
-            
-        default:
-            return UITableViewCell()
+        for message in self.messagesArray{
+            if message.isMine{
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "userMessageCell", for: indexPath) as? UserMessageCell else { return UITableViewCell() }
+                let text = self.messagesArray[indexPath.row].message
+                let height = self.getViewHeight(text)
+                cell.messageViewHeightConstraint.constant = height + 32
+                cell.message.text = message.message
+                cell.timeLabel.text = self.getTime(lastMessageTime: message.sentDate)
+                cell.userImage.image = user?.profileImage ?? #imageLiteral(resourceName: "Avatar")
+                
+                return cell
+                
+            } else {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "incomingMessageCell", for: indexPath) as? IncomingMessageCell else { return UITableViewCell() }
+                let text = self.messagesArray[indexPath.row].message
+                let height = self.getViewHeight(text)
+                cell.messageViewHeightConstraint.constant = height + 32
+                cell.message.text = message.message
+                cell.timeLabel.text = self.getTime(lastMessageTime: message.sentDate)
+                
+                cell.userImage.image = #imageLiteral(resourceName: "incomingUserImege")
+                
+                return cell
+            }
         }
+        return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        let text = self.messagesArray[indexPath.row].message
+        let height = self.getViewHeight(text)
+        return height + 100
     }
     
     //========================================
@@ -129,13 +166,27 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     @IBAction func backButtonPressed(_ sender: Any) {
-//        self.dismiss(animated: true, completion: nil)
         self.navigationController?.popViewController(animated: true)
     }
     
-    func sendMessage(){
+    func sendMessage(message: String, sentAt:Date, title: String, messageType: Int, toUser: Int, chatId: Int){
+        MessagesRepository.shared.sendMessage(message: message, sentAt:sentAt, title: title, messageType: messageType, toUser: toUser, chatId: chatId, completion:  {_ in 
+            
+        })
+    }
+}
+
+extension ChatViewController: ChatControlsViewDelegate {
+    func sendMessageButtonPressed(nessage: String) {
+//        self.sendMessage(message: message, sentAt: <#T##Date#>, title: <#T##String#>, messageType: <#T##Int#>, toUser: <#T##Int#>, chatId: <#T##Int#>)
+    }
+
+
+    func textViewChanged() {
         
     }
+
+
 }
 
 

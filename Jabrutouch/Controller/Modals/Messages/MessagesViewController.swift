@@ -15,8 +15,8 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
     //========================================
     
     var messagesArray: [String] = []
-//    var messagesArray: [JTChatMessage] = []
-    let timeFormatter = DateFormatter()
+    var chatsArray: [JTChatMessage] = []
+ 
     //========================================
     // MARK: - @IBOutlets
     //========================================
@@ -36,6 +36,8 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.messagesArray.append("test")
+        self.chatsArray = MessagesRepository.shared.allChats
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,27 +50,40 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
     //========================================
     
     func setTableView() {
-        if self.messagesArray.count > 0 {
+        if self.chatsArray.count > 0 {
             self.noMessagesImage.isHidden = true
             self.noMessagesLabel.isHidden = true
         } else {
             self.tableView.isHidden = true
             self.searchButton.isHidden =  true
         }
+        self.tableView.reloadData()
     }
     
-    func getTime()-> String {
-        let toDay = Date()
-        // Convert Date to timeStemp
-        let timeStemp = toDay.timeIntervalSince1970
-        // Convert timeStemp to Date
+    func getTime(lastMessageTime: Date)-> String {
+
+        let timeStemp = lastMessageTime.timeIntervalSince1970
         let toDayAgain = Date(timeIntervalSince1970: timeStemp)
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm:ss"
+        if self.checkDiffDate(day: toDayAgain) > 1 {
+            dateFormatter.dateFormat = "MMM d"
+            
+        } else if self.checkDiffDate(day: toDayAgain) == 1{
+            return "Yesterday"
+        } else {
+            dateFormatter.dateFormat = "HH:mm"
+        }
         let string = dateFormatter.string(from: toDayAgain)
         
         return string
 
+    }
+    
+    func checkDiffDate(day: Date) -> Int{
+        
+        let toDay = Date()
+        let diff = Calendar.current.dateComponents([.day], from: day, to: toDay)
+        return diff.day ?? 0
     }
     
     //========================================
@@ -76,20 +91,21 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
     //========================================
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.messagesArray.count
+        return self.chatsArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "chatCell", for: indexPath) as? ChatCell else { return UITableViewCell() }
-        cell.timeLabel.text = self.getTime()
-        cell.groupName.text = "Jabrutouch Team"
-        cell.message.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-        
+        cell.timeLabel.text = self.getTime(lastMessageTime: chatsArray[indexPath.row].lastMessageTime)
+        cell.groupName.text = chatsArray[indexPath.row].title
+        cell.message.text = chatsArray[indexPath.row].lastMessage
+
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "openChat", sender: self)
+        let chatId = self.chatsArray[indexPath.row].chatId
+        performSegue(withIdentifier: "openChat", sender: chatId)
     }
     
     
@@ -113,8 +129,10 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "openChat" {
-//            let chatVC = segue.destination as? ChatViewController
-//            chatVC?.titleLabel.text = "test"
+            MessagesRepository.shared.getAllMessagesFromDB(chatId: sender as? Int ?? 0)
+            
+            let chatVC = segue.destination as? ChatViewController
+            chatVC?.messagesArray = MessagesRepository.shared.messages
            
         }
     }
