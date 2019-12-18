@@ -25,6 +25,35 @@ class MessagesRepository: NSObject, MessagingDelegate {
         return self.manager!
     }
     
+    private override init() {
+        super.init()
+        if self.isEmpty{
+            self.getAllMessages { (result: Result<[JTChatMessage], JTError>) in
+                switch result {
+                case .success(let response):
+                    self.getAllChatsFromDB()
+                    print(response)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
+        else {
+            self.getAllChatsFromDB()
+        }
+    }
+    
+    var isEmpty: Bool {
+        do {
+            let managedContext = CoreDataManager.shared.managedContext
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Chat")
+            let count  = try managedContext.count(for: request)
+            return count == 0
+        } catch {
+            return true
+        }
+    }
+    
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
         print("fcmToken: \(fcmToken)")
         self.fcmToken = fcmToken
@@ -78,8 +107,8 @@ class MessagesRepository: NSObject, MessagingDelegate {
         }
     }
     
-    func getAllChatsFromDB() -> [JTChatMessage] {
-        return CoreDataManager.shared.getAllChats()
+    func getAllChatsFromDB() {
+        self.allChats = CoreDataManager.shared.getAllChats()
         
     }
     
