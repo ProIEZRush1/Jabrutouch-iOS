@@ -23,6 +23,7 @@ class ChatControlsView: UIView {
     // MARK: - @IBOutlets
     //========================================
     
+    @IBOutlet weak var inputTextViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var inputTextView:UITextView!
     @IBOutlet weak var plaseHolderLabel: UILabel!
     @IBOutlet weak var sendMessageButton: UIButton!
@@ -141,7 +142,7 @@ extension ChatControlsView: UITextViewDelegate {
         demoTextView.font = UIFont.systemFont(ofSize: 15)
         demoTextView.text = text
         let viewSize = demoTextView.sizeThatFits(CGSize(width: UIScreen.main.bounds.width - 122, height: 50))
-        
+//        self.inputTextViewHeightConstraint.constant = viewSize.height
         self.view.layoutIfNeeded()
         self.inputTextView.updateConstraints()
         self.view.layoutIfNeeded()

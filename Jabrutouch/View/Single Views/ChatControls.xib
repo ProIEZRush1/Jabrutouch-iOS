@@ -10,6 +10,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChatControlsView" customModule="Jabrutouch" customModuleProvider="target">
             <connections>
                 <outlet property="inputTextView" destination="9tg-3F-Bxw" id="ihg-aU-qjD"/>
+                <outlet property="inputTextViewHeightConstraint" destination="WTG-OP-jWd" id="aFL-gu-yCC"/>
                 <outlet property="plaseHolderLabel" destination="d8d-1h-zdC" id="G5o-9G-sIr"/>
                 <outlet property="recordMessageButton" destination="7kT-Lv-2hc" id="gbN-E6-EQG"/>
                 <outlet property="sendMessageButton" destination="Phd-06-aL4" id="fsD-RR-dKT"/>
@@ -38,12 +39,13 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rcT-DZ-tuD">
                     <rect key="frame" x="10" y="10" width="321" height="50"/>
                     <subviews>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9tg-3F-Bxw">
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="black" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9tg-3F-Bxw">
                             <rect key="frame" x="0.0" y="5" width="321" height="45"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="45" id="WTG-OP-jWd"/>
                             </constraints>
+                            <inset key="scrollIndicatorInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -57,7 +59,6 @@
                     </subviews>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="50" id="LWT-w1-3Wf"/>
                         <constraint firstItem="d8d-1h-zdC" firstAttribute="leading" secondItem="rcT-DZ-tuD" secondAttribute="leading" constant="15" id="Llf-qM-rF4"/>
                         <constraint firstItem="9tg-3F-Bxw" firstAttribute="top" secondItem="rcT-DZ-tuD" secondAttribute="top" constant="5" id="VW0-bL-6sJ"/>
                         <constraint firstAttribute="bottom" secondItem="9tg-3F-Bxw" secondAttribute="bottom" id="WuY-JZ-VDj"/>
@@ -71,12 +72,12 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="Phd-06-aL4" secondAttribute="bottom" constant="10" id="27d-sw-Qkw"/>
+                <constraint firstItem="rcT-DZ-tuD" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="42j-fC-c8q"/>
                 <constraint firstAttribute="bottom" secondItem="7kT-Lv-2hc" secondAttribute="bottom" constant="10" id="JRT-VK-PXx"/>
                 <constraint firstAttribute="trailing" secondItem="Phd-06-aL4" secondAttribute="trailing" constant="12" id="JdW-cZ-BJu"/>
                 <constraint firstItem="7kT-Lv-2hc" firstAttribute="leading" secondItem="rcT-DZ-tuD" secondAttribute="trailing" constant="10" id="QV7-uW-kgW"/>
                 <constraint firstAttribute="bottom" secondItem="rcT-DZ-tuD" secondAttribute="bottom" constant="10" id="Rl1-td-VQb"/>
                 <constraint firstAttribute="trailing" secondItem="7kT-Lv-2hc" secondAttribute="trailing" constant="12" id="aFu-dd-IWm"/>
-                <constraint firstItem="rcT-DZ-tuD" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="xav-tU-FJn"/>
                 <constraint firstItem="rcT-DZ-tuD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="yW5-ZR-QcA"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

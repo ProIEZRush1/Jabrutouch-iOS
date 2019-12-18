@@ -20,7 +20,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     var fileName: String = "audioFile.m4a"
     
     private lazy var chatControlsView: ChatControlsView = {
-        var view = ChatControlsView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 54.0))
+        var view = ChatControlsView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 70))
         
         return view
     }()
