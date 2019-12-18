@@ -44,6 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print((UserDefaults.standard.object(forKey: "AppleLanguages") as! [String]).first!)
         // Initialize
         _ = ContentRepository.shared
+        _ = MessagesRepository.shared
         FirebaseApp.configure()
         registerForPushNotifications(application: application)
         Messaging.messaging().delegate = MessagesRepository.shared
@@ -199,25 +200,25 @@ extension AppDelegate:UNUserNotificationCenterDelegate{
 
         // Step 1: Parse incoming content
         let body = notification.request.content.body
+        let userInfo = notification.request.content.userInfo
         if let data = body.data(using: String.Encoding.utf8) {
             do {
                 if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String:Any] {
                     guard let title = json["title"] as? String else { return }
                     guard let message = json["message"] as? String else { return }
-//                    if let message = json["message"] as? String {
-//
-//                    }
+
+                    // Step 2 - Send local notification
+                    self.sendUserNotification(body: message, userInfo: userInfo)
+
                 }
             } catch {
                 print("Something went wrong")
             }
         }
-        // Step 2 - Send local notification
-        self.sendUserNotification(body: "What ever you need or want", userInfo: ["again": "your choice"])
         completionHandler([.alert, .sound])
     }
     
-    private func sendUserNotification(body: String, userInfo: [String:Any]) {
+    private func sendUserNotification(body: String, userInfo: [AnyHashable:Any]) {
         let content = UNMutableNotificationContent()
         content.body = body
         content.userInfo = userInfo
