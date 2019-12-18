@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="splashEmpty" translatesAutoresizingMaskIntoConstraints="NO" id="bT4-j1-sLH">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="splash" translatesAutoresizingMaskIntoConstraints="NO" id="bT4-j1-sLH">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="906"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="JabrutouchTitleGray" translatesAutoresizingMaskIntoConstraints="NO" id="O0I-fp-6AB">
@@ -59,7 +59,9 @@
                         <viewLayoutGuide key="safeArea" id="joU-nI-APl"/>
                         <variation key="default">
                             <mask key="subviews">
+                                <exclude reference="O0I-fp-6AB"/>
                                 <exclude reference="ZO0-ve-BAm"/>
+                                <exclude reference="8sU-1L-iSq"/>
                             </mask>
                         </variation>
                     </view>
@@ -74,6 +76,6 @@
     </scenes>
     <resources>
         <image name="JabrutouchTitleGray" width="211" height="28"/>
-        <image name="splashEmpty" width="414" height="736"/>
+        <image name="splash" width="422" height="744"/>
     </resources>
 </document>
