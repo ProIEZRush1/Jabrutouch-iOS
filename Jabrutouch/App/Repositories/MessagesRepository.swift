@@ -13,6 +13,9 @@ import FirebaseMessaging
 class MessagesRepository: NSObject, MessagingDelegate {
     
     var fcmToken = ""
+    var allChats: [JTChatMessage] = []
+    var messages: [JTMessage] = []
+    
     static private var manager: MessagesRepository?
     
     class var shared: MessagesRepository {
@@ -55,7 +58,7 @@ class MessagesRepository: NSObject, MessagingDelegate {
         }
     }
     
-    func getAllMessages(completion: @escaping (_ result: Result<[GetCreateMessageResponse],JTError>)->Void) {
+    func getAllMessages(completion: @escaping (_ result: Result<[JTChatMessage],JTError>)->Void) {
         guard let authToken = UserDefaultsProvider.shared.currentUser?.token else {
             completion(.failure(.authTokenMissing))
             return
@@ -73,6 +76,15 @@ class MessagesRepository: NSObject, MessagingDelegate {
                 print(error)
             }
         }
+    }
+    
+    func getAllChatsFromDB() -> [JTChatMessage] {
+        return CoreDataManager.shared.getAllChats()
+        
+    }
+    
+    func getAllMessagesFromDB(chatId: Int) {
+        self.messages = CoreDataManager.shared.getMessagesByChatId(chatId: chatId)
     }
     
 }

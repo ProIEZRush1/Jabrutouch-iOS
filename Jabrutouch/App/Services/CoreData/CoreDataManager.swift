@@ -24,8 +24,6 @@ class CoreDataManager {
         return self.manager!
     }
     
-    var allChats: [JTChatMessage] = []
-    
     let managedContext = appDelegate.persistentContainer.viewContext
     
     func seveChat(chat: JTChatMessage) {
@@ -76,23 +74,25 @@ class CoreDataManager {
         }
     }
     
-    func getAllChats() {
+    func getAllChats() ->[JTChatMessage] {
+        
+        var allChats: [JTChatMessage] = []
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Chat")
         request.returnsObjectsAsFaults = false
         do {
             let result = try managedContext.fetch(request)
-            self.allChats = (result as! [NSManagedObject]).compactMap{JTChatMessage(values: $0)}
-            
+            allChats = (result as! [NSManagedObject]).compactMap{JTChatMessage(values: $0)}
+            return allChats
             
         } catch {
-            
             print("Failed")
+            return []
         }
     }
     
-    func getMessagesByChatId(id: Int) -> [JTMessage] {
+    func getMessagesByChatId(chatId: Int) -> [JTMessage] {
 
-        let predicate = NSPredicate(format: "chatId = %i", id)
+        let predicate = NSPredicate(format: "chatId = %i", chatId)
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Message")
         request.predicate = predicate
         request.returnsObjectsAsFaults = false
