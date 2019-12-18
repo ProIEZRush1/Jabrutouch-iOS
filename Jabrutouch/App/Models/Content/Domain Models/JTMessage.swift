@@ -20,7 +20,6 @@ struct JTMessage {
     var toUser: Int
     var chatId: Int
     var isMine: Bool
-    
     var image: String
    
     init?(values: [String:Any]) {
@@ -28,8 +27,9 @@ struct JTMessage {
             self.messageId = messageId
         } else { return nil }
         
-        if let sentDate = values["sent_at"] as? Date {
-            self.sentDate = sentDate
+        if let sentDate = values["sent_at"] as? TimeInterval {
+            let date = Date(timeIntervalSince1970: sentDate)
+            self.sentDate = date
         } else { return nil }
         
         if let message = values["message"] as? String {
@@ -64,7 +64,6 @@ struct JTMessage {
             self.isMine = isMine
         } else { return nil }
         
-       
         if let image = values["image"] as? String {
             self.image = image
         } else { return nil }

@@ -19,8 +19,8 @@ struct JTChatMessage {
     var chatType : Int
     var lastMessage: String
     var lastMessageTime: Date
-    var image: String
-    var read: Bool
+    var image: String = ""
+    var read: Bool = false
     var messages: [JTMessage] = []
    
     init?(values: [String:Any]) {
@@ -29,8 +29,9 @@ struct JTChatMessage {
             self.chatId = chatId
         } else { return nil }
                 
-        if let createdDate = values["created_at"] as? Date {
-            self.createdDate = createdDate
+        if let createdDate = values["created_at"] as? TimeInterval {
+            let date = Date(timeIntervalSince1970: createdDate)
+            self.createdDate = date
         } else { return nil }
         
         if let title = values["title"] as? String {
@@ -53,17 +54,22 @@ struct JTChatMessage {
             self.lastMessage = lastMessage
         } else { return nil }
         
-        if let lastMessageTime = values["last_message_time"] as? Date {
-            self.lastMessageTime = lastMessageTime
+        if let lastMessageTime = values["last_message_time"] as? TimeInterval {
+            let date = Date(timeIntervalSince1970: lastMessageTime)
+            self.lastMessageTime = date
         } else { return nil }
         
         if let image = values["image"] as? String {
             self.image = image
-        } else { return nil }
+        } else {
+            self.image = ""
+        }
         
         if let read = values["read"] as? Bool {
             self.read = read
-        } else { return nil }
+        } else {
+            self.read = false
+        }
         
         if let messagesValues = values["messages"] as? [[String: Any]] {
             self.messages = messagesValues.compactMap{JTMessage(values: $0)}
