@@ -15,6 +15,9 @@ class UserMessageCell: UITableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var userImage: UIImageView!
     
+    @IBOutlet weak var messageViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var messageViewWidthConstraint: NSLayoutConstraint!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
