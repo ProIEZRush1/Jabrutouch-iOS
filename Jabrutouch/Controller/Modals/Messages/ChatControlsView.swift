@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 
 protocol ChatControlsViewDelegate: class {
-    func sendMessageButtonPressed(nessage: String)
+    func sendMessageButtonPressed()
     func textViewChanged()
 }
 
@@ -24,6 +24,7 @@ class ChatControlsView: UIView {
     var soundPlayer = AVAudioPlayer()
     var fileName: String = "audioFile.m4a"
     
+    weak var delegate: ChatControlsViewDelegate?
     //========================================
     // MARK: - @IBOutlets
     //========================================
@@ -103,7 +104,7 @@ class ChatControlsView: UIView {
     //========================================
     
     @IBAction func sendMessageButtonPressed(_ sender: Any) {
-        
+        self.delegate?.sendMessageButtonPressed()
     }
     
     @IBAction func recordButtonPressed(_ sender: Any) {
@@ -136,24 +137,7 @@ extension ChatControlsView: UITextViewDelegate {
             self.sendMessageButton.isHidden = false
         }
     }
-    
-    func refreshTextField() {
-        self.plaseHolderLabel.isHidden = false
-        self.inputTextView.text = ""
-        self.setHeightOfTextView(text: "")
-    }
-    
-    func setHeightOfTextView(text: String){
-        let demoTextView = UITextView(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: UIScreen.main.bounds.width - 122, height: 66)))
-        demoTextView.font = UIFont.systemFont(ofSize: 15)
-        demoTextView.text = text
-//        let viewSize = demoTextView.sizeThatFits(CGSize(width: UIScreen.main.bounds.width - 122, height: 50))
-//        self.inputTextViewHeightConstraint.constant = viewSize.height
-        self.view.layoutIfNeeded()
-        self.inputTextView.updateConstraints()
-        self.view.layoutIfNeeded()
-    }
-    
+        
 }
 
 extension ChatControlsView: AVAudioPlayerDelegate, AVAudioRecorderDelegate {

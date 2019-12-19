@@ -177,8 +177,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 }
 
 extension ChatViewController: ChatControlsViewDelegate {
-    func sendMessageButtonPressed(nessage: String) {
-//        self.sendMessage(message: message, sentAt: <#T##Date#>, title: <#T##String#>, messageType: <#T##Int#>, toUser: <#T##Int#>, chatId: <#T##Int#>)
+    func sendMessageButtonPressed()
     }
 
 
