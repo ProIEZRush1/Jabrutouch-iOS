@@ -68,9 +68,51 @@ class CoreDataManager {
         
         do{
             try managedContext.save()
+            if !self.chatIdIsExsist(chatId: message.chatId){
+                self.seveChat(chat: self.createChatObject(message: message))
+                
+            }else{
+                self.updateChatById(chat: self.createChatObject(message: message))
+            }
+            print("Message saved")
         }
         catch {
             print("failed")
+        }
+    }
+    
+    func createChatObject(message: JTMessage)->JTChatMessage{
+        
+        return JTChatMessage(
+            chatId:  message.chatId,
+            createdDate: message.sentDate,
+            title: message.title,
+            fromUser: message.fromUser,
+            toUser: message.toUser,
+            chatType: 1,
+            lastMessage: message.message,
+            lastMessageTime: message.sentDate,
+            image: message.image,
+            read: message.read
+        )
+    }
+    
+    func chatIdIsExsist(chatId:Int)->Bool{
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Chat")
+        let predicate = NSPredicate(format: "chatId = %i", chatId)
+        request.predicate = predicate
+        request.returnsObjectsAsFaults = false
+        do {
+            
+            let result = try managedContext.fetch(request)
+            if result.isEmpty {
+                return false
+            }else{
+                return true
+            }
+        } catch {
+            print("Failed")
+            return false
         }
     }
     
@@ -81,6 +123,7 @@ class CoreDataManager {
         request.returnsObjectsAsFaults = false
         do {
             let result = try managedContext.fetch(request)
+//            print("result: ",result)
             allChats = (result as! [NSManagedObject]).compactMap{JTChatMessage(values: $0)}
             return allChats
             
@@ -91,10 +134,25 @@ class CoreDataManager {
     }
     
     func getMessagesByChatId(chatId: Int) -> [JTMessage] {
-
         let predicate = NSPredicate(format: "chatId = %i", chatId)
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Message")
         request.predicate = predicate
+        request.returnsObjectsAsFaults = false
+        do {
+            
+            let result = try managedContext.fetch(request)
+            
+            return (result as! [NSManagedObject]).compactMap{JTMessage(values: $0)}
+            
+        } catch {
+            print("Failed")
+            return []
+        }
+    }
+    
+    func getAllMessages() -> [JTMessage] {
+        
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Message")
         request.returnsObjectsAsFaults = false
         do {
             
@@ -117,6 +175,30 @@ class CoreDataManager {
             
             let result = try managedContext.fetch(request)
             (result as! [NSManagedObject]).first?.setValue(message.read, forKey: "read")
+            do{
+                try managedContext.save()
+            }
+            catch {
+                print("failed")
+            }
+            
+        } catch {
+            print("Failed")
+            
+        }
+    }
+    
+    func updateChatById(chat: JTChatMessage) {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Chat")
+        let predicate = NSPredicate(format: "chatId = %i", chat.chatId)
+        request.predicate = predicate
+        request.returnsObjectsAsFaults = false
+        do {
+            
+            let result = try managedContext.fetch(request)
+            
+            (result as! [NSManagedObject]).first?.setValue(chat.title, forKey: "lastMessage")
+            (result as! [NSManagedObject]).first?.setValue(chat.title, forKey: "lastMessageTime")
             do{
                 try managedContext.save()
             }

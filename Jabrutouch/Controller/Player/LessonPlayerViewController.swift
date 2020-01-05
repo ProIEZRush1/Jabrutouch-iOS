@@ -62,6 +62,7 @@ class LessonPlayerViewController: UIViewController {
     // MARK: - Properties
     //====================================================
     
+    var watchDuration: TimeInterval!
     var gallery: [String] = []
     var videoParts: [String] = []
     private var lessonWatched: [JTLessonWatched] = []
@@ -207,16 +208,15 @@ class LessonPlayerViewController: UIViewController {
     }
     
     private func postWatchAnalyticEvent() {
-        var watchDuration: TimeInterval!
         var category: AnalyticsEventCategory!
         var online: Bool!
         
         switch self.mediaType {
         case .audio:
-            watchDuration = self.audioPlayer.watchDuration
+            self.watchDuration = self.audioPlayer.watchDuration
             online = self.lesson.isAudioDownloaded
         case .video:
-            watchDuration = self.videoPlayer.watchDuration
+            self.watchDuration = self.videoPlayer.watchDuration
             online = self.lesson.isVideoDownloaded
         }
         
@@ -234,26 +234,28 @@ class LessonPlayerViewController: UIViewController {
     }
     
     private func saveLessonLocation() {
-        var watchLocation: TimeInterval!
-        switch self.mediaType {
-        case .audio:
-            watchLocation = self.audioPlayer.watchLocation
-        case .video:
-            watchLocation = self.videoPlayer.watchLocation
-        }
-        var lessonWatchedList = UserDefaultsProvider.shared.lessonWatched
-        for (index, _lesson) in lessonWatchedList.enumerated() {
-            if _lesson.lessonId == lesson.id{
-                lessonWatchedList[index].duration = watchLocation ?? 0.0
-                UserDefaultsProvider.shared.lessonWatched = lessonWatchedList
-                return
+        if self.watchDuration > 0.0 {
+            
+            var watchLocation: TimeInterval!
+            switch self.mediaType {
+            case .audio:
+                watchLocation = self.audioPlayer.watchLocation
+            case .video:
+                watchLocation = self.videoPlayer.watchLocation
             }
+            var lessonWatchedList = UserDefaultsProvider.shared.lessonWatched
+            for (index, _lesson) in lessonWatchedList.enumerated() {
+                if _lesson.lessonId == lesson.id{
+                    lessonWatchedList[index].duration = watchLocation ?? 0.0
+                    UserDefaultsProvider.shared.lessonWatched = lessonWatchedList
+                    return
+                }
+            }
+            let values = ["lessonId": lesson.id, "duration": watchLocation ?? 0.0] as [String : Any]
+            guard let lessonWatched = JTLessonWatched(values: values) else { return }
+            lessonWatchedList.append(lessonWatched)
+            UserDefaultsProvider.shared.lessonWatched = lessonWatchedList
         }
-        let values = ["lessonId": lesson.id, "duration": watchLocation ?? 0.0] as [String : Any]
-        guard let lessonWatched = JTLessonWatched(values: values) else { return }
-        lessonWatchedList.append(lessonWatched)
-        UserDefaultsProvider.shared.lessonWatched = lessonWatchedList
-
     }
     //====================================================
     // MARK: - Setup
@@ -262,11 +264,9 @@ class LessonPlayerViewController: UIViewController {
     private func setUpGallery() {
         DispatchQueue.main.async {
             if self.lesson.gallery.count > 0 {
-//                self.portraitPhotoButton.setImage(#imageLiteral(resourceName: "photo"), for: .normal)
                 self.portraitPhotoButton.tintColor = #colorLiteral(red: 1, green: 0.373, blue: 0.314, alpha: 1)
             } else {
                 self.portraitPhotoButton.tintColor = #colorLiteral(red: 0.286, green: 0.286, blue: 0.286, alpha: 1)
-//                self.portraitPhotoButton.setImage(#imageLiteral(resourceName: "grayGalleryIcon"), for: .normal)
             }
         }
     }
@@ -303,7 +303,7 @@ class LessonPlayerViewController: UIViewController {
             for part in self.lessonParts {
                 
                 let customView = JBView()
-                let x = CGFloat((part / self.videoPlayer.duration) * Double(view.bounds.width + 2))
+                let x = CGFloat((part / self.videoPlayer.duration) * Double(view.bounds.width))
                 customView.frame = CGRect.init(x: x, y: 0.0, width: width, height: height)
                 customView.backgroundColor = #colorLiteral(red: 0.178, green: 0.168, blue: 0.663, alpha: 0.5)
                 view.addSubview(customView)
@@ -664,7 +664,7 @@ class LessonPlayerViewController: UIViewController {
             self.landscapeDownloadButton.isEnabled = !self.lesson.isDownloadingAudio
         }
         
-        
+        self.portraitChatButton.tintColor = #colorLiteral(red: 0.286, green: 0.286, blue: 0.286, alpha: 1)
         self.portraitChatButton.isEnabled = true
         self.landscapeChatButton.isEnabled = true
         
@@ -681,12 +681,12 @@ class LessonPlayerViewController: UIViewController {
     private func loadPDF() {
         guard let pdfUrl = self.lesson.textURL else { return }
         if let pdfDocument = PDFDocument(url: pdfUrl) {
-            DispatchQueue.main.async {
-                self.pdfView.document = pdfDocument
-                self.pdfView.autoScales = true
-                self.setMediaURL(startPlaying: self.shouldStartPlay)
-                self.maHaytaHadeke()
-                self.initLessonParts()
+            DispatchQueue.main.async { [weak self] in
+                self?.pdfView.document = pdfDocument
+                self?.pdfView.autoScales = true
+                self?.setMediaURL(startPlaying: self?.shouldStartPlay ?? true)
+                self?.maHaytaHadeke()
+                self?.initLessonParts()
             }
         }
     }
@@ -749,7 +749,7 @@ class LessonPlayerViewController: UIViewController {
     }
     
     @IBAction func chatButtonPressed(_ sender: UIButton) {
-        Utils.showAlertMessage(Strings.inDevelopment, viewControler: self)
+//        Utils.showAlertMessage(Strings.inDevelopment, viewControler: self)
 
     }
     

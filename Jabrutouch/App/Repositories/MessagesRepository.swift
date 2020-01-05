@@ -10,11 +10,17 @@ import Foundation
 import Firebase
 import FirebaseMessaging
 
+protocol MessagesRepositoryDelegate: class {
+    func didReciveNewMessage(allChats: [JTChatMessage])
+}
+
 class MessagesRepository: NSObject, MessagingDelegate {
     
     var fcmToken = ""
     var allChats: [JTChatMessage] = []
     var messages: [JTMessage] = []
+    
+    weak var delegate: MessagesRepositoryDelegate?
     
     static private var manager: MessagesRepository?
     
@@ -60,12 +66,47 @@ class MessagesRepository: NSObject, MessagingDelegate {
     }
     
     func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
+        print("Message ==> ")
+        
         // pars message and save in DB
+    }
+    
+    func didReciveMessage(message: JTMessage){
+        self.displayNewMessageAndChat(message: message)
+        self.delegate?.didReciveNewMessage(allChats: self.allChats)
+        self.saveMessageInDB(message: message)
+    }
+    
+    func displayNewMessageAndChat(message: JTMessage){
+        var chatExist = false
+        for (i, chat) in allChats.enumerated() {
+            if chat.chatId == message.chatId{
+                chatExist = true
+                self.allChats[i].messages.append(message)
+                self.allChats[i].lastMessageTime = message.sentDate
+            }
+        }
+        
+        if !chatExist{
+            self.allChats.append(JTChatMessage(
+                chatId: message.chatId,
+                createdDate: message.sentDate,
+                title: message.title,
+                fromUser: message.fromUser,
+                toUser: message.toUser,
+                chatType: 1,
+                lastMessage: message.message,
+                lastMessageTime: message.sentDate,
+                image: message.image,
+                read: message.read))
+        }
+        
     }
     
     func saveMessageInDB(message: JTMessage){
         CoreDataManager.shared.saveMessage(message: message)
     }
+    
     
     func saveChatInDB(chat: JTChatMessage){
         CoreDataManager.shared.seveChat(chat: chat)
@@ -117,3 +158,4 @@ class MessagesRepository: NSObject, MessagingDelegate {
     }
     
 }
+

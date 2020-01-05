@@ -23,6 +23,20 @@ struct JTChatMessage {
     var read: Bool = false
     var messages: [JTMessage] = []
    
+    init(chatId: Int, createdDate: Date, title: String, fromUser: Int, toUser: Int, chatType: Int, lastMessage: String, lastMessageTime: Date, image: String, read: Bool) {
+        self.chatId = chatId
+        self.createdDate = createdDate
+        self.title = title
+        self.fromUser = fromUser
+        self.toUser = toUser
+        self.chatType = chatType
+        self.lastMessage = lastMessage
+        self.lastMessageTime = lastMessageTime
+        self.image = image
+        self.read = read
+        
+    }
+    
     init?(values: [String:Any]) {
        
         if let chatId = values["chat_id"] as? Int {
@@ -30,7 +44,7 @@ struct JTChatMessage {
         } else { return nil }
                 
         if let createdDate = values["created_at"] as? TimeInterval {
-            let date = Date(timeIntervalSince1970: createdDate)
+            let date = Date(timeIntervalSince1970: createdDate/1000)
             self.createdDate = date
         } else { return nil }
         

@@ -45,8 +45,13 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
         
         self.setStrings()
-        self.roundCorners()
         self.addBorders()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.view.updateConstraints()
+        self.view.layoutIfNeeded()
+        self.roundCorners()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -65,10 +70,11 @@ class SignUpViewController: UIViewController {
         self.signUpButton.setTitle(Strings.signUpPC, for: .normal)
         
         let signInButtonTitle = NSMutableAttributedString(string: Strings.alreadyHaveAnAccountSignIn, attributes: [NSAttributedString.Key.foregroundColor: Colors.textMediumBlue])
-        let range = (Strings.alreadyHaveAnAccountSignIn as NSString).range(of: Strings.signIn)
-        signInButtonTitle.addAttributes(
-            [NSAttributedString.Key.underlineStyle:NSNumber(value: 1)],
-            range: range)
+        let range = (Strings.alreadyHaveAnAccountSignIn as NSString).range(of: Strings.signInPC)
+//        signInButtonTitle.addAttributes(
+//            [NSAttributedString.Key.underlineStyle:NSNumber(value: 1)],
+//            range: range)
+        signInButtonTitle.addAttributes([NSAttributedString.Key.font: Fonts.boldFont(size:18)], range: range)
         self.signInButton.setAttributedTitle(signInButtonTitle, for: .normal)
     }
     
@@ -83,6 +89,8 @@ class SignUpViewController: UIViewController {
         self.passwordView.layer.cornerRadius = self.passwordView.bounds.height/2
         self.lastNameView.layer.cornerRadius = self.lastNameView.bounds.height/2
         self.firstNameView.layer.cornerRadius = self.firstNameView.bounds.height/2
+        
+        self.signInButton.layer.cornerRadius = self.signUpButton.bounds.height/2
     }
     
     private func addBorders() {
@@ -97,6 +105,9 @@ class SignUpViewController: UIViewController {
         
         self.passwordView.layer.borderColor = Colors.borderGray.cgColor
         self.passwordView.layer.borderWidth = 1.0
+        
+        self.signInButton.layer.borderColor = Colors.appBlue.cgColor
+        self.signInButton.layer.borderWidth = 2.0
         //        self.firstNameTF.layer.borderColor = Colors.borderGray.cgColor
         //        self.firstNameTF.layer.borderWidth = 1.0
         //

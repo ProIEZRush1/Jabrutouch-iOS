@@ -11,7 +11,7 @@ import UIKit
 class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
     
     private var activityView: ActivityView?
-    var emailAdress: String = ""
+    var emailAddress: String = ""
     var isRegisterd: Bool = false
     var signInViewController: SignInViewController?
     var userExsistsMessage: String = ""
@@ -37,7 +37,7 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var userExistsView: UIView!
     @IBOutlet weak var sentEmailLeibel: UILabel!
     @IBOutlet weak var emailAddressLabel: UILabel!
-    @IBOutlet weak var checkMailboxLabel: UILabel!
+//    @IBOutlet weak var checkMailboxLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,12 +46,20 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
         self.setShadow()
         self.roundCornors()
         self.setBorders()
+        self.setStrings()
     }
     
-    func setStrings(){
-        self.sentEmailLeibel.text = "We sent an email to"
-        self.emailAddressLabel.text = self.emailAdress
-        self.checkMailboxLabel.text = "Please check your mailbox for further instructions"
+    func setStrings() {
+        self.titleLabel.text = Strings.forgotPasswordTitle
+        self.subTitleLabel.text = Strings.forgotPasswordText
+        self.sendButton.setTitle(Strings.sendNow, for: .normal)
+        self.secondTitleLabel.text = Strings.forgotPasswordSuccessTitle
+    }
+    
+    func setSucssesStrings(){
+        self.sentEmailLeibel.text = Strings.forgotPasswordSuccessMessage//"We sent an email to"
+        self.emailAddressLabel.text = self.emailAddress
+//        self.checkMailboxLabel.text = "Please check your mailbox for further instructions"
     }
     
     func roundCornors() {
@@ -85,10 +93,13 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
             self.isRegisterd = true
             self.userExistsView.isHidden = false
             self.secondSubTitleLabel.isHidden = true
-            self.setStrings()
+            self.okButton.setTitle("OK", for: .normal)
+            self.setSucssesStrings()
         } else {
             self.isRegisterd = false
-            self.secondSubTitleLabel.text = message
+            self.secondTitleLabel.text = ""
+            self.secondSubTitleLabel.text = Strings.forgotPasswordErrorMessage
+            self.okButton.setTitle(Strings.registerButtonTitle, for: .normal)
             self.userExistsView.isHidden = true
         }
         
@@ -96,6 +107,7 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func sendButtonPressed(_ sender: Any) {
         if let email = self.textField.text {
+            self.emailAddress = email
             self.showActivityView()
             self.forgotPassword(email)
         }
@@ -166,7 +178,7 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.containerViewTopConstrant.constant = 94
         if let emailAdress = textField.text {
-            self.emailAdress = emailAdress
+            self.emailAddress = emailAdress
         }
         self.textField.resignFirstResponder()
         return true

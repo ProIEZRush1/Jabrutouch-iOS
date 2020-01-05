@@ -13,6 +13,10 @@ class Fonts {
         return UIFont(name: "SFProDisplay-Regular", size: size)!
     }
     
+    class func mediumTextFont(size: CGFloat) -> UIFont {
+        return UIFont(name: "SFProText-Medium", size: size)!
+    }
+    
     class func boldFont(size: CGFloat) -> UIFont {
         return UIFont(name: "SFProDisplay-Bold", size: size)!
     }

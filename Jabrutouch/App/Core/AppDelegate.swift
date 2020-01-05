@@ -48,6 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         registerForPushNotifications(application: application)
         Messaging.messaging().delegate = MessagesRepository.shared
+        
         return true
     }
     
@@ -176,7 +177,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 
-extension AppDelegate:UNUserNotificationCenterDelegate{
+extension AppDelegate:UNUserNotificationCenterDelegate {
     
     func centerNotificationManager(){
         notificatioCenter.getDeliveredNotifications { (notifications:[UNNotification]) in
@@ -191,43 +192,67 @@ extension AppDelegate:UNUserNotificationCenterDelegate{
             }
         }
     }
-    
+  
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         
+        print("Received: \(userInfo)")
+        completionHandler(.newData)
     }
     
+  
+    
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-
-        // Step 1: Parse incoming content
-        let body = notification.request.content.body
         let userInfo = notification.request.content.userInfo
-        if let data = body.data(using: String.Encoding.utf8) {
-            do {
-                if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String:Any] {
-                    guard let title = json["title"] as? String else { return }
-                    guard let message = json["message"] as? String else { return }
-
-                    // Step 2 - Send local notification
-                    self.sendUserNotification(body: message, userInfo: userInfo)
-
-                }
-            } catch {
-                print("Something went wrong")
+        if let key = userInfo["data"] as? String, let values = self.convertToJson(text: key){
+                if let message = JTMessage(values: values){
+                   MessagesRepository.shared.didReciveMessage(message: message)
             }
-        }
+    }
+        
+        
+        print("willPresent: ")
+        // Step 1: Parse incoming content
+//        let body = notification.request.content.body
+////        let userInfo = notification.request.content.userInfo
+//        if let data = body.data(using: String.Encoding.utf8) {
+//            do {
+//                if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String:Any] {
+//                    guard let title = json["title"] as? String else { return }
+//                    guard let message = json["message"] as? String else { return }
+//
+//                    // Step 2 - Send local notification
+////                    self.sendUserNotification(body: message, userInfo: userInfo)
+//
+//                }
+//            } catch {
+//                print("Something went wrong")
+//            }
+//        }
         completionHandler([.alert, .sound])
     }
     
-    private func sendUserNotification(body: String, userInfo: [AnyHashable:Any]) {
-        let content = UNMutableNotificationContent()
-        content.body = body
-        content.userInfo = userInfo
-        
-        let request = UNNotificationRequest(identifier: "", content: content, trigger: nil)
-        UNUserNotificationCenter.current().add(request) { (error:Error?) in
-            if let error = error {
-                print("Failed adding notification request, with error: \(error)")
+    func convertToJson(text: String) -> [String: Any]? {
+            if let data = text.data(using: .utf8) {
+                do {
+                    return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+                } catch {
+                    print(error.localizedDescription)
+                }
             }
-        }
+            return nil
     }
+//
+//    private func sendUserNotification(body: String, userInfo: [AnyHashable:Any]) {
+//        let content = UNMutableNotificationContent()
+//        content.body = body
+//        content.userInfo = userInfo
+//
+//        let request = UNNotificationRequest(identifier: "", content: content, trigger: nil)
+//        UNUserNotificationCenter.current().add(request) { (error:Error?) in
+//            if let error = error {
+//                print("Failed adding notification request, with error: \(error)")
+//            }
+//        }
+//    }
+   
 }

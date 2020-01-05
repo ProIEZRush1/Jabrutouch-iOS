@@ -19,9 +19,8 @@ class ChatControlsView: UIView {
     //========================================
     // MARK: - Properties
     //========================================
-    
-    var soundRecorder = AVAudioRecorder()
-    var soundPlayer = AVAudioPlayer()
+    var soundRecorder: AVAudioRecorder?
+//    var soundPlayer = AVAudioPlayer()
     var fileName: String = "audioFile.m4a"
     
     weak var delegate: ChatControlsViewDelegate?
@@ -45,7 +44,8 @@ class ChatControlsView: UIView {
         super.init(frame: frame)
         self.xibSetup()
         self.inputTextView.delegate = self
-        self.setUpRecord()
+        
+//        self.setUpRecord()
         self.setRoundCorners()
     }
     
@@ -108,11 +108,11 @@ class ChatControlsView: UIView {
     }
     
     @IBAction func recordButtonPressed(_ sender: Any) {
-        self.soundRecorder.record()
+//        self.soundRecorder.record()
     }
     
     @IBAction func recordButtonTouchedUp(_ sender: Any) {
-        self.soundRecorder.stop()
+//        self.soundRecorder.stop()
     }
     
     @IBAction func recordButtonDragLeft(_ sender: Any) {
@@ -142,46 +142,46 @@ extension ChatControlsView: UITextViewDelegate {
 
 extension ChatControlsView: AVAudioPlayerDelegate, AVAudioRecorderDelegate {
     
-    func setUpRecord() {
-        let recordSettings = [AVFormatIDKey: kAudioFormatAppleLossless,
-                              AVEncoderAudioQualityKey: AVAudioQuality.max.rawValue,
-                              AVEncoderBitRateKey: 320000,
-                              AVNumberOfChannelsKey: 2,
-                              AVSampleRateKey: 44100.0 ] as [String : Any]
-        
-        let url = getDocumentDirectory().appendingPathComponent(fileName)
-        do {
-            self.soundRecorder = try AVAudioRecorder(url: url, settings: recordSettings)
-            self.soundRecorder.delegate = self
-            self.soundRecorder.prepareToRecord()
-        }
-        catch {
-            print(error)
-        }
-    }
-    
-    func setUpPlayer() {
-        let url = getDocumentDirectory().appendingPathComponent(fileName)
-        do {
-            self.soundPlayer = try AVAudioPlayer(contentsOf: url)
-            self.soundPlayer.delegate = self
-            self.soundPlayer.prepareToPlay()
-            self.soundPlayer.volume = 1.0
-            
-        }
-        catch {
-            print(error)
-        }
-    }
-    
-    func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
-        //        self.playButton.isHidden = false
-        //        self.playButton.isEnabled = true
-    }
-    
-    func getDocumentDirectory()-> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0]
-    }
+//    func setUpRecord() {
+//        let recordSettings = [AVFormatIDKey: kAudioFormatAppleLossless,
+//                              AVEncoderAudioQualityKey: AVAudioQuality.max.rawValue,
+//                              AVEncoderBitRateKey: 320000,
+//                              AVNumberOfChannelsKey: 2,
+//                              AVSampleRateKey: 44100.0 ] as [String : Any]
+//
+//        let url = getDocumentDirectory().appendingPathComponent(fileName)
+//        do {
+//            self.soundRecorder = try AVAudioRecorder(url: url, settings: recordSettings)
+//            self.soundRecorder.delegate = self
+//            self.soundRecorder.prepareToRecord()
+//        }
+//        catch {
+//            print(error)
+//        }
+//    }
+//
+//    func setUpPlayer() {
+//        let url = getDocumentDirectory().appendingPathComponent(fileName)
+//        do {
+//            self.soundPlayer = try AVAudioPlayer(contentsOf: url)
+//            self.soundPlayer.delegate = self
+//            self.soundPlayer.prepareToPlay()
+//            self.soundPlayer.volume = 1.0
+//
+//        }
+//        catch {
+//            print(error)
+//        }
+//    }
+//
+//    func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
+//        //        self.playButton.isHidden = false
+//        //        self.playButton.isEnabled = true
+//    }
+//
+//    func getDocumentDirectory()-> URL {
+//        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+//        return paths[0]
+//    }
 }
 

@@ -28,7 +28,7 @@ struct JTMessage {
         } else { return nil }
         
         if let sentDate = values["sent_at"] as? TimeInterval {
-            let date = Date(timeIntervalSince1970: sentDate)
+            let date = Date(timeIntervalSince1970: sentDate/1000)
             self.sentDate = date
         } else { return nil }
         

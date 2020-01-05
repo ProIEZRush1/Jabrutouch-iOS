@@ -560,10 +560,12 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     
     func presentAllGemara() {
         self.presentGemaraViewController()
+        self.setIcons(string: "gemara")
     }
     
     func presentAllMishna() {
         self.presentMishnaViewController()
+        self.setIcons(string: "mishna")
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "embedModalsVC" {

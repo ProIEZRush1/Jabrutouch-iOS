@@ -46,5 +46,6 @@ class UserRepository {
         UserDefaultsProvider.shared.currentUsername = nil
         UserDefaultsProvider.shared.currentPassword = nil
         UserDefaultsProvider.shared.currentUser = nil
+        UserDefaultsProvider.shared.lessonWatched = []
     }
 }

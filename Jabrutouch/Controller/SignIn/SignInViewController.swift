@@ -41,8 +41,13 @@ class SignInViewController: UIViewController, MFMailComposeViewControllerDelegat
         super.viewDidLoad()
         
         self.setStrings()
-        self.roundCorners()
         self.addBorders()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.view.updateConstraints()
+        self.view.layoutIfNeeded()
+        self.roundCorners()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -61,7 +66,8 @@ class SignInViewController: UIViewController, MFMailComposeViewControllerDelegat
         
         let signUpTitle = NSMutableAttributedString(string: Strings.dontHaveAccount, attributes: [NSAttributedString.Key.foregroundColor: Colors.textMediumBlue])
         let range = (Strings.dontHaveAccount as NSString).range(of: Strings.signUp)
-        signUpTitle.addAttributes([NSAttributedString.Key.underlineStyle:NSNumber(value: 1)], range: range)
+//        signUpTitle.addAttributes([NSAttributedString.Key.underlineStyle:NSNumber(value: 1)], range: range)
+        signUpTitle.addAttributes([NSAttributedString.Key.font: Fonts.boldFont(size:18)], range: range)
         self.signUpButton.setAttributedTitle(signUpTitle, for: .normal)
     }
 
@@ -71,6 +77,7 @@ class SignInViewController: UIViewController, MFMailComposeViewControllerDelegat
         self.passwordTF.layer.cornerRadius = self.passwordTF.bounds.height/2
         self.usernameView.layer.cornerRadius = self.usernameView.bounds.height/2
         self.passwordView.layer.cornerRadius = self.passwordView.bounds.height/2
+        self.signUpButton.layer.cornerRadius = self.signUpButton.bounds.height/2
     }
     
     private func addBorders() {
@@ -79,6 +86,9 @@ class SignInViewController: UIViewController, MFMailComposeViewControllerDelegat
         
         self.passwordView.layer.borderColor = Colors.borderGray.cgColor
         self.passwordView.layer.borderWidth = 1.0
+        
+        self.signUpButton.layer.borderColor = Colors.appBlue.cgColor
+        self.signUpButton.layer.borderWidth = 2.0
 //        self.usernameTF.layer.borderColor = Colors.borderGray.cgColor
 //        self.usernameTF.layer.borderWidth = 1.0
         
