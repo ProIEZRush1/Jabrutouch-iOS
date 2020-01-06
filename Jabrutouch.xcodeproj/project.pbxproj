@@ -1701,7 +1701,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 715A51EC96A60C90B07F8038 /* Pods-Jabrutouch.debug.xcconfig */;
 			buildSettings = {
-				API_BASE_URL = "https://jabrutouch.ravtech.co.il/api/";
+				API_BASE_URL = "https://jabrutouch-dev.ravtech.co.il/api/";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Jabrutouch/Jabrutouch.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -1731,7 +1731,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F71C57777BA59A6B8E3F7474 /* Pods-Jabrutouch.release.xcconfig */;
 			buildSettings = {
-				API_BASE_URL = "https://jabrutouch.ravtech.co.il/api/";
+				API_BASE_URL = "https://jabrutouch-dev.ravtech.co.il/api/";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Jabrutouch/Jabrutouch.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";

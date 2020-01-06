@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print((UserDefaults.standard.object(forKey: "AppleLanguages") as! [String]).first!)
         // Initialize
         _ = ContentRepository.shared
-        _ = MessagesRepository.shared
+//        _ = MessagesRepository.shared
         FirebaseApp.configure()
         registerForPushNotifications(application: application)
         Messaging.messaging().delegate = MessagesRepository.shared

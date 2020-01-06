@@ -197,8 +197,8 @@ class CoreDataManager {
             
             let result = try managedContext.fetch(request)
             
-            (result as! [NSManagedObject]).first?.setValue(chat.title, forKey: "lastMessage")
-            (result as! [NSManagedObject]).first?.setValue(chat.title, forKey: "lastMessageTime")
+            (result as! [NSManagedObject]).first?.setValue(chat.lastMessage, forKey: "lastMessage")
+            (result as! [NSManagedObject]).first?.setValue(chat.lastMessageTime, forKey: "lastMessageTime")
             do{
                 try managedContext.save()
             }

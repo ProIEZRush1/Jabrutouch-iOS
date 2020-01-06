@@ -69,7 +69,7 @@ struct JTChatMessage {
         } else { return nil }
         
         if let lastMessageTime = values["last_message_time"] as? TimeInterval {
-            let date = Date(timeIntervalSince1970: lastMessageTime)
+            let date = Date(timeIntervalSince1970: lastMessageTime/1000)
             self.lastMessageTime = date
         } else { return nil }
         

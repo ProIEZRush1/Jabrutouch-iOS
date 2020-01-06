@@ -209,6 +209,7 @@ class SignInViewController: UIViewController, MFMailComposeViewControllerDelegat
             switch result {
             case .success:
                 self.navigateToMain()
+                MessagesRepository.shared.getMessages()
             case .failure(let error):
                 let message = error.message
                 Utils.showAlertMessage(message,title:"",viewControler:self)

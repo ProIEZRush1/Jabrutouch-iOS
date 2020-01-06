@@ -31,8 +31,7 @@ class MessagesRepository: NSObject, MessagingDelegate {
         return self.manager!
     }
     
-    private override init() {
-        super.init()
+    func getMessages() {
         if self.isEmpty{
             self.getAllMessages { (result: Result<[JTChatMessage], JTError>) in
                 switch result {
@@ -47,6 +46,11 @@ class MessagesRepository: NSObject, MessagingDelegate {
         else {
             self.getAllChatsFromDB()
         }
+    }
+    
+    private override init() {
+        super.init()
+        getMessages()
     }
     
     var isEmpty: Bool {
@@ -133,24 +137,25 @@ class MessagesRepository: NSObject, MessagingDelegate {
             completion(.failure(.authTokenMissing))
             return
         }
-        API.getMessages(authToken: authToken) { (resolt: APIResult<GetMessagesResponse>) in
-            switch resolt {
+        API.getMessages(authToken: authToken) { (result: APIResult<GetMessagesResponse>) in
+            switch result {
             case .success(let response):
                 for chat in response.chats {
                     self.saveChatInDB(chat: chat)
                     for message in chat.messages{
                         self.saveMessageInDB(message: message)
                     }
+                    completion(.success(response.chats))
                 }
             case .failure(let error):
                 print(error)
+                completion(.failure(error))
             }
         }
     }
     
     func getAllChatsFromDB() {
         self.allChats = CoreDataManager.shared.getAllChats()
-        
     }
     
     func getAllMessagesFromDB(chatId: Int) {

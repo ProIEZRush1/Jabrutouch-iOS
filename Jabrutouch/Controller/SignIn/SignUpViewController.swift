@@ -224,6 +224,7 @@ class SignUpViewController: UIViewController {
             switch result {
             case .success:
                 self.navigateToMain()
+                MessagesRepository.shared.getMessages()
             case .failure(let error):
                 let title = Strings.error
                 let message = error.localizedDescription

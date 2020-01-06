@@ -37,7 +37,6 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
         self.tableView.dataSource = self
         self.messagesArray.append("test")
         self.chatsArray = MessagesRepository.shared.allChats
-//        self.printer(arr: chatsArray)
         MessagesRepository.shared.delegate = self
         
     }
