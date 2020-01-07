@@ -132,8 +132,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                 let text = self.messagesArray[indexPath.row].message
                 let height = self.getViewHeight(text)
                 cell.messageViewHeightConstraint.constant = height + 32
-                cell.message.text = message.message
-                cell.timeLabel.text = self.getTime(lastMessageTime: message.sentDate)
+                cell.message.text = text
+                cell.timeLabel.text = self.getTime(lastMessageTime: messagesArray[indexPath.row].sentDate)
                 cell.userImage.image = user?.profileImage ?? #imageLiteral(resourceName: "Avatar")
                 
                 return cell
@@ -143,8 +143,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                 let text = self.messagesArray[indexPath.row].message
                 let height = self.getViewHeight(text)
                 cell.messageViewHeightConstraint.constant = height + 32
-                cell.message.text = message.message
-                cell.timeLabel.text = self.getTime(lastMessageTime: message.sentDate)
+                cell.message.text = text
+                cell.timeLabel.text = self.getTime(lastMessageTime: messagesArray[indexPath.row].sentDate)
                 
                 cell.userImage.image = #imageLiteral(resourceName: "incomingUserImege")
                 

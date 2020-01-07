@@ -205,7 +205,7 @@ extension AppDelegate:UNUserNotificationCenterDelegate {
         let userInfo = notification.request.content.userInfo
         if let key = userInfo["data"] as? String, let values = self.convertToJson(text: key){
                 if let message = JTMessage(values: values){
-                   MessagesRepository.shared.didReciveMessage(message: message)
+                   MessagesRepository.shared.saveMessageInDB(message: message)
             }
     }
         

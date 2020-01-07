@@ -36,16 +36,12 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.messagesArray.append("test")
+        self.chatsArray = CoreDataManager.shared.getAllChats()
+
         self.chatsArray = MessagesRepository.shared.allChats
-        MessagesRepository.shared.delegate = self
+        CoreDataManager.shared.delegate = self
         
     }
-    
-//    func printer(arr:[JTChatMessage]){
-//        for (i, item) in arr.enumerated(){
-//            print(i,": ", item.lastMessageTime)
-//        }
-//    }
     
     override func viewWillAppear(_ animated: Bool) {
         self.setTableView()
@@ -115,6 +111,7 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let chatId = self.chatsArray[indexPath.row].chatId
         performSegue(withIdentifier: "openChat", sender: chatId)
+    
     }
     
     
@@ -148,12 +145,11 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
 
 }
 
-extension MessagesViewController: MessagesRepositoryDelegate {
-    func didReciveNewMessage(allChats: [JTChatMessage]) {
-        self.chatsArray = allChats
+extension MessagesViewController: MessagesRepositoryDelegate{
+    func didReciveNewMessage() {
+        self.chatsArray = CoreDataManager.shared.getAllChats()
         self.tableView.reloadData()
     }
-    
-    
-    
 }
+
+

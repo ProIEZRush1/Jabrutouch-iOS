@@ -9,6 +9,10 @@
 import Foundation
 import CoreData
 
+protocol MessagesRepositoryDelegate: class {
+    func didReciveNewMessage()
+}
+
 class CoreDataManager {
     
     private static var manager: CoreDataManager?
@@ -23,7 +27,7 @@ class CoreDataManager {
         }
         return self.manager!
     }
-    
+    weak var delegate: MessagesRepositoryDelegate?
     let managedContext = appDelegate.persistentContainer.viewContext
     
     func seveChat(chat: JTChatMessage) {
@@ -75,6 +79,7 @@ class CoreDataManager {
                 self.updateChatById(chat: self.createChatObject(message: message))
             }
             print("Message saved")
+             self.delegate?.didReciveNewMessage()
         }
         catch {
             print("failed")
@@ -120,6 +125,8 @@ class CoreDataManager {
         
         var allChats: [JTChatMessage] = []
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Chat")
+        let sort = NSSortDescriptor(key: "lastMessageTime", ascending: false)
+        request.sortDescriptors = [sort]
         request.returnsObjectsAsFaults = false
         do {
             let result = try managedContext.fetch(request)
@@ -134,8 +141,10 @@ class CoreDataManager {
     }
     
     func getMessagesByChatId(chatId: Int) -> [JTMessage] {
-        let predicate = NSPredicate(format: "chatId = %i", chatId)
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Message")
+        let predicate = NSPredicate(format: "chatId = %i", chatId)
+        let sort = NSSortDescriptor(key: "sendAtDate", ascending: true)
+        request.sortDescriptors = [sort]
         request.predicate = predicate
         request.returnsObjectsAsFaults = false
         do {

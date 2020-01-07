@@ -105,6 +105,7 @@ class ChatControlsView: UIView {
     
     @IBAction func sendMessageButtonPressed(_ sender: Any) {
         self.delegate?.sendMessageButtonPressed()
+        
     }
     
     @IBAction func recordButtonPressed(_ sender: Any) {
@@ -122,8 +123,14 @@ class ChatControlsView: UIView {
 
 extension ChatControlsView: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+       
 //        self.setHeightOfTextView(text: "\(textView.text ?? "")\(text)")
         return true
+    }
+    
+    func textViewDidChangeSelection(_ textView: UITextView) {
+        print(textView.text as? String ?? "a")
+        
     }
     
     func textViewDidChange(_ textView: UITextView) {
