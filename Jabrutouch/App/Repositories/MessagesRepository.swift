@@ -91,9 +91,11 @@ class MessagesRepository: NSObject, MessagingDelegate {
             completion(.failure(.authTokenMissing))
             return
         }
+        
         API.createMessage(message: message, sentAt: sentAt, title: title, messageType: messageType, toUser: toUser, chatId: chatId, token: authToken) { (result: APIResult<GetCreateMessageResponse>) in
             switch result {
             case .success(let response):
+                print("response: ", response)
                 self.saveMessageInDB(message: response.message)
             case .failure(let error):
                 completion(.failure(error))
@@ -133,6 +135,5 @@ class MessagesRepository: NSObject, MessagingDelegate {
     }
     
 }
-
 
 

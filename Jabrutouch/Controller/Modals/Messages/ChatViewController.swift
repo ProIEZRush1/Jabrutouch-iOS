@@ -39,7 +39,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.chatControlsView.delegate = self
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.roundCorners()
@@ -170,8 +170,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func sendMessage(message: String, sentAt:Date, title: String, messageType: Int, toUser: Int, chatId: Int){
-        MessagesRepository.shared.sendMessage(message: message, sentAt:sentAt, title: title, messageType: messageType, toUser: toUser, chatId: chatId, completion:  {_ in 
-            
+        MessagesRepository.shared.sendMessage(message: message, sentAt:sentAt, title: title, messageType: messageType, toUser: toUser, chatId: chatId, completion:  { (resulte) in
+            print(resulte)
         })
     }
 }
@@ -179,6 +179,15 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 extension ChatViewController: ChatControlsViewDelegate {
     
     func sendMessageButtonPressed() {
+        if self.chatControlsView.inputTextView.text != nil{
+            self.sendMessage(message: chatControlsView.inputTextView.text,
+                             sentAt: Date(),
+                             title: self.messagesArray[0].title,
+                             messageType: self.messagesArray[0].messageType,
+                             toUser: self.messagesArray[0].fromUser,
+                             chatId: self.messagesArray[0].chatId)
+            
+        }
     }
 
 
