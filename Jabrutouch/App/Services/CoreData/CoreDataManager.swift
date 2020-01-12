@@ -11,6 +11,7 @@ import CoreData
 
 protocol MessagesRepositoryDelegate: class {
     func didReciveNewMessage()
+    func didSendMessage()
 }
 
 class CoreDataManager {
@@ -44,7 +45,9 @@ class CoreDataManager {
         newChat.setValue(chat.chatType, forKey: "chatType")
         newChat.setValue(chat.image, forKey: "userImage")
         newChat.setValue(chat.read, forKey: "read")
-        
+        newChat.setValue(1, forKey: "unreadMessages")
+
+       
         do{
             try managedContext.save()
         }
@@ -77,9 +80,10 @@ class CoreDataManager {
                 
             }else{
                 self.updateChatById(chat: self.createChatObject(message: message))
+                self.delegate?.didSendMessage()
             }
             print("Message saved")
-             self.delegate?.didReciveNewMessage()
+            self.delegate?.didReciveNewMessage()
         }
         catch {
             print("failed")
@@ -98,7 +102,9 @@ class CoreDataManager {
             lastMessage: message.message,
             lastMessageTime: message.sentDate,
             image: message.image,
-            read: message.read
+            read: message.read,
+            unreadMessages: 1
+            
         )
     }
     
@@ -176,7 +182,7 @@ class CoreDataManager {
     }
     
     func updateMessageById(message: JTMessage) {
-        let predicate = NSPredicate(format: "messageId = %i", message.messageId)
+        let predicate = NSPredicate(format: "messageId = %i", message.messageId as? Int ?? 0)
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Message")
         request.predicate = predicate
         request.returnsObjectsAsFaults = false
@@ -208,6 +214,7 @@ class CoreDataManager {
             
             (result as! [NSManagedObject]).first?.setValue(chat.lastMessage, forKey: "lastMessage")
             (result as! [NSManagedObject]).first?.setValue(chat.lastMessageTime, forKey: "lastMessageTime")
+//            (result as! [NSManagedObject]).first?.setValue(self.getUnreadedMessagesByChatID(chatId: chat.chatId), forKey: "unreadMessages")
             do{
                 try managedContext.save()
             }
@@ -219,5 +226,24 @@ class CoreDataManager {
             print("Failed")
             
         }
+    }
+    func getUnreadedMessagesByChatID(chatId: Int) -> Int {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Message")
+        let predicate = NSPredicate(format: "chatId = %i", chatId)
+        request.predicate = predicate
+        request.returnsObjectsAsFaults = false
+        do {
+            
+            let result = try managedContext.fetch(request)
+            print("REsult: ",result)
+            guard let unreadMessages = (result as! [NSManagedObject]).first?.value(forKey:"unreadMessages")as? Int else { return 0}
+            print("Un-readed: ",unreadMessages)
+            return unreadMessages
+
+        } catch {
+            print("Failed")
+            
+        }
+        return 0
     }
 }

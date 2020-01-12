@@ -96,7 +96,7 @@ class MessagesRepository: NSObject, MessagingDelegate {
             switch result {
             case .success(let response):
                 print("response: ", response)
-                self.saveMessageInDB(message: response.message)
+//                self.saveMessageInDB(message: response.message)
             case .failure(let error):
                 completion(.failure(error))
             }

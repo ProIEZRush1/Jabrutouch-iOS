@@ -105,7 +105,14 @@ class ChatControlsView: UIView {
     
     @IBAction func sendMessageButtonPressed(_ sender: Any) {
         self.delegate?.sendMessageButtonPressed()
-        
+        self.inputTextView.text = ""
+        self.inputTextView.resignFirstResponder()
+        if self.inputTextView.text.count == 0{
+            self.plaseHolderLabel.isHidden = true
+            self.recordMessageButton.isHidden = true
+            self.sendMessageButton.isHidden = false
+        }
+    
     }
     
     @IBAction func recordButtonPressed(_ sender: Any) {
@@ -144,6 +151,7 @@ extension ChatControlsView: UITextViewDelegate {
             self.sendMessageButton.isHidden = false
         }
     }
+
         
 }
 

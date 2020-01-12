@@ -22,8 +22,9 @@ struct JTChatMessage {
     var image: String = ""
     var read: Bool = false
     var messages: [JTMessage] = []
+    var unreadMessages: Int?
    
-    init(chatId: Int, createdDate: Date, title: String, fromUser: Int, toUser: Int, chatType: Int, lastMessage: String, lastMessageTime: Date, image: String, read: Bool) {
+    init(chatId: Int, createdDate: Date, title: String, fromUser: Int, toUser: Int, chatType: Int, lastMessage: String, lastMessageTime: Date, image: String, read: Bool, unreadMessages: Int) {
         self.chatId = chatId
         self.createdDate = createdDate
         self.title = title
@@ -34,6 +35,7 @@ struct JTChatMessage {
         self.lastMessageTime = lastMessageTime
         self.image = image
         self.read = read
+        self.unreadMessages = unreadMessages
         
     }
     
@@ -88,7 +90,12 @@ struct JTChatMessage {
         if let messagesValues = values["messages"] as? [[String: Any]] {
             self.messages = messagesValues.compactMap{JTMessage(values: $0)}
         } else { return nil }
-        
+       
+        if let unreadMessages = values["unreadMessages"] as? Int {
+            self.unreadMessages = unreadMessages
+        } else {
+            self.unreadMessages = 0
+        }
     }
     
     init?(values: NSManagedObject) {
@@ -133,6 +140,11 @@ struct JTChatMessage {
                self.read = read
            } else { return nil }
            
+        if let unreadMessages = values.value(forKey: "read") as? Int {
+            self.unreadMessages = unreadMessages
+        } else {
+            self.unreadMessages = 0
+        }
        }
     
     var values: [String:Any] {
@@ -149,6 +161,7 @@ struct JTChatMessage {
         values["image"] = self.image
         values["messages"] = self.messages.map{$0.values}
         values["read"] = self.read
+        values["unreadMessages"] = self.unreadMessages
         
         return values
     }

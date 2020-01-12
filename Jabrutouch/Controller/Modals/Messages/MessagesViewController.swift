@@ -38,12 +38,13 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
         self.messagesArray.append("test")
         self.chatsArray = CoreDataManager.shared.getAllChats()
 
-        self.chatsArray = MessagesRepository.shared.allChats
+//        self.chatsArray = MessagesRepository.shared.allChats
         CoreDataManager.shared.delegate = self
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
+//        self.tableView.reloadData()
         self.setTableView()
         
     }
@@ -61,7 +62,12 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
             self.tableView.isHidden = true
             self.searchButton.isHidden =  true
         }
-        self.tableView.reloadData()
+//        self.tableView.reloadData()
+        self.chatsArray = CoreDataManager.shared.getAllChats()
+               DispatchQueue.main.async {
+                   self.tableView.reloadData()
+                   
+               }
     }
     
     func getTime(lastMessageTime: Date)-> String {
@@ -109,8 +115,8 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let chatId = self.chatsArray[indexPath.row].chatId
-        performSegue(withIdentifier: "openChat", sender: chatId)
+        
+        performSegue(withIdentifier: "openChat", sender: indexPath)
     
     }
     
@@ -135,20 +141,27 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "openChat" {
-            MessagesRepository.shared.getAllMessagesFromDB(chatId: sender as? Int ?? 0)
-            
+            guard let indexPath = sender as? IndexPath else {return}
+            let chat = self.chatsArray[indexPath.row]
+            MessagesRepository.shared.getAllMessagesFromDB(chatId: chat.chatId)
             let chatVC = segue.destination as? ChatViewController
             chatVC?.messagesArray = MessagesRepository.shared.messages
-           
+            chatVC?.currentChat = chat
         }
     }
-
 }
 
 extension MessagesViewController: MessagesRepositoryDelegate{
+    func didSendMessage() {
+        
+    }
+    
     func didReciveNewMessage() {
         self.chatsArray = CoreDataManager.shared.getAllChats()
-        self.tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+            
+        }
     }
 }
 

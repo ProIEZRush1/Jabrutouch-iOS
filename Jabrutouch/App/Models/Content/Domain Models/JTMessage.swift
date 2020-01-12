@@ -25,7 +25,7 @@ struct JTMessage {
     init?(values: [String:Any]) {
         if let messageId = values["message_id"] as? Int {
             self.messageId = messageId
-        } else { return nil }
+        } else {  self.messageId = -1 }
         
         if let sentDate = values["sent_at"] as? TimeInterval {
             let date = Date(timeIntervalSince1970: sentDate/1000)
@@ -66,9 +66,11 @@ struct JTMessage {
         
         if let image = values["image"] as? String {
             self.image = image
-        } else { return nil }
+        } else { self.image = "" }
         
     }
+   
+   
     
     init?(values: NSManagedObject) {
         
