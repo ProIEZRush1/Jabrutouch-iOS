@@ -33,7 +33,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
-    
+    @IBOutlet weak var tableViewButtom: NSLayoutConstraint!
     //========================================
     // MARK: - LifeCycle
     //========================================
@@ -48,11 +48,22 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.roundCorners()
         self.user = UserRepository.shared.getCurrentUser()
         
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
-      //        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-//
+
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        self.tableView.scrollToRow(at: IndexPath(row: self.messagesArray.count-1, section: 0), at: UITableView.ScrollPosition.bottom, animated: false)
+
+    }
+   
+    override func viewDidLayoutSubviews() {
+         self.tableView.scrollToRow(at: IndexPath(row: self.messagesArray.count-1, section: 0), at: UITableView.ScrollPosition.bottom, animated: false)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -66,6 +77,40 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     override var inputAccessoryView: UIView?{
         return self.chatControlsView
     }
+    
+     @objc func keyboardWillShow(_ notification: NSNotification) {
+            if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+                let duration = ((notification.userInfo![UIResponder.keyboardAnimationDurationUserInfoKey]) as! NSNumber) as! Double
+                raiseScreenIfNeeded(keyboardSize.height, duration)
+            }
+        }
+        
+        @objc func keyboardWillHide(_ notification: NSNotification) {
+            self.tableView.contentInset.bottom = 0
+//            self.tableView.layoutIfNeeded()
+//            self.tableView.scrollToRow(at: IndexPath(row: self.messagesArray.count-1, section: 0), at: UITableView.ScrollPosition.bottom, animated: false)
+
+    //        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+    //            let duration = ((notification.userInfo![UIResponder.keyboardAnimationDurationUserInfoKey]) as! NSNumber) as! Double
+    //            raiseScreenIfNeeded(keyboardSize.height, duration)
+    //        }
+        }
+
+        fileprivate func raiseScreenIfNeeded(_ keyboardSize: CGFloat, _ duration: Double) {
+            UIView.animate(withDuration: duration) {
+                print("contentOffset: ", self.tableView.contentOffset.y)
+                self.tableView.contentInset.bottom = keyboardSize
+                self.tableView.contentOffset.y += keyboardSize-70
+                self.tableView.layoutIfNeeded()
+                self.tableView.scrollToRow(at: IndexPath(row: self.messagesArray.count-1, section: 0), at: UITableView.ScrollPosition.bottom, animated: false)
+
+            }
+
+
+            print("keyboard: ",keyboardSize)
+            print("duration: ",duration)
+
+        }
     
 //    @objc func keyboardWillShow(_ notification: NSNotification) {
 //        if let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
@@ -105,20 +150,40 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func getTime(lastMessageTime: Date)-> String {
-        
         let timeStemp = lastMessageTime.timeIntervalSince1970
         let toDayAgain = Date(timeIntervalSince1970: timeStemp)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm:ss"
         let string = dateFormatter.string(from: toDayAgain)
-        
+
+
+
         return string
-        
+
     }
+//    func getTime(lastMessageTime: Date)-> String {
+//
+//        let calander = Calendar.current
+//        let dateFormatter = DateIntervalFormatter()
+//        if calander.isDateInToday(lastMessageTime){
+//            dateFormatter.dateTemplate = "HH:mm:ss"
+//            return dateFormatter.string(from: lastMessageTime, to: lastMessageTime)
+//        }else if calander.isDateInYesterday(lastMessageTime){
+//            dateFormatter.dateTemplate = "HH:mm"
+//            return "Yesterday,\(dateFormatter.string(from: lastMessageTime,to: lastMessageTime)) "
+//        }else{
+//            dateFormatter.dateTemplate = "MMM d, HH:mm"
+//            return dateFormatter.string(from: lastMessageTime,to: lastMessageTime)
+//        }
+//    }
+    
+   
     
     func getImageFromURL(imageLink: String) {
         
     }
+    
+   
     
     //========================================
     // MARK: - table View
@@ -130,6 +195,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         if self.messagesArray[indexPath.row].isMine{
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "userMessageCell", for: indexPath) as? UserMessageCell else { return UITableViewCell() }
             let text = self.messagesArray[indexPath.row].message
@@ -152,8 +218,9 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             return cell
         }
     }
-    
+
    
+    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let text = self.messagesArray[indexPath.row].message
@@ -184,6 +251,10 @@ extension ChatViewController: ChatControlsViewDelegate, MessagesRepositoryDelega
         self.messagesArray = CoreDataManager.shared.getMessagesByChatId(chatId: chat.chatId)
         DispatchQueue.main.async {
             self.tableView.reloadData()
+            self.tableView.scrollToRow(at: IndexPath(row: self.messagesArray.count-1, section: 0), at: UITableView.ScrollPosition.bottom, animated: false)
+
+           
+
         }
     }
     
@@ -216,7 +287,7 @@ extension ChatViewController: ChatControlsViewDelegate, MessagesRepositoryDelega
                 "is_mine": true,
                 "chat_id": chat.chatId]){
                  MessagesRepository.shared.saveMessageInDB(message: createMessage)
-                
+
             }
             
         }

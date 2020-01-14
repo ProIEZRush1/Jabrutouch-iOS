@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>175540149174-6ilv9vjp3vm4qnueg2dl71igj4gm16qo.apps.googleusercontent.com</string>
+	<string>317005163328-ub7hj65p1s6cgvj1m8mldki8bvjer6af.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.175540149174-6ilv9vjp3vm4qnueg2dl71igj4gm16qo</string>
+	<string>com.googleusercontent.apps.317005163328-ub7hj65p1s6cgvj1m8mldki8bvjer6af</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAysPVtKD1EL4JkTdAktDX2R_byFuYZ3XM</string>
+	<string>AIzaSyB074qGhp5B-GH9BR_PEnUk1klteXVlD-o</string>
 	<key>GCM_SENDER_ID</key>
-	<string>175540149174</string>
+	<string>317005163328</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>il.co.jabrutouch.Jabrutouch</string>
 	<key>PROJECT_ID</key>
-	<string>jabrutouch-7bea6</string>
+	<string>jabrutouch-d3470</string>
 	<key>STORAGE_BUCKET</key>
-	<string>jabrutouch-7bea6.appspot.com</string>
+	<string>jabrutouch-d3470.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:175540149174:ios:ef9f3f76dcd7474357ff17</string>
+	<string>1:317005163328:ios:52129da006a71ddf10e8a5</string>
 	<key>DATABASE_URL</key>
-	<string>https://jabrutouch-7bea6.firebaseio.com</string>
+	<string>https://jabrutouch-d3470.firebaseio.com</string>
 </dict>
 </plist>

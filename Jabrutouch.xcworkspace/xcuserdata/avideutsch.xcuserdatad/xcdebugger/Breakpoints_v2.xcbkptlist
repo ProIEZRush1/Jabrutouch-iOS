@@ -44,8 +44,8 @@
             filePath = "Jabrutouch/Controller/Modals/Messages/ChatControlsView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "153"
-            endingLineNumber = "153"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
             landmarkName = "textViewDidChange(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -60,9 +60,41 @@
             filePath = "Jabrutouch/Controller/Modals/Messages/ChatControlsView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
             landmarkName = "sendMessageButtonPressed(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B8FA296D-EA0C-41A5-9EA0-C6F8BCD58301"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Jabrutouch/Controller/Modals/Messages/ChatViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "226"
+            endingLineNumber = "226"
+            landmarkName = "ChatViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "75E7F7DA-F5B1-4976-AE28-8F04D40DFC02"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Jabrutouch/Controller/Modals/Messages/ChatControlsView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
+            landmarkName = "textViewDidChange(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
