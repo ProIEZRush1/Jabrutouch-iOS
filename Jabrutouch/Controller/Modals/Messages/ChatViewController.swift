@@ -243,6 +243,10 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 //            print(resulte)
 //        })
 //    }
+    
+    func splitsMessageArrayToInternalListsByDate(){
+        
+    }
 }
 
 extension ChatViewController: ChatControlsViewDelegate, MessagesRepositoryDelegate {
