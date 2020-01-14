@@ -24,6 +24,7 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
     var sederId: String?
     var isCurrentlyEditing: Bool = false
     var isFirstLoading: Bool = false
+    private var lessonWatched: [JTLessonWatched] = []
     
     private var activityView: ActivityView?
     
@@ -45,7 +46,7 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        self.lessonWatched = UserDefaultsProvider.shared.lessonWatched
         self.setContent()
         ContentRepository.shared.addDelegate(self)
     }
@@ -133,7 +134,16 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
             cell.setEditingIfNeeded(lesson: lesson, isCurrentlyEditing: self.isCurrentlyEditing)
             self.view.layoutIfNeeded()
         }
-        
+        if self.lessonWatched.count > 0 {
+            for lessonWatched in self.lessonWatched {
+                if lessonWatched.lessonId == lesson.id {
+                    let count = lessonWatched.duration / Double(lesson.duration)
+                    Utils.setProgressbar(count: count, view: cell.lessonProgressBar, rounded: false, cornerRadius: 0, bottomRadius: true)
+                    break
+                }
+                Utils.setProgressbar(count: 0.0, view: cell.lessonProgressBar, rounded: false, cornerRadius: 0, bottomRadius: true)
+            }
+        }
         return cell
     }
     
@@ -250,6 +260,11 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
     private func playLesson(_ lesson: JTLesson, mediaType: JTLessonMediaType) {
         guard let sederId = self.sederId, let masechetId = self.masechetId else { return }
         let playerVC = LessonPlayerViewController(lesson: lesson, mediaType: mediaType, sederId: sederId, masechetId: "\(masechetId)", chapter: nil)
+        playerVC.modalPresentationStyle = .fullScreen
+        playerVC.masechet = self.masechetName ?? ""
+        if let lesson = lesson as? JTGemaraLesson {
+            playerVC.daf = "\(lesson.page)"
+        }
         self.present(playerVC, animated: true) {
             
         }
@@ -257,18 +272,17 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
         if let gemaraLesson = lesson as? JTGemaraLesson, let masechetName = self.masechetName  {
             ContentRepository.shared.lessonWatched(gemaraLesson, masechetName: masechetName, masechetId: "\(masechetId)", sederId: sederId)
         }
+
     }
 }
 
 extension GemaraLessonsViewController: ContentRepositoryDownloadDelegate {
     func downloadCompleted(downloadId: Int, mediaType: JTLessonMediaType) {
         guard let index = self.lessons.firstIndex(where: {$0.id == downloadId}) else { return }
-        guard let sederId = self.sederId else { return }
-        guard let masechetId = self.masechetId else { return }
-        
-        let lesson = self.lessons[index]
-        ContentRepository.shared.addLessonToDownloaded(lesson, sederId: sederId, masechetId: "\(masechetId)")
-        ContentRepository.shared.lessonEndedDownloading(lesson.id, mediaType: mediaType)
+//        guard let sederId = self.sederId else { return }
+//        guard let masechetId = self.masechetId else { return }
+//
+//        let lesson = self.lessons[index]
         switch mediaType {
         case .audio:
             self.lessons[index].isDownloadingAudio = false
@@ -291,7 +305,6 @@ extension GemaraLessonsViewController: ContentRepositoryDownloadDelegate {
             self.lessons[index].videoDownloadProgress = progress
         }
         
-        ContentRepository.shared.lessonDownloadProgress(downloadId, progress: progress, mediaType: mediaType)
         
         // Update cell progress
         guard let cell = self.tableView.cellForRow(at:  IndexPath(row: index, section: 0)) as? LessonDownloadCellController else { return }

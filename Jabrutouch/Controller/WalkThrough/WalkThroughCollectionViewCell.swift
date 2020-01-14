@@ -22,7 +22,12 @@ class WalkThroughCollectionViewCell: UICollectionViewCell {
     private func setTitle(_ index: Int) {
         switch index {
         case 0:
-            self.titleLabel.text = Strings.welcomeToJabrutouch
+            let attributedString = NSMutableAttributedString(string: Strings.welcomeToJabrutouch, attributes: [NSAttributedString.Key.font: Fonts.regularFont(size:24)])
+            let range = (Strings.welcomeToJabrutouch as NSString).range(of: Strings.jabrutouch)
+            attributedString.addAttributes([NSAttributedString.Key.font: Fonts.heavyFont(size:30)], range: range)
+            
+            self.titleLabel.attributedText = attributedString
+//            self.titleLabel.text = Strings.welcomeToJabrutouch
             self.textLabel.text = Strings.walkthrough1Text
         case 1:
             self.titleLabel.text = Strings.learnTalmudAndGemara

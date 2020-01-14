@@ -32,6 +32,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     private var currentPresentedModal: MainModal?
     private var gemaraHistory: [JTGemaraLessonRecord] = []
     private var mishnaHistory: [JTMishnaLessonRecord] = []
+    private var lessonWatched: [JTLessonWatched] = []
     private var todaysDafToHeaderConstraint: NSLayoutConstraint?
     
     private var contentAvailable: Bool {
@@ -58,12 +59,17 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     @IBOutlet weak var welcomeImage: UIImageView!
     
     // Todays Daf Yomi
+    @IBOutlet weak private var todaysDafProgressBar: JBProgressBar!
     @IBOutlet weak private var todaysDafOuterContainer: UIView!
     @IBOutlet weak private var todaysDafContainer: UIView!
     @IBOutlet weak private var todaysDafTitleLabel: UILabel!
     @IBOutlet weak private var todaysDafLabel: UILabel!
     @IBOutlet weak private var todaysDateLabel: UILabel!
+    @IBOutlet weak var todaysDafAudio: UIButton!
+    @IBOutlet weak var todaysDafVideo: UIButton!
     @IBOutlet weak var todaysDafToWelcomeConstraint: NSLayoutConstraint!
+    @IBOutlet weak var shadaysDafShadowView: UIView!
+    
     // Recents
     @IBOutlet weak var recentsGemara: UILabel!
     @IBOutlet weak var recentsMishna: UILabel!
@@ -105,11 +111,13 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.setShadows()
         self.setConstraints()
         UserDefaultsProvider.shared.notFirstTime = true
+        self.setButtonsBackground()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        self.setTodaysDafProgressBar()
+        self.lessonWatched = UserDefaultsProvider.shared.lessonWatched
         self.setContent()
         setView()
     }
@@ -117,6 +125,24 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     //========================================
     // MARK: - Setup
     //========================================
+    private func setTodaysDafProgressBar() {
+        let todaysDaf = DafYomiRepository.shared.getTodaysDaf()
+        guard let data = ContentRepository.shared.getMasechetByName(todaysDaf.masechet) else { return }
+        ContentRepository.shared.getGemaraLesson(masechetId: data.masechet.id, page: todaysDaf.daf) { (result: Result<JTGemaraLesson, JTError>) in
+            switch result {
+            case .success(let lesson):
+                for lessonWatched in self.lessonWatched {
+                    if lessonWatched.lessonId == lesson.id {
+                        let count = lessonWatched.duration / Double(lesson.duration)
+                        Utils.setProgressbar(count: count, view: self.todaysDafProgressBar, rounded: false, cornerRadius: 0, bottomRadius: true)
+                        break
+                    }
+                }
+            case .failure:
+                break
+            }
+        }
+    }
     
     private func setStrings() {
         
@@ -136,17 +162,18 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.gemaraLabel.text = Strings.gemara
         self.mishnaLabel.text = Strings.mishna
         self.donationsLabel.text = Strings.donations
-        self.titleLabel.text = Strings.jabrutouch
+//        self.titleLabel.text = Strings.jabrutouch
         self.welcomeLabel.text = Strings.welcomeToNewJabrutouch        
     }
     
     private func roundCorners() {
         self.todaysDafContainer.layer.cornerRadius = 15
+        self.shadaysDafShadowView.layer.cornerRadius = 15
     }
     
     private func setShadows() {
         let shadowOffset = CGSize(width: 0.0, height: 12)
-        Utils.dropViewShadow(view: self.todaysDafContainer, shadowColor: Colors.shadowColor, shadowRadius: 36, shadowOffset: shadowOffset)
+        Utils.dropViewShadow(view: self.shadaysDafShadowView, shadowColor: Colors.shadowColor, shadowRadius: 36, shadowOffset: shadowOffset)
     }
     
     private func setView() {
@@ -176,6 +203,27 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.gemaraCollectionView.reloadData()
         self.mishnaCollectionView.reloadData()
     }
+    
+    private func setDefaulteIcons() {
+        self.downloadsImageView.image = #imageLiteral(resourceName: "DownloadsNatural")
+        self.gemaraImageView.image = #imageLiteral(resourceName: "GemaraNatural")
+        self.mishnaImageView.image = #imageLiteral(resourceName: "MishnaNatural")
+        self.donationsImageView.image = #imageLiteral(resourceName: "Donations")
+        self.downloadsLabel.textColor = #colorLiteral(red: 0.4734545946, green: 0.6921172738, blue: 0.9352924824, alpha: 1)
+        self.gemaraLabel.textColor = #colorLiteral(red: 0.4734545946, green: 0.6921172738, blue: 0.9352924824, alpha: 1)
+        self.mishnaLabel.textColor = #colorLiteral(red: 0.4734545946, green: 0.6921172738, blue: 0.9352924824, alpha: 1)
+        self.donationsLabel.textColor = #colorLiteral(red: 0.4734545946, green: 0.6921172738, blue: 0.9352924824, alpha: 1)
+    }
+    
+    func setButtonsBackground() {
+        self.todaysDafAudio.setImage(#imageLiteral(resourceName: "audio-nat"), for: .normal)
+        self.todaysDafAudio.setImage(#imageLiteral(resourceName: "audio-prs"), for: .highlighted)
+        
+        self.todaysDafVideo.setImage(#imageLiteral(resourceName: "video-nat"), for: .normal)
+        self.todaysDafVideo.setImage(#imageLiteral(resourceName: "video-prs"), for: .highlighted)
+
+        
+    }
     //========================================
     // MARK: - Collection Views
     //========================================
@@ -197,16 +245,61 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
             cell.masechetLabel.text = lessonRecord.masechetName
             cell.chapterLabel.text = nil
             cell.numberLabel.text = "\(lessonRecord.lesson.page)"
-            cell.audio.image = lessonRecord.lesson.isAudioDownloaded ? #imageLiteral(resourceName: "RedAudio") : #imageLiteral(resourceName: "Audio")
-            cell.video.image = lessonRecord.lesson.isVideoDownloaded ? #imageLiteral(resourceName: "RedVideo") : #imageLiteral(resourceName: "Video")
+            if lessonRecord.lesson.isAudioDownloaded {
+                cell.audioButton.setImage(#imageLiteral(resourceName: "audio-downloaded"), for: .normal)
+                cell.audioButton.setImage(#imageLiteral(resourceName: "audio-downloaded"), for: .highlighted)
+            } else {
+                cell.audioButton.setImage(#imageLiteral(resourceName: "audio-nat"), for: .normal)
+            }
+            if lessonRecord.lesson.isVideoDownloaded{
+                cell.videoButton.setImage(#imageLiteral(resourceName: "video-downloaded") , for: .normal)
+                cell.videoButton.setImage(#imageLiteral(resourceName: "video-downloaded") , for: .highlighted)
+            } else {
+                cell.videoButton.setImage(#imageLiteral(resourceName: "video-nat") , for: .normal)
+            }
+            cell.setHiddenButtonsForLesson(lessonRecord.lesson)
+            if self.lessonWatched.count > 0 {
+                for lesson in self.lessonWatched {
+                    if lesson.lessonId == lessonRecord.lesson.id {
+                        let count = lesson.duration / Double(lessonRecord.lesson.duration)
+                        Utils.setProgressbar(count: count, view: cell.mainProgressBar, rounded: false, cornerRadius: 0, bottomRadius: true)
+                        break
+                    }
+                }
+            }
+
+//            cell.audio.image = lessonRecord.lesson.isAudioDownloaded ? #imageLiteral(resourceName: "audio-downloaded") : #imageLiteral(resourceName: "audio-nat")
+//            cell.video.image = lessonRecord.lesson.isVideoDownloaded ? #imageLiteral(resourceName: "video-downloaded") : #imageLiteral(resourceName: "video-nat")
         } else {
             let lessonRecord = mishnaHistory[indexPath.row]
             
             cell.masechetLabel.text = lessonRecord.masechetName
             cell.chapterLabel.text = lessonRecord.chapter
             cell.numberLabel.text = "\(lessonRecord.lesson.mishna)"
-            cell.audio.isHidden = !lessonRecord.lesson.isAudioDownloaded
-            cell.video.isHidden = !lessonRecord.lesson.isVideoDownloaded
+            if lessonRecord.lesson.isAudioDownloaded {
+                cell.audioButton.setImage(#imageLiteral(resourceName: "audio-downloaded"), for: .normal)
+                cell.audioButton.setImage(#imageLiteral(resourceName: "audio-downloaded"), for: .highlighted)
+            } else {
+                cell.audioButton.setImage(#imageLiteral(resourceName: "audio-nat"), for: .normal)
+            }
+            if lessonRecord.lesson.isVideoDownloaded{
+                cell.videoButton.setImage(#imageLiteral(resourceName: "video-downloaded") , for: .normal)
+                cell.videoButton.setImage(#imageLiteral(resourceName: "video-downloaded") , for: .highlighted)
+            } else {
+                cell.videoButton.setImage(#imageLiteral(resourceName: "video-nat") , for: .normal)
+            }
+            cell.setHiddenButtonsForLesson(lessonRecord.lesson)
+            if self.lessonWatched.count > 0 {
+                for lesson in self.lessonWatched {
+                    if lesson.lessonId == lessonRecord.lesson.id {
+                        let count = lesson.duration / Double(lessonRecord.lesson.duration)
+                        Utils.setProgressbar(count: count, view: cell.mainProgressBar, rounded: false, cornerRadius: 0, bottomRadius: true)
+                        break
+                    }
+                }
+            }
+//            cell.audio.isHidden = !lessonRecord.lesson.isAudioDownloaded
+//            cell.video.isHidden = !lessonRecord.lesson.isVideoDownloaded
         }
         
         
@@ -214,20 +307,44 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         cell.selectedRow = indexPath.row
         cell.isFirstCollection = collectionView == gemaraCollectionView
         Utils.setViewShape(view: cell.cellView, viewCornerRadius: 18)
+        Utils.setViewShape(view: cell.cellViewShadowView, viewCornerRadius: 18)
         let shadowOffset = CGSize(width: 0, height: 5)
-        Utils.dropViewShadow(view: cell.cellView, shadowColor: Colors.brightShadowColor, shadowRadius: 10, shadowOffset: shadowOffset)
+        Utils.dropViewShadow(view: cell.cellViewShadowView, shadowColor: Colors.brightShadowColor, shadowRadius: 10, shadowOffset: shadowOffset)
         
         return cell
     }
     
+    func setIcons(string: String) {
+        self.downloadsLabel.textColor = #colorLiteral(red: 0.4734545946, green: 0.6921172738, blue: 0.9352924824, alpha: 1)
+        self.gemaraLabel.textColor = #colorLiteral(red: 0.4734545946, green: 0.6921172738, blue: 0.9352924824, alpha: 1)
+        self.mishnaLabel.textColor = #colorLiteral(red: 0.4734545946, green: 0.6921172738, blue: 0.9352924824, alpha: 1)
+        self.donationsLabel.textColor = #colorLiteral(red: 0.4734545946, green: 0.6921172738, blue: 0.9352924824, alpha: 1)
+        self.gemaraImageView.image = #imageLiteral(resourceName: "GemaraNatural")
+        self.mishnaImageView.image = #imageLiteral(resourceName: "MishnaNatural")
+        self.donationsImageView.image = #imageLiteral(resourceName: "Donations")
+        self.downloadsImageView.image = #imageLiteral(resourceName: "DownloadsNatural")
+        if string == "downloads" {
+            self.downloadsImageView.image = #imageLiteral(resourceName: "Downloads Natural Blue")
+            self.downloadsLabel.textColor = #colorLiteral(red: 0.18, green: 0.17, blue: 0.66, alpha: 1)
+        } else if string == "gemara"{
+            self.gemaraLabel.textColor = #colorLiteral(red: 0.18, green: 0.17, blue: 0.66, alpha: 1)
+            self.gemaraImageView.image = #imageLiteral(resourceName: "Gemara natural Blue")
+        } else if string == "mishna" {
+            self.mishnaLabel.textColor = #colorLiteral(red: 0.18, green: 0.17, blue: 0.66, alpha: 1)
+            self.mishnaImageView.image = #imageLiteral(resourceName: "Mishna natural Blue")
+        } else if string == "donations" {
+            self.donationsLabel.textColor = #colorLiteral(red: 0.18, green: 0.17, blue: 0.66, alpha: 1)
+            self.donationsImageView.image = #imageLiteral(resourceName: "DonationsBlue")
+        }
+    }
     
     //========================================
     // MARK: - @IBActions
     //========================================
     
     @IBAction func downloadsButtonTouchedDown(_ sender: UIButton) {
-        self.downloadsImageView.alpha = 0.3
-        self.downloadsLabel.alpha = 0.3
+        self.setIcons(string: "downloads")
+
     }
     
     @IBAction func downloadsButtonTouchedUp(_ sender: UIButton) {
@@ -246,8 +363,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     }
     
     @IBAction func gemaraButtonTouchedDown(_ sender: UIButton) {
-        self.gemaraImageView.alpha = 0.3
-        self.gemaraLabel.alpha = 0.3
+        self.setIcons(string: "gemara")
     }
     
     @IBAction func gemaraButtonTouchedUp(_ sender: UIButton) {
@@ -266,8 +382,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     }
     
     @IBAction func mishnaButtonTouchedDown(_ sender: UIButton) {
-        self.mishnaImageView.alpha = 0.3
-        self.mishnaLabel.alpha = 0.3
+        self.setIcons(string: "mishna")
     }
     
     @IBAction func mishnaButtonTouchedUp(_ sender: UIButton) {
@@ -286,8 +401,8 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     }
     
     @IBAction func donationsButtonTouchedDown(_ sender: UIButton) {
-        self.donationsImageView.alpha = 0.3
-        self.donationsLabel.alpha = 0.3
+        self.setIcons(string: "donations")
+        
     }
     
     @IBAction func donationsButtonTouchedUp(_ sender: UIButton) {
@@ -349,7 +464,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         }
     }
     @IBAction func chatPressed(_ sender: Any) {
-        self.presentInDevelopmentAlert()
+        self.presentMessages()
     }
     
     //========================================
@@ -367,6 +482,14 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     
     private func presentProfile() {
         self.performSegue(withIdentifier: "presentProfile", sender: self)
+    }
+    
+    private func presentOldProfile() {
+        self.performSegue(withIdentifier: "presentOldProfile", sender: self)
+    }
+    
+    private func presentMessages() {
+        self.performSegue(withIdentifier: "toMessages", sender: self)
     }
     
     private func presentDownloadsViewController() {
@@ -430,15 +553,19 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.modalsPresentingVC.dismiss(animated: true) {
             self.view.bringSubviewToFront(self.mainContainer)
             self.currentPresentedModal = nil
+            self.setDefaulteIcons()
+            self.setContent()
         }
     }
     
     func presentAllGemara() {
         self.presentGemaraViewController()
+        self.setIcons(string: "gemara")
     }
     
     func presentAllMishna() {
         self.presentMishnaViewController()
+        self.setIcons(string: "mishna")
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "embedModalsVC" {
@@ -453,6 +580,10 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
             
         else if segue.identifier == "presentProfile" {
             let profileVC = segue.destination as? ProfileViewController
+            profileVC?.mainViewController = self
+        }
+        else if segue.identifier == "presentOldProfile" {
+            let profileVC = segue.destination as? OldProfileViewController
             profileVC?.mainViewController = self
         }
         
@@ -485,7 +616,8 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
     func optionSelected(option: MenuOption) {
         switch option {
         case .profile:
-            presentProfile()
+//            presentProfile()
+            presentOldProfile()
         case .signOut:
             presentLogoutAlert()
         case .mishna:
@@ -494,6 +626,8 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
             presentGemaraViewController()
         case .about:
             presentAboutUs()
+        case .messageCenter:
+            presentMessages()
         default:
             presentInDevelopmentAlert()
         }
@@ -501,7 +635,6 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
     
     func presentAboutUs() {
         let aboutViewController = Storyboards.Main.aboutViewController
-        aboutViewController.modalTransitionStyle = .partialCurl
         self.present(aboutViewController, animated: true)
     }
     
@@ -528,10 +661,10 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
         DispatchQueue.main.async {
             if isFirstCollection {
                 let record = self.gemaraHistory[selectedRow]
-                self.playLesson(record.lesson, mediaType: .audio, sederId: record.sederId, masechetId: record.masechetId, chapter: nil, masechetName: nil)
+                self.playLesson(record.lesson, mediaType: .audio, sederId: record.sederId, masechetId: record.masechetId, chapter: nil, masechetName: record.masechetName)
             } else {
                 let record = self.mishnaHistory[selectedRow]
-                self.playLesson(record.lesson, mediaType: .audio, sederId: record.sederId, masechetId: record.masechetId, chapter: record.chapter, masechetName: nil)
+                self.playLesson(record.lesson, mediaType: .audio, sederId: record.sederId, masechetId: record.masechetId, chapter: record.chapter, masechetName: record.masechetName)
             }
         }
     }
@@ -540,10 +673,10 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
         DispatchQueue.main.async {
             if isFirstCollection {
                 let record = self.gemaraHistory[selectedRow]
-                self.playLesson(record.lesson, mediaType: .video, sederId: record.sederId, masechetId: record.masechetId, chapter: nil, masechetName: nil)
+                self.playLesson(record.lesson, mediaType: .video, sederId: record.sederId, masechetId: record.masechetId, chapter: nil, masechetName: record.masechetName)
             } else {
                 let record = self.mishnaHistory[selectedRow]
-                self.playLesson(record.lesson, mediaType: .video, sederId: record.sederId, masechetId: record.masechetId, chapter: record.chapter, masechetName: nil)
+                self.playLesson(record.lesson, mediaType: .video, sederId: record.sederId, masechetId: record.masechetId, chapter: record.chapter, masechetName: record.masechetName)
             }
         }
     }
@@ -563,6 +696,14 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
     
     private func playLesson(_ lesson: JTLesson, mediaType: JTLessonMediaType, sederId: String, masechetId: String, chapter: String?, masechetName: String?) {
         let playerVC = LessonPlayerViewController(lesson: lesson, mediaType: mediaType, sederId: sederId, masechetId:masechetId, chapter:chapter)
+        playerVC.modalPresentationStyle = .fullScreen
+        playerVC.masechet = masechetName ?? ""
+        if let lesson = lesson as? JTGemaraLesson {
+            playerVC.daf = "\(lesson.page)"
+        }
+        if let lesson = lesson as? JTMishnaLesson {
+            playerVC.daf = "\(lesson.chapter)"
+        }
         self.present(playerVC, animated: true) {
             
         }

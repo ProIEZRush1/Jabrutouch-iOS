@@ -16,7 +16,7 @@ class CustomTrackHeightSlider: UISlider {
     
     override func trackRect(forBounds bounds: CGRect) -> CGRect {
         //set your bounds here
-        return CGRect(x: bounds.minX, y: bounds.midY-self.trackHeight/2, width: bounds.width, height: self.trackHeight)
+        return CGRect(x: bounds.minX, y: bounds.midY-trackHeight, width: bounds.width, height: self.trackHeight)
     }
 
 }

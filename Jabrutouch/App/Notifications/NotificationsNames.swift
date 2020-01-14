@@ -11,5 +11,5 @@ import Foundation
 extension NSNotification.Name {
         
     static var shasLoaded = Notification.Name(rawValue: "shasLoadedNotification")
-    static var failedLoadingShas = Notification.Name(rawValue: "failedLoadingShasNotification")
+    static var failedLoadingShas = Notification.Name(rawValue: "failedLoadingShasNotification")    
 }

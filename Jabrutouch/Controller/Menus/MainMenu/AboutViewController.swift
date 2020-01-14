@@ -15,7 +15,13 @@ class AboutViewController: UIViewController {
         super.viewDidLoad()
         aboutText.text = Strings.aboutText
         aboutText.dataDetectorTypes = .all
+        aboutText.scrollsToTop = true
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.aboutText.setContentOffset(.zero, animated: false)
     }
     
     @IBAction func backBtnPressed(_ sender: Any) {

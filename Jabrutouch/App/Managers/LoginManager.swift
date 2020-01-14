@@ -28,7 +28,7 @@ class LoginManager {
     //==========================================
     
     func signIn(phoneNumber: String?, email: String?, password: String, completion:@escaping (_ result: Result<JTUser,JTError>)->Void){
-        API.signIn(phoneNumber: phoneNumber, email: email, password: password, fcmToken: "1234") { (result:APIResult<LoginResponse>) in
+        API.signIn(phoneNumber: phoneNumber, email: email, password: password, fcmToken: MessagesRepository.shared.fcmToken) { (result:APIResult<LoginResponse>) in
             switch result {
             case .success(let response):
                 self.userDidSignIn(user: response.user, password: password)
@@ -86,7 +86,7 @@ class LoginManager {
     }
     
     func signUp(userId: Int, firstName: String, lastName: String, phoneNumber: String, email: String, password: String, completion:@escaping (_ result: Result<JTUser,Error>)->Void){
-        API.signUp(userId: userId, firstName: firstName, lastName: lastName, phoneNumber: phoneNumber, email: email, password: password, fcmToken: "1234") { (result:APIResult<SignUpResponse>) in
+        API.signUp(userId: userId, firstName: firstName, lastName: lastName, phoneNumber: phoneNumber, email: email, password: password, fcmToken: MessagesRepository.shared.fcmToken) { (result:APIResult<SignUpResponse>) in
             switch result {
             case .success(let response):
                 self.userDidSignIn(user: response.user, password: password)
@@ -99,26 +99,33 @@ class LoginManager {
         }
     }
     
+    func forgotPassword(email: String, completion:@escaping (_ result: Result<ForgotPasswordResponse,Error>)->Void){
+        API.forgotPassword(email: email) { (result:APIResult<ForgotPasswordResponse>) in
+            switch result {
+            case .success(let response):
+                
+                DispatchQueue.main.async {
+                    completion(.success(response))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
     //==========================================
     // MARK: - Private methods
     //==========================================
     
     private func userDidSignUp(user: JTUser, password: String) {
-        UserDefaultsProvider.shared.currentPassword = password
-        UserDefaultsProvider.shared.currentPassword = password
-        UserDefaultsProvider.shared.currentPassword = password
-        
+        UserRepository.shared.setCurrentUser(user, password: password)
     }
     
     private func userDidSignIn(user: JTUser, password: String) {
-        UserDefaultsProvider.shared.currentUsername = user.email
-        UserDefaultsProvider.shared.currentPassword = password
-        UserDefaultsProvider.shared.currentUser = user
+        UserRepository.shared.setCurrentUser(user, password: password)
     }
     
     private func userDidSignOut() {
-        UserDefaultsProvider.shared.currentUsername = nil
-        UserDefaultsProvider.shared.currentPassword = nil
-        UserDefaultsProvider.shared.currentUser = nil
+        UserRepository.shared.clearCurrentUser()
     }
 }

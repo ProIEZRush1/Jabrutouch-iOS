@@ -32,7 +32,19 @@ extension AVPlayer {
     }
     
     var currentTime: TimeInterval {
-        return TimeInterval(CMTimeGetSeconds( self.currentTime()))
+        let seconds = CMTimeGetSeconds(self.currentTime())
+        if seconds == Float64.nan {
+            print("NAN")
+            return 0.0
+        }
+        else if seconds == .infinity {
+            print("INF")
+            return 0.0
+        }
+        else {
+            return TimeInterval(seconds)
+        }
+        
     }
     
     var duration: TimeInterval {

@@ -79,6 +79,9 @@ class GemaraViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if sedarim[indexPath.section].masechtot.count - 1 == indexPath.row {
+            return 80
+        }
         return 67
     }
     
@@ -86,18 +89,18 @@ class GemaraViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let headerCell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "headerCell") as! HeaderCellController
         
         if openSections.contains(section) {
-            headerCell.arrowImage?.image = UIImage(named: "DarkGrayUpArrow")
+            headerCell.arrowImage?.image = UIImage(named: "blue_up_arrow")
         } else {
-            headerCell.arrowImage?.image = UIImage(named: "DarkGrayDownArrow")
+            headerCell.arrowImage?.image = UIImage(named: "blue_down_arrow")
         }
         
         headerCell.titleLabel?.text = "Seder " + sedarim[section].name
         headerCell.section = section
         headerCell.delegate = self
-        let background = UIView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: headerCell.bounds.size))
-        background.backgroundColor = .clear
-        headerCell.backgroundView = background
-        
+//        let background = UIView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: headerCell.bounds.size))
+//        background.backgroundColor = .clear
+//        headerCell.backgroundView = background
+        headerCell.backgroundColor = .clear
         return headerCell
     }
     
@@ -110,8 +113,8 @@ class GemaraViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.indexPath = indexPath
         cell.delegate = self
         Utils.setViewShape(view: cell.cellView, viewCornerRadius: 18)
-        let shadowOffset = CGSize(width: 0.0, height: 12)
-        Utils.dropViewShadow(view: cell.cellView, shadowColor: Colors.shadowColor, shadowRadius: 36, shadowOffset: shadowOffset)
+        let shadowOffset = CGSize(width: 0.0, height: 5)
+        Utils.dropViewShadow(view: cell.cellView, shadowColor: Colors.shadowColor, shadowRadius: 15 , shadowOffset: shadowOffset)
         cell.cellView.layoutIfNeeded()
         
         return cell

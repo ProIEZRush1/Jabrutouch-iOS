@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -35,23 +33,8 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fy0-g8-vAI">
-                    <rect key="frame" x="16.5" y="177" width="381" height="542"/>
+                    <rect key="frame" x="16.5" y="225.5" width="381" height="445"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mc1-1N-xF7">
-                            <rect key="frame" x="20" y="455" width="341" height="65"/>
-                            <color key="backgroundColor" red="0.1764705882" green="0.16862745100000001" blue="0.66274509800000003" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="65" id="qKG-sj-VWA"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="17"/>
-                            <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" title="Button" image="Heart">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </state>
-                            <connections>
-                                <action selector="startButtonPressed:" destination="-1" eventType="touchUpInside" id="6Cm-zo-reC"/>
-                            </connections>
-                        </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cbO-5P-D5Q">
                             <rect key="frame" x="162" y="50" width="57" height="29"/>
                             <fontDescription key="fontDescription" name="SFProDisplay-Medium" family="SF Pro Display" pointSize="24"/>
@@ -85,7 +68,7 @@
                                     </subviews>
                                 </stackView>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="O1J-W6-Jng" firstAttribute="top" secondItem="Q5D-lx-ydj" secondAttribute="bottom" constant="20" id="7k4-dM-BU7"/>
                                 <constraint firstAttribute="height" constant="128" id="G1d-Ng-23V"/>
@@ -95,6 +78,21 @@
                                 <constraint firstAttribute="width" constant="240" id="dzT-qY-Yiq"/>
                             </constraints>
                         </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mc1-1N-xF7">
+                            <rect key="frame" x="20" y="358" width="341" height="65"/>
+                            <color key="backgroundColor" red="0.1764705882" green="0.16862745100000001" blue="0.66274509800000003" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="65" id="qKG-sj-VWA"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="17"/>
+                            <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="Button" image="Heart">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="startButtonPressed:" destination="-1" eventType="touchUpInside" id="6Cm-zo-reC"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -106,19 +104,20 @@
                         <constraint firstItem="tYr-Dk-T6V" firstAttribute="centerX" secondItem="fy0-g8-vAI" secondAttribute="centerX" id="RG4-pM-jTq"/>
                         <constraint firstItem="uEs-SI-opZ" firstAttribute="bottom" secondItem="Mc1-1N-xF7" secondAttribute="bottom" constant="22" id="b6x-1P-cxM"/>
                         <constraint firstItem="Mc1-1N-xF7" firstAttribute="leading" secondItem="uEs-SI-opZ" secondAttribute="leading" constant="20" id="mFz-NY-dkg"/>
+                        <constraint firstAttribute="height" constant="445" id="mKu-0D-8mM"/>
                         <constraint firstItem="EJN-dR-B2b" firstAttribute="centerX" secondItem="fy0-g8-vAI" secondAttribute="centerX" id="yqe-HG-oIr"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="uEs-SI-opZ"/>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.74590646404109584" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" red="0.058823529409999999" green="0.062745098040000002" blue="0.13725490200000001" alpha="0.32000000000000001" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="fy0-g8-vAI" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="afJ-JJ-pnD"/>
                 <constraint firstItem="fy0-g8-vAI" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="381:414" id="ftF-fj-5Be"/>
                 <constraint firstItem="fy0-g8-vAI" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="qoU-8m-o4n"/>
-                <constraint firstItem="fy0-g8-vAI" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="445:736" id="rOP-zT-7Sa"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="140.57971014492756" y="121.875"/>
         </view>
     </objects>
     <resources>

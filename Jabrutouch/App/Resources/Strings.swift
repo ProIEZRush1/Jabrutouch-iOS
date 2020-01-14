@@ -41,6 +41,34 @@ class Strings {
         return NSLocalizedString("password", comment: "")
     }
     
+    class var forgotPasswordText: String {
+        return NSLocalizedString("forgotPasswordText", comment: "")
+    }
+    
+    class var forgotPasswordTitle: String {
+        return NSLocalizedString("forgotPasswordTitle", comment: "")
+    }
+
+    class var sendNow: String {
+        return NSLocalizedString("sendNow", comment: "")
+    }
+    
+    class var forgotPasswordErrorMessage: String {
+        return NSLocalizedString("forgotPasswordErrorMessage", comment: "")
+    }
+    
+    class var registerButtonTitle: String {
+        return NSLocalizedString("registerButtonTitle", comment: "")
+    }
+    
+    class var forgotPasswordSuccessMessage: String {
+        return NSLocalizedString("forgotPasswordSuccessMessage", comment: "")
+    }
+    
+    class var forgotPasswordSuccessTitle: String {
+        return NSLocalizedString("forgotPasswordSuccessTitle", comment: "")
+    }
+    
     class var dontHaveAccount: String {
         return NSLocalizedString("dontHaveAccount", comment: "")
     }
@@ -135,6 +163,9 @@ class Strings {
     
     class var signInPC: String {
         return NSLocalizedString("signInPC", comment: "")
+    }
+    class var signInCaps: String {
+        return NSLocalizedString("signInCaps", comment: "")
     }
     
     class var signUpPC: String {

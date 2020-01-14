@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -31,6 +29,7 @@
                 <outlet property="landscapeDownloadButton" destination="dFl-wk-OQD" id="JTA-rF-ReX"/>
                 <outlet property="landscapeHeaderView" destination="WR2-vv-yUg" id="2B4-jn-tSs"/>
                 <outlet property="landscapePhotoButton" destination="etC-d3-PiM" id="fmJ-sX-AbM"/>
+                <outlet property="masechetTitleLabel" destination="6aZ-3K-Pk6" id="2LW-ds-IIs"/>
                 <outlet property="pdfView" destination="REd-5W-jRm" id="Ll8-h1-Eq0"/>
                 <outlet property="pdfViewBottomConstraint" destination="0XX-xF-AtX" id="USm-Dj-zvX"/>
                 <outlet property="pdfViewLeadingConstraint" destination="1Mm-ON-hHc" id="yMG-OA-Pdt"/>
@@ -55,7 +54,7 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="REd-5W-jRm" customClass="PDFView">
                     <rect key="frame" x="0.0" y="97" width="414" height="765"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WR2-vv-yUg">
                     <rect key="frame" x="0.0" y="44" width="53" height="818"/>
@@ -141,7 +140,7 @@
                             </subviews>
                         </stackView>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="lza-jw-Xcp" secondAttribute="bottom" id="E5o-6p-s2C"/>
                         <constraint firstItem="cGw-63-Nnm" firstAttribute="top" secondItem="WR2-vv-yUg" secondAttribute="top" constant="20" id="GEa-u5-gg7"/>
@@ -169,8 +168,14 @@
                                         <action selector="backButtonPressed:" destination="-1" eventType="touchUpInside" id="QEM-SJ-Uik"/>
                                     </connections>
                                 </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6aZ-3K-Pk6">
+                                    <rect key="frame" x="75" y="16" width="44.5" height="21"/>
+                                    <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="18"/>
+                                    <color key="textColor" red="0.17399999999999999" green="0.17000000000000001" blue="0.33800000000000002" alpha="0.88" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="WbF-Cb-2TC">
-                                    <rect key="frame" x="216" y="0.0" width="198" height="53"/>
+                                    <rect key="frame" x="150" y="0.0" width="264" height="53"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fUW-2f-Iiz" customClass="UICircularProgressRing" customModule="UICircularProgressRing">
                                             <rect key="frame" x="0.0" y="0.0" width="66" height="53"/>
@@ -225,13 +230,13 @@
                                                 <action selector="chatButtonPressed:" destination="-1" eventType="touchUpInside" id="Pd7-ks-kom"/>
                                             </connections>
                                         </button>
-                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gK7-YQ-sez">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gK7-YQ-sez">
                                             <rect key="frame" x="198" y="0.0" width="66" height="53"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="66" id="qMh-3O-Clf"/>
                                             </constraints>
                                             <color key="tintColor" red="1" green="0.37254901959999998" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
-                                            <state key="normal" image="photo"/>
+                                            <state key="normal" image="grayGalleryIcon"/>
                                             <connections>
                                                 <action selector="photoButtonPressed:" destination="-1" eventType="touchUpInside" id="icy-9M-LOV"/>
                                             </connections>
@@ -255,7 +260,9 @@
                                 <constraint firstAttribute="bottom" secondItem="WbF-Cb-2TC" secondAttribute="bottom" id="Git-oL-Cq9"/>
                                 <constraint firstItem="6YO-P4-mQY" firstAttribute="leading" secondItem="jXg-7i-mnI" secondAttribute="leading" id="IQy-oE-WWX"/>
                                 <constraint firstItem="WbF-Cb-2TC" firstAttribute="top" secondItem="jXg-7i-mnI" secondAttribute="top" id="JzN-Kq-4jA"/>
+                                <constraint firstItem="6aZ-3K-Pk6" firstAttribute="centerY" secondItem="jXg-7i-mnI" secondAttribute="centerY" id="fQ0-94-FbQ"/>
                                 <constraint firstAttribute="bottom" secondItem="6YO-P4-mQY" secondAttribute="bottom" id="jnW-Iu-sS0"/>
+                                <constraint firstItem="6aZ-3K-Pk6" firstAttribute="leading" secondItem="6YO-P4-mQY" secondAttribute="trailing" constant="10" id="wE1-DN-3C8"/>
                                 <constraint firstAttribute="trailing" secondItem="WbF-Cb-2TC" secondAttribute="trailing" id="x4S-My-ykU"/>
                                 <constraint firstAttribute="height" constant="53" id="yGU-af-0l6"/>
                             </constraints>
@@ -265,6 +272,7 @@
                             <subviews>
                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="qLG-Mb-rc7" customClass="CustomTrackHeightSlider" customModule="Jabrutouch" customModuleProvider="target">
                                     <rect key="frame" x="18" y="17" width="378" height="31"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="trackHeight">
                                             <real key="value" value="4"/>
@@ -357,12 +365,14 @@
                 <constraint firstItem="1fO-cN-dWy" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="REd-5W-jRm" secondAttribute="leading" constant="16" id="ymV-Oi-mhY"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
         </view>
     </objects>
     <resources>
         <image name="Download" width="19.5" height="26"/>
         <image name="LeftArrow" width="27.5" height="19.5"/>
         <image name="chat" width="33" height="29"/>
+        <image name="grayGalleryIcon" width="30.5" height="24.5"/>
         <image name="photo" width="30.5" height="24.5"/>
     </resources>
 </document>

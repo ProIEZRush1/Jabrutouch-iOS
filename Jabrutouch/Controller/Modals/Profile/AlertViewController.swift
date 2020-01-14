@@ -57,6 +57,7 @@ class AlertViewController: UIViewController {
     }
     
     @IBAction func cancelPressed(_ sender: Any) {
+        self.cancelButton.backgroundColor = #colorLiteral(red: 0.18, green: 0.17, blue: 0.66, alpha: 1)
         dismiss(animated: true, completion: nil)
     }
 }

@@ -65,6 +65,16 @@ class API {
         }
     }
     
+    class func forgotPassword(email: String?, completionHandler:@escaping (_ response: APIResult<ForgotPasswordResponse>)->Void) {
+        guard let request = HttpRequestsFactory.forgotPasswordRequest(email: email) else {
+            completionHandler(APIResult.failure(.unableToCreateRequest))
+            return
+        }
+        HttpServiceProvider.shared.excecuteRequest(request: request) { (data, response, error) in
+            self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
+        }
+    }
+    
     //========================================
     // MARK: - Content
     //========================================
@@ -108,6 +118,31 @@ class API {
             self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
         }
     }
+    
+    //========================================
+    // MARK: - Messages
+    //========================================
+    
+    class func getMessages(authToken: String, completionHandler:@escaping (_ response: APIResult<GetMessagesResponse>)->Void) {
+        guard let request = HttpRequestsFactory.createGetMessageListRequest(token: authToken) else {
+            completionHandler(APIResult.failure(.unableToCreateRequest))
+            return
+        }
+        HttpServiceProvider.shared.excecuteRequest(request: request) { (data, response, error) in
+            self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
+        }
+    }
+    
+    class func createMessage(message: String, sentAt: Date, title: String, messageType: Int, toUser: Int, chatId: Int, token: String, completionHandler:@escaping (_ response: APIResult<GetCreateMessageResponse>)->Void) {
+        guard let request = HttpRequestsFactory.createMessageRequest(message: message, sentAt: sentAt, title: title, messageType: messageType, toUser: toUser, chatId: chatId, token: token) else {
+               completionHandler(APIResult.failure(.unableToCreateRequest))
+               return
+           }
+           HttpServiceProvider.shared.excecuteRequest(request: request) { (data, response, error) in
+               self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
+           }
+       }
+    
     
     //========================================
     // MARK: - Analytics

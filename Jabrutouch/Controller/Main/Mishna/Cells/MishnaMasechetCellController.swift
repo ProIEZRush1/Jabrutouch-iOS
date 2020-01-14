@@ -14,6 +14,7 @@ class MishnaMasechetCellController: UITableViewCell {
     @IBOutlet weak var masechetName: UILabel!
     @IBOutlet weak var chaptersCount: UILabel!
     @IBOutlet weak var chapterText: UILabel!
+    @IBOutlet weak var arrowImageView: UIImageView!
     
     var indexPath: IndexPath = []
     weak var delegate: MishnaMasechetCellDelegate?
@@ -25,10 +26,11 @@ class MishnaMasechetCellController: UITableViewCell {
     }
     
     @objc func cellPressed() {
-        delegate?.showMasechetChapters(indexPath: indexPath)
+        delegate?.getMasectChapterContent(indexPath: indexPath, isFirst: false)
     }
 }
 
 protocol MishnaMasechetCellDelegate: class {
     func showMasechetChapters(indexPath: IndexPath)
+    func getMasectChapterContent(indexPath: IndexPath, isFirst: Bool)
 }

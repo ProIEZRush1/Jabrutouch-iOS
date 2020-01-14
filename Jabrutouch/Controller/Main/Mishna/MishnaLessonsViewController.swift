@@ -26,7 +26,8 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
     var masechetId: Int?
     var isCurrentlyEditing: Bool = false
     var isFirstLoading: Bool = false
-    
+    private var lessonWatched: [JTLessonWatched] = []
+       
     private var activityView: ActivityView?
     //========================================
     // MARK: - LifeCycle
@@ -46,6 +47,7 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.lessonWatched = UserDefaultsProvider.shared.lessonWatched
         self.setContent()
         ContentRepository.shared.addDelegate(self)
     }
@@ -135,7 +137,16 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
             cell.setEditingIfNeeded(lesson: lesson, isCurrentlyEditing: self.isCurrentlyEditing)
             self.view.layoutIfNeeded()
         }
-        
+        if self.lessonWatched.count > 0 {
+            for lessonWatched in self.lessonWatched {
+                if lessonWatched.lessonId == lesson.id {
+                    let count = lessonWatched.duration / Double(lesson.duration)
+                    Utils.setProgressbar(count: count, view: cell.lessonProgressBar, rounded: false, cornerRadius: 0, bottomRadius: true)
+                    break
+                }
+                Utils.setProgressbar(count: 0.0, view: cell.lessonProgressBar, rounded: false, cornerRadius: 0, bottomRadius: true)
+            }
+        }
         return cell
     }
     
@@ -251,6 +262,9 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
     private func playLesson(_ lesson: JTLesson, mediaType: JTLessonMediaType) {
         guard let sederId = self.sederId, let masechetId = self.masechetId, let chapter = self.chapter else { return }
         let playerVC = LessonPlayerViewController(lesson: lesson, mediaType: mediaType, sederId: sederId, masechetId: "\(masechetId)", chapter: "\(chapter)")
+        playerVC.modalPresentationStyle = .fullScreen
+        playerVC.masechet = self.masechetName ?? ""
+        playerVC.daf = "\(chapter)"
         self.present(playerVC, animated: true) {
             
         }
@@ -264,11 +278,7 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
 extension MishnaLessonsViewController: ContentRepositoryDownloadDelegate {
     func downloadCompleted(downloadId: Int, mediaType: JTLessonMediaType) {
         guard let index = self.lessons.firstIndex(where: {$0.id == downloadId}) else { return }
-        guard let sederId = self.sederId else { return }
-        guard let masecetId = self.masechetId else { return }
-        guard let chapter = self.chapter else { return }
         
-        let lesson = self.lessons[index]
         switch mediaType {
         case .audio:
             self.lessons[index].isDownloadingAudio = false
@@ -279,8 +289,6 @@ extension MishnaLessonsViewController: ContentRepositoryDownloadDelegate {
         }
         
         self.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
-        ContentRepository.shared.lessonEndedDownloading(lesson.id, mediaType: mediaType)
-        ContentRepository.shared.addLessonToDownloaded(lesson, sederId: sederId, masechetId: "\(masecetId)", chapter: "\(chapter)")
         print("GemaraLessonsViewController downloadCompleted, downloadId: \(downloadId)")
     }
     
@@ -293,9 +301,7 @@ extension MishnaLessonsViewController: ContentRepositoryDownloadDelegate {
         case .video:
             self.lessons[index].videoDownloadProgress = progress
         }
-        
-        ContentRepository.shared.lessonDownloadProgress(downloadId, progress: progress, mediaType: mediaType)
-        
+                
         // Update cell progress
         guard let cell = self.tableView.cellForRow(at:  IndexPath(row: index, section: 0)) as? LessonDownloadCellController else { return }
         cell.setLesson(self.lessons[index])

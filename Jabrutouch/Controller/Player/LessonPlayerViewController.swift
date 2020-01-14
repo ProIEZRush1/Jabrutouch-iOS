@@ -17,7 +17,7 @@ class LessonPlayerViewController: UIViewController {
     //====================================================
     // MARK: - @IBOutlets
     //====================================================
-    
+    var user: JTUser?
     // Portrait Header View
     @IBOutlet weak var portraitHeaderView: UIView!
     @IBOutlet weak var portraitHeaderViewHeightConstraint: NSLayoutConstraint!
@@ -41,6 +41,7 @@ class LessonPlayerViewController: UIViewController {
     @IBOutlet weak var landscapePhotoButton: UIButton!
     @IBOutlet weak var landscapeDownlaodProgressView: UICircularProgressRing!
     @IBOutlet weak var landscapeButtonsStackView: UIStackView!
+    @IBOutlet weak var masechetTitleLabel: UILabel!
     
     // Audio Player
     @IBOutlet weak var audioPlayerContainer: UIView!
@@ -61,6 +62,10 @@ class LessonPlayerViewController: UIViewController {
     // MARK: - Properties
     //====================================================
     
+    var watchDuration: TimeInterval!
+    var gallery: [String] = []
+    var videoParts: [String] = []
+    private var lessonWatched: [JTLessonWatched] = []
     private var lesson: JTLesson
     private var mediaType: JTLessonMediaType
     private var endTimeDisplayType: EndTimeDisplayMode = .duration
@@ -84,6 +89,7 @@ class LessonPlayerViewController: UIViewController {
     private var didSetMediaUrl: Bool = false
     private var shouldStartPlay: Bool
     private var shouldDisplayDonationPopUp: Bool
+
     private var activityViewPortraitFrame: CGRect {
         let y = self.portraitHeaderView.frame.maxY
         return CGRect(x: 0, y: y, width: self.view.frame.width, height: self.view.frame.height - y)
@@ -97,6 +103,10 @@ class LessonPlayerViewController: UIViewController {
     private var isLandscape: Bool {
         return UIScreen.main.bounds.height < UIScreen.main.bounds.width
     }
+    var masechet = ""
+    var daf = ""
+    var lessonParts: [Double] = []
+
     //====================================================
     // MARK: - LifeCycle
     //====================================================
@@ -133,7 +143,11 @@ class LessonPlayerViewController: UIViewController {
         super.viewDidLoad()
         
         self.pdfView.delegate = self
-        
+        self.user = UserRepository.shared.getCurrentUser()
+        self.masechetTitleLabel.text = "\(self.masechet) \(self.daf)"
+        for image in self.lesson.gallery {
+            self.gallery.append(image.imageLink)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -142,7 +156,7 @@ class LessonPlayerViewController: UIViewController {
         if self.shouldDisplayDonationPopUp {
             self.presentDonateAlert()
         }
-        
+        self.lessonWatched = UserDefaultsProvider.shared.lessonWatched
         self.showActivityView()
         self.roundCorners()
         self.setPlayers()
@@ -152,7 +166,7 @@ class LessonPlayerViewController: UIViewController {
         
         self.setPortraitHeaderViewHeight()
         self.setPortraitMode()
-
+        self.setUpGallery()
         self.pdfView.isOpaque = false
         self.pdfView.backgroundColor = UIColor.clear
 
@@ -165,6 +179,7 @@ class LessonPlayerViewController: UIViewController {
         super.viewDidAppear(animated)
         DispatchQueue(label: "player_loader", qos: .utility, attributes: .concurrent, autoreleaseFrequency: .inherit, target: nil).async {
             self.loadPDF()
+            
         }
     }
     
@@ -174,13 +189,16 @@ class LessonPlayerViewController: UIViewController {
         self.audioPlayer.stopAndRelease()
         self.videoPlayer.stopAndRelease()
         self.postWatchAnalyticEvent()
+        self.saveLessonLocation()
         NotificationCenter.default.removeObserver(self)
         ContentRepository.shared.removeDelegate(self)
     }
     
     @objc func orientationDidChange(_ notification: Notification) {
+        print("orientationDidChange, userInfo: \(notification.userInfo ?? [:])")
         print(UIDevice.current.orientation.rawValue)
         print(self.view.frame)
+        print(self.videoPlayer.slider.frame)
         if self.isLandscape {
             self.setLandscapeMode()
         }
@@ -190,16 +208,15 @@ class LessonPlayerViewController: UIViewController {
     }
     
     private func postWatchAnalyticEvent() {
-        var watchDuration: TimeInterval!
         var category: AnalyticsEventCategory!
         var online: Bool!
         
         switch self.mediaType {
         case .audio:
-            watchDuration = self.audioPlayer.watchDuration
+            self.watchDuration = self.audioPlayer.watchDuration
             online = self.lesson.isAudioDownloaded
         case .video:
-            watchDuration = self.videoPlayer.watchDuration
+            self.watchDuration = self.videoPlayer.watchDuration
             online = self.lesson.isVideoDownloaded
         }
         
@@ -211,13 +228,118 @@ class LessonPlayerViewController: UIViewController {
             category = .mishna
         }
         
-        AnalyticsManager.shared.postEvent(eventType: .watch, category: category, mediaType: self.mediaType, lessonId: self.lesson.id, duration: Int64(watchDuration), online: online) { (result: Result<Any, JTError>) in
+        AnalyticsManager.shared.postEvent(eventType: .watch, category: category, mediaType: self.mediaType, lessonId: self.lesson.id, duration: Int64(watchDuration) * 1000, online: online) { (result: Result<Any, JTError>) in
             
+        }
+    }
+    
+    private func saveLessonLocation() {
+        if self.watchDuration > 0.0 {
+            
+            var watchLocation: TimeInterval!
+            switch self.mediaType {
+            case .audio:
+                watchLocation = self.audioPlayer.watchLocation
+            case .video:
+                watchLocation = self.videoPlayer.watchLocation
+            }
+            var lessonWatchedList = UserDefaultsProvider.shared.lessonWatched
+            for (index, _lesson) in lessonWatchedList.enumerated() {
+                if _lesson.lessonId == lesson.id{
+                    lessonWatchedList[index].duration = watchLocation ?? 0.0
+                    UserDefaultsProvider.shared.lessonWatched = lessonWatchedList
+                    return
+                }
+            }
+            let values = ["lessonId": lesson.id, "duration": watchLocation ?? 0.0] as [String : Any]
+            guard let lessonWatched = JTLessonWatched(values: values) else { return }
+            lessonWatchedList.append(lessonWatched)
+            UserDefaultsProvider.shared.lessonWatched = lessonWatchedList
         }
     }
     //====================================================
     // MARK: - Setup
     //====================================================
+    
+    private func setUpGallery() {
+        DispatchQueue.main.async {
+            if self.lesson.gallery.count > 0 {
+                self.portraitPhotoButton.tintColor = #colorLiteral(red: 1, green: 0.373, blue: 0.314, alpha: 1)
+            } else {
+                self.portraitPhotoButton.tintColor = #colorLiteral(red: 0.286, green: 0.286, blue: 0.286, alpha: 1)
+            }
+        }
+    }
+    
+    func setLessonParts(parts: [Double], view: UIView, width: CGFloat, height:CGFloat, sender: String) {
+        for subView in view.subviews {
+            if subView is JBView {
+                subView.removeFromSuperview()
+            }
+        }
+        if sender == "audio" {
+            for part in self.lessonParts {
+                
+                let customView = JBView()
+                let y = view.bounds.midY - height
+                let x = CGFloat((part / self.audioPlayer.duration) * Double(view.bounds.width))
+                customView.frame = CGRect.init(x: x, y: y, width: width, height: height)
+                customView.backgroundColor = #colorLiteral(red: 1, green: 0.817, blue: 0.345, alpha: 0.66)
+                view.addSubview(customView)
+            }
+        }
+        else if sender == "video" {
+            for part in self.lessonParts {
+                
+                let customView = JBView()
+                let y = view.bounds.midY - height
+                let x = CGFloat((part / self.videoPlayer.duration) * Double(view.bounds.width))
+                customView.frame = CGRect.init(x: x, y: y, width: width, height: height)
+                customView.backgroundColor = #colorLiteral(red: 1, green: 0.817, blue: 0.345, alpha: 0.66)
+                view.addSubview(customView)
+            }
+        }
+        else if sender == "videoSmall" {
+            for part in self.lessonParts {
+                
+                let customView = JBView()
+                let x = CGFloat((part / self.videoPlayer.duration) * Double(view.bounds.width))
+                customView.frame = CGRect.init(x: x, y: 0.0, width: width, height: height)
+                customView.backgroundColor = #colorLiteral(red: 0.178, green: 0.168, blue: 0.663, alpha: 0.5)
+                view.addSubview(customView)
+            }
+        }
+    }
+    
+    private func initLessonParts() {
+        switch self.mediaType {
+        case .audio:
+            DispatchQueue.main.async {
+                if self.lesson.videoPart.count > 0 {
+                    for part in self.lesson.videoPart {
+                        if let part = Double(part.videoPart) {
+                            self.lessonParts.append(part)
+                        }
+                        self.setLessonParts(parts: self.lessonParts, view: self.audioSlider, width: 4, height: 6, sender: "audio")
+                    }
+                }
+            }
+        case .video:
+            DispatchQueue.main.async {
+                if self.lesson.videoPart.count > 0 {
+                    self.videoPlayer.setVideoPartsUI()
+                    for part in self.lesson.videoPart {
+                        if let part = Double(part.videoPart){
+                            self.lessonParts.append(part)
+                        }
+                        self.setLessonParts(parts: self.lessonParts, view: self.videoPlayer.slider, width: 4, height: 16, sender: "video")
+                    }
+                    self.videoPlayer.videoParts = self.lessonParts
+                }
+            }
+        }
+    }
+    
     private func presentDonateAlert() {
         let alertVC = DonatedAlert()
         alertVC.modalTransitionStyle = .crossDissolve
@@ -225,6 +347,7 @@ class LessonPlayerViewController: UIViewController {
         alertVC.modalPresentationStyle = .overFullScreen
         self.present(alertVC, animated: true, completion: nil)
     }
+    
     private func setPortraitMode() {
         
         // Set header view
@@ -275,7 +398,7 @@ class LessonPlayerViewController: UIViewController {
                 maker.top.equalTo(self.portraitHeaderView.snp.bottom)
                 maker.leading.equalTo(self.view.snp.leading)
                 maker.trailing.equalTo(self.view.snp.trailing)
-                maker.height.equalTo(self.videoPlayer.snp.width).multipliedBy(self.videoAspectRatio).offset(15.0)
+                maker.height.equalTo(self.videoPlayer.snp.width).multipliedBy(self.videoAspectRatio).offset(24.0)
             }
             self.videoPlayer.layer.cornerRadius = 0.0
             Utils.dropViewShadow(view: self.videoPlayer, shadowColor: UIColor.clear, shadowRadius: 0, shadowOffset: CGSize(width: 0.0, height: 12))
@@ -285,7 +408,7 @@ class LessonPlayerViewController: UIViewController {
                 maker.bottom.equalTo(self.view.snp.bottom).inset(16.0)
                 maker.centerX.equalToSuperview()
                 maker.width.equalTo(386.0).priority(ConstraintPriority.high)
-                maker.height.equalTo(70.0).priority(ConstraintPriority.high)
+                maker.height.equalTo(69.0).priority(ConstraintPriority.high)
                 maker.trailing.lessThanOrEqualTo(self.view.snp.trailing).inset(16.0).priority(ConstraintPriority.required)
                 maker.leading.greaterThanOrEqualTo(self.view.snp.leading).offset(16.0).priority(ConstraintPriority.required)
             }
@@ -302,6 +425,21 @@ class LessonPlayerViewController: UIViewController {
             }
         }
         self.videoPlayer.setMode(self.videoPlayerMode)
+        
+        // Set lesson parts
+        switch self.mediaType {
+        case .audio:
+            self.setLessonParts(parts: self.lessonParts, view: self.audioSlider, width: 4, height: 6, sender: "audio")
+        case .video:
+            switch self.videoPlayerMode {
+            case .fullScreen:
+                self.setLessonParts(parts: self.lessonParts, view: self.videoPlayer.slider, width: 4, height: 16, sender: "video")
+            case .regular:
+                self.setLessonParts(parts: self.lessonParts, view: self.videoPlayer.slider, width: 4, height: 16, sender: "video")
+            case .small:
+                self.setLessonParts(parts: self.lessonParts, view: self.videoPlayer.videoProgressBar, width: 4, height: 4, sender: "videoSmall")
+            }
+        }
         
     }
     
@@ -358,6 +496,21 @@ class LessonPlayerViewController: UIViewController {
             self.videoPlayer.setMode(.fullScreen)
         }
         
+        // Set lesson parts
+        switch self.mediaType {
+        case .audio:
+            self.setLessonParts(parts: self.lessonParts, view: self.audioPlayer.slider, width: 4, height: 6, sender: "audio")
+        case .video:
+            switch self.videoPlayerMode {
+            case .fullScreen:
+                 self.setLessonParts(parts: self.lessonParts, view: self.videoPlayer.slider, width: 4, height: 16, sender: "video")
+            case .regular:
+                self.setLessonParts(parts: self.lessonParts, view: self.videoPlayer.slider, width: 4, height: 16, sender: "video")
+            case .small:
+                self.setLessonParts(parts: self.lessonParts, view: self.videoPlayer.videoProgressBar, width: 4, height: 4, sender: "videoSmall")
+            }
+        }
+        
     }
     
     private func setPortraitHeaderViewHeight() {
@@ -394,7 +547,7 @@ class LessonPlayerViewController: UIViewController {
             self.audioSliderContainer.isHidden = true
         case .audio:
             self.audioSliderContainer.isHidden = false
-            if let image = Utils.linearGradientImage(size: self.audioSlider.frame.size, colors: [Colors.appBlue, Colors.appOrange]) {
+            if let image = Utils.linearGradientImage(endXPoint: self.audioPlayer.currentTime, size: self.audioSlider.frame.size, colors: [Colors.appBlue, Colors.appOrange]) {
                 self.audioSlider.setMinimumTrackImage(image, for: .normal)
             }
         }
@@ -481,6 +634,10 @@ class LessonPlayerViewController: UIViewController {
             title = "-\(title)"
         }
         self.audioEndTimeButton.setTitle(title, for: .normal)
+        let endXPoint =  self.audioPlayer.currentTime / self.audioPlayer.duration
+        if let image = Utils.linearGradientImage(endXPoint: endXPoint, size: self.audioSlider.frame.size, colors: [Colors.appBlue, Colors.appOrange]) {
+            self.audioSlider.setMinimumTrackImage(image, for: .normal)
+        }
     }
     
     private func disableHeaderButtons() {
@@ -507,7 +664,7 @@ class LessonPlayerViewController: UIViewController {
             self.landscapeDownloadButton.isEnabled = !self.lesson.isDownloadingAudio
         }
         
-        
+        self.portraitChatButton.tintColor = #colorLiteral(red: 0.286, green: 0.286, blue: 0.286, alpha: 1)
         self.portraitChatButton.isEnabled = true
         self.landscapeChatButton.isEnabled = true
         
@@ -524,10 +681,24 @@ class LessonPlayerViewController: UIViewController {
     private func loadPDF() {
         guard let pdfUrl = self.lesson.textURL else { return }
         if let pdfDocument = PDFDocument(url: pdfUrl) {
-            DispatchQueue.main.async {
-                self.pdfView.document = pdfDocument
-                self.pdfView.autoScales = true
-                self.setMediaURL(startPlaying: self.shouldStartPlay)
+            DispatchQueue.main.async { [weak self] in
+                self?.pdfView.document = pdfDocument
+                self?.pdfView.autoScales = true
+                self?.setMediaURL(startPlaying: self?.shouldStartPlay ?? true)
+                self?.maHaytaHadeke()
+                self?.initLessonParts()
+            }
+        }
+    }
+    
+    private func maHaytaHadeke(){
+        if self.lessonWatched.count > 0 {
+            for _lesson in self.lessonWatched {
+                if _lesson.lessonId == self.lesson.id {
+                    let percentage = _lesson.duration / Double(self.lesson.duration)
+                    self.audioPlayer.seek(percentage: percentage)
+                    self.videoPlayer.seek(percentage: percentage)
+                }
             }
         }
     }
@@ -568,11 +739,17 @@ class LessonPlayerViewController: UIViewController {
     }
     
     @IBAction func photoButtonPressed(_ sender: UIButton) {
-        Utils.showAlertMessage(Strings.inDevelopment, viewControler: self)
+        if self.gallery.count > 0 {
+            let galleryViewController = Storyboards.Gallery.galleryViewController
+            galleryViewController.images = self.gallery
+            galleryViewController.modalTransitionStyle = .crossDissolve
+            galleryViewController.modalPresentationStyle = .overFullScreen
+            self.present(galleryViewController, animated: true)
+        }
     }
     
     @IBAction func chatButtonPressed(_ sender: UIButton) {
-        Utils.showAlertMessage(Strings.inDevelopment, viewControler: self)
+//        Utils.showAlertMessage(Strings.inDevelopment, viewControler: self)
 
     }
     
@@ -650,15 +827,7 @@ extension LessonPlayerViewController: AudioPlayerDelegate, VideoPlayerDelegate {
 
 
 extension LessonPlayerViewController: ContentRepositoryDownloadDelegate {
-    func downloadCompleted(downloadId: Int, mediaType: JTLessonMediaType) {
-        ContentRepository.shared.lessonEndedDownloading(lesson.id, mediaType: mediaType)
-        if let gemaraLesson = self.lesson as? JTGemaraLesson {
-            ContentRepository.shared.addLessonToDownloaded(gemaraLesson, sederId: self.sederId, masechetId: self.masechetId)
-        }
-        if let mishnaLesson = self.lesson as? JTMishnaLesson, let chapter = self.chapter {
-            ContentRepository.shared.addLessonToDownloaded(mishnaLesson, sederId: self.sederId, masechetId: self.masechetId, chapter: chapter)
-        }
-        
+    func downloadCompleted(downloadId: Int, mediaType: JTLessonMediaType) {        
         self.portraitDownloadProgressView.isHidden = true
         self.landscapeDownlaodProgressView.isHidden = true
         switch self.mediaType {
@@ -680,15 +849,16 @@ extension LessonPlayerViewController: ContentRepositoryDownloadDelegate {
 
 extension LessonPlayerViewController: DonatedAlertDelegate {
     func didDismiss() {
+//        self.visualEffectView.isHidden = true
         if self.didSetMediaUrl == false {
             self.shouldStartPlay = true
         }
         else {
             switch self.mediaType {
             case .video:
-                self.videoPlayer.play()
+                let _ = self.videoPlayer.play()
             case .audio:
-                self.audioPlayer.play()
+                let _ = self.audioPlayer.play()
             }
         }
     }
