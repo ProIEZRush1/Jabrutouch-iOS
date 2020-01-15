@@ -143,9 +143,7 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
         if segue.identifier == "openChat" {
             guard let indexPath = sender as? IndexPath else {return}
             let chat = self.chatsArray[indexPath.row]
-            MessagesRepository.shared.getAllMessagesFromDB(chatId: chat.chatId)
             let chatVC = segue.destination as? ChatViewController
-            chatVC?.messagesArray = MessagesRepository.shared.messages
             chatVC?.currentChat = chat
         }
     }

@@ -52,25 +52,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IXa-uw-NFE">
                                 <rect key="frame" x="0.0" y="44" width="362.5" height="852"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9lA-yo-5Ys">
-                                        <rect key="frame" x="0.0" y="0.0" width="362.5" height="55"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jabrutouch" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TON-Dx-FSb">
-                                                <rect key="frame" x="0.0" y="0.0" width="362.5" height="55"/>
-                                                <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="32"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" red="0.16862745100000001" green="0.1764705882" blue="0.66274509800000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="TON-Dx-FSb" secondAttribute="trailing" id="02h-r5-ki5"/>
-                                            <constraint firstAttribute="height" constant="55" id="JuO-Xb-2db"/>
-                                            <constraint firstItem="TON-Dx-FSb" firstAttribute="leading" secondItem="9lA-yo-5Ys" secondAttribute="leading" id="SeM-bW-1cW"/>
-                                            <constraint firstAttribute="bottom" secondItem="TON-Dx-FSb" secondAttribute="bottom" id="sUL-0e-25P"/>
-                                            <constraint firstItem="TON-Dx-FSb" firstAttribute="top" secondItem="9lA-yo-5Ys" secondAttribute="top" id="tWE-3c-oJA"/>
-                                        </constraints>
-                                    </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nAu-3z-TdM">
                                         <rect key="frame" x="0.0" y="55" width="362.5" height="797"/>
                                         <color key="backgroundColor" red="0.16862745100000001" green="0.1764705882" blue="0.66274509800000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -109,6 +90,29 @@
                                             <outlet property="delegate" destination="Jhr-px-5v1" id="Wkr-gE-9Jr"/>
                                         </connections>
                                     </tableView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9lA-yo-5Ys">
+                                        <rect key="frame" x="0.0" y="0.0" width="362.5" height="55"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TON-Dx-FSb">
+                                                <rect key="frame" x="0.0" y="36" width="362.5" height="55"/>
+                                                <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="32"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="aboutTop4" translatesAutoresizingMaskIntoConstraints="NO" id="Vft-EU-sa4">
+                                                <rect key="frame" x="76" y="8" width="186" height="26"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.16862745100000001" green="0.1764705882" blue="0.66274509800000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="TON-Dx-FSb" secondAttribute="trailing" id="02h-r5-ki5"/>
+                                            <constraint firstAttribute="height" constant="55" id="JuO-Xb-2db"/>
+                                            <constraint firstItem="TON-Dx-FSb" firstAttribute="leading" secondItem="9lA-yo-5Ys" secondAttribute="leading" id="SeM-bW-1cW"/>
+                                            <constraint firstAttribute="bottom" secondItem="TON-Dx-FSb" secondAttribute="bottom" id="sUL-0e-25P"/>
+                                            <constraint firstItem="TON-Dx-FSb" firstAttribute="top" secondItem="9lA-yo-5Ys" secondAttribute="top" id="tWE-3c-oJA"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <gestureRecognizers/>
@@ -158,7 +162,7 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-1109" y="265"/>
+            <point key="canvasLocation" x="-1110.144927536232" y="264.50892857142856"/>
         </scene>
         <!--Messages-->
         <scene sceneID="fcV-9q-HS4">
@@ -354,14 +358,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="O2J-hW-RpU">
-                                <rect key="frame" x="20" y="364" width="374" height="498"/>
+                                <rect key="frame" x="20" y="334.5" width="374" height="527.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="aboutTop" translatesAutoresizingMaskIntoConstraints="NO" id="2vN-fi-tx9">
-                                <rect key="frame" x="0.0" y="54" width="414" height="300"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="aboutTop1" translatesAutoresizingMaskIntoConstraints="NO" id="2vN-fi-tx9">
+                                <rect key="frame" x="0.0" y="54" width="414" height="270.5"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qm9-mk-KyU" userLabel="Back Btn">
                                 <rect key="frame" x="10" y="45.5" width="66" height="53"/>
@@ -374,6 +378,14 @@
                                     <action selector="backBtnPressed:" destination="OV0-K5-pXm" eventType="touchUpInside" id="qra-oK-Y4G"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="aboutTop2" translatesAutoresizingMaskIntoConstraints="NO" id="QEO-c2-txo">
+                                <rect key="frame" x="158" y="115" width="155" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="aboutTop3" translatesAutoresizingMaskIntoConstraints="NO" id="bM5-7q-LgD">
+                                <rect key="frame" x="73" y="106" width="77" height="69"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -394,7 +406,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3RO-sj-lVs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1316" y="971"/>
+            <point key="canvasLocation" x="-1317.3913043478262" y="970.98214285714278"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="Vw6-8z-eOD">
@@ -1331,7 +1343,10 @@
         <image name="Video" width="49" height="28.5"/>
         <image name="Welcome" width="263" height="212"/>
         <image name="X" width="15.5" height="16"/>
-        <image name="aboutTop" width="414" height="300"/>
+        <image name="aboutTop1" width="414" height="270.5"/>
+        <image name="aboutTop2" width="207.5" height="29"/>
+        <image name="aboutTop3" width="48.5" height="40"/>
+        <image name="aboutTop4" width="215" height="33"/>
         <image name="audio-nat" width="61" height="52.5"/>
         <image name="menu" width="73.5" height="52"/>
         <image name="messages" width="33.5" height="34.5"/>

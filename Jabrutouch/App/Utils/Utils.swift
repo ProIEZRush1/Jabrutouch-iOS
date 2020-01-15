@@ -134,6 +134,9 @@ class Utils {
         let secondsString = seconds < 10 ? "0\(seconds)" : "\(seconds)"
         return "\(minutesString):\(secondsString)"
     }
+    
+   
+    
     // MARK: - ActivityView
     
     class func showActivityView(inView view:UIView, withFrame frame: CGRect, text: String?) -> ActivityView {
