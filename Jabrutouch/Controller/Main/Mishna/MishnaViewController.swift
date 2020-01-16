@@ -19,8 +19,9 @@ class MishnaViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     var openSections: Set<Int> = []
     var delegate: MainModalDelegate?
+    var masechet: JTMishnaMasechet?
     
-    fileprivate var sedarim: [JTMishnaSeder] = ContentRepository.shared.getMishanSeders()
+    fileprivate var sedarim: [JTMishnaSeder] = ContentRepository.shared.getMishnaSeders()
     fileprivate var selectedIndexPath: IndexPath = []
     
     //========================================
@@ -85,9 +86,9 @@ class MishnaViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let headerCell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "headerCell") as! HeaderCellController
         
         if self.openSections.contains(section) {
-            headerCell.arrowImage?.image = UIImage(named: "DarkGrayUpArrow")
+            headerCell.arrowImage?.image = UIImage(named: "blue_up_arrow")
         } else {
-            headerCell.arrowImage?.image = UIImage(named: "DarkGrayDownArrow")
+            headerCell.arrowImage?.image = UIImage(named: "blue_down_arrow")
         }
         
         headerCell.titleLabel?.text = "Seder " + sedarim[section].name
@@ -102,15 +103,37 @@ class MishnaViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "mishnaMasechetCell", for: indexPath) as! MishnaMasechetCellController
+        self.getMasectChapterContent(indexPath: indexPath, isFirst: true)
+        if self.masechet?.chapters.isEmpty ?? true {
+            
+            cell.masechetName.textColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+            cell.chaptersCount.textColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+            cell.chapterText.textColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+            cell.arrowImageView.isHidden = true
+            
+            Utils.setViewShape(view: cell.cellView, viewCornerRadius: 18)
+            let shadowOffset = CGSize(width: 0.0, height: 0)
+            Utils.dropViewShadow(view: cell.cellView, shadowColor: Colors.shadowColor, shadowRadius: 0, shadowOffset: shadowOffset)
+            
+        } else {
+            cell.masechetName.textColor = #colorLiteral(red: 0.2340182662, green: 0.259791255, blue: 0.7208750248, alpha: 1)
+            cell.chaptersCount.textColor = #colorLiteral(red: 0.176, green: 0.169, blue: 0.663, alpha: 1)
+            cell.chapterText.textColor = #colorLiteral(red: 0.176, green: 0.169, blue: 0.663, alpha: 1)
+            cell.arrowImageView.isHidden = false
+            Utils.setViewShape(view: cell.cellView, viewCornerRadius: 18)
+            let shadowOffset = CGSize(width: 0.0, height: 5)
+            Utils.dropViewShadow(view: cell.cellView, shadowColor: Colors.shadowColor, shadowRadius: 15, shadowOffset: shadowOffset)
+        }
+        
         cell.masechetName.text = sedarim[indexPath.section].masechtot[indexPath.row].name
         let chaptersCount = sedarim[indexPath.section].masechtot[indexPath.row].chaptersCount
         cell.chaptersCount.text = String(chaptersCount)
         cell.chapterText.text = chaptersCount > 1 ? Strings.chapters : Strings.chapter
         cell.indexPath = indexPath
         cell.delegate = self
-        Utils.setViewShape(view: cell.cellView, viewCornerRadius: 18)
-        let shadowOffset = CGSize(width: 0.0, height: 5)
-        Utils.dropViewShadow(view: cell.cellView, shadowColor: Colors.shadowColor, shadowRadius: 15, shadowOffset: shadowOffset)
+//        Utils.setViewShape(view: cell.cellView, viewCornerRadius: 18)
+//        let shadowOffset = CGSize(width: 0.0, height: 5)
+//        Utils.dropViewShadow(view: cell.cellView, shadowColor: Colors.shadowColor, shadowRadius: 15, shadowOffset: shadowOffset)
         cell.cellView.layoutIfNeeded()
         
         return cell
@@ -130,8 +153,22 @@ class MishnaViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
 
     func showMasechetChapters(indexPath: IndexPath) {
+        if self.masechet?.chapters.isEmpty ?? true {
+            
+            Utils.showAlertMessage(Strings.noLessons, title: nil, viewControler: self)
+        } else {
+            selectedIndexPath = indexPath
+            performSegue(withIdentifier: "showMishnaChapters", sender: self)
+        }
+    }
+    
+    func getMasectChapterContent(indexPath: IndexPath, isFirst: Bool) {
         selectedIndexPath = indexPath
-        performSegue(withIdentifier: "showMishnaChapters", sender: self)
+        let id = self.sedarim[selectedIndexPath.section].masechtot[selectedIndexPath.row].masechetId
+        self.masechet = ContentRepository.shared.getMishanMasechet(masechetId: id)
+        if !isFirst{
+            self.showMasechetChapters(indexPath: indexPath)
+        }
     }
     
     //========================================

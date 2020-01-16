@@ -10,6 +10,7 @@ import UIKit
 
 class MainCollectionCellViewController: UICollectionViewCell {
     
+    @IBOutlet weak var mainProgressBar: JBProgressBar!
     @IBOutlet weak var cellView: UIView!
     @IBOutlet weak var masechetLabel: UILabel!
     @IBOutlet weak var chapterLabel: UILabel!
@@ -18,6 +19,7 @@ class MainCollectionCellViewController: UICollectionViewCell {
     @IBOutlet weak var video: UIImageView!
     @IBOutlet weak var audioButton: UIButton!
     @IBOutlet weak var videoButton: UIButton!
+    @IBOutlet weak var cellViewShadowView: UIView!
     
     var isFirstCollection: Bool = true // When two collections are used in single screen
     var selectedRow: Int = 0
@@ -36,13 +38,12 @@ class MainCollectionCellViewController: UICollectionViewCell {
     }
     
     func setButtonsBackground() {
-        self.audioButton.setBackgroundImage(nil, for: .normal)
-        self.audioButton.setBackgroundImage(#imageLiteral(resourceName: "backgroundShadow"), for: .selected)
+        self.audioButton.setImage(#imageLiteral(resourceName: "audio-nat"), for: .normal)
+        self.audioButton.setImage(#imageLiteral(resourceName: "audio-prs"), for: .highlighted)
         
-        self.videoButton.setBackgroundImage(nil, for: .normal)
-        self.videoButton.setBackgroundImage(#imageLiteral(resourceName: "backgroundShadow"), for: .selected)
+        self.videoButton.setImage(#imageLiteral(resourceName: "video-nat"), for: .normal)
+        self.videoButton.setImage(#imageLiteral(resourceName: "video-prs"), for: .highlighted)
 
-        
     }
     
     @objc private func cellPressed() {
@@ -55,6 +56,11 @@ class MainCollectionCellViewController: UICollectionViewCell {
     
     @objc private func videoPressed() {
         delegate?.videoPressed(selectedRow: selectedRow, isFirstCollection: isFirstCollection)
+    }
+    
+    func setHiddenButtonsForLesson(_ lesson: JTLesson) {
+       self.audioButton.isHidden = (lesson.audioURL == nil)
+       self.videoButton.isHidden = (lesson.videoURL == nil)
     }
 }
 

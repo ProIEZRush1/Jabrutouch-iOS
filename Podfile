@@ -11,4 +11,10 @@ target 'Jabrutouch' do
   pod 'UICircularProgressRing'
   pod 'Fabric'
   pod 'Crashlytics'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
+  pod 'Firebase/Messaging'
+  pod 'Firebase/Analytics'
+
+
 end

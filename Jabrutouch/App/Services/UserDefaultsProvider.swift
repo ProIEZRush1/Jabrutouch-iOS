@@ -17,6 +17,8 @@ class UserDefaultsProvider {
         case seenWalkThrough = "SeenWalkThrough"
         case notFirstTime = "notFirstTime"
         case appLanguages = "AppleLanguages"
+        case index = "Index"
+        case lessonWatched = "LessonWatched"
     }
     
     static private var provider: UserDefaultsProvider?
@@ -97,6 +99,26 @@ class UserDefaultsProvider {
         }
         set (languageCode) {
             self.defaults.set([languageCode], forKey: UserDefaultsKeys.appLanguages.rawValue)
+            self.defaults.synchronize()
+        }
+    }
+    var index: Int {
+        get {
+            return self.defaults.integer(forKey: UserDefaultsKeys.index.rawValue)
+        }
+        set (index) {
+            self.defaults.set(index, forKey: UserDefaultsKeys.index.rawValue)
+            self.defaults.synchronize()
+        }
+    }
+    
+    var lessonWatched: [JTLessonWatched] {
+        get {
+            guard let values = self.defaults.object(forKey: UserDefaultsKeys.lessonWatched.rawValue) as? [[String:Any]] else { return []}
+            return values.compactMap{JTLessonWatched(values: $0)}
+        }
+        set (lessonWatched) {
+            self.defaults.set(lessonWatched.map{$0.values}, forKey: UserDefaultsKeys.lessonWatched.rawValue)
             self.defaults.synchronize()
         }
     }

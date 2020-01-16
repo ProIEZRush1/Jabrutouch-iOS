@@ -41,7 +41,7 @@ class AudioPlayer: UIView {
     @IBOutlet private weak var forwardButton: UIButton!
     @IBOutlet private weak var rewindButton: UIButton!
     @IBOutlet private weak var playbackSpeedButton: UIButton!
-    @IBOutlet private weak var slider: UISlider!
+    @IBOutlet weak var slider: UISlider!
     //----------------------------------------------------
     // MARK: - Properies
     //----------------------------------------------------
@@ -53,6 +53,7 @@ class AudioPlayer: UIView {
     private var url: URL?
     private var player: AVPlayer?
     private(set) var watchDuration: TimeInterval = 0.0
+    private(set) var watchLocation: TimeInterval = 0.0
     private var startPlayDate: Date?
     private var mediaName: String?
     //----------------------------------------------------
@@ -106,20 +107,23 @@ class AudioPlayer: UIView {
         self.rewindButton.isEnabled = false
         self.playbackSpeedButton.isEnabled = false
         
-        self.slider.setThumbImage(#imageLiteral(resourceName: "thumb"), for: .normal)
-        if let image = Utils.linearGradientImage(size: self.slider.frame.size, colors: [Colors.appBlue, Colors.appOrange]) {
+        self.slider.setThumbImage(#imageLiteral(resourceName: "newThumb"), for: .normal)
+        if let image = Utils.linearGradientImage(endXPoint: 0.0, size: self.slider.frame.size, colors: [Colors.appBlue, Colors.appOrange]) {
             self.slider.setMinimumTrackImage(image, for: .normal)
             
         }
     }
  
     func stopAndRelease() {
-        self.player?.removeObserver(self, forKeyPath: "timeControlStatus")
         let _ = self.pause()
+        guard let player = self.player else { return }
+        self.watchLocation = player.currentTime
+        self.player?.removeObserver(self, forKeyPath: "timeControlStatus")
         self.player = nil
         self.stopTimeUpdateTimer()
         self.removeRemoteTransportControls()
     }
+    
     //----------------------------------------------------
     // MARK: - Methods
     //----------------------------------------------------
@@ -194,7 +198,8 @@ class AudioPlayer: UIView {
     
     @IBAction func rewindPauseButtonPressed(_ sender: UIButton) {
         DispatchQueue.main.async {
-            self.rewind(30.0)
+            self.rewind(10.0)
+//            self.rewind(30.0)
         }
     }
     
@@ -218,6 +223,13 @@ class AudioPlayer: UIView {
     // MARK: - Actions
     //----------------------------------------------------
     
+    func seek(percentage: Double) {
+        guard let player = self.player else { return }
+        let time = player.duration * percentage
+        self.setCurrentTime(time)
+        self.slider.value = Float(percentage)
+    }
+    
     private func startTimeUpdateTimer() {
         
         DispatchQueue.main.async{
@@ -240,8 +252,8 @@ class AudioPlayer: UIView {
         guard let player = self.player else { return .commandFailed }
         self.playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
         player.play()
+        player.rate = self.currentSpeed.rate
         self.startTimeUpdateTimer()
-        self.startPlayDate = Date()
         return .success
     }
     
@@ -249,11 +261,6 @@ class AudioPlayer: UIView {
         self.player?.pause()
         self.playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
         self.stopTimeUpdateTimer()
-        
-        if let date = self.startPlayDate {
-            let duration = Date().timeIntervalSince(date)
-            self.watchDuration += duration
-        }
         return .success
     }
     
@@ -300,8 +307,14 @@ class AudioPlayer: UIView {
                 if #available(iOS 10.0, *) {
                     if avPlayer.timeControlStatus == .playing {
                         self.delegate?.didStartPlaying()
-                    } else {
-                        
+                        self.startPlayDate = Date()
+                    } else if avPlayer.timeControlStatus == .paused {
+                        if let date = self.startPlayDate {
+                            let pauseDate = Date()
+                            let duration = pauseDate.timeIntervalSince(date)
+                            self.watchDuration += duration
+                            self.startPlayDate = nil
+                        }
                     }
                 }
             }
@@ -314,6 +327,10 @@ class AudioPlayer: UIView {
         self.slider.value = Float(percentage)
         self.delegate?.currentTimeDidChange(currentTime: player.currentTime, duration: player.duration)
         setupNowPlaying()
+        if let image = Utils.linearGradientImage(endXPoint: percentage, size: self.slider.frame.size, colors: [Colors.appBlue, Colors.appOrange]) {
+            self.slider.setMinimumTrackImage(image, for: .normal)
+            
+        }
     }
     
     //----------------------------------------------------

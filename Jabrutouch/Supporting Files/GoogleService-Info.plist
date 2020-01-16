@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>317005163328-ub7hj65p1s6cgvj1m8mldki8bvjer6af.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.317005163328-ub7hj65p1s6cgvj1m8mldki8bvjer6af</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB074qGhp5B-GH9BR_PEnUk1klteXVlD-o</string>
+	<key>GCM_SENDER_ID</key>
+	<string>317005163328</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>il.co.jabrutouch.Jabrutouch</string>
+	<key>PROJECT_ID</key>
+	<string>jabrutouch-d3470</string>
+	<key>STORAGE_BUCKET</key>
+	<string>jabrutouch-d3470.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:317005163328:ios:52129da006a71ddf10e8a5</string>
+	<key>DATABASE_URL</key>
+	<string>https://jabrutouch-d3470.firebaseio.com</string>
+</dict>
+</plist>

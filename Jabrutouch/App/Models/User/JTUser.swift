@@ -26,7 +26,16 @@ struct JTUser {
     var secondEmail: String
     var isPresenter: Bool
     var token: String
+    var profileImage: UIImage?
+    var lessonWatched: [JTLessonWatched] = []
     
+    var profileImageFileName: String {
+        return "profile_image_\(self.id)"
+    }
+    
+    var profileImageFileURL: URL? {
+        return FileDirectory.cache.url?.appendingPathComponent(self.profileImageFileName)
+    }
     init?(values: [String:Any]) {
         if let id = values["id"] as? Int {
             self.id = id
@@ -57,6 +66,11 @@ struct JTUser {
                 self.community = community
             }
         }
+        
+        if let lessonWatchedValues = values["lessonWatched"] as? [[String:Any]] {
+            self.lessonWatched = lessonWatchedValues.compactMap{JTLessonWatched(values: $0)}
+        }
+        
         self.imageLink = values["image"] as? String ?? ""
         self.birthdayString = values["birthday"] as? String ?? ""
         self.country = values["country"] as? String ?? ""
@@ -67,6 +81,7 @@ struct JTUser {
         self.secondEmail = values["second_email"] as? String ?? ""
         self.isPresenter = values["is_presenter"] as? Bool ?? false
         
+        self.loadProfileImageFromLocalFile()
     }
     
     var values: [String:Any] {
@@ -87,6 +102,20 @@ struct JTUser {
         values["second_email"] = self.secondEmail
         values["is_presenter"] = self.isPresenter
         values["token"] = self.token
+        values["lessonWatched"] = self.lessonWatched.map{$0.values}
         return values
+    }
+    
+    private mutating func loadProfileImageFromLocalFile() {
+        if let url = self.profileImageFileURL {
+            do{
+                let data = try Data(contentsOf: url)
+                self.profileImage = UIImage(data: data)
+            }
+            catch {
+                
+            }
+        }
+            
     }
 }

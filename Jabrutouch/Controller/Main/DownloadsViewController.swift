@@ -37,6 +37,7 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     fileprivate var grayUpArrowXCentererdToGemara: NSLayoutConstraint?
     fileprivate var grayUpArrowXCentererdToMishna: NSLayoutConstraint?
     fileprivate var gemaraDownloads: [JTSederDownloadedGemaraLessons] = []
+    fileprivate var masechetGemaraDownloads: [JTMasechetDownloadedGemaraLessons] = []
     fileprivate var mishnaDownloads: [JTSederDownloadedMishnaLessons] = []
     fileprivate var isGemaraSelected = true
     fileprivate var isDeleting = false
@@ -44,6 +45,7 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     fileprivate let GEMARA = "Gemara"
     fileprivate let MISHNA = "Mishna"
     fileprivate var isReloadingSection =  false
+    private var lessonWatched: [JTLessonWatched] = []
     
     fileprivate var gemaraOpenSections: Set<Int> = []
     fileprivate var mishnaOpenSections: Set<Int> = []
@@ -68,11 +70,18 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setContent()
+        setContent(openSections: true)
         setSelectedPage()
-
+        ContentRepository.shared.addDelegate(self)
+        self.lessonWatched = UserDefaultsProvider.shared.lessonWatched
     }
     
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        ContentRepository.shared.removeDelegate(self)
+    }
     //========================================
     // MARK: - Setup
     //========================================
@@ -170,11 +179,25 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         Utils.dropViewShadow(view: headerShadowBasis, shadowColor: headerShadowColor, shadowRadius: 22, shadowOffset: headerShadowOffset)
     }
     
-    fileprivate func setContent() {
+    fileprivate func setContent(openSections: Bool = false) {
         self.gemaraDownloads = ContentRepository.shared.getDownloadedGemaraLessons()
         self.mishnaDownloads = ContentRepository.shared.getDownloadedMishnaLessons()
+        
+        if openSections {
+            self.gemaraOpenSections = []
+            self.mishnaOpenSections = []
+            for i in 0..<self.gemaraDownloads.count {
+                self.gemaraOpenSections.insert(i)
+            }
+            for i in 0..<self.mishnaDownloads.count {
+                self.mishnaOpenSections.insert(i)
+            }
+        }
+        
         self.gemaraTableView.reloadData()
         self.mishnaTableView.reloadData()
+        self.checkIfTableViewEmpty(gemaraDownloads, gemaraTableView)
+        self.checkIfTableViewEmpty(mishnaDownloads, mishnaTableView)
     }
     
     private func setTableViews() {
@@ -259,10 +282,10 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         
         if isExpanded {
-            headerCell.arrowImage?.image = UIImage(named: "Black&BlueUpArrow")
+            headerCell.arrowImage?.image = UIImage(named: "blue_up_arrow")
             headerCell.sectionRowsCountLabel.isHidden = true
         } else {
-            headerCell.arrowImage?.image = UIImage(named: "Black&BlueDownArrow")
+            headerCell.arrowImage?.image = UIImage(named: "blue_down_arrow")
             headerCell.sectionRowsCountLabel.text = String(sectionRowsCount)
             headerCell.sectionRowsCountLabel.isHidden = false
         }
@@ -273,28 +296,54 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.indexPath = indexPath
         if tableView == gemaraTableView {
             cell.isFirstTable = true
-            let lesson = self.gemaraDownloads[indexPath.section].records[indexPath.row]
+
+            let lessons = self.gemaraDownloads[indexPath.section].records.sorted(by:{
+                $0.lesson.page < $1.lesson.page
+                })
+            let lesson = lessons[indexPath.row]
             cell.book.text = lesson.masechetName
             cell.chapter.text = ""
             cell.number.text = "\(lesson.lesson.page)"
             cell.delegate = self
             cell.audioButton.isHidden = !lesson.lesson.isAudioDownloaded
             cell.videoButton.isHidden = !lesson.lesson.isVideoDownloaded
+            if self.lessonWatched.count > 0 {
+                for _lesson in self.lessonWatched {
+                    if _lesson.lessonId == lesson.lesson.id {
+                        let count = _lesson.duration / Double(lesson.lesson.duration)
+                        Utils.setProgressbar(count: count, view: cell.progressBar, rounded: false, cornerRadius: 0, bottomRadius: true)
+                        break
+                    }
+                }
+            }
         } else {
             cell.isFirstTable = false
-            let lesson = self.mishnaDownloads[indexPath.section].records[indexPath.row]
+            let lessons = self.mishnaDownloads[indexPath.section].records.sorted(by:{
+                $0.lesson.mishna < $1.lesson.mishna
+                })
+            let lesson = lessons[indexPath.row]
             cell.book.text = lesson.masechetName
             cell.chapter.text = lesson.chapter
             cell.number.text = "\(lesson.lesson.mishna)"
             cell.delegate = self
             cell.audioButton.isHidden = !lesson.lesson.isAudioDownloaded
             cell.videoButton.isHidden = !lesson.lesson.isVideoDownloaded
+            if self.lessonWatched.count > 0 {
+                for _lesson in self.lessonWatched {
+                    if _lesson.lessonId == lesson.lesson.id {
+                        let count = _lesson.duration / Double(lesson.lesson.duration)
+                        Utils.setProgressbar(count: count, view: cell.progressBar, rounded: false, cornerRadius: 0, bottomRadius: true)
+                        break
+                    }
+                }
+            }
         }
 
         
         Utils.setViewShape(view: cell.cellView, viewCornerRadius: 18)
+        Utils.setViewShape(view: cell.cellShadowView, viewCornerRadius: 18)
         let shadowOffset = CGSize(width: 0.0, height: 12)
-        Utils.dropViewShadow(view: cell.cellView, shadowColor: Colors.shadowColor, shadowRadius: 36, shadowOffset: shadowOffset)
+        Utils.dropViewShadow(view: cell.cellShadowView, shadowColor: Colors.shadowColor, shadowRadius: 36, shadowOffset: shadowOffset)
         animateSizeChangeWhenNeeded(cell)
         
         cell.cellView.layoutIfNeeded()
@@ -376,34 +425,45 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
                 if let indexPath = self.gemaraTableView.indexPath(for: cell) {
                    
                     // Remove from storage
-                    let downloadedLesson = self.gemaraDownloads[indexPath.section].records[indexPath.row]
+                    let lessons = self.gemaraDownloads[indexPath.section].records.sorted(by:{
+                       $0.lesson.page < $1.lesson.page
+                       })
+                    let downloadedLesson = lessons[indexPath.row] //self.gemaraDownloads[indexPath.section].records[indexPath.row]
                     ContentRepository.shared.removeLessonFromDownloaded(downloadedLesson.lesson, sederId: "\(self.gemaraDownloads[indexPath.section].sederId)", masechetId: downloadedLesson.masechetId)
                     
                     // Refresh local data and view
-                    self.gemaraDownloads[indexPath.section].records.remove(at: indexPath.row)
-                    if self.gemaraDownloads[indexPath.section].records.count == 0 {
-                        self.gemaraDownloads.remove(at: indexPath.section)
-                        self.gemaraTableView.deleteSections([indexPath.section], with: .bottom)
-                        self.reloadRelevantSections(indexPath.section, self.gemaraDownloads, self.gemaraTableView)
-                    } else {
-                        self.gemaraTableView.deleteRows(at: [indexPath], with: .bottom)
-                    }
+                    self.setContent()
+//                    self.gemaraDownloads[indexPath.section].records.remove(at: indexPath.row)
+//                    if self.gemaraDownloads[indexPath.section].records.count == 0 {
+//                        self.gemaraDownloads.remove(at: indexPath.section)
+//                        self.gemaraTableView.reloadData()
+////                        self.gemaraTableView.deleteSections([indexPath.section], with: .bottom)
+////                        self.reloadRelevantSections(indexPath.section, self.gemaraDownloads, self.gemaraTableView)
+//                    } else {
+//                        self.gemaraTableView.deleteRows(at: [indexPath], with: .bottom)
+//                        self.gemaraTableView.reloadData()
+//                    }
                 }
             } else {
                 if let indexPath = self.mishnaTableView.indexPath(for: cell) {
                    // Remove from storage
-                    let downloadedLesson = self.mishnaDownloads[indexPath.section].records[indexPath.row]
+                    let lessons = self.mishnaDownloads[indexPath.section].records.sorted(by:{
+                        $0.lesson.mishna < $1.lesson.mishna
+                        })
+                    let downloadedLesson = lessons[indexPath.row] //self.mishnaDownloads[indexPath.section].records[indexPath.row]
                     ContentRepository.shared.removeLessonFromDownloaded(downloadedLesson.lesson, sederId: "\(self.mishnaDownloads[indexPath.section].sederId)", masechetId: downloadedLesson.masechetId, chapter: downloadedLesson.chapter)
 
                     // Refresh local data and view
-                    self.mishnaDownloads[indexPath.section].records.remove(at: indexPath.row)
-                    if self.mishnaDownloads[indexPath.section].records.count == 0 {
-                        self.mishnaDownloads.remove(at: indexPath.section)
-                        self.mishnaTableView.deleteSections([indexPath.section], with: .bottom)
-                        self.reloadRelevantSections(indexPath.section, self.mishnaDownloads, self.mishnaTableView)
-                    } else {
-                        self.mishnaTableView.deleteRows(at: [indexPath], with: .bottom)
-                    }
+                    self.setContent()
+//                    self.mishnaDownloads[indexPath.section].records.remove(at: indexPath.row)
+//                    if self.mishnaDownloads[indexPath.section].records.count == 0 {
+//                        self.mishnaDownloads.remove(at: indexPath.section)
+//                        self.mishnaTableView.reloadData()
+////                        self.mishnaTableView.deleteSections([indexPath.section], with: .bottom)
+////                        self.reloadRelevantSections(indexPath.section, self.mishnaDownloads, self.mishnaTableView)
+//                    } else {
+//                        self.mishnaTableView.deleteRows(at: [indexPath], with: .bottom)
+//                    }
                 }
             }
         }))
@@ -420,17 +480,25 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         
         switch lessonType {
         case .gemara:
-            lesson = self.gemaraDownloads[indexPath.section].records[indexPath.row].lesson
-            masechetName = self.gemaraDownloads[indexPath.section].records[indexPath.row].masechetName
-            masechetId = self.gemaraDownloads[indexPath.section].records[indexPath.row].masechetId
-            sederId = self.gemaraDownloads[indexPath.section].records[indexPath.row].sederId
+            let lessons = self.gemaraDownloads[indexPath.section].records.sorted(by:{
+                $0.lesson.page < $1.lesson.page
+                })
+            let curentLesson = lessons[indexPath.row]
+            lesson = curentLesson.lesson //self.gemaraDownloads[indexPath.section].records[indexPath.row].lesson
+            masechetName = curentLesson.masechetName //self.gemaraDownloads[indexPath.section].records[indexPath.row].masechetName
+            masechetId = curentLesson.masechetId // self.gemaraDownloads[indexPath.section].records[indexPath.row].masechetId
+            sederId = curentLesson.sederId //self.gemaraDownloads[indexPath.section].records[indexPath.row].sederId
             
         case .mishna:
-            lesson = self.mishnaDownloads[indexPath.section].records[indexPath.row].lesson
-            masechetName = self.mishnaDownloads[indexPath.section].records[indexPath.row].masechetName
-            masechetId = self.mishnaDownloads[indexPath.section].records[indexPath.row].masechetId
-            chapter = self.mishnaDownloads[indexPath.section].records[indexPath.row].chapter
-            sederId = self.mishnaDownloads[indexPath.section].records[indexPath.row].sederId
+            let lessons = self.mishnaDownloads[indexPath.section].records.sorted(by:{
+                $0.lesson.mishna < $1.lesson.mishna
+                })
+            let curentLesson = lessons[indexPath.row]
+            lesson = curentLesson.lesson//self.mishnaDownloads[indexPath.section].records[indexPath.row].lesson
+            masechetName = curentLesson.masechetName // self.mishnaDownloads[indexPath.section].records[indexPath.row].masechetName
+            masechetId = curentLesson.masechetId // self.mishnaDownloads[indexPath.section].records[indexPath.row].masechetId
+            chapter = curentLesson.chapter// self.mishnaDownloads[indexPath.section].records[indexPath.row].chapter
+            sederId = curentLesson.sederId// self.mishnaDownloads[indexPath.section].records[indexPath.row].sederId
         }
         
         DispatchQueue.main.async {
@@ -552,6 +620,14 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     private func playLesson(_ lesson: JTLesson, mediaType: JTLessonMediaType, masechetName: String?, sederId: String, masechetId: String, chapter: String? ) {
         let playerVC = LessonPlayerViewController(lesson: lesson, mediaType: mediaType, sederId: sederId, masechetId: masechetId, chapter: chapter, shouldDisplayDonationPopUp: false)
         playerVC.modalPresentationStyle = .fullScreen
+        if let mishnaLesson = lesson as? JTMishnaLesson {
+            playerVC.masechet = masechetName ?? ""
+                playerVC.daf = "\(mishnaLesson.mishna)"
+        }
+        if let gemaraLesson = lesson as? JTGemaraLesson {
+            playerVC.masechet = masechetName ?? ""
+                playerVC.daf = "\(gemaraLesson.page)"
+        }
         self.present(playerVC, animated: true) {
             
         }
@@ -564,5 +640,17 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
             ContentRepository.shared.lessonWatched(gemaraLesson, masechetName: masechetName, masechetId: "\(masechetId)", sederId: sederId)
         }
     }
+    
+}
+
+extension DownloadsViewController: ContentRepositoryDownloadDelegate {
+    func downloadCompleted(downloadId: Int, mediaType: JTLessonMediaType) {
+        self.setContent()
+    }
+    
+    func downloadProgress(downloadId: Int, progress: Float, mediaType: JTLessonMediaType) {
+        
+    }
+    
     
 }

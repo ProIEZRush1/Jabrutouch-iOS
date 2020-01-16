@@ -63,6 +63,16 @@ class HttpRequestsFactory {
         return request
     }
     
+    class func forgotPasswordRequest(email: String?) -> URLRequest?{
+        guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
+        if email == nil { return nil }
+        let link = baseUrl.appendingPathComponent("reset_password/").absoluteString
+        let body: [String:Any] = [ "email": email ?? ""]
+        guard let url = self.createUrl(fromLink: link, urlParams: nil) else { return nil }
+        let request = self.createRequest(url, method: .post, body: body, additionalHeaders: nil)
+        return request
+    }
+    
     //==========================================
     // MARK: - User Flow
     //==========================================
@@ -87,6 +97,14 @@ class HttpRequestsFactory {
         return request
     }
     
+    class func createGetEditUserParameters( token: String) -> URLRequest?{
+        guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
+        let link = baseUrl.appendingPathComponent("profile_data").absoluteString
+        guard let url = self.createUrl(fromLink: link, urlParams: nil) else { return nil }
+        let additionalHeaders: [String:String] = ["Authorization": "token \(token)"]
+        let request = self.createRequest(url, method: .get, body: nil, additionalHeaders: additionalHeaders)
+        return request
+    }
     
     //==========================================
     // MARK: - Content
@@ -126,6 +144,28 @@ class HttpRequestsFactory {
         let request = self.createRequest(url, method: .get, body: nil, additionalHeaders: additionalHeaders)
         return request
     }
+    
+    
+    
+    class func createGetMessageListRequest(token: String) -> URLRequest?{
+        guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
+        let link = baseUrl.appendingPathComponent("messages").absoluteString
+        guard let url = self.createUrl(fromLink: link, urlParams: nil) else { return nil }
+        let additionalHeaders: [String:String] = ["Authorization": "token \(token)"]
+        let request = self.createRequest(url, method: .get, body: nil, additionalHeaders: additionalHeaders)
+        return request
+    }
+    
+    class func createMessageRequest(message: String, sentAt: Date, title: String, messageType: Int, toUser: Int, chatId: Int, token: String) -> URLRequest?{
+           guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
+           let link = baseUrl.appendingPathComponent("messages").absoluteString
+        let body: [String:Any] = ["message": message, "sent_at": sentAt.timeIntervalSince1970, "title": title, "message_type": messageType, "to_user": toUser, "chat_id": chatId]
+           guard let url = self.createUrl(fromLink: link, urlParams: nil) else { return nil }
+           let additionalHeaders: [String:String] = ["Authorization": "token \(token)"]
+
+           let request = self.createRequest(url, method: .post, body: body, additionalHeaders: additionalHeaders)
+           return request
+       }
     
     //{"event":"watch", "category": "Gemara", "media_type": "video", "page_id":"141" , "duration": 2, "online": 1}
     

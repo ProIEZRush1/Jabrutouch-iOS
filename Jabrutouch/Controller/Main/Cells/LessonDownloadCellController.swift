@@ -15,6 +15,7 @@ class LessonDownloadCellController: UITableViewCell {
     // MARK: - @IBOutlets
     //=====================================================
     
+    @IBOutlet weak var lessonProgressBar: JBProgressBar!
     @IBOutlet weak var cellView: UIView!
     @IBOutlet weak var downloadButtonsContainerView: UIView!
     @IBOutlet weak var lessonNumber: UILabel!
@@ -31,6 +32,8 @@ class LessonDownloadCellController: UITableViewCell {
     @IBOutlet weak var downloadAudioButtonImageView: UIImageView!
     @IBOutlet weak var downloadVideoButtonImageView: UIImageView!
     @IBOutlet weak var cellViewTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var progressBarTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var cellViewLeadingConstraint: NSLayoutConstraint!
     
     //=====================================================
     // MARK: - Properties
@@ -53,16 +56,16 @@ class LessonDownloadCellController: UITableViewCell {
     //=====================================================
     func setLesson(_ lesson: JTLesson) {
         self.setHiddenButtonsForLesson(lesson)
-        self.setImagesForLesson(lesson)
+//        self.setImagesForLesson(lesson)
         self.setDownloadModeForLesson(lesson)
-        
+        self.setButtonBackground(lesson)
         self.downloadButtonsContainerView.layoutIfNeeded()
         self.cellView.layoutIfNeeded()
     }
     
     func setEditingIfNeeded(lesson: JTLesson, isCurrentlyEditing: Bool) {
         self.animateImagesVisibilityIfNeeded(lesson, isCurrentlyEditing: isCurrentlyEditing)
-        UIView.animate(withDuration: 0.3) {
+        UIView.animate(withDuration: 0.6) {
             let isDownloading = lesson.isDownloadingAudio || lesson.isDownloadingVideo
 
             if isCurrentlyEditing && !isDownloading {
@@ -70,6 +73,9 @@ class LessonDownloadCellController: UITableViewCell {
             } else {
                 self.cellViewTrailingConstraint.constant = 18
             }
+            self.layoutIfNeeded()
+
+            
         }
 
     }
@@ -113,6 +119,30 @@ class LessonDownloadCellController: UITableViewCell {
         
         self.downloadAudioButtonImageView.alpha = lesson.isDownloadingAudio ? 0.3 : 1.0
         self.downloadVideoButtonImageView.alpha = lesson.isDownloadingVideo ? 0.3 : 1.0
+    }
+    
+    func setButtonBackground(_ lesson: JTLesson){
+        if lesson.isAudioDownloaded {
+            self.playAudioButton.setImage(#imageLiteral(resourceName: "audio-downloaded"), for: .normal)
+            self.playAudioButton.setImage(#imageLiteral(resourceName: "audio-downloaded"), for: .highlighted)
+             
+        } else {
+            self.playAudioButton.setImage(#imageLiteral(resourceName: "audio-nat"), for: .normal)
+            self.playAudioButton.setImage(#imageLiteral(resourceName: "audio-prs"), for: .highlighted)
+        }
+        self.downloadAudioButtonImageView.isHidden = lesson.isAudioDownloaded
+        
+        if lesson.isVideoDownloaded {
+            self.playVideoButton.setImage(#imageLiteral(resourceName: "video-downloaded"), for: .normal)
+            self.playVideoButton.setImage(#imageLiteral(resourceName: "video-downloaded"), for: .highlighted)
+    
+        } else {
+            self.playVideoButton.setImage(#imageLiteral(resourceName: "video-nat"), for: .normal)
+            self.playVideoButton.setImage(#imageLiteral(resourceName: "video-prs"), for: .highlighted)
+            
+        }
+        self.downloadVideoButtonImageView.isHidden = lesson.isVideoDownloaded
+
     }
     
     private func setImagesForLesson(_ lesson: JTLesson) {

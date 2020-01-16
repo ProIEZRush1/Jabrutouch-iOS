@@ -10,6 +10,7 @@ import UIKit
 
 class DownloadsCellController: UITableViewCell {
     
+    @IBOutlet weak var progressBar: JBProgressBar!
     @IBOutlet weak var cellView: UIView!
     @IBOutlet weak var book: UILabel!
     @IBOutlet weak var chapter: UILabel!
@@ -18,6 +19,7 @@ class DownloadsCellController: UITableViewCell {
     @IBOutlet weak var videoButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var cellTrailingConstraint: NSLayoutConstraint! // 21 or 45
+    @IBOutlet weak var cellShadowView: UIView!
     
     weak var delegate: DownloadsCellDelegate?
     var indexPath: IndexPath?

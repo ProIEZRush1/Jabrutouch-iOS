@@ -37,8 +37,8 @@ class JTMishnaLesson: JTLesson {
         values["audio"] = super.audioLink
         values["video"] = super.videoLink
         values["page"]  = super.textLink
-        values["video_part"] = super.videoPart
-        values["gallery"] = super.gallery
+        values["video_part"] = self.videoPart.map{$0.values}
+        values["gallery"] = self.gallery.map{$0.values}
         values["presenter"] = super.presenter?.values
         return values
     }

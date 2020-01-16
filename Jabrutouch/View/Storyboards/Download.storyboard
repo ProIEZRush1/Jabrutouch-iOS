@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Csn-pr-HK7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Csn-pr-HK7">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -167,7 +167,11 @@
                                                         <constraint firstAttribute="height" constant="13" id="Tv9-Dp-rpL"/>
                                                     </constraints>
                                                 </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tys-3p-kx8">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hiA-KJ-fsk">
+                                                    <rect key="frame" x="21" y="0.0" width="348" height="76"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                </view>
+                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tys-3p-kx8">
                                                     <rect key="frame" x="21" y="0.0" width="348" height="76"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shabbat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YtL-SC-a2e">
@@ -189,29 +193,28 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jyb-sK-pGD" userLabel="Audio">
-                                                            <rect key="frame" x="241.66666666666669" y="17" width="41" height="42"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="42.200000000000003" id="BVA-eN-Wvf"/>
-                                                                <constraint firstAttribute="width" constant="41" id="nLz-cc-lKj"/>
-                                                            </constraints>
+                                                            <rect key="frame" x="171.66666666666666" y="2" width="80.666666666666657" height="72.333333333333329"/>
                                                             <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                                                            <state key="normal" image="Audio"/>
+                                                            <state key="normal" image="audio-nat"/>
                                                             <connections>
                                                                 <action selector="playAudioPressed:" destination="IPO-2W-CTR" eventType="touchUpInside" id="Ryq-YL-O3K"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pTh-16-GT2" userLabel="Video">
-                                                            <rect key="frame" x="297.66666666666669" y="18.666666666666671" width="40.333333333333314" height="39"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="40.200000000000003" id="65M-SU-zjD"/>
-                                                                <constraint firstAttribute="height" constant="39" id="HE8-Fn-Ndg"/>
-                                                            </constraints>
+                                                            <rect key="frame" x="267.33333333333331" y="1" width="70.666666666666686" height="74.333333333333329"/>
                                                             <inset key="contentEdgeInsets" minX="5" minY="11" maxX="5" maxY="11"/>
-                                                            <state key="normal" image="Video"/>
+                                                            <state key="normal" image="video-nat"/>
                                                             <connections>
                                                                 <action selector="playVideoPressed:" destination="IPO-2W-CTR" eventType="touchUpInside" id="kfU-l2-wxm"/>
                                                             </connections>
                                                         </button>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YE4-qK-Pnh" customClass="JBProgressBar" customModule="Jabrutouch" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="72" width="348" height="4"/>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="4" id="cIa-zT-1sC"/>
+                                                            </constraints>
+                                                        </view>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <accessibility key="accessibilityConfiguration" identifier="Cell View Content"/>
@@ -221,7 +224,10 @@
                                                         <constraint firstAttribute="height" constant="76" id="9oP-YD-Z4t"/>
                                                         <constraint firstItem="ZQv-Uz-0ue" firstAttribute="leading" secondItem="6IX-7g-KOM" secondAttribute="trailing" constant="5" id="F6Y-bd-pjZ"/>
                                                         <constraint firstItem="6IX-7g-KOM" firstAttribute="leading" secondItem="YtL-SC-a2e" secondAttribute="trailing" constant="5" id="KXz-7c-ygz"/>
+                                                        <constraint firstAttribute="trailing" secondItem="YE4-qK-Pnh" secondAttribute="trailing" id="LqP-lz-OLR"/>
+                                                        <constraint firstAttribute="bottom" secondItem="YE4-qK-Pnh" secondAttribute="bottom" id="Mxd-7p-Rlt"/>
                                                         <constraint firstAttribute="trailing" secondItem="pTh-16-GT2" secondAttribute="trailing" constant="10" id="UNp-GN-7lF"/>
+                                                        <constraint firstItem="YE4-qK-Pnh" firstAttribute="leading" secondItem="tys-3p-kx8" secondAttribute="leading" id="XMn-H7-HUR"/>
                                                         <constraint firstItem="YtL-SC-a2e" firstAttribute="centerY" secondItem="tys-3p-kx8" secondAttribute="centerY" id="Zgv-GJ-gS8"/>
                                                         <constraint firstItem="pTh-16-GT2" firstAttribute="leading" secondItem="jyb-sK-pGD" secondAttribute="trailing" constant="15" id="dnM-pd-3qW"/>
                                                         <constraint firstItem="6IX-7g-KOM" firstAttribute="centerY" secondItem="YtL-SC-a2e" secondAttribute="centerY" id="hsq-HW-E4h"/>
@@ -243,23 +249,29 @@
                                                 <constraint firstItem="QP1-7F-oEE" firstAttribute="width" secondItem="tgY-Hl-LHG" secondAttribute="width" id="0o1-6K-ngb"/>
                                                 <constraint firstItem="tys-3p-kx8" firstAttribute="leading" secondItem="tgY-Hl-LHG" secondAttribute="leading" constant="21" id="8QL-hp-Qtb"/>
                                                 <constraint firstItem="tys-3p-kx8" firstAttribute="top" secondItem="tgY-Hl-LHG" secondAttribute="top" id="9S2-KG-cVf"/>
+                                                <constraint firstItem="hiA-KJ-fsk" firstAttribute="height" secondItem="tys-3p-kx8" secondAttribute="height" id="COO-ft-J0r"/>
+                                                <constraint firstItem="hiA-KJ-fsk" firstAttribute="centerX" secondItem="tys-3p-kx8" secondAttribute="centerX" id="DnP-57-1Qd"/>
                                                 <constraint firstAttribute="bottom" secondItem="QP1-7F-oEE" secondAttribute="bottom" id="G1m-yZ-EVa"/>
                                                 <constraint firstItem="QP1-7F-oEE" firstAttribute="top" secondItem="tys-3p-kx8" secondAttribute="bottom" id="J23-T7-3kp"/>
+                                                <constraint firstItem="hiA-KJ-fsk" firstAttribute="width" secondItem="tys-3p-kx8" secondAttribute="width" id="PsB-Vp-w8G"/>
                                                 <constraint firstAttribute="trailing" secondItem="fJy-Q9-W6e" secondAttribute="trailing" id="QcT-W5-8Cc"/>
                                                 <constraint firstItem="fJy-Q9-W6e" firstAttribute="centerY" secondItem="tys-3p-kx8" secondAttribute="centerY" id="ZDW-N6-34h"/>
                                                 <constraint firstItem="QP1-7F-oEE" firstAttribute="centerX" secondItem="tgY-Hl-LHG" secondAttribute="centerX" id="n7a-pY-uax"/>
                                                 <constraint firstAttribute="trailing" secondItem="tys-3p-kx8" secondAttribute="trailing" constant="45" id="uUz-tN-R8v"/>
+                                                <constraint firstItem="hiA-KJ-fsk" firstAttribute="centerY" secondItem="tys-3p-kx8" secondAttribute="centerY" id="vG6-is-DlH"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="audioButton" destination="jyb-sK-pGD" id="pSB-gC-KhJ"/>
                                             <outlet property="book" destination="YtL-SC-a2e" id="J2K-qm-Grn"/>
+                                            <outlet property="cellShadowView" destination="hiA-KJ-fsk" id="vwM-Vr-5uO"/>
                                             <outlet property="cellTrailingConstraint" destination="uUz-tN-R8v" id="6vn-zw-GZM"/>
                                             <outlet property="cellView" destination="tys-3p-kx8" id="Xq4-eI-fW7"/>
                                             <outlet property="chapter" destination="6IX-7g-KOM" id="z2F-SI-1Z0"/>
                                             <outlet property="deleteButton" destination="fJy-Q9-W6e" id="QFK-et-KoK"/>
                                             <outlet property="number" destination="ZQv-Uz-0ue" id="Akp-Fb-MoG"/>
+                                            <outlet property="progressBar" destination="YE4-qK-Pnh" id="hMa-40-e24"/>
                                             <outlet property="videoButton" destination="pTh-16-GT2" id="9HY-6G-pPD"/>
                                         </connections>
                                     </tableViewCell>
@@ -277,13 +289,13 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="89"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1jW-un-djR">
+                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1jW-un-djR">
                                                     <rect key="frame" x="21" y="0.0" width="348" height="76"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shabbat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y4d-u8-PqE">
                                                             <rect key="frame" x="26.000000000000007" y="24" width="92.666666666666686" height="28"/>
                                                             <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="24"/>
-                                                            <nil key="textColor"/>
+                                                            <color key="textColor" red="0.17399999999999999" green="0.17000000000000001" blue="0.33800000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xBH-Gp-bmk">
@@ -299,33 +311,33 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="efs-vY-7eU" userLabel="Audio">
-                                                            <rect key="frame" x="241.66666666666669" y="17" width="41" height="42"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="41" id="Kon-3X-it9"/>
-                                                                <constraint firstAttribute="height" constant="42.200000000000003" id="Rvu-Ca-w0A"/>
-                                                            </constraints>
+                                                            <rect key="frame" x="171.66666666666666" y="2" width="80.666666666666657" height="72.333333333333329"/>
                                                             <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                                                            <state key="normal" image="Audio"/>
+                                                            <state key="normal" image="audio-nat"/>
                                                             <connections>
                                                                 <action selector="playAudioPressed:" destination="7dV-xT-Hbu" eventType="touchUpInside" id="q9J-1w-PYg"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gCk-Wa-Bj7" userLabel="Video">
-                                                            <rect key="frame" x="297.66666666666669" y="18.666666666666671" width="40.333333333333314" height="39"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="39" id="FIe-8a-xMn"/>
-                                                                <constraint firstAttribute="width" constant="40.200000000000003" id="z93-wS-U6f"/>
-                                                            </constraints>
+                                                            <rect key="frame" x="267.33333333333331" y="1" width="70.666666666666686" height="74.333333333333329"/>
                                                             <inset key="contentEdgeInsets" minX="5" minY="11" maxX="5" maxY="11"/>
-                                                            <state key="normal" image="Video"/>
+                                                            <state key="normal" image="video-nat"/>
                                                             <connections>
                                                                 <action selector="playVideoPressed:" destination="7dV-xT-Hbu" eventType="touchUpInside" id="0aW-zi-96X"/>
                                                             </connections>
                                                         </button>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lr4-Mo-fWL" customClass="JBProgressBar" customModule="Jabrutouch" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="72" width="348" height="4"/>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="4" id="spP-bX-ALl"/>
+                                                            </constraints>
+                                                        </view>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <accessibility key="accessibilityConfiguration" identifier="Cell View Content"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="Lr4-Mo-fWL" secondAttribute="trailing" id="1a0-jp-t1y"/>
                                                         <constraint firstAttribute="trailing" secondItem="gCk-Wa-Bj7" secondAttribute="trailing" constant="10" id="6x1-1b-uxy"/>
                                                         <constraint firstItem="xBH-Gp-bmk" firstAttribute="leading" secondItem="y4d-u8-PqE" secondAttribute="trailing" constant="5" id="ADJ-CS-pBm"/>
                                                         <constraint firstItem="efs-vY-7eU" firstAttribute="centerY" secondItem="1jW-un-djR" secondAttribute="centerY" id="KHk-bD-PXI"/>
@@ -335,8 +347,10 @@
                                                         <constraint firstItem="gCk-Wa-Bj7" firstAttribute="centerY" secondItem="1jW-un-djR" secondAttribute="centerY" id="cWk-GX-aG3"/>
                                                         <constraint firstItem="xBH-Gp-bmk" firstAttribute="centerY" secondItem="y4d-u8-PqE" secondAttribute="centerY" id="ehX-ym-ZiH"/>
                                                         <constraint firstItem="y4d-u8-PqE" firstAttribute="leading" secondItem="1jW-un-djR" secondAttribute="leading" constant="26" id="lOK-jq-lCL"/>
+                                                        <constraint firstAttribute="bottom" secondItem="Lr4-Mo-fWL" secondAttribute="bottom" id="oxY-iX-IOi"/>
                                                         <constraint firstItem="gCk-Wa-Bj7" firstAttribute="leading" secondItem="efs-vY-7eU" secondAttribute="trailing" constant="15" id="ute-q9-PXo"/>
                                                         <constraint firstItem="DGe-9V-cpb" firstAttribute="leading" secondItem="xBH-Gp-bmk" secondAttribute="trailing" constant="5" id="vxJ-tM-h8L"/>
+                                                        <constraint firstItem="Lr4-Mo-fWL" firstAttribute="leading" secondItem="1jW-un-djR" secondAttribute="leading" id="xCw-Cn-HWn"/>
                                                     </constraints>
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ebl-Bk-flN" userLabel="Delete">
@@ -381,6 +395,7 @@
                                             <outlet property="chapter" destination="xBH-Gp-bmk" id="zLS-ru-qTi"/>
                                             <outlet property="deleteButton" destination="ebl-Bk-flN" id="VIC-N7-eNB"/>
                                             <outlet property="number" destination="DGe-9V-cpb" id="hPa-8w-gXn"/>
+                                            <outlet property="progressBar" destination="Lr4-Mo-fWL" id="pGQ-Cv-0MT"/>
                                             <outlet property="videoButton" destination="gCk-Wa-Bj7" id="mMm-vR-aAa"/>
                                         </connections>
                                     </tableViewCell>
@@ -544,11 +559,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Audio" width="15.666666984558105" height="16.333333969116211"/>
         <image name="Books" width="218.33332824707031" height="161.33332824707031"/>
         <image name="GrayUpArrow" width="36.333332061767578" height="15"/>
         <image name="LeftArrow" width="27.666666030883789" height="19.333333969116211"/>
-        <image name="Video" width="21.666666030883789" height="12.666666984558105"/>
         <image name="X" width="15" height="15.666666984558105"/>
+        <image name="audio-nat" width="60.666667938232422" height="52.333332061767578"/>
+        <image name="video-nat" width="60.666667938232422" height="52.333332061767578"/>
     </resources>
 </document>

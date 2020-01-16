@@ -23,6 +23,14 @@
 "dontHaveAccount" = "Don't have account? Sign up";
 "forgotPassword" = "Forgot Password?";
 
+"forgotPasswordText" = "Send password recovery options to your email:";
+"sendNow" = "SEND NOW";
+"forgotPasswordTitle" = "Forgot Password?";
+"forgotPasswordErrorMessage" = "User doesn't exist in system, you may be registerd on the site, you must also register separatly in the app";
+"forgotPasswordSuccessMessage" = "Acabamos de enviarte una nueva contraseña al siguiente e-mail:";
+"forgotPasswordSuccessTitle" = "Email Sent";
+"registerButtonTitle" = "Register";
+
 "main" = "Main";
 "downloads" = "Downloads";
 "gemara" = "Gemara";
@@ -47,6 +55,7 @@
 "emailAddress" = "Email address";
 "alreadyHaveAnAccountSignIn" = "Already have an account? Sign in";
 
+"signInCaps" = "SIGN IN";
 "signInTitle" = "Sign in";
 "signIn" = "Sign in";
 "signUp" = "Sign up";
