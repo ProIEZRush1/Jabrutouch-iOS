@@ -110,7 +110,7 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
     }
 
     //============================================================
-    // MARK: - tabel view
+    // MARK: - table view
     //============================================================
     
     func numberOfSections(in tableView: UITableView) -> Int {
