@@ -44,6 +44,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         CoreDataManager.shared.delegate = self
+        CoreDataManager.shared.setChatReadById(chatId: currentChat!.chatId, status: true)
         self.chatControlsView.delegate = self
         MessagesRepository.shared.getAllMessagesFromDB(chatId: currentChat!.chatId)
         (self.messagesArray,self.dates) = self.groupArrayByDate(messages: MessagesRepository.shared.messages)
@@ -71,6 +72,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     override func viewDidLayoutSubviews() {
+        
         self.tableView.scrollToRow(at: IndexPath(
             row: self.messagesArray[self.messagesArray.count-1].count-1,
             section: self.messagesArray.count-1 ), at: UITableView.ScrollPosition.bottom, animated: false)
@@ -109,7 +111,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     fileprivate func raiseScreenIfNeeded(_ keyboardSize: CGFloat, _ duration: Double) {
         UIView.animate(withDuration: duration) {
-            print("contentOffset: ", self.tableView.contentOffset.y)
             self.tableView.contentInset.bottom = keyboardSize
             self.tableView.contentOffset.y += keyboardSize-70
             self.tableView.layoutIfNeeded()
@@ -342,7 +343,7 @@ extension ChatViewController: ChatControlsViewDelegate, MessagesRepositoryDelega
                                                   messageType: 1,
                                                   toUser: chat.fromUser,
                                                   chatId: chat.chatId, completion:  { (resulte) in
-                                                    print(resulte)
+                                                    print("")
             })
             
             if let createMessage = JTMessage(values: [

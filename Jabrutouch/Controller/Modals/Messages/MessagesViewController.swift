@@ -109,13 +109,12 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
         cell.timeLabel.text = self.getTime(lastMessageTime: chatsArray[indexPath.row].lastMessageTime)
         cell.groupName.text = chatsArray[indexPath.row].title
         cell.message.text = chatsArray[indexPath.row].lastMessage
-
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        CoreDataManager.shared.setChatReadById(chatId: chatsArray[indexPath.row].chatId, status: true)
         performSegue(withIdentifier: "openChat", sender: indexPath)
     
     }

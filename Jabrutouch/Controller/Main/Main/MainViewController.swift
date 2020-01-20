@@ -53,6 +53,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     @IBOutlet weak private var menuButton: UIButton!
     @IBOutlet weak private var titleLabel: UILabel!
     @IBOutlet weak private var messagesButton: UIButton!
+    @IBOutlet weak private var unReadedLable: UILabel!
     
     // Welcome Views
     @IBOutlet weak var welcomeLabel: UILabel!
@@ -110,8 +111,10 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.roundCorners()
         self.setShadows()
         self.setConstraints()
+        CoreDataManager.shared.delegate = self
         UserDefaultsProvider.shared.notFirstTime = true
         self.setButtonsBackground()
+//        self.setCornerRadius()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -119,12 +122,25 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.setTodaysDafProgressBar()
         self.lessonWatched = UserDefaultsProvider.shared.lessonWatched
         self.setContent()
+        self.setCornerRadius()
         setView()
     }
     
     //========================================
     // MARK: - Setup
     //========================================
+    private func setCornerRadius(){
+        self.unReadedLable.layer.cornerRadius = self.unReadedLable.bounds.height / 2
+        self.unReadedLable.clipsToBounds = true
+        let unReded  = CoreDataManager.shared.getUnReadedChats()
+        if unReded > 0  {
+            self.unReadedLable.text = "\(unReded)"
+        }else{
+            self.unReadedLable.isHidden = true
+        }
+    }
+    
+    
     private func setTodaysDafProgressBar() {
         let todaysDaf = DafYomiRepository.shared.getTodaysDaf()
         guard let data = ContentRepository.shared.getMasechetByName(todaysDaf.masechet) else { return }
@@ -712,4 +728,16 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
             ContentRepository.shared.lessonWatched(gemaraLesson, masechetName: _masechetName, masechetId: "\(masechetId)", sederId: sederId)
         }
     }
+}
+
+extension MainViewController: MessagesRepositoryDelegate{
+    func didReciveNewMessage() {
+          self.setCornerRadius()
+    }
+    
+    func didSendMessage() {
+        
+    }
+    
+  
 }

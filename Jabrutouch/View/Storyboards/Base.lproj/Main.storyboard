@@ -93,8 +93,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9lA-yo-5Ys">
                                         <rect key="frame" x="0.0" y="0.0" width="362.5" height="55"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TON-Dx-FSb">
-                                                <rect key="frame" x="0.0" y="36" width="362.5" height="55"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TON-Dx-FSb">
+                                                <rect key="frame" x="0.0" y="0.0" width="362.5" height="55"/>
                                                 <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="32"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -470,18 +470,44 @@
                                                 </connections>
                                             </button>
                                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Jabrutouch" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9mK-Ep-QyN">
-                                                <rect key="frame" x="73.5" y="23.5" width="277.5" height="33"/>
+                                                <rect key="frame" x="73.5" y="23.5" width="290" height="33"/>
                                                 <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="28"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wjw-gw-FoJ">
-                                                <rect key="frame" x="359" y="5.5" width="35" height="69"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iRg-k2-yuo">
+                                                <rect key="frame" x="363.5" y="-6" width="59.5" height="68"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="messages" translatesAutoresizingMaskIntoConstraints="NO" id="pHF-LA-ZC2">
+                                                        <rect key="frame" x="0.0" y="25" width="34.5" height="43"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="olO-00-UeO">
+                                                        <rect key="frame" x="18" y="20" width="25" height="25"/>
+                                                        <color key="backgroundColor" red="0.1764705882" green="0.16862745100000001" blue="0.66274509800000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="25" id="Frh-Uy-rEg"/>
+                                                            <constraint firstAttribute="width" constant="25" id="FtO-Nw-Esi"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="16"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="35" id="qwY-CN-yBM"/>
+                                                    <constraint firstAttribute="bottom" secondItem="pHF-LA-ZC2" secondAttribute="bottom" id="1Ng-L4-1Wf"/>
+                                                    <constraint firstItem="olO-00-UeO" firstAttribute="top" secondItem="iRg-k2-yuo" secondAttribute="top" constant="20" symbolic="YES" id="1dA-jU-8xU"/>
+                                                    <constraint firstItem="pHF-LA-ZC2" firstAttribute="leading" secondItem="iRg-k2-yuo" secondAttribute="leading" id="3sY-HZ-Q2D"/>
+                                                    <constraint firstItem="pHF-LA-ZC2" firstAttribute="top" secondItem="iRg-k2-yuo" secondAttribute="top" constant="25" id="Rxu-Ke-LeO"/>
+                                                    <constraint firstAttribute="trailing" secondItem="olO-00-UeO" secondAttribute="trailing" constant="16.5" id="bSl-TI-fn6"/>
+                                                    <constraint firstItem="olO-00-UeO" firstAttribute="leading" secondItem="iRg-k2-yuo" secondAttribute="leading" constant="18" id="bbQ-U7-mpm"/>
+                                                    <constraint firstAttribute="trailing" secondItem="pHF-LA-ZC2" secondAttribute="trailing" constant="25" id="rdy-eP-bhc"/>
                                                 </constraints>
+                                            </view>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wjw-gw-FoJ">
+                                                <rect key="frame" x="363.5" y="-6" width="59.5" height="68"/>
+                                                <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="16"/>
                                                 <color key="tintColor" red="0.1764705882" green="0.16862745100000001" blue="0.66274509800000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                <state key="normal" image="messages"/>
                                                 <connections>
                                                     <action selector="chatPressed:" destination="hlJ-VD-Lqd" eventType="touchUpInside" id="2V9-w4-3Z4"/>
                                                 </connections>
@@ -492,15 +518,20 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="80" id="1Gh-vu-VXY"/>
                                             <constraint firstItem="OI8-sg-Y0L" firstAttribute="centerY" secondItem="Wg6-HG-Y9Y" secondAttribute="centerY" id="3yt-IY-CSb"/>
-                                            <constraint firstItem="wjw-gw-FoJ" firstAttribute="centerY" secondItem="Wg6-HG-Y9Y" secondAttribute="centerY" id="6b0-xN-7gF"/>
                                             <constraint firstItem="qTc-r8-vVx" firstAttribute="leading" secondItem="OI8-sg-Y0L" secondAttribute="trailing" id="AIU-Pv-1wG"/>
-                                            <constraint firstAttribute="trailing" secondItem="wjw-gw-FoJ" secondAttribute="trailing" constant="20" id="D2a-vZ-FGs"/>
-                                            <constraint firstItem="wjw-gw-FoJ" firstAttribute="leading" secondItem="9mK-Ep-QyN" secondAttribute="trailing" constant="8" id="Xle-r6-TRb"/>
+                                            <constraint firstItem="iRg-k2-yuo" firstAttribute="top" secondItem="Wg6-HG-Y9Y" secondAttribute="top" constant="-6" id="Bhs-B6-Knx"/>
+                                            <constraint firstItem="wjw-gw-FoJ" firstAttribute="trailing" secondItem="iRg-k2-yuo" secondAttribute="trailing" id="HUH-6P-vAV"/>
+                                            <constraint firstItem="wjw-gw-FoJ" firstAttribute="bottom" secondItem="iRg-k2-yuo" secondAttribute="bottom" id="IBO-Bo-uq6"/>
+                                            <constraint firstItem="wjw-gw-FoJ" firstAttribute="top" secondItem="iRg-k2-yuo" secondAttribute="top" id="UH4-pe-eUX"/>
+                                            <constraint firstAttribute="trailing" secondItem="iRg-k2-yuo" secondAttribute="trailing" constant="-9" id="Xtl-CL-ej6"/>
+                                            <constraint firstAttribute="bottom" secondItem="iRg-k2-yuo" secondAttribute="bottom" constant="18" id="ddf-JW-XvK"/>
                                             <constraint firstItem="9mK-Ep-QyN" firstAttribute="leading" secondItem="OI8-sg-Y0L" secondAttribute="trailing" id="olW-Tf-YPK"/>
+                                            <constraint firstItem="iRg-k2-yuo" firstAttribute="leading" secondItem="9mK-Ep-QyN" secondAttribute="trailing" id="p9b-HL-BZ9"/>
                                             <constraint firstItem="qTc-r8-vVx" firstAttribute="top" secondItem="Wg6-HG-Y9Y" secondAttribute="top" constant="23" id="pw8-iq-S9s"/>
                                             <constraint firstItem="OI8-sg-Y0L" firstAttribute="leading" secondItem="Wg6-HG-Y9Y" secondAttribute="leading" id="q1z-QY-PNo"/>
                                             <constraint firstItem="9mK-Ep-QyN" firstAttribute="centerY" secondItem="Wg6-HG-Y9Y" secondAttribute="centerY" id="uvA-JS-gGu"/>
                                             <constraint firstAttribute="bottom" secondItem="qTc-r8-vVx" secondAttribute="bottom" constant="23" id="xW3-zN-owX"/>
+                                            <constraint firstItem="wjw-gw-FoJ" firstAttribute="leading" secondItem="iRg-k2-yuo" secondAttribute="leading" id="y7u-H8-8nU"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to the new Jabrutouch!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3yT-kT-SQl">
@@ -1164,6 +1195,7 @@
                         <outlet property="todaysDafToWelcomeConstraint" destination="Ws7-NO-XTz" id="ifV-Yh-jaU"/>
                         <outlet property="todaysDafVideo" destination="hMJ-6n-DFC" id="onb-IB-eNN"/>
                         <outlet property="todaysDateLabel" destination="ivd-wy-Oxn" id="H9h-VL-SJi"/>
+                        <outlet property="unReadedLable" destination="olO-00-UeO" id="icd-md-Qmn"/>
                         <outlet property="welcomeImage" destination="nTO-Sk-Ujz" id="jz3-eN-WNr"/>
                         <outlet property="welcomeLabel" destination="3yT-kT-SQl" id="3JJ-Zv-qwh"/>
                         <segue destination="Jhr-px-5v1" kind="presentation" identifier="presentMenu" animates="NO" modalPresentationStyle="overFullScreen" id="QyC-qE-FwQ"/>
