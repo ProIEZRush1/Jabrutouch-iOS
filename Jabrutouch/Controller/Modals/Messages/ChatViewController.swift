@@ -43,40 +43,42 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        CoreDataManager.shared.delegate = self
         CoreDataManager.shared.setChatReadById(chatId: currentChat!.chatId, status: true)
         self.chatControlsView.delegate = self
         MessagesRepository.shared.getAllMessagesFromDB(chatId: currentChat!.chatId)
-        (self.messagesArray,self.dates) = self.groupArrayByDate(messages: MessagesRepository.shared.messages)
+        (self.messagesArray, self.dates) = self.groupArrayByDate(messages: MessagesRepository.shared.messages)
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.titleLabel.text = currentChat?.title
         self.roundCorners()
         self.user = UserRepository.shared.getCurrentUser()
         
-        
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
+        CoreDataManager.shared.delegate = self
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
     }
-    override func viewDidAppear(_ animated: Bool) {
-        //        self.tableView.scrollToRow(at: IndexPath(row: self.messagesArray.count-1, section: 0), at: UITableView.ScrollPosition.bottom, animated: false)
-        self.tableView.scrollToRow(at: IndexPath(
-            row: self.messagesArray[self.messagesArray.count-1].count-1,
-            section: self.messagesArray.count-1 ), at: UITableView.ScrollPosition.bottom, animated: false)
-        
-    }
+//    override func viewDidAppear(_ animated: Bool) {
+//        //        self.tableView.scrollToRow(at: IndexPath(row: self.messagesArray.count-1, section: 0), at: UITableView.ScrollPosition.bottom, animated: false)
+//        self.tableView.scrollToRow(at: IndexPath(
+//            row: self.messagesArray[self.messagesArray.count-1].count-1,
+//            section: self.messagesArray.count-1 ), at: UITableView.ScrollPosition.bottom, animated: false)
+//        
+//    }
+//    
     
     override func viewDidLayoutSubviews() {
         
-        self.tableView.scrollToRow(at: IndexPath(
-            row: self.messagesArray[self.messagesArray.count-1].count-1,
-            section: self.messagesArray.count-1 ), at: UITableView.ScrollPosition.bottom, animated: false)
-        
+//        self.tableView.scrollToRow(at: IndexPath(
+//            row: self.messagesArray[self.messagesArray.count-1].count-1,
+//            section: self.messagesArray.count-1 ), at: UITableView.ScrollPosition.bottom, animated: false)
+        let (row, section) = currentPosition(position: currentChat?.unreadMessages)
+        self.tableView.scrollToRow(at: IndexPath(row:row , section: section), at: UITableView.ScrollPosition.bottom, animated: false)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -135,6 +137,25 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     private func roundCorners() {
         
+    }
+    
+    private  func currentPosition(position: Int?)-> (Int, Int){
+        if position != nil && position != 0 {
+            var counter = 0
+            var currentArray = self.messagesArray.count
+            for arr in messagesArray.reversed(){
+                currentArray -= 1
+                var index = arr.count
+                for i in arr.reversed(){
+                    counter += 1
+                    index -= 1
+                    if counter == position{
+                        return (index, currentArray)
+                    }
+                }
+            }
+        }
+        return (self.messagesArray[self.messagesArray.count-1].count-1, self.messagesArray.count-1)
     }
     
     private func getViewHeight(_ text: String) -> CGFloat {
@@ -292,7 +313,9 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let text = self.messagesArray[indexPath.section][indexPath.row].message
         let height = self.getViewHeight(text)
-        return height + 90    }
+        return height + 90
+        
+    }
     
     
     //========================================

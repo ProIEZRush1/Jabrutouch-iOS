@@ -111,7 +111,6 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.roundCorners()
         self.setShadows()
         self.setConstraints()
-        CoreDataManager.shared.delegate = self
         UserDefaultsProvider.shared.notFirstTime = true
         self.setButtonsBackground()
 //        self.setCornerRadius()
@@ -119,6 +118,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        CoreDataManager.shared.delegate = self
         self.setTodaysDafProgressBar()
         self.lessonWatched = UserDefaultsProvider.shared.lessonWatched
         self.setContent()

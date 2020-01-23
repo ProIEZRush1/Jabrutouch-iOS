@@ -39,11 +39,11 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
         self.chatsArray = CoreDataManager.shared.getAllChats()
 
 //        self.chatsArray = MessagesRepository.shared.allChats
-        CoreDataManager.shared.delegate = self
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        CoreDataManager.shared.delegate = self
 //        self.tableView.reloadData()
         self.setTableView()
         
@@ -70,30 +70,22 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
                }
     }
     
-    func getTime(lastMessageTime: Date)-> String {
-
-        let timeStemp = lastMessageTime.timeIntervalSince1970
-        let toDayAgain = Date(timeIntervalSince1970: timeStemp)
-        let dateFormatter = DateFormatter()
-        if self.checkDiffDate(day: toDayAgain) > 1 {
-            dateFormatter.dateFormat = "MMM d"
-            
-        } else if self.checkDiffDate(day: toDayAgain) == 1{
-            return "Yesterday"
-        } else {
-            dateFormatter.dateFormat = "HH:mm"
-        }
-        let string = dateFormatter.string(from: toDayAgain)
-        
-        return string
-
-    }
     
-    func checkDiffDate(day: Date) -> Int{
-        
-        let toDay = Date()
-        let diff = Calendar.current.dateComponents([.day], from: day, to: toDay)
-        return diff.day ?? 0
+    func getTime(lastMessageTime: Date)-> String{
+        let calander = Calendar.current
+        let dateFormatter = DateFormatter()
+        var date: String
+        if calander.isDateInToday(lastMessageTime){
+           dateFormatter.dateFormat = "HH:mm"
+           date = dateFormatter.string(from: lastMessageTime)
+        }else if calander.isDateInYesterday(lastMessageTime){
+            date = "AYER"
+        }else{
+//            dateFormatter.dateFormat = calander.component(.year, from: lastMessageTime) == calander.component(.year, from: Date()) ? "MMM d" : "MMM d, yyyy"
+            dateFormatter.dateFormat = "MMM d"
+            date = dateFormatter.string(from: lastMessageTime)
+        }
+        return date
     }
     
     //========================================
@@ -109,12 +101,17 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
         cell.timeLabel.text = self.getTime(lastMessageTime: chatsArray[indexPath.row].lastMessageTime)
         cell.groupName.text = chatsArray[indexPath.row].title
         cell.message.text = chatsArray[indexPath.row].lastMessage
+        if chatsArray[indexPath.row].read{
+            cell.timeLabel.font = Fonts.boldFont(size: 15)
+            cell.groupName.font = Fonts.heavyFont(size: 17)
+            cell.message.font = Fonts.boldFont(size: 15)
+        }
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        CoreDataManager.shared.setChatReadById(chatId: chatsArray[indexPath.row].chatId, status: true)
+//        CoreDataManager.shared.setChatReadById(chatId: chatsArray[indexPath.row].chatId, status: true)
         performSegue(withIdentifier: "openChat", sender: indexPath)
     
     }

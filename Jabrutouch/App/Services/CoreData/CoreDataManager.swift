@@ -166,7 +166,7 @@ class CoreDataManager {
     
     func getUnReadedChats() ->Int {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Chat")
-        let predicate = NSPredicate(format: "read = %d", false)
+        let predicate = NSPredicate(format: "unreadMessages > %i",0)
         request.predicate = predicate
         request.returnsObjectsAsFaults = false
         do {
