@@ -426,7 +426,8 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
             self.donationsImageView.alpha = 1.0
             self.donationsLabel.alpha = 1.0
         }
-        self.presentDonationsViewController()
+//        self.presentDonationsViewController()
+        self.presentOldDonations()
     }
     
     @IBAction func donationsButtonTouchedUpOutside(_ sender: UIButton) {
@@ -506,6 +507,20 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     
     private func presentMessages() {
         self.performSegue(withIdentifier: "toMessages", sender: self)
+    }
+    
+    private func presentOldDonations() {
+        if self.currentPresentedModal != nil && self.currentPresentedModal != .donations {
+            self.modalsPresentingVC.dismiss(animated: true) {
+                self.modalsPresentingVC.performSegue(withIdentifier: "presentOldDonation", sender: nil)
+            }
+        }
+        else if self.currentPresentedModal == nil{
+            self.view.bringSubviewToFront(self.modalsContainer)
+            self.modalsPresentingVC.performSegue(withIdentifier: "presentOldDonation", sender: nil)
+        }
+        self.currentPresentedModal = .donations
+        
     }
     
     private func presentDownloadsViewController() {
@@ -645,7 +660,8 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
         case .messageCenter:
             presentMessages()
         case .donationsCenter:
-            presentDonationsViewController()
+//            presentDonationsViewController()
+            presentOldDonations()
         default:
             presentInDevelopmentAlert()
         }

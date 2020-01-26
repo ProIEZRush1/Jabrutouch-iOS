@@ -195,6 +195,7 @@
 		839E1E7C238588C100578C60 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839E1E7B238588C100578C60 /* UserRepository.swift */; };
 		83A936AB23D9D53A007BA207 /* Donations.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83A936AA23D9D53A007BA207 /* Donations.storyboard */; };
 		83A936AD23D9E8D8007BA207 /* DonationsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A936AC23D9E8D8007BA207 /* DonationsNavigationController.swift */; };
+		83A936AF23DDEA93007BA207 /* OldDonationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A936AE23DDEA93007BA207 /* OldDonationsViewController.swift */; };
 		83CCB12123783F6100C86450 /* JTMasechetDownloadedGemaraLessons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB12023783F6100C86450 /* JTMasechetDownloadedGemaraLessons.swift */; };
 		83CCB1232379EEB700C86450 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB1222379EEB700C86450 /* EditProfileViewController.swift */; };
 		83CCB127237C8D6F00C86450 /* EditPasswordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB126237C8D6F00C86450 /* EditPasswordCell.swift */; };
@@ -424,6 +425,7 @@
 		839E1E7B238588C100578C60 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		83A936AA23D9D53A007BA207 /* Donations.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Donations.storyboard; sourceTree = "<group>"; };
 		83A936AC23D9E8D8007BA207 /* DonationsNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DonationsNavigationController.swift; path = Jabrutouch/View/Storyboards/DonationsNavigationController.swift; sourceTree = SOURCE_ROOT; };
+		83A936AE23DDEA93007BA207 /* OldDonationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OldDonationsViewController.swift; path = Jabrutouch/View/Storyboards/OldDonationsViewController.swift; sourceTree = SOURCE_ROOT; };
 		83CCB12023783F6100C86450 /* JTMasechetDownloadedGemaraLessons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTMasechetDownloadedGemaraLessons.swift; sourceTree = "<group>"; };
 		83CCB1222379EEB700C86450 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		83CCB124237C0F9E00C86450 /* JTDonor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTDonor.swift; sourceTree = "<group>"; };
@@ -1112,6 +1114,7 @@
 			children = (
 				8342BA78237302AE00C3239C /* DonationsViewController.swift */,
 				83A936AC23D9E8D8007BA207 /* DonationsNavigationController.swift */,
+				83A936AE23DDEA93007BA207 /* OldDonationsViewController.swift */,
 			);
 			path = Donations;
 			sourceTree = "<group>";
@@ -1504,6 +1507,7 @@
 				2120BE1D22DF273F004854DB /* SignInViewController.swift in Sources */,
 				2120BE2322DF279D004854DB /* ValidateVerificationCodeViewController.swift in Sources */,
 				8342BA6C2370528600C3239C /* Fonts.swift in Sources */,
+				83A936AF23DDEA93007BA207 /* OldDonationsViewController.swift in Sources */,
 				212ECEB62317CD6E005AEB36 /* AudioPlayer.swift in Sources */,
 				8342BA76237301D800C3239C /* ModalsContainerViewController.swift in Sources */,
 				836A883A238DB1CF00F68539 /* JTVideoPart.swift in Sources */,
