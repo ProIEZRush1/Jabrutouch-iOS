@@ -193,7 +193,12 @@ class API {
                 // TODO - implement specific error evaluation
                 if serverResponse.errors.count > 0 {
                     let fieldError = serverResponse.errors[0]
-                    completionHandler(.failure(.custom(fieldError.message)))
+                    switch fieldError.message {
+                    case "Invalid token.":
+                        completionHandler(.failure(.invalidToken))
+                    default:
+                        completionHandler(.failure(.custom(fieldError.message)))
+                    }
                 }
                 else {
                     completionHandler(.failure(.unknown))

@@ -97,7 +97,12 @@ class MessagesRepository: NSObject, MessagingDelegate {
             case .success(let response):
                 print("response: ", response)
             case .failure(let error):
-                completion(.failure(error))
+                switch error {
+                case .invalidToken:
+                    self.logOut()
+                default:
+                    completion(.failure(error))
+                }
             }
 
         }
@@ -119,8 +124,12 @@ class MessagesRepository: NSObject, MessagingDelegate {
                     completion(.success(response.chats))
                 }
             case .failure(let error):
-                print(error)
-                completion(.failure(error))
+                switch error {
+                case .invalidToken:
+                    self.logOut()
+                default:
+                    completion(.failure(error))
+                }
             }
         }
     }
@@ -131,6 +140,20 @@ class MessagesRepository: NSObject, MessagingDelegate {
     
     func getAllMessagesFromDB(chatId: Int) {
         self.messages = CoreDataManager.shared.getMessagesByChatId(chatId: chatId)
+    }
+    
+    func logOut() {
+        let titel = "Invalid Token"
+        let message = "You must log in again"
+        let vc = appDelegate.topmostViewController
+        DispatchQueue.main.async {
+        Utils.showAlertMessage(message, title: titel, viewControler: vc!) { (action) in
+            LoginManager.shared.signOut {
+                    let signInViewController = Storyboards.SignIn.signInViewController
+                    appDelegate.setRootViewController(viewController: signInViewController, animated: true)
+                }
+            }
+        }
     }
     
 }
