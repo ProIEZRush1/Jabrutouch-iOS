@@ -193,6 +193,8 @@
 		836A88502396A4E800F68539 /* ForgotPasswordResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836A884F2396A4E800F68539 /* ForgotPasswordResponse.swift */; };
 		839CB4CB2381C91B0086554B /* SelectInterestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839CB4CA2381C91B0086554B /* SelectInterestViewController.swift */; };
 		839E1E7C238588C100578C60 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839E1E7B238588C100578C60 /* UserRepository.swift */; };
+		83A936AB23D9D53A007BA207 /* Donations.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83A936AA23D9D53A007BA207 /* Donations.storyboard */; };
+		83A936AD23D9E8D8007BA207 /* DonationsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A936AC23D9E8D8007BA207 /* DonationsNavigationController.swift */; };
 		83CCB12123783F6100C86450 /* JTMasechetDownloadedGemaraLessons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB12023783F6100C86450 /* JTMasechetDownloadedGemaraLessons.swift */; };
 		83CCB1232379EEB700C86450 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB1222379EEB700C86450 /* EditProfileViewController.swift */; };
 		83CCB127237C8D6F00C86450 /* EditPasswordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB126237C8D6F00C86450 /* EditPasswordCell.swift */; };
@@ -420,6 +422,8 @@
 		836A884F2396A4E800F68539 /* ForgotPasswordResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordResponse.swift; sourceTree = "<group>"; };
 		839CB4CA2381C91B0086554B /* SelectInterestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectInterestViewController.swift; sourceTree = "<group>"; };
 		839E1E7B238588C100578C60 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		83A936AA23D9D53A007BA207 /* Donations.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Donations.storyboard; sourceTree = "<group>"; };
+		83A936AC23D9E8D8007BA207 /* DonationsNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DonationsNavigationController.swift; path = Jabrutouch/View/Storyboards/DonationsNavigationController.swift; sourceTree = SOURCE_ROOT; };
 		83CCB12023783F6100C86450 /* JTMasechetDownloadedGemaraLessons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTMasechetDownloadedGemaraLessons.swift; sourceTree = "<group>"; };
 		83CCB1222379EEB700C86450 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		83CCB124237C0F9E00C86450 /* JTDonor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTDonor.swift; sourceTree = "<group>"; };
@@ -847,6 +851,7 @@
 				836A8844238FD00100F68539 /* Gallery.storyboard */,
 				836A884C23968C8D00F68539 /* ForgotPassword.storyboard */,
 				833E621D23992C2500EC93C7 /* Messages.storyboard */,
+				83A936AA23D9D53A007BA207 /* Donations.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -1106,6 +1111,7 @@
 			isa = PBXGroup;
 			children = (
 				8342BA78237302AE00C3239C /* DonationsViewController.swift */,
+				83A936AC23D9E8D8007BA207 /* DonationsNavigationController.swift */,
 			);
 			path = Donations;
 			sourceTree = "<group>";
@@ -1336,6 +1342,7 @@
 				21678D7122DF2CED007BC74C /* SF-Pro-Text-Ultralight.otf in Resources */,
 				4628E0E423215E1200D963E6 /* DonatedAlert.xib in Resources */,
 				21678D7222DF2CED007BC74C /* SF-Pro-Text-UltralightItalic.otf in Resources */,
+				83A936AB23D9D53A007BA207 /* Donations.storyboard in Resources */,
 				2133C21522DCA5D200F910B9 /* Localizable.strings in Resources */,
 				2133C20E22DCA0BC00F910B9 /* SignIn.storyboard in Resources */,
 				212ECEA8230F36BF005AEB36 /* LessonPlayerViewController.xib in Resources */,
@@ -1535,6 +1542,7 @@
 				2133C22422DDCCD500F910B9 /* JBBarPageIndicator.swift in Sources */,
 				21ED3BCC23042A3C009D8E3D /* JTMishnaChapterItem.swift in Sources */,
 				213196A922F38B3E00B0AF5F /* ResendCodeResponse.swift in Sources */,
+				83A936AD23D9E8D8007BA207 /* DonationsNavigationController.swift in Sources */,
 				213196A622F38B3E00B0AF5F /* ValidateCodeResponse.swift in Sources */,
 				21419CB0230D50CB00145F1F /* AWSS3Provider.swift in Sources */,
 				2126D6E3230404BD00CB501D /* GemaraNavigationController.swift in Sources */,

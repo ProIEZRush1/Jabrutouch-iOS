@@ -38,8 +38,8 @@ class ModalsContainerViewController: UIViewController {
         }
         
         else if segue.identifier == "presentDonations" {
-            let vc = segue.destination as? DonationsViewController
-            vc?.delegate = self.delegate
+            let vc = segue.destination as? DonationsNavigationController
+            vc?.modalDelegate = self.delegate
         }
     }
  

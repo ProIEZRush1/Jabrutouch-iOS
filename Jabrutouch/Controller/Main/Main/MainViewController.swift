@@ -644,6 +644,8 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
             presentAboutUs()
         case .messageCenter:
             presentMessages()
+        case .donationsCenter:
+            presentDonationsViewController()
         default:
             presentInDevelopmentAlert()
         }

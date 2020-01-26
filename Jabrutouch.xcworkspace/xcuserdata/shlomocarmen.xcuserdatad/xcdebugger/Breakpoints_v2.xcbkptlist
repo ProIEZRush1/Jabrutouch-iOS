@@ -232,7 +232,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "351"
             endingLineNumber = "351"
-            landmarkName = "downloadsButtonTouchedUp(_:)"
+            landmarkName = "setIcons(string:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1291,7 +1291,9 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "157"
-            endingLineNumber = "157">
+            endingLineNumber = "157"
+            landmarkName = "showMasechetChapters(indexPath:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1322,8 +1324,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "156"
             endingLineNumber = "156"
-            landmarkName = "MishnaViewController"
-            landmarkType = "3">
+            landmarkName = "showMasechetChapters(indexPath:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1498,7 +1500,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "116"
             endingLineNumber = "116"
-            landmarkName = "getAllMessagesFromDB(chatId:)"
+            landmarkName = "getAllMessages(completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1530,7 +1532,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "30"
             endingLineNumber = "30"
-            landmarkName = "init()"
+            landmarkName = "getMessages()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1547,6 +1549,70 @@
             startingLineNumber = "85"
             endingLineNumber = "85"
             landmarkName = "checkDiffDate(day:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8800F7D5-B116-426D-9D6C-5207A077ADA9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Jabrutouch/Controller/Main/Main/MainViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "569"
+            endingLineNumber = "569"
+            landmarkName = "dismissMainModal()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "8800F7D5-B116-426D-9D6C-5207A077ADA9 - 2c35854ec0dd3bf9"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Jabrutouch.MainViewController.dismissMainModal() -&gt; ()"
+                  moduleName = "Jabrutouch"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shlomocarmen/Projects/jabrutouch_ios/Jabrutouch/Controller/Main/Main/MainViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "569"
+                  endingLineNumber = "569"
+                  offsetFromSymbolStart = "52">
+               </Location>
+               <Location
+                  uuid = "8800F7D5-B116-426D-9D6C-5207A077ADA9 - a18cd91c91b062e5"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in Jabrutouch.MainViewController.dismissMainModal() -&gt; ()"
+                  moduleName = "Jabrutouch"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shlomocarmen/Projects/jabrutouch_ios/Jabrutouch/Controller/Main/Main/MainViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "570"
+                  endingLineNumber = "570"
+                  offsetFromSymbolStart = "52">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BC34F9EB-689A-4A0A-8EB7-727D68666404"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Jabrutouch/Controller/Main/Main/ModalsContainerViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
