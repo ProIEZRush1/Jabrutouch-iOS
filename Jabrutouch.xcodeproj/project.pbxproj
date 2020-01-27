@@ -196,6 +196,7 @@
 		83A936AB23D9D53A007BA207 /* Donations.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83A936AA23D9D53A007BA207 /* Donations.storyboard */; };
 		83A936AD23D9E8D8007BA207 /* DonationsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A936AC23D9E8D8007BA207 /* DonationsNavigationController.swift */; };
 		83A936AF23DDEA93007BA207 /* OldDonationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A936AE23DDEA93007BA207 /* OldDonationsViewController.swift */; };
+		83A936B223DEF8E4007BA207 /* DonorsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A936B123DEF8E4007BA207 /* DonorsCell.swift */; };
 		83CCB12123783F6100C86450 /* JTMasechetDownloadedGemaraLessons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB12023783F6100C86450 /* JTMasechetDownloadedGemaraLessons.swift */; };
 		83CCB1232379EEB700C86450 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB1222379EEB700C86450 /* EditProfileViewController.swift */; };
 		83CCB127237C8D6F00C86450 /* EditPasswordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB126237C8D6F00C86450 /* EditPasswordCell.swift */; };
@@ -426,6 +427,7 @@
 		83A936AA23D9D53A007BA207 /* Donations.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Donations.storyboard; sourceTree = "<group>"; };
 		83A936AC23D9E8D8007BA207 /* DonationsNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DonationsNavigationController.swift; path = Jabrutouch/View/Storyboards/DonationsNavigationController.swift; sourceTree = SOURCE_ROOT; };
 		83A936AE23DDEA93007BA207 /* OldDonationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OldDonationsViewController.swift; path = Jabrutouch/View/Storyboards/OldDonationsViewController.swift; sourceTree = SOURCE_ROOT; };
+		83A936B123DEF8E4007BA207 /* DonorsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonorsCell.swift; sourceTree = "<group>"; };
 		83CCB12023783F6100C86450 /* JTMasechetDownloadedGemaraLessons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTMasechetDownloadedGemaraLessons.swift; sourceTree = "<group>"; };
 		83CCB1222379EEB700C86450 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		83CCB124237C0F9E00C86450 /* JTDonor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTDonor.swift; sourceTree = "<group>"; };
@@ -1112,6 +1114,7 @@
 		8342BA772373029300C3239C /* Donations */ = {
 			isa = PBXGroup;
 			children = (
+				83A936B023DEF8B3007BA207 /* Cells */,
 				8342BA78237302AE00C3239C /* DonationsViewController.swift */,
 				83A936AC23D9E8D8007BA207 /* DonationsNavigationController.swift */,
 				83A936AE23DDEA93007BA207 /* OldDonationsViewController.swift */,
@@ -1153,6 +1156,14 @@
 				83CCB128237DA32D00C86450 /* ForgotPasswordViewController.swift */,
 			);
 			path = ForgotPassword;
+			sourceTree = "<group>";
+		};
+		83A936B023DEF8B3007BA207 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				83A936B123DEF8E4007BA207 /* DonorsCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		9A9C05757DCAA6D93F172828 /* Pods */ = {
@@ -1500,6 +1511,7 @@
 				219BFF2722E50A0A00ABBEE2 /* DownloadsNavigationController.swift in Sources */,
 				2131969C22F38B2E00B0AF5F /* UserDefaultsProvider.swift in Sources */,
 				213016B9232198E800B9DD2B /* PostAnalyticsEventResponse.swift in Sources */,
+				83A936B223DEF8E4007BA207 /* DonorsCell.swift in Sources */,
 				21419CBD230EAF9C00145F1F /* JTMishnaLessonRecord.swift in Sources */,
 				538691482379E8B500CC95B5 /* DonationInformationCell.swift in Sources */,
 				833E622D23A1344A00EC93C7 /* JTChatMessage.swift in Sources */,
