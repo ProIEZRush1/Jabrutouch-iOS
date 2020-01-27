@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DonationsViewController: UIViewController {
+class DonationsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var delegate: MainModalDelegate?
     
@@ -33,6 +33,11 @@ class DonationsViewController: UIViewController {
     // donate view
     @IBOutlet weak var donationMessage: UILabel!
     @IBOutlet weak var donateButton: UIButton!
+    @IBOutlet weak var containerViewTralingConsraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var donorsTableView: UITableView!
+    @IBOutlet weak var historyTableView: UITableView!
+    @IBOutlet weak var donorsTableViewLeadingConsraint: NSLayoutConstraint!
     
     //====================================================
     // MARK: - Properties
@@ -55,10 +60,10 @@ class DonationsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initialGrayUpArrowXCentererdToRecent.isActive = false
-        grayUpArrowXCentererdToRecent = grayUpArrow.centerXAnchor.constraint(equalTo: recentButton.centerXAnchor)
-        grayUpArrowXCentererdToDonors = grayUpArrow.centerXAnchor.constraint(equalTo: donorsButton.centerXAnchor)
-        grayUpArrowXCentererdToHistory = grayUpArrow.centerXAnchor.constraint(equalTo: historyButton.centerXAnchor)
+        
         self.setViewsShadow()
+        self.donorsTableView.delegate = self
+        self.donorsTableView.dataSource = self
        
     }
     
@@ -129,12 +134,29 @@ class DonationsViewController: UIViewController {
         Utils.dropViewShadow(view: headerShadowBasis, shadowColor: headerShadowColor, shadowRadius: 22, shadowOffset: headerShadowOffset)
         
         self.donateButton.layer.cornerRadius = 18
+        
+        grayUpArrowXCentererdToRecent = grayUpArrow.centerXAnchor.constraint(equalTo: recentButton.centerXAnchor)
+        grayUpArrowXCentererdToDonors = grayUpArrow.centerXAnchor.constraint(equalTo: donorsButton.centerXAnchor)
+        grayUpArrowXCentererdToHistory = grayUpArrow.centerXAnchor.constraint(equalTo: historyButton.centerXAnchor)
     }
     
     fileprivate func switchViews() {
         setGrayUpArrowPosition()
         setSelectedPage()
         UIView.animate(withDuration: 0.3) {
+            if self.isDonorSelected {
+//                self.donationsImage.isHidden = true
+//                self.donationMessage.isHidden = true
+//                self.donateButton.isHidden = true
+//                self.noDonationsTitelMessage.isHidden = true
+                self.donorsTableViewLeadingConsraint.constant = -self.view.frame.width
+            } else {
+//                self.donationsImage.isHidden = false
+//                self.donationMessage.isHidden = false
+//                self.donateButton.isHidden = false
+//                self.noDonationsTitelMessage.isHidden = false
+                self.donorsTableViewLeadingConsraint.constant = 0
+            }
             self.view.layoutIfNeeded()
         }
     }
@@ -168,5 +190,22 @@ class DonationsViewController: UIViewController {
         self.isDonorSelected = false
         self.switchViews()
     }
+    
+    //========================================
+    // MARK: - UITabelView
+    //========================================
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "donorCell", for: indexPath) as! DonorsCell
+        cell.fullNameLabel.text = "Shlomo Carmen"
+        cell.numberLabel.text = "33"
+        return cell
+    }
+    
+    
     
 }
