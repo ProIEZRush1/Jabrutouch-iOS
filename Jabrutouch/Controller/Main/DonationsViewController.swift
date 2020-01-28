@@ -49,6 +49,9 @@ class DonationsViewController: UIViewController, UITableViewDelegate, UITableVie
     fileprivate var isRecentSelected = true
     fileprivate var isDonorSelected = false
     fileprivate var isHistorySelected = false
+    fileprivate var tableViewsMap = [String: UITableView]()
+    fileprivate let DONORS = "Donors"
+    fileprivate let HISTORY = "History"
     //========================================
     // MARK: - LifeCycle
     //========================================
@@ -62,9 +65,7 @@ class DonationsViewController: UIViewController, UITableViewDelegate, UITableVie
         self.initialGrayUpArrowXCentererdToRecent.isActive = false
         
         self.setViewsShadow()
-        self.donorsTableView.delegate = self
-        self.donorsTableView.dataSource = self
-       
+        self.setTableViews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,6 +75,16 @@ class DonationsViewController: UIViewController, UITableViewDelegate, UITableVie
     //========================================
     // MARK: - Setup
     //========================================
+    
+    func setTableViews(){
+        self.donorsTableView.delegate = self
+        self.donorsTableView.dataSource = self
+        self.historyTableView.delegate = self
+        self.historyTableView.dataSource = self
+
+        self.tableViewsMap[DONORS] = donorsTableView
+        self.tableViewsMap[HISTORY] = historyTableView
+    }
     
     fileprivate func setButtonsColorAndFont() {
         recentButton.backgroundColor = isRecentSelected ? .white : UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)
@@ -145,22 +156,29 @@ class DonationsViewController: UIViewController, UITableViewDelegate, UITableVie
         setSelectedPage()
         UIView.animate(withDuration: 0.3) {
             if self.isDonorSelected {
-//                self.donationsImage.isHidden = true
-//                self.donationMessage.isHidden = true
-//                self.donateButton.isHidden = true
-//                self.noDonationsTitelMessage.isHidden = true
                 self.donorsTableViewLeadingConsraint.constant = -self.view.frame.width
+                self.containerViewTralingConsraint.constant = self.view.frame.width
+            } else if self.isHistorySelected {
+                self.containerViewTralingConsraint.constant = self.view.frame.width
+                self.donorsTableViewLeadingConsraint.constant = -self.view.frame.width * 2
             } else {
-//                self.donationsImage.isHidden = false
-//                self.donationMessage.isHidden = false
-//                self.donateButton.isHidden = false
-//                self.noDonationsTitelMessage.isHidden = false
+                self.containerViewTralingConsraint.constant = 0
                 self.donorsTableViewLeadingConsraint.constant = 0
+                
             }
             self.view.layoutIfNeeded()
         }
     }
     
+    func getTime(_ historyTime: Date)-> String{
+        let dateFormatter = DateFormatter()
+        var date: String
+        
+        dateFormatter.dateFormat = "dd-M-yyyy"
+        date = dateFormatter.string(from: historyTime)
+        
+        return date
+    }
     
     //========================================
     // MARK: - @IBActions
@@ -196,14 +214,30 @@ class DonationsViewController: UIViewController, UITableViewDelegate, UITableVie
     //========================================
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        if tableView == donorsTableView {
+            return 5
+        } else {
+            return 10
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "donorCell", for: indexPath) as! DonorsCell
-        cell.fullNameLabel.text = "Shlomo Carmen"
-        cell.numberLabel.text = "33"
-        return cell
+        if tableView == donorsTableView {
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "donorCell", for: indexPath) as! DonorsCell
+            cell.fullNameLabel.text = "Shlomo Carmen"
+            cell.numberLabel.text = "\(5 * indexPath.row + 1)"
+            return cell
+        }
+        else if tableView == historyTableView {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "historyCell", for: indexPath) as! HistoryCell
+            cell.dateLabel.text = self.getTime(Date())
+            cell.amountLabel.text = "$\(7 * indexPath.row + 1)"
+            cell.numberLabel.text = "\(10 * indexPath.row)"
+            return cell
+        } else {
+            return UITableViewCell()
+        }
     }
     
     
