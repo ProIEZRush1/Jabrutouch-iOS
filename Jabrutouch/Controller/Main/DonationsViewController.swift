@@ -209,6 +209,10 @@ class DonationsViewController: UIViewController, UITableViewDelegate, UITableVie
         self.switchViews()
     }
     
+    @IBAction func donateButtonPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: "presentDonation", sender: self)
+    }
+    
     //========================================
     // MARK: - UITabelView
     //========================================

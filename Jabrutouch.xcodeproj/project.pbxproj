@@ -198,6 +198,7 @@
 		83A936AF23DDEA93007BA207 /* OldDonationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A936AE23DDEA93007BA207 /* OldDonationsViewController.swift */; };
 		83A936B223DEF8E4007BA207 /* DonorsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A936B123DEF8E4007BA207 /* DonorsCell.swift */; };
 		83A936B423DF6E3A007BA207 /* HistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A936B323DF6E3A007BA207 /* HistoryCell.swift */; };
+		83B3556723E06A8400E2C485 /* DonateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B3556623E06A8400E2C485 /* DonateViewController.swift */; };
 		83CCB12123783F6100C86450 /* JTMasechetDownloadedGemaraLessons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB12023783F6100C86450 /* JTMasechetDownloadedGemaraLessons.swift */; };
 		83CCB1232379EEB700C86450 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB1222379EEB700C86450 /* EditProfileViewController.swift */; };
 		83CCB127237C8D6F00C86450 /* EditPasswordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB126237C8D6F00C86450 /* EditPasswordCell.swift */; };
@@ -430,6 +431,7 @@
 		83A936AE23DDEA93007BA207 /* OldDonationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OldDonationsViewController.swift; path = Jabrutouch/View/Storyboards/OldDonationsViewController.swift; sourceTree = SOURCE_ROOT; };
 		83A936B123DEF8E4007BA207 /* DonorsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonorsCell.swift; sourceTree = "<group>"; };
 		83A936B323DF6E3A007BA207 /* HistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCell.swift; sourceTree = "<group>"; };
+		83B3556623E06A8400E2C485 /* DonateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonateViewController.swift; sourceTree = "<group>"; };
 		83CCB12023783F6100C86450 /* JTMasechetDownloadedGemaraLessons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTMasechetDownloadedGemaraLessons.swift; sourceTree = "<group>"; };
 		83CCB1222379EEB700C86450 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		83CCB124237C0F9E00C86450 /* JTDonor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTDonor.swift; sourceTree = "<group>"; };
@@ -1120,6 +1122,7 @@
 				8342BA78237302AE00C3239C /* DonationsViewController.swift */,
 				83A936AC23D9E8D8007BA207 /* DonationsNavigationController.swift */,
 				83A936AE23DDEA93007BA207 /* OldDonationsViewController.swift */,
+				83B3556623E06A8400E2C485 /* DonateViewController.swift */,
 			);
 			path = Donations;
 			sourceTree = "<group>";
@@ -1505,6 +1508,7 @@
 				213196AE22F38B6800B0AF5F /* JTUser.swift in Sources */,
 				219BFF3522E5B6F700ABBEE2 /* Country.swift in Sources */,
 				FBB18FB022F863AF006886FD /* JTGemaraSeder.swift in Sources */,
+				83B3556723E06A8400E2C485 /* DonateViewController.swift in Sources */,
 				839CB4CB2381C91B0086554B /* SelectInterestViewController.swift in Sources */,
 				FB51711D22F1A275003BCAFC /* JTMishnaSeder.swift in Sources */,
 				8342BA74237301D800C3239C /* MainCollectionCellViewController.swift in Sources */,
