@@ -23,6 +23,9 @@
         <array key="SF-Pro-Text-Bold.otf">
             <string>SFProText-Bold</string>
         </array>
+        <array key="SF-Pro-Text-Medium.otf">
+            <string>SFProText-Medium</string>
+        </array>
         <array key="SF-Pro-Text-Regular.otf">
             <string>SFProText-Regular</string>
         </array>
@@ -76,7 +79,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tzedaka" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3LY-7W-CYE">
-                                        <rect key="frame" x="153.5" y="7" width="107" height="33"/>
+                                        <rect key="frame" x="154" y="7" width="106" height="33"/>
                                         <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="28"/>
                                         <color key="textColor" red="0.17254901959999999" green="0.16862745100000001" blue="0.33725490200000002" alpha="0.88" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -254,34 +257,34 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YMy-m4-mEW">
-                                                    <rect key="frame" x="36" y="20.5" width="40" height="24"/>
+                                                    <rect key="frame" x="36" y="20.5" width="42" height="24"/>
                                                     <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
                                                     <color key="textColor" red="0.17399999999999999" green="0.17000000000000001" blue="0.33800000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$ 15" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gju-Ta-ivD">
-                                                    <rect key="frame" x="88" y="18" width="45.5" height="29"/>
+                                                    <rect key="frame" x="90" y="18.5" width="47" height="28"/>
                                                     <fontDescription key="fontDescription" name="SFProDisplay-Medium" family="SF Pro Display" pointSize="24"/>
                                                     <color key="textColor" red="0.17399999999999999" green="0.17000000000000001" blue="0.33800000000000002" alpha="0.88" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JFM-S8-UqJ">
-                                                    <rect key="frame" x="153.5" y="18" width="29.5" height="29"/>
+                                                    <rect key="frame" x="157" y="18.5" width="27" height="28"/>
                                                     <fontDescription key="fontDescription" name="SFProDisplay-Medium" family="SF Pro Display" pointSize="24"/>
                                                     <color key="textColor" red="0.17399999999999999" green="0.17000000000000001" blue="0.33800000000000002" alpha="0.88" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="black_keter" translatesAutoresizingMaskIntoConstraints="NO" id="IbO-jK-CTm">
-                                                    <rect key="frame" x="188" y="25" width="19" height="15"/>
+                                                    <rect key="frame" x="189" y="25" width="19" height="15"/>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y5W-8E-LGM">
-                                                    <rect key="frame" x="232" y="12.5" width="127" height="40"/>
+                                                    <rect key="frame" x="233" y="12.5" width="126" height="40"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="receipt" translatesAutoresizingMaskIntoConstraints="NO" id="lWa-VI-nrQ">
                                                             <rect key="frame" x="15" y="10.5" width="17.5" height="19"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Receipt" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZMf-97-MbZ">
-                                                            <rect key="frame" x="42.5" y="10.5" width="53" height="19"/>
+                                                            <rect key="frame" x="42.5" y="10.5" width="55" height="19"/>
                                                             <fontDescription key="fontDescription" name="SFProDisplay-Medium" family="SF Pro Display" pointSize="16"/>
                                                             <color key="textColor" red="0.17799999999999999" green="0.16800000000000001" blue="0.66300000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -396,7 +399,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.98133128879999998" green="0.98155015710000004" blue="0.98759037260000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Pem-LS-4RQ" firstAttribute="trailing" secondItem="snh-3d-bFp" secondAttribute="trailing" id="16P-w1-Wcw"/>
                             <constraint firstItem="0SG-4u-QZP" firstAttribute="leading" secondItem="bol-6e-qeY" secondAttribute="trailing" id="1Rr-dk-8Cq"/>
@@ -450,7 +453,7 @@
                         <outlet property="recentButton" destination="jBy-HX-uXO" id="aZB-gN-xLc"/>
                         <outlet property="shareButton" destination="ggP-aZ-tWg" id="cpq-Mv-wB8"/>
                         <outlet property="titleLabel" destination="3LY-7W-CYE" id="Lp1-Sq-Tq5"/>
-                        <segue destination="NqU-Xg-umk" kind="presentation" identifier="presentDonation" modalPresentationStyle="currentContext" id="Jvz-Da-9sc"/>
+                        <segue destination="I99-U3-4wS" kind="presentation" identifier="presentDonation" modalPresentationStyle="currentContext" id="Jvz-Da-9sc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xr2-Bw-DRM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -469,7 +472,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Qe-7x-6Bo">
-                                        <rect key="frame" x="18" y="14" width="28" height="22"/>
+                                        <rect key="frame" x="18" y="5.5" width="55" height="39"/>
                                         <state key="normal" image="LeftArrow"/>
                                         <connections>
                                             <action selector="backButtonPressed:" destination="NqU-Xg-umk" eventType="touchUpInside" id="1y9-nC-IyS"/>
@@ -620,16 +623,16 @@
                                 <rect key="frame" x="245" y="412.5" width="127" height="88"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="donate_keter" translatesAutoresizingMaskIntoConstraints="NO" id="MRo-Hw-yGr">
-                                        <rect key="frame" x="74" y="0.0" width="53" height="33.5"/>
+                                        <rect key="frame" x="21" y="0.0" width="106" height="67"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aAD-rx-VF2">
-                                        <rect key="frame" x="95" y="38.5" width="11" height="21"/>
+                                        <rect key="frame" x="68.5" y="72" width="11" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.17799999999999999" green="0.16800000000000001" blue="0.66300000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="KETARIM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PzX-Hd-8RD">
-                                        <rect key="frame" x="78.5" y="67.5" width="44" height="14"/>
+                                        <rect key="frame" x="52" y="101" width="44" height="14"/>
                                         <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="11"/>
                                         <color key="textColor" red="0.17399999999999999" green="0.17000000000000001" blue="0.33800000000000002" alpha="0.88" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -732,6 +735,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lvS-Q9-nSZ"/>
                     </view>
+                    <navigationItem key="navigationItem" id="GOR-g2-beT"/>
                     <connections>
                         <outlet property="amountToDonateLabel" destination="8Aq-Zq-lge" id="Wj1-PF-6Fs"/>
                         <outlet property="amountToPayTF" destination="2AR-e7-tlg" id="r6h-g9-pQb"/>
@@ -741,8 +745,8 @@
                         <outlet property="continueLabel" destination="N99-SO-F2f" id="3ZD-9i-cnX"/>
                         <outlet property="continueView" destination="CbA-DQ-Svv" id="sFz-Sm-uFY"/>
                         <outlet property="descreptionLabel" destination="SMk-WS-TOL" id="4GZ-0J-KT5"/>
-                        <outlet property="descreptionTitleLabel" destination="ZqD-hk-Rdm" id="BO3-JS-0Wx"/>
-                        <outlet property="descreptionView" destination="uWe-WM-pM5" id="Ae7-Ew-EPD"/>
+                        <outlet property="descriptionTitleLabel" destination="ZqD-hk-Rdm" id="BO3-JS-0Wx"/>
+                        <outlet property="descriptionView" destination="uWe-WM-pM5" id="Ae7-Ew-EPD"/>
                         <outlet property="donationValueLabel" destination="9Ji-eL-Hm0" id="ZV7-7k-zwl"/>
                         <outlet property="keterView" destination="kXC-S3-9kl" id="Qf8-fQ-Qtl"/>
                         <outlet property="monthlyLabel" destination="LuD-Z1-MSq" id="Lgr-Ii-la1"/>
@@ -752,9 +756,181 @@
                         <outlet property="slider" destination="yRO-oW-aNi" id="yg1-aP-1Nu"/>
                         <outlet property="subscriptionButton" destination="Rn3-BH-NOO" id="iUM-e8-IFh"/>
                         <outlet property="titleLabel" destination="cBQ-Fn-fmY" id="Q2o-bT-Ajm"/>
+                        <segue destination="xro-Bq-7Yw" kind="show" identifier="presentDedication" id="Rpo-LI-Epp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D18-q4-u0W" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2405.7971014492755" y="12.723214285714285"/>
+        </scene>
+        <!--Dedication View Controller-->
+        <scene sceneID="rTF-un-SDU">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="xro-Bq-7Yw" customClass="DedicationViewController" customModule="Jabrutouch" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="I16-Yc-oJU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OqK-7j-ZRf" userLabel="headerView">
+                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VVE-gQ-3Jz">
+                                        <rect key="frame" x="18" y="14" width="27.5" height="22"/>
+                                        <state key="normal" image="LeftArrow"/>
+                                        <connections>
+                                            <action selector="backButtonBack:" destination="xro-Bq-7Yw" eventType="touchUpInside" id="RLS-8w-lRe"/>
+                                            <action selector="backButtonPressed:" destination="NqU-Xg-umk" eventType="touchUpInside" id="wsx-dE-Tm6"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dedication" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RNG-zU-BFO">
+                                        <rect key="frame" x="140" y="8.5" width="134.5" height="33"/>
+                                        <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="28"/>
+                                        <color key="textColor" red="0.17254901959999999" green="0.16862745100000001" blue="0.33725490200000002" alpha="0.88" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="VVE-gQ-3Jz" firstAttribute="centerY" secondItem="OqK-7j-ZRf" secondAttribute="centerY" id="BYY-tn-QUz"/>
+                                    <constraint firstAttribute="height" constant="50" id="D10-SR-169"/>
+                                    <constraint firstItem="VVE-gQ-3Jz" firstAttribute="leading" secondItem="OqK-7j-ZRf" secondAttribute="leading" constant="18" id="EvY-9w-wJi"/>
+                                    <constraint firstItem="RNG-zU-BFO" firstAttribute="centerX" secondItem="OqK-7j-ZRf" secondAttribute="centerX" id="HxS-5y-b9Z"/>
+                                    <constraint firstItem="RNG-zU-BFO" firstAttribute="centerY" secondItem="OqK-7j-ZRf" secondAttribute="centerY" id="SOW-d2-0fx"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Here comes text that explains about dedications to loved ones" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fpA-9R-EXj">
+                                <rect key="frame" x="50" y="104" width="314" height="33"/>
+                                <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="14"/>
+                                <color key="textColor" red="0.17399999999999999" green="0.17000000000000001" blue="0.33800000000000002" alpha="0.88" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eis-NL-LWp">
+                                <rect key="frame" x="30" y="802" width="354" height="45"/>
+                                <color key="backgroundColor" red="0.17799999999999999" green="0.16800000000000001" blue="0.66300000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="MRE-3D-iyb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="19"/>
+                                <state key="normal" title="CONTINUE">
+                                    <color key="titleColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="continueButtonPressed:" destination="NqU-Xg-umk" eventType="touchUpInside" id="Kml-jT-Lvf"/>
+                                    <action selector="continueButtonPressed:" destination="xro-Bq-7Yw" eventType="touchUpInside" id="WJp-gS-qNV"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gUm-fD-eaY">
+                                <rect key="frame" x="55" y="757" width="304" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NFb-dl-U2M">
+                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="gGX-zS-EmV"/>
+                                        </constraints>
+                                        <state key="normal" image="anonimus"/>
+                                        <connections>
+                                            <action selector="anonimusButtonPreesed:" destination="xro-Bq-7Yw" eventType="touchUpInside" id="IKD-hx-JsQ"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.42999999999999999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is an anonymous donation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5cO-oJ-Jcx">
+                                        <rect key="frame" x="38" y="5.5" width="266" height="19"/>
+                                        <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="DTP-Cw-2bb"/>
+                                    <constraint firstItem="5cO-oJ-Jcx" firstAttribute="centerY" secondItem="gUm-fD-eaY" secondAttribute="centerY" id="Ilv-hf-mXD"/>
+                                    <constraint firstItem="NFb-dl-U2M" firstAttribute="top" secondItem="gUm-fD-eaY" secondAttribute="top" id="LHK-is-Gku"/>
+                                    <constraint firstAttribute="trailing" secondItem="5cO-oJ-Jcx" secondAttribute="trailing" id="Tbf-0G-6mg"/>
+                                    <constraint firstAttribute="bottom" secondItem="NFb-dl-U2M" secondAttribute="bottom" id="U5j-0x-B2H"/>
+                                    <constraint firstItem="5cO-oJ-Jcx" firstAttribute="leading" secondItem="NFb-dl-U2M" secondAttribute="trailing" constant="8" symbolic="YES" id="dLU-2l-wua"/>
+                                    <constraint firstItem="NFb-dl-U2M" firstAttribute="leading" secondItem="gUm-fD-eaY" secondAttribute="leading" id="p00-N6-6PM"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5LR-wf-Fq7" customClass="JTBarPageIndicator" customModule="Jabrutouch" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="705" width="414" height="40"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="JVY-h1-J2J"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0cL-KO-Nk2" customClass="iCarousel">
+                                <rect key="frame" x="0.0" y="157" width="414" height="528"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AW4-KN-OlD">
+                                <rect key="frame" x="400" y="410" width="9" height="22"/>
+                                <state key="normal" image="BlueRightArrow"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TkS-Sd-o5H">
+                                <rect key="frame" x="5" y="410" width="10" height="22"/>
+                                <state key="normal" image="leftBloeArrow"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="fpA-9R-EXj" firstAttribute="leading" secondItem="Jbf-p0-1MK" secondAttribute="leading" constant="50" id="A7E-vr-mYM"/>
+                            <constraint firstItem="0cL-KO-Nk2" firstAttribute="top" secondItem="fpA-9R-EXj" secondAttribute="bottom" constant="20" id="BkW-PO-BbL"/>
+                            <constraint firstItem="TkS-Sd-o5H" firstAttribute="leading" secondItem="Jbf-p0-1MK" secondAttribute="leading" constant="5" id="Cvc-gs-Yau"/>
+                            <constraint firstItem="5LR-wf-Fq7" firstAttribute="top" secondItem="0cL-KO-Nk2" secondAttribute="bottom" constant="20" id="DAZ-cz-TkX"/>
+                            <constraint firstItem="Jbf-p0-1MK" firstAttribute="trailing" secondItem="fpA-9R-EXj" secondAttribute="trailing" constant="50" id="Er7-oJ-ajL"/>
+                            <constraint firstItem="gUm-fD-eaY" firstAttribute="leading" secondItem="Jbf-p0-1MK" secondAttribute="leading" constant="55" id="ErI-nN-b2K"/>
+                            <constraint firstItem="eis-NL-LWp" firstAttribute="top" secondItem="gUm-fD-eaY" secondAttribute="bottom" constant="15" id="F7W-gV-nII"/>
+                            <constraint firstItem="Jbf-p0-1MK" firstAttribute="trailing" secondItem="eis-NL-LWp" secondAttribute="trailing" constant="30" id="JsZ-rI-dxa"/>
+                            <constraint firstItem="Jbf-p0-1MK" firstAttribute="trailing" secondItem="5LR-wf-Fq7" secondAttribute="trailing" id="QaL-Pn-4rg"/>
+                            <constraint firstItem="0cL-KO-Nk2" firstAttribute="leading" secondItem="Jbf-p0-1MK" secondAttribute="leading" id="Tdd-0f-bpc"/>
+                            <constraint firstItem="gUm-fD-eaY" firstAttribute="top" secondItem="5LR-wf-Fq7" secondAttribute="bottom" constant="12" id="UYJ-db-uA6"/>
+                            <constraint firstItem="eis-NL-LWp" firstAttribute="leading" secondItem="Jbf-p0-1MK" secondAttribute="leading" constant="30" id="bKb-DU-E8P"/>
+                            <constraint firstItem="Jbf-p0-1MK" firstAttribute="trailing" secondItem="gUm-fD-eaY" secondAttribute="trailing" constant="55" id="cIi-K8-PT6"/>
+                            <constraint firstItem="Jbf-p0-1MK" firstAttribute="trailing" secondItem="AW4-KN-OlD" secondAttribute="trailing" constant="5" id="cMK-or-ZMm"/>
+                            <constraint firstItem="OqK-7j-ZRf" firstAttribute="trailing" secondItem="Jbf-p0-1MK" secondAttribute="trailing" id="dpp-zp-7bj"/>
+                            <constraint firstItem="OqK-7j-ZRf" firstAttribute="top" secondItem="Jbf-p0-1MK" secondAttribute="top" id="efB-SK-drU"/>
+                            <constraint firstItem="TkS-Sd-o5H" firstAttribute="centerY" secondItem="AW4-KN-OlD" secondAttribute="centerY" id="h0g-nr-wAN"/>
+                            <constraint firstItem="OqK-7j-ZRf" firstAttribute="leading" secondItem="Jbf-p0-1MK" secondAttribute="leading" id="irf-NX-Zrp"/>
+                            <constraint firstItem="5LR-wf-Fq7" firstAttribute="leading" secondItem="Jbf-p0-1MK" secondAttribute="leading" id="opW-Kh-l5j"/>
+                            <constraint firstItem="AW4-KN-OlD" firstAttribute="centerY" secondItem="0cL-KO-Nk2" secondAttribute="centerY" id="pI7-Ye-jvI"/>
+                            <constraint firstItem="fpA-9R-EXj" firstAttribute="top" secondItem="OqK-7j-ZRf" secondAttribute="bottom" constant="10" id="syB-tr-hvy"/>
+                            <constraint firstItem="eis-NL-LWp" firstAttribute="bottom" secondItem="Jbf-p0-1MK" secondAttribute="bottom" constant="-15" id="uUI-UL-OHV"/>
+                            <constraint firstItem="Jbf-p0-1MK" firstAttribute="trailing" secondItem="0cL-KO-Nk2" secondAttribute="trailing" id="wC3-bW-3ae"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Jbf-p0-1MK"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="UlS-Z8-KUb"/>
+                    <connections>
+                        <outlet property="anonimusButton" destination="NFb-dl-U2M" id="lpy-LC-CVU"/>
+                        <outlet property="anonimusLabel" destination="5cO-oJ-Jcx" id="rMT-cZ-Gtv"/>
+                        <outlet property="anonimusView" destination="gUm-fD-eaY" id="jak-pB-m8v"/>
+                        <outlet property="backButton" destination="VVE-gQ-3Jz" id="ucu-Qr-bU2"/>
+                        <outlet property="barPageIndicator" destination="5LR-wf-Fq7" id="Epx-BJ-ARW"/>
+                        <outlet property="carouselView" destination="0cL-KO-Nk2" id="cgU-WC-icU"/>
+                        <outlet property="continuButton" destination="eis-NL-LWp" id="Haa-Mf-l87"/>
+                        <outlet property="descriptionLabel" destination="fpA-9R-EXj" id="uQI-5D-mv9"/>
+                        <outlet property="leftArrowButton" destination="TkS-Sd-o5H" id="v2z-Xg-QvY"/>
+                        <outlet property="rightArrowButton" destination="AW4-KN-OlD" id="x7N-eW-yqB"/>
+                        <outlet property="titleLabel" destination="RNG-zU-BFO" id="G0v-2n-1Vm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Fq-IY-FK2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3288.4057971014495" y="11.383928571428571"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="3dI-q0-LmL">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="I99-U3-4wS" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="aja-jV-hcj">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="NqU-Xg-umk" kind="relationship" relationship="rootViewController" id="vTC-h7-8Zf"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OTD-FS-hbq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1495.6521739130435" y="12.723214285714285"/>
         </scene>
@@ -764,10 +940,12 @@
         <image name="GrayUpArrow" width="36.5" height="15"/>
         <image name="LeftArrow" width="27.5" height="19.5"/>
         <image name="ShareDonation" width="56.5" height="46.5"/>
+        <image name="anonimus" width="31" height="31"/>
         <image name="black_keter" width="19" height="15"/>
         <image name="donateKeter" width="217" height="214"/>
         <image name="donate_keter" width="53" height="33.5"/>
         <image name="donors_keter" width="19.5" height="15"/>
+        <image name="leftBloeArrow" width="10" height="17"/>
         <image name="receipt" width="17.5" height="19"/>
     </resources>
 </document>

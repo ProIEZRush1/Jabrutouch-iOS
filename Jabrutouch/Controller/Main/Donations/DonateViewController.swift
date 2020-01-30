@@ -18,9 +18,9 @@ class DonateViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var subscriptionButton: UIButton!
     @IBOutlet weak var monthlyLabel: UILabel!
     @IBOutlet weak var singelPaymentButton: UIButton!
-    @IBOutlet weak var descreptionView: UIView!
+    @IBOutlet weak var descriptionView: UIView!
     @IBOutlet weak var donationValueLabel: UILabel!
-    @IBOutlet weak var descreptionTitleLabel: UILabel!
+    @IBOutlet weak var descriptionTitleLabel: UILabel!
     @IBOutlet weak var descreptionLabel: UILabel!
     @IBOutlet weak var keterView: UIView!
     @IBOutlet weak var numberOfKtarimLabel: UILabel!
@@ -107,20 +107,23 @@ class DonateViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func singelPaymentButtonPressed(_ sender: Any) {
-//        self.amountToPayTF.text = "1000"
+        self.amountToPayTF.text = "1000"
+        self.slider.value = 0.5
         self.isSingelPayment = true
         self.isSubscription = false
         self.setState()
     }
     
     @IBAction func subscriptionButtonPressed(_ sender: Any) {
-//        self.amountToPayTF.text = "100"
+        self.amountToPayTF.text = "100"
+        self.slider.value = 0.5
         self.isSingelPayment = false
         self.isSubscription = true
         self.setState()
     }
     
     @IBAction func continueButtonPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: "presentDedication", sender: self)
     }
     
     @IBAction func slider(_ sender: UISlider) {
@@ -144,6 +147,7 @@ class DonateViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        self.setState()
         if let text = textField.text {
             if let value = Int(text) {
                 var displayValue: Float = 0.0
@@ -160,6 +164,7 @@ class DonateViewController: UIViewController, UITextFieldDelegate {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
        self.view.endEditing(true)
+        self.setState()
         if let text = self.amountToPayTF.text {
             if let value = Int(text) {
                 var displayValue: Float = 0.0
