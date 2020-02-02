@@ -114,7 +114,8 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
     @IBAction func anonimusButtonPreesed(_ sender: Any) {
         self.anonimus.toggle()
         if anonimus {
-            self.anonimusButton.setImage(#imageLiteral(resourceName: "RedV"), for: .normal)
+            self.anonimusButton.setImage(#imageLiteral(resourceName: "circelV"), for: .normal)
+            self.anonimusLabel.alpha = 1
             self.anonimusLabel.textColor = Colors.appOrange
             for card in self.views {
                 card.userNameLabel.text = "N N"
@@ -122,6 +123,7 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
         } else {
             self.anonimusButton.setImage(#imageLiteral(resourceName: "anonimus"), for: .normal)
             self.anonimusLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.43)
+            self.anonimusLabel.alpha = 0.43
             for card in self.views {
                 card.userNameLabel.text = "\(user?.firstName ?? "") \(user?.lastName ?? "")"
             }
