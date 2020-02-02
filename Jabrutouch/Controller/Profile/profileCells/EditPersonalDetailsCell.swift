@@ -50,7 +50,7 @@ class EditPersonalDetailsCell: UITableViewCell, UITextFieldDelegate {
     }
     
     func setShadow(){
-        let color = #colorLiteral(red: 0.1, green: 0.12, blue: 0.57, alpha: 0.4)
+        let color = #colorLiteral(red: 0.1, green: 0.12, blue: 0.57, alpha: 0.1)
         self.profileImageButton.layer.shadowPath = UIBezierPath(roundedRect: self.profileImageButton.bounds, cornerRadius: self.profileImageButton.bounds.height/2).cgPath        
         Utils.dropViewShadow(view: self.profileImageButton, shadowColor: color, shadowRadius: 26, shadowOffset: CGSize(width: 0, height: 8))
     }

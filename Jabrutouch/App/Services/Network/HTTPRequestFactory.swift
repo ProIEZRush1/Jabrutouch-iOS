@@ -12,7 +12,7 @@ import Foundation
 class HttpRequestsFactory {
     
     static let baseUrlLink = Bundle.main.object(forInfoDictionaryKey: "APIBaseUrl") as! String
-
+    
     //==========================================
     // MARK: - Login Flow
     //==========================================
@@ -86,13 +86,23 @@ class HttpRequestsFactory {
         return request
     }
     
+    class func createSetUserRequest(user: JTUser, token: String) -> URLRequest?{
+        guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
+        let link = baseUrl.appendingPathComponent("users/\(user.id)").absoluteString
+        let body: [String:Any] = user.jsonValues
+        guard let url = self.createUrl(fromLink: link, urlParams: nil) else { return nil }
+        let additionalHeaders: [String:String] = ["Authorization": "token \(token)"]
+        let request = self.createRequest(url, method: .put, body: body, additionalHeaders: additionalHeaders)
+        return request
+    }
+    
     class func createChangePasswordRequest(oldPassword: String, newPassword: String, token: String) -> URLRequest?{
         guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
         let link = baseUrl.appendingPathComponent("login/").absoluteString
         let body: [String:Any] = ["old_password": oldPassword, "new_password": newPassword]
         guard let url = self.createUrl(fromLink: link, urlParams: nil) else { return nil }
         let additionalHeaders: [String:String] = ["Authorization": "token \(token)"]
-
+        
         let request = self.createRequest(url, method: .post, body: body, additionalHeaders: additionalHeaders)
         return request
     }
@@ -157,15 +167,15 @@ class HttpRequestsFactory {
     }
     
     class func createMessageRequest(message: String, sentAt: Date, title: String, messageType: Int, toUser: Int, chatId: Int, token: String) -> URLRequest?{
-           guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
-           let link = baseUrl.appendingPathComponent("messages").absoluteString
+        guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
+        let link = baseUrl.appendingPathComponent("messages").absoluteString
         let body: [String:Any] = ["message": message, "sent_at": sentAt.timeIntervalSince1970, "title": title, "message_type": messageType, "to_user": toUser, "chat_id": chatId]
-           guard let url = self.createUrl(fromLink: link, urlParams: nil) else { return nil }
-           let additionalHeaders: [String:String] = ["Authorization": "token \(token)"]
-
-           let request = self.createRequest(url, method: .post, body: body, additionalHeaders: additionalHeaders)
-           return request
-       }
+        guard let url = self.createUrl(fromLink: link, urlParams: nil) else { return nil }
+        let additionalHeaders: [String:String] = ["Authorization": "token \(token)"]
+        
+        let request = self.createRequest(url, method: .post, body: body, additionalHeaders: additionalHeaders)
+        return request
+    }
     
     //{"event":"watch", "category": "Gemara", "media_type": "video", "page_id":"141" , "duration": 2, "online": 1}
     
@@ -188,7 +198,7 @@ class HttpRequestsFactory {
     //==========================================
     // MARK: - Utils & Helpers
     //==========================================
-
+    
     private class func createUrl(fromLink link: String, urlParams: [String:String]?) -> URL? {
         guard let url = URL(string: link), var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) else { return nil }
         

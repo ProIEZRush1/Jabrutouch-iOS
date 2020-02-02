@@ -16,7 +16,14 @@ class TopicCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        shadowView.layer.cornerRadius = shadowView.bounds.height/2
+//        shadowView.layer.cornerRadius = shadowView.bounds.height/2
 
+    }
+    
+    override var isSelected: Bool {
+        didSet {
+            shadowView.backgroundColor = isSelected ? #colorLiteral(red: 0.102, green: 0.120, blue: 0.567, alpha: 1) : .white
+            topicLabel.textColor = isSelected ? #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) : .black
+        }
     }
 }

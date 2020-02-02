@@ -113,6 +113,24 @@ class LoginManager {
         }
     }
     
+    func setCurrentUserDetails(_ user: JTUser, completion:@escaping (_ result: Result<JTUser,JTError>)->Void) {
+        guard let authToken = UserDefaultsProvider.shared.currentUser?.token else {
+            completion(.failure(.authTokenMissing))
+            return
+        }
+        API.setUserParameters(authToken: authToken, user: user) { (result: APIResult<LoginResponse>) in
+            switch result{
+                
+            case .success(let response):
+                self.userDidSetParameters(user: user)
+                completion(.success(response.user))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+
     //==========================================
     // MARK: - Private methods
     //==========================================
@@ -127,5 +145,9 @@ class LoginManager {
     
     private func userDidSignOut() {
         UserRepository.shared.clearCurrentUser()
+    }
+    
+    private func userDidSetParameters(user: JTUser) {
+        UserRepository.shared.updateCurrentUser(user)
     }
 }

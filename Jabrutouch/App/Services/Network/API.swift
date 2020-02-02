@@ -84,6 +84,17 @@ class API {
             self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
         }
     }
+    
+    class func setUserParameters(authToken: String, user: JTUser, completionHandler:@escaping (_ response: APIResult<LoginResponse>)->Void) {
+        guard let request = HttpRequestsFactory.createSetUserRequest(user: user, token: authToken) else {
+            completionHandler(APIResult.failure(.unableToCreateRequest))
+            return
+        }
+        HttpServiceProvider.shared.excecuteRequest(request: request) { (data, response, error) in
+            self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
+        }
+    }
+
     //========================================
     // MARK: - Content
     //========================================

@@ -8,7 +8,7 @@
 
 import UIKit
 
-@IBDesignable
+//@IBDesignable
 class JTBarPageIndicator: UIView {
 
     @IBInspectable var selectedIndex: Int = 0 {

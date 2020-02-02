@@ -24,7 +24,7 @@ class DonationInformationCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
-        let color = #colorLiteral(red: 0.1, green: 0.12, blue: 0.57, alpha: 0.4)
+        let color = #colorLiteral(red: 0.1, green: 0.12, blue: 0.57, alpha: 0.1)
         Utils.dropViewShadow(view: self.containerView, shadowColor: color, shadowRadius: 36, shadowOffset: CGSize(width: 0, height: 12))
 
         self.donateButton.layer.cornerRadius = 10

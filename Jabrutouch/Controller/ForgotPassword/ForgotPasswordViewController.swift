@@ -167,7 +167,7 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
        }
     
     //============================================================
-    // MARK: - TextFeald
+    // MARK: - TextField
     //============================================================
        
     func textFieldDidBeginEditing(_ textField: UITextField) {

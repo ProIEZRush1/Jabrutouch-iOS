@@ -12,6 +12,18 @@ protocol EditUserParametersRepositoryDelegate: class {
     func parametersLoaded(parameters: JTUserProfileParameters)
 }
 
+enum EditUserParameter {
+    case email
+    case country
+    case phoneNumber
+    case birthday
+    case community
+    case religious
+    case education
+    case occupation
+    case secondEmail
+}
+
 class EditUserParametersRepository {
     var parameters: JTUserProfileParameters?
     
@@ -22,7 +34,9 @@ class EditUserParametersRepository {
                 
             case .success(let response):
                 self.parameters = response
-                self.delegate?.parametersLoaded(parameters: response)
+                DispatchQueue.main.async {
+                    self.delegate?.parametersLoaded(parameters: response)
+                }
             case .failure(let error):
                 print(error.message)
             }

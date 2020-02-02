@@ -8,7 +8,11 @@
 
 import Foundation
 
-struct JTUserProfileParameter {
+struct JTUserProfileParameter: Equatable {
+    static func == (lhs: JTUserProfileParameter, rhs: JTUserProfileParameter) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
     var id: Int
     var name: String
     
@@ -17,5 +21,12 @@ struct JTUserProfileParameter {
         guard let name = data["name"] as? String else { return nil}
         self.id = id
         self.name = name
+    }
+    
+    var values: [String: Any] {
+        var values: [String:Any] = [:]
+        values["id"] = self.id
+        values["name"] = self.name
+        return values
     }
 }

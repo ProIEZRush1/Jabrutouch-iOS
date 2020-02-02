@@ -47,6 +47,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewWillAppear(_ animated: Bool) {
         self.user = UserRepository.shared.getCurrentUser()
         self.setProfilImage()
+        self.tableView.reloadData()
     }
     
     //========================================
@@ -99,7 +100,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         case 2:
             return 1
         case 3:
-            return 7
+            return 5
         case 4:
             return 1
         case 5:
@@ -129,8 +130,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             return cell
         case 2:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "completionProgress") as? CompletionProgressCell else { return UITableViewCell() }
-            let count = 80.0
-            let progress = CGFloat(count/100)
+            let count = user?.profilePercent ?? 0
+            let progress = CGFloat(count)/100
             cell.completionPercentage.text = "\(Int(count))% Full"
             cell.progressView.progress = progress
             return cell
@@ -146,16 +147,16 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             case 2:
                 cell.titleLabel.text = "Community"
                 cell.infoLabel.text = self.user!.community?.name
+//            case 3:
+//                cell.titleLabel.text = "Religious Level"
+//                cell.infoLabel.text = "\(self.user!.religiousLevel ?? 0) out of 10"
             case 3:
-                cell.titleLabel.text = "Religious Level"
-                cell.infoLabel.text = "\(self.user!.religiousLevel ?? 0) out of 10"
-            case 4:
                 cell.titleLabel.text = "Education"
-                cell.infoLabel.text = self.user!.education ?? ""
-            case 5:
-                cell.titleLabel.text = "Occupation"
-                cell.infoLabel.text = self.user!.occupation ?? ""
-            case 6:
+                cell.infoLabel.text = self.user!.education?.name
+//            case 5:
+//                cell.titleLabel.text = "Occupation"
+//                cell.infoLabel.text = self.user!.occupation?.name
+            case 4:
                 cell.titleLabel.text = "Second Email"
                 cell.infoLabel.text = self.user!.secondEmail
             default:
@@ -205,7 +206,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         case 3:
             return 50
         case 4:
-            return 200
+            return CGFloat(numOfRowInterestCollectionView(indexPath: indexPath) * 42) + 60
         case 5:
             return 56
         default:
@@ -253,6 +254,24 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     func changePassword() {
         performSegue(withIdentifier: "toEditProfile", sender: 4)
     }
+    
+    func numOfRowInterestCollectionView(indexPath: IndexPath) -> Int {
+        let collectionWidth = self.tableView.bounds.width - 30
+        let space: CGFloat = 10
+        var rows = (self.user?.interest ?? []).isEmpty ? 0 : 1
+        var x: CGFloat = 0
+        for interest in self.user?.interest ?? [] {
+            let itemWidth = NSString(string: interest.name).size(withAttributes: [.font : Fonts.mediumTextFont(size: 14)]).width + 40.0
+            if x + itemWidth > collectionWidth {
+                x = itemWidth + space
+                rows += 1
+            } else {
+                x += itemWidth + space
+            }
+        }
+        return rows
+    }
+
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toEditProfile" {
