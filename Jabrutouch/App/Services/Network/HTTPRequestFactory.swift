@@ -169,7 +169,7 @@ class HttpRequestsFactory {
     class func createMessageRequest(message: String, sentAt: Date, title: String, messageType: Int, toUser: Int, chatId: Int, token: String) -> URLRequest?{
         guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
         let link = baseUrl.appendingPathComponent("messages").absoluteString
-        let body: [String:Any] = ["message": message, "sent_at": sentAt.timeIntervalSince1970, "title": title, "message_type": messageType, "to_user": toUser, "chat_id": chatId]
+        let body: [String:Any] = ["message": message, "sent_at": sentAt.timeIntervalSince1970 * 1000, "title": title, "message_type": messageType, "to_user": toUser, "chat_id": chatId]
         guard let url = self.createUrl(fromLink: link, urlParams: nil) else { return nil }
         let additionalHeaders: [String:String] = ["Authorization": "token \(token)"]
         

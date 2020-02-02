@@ -32,6 +32,7 @@ class CoreDataManager {
     let managedContext = appDelegate.persistentContainer.viewContext
     
     func seveChat(chat: JTChatMessage) {
+
         let chatEntity = NSEntityDescription.entity(forEntityName: "Chat", in: managedContext)
         let newChat = NSManagedObject(entity: chatEntity!, insertInto: managedContext)
         
@@ -45,7 +46,7 @@ class CoreDataManager {
         newChat.setValue(chat.chatType, forKey: "chatType")
         newChat.setValue(chat.image, forKey: "userImage")
         newChat.setValue(chat.read, forKey: "read")
-        newChat.setValue(1, forKey: "unreadMessages")
+        newChat.setValue(chat.unreadMessages, forKey: "unreadMessages")
 
        
         do{
@@ -91,7 +92,7 @@ class CoreDataManager {
     }
     
     func createChatObject(message: JTMessage)->JTChatMessage{
-        
+
         return JTChatMessage(
             chatId:  message.chatId,
             createdDate: message.sentDate,
@@ -145,6 +146,38 @@ class CoreDataManager {
             return []
         }
     }
+    
+//    func getUnReadedChats(chatId: Int)  {
+//        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Chat")
+//        let predicate = NSPredicate(format: "chatId = %i", chatId)
+//        request.predicate = predicate
+//        request.returnsObjectsAsFaults = false
+//        do {
+//
+//            let result = try managedContext.fetch(request)
+//            print("Read: ",result)
+////            return (result as! [NSManagedObject]).compactMap{JTMessage(values: $0)}
+//
+//        } catch {
+//            print("Failed")
+////            return []
+//        }
+//    }
+    
+    func getUnReadedChats() ->Int {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Chat")
+        let predicate = NSPredicate(format: "unreadMessages > %i",0)
+        request.predicate = predicate
+        request.returnsObjectsAsFaults = false
+        do {
+            let result = try managedContext.fetch(request)
+            return (result as! [NSManagedObject]).count
+        } catch {
+            print("Failed")
+        }
+        return 0
+    }
+
     
     func getMessagesByChatId(chatId: Int) -> [JTMessage] {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Message")
@@ -211,10 +244,13 @@ class CoreDataManager {
         do {
             
             let result = try managedContext.fetch(request)
-            
+            if let unReaded = (result as! [NSManagedObject]).first?.value(forKey: "unreadMessages") as? Int{
+                (result as! [NSManagedObject]).first?.setValue(Int(unReaded) + 1, forKey: "unreadMessages")
+            }
             (result as! [NSManagedObject]).first?.setValue(chat.lastMessage, forKey: "lastMessage")
             (result as! [NSManagedObject]).first?.setValue(chat.lastMessageTime, forKey: "lastMessageTime")
-//            (result as! [NSManagedObject]).first?.setValue(self.getUnreadedMessagesByChatID(chatId: chat.chatId), forKey: "unreadMessages")
+            (result as! [NSManagedObject]).first?.setValue(chat.read, forKey: "read")
+            
             do{
                 try managedContext.save()
             }
@@ -227,24 +263,72 @@ class CoreDataManager {
             
         }
     }
-    func getUnreadedMessagesByChatID(chatId: Int) -> Int {
+    
+    func setChatReadById(chatId: Int, status: Bool) {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Chat")
-        let predicate = NSPredicate(format: "chatId = %i", chatId)
+        let predicate = NSPredicate(format: "chatId = %i",chatId)
         request.predicate = predicate
         request.returnsObjectsAsFaults = false
         do {
-            
             let result = try managedContext.fetch(request)
-//            (result as! [NSManagedObject]).first?.setValue(chat.lastMessage, forKey: "lastMessage")
-//            print("REsult: ",result)
-//            guard let unreadMessages = (result as! [NSManagedObject]).first?.value(forKey:"unreadMessages")as? Int else { return 0}
-//            print("Un-readed: ",unreadMessages)
-//            return unreadMessages
+            (result as! [NSManagedObject]).first?.setValue(status, forKey: "read")
+            if status{(result as! [NSManagedObject]).first?.setValue(0, forKey: "unreadMessages")}
 
+            do{
+                try managedContext.save()
+            }
+            catch {
+                print("failed")
+            }
         } catch {
             print("Failed")
-            
         }
-        return 0
     }
+    
+    
+//    func getUnreadedMessagesByChatID(chatId: Int) -> Int {
+//        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Chat")
+//        let predicate = NSPredicate(format: "chatId = %i", chatId)
+//        request.predicate = predicate
+//        request.returnsObjectsAsFaults = false
+//        do {
+//
+//            let result = try managedContext.fetch(request)
+////            (result as! [NSManagedObject]).first?.setValue(chat.lastMessage, forKey: "lastMessage")
+////            print("REsult: ",result)
+////            guard let unreadMessages = (result as! [NSManagedObject]).first?.value(forKey:"unreadMessages")as? Int else { return 0}
+////            print("Un-readed: ",unreadMessages)
+////            return unreadMessages
+//
+//        } catch {
+//            print("Failed")
+//
+//        }
+//        return 0
+//    }
+    
+//     func setUnreadedChatById(chat: JTChatMessage) {
+//            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Chat")
+//            let predicate = NSPredicate(format: "chatId = %i", chat.chatId)
+//            request.predicate = predicate
+//            request.returnsObjectsAsFaults = false
+//            do {
+//
+//                let result = try managedContext.fetch(request)
+//
+//                (result as! [NSManagedObject]).first?.setValue(true, forKey: "read")
+////                (result as! [NSManagedObject]).first?.setValue(chat.lastMessageTime, forKey: "lastMessageTime")
+//    //            (result as! [NSManagedObject]).first?.setValue(self.getUnreadedMessagesByChatID(chatId: chat.chatId), forKey: "unreadMessages")
+//                do{
+//                    try managedContext.save()
+//                }
+//                catch {
+//                    print("failed")
+//                }
+//
+//            } catch {
+//                print("Failed")
+//
+//            }
+//        }
 }

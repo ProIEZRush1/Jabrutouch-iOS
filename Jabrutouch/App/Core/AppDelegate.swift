@@ -194,7 +194,11 @@ extension AppDelegate:UNUserNotificationCenterDelegate {
     }
   
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        
+        if let key = userInfo["data"] as? String, let values = self.convertToJson(text: key){
+            if let message = JTMessage(values: values){
+                MessagesRepository.shared.saveMessageInDB(message: message)
+            }
+        }
         print("Received: \(userInfo)")
         completionHandler(.newData)
     }
@@ -203,31 +207,14 @@ extension AppDelegate:UNUserNotificationCenterDelegate {
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         let userInfo = notification.request.content.userInfo
+       
         if let key = userInfo["data"] as? String, let values = self.convertToJson(text: key){
-                if let message = JTMessage(values: values){
-                   MessagesRepository.shared.saveMessageInDB(message: message)
+            if let message = JTMessage(values: values){
+                MessagesRepository.shared.saveMessageInDB(message: message)
             }
-    }
-        
-        
+        }
         print("willPresent: ")
-        // Step 1: Parse incoming content
-//        let body = notification.request.content.body
-////        let userInfo = notification.request.content.userInfo
-//        if let data = body.data(using: String.Encoding.utf8) {
-//            do {
-//                if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String:Any] {
-//                    guard let title = json["title"] as? String else { return }
-//                    guard let message = json["message"] as? String else { return }
-//
-//                    // Step 2 - Send local notification
-////                    self.sendUserNotification(body: message, userInfo: userInfo)
-//
-//                }
-//            } catch {
-//                print("Something went wrong")
-//            }
-//        }
+
         completionHandler([.alert, .sound])
     }
     

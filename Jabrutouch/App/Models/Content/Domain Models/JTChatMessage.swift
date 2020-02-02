@@ -22,7 +22,7 @@ struct JTChatMessage {
     var image: String = ""
     var read: Bool = false
     var messages: [JTMessage] = []
-    var unreadMessages: Int?
+    var unreadMessages: Int
    
     init(chatId: Int, createdDate: Date, title: String, fromUser: Int, toUser: Int, chatType: Int, lastMessage: String, lastMessageTime: Date, image: String, read: Bool, unreadMessages: Int) {
         self.chatId = chatId
@@ -140,7 +140,7 @@ struct JTChatMessage {
                self.read = read
            } else { return nil }
            
-        if let unreadMessages = values.value(forKey: "read") as? Int {
+        if let unreadMessages = values.value(forKey: "unreadMessages") as? Int {
             self.unreadMessages = unreadMessages
         } else {
             self.unreadMessages = 0

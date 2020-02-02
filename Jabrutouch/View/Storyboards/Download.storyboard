@@ -289,6 +289,18 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="89"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TiH-4W-ifg" userLabel="Bottom Padding">
+                                                    <rect key="frame" x="0.0" y="76" width="414" height="13"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="Cell Bottom Padding"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="13" id="HeA-Qp-4mf"/>
+                                                    </constraints>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dTV-3D-z2F">
+                                                    <rect key="frame" x="21" y="0.0" width="348" height="76"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                </view>
                                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1jW-un-djR">
                                                     <rect key="frame" x="21" y="0.0" width="348" height="76"/>
                                                     <subviews>
@@ -363,26 +375,22 @@
                                                         <action selector="deletePressed:" destination="7dV-xT-Hbu" eventType="touchUpInside" id="66k-aq-wxL"/>
                                                     </connections>
                                                 </button>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TiH-4W-ifg" userLabel="Bottom Padding">
-                                                    <rect key="frame" x="0.0" y="76" width="414" height="13"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <accessibility key="accessibilityConfiguration" identifier="Cell Bottom Padding"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="13" id="HeA-Qp-4mf"/>
-                                                    </constraints>
-                                                </view>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="1jW-un-djR" firstAttribute="leading" secondItem="6v9-k5-fyH" secondAttribute="leading" constant="21" id="Awe-cH-71Z"/>
+                                                <constraint firstItem="dTV-3D-z2F" firstAttribute="centerX" secondItem="1jW-un-djR" secondAttribute="centerX" id="BZi-5M-9o6"/>
                                                 <constraint firstAttribute="trailing" secondItem="1jW-un-djR" secondAttribute="trailing" constant="45" id="DfX-q1-Zmn"/>
                                                 <constraint firstItem="TiH-4W-ifg" firstAttribute="width" secondItem="6v9-k5-fyH" secondAttribute="width" id="GvF-zw-zmq"/>
+                                                <constraint firstItem="dTV-3D-z2F" firstAttribute="width" secondItem="1jW-un-djR" secondAttribute="width" id="Ptf-4i-DHo"/>
                                                 <constraint firstItem="ebl-Bk-flN" firstAttribute="centerY" secondItem="1jW-un-djR" secondAttribute="centerY" id="QUc-zk-ZsS"/>
+                                                <constraint firstItem="dTV-3D-z2F" firstAttribute="centerY" secondItem="1jW-un-djR" secondAttribute="centerY" id="SJD-bq-OhG"/>
                                                 <constraint firstAttribute="trailing" secondItem="ebl-Bk-flN" secondAttribute="trailing" id="YkB-ed-Yfq"/>
                                                 <constraint firstItem="TiH-4W-ifg" firstAttribute="centerX" secondItem="6v9-k5-fyH" secondAttribute="centerX" id="cZM-Ko-dkt"/>
                                                 <constraint firstItem="TiH-4W-ifg" firstAttribute="top" secondItem="1jW-un-djR" secondAttribute="bottom" id="sGP-wK-Z14"/>
                                                 <constraint firstItem="ebl-Bk-flN" firstAttribute="height" secondItem="1jW-un-djR" secondAttribute="height" id="sok-gi-hIv"/>
                                                 <constraint firstItem="1jW-un-djR" firstAttribute="top" secondItem="6v9-k5-fyH" secondAttribute="top" id="t2K-1A-d8M"/>
+                                                <constraint firstItem="dTV-3D-z2F" firstAttribute="height" secondItem="1jW-un-djR" secondAttribute="height" id="urp-6l-glw"/>
                                                 <constraint firstAttribute="bottom" secondItem="TiH-4W-ifg" secondAttribute="bottom" id="xLR-WF-eRT"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -390,6 +398,7 @@
                                         <connections>
                                             <outlet property="audioButton" destination="efs-vY-7eU" id="BlE-i7-91w"/>
                                             <outlet property="book" destination="y4d-u8-PqE" id="gFx-5H-dt9"/>
+                                            <outlet property="cellShadowView" destination="dTV-3D-z2F" id="Eji-Gw-QKJ"/>
                                             <outlet property="cellTrailingConstraint" destination="DfX-q1-Zmn" id="mjZ-2X-9lH"/>
                                             <outlet property="cellView" destination="1jW-un-djR" id="A4n-Fp-YRU"/>
                                             <outlet property="chapter" destination="xBH-Gp-bmk" id="zLS-ru-qTi"/>
