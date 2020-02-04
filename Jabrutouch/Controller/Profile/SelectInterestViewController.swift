@@ -20,9 +20,12 @@ class SelectInterestViewController: UIViewController, UICollectionViewDelegate, 
     
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var titleLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.saveButton.setTitle(Strings.save, for: .normal)
+//        self.titleLabel.text = Strings.topicOfInterest
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
 //        self.user = UserRepository.shared.getCurrentUser()

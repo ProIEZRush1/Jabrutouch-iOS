@@ -30,6 +30,8 @@ class DonationInformationCell: UITableViewCell {
         self.donateButton.layer.cornerRadius = 10
         self.containerView.layer.cornerRadius = 12
         self.containerView.clipsToBounds = false
+        self.donateButton.setTitle(Strings.donateLessons, for: .normal)
+        
 
     }
 

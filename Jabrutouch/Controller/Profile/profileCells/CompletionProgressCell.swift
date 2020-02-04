@@ -12,6 +12,7 @@ class CompletionProgressCell: UITableViewCell {
 
     @IBOutlet weak var completionPercentage: UILabel!
     @IBOutlet weak var progressView: JBProgressBar!
+    @IBOutlet weak var titleLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

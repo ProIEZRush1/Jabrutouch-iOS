@@ -11,6 +11,8 @@ import UIKit
 class InterestsCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var titleLabel: UILabel!
+    
     var interests = [JTUserProfileParameter]()
     
     override func awakeFromNib() {
@@ -22,7 +24,6 @@ class InterestsCell: UITableViewCell, UICollectionViewDelegate, UICollectionView
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
