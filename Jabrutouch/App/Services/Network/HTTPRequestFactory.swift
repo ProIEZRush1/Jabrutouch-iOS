@@ -73,6 +73,17 @@ class HttpRequestsFactory {
         return request
     }
     
+    class func changePasswordRequest(userId: Int, oldPassword: String?, newPassword: String?, token: String) -> URLRequest?{
+        guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
+        if oldPassword == nil && newPassword == nil { return nil }
+        let link = baseUrl.appendingPathComponent("users/\(userId)/change_password/").absoluteString
+        let body: [String:Any] = [ "old_password": oldPassword ?? "", "new_password": newPassword ?? ""]
+        guard let url = self.createUrl(fromLink: link, urlParams: nil) else { return nil }
+        let additionalHeaders: [String:String] = ["Authorization": "token \(token)"]
+        let request = self.createRequest(url, method: .post, body: body, additionalHeaders: additionalHeaders)
+        return request
+    }
+    
     //==========================================
     // MARK: - User Flow
     //==========================================

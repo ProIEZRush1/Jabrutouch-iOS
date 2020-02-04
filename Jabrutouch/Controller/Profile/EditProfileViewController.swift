@@ -13,22 +13,28 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
     //============================================================
     // MARK: - Properties
     //============================================================
-//    var birthday: String?
+    
     var user: JTUser?
     var section: Int = 0
     private var datePicker: UIDatePicker?
-//    private var countriesPicker: UIPickerView!
     private var currentCountry = LocalizationManager.shared.getDefaultCountry()
-//    private var birthdate = ""
     var myImagePicker: ImagePicker!
     var userEditParameters: JTUserProfileParameters?
     private var activityView: ActivityView?
+    var image: UIImage?
+    var imageChanged: Bool = false
+    var passwordChanged: Bool = false
+    var attemptToChangePassword: Bool = false
+    var oldPassword: String?
+    var newPassword: String?
 
     //============================================================
     // MARK: - Outlets
     //============================================================
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tabelViewBottomConstrant: NSLayoutConstraint!
+    @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet weak var titleLabel: UILabel!
     
     //============================================================
     // MARK: - LifeCycle
@@ -38,16 +44,22 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
         super.viewDidLoad()
         self.tableView.delegate = self
         self.tableView.dataSource = self
-//        self.initCountriesPicker()
+        self.setText()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+
         self.initDatePicker()
         user = UserRepository.shared.getCurrentUser()
-
         self.myImagePicker = ImagePicker(presentationController: self, delegate: self)
         if let parameters = EditUserParametersRepository.shared.parameters {
             userEditParameters = parameters
         } else {
             EditUserParametersRepository.shared.delegate = self
             self.showActivityView()
+        }
+        if let image = user?.profileImage {
+           self.image = image
         }
     }
     
@@ -61,6 +73,11 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
     // MARK: - Setup
     //============================================================
     
+    private func setText() {
+        self.doneButton.setTitle(Strings.done, for: .normal)
+        self.titleLabel.text = Strings.editProfile
+        
+    }
 //    private func initCountriesPicker() {
 //        self.countriesPicker = UIPickerView()
 //        self.countriesPicker?.backgroundColor = Colors.offwhiteLight
@@ -74,7 +91,16 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
 
     }
     
+    @objc func keyboardWillShow(_ notification:Notification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height + 50, right: 0)
+        }
+    }
     
+    @objc func keyboardWillHide(_ notification:Notification) {
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+
     //============================================================
     // MARK: - @IBActions
     //============================================================
@@ -84,22 +110,156 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     @IBAction func doneButtonPressed(_ sender: Any) {
-        guard let user  = self.user else { return }
         self.showActivityView()
-        
-        LoginManager.shared.setCurrentUserDetails(user) { (result) in
+        self.validatePassowrd()
+        if self.attemptToChangePassword {
             self.removeActivityView()
-            switch result {
-            case .success(let user):
-                DispatchQueue.main.async {
-                    self.user = user
-                    self.dismiss(animated: true, completion: nil)
+            Utils.showAlertMessage("faild changing password", viewControler: self)
+            return
+        }
+        guard var user = self.user else { return }
+        if self.passwordChanged {
+            self.changePassword(userId: user.id, oldPassword: self.oldPassword, newPassword: self.newPassword) { (result) in
+                switch result{
+                case .success(_):
+                    if let image = self.image {
+                        user.profileImage = image
+                    }
+                    if self.imageChanged {
+                        user.imageLink = user.profileImageFileName //"profile_image_\(user.id).jpeg"
+                        self.saveImageInS3{ (result: Result<Void, Error>) in
+                            switch result {
+                            case .success:
+                                LoginManager.shared.setCurrentUserDetails(user) { (result) in
+                                    self.removeActivityView()
+                                    switch result {
+                                    case .success(let user):
+                                        UserRepository.shared.setProfileImage(image: self.image)
+                                        DispatchQueue.main.async {
+                                            self.user = user
+                                            self.dismiss(animated: true, completion: nil)
+                                        }
+                                    case .failure(_):
+                                        return
+                                    }
+                                }
+                            case .failure(_):
+                                self.removeActivityView()
+                                Utils.showAlertMessage("faild saving image", viewControler: self)
+                                return
+                            }
+                        }
+                    } else {
+                        LoginManager.shared.setCurrentUserDetails(user) { (result) in
+                            self.removeActivityView()
+                            switch result {
+                            case .success(let user):
+                                DispatchQueue.main.async {
+                                    self.user = user
+                                    self.dismiss(animated: true, completion: nil)
+                                }
+                            case .failure(_):
+                                return
+                            }
+                        }
+                    }
+                case .failure(_):
+                    self.removeActivityView()
+                    Utils.showAlertMessage("faild changing password", viewControler: self)
+                    return
                 }
-            case .failure(_):
-                return
+            }
+        } else {
+            
+            if let image = self.image {
+                user.profileImage = image
+            }
+            if self.imageChanged {
+                user.imageLink = user.profileImageFileName //"profile_image_\(user.id).jpeg"
+                self.saveImageInS3 { (result: Result<Void, Error>) in
+                    switch result {
+                    case .success:
+                        LoginManager.shared.setCurrentUserDetails(user) { (result) in
+                            self.removeActivityView()
+                            switch result {
+                            case .success(let user):
+                                DispatchQueue.main.async {
+                                    self.user = user
+                                    self.dismiss(animated: true, completion: nil)
+                                }
+                            case .failure(_):
+                                self.removeActivityView()
+                                Utils.showAlertMessage("faild updating profile", viewControler: self)
+                                return
+                            }
+                        }
+                    case .failure(_):
+                        self.removeActivityView()
+                        Utils.showAlertMessage("faild saving image", viewControler: self)
+                        return
+                    }
+                }
+            } else {
+                LoginManager.shared.setCurrentUserDetails(user) { (result) in
+                    self.removeActivityView()
+                    switch result {
+                    case .success(let user):
+                        DispatchQueue.main.async {
+                            self.user = user
+                            self.dismiss(animated: true, completion: nil)
+                        }
+                    case .failure(_):
+                        self.removeActivityView()
+                        Utils.showAlertMessage("faild updating profile", viewControler: self)
+                        return
+                    }
+                }
             }
         }
     }
+    
+    func validatePassowrd() {
+        self.attemptToChangePassword = false
+        let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 4)) as? EditPasswordCell
+        
+        guard let oldPassword = cell?.oldPasswordTextField.text else { return }
+        guard let newPassword = cell?.newPasswordTextField.text else { return }
+        
+        if cell?.oldPasswordTextField.text?.isEmpty ?? true {
+            self.attemptToChangePassword = true
+            return
+        }
+        
+        if oldPassword != UserDefaultsProvider.shared.currentPassword {
+            Utils.showAlertMessage("Incorrect password", viewControler: self)
+            self.attemptToChangePassword = true
+            return
+        }
+        if let confirmNewPassword = cell?.confirmTextField.text {
+            if newPassword != confirmNewPassword {
+                Utils.showAlertMessage("new password, and confirm password must be identical", viewControler: self)
+                self.attemptToChangePassword = true
+                return
+            }
+        }
+        
+        self.oldPassword = oldPassword
+        self.newPassword = newPassword
+        self.passwordChanged = true
+    }
+        
+    func changePassword(userId: Int, oldPassword: String?, newPassword: String?, completion:@escaping (Result<Void,Error>)->Void) {
+        LoginManager.shared.changPassword(userId: userId, oldPassword: oldPassword, newPassword: newPassword) { (result) in
+            switch result{
+            case .success(_):
+                UserDefaultsProvider.shared.currentPassword = newPassword
+                completion(.success(()))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
     // TODO: - Fix it
     @objc func keyboardDonePressed(_ sender: Any) {
 //        if let index = self.countriesPicker?.selectedRow(inComponent: 0) {
@@ -166,14 +326,18 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "completionProgress") as? CompletionProgressCell else { return UITableViewCell() }
             let count = user?.profilePercent ?? 0
             let progress = CGFloat(count)/100
-            cell.completionPercentage.text = "\(Int(count))% Full"
+            cell.completionPercentage.text = "\(Int(count))% \(Strings.full)"
             cell.progressView.progress = progress
             return cell
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "editPersonalDetails") as? EditPersonalDetailsCell else { return UITableViewCell() }
             cell.firstNameTextField.text = user?.firstName
             cell.lastNameTextField.text = user?.lastName
-            cell.profileImage.image = user?.profileImage ?? #imageLiteral(resourceName: "Avatar")
+            if self.image != nil {
+                cell.profileImage.image = self.image
+            } else {
+                cell.profileImageButton.setTitle(Strings.addPhoto, for: .normal)
+            }
             
             cell.profileImageButton.addTarget(self, action: #selector(profileImageButtonPressed(_:)), for: .touchUpInside)
            
@@ -187,7 +351,7 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
                 cell.textField.text = user?.email
             case 1:
                 cell.setData(index: indexPath.row, editable: true, withPicker: true, withArrow: true, position: .top, .country)
-                cell.textField.placeholder = "Country"
+                cell.textField.placeholder = Strings.country
                 if !(user?.country ?? "").isEmpty {
                     cell.textField.text = user?.country
                 }
@@ -199,14 +363,14 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
                 cell.setData(index: indexPath.row, editable: true, withPicker: false, withArrow: true, position: .bottom, .birthday)
                 cell.textField.tag = 2
                 if self.user?.birthdayString == "" {
-                    cell.textField.placeholder = "Birthday"
+                    cell.textField.placeholder = Strings.birthday
                 } else {
                     cell.textField.text = self.user?.birthdayString
                 }
             case 4:
                 cell.setData(index: indexPath.row, editable: true, withPicker: true, withArrow: true, position: .top, .community)
                 if (self.user?.community?.name ?? "").isEmpty {
-                    cell.textField.placeholder = "Community"
+                    cell.textField.placeholder = Strings.community
                 } else {
                     cell.textField.text = self.user?.community?.name
                 }
@@ -220,7 +384,7 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
             case 5:
                 cell.setData(index: indexPath.row, editable: true, withPicker: true, withArrow: true, position: .top, .education)
                 if (self.user?.education?.name ?? "").isEmpty {
-                    cell.textField.placeholder = "Education"
+                    cell.textField.placeholder = Strings.education
                 } else {
                     cell.textField.text = self.user?.education?.name
                 }
@@ -235,7 +399,7 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
                 cell.setData(index: indexPath.row, editable: true, withPicker: false, withArrow: false, position: .bottom, .secondEmail)
                 cell.textField.textContentType = .emailAddress
                 cell.textField.keyboardType = .emailAddress
-                cell.textField.placeholder = "Second Email Address"
+                cell.textField.placeholder = Strings.secondEmail
                 if !(self.user?.secondEmail ?? "").isEmpty {
                     cell.textField.text = self.user?.secondEmail
                 }
@@ -247,11 +411,13 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
         case 3:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "InterestsCell") as? InterestsCell else { return UITableViewCell() }
             cell.interests = self.user?.interest ?? []
+            cell.titleLabel.text = Strings.topicOfInterest
             cell.collectionView.reloadData()
             return cell
         case 4:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "editPassword") as? EditPasswordCell else { return UITableViewCell() }
             cell.oldPasswordTextField.tag = 3
+            cell.changePassowrdLabel.text = Strings.changePassword
             return cell
         default:
             return UITableViewCell()
@@ -268,7 +434,7 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
         case 2:
             return 66
         case 3:
-            return CGFloat(numOfRowInterestCollectionView(indexPath: indexPath) * 42) + 60
+            return CGFloat(numOfRowInterestCollectionView(indexPath: indexPath) * 42) + 70
         case 4:
             return 300
         default:
@@ -315,8 +481,21 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
         return rows
     }
     
-    func saveImageInS3() {
-//        AWSS3Provider.shared.handleFileUpload(fileUrl: <#T##URL#>, fileName: <#T##String#>, contentType: <#T##String#>, bucketName: AWSS3Provider.appS3BucketName, progressBlock: <#T##((Progress) -> Void)?##((Progress) -> Void)?##(Progress) -> Void#>, completion: <#T##((Result<String, Error>) -> Void)?##((Result<String, Error>) -> Void)?##(Result<String, Error>) -> Void#>)
+    func saveImageInS3(completion: @escaping (Result<Void,Error>)->Void) {
+        guard let user = self.user else { return }
+        guard let url = user.profileImageFileURL else { return }
+        
+        AWSS3Provider.shared.handleFileUpload(fileUrl: url, fileName: user.profileImageFileName, contentType: "image/jpeg", bucketName: AWSS3Provider.appS3BucketName, progressBlock: { (progress) in
+            print(progress)
+        }) { (result:Result<String, Error>) in
+            switch result {
+            case .success(_):
+                completion(.success(()))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -363,7 +542,6 @@ extension EditProfileViewController: UITextFieldDelegate {
     
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.tableView.contentOffset.y = 0.0
         return true
     }
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -391,10 +569,7 @@ extension EditProfileViewController: UITextFieldDelegate {
             }
             
         }
-        if textField.tag == 3 {
-            self.tableView.contentOffset.y += 300
-        }
-        
+  
     }
     
     @objc func textFieldDidChange(_ sender: UITextField) {
@@ -415,8 +590,8 @@ extension EditProfileViewController: ImagePickerDelegate {
                 
             }
         }
-        self.user?.profileImage = image
-        self.user?.imageLink = "link"
+        self.imageChanged = true
+        self.image = image
         self.tableView.reloadData()
         
     }

@@ -30,7 +30,7 @@ struct JTUser {
     var lessonWatched: [JTLessonWatched] = []
     var profilePercent: Int?
     var profileImageFileName: String {
-        return "profile_image_\(self.id)"
+        return "profile_image_\(self.id).jpeg"
     }
     
     var profileImageFileURL: URL? {
@@ -166,6 +166,6 @@ struct JTUser {
                 
             }
         }
-            
     }
+    
 }

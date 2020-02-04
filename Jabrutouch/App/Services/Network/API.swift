@@ -75,6 +75,16 @@ class API {
         }
     }
     
+    class func changePassword(userId: Int, oldPassword: String?, newPassword: String?, token: String, completionHandler:@escaping (_ response: APIResult<ChangePasswordResponse>)->Void) {
+        guard let request = HttpRequestsFactory.changePasswordRequest(userId: userId, oldPassword: oldPassword, newPassword: newPassword, token: token) else {
+            completionHandler(APIResult.failure(.unableToCreateRequest))
+            return
+        }
+        HttpServiceProvider.shared.excecuteRequest(request: request) { (data, response, error) in
+            self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
+        }
+    }
+    
     class func getEditUserParameters(authToken: String, completionHandler:@escaping (_ response: APIResult<GetEditUserParametersResponse>)->Void) {
         guard let request = HttpRequestsFactory.createGetEditUserParameters( token: authToken) else {
             completionHandler(APIResult.failure(.unableToCreateRequest))

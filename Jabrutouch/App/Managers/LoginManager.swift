@@ -113,6 +113,40 @@ class LoginManager {
         }
     }
     
+    func changPassword(userId: Int, oldPassword: String?, newPassword: String?, completion:@escaping (_ result: Result<ChangePasswordResponse,JTError>)->Void){
+        guard let authToken = UserDefaultsProvider.shared.currentUser?.token else {
+            completion(.failure(.authTokenMissing))
+            return
+        }
+        API.changePassword(userId: userId, oldPassword: oldPassword, newPassword: newPassword, token: authToken) { (result:APIResult<ChangePasswordResponse>) in
+            switch result {
+            case .success(let response):
+                
+                DispatchQueue.main.async {
+                    completion(.success(response))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func getProfileImage(fileName: String, completion: @escaping (_ result: Result<UIImage,Error>)->Void) {
+           AWSS3Provider.shared.handleFileDownload(fileName: fileName, bucketName: AWSS3Provider.appS3BucketName, progressBlock: nil) { (result) in
+               switch result{
+               case .success(let data):
+                   if let image = UIImage(data: data) {
+                       completion(.success(image))
+                   }
+                   else {
+                   }
+                   
+               case .failure(let error):
+                   completion(.failure(error))
+               }
+           }
+       }
+    
     func setCurrentUserDetails(_ user: JTUser, completion:@escaping (_ result: Result<JTUser,JTError>)->Void) {
         guard let authToken = UserDefaultsProvider.shared.currentUser?.token else {
             completion(.failure(.authTokenMissing))
@@ -141,6 +175,14 @@ class LoginManager {
     
     private func userDidSignIn(user: JTUser, password: String) {
         UserRepository.shared.setCurrentUser(user, password: password)
+        self.getProfileImage(fileName: user.imageLink) { (result: Result<UIImage, Error>) in
+            switch result {
+            case .success(let image):
+                UserRepository.shared.setProfileImage(image: image)
+            case .failure(_):
+                break
+            }
+        }
     }
     
     private func userDidSignOut() {

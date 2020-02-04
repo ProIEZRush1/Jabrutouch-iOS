@@ -130,7 +130,11 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ann-So-KsR">
                                                     <rect key="frame" x="284" y="5" width="110" height="110"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="18"/>
+                                                    <state key="normal">
+                                                        <color key="titleColor" red="0.17399999999999999" green="0.17000000000000001" blue="0.33800000000000002" alpha="0.88" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
                                                 </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NbJ-7K-M6g">
                                                     <rect key="frame" x="284" y="5" width="110" height="110"/>
@@ -307,9 +311,9 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z4g-u1-l5v">
-                                                    <rect key="frame" x="362" y="20" width="32" height="30"/>
+                                                    <rect key="frame" x="347" y="20" width="47" height="30"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
-                                                    <state key="normal" title="Edit">
+                                                    <state key="normal" title="Editar">
                                                         <color key="titleColor" red="0.17799999999999999" green="0.16800000000000001" blue="0.66300000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                     <connections>
@@ -398,6 +402,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="collectionView" destination="Jv4-al-rz7" id="K0X-Df-B3Z"/>
+                                            <outlet property="titleLabel" destination="8lA-1c-IMS" id="IyJ-PK-LYR"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="editPassword" rowHeight="300" id="VUd-b0-HDx" customClass="EditPasswordCell" customModule="Jabrutouch" customModuleProvider="target">
@@ -444,9 +449,12 @@
                                                             <rect key="frame" x="0.0" y="5" width="374" height="45"/>
                                                             <subviews>
                                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Old Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Q0y-ax-0kg">
-                                                                    <rect key="frame" x="22" y="14" width="330" height="17"/>
+                                                                    <rect key="frame" x="22" y="5.5" width="330" height="34"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="34" id="AcS-X5-BrS"/>
+                                                                    </constraints>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                    <textInputTraits key="textInputTraits"/>
+                                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                                                     <connections>
                                                                         <outlet property="delegate" destination="QQm-6t-H9d" id="rAJ-G5-3wX"/>
                                                                     </connections>
@@ -477,9 +485,12 @@
                                                             <rect key="frame" x="0.0" y="5" width="374" height="45"/>
                                                             <subviews>
                                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm new password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QBr-li-B5D">
-                                                                    <rect key="frame" x="22" y="14" width="330" height="17"/>
+                                                                    <rect key="frame" x="22" y="5.5" width="330" height="34"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="34" id="EaV-ys-hOd"/>
+                                                                    </constraints>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                    <textInputTraits key="textInputTraits"/>
+                                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                                                     <connections>
                                                                         <outlet property="delegate" destination="QQm-6t-H9d" id="UtZ-r0-2Ev"/>
                                                                     </connections>
@@ -509,9 +520,12 @@
                                                             <rect key="frame" x="0.0" y="5" width="374" height="45"/>
                                                             <subviews>
                                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fnc-wN-9ET">
-                                                                    <rect key="frame" x="22" y="14" width="330" height="17"/>
+                                                                    <rect key="frame" x="22" y="5.5" width="330" height="34"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="34" id="IEK-Mf-wKg"/>
+                                                                    </constraints>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                    <textInputTraits key="textInputTraits"/>
+                                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                                                     <connections>
                                                                         <outlet property="delegate" destination="QQm-6t-H9d" id="60m-tg-eje"/>
                                                                     </connections>
@@ -553,6 +567,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
+                                            <outlet property="changePassowrdLabel" destination="zaf-Zw-mJp" id="Fvn-rQ-CYF"/>
                                             <outlet property="confirmContanerView" destination="IDY-Pe-WUF" id="buI-Sf-893"/>
                                             <outlet property="confirmShadowView" destination="RvL-Gu-emg" id="Opx-5q-nm8"/>
                                             <outlet property="confirmTextField" destination="QBr-li-B5D" id="Zd2-OI-K0P"/>
@@ -581,8 +596,10 @@
                         <viewLayoutGuide key="safeArea" id="v8W-gR-nWl"/>
                     </view>
                     <connections>
+                        <outlet property="doneButton" destination="C4O-rJ-eKk" id="svN-uS-GeQ"/>
                         <outlet property="tabelViewBottomConstrant" destination="6yr-PY-6xO" id="6s6-YC-A3o"/>
                         <outlet property="tableView" destination="5NU-XS-Vdg" id="Utb-uI-TEY"/>
+                        <outlet property="titleLabel" destination="EDk-yD-4SW" id="XJ1-ix-dSd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PVN-na-Mo9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -848,6 +865,7 @@
                     <connections>
                         <outlet property="collectionView" destination="T6K-zg-SV9" id="I5g-C9-jY5"/>
                         <outlet property="saveButton" destination="v9Z-t1-Ori" id="MeD-4d-G3j"/>
+                        <outlet property="titleLabel" destination="Ovo-wS-yNP" id="6H5-Q4-yrr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bLd-8F-tdm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -988,14 +1006,14 @@
                                                                     <color key="textColor" red="0.17399999999999999" green="0.17000000000000001" blue="0.33800000000000002" alpha="0.88" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lessons" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1wX-gA-f6h">
-                                                                    <rect key="frame" x="91.5" y="-5" width="63.5" height="19.5"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shiurim" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1wX-gA-f6h">
+                                                                    <rect key="frame" x="91.5" y="-5" width="59" height="19.5"/>
                                                                     <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="16"/>
                                                                     <color key="textColor" red="0.17399999999999999" green="0.17000000000000001" blue="0.33800000000000002" alpha="0.88" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Donated" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d1A-Vg-t5W">
-                                                                    <rect key="frame" x="91.5" y="18.5" width="65.5" height="19.5"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="donados" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d1A-Vg-t5W">
+                                                                    <rect key="frame" x="91.5" y="18.5" width="67" height="19.5"/>
                                                                     <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="16"/>
                                                                     <color key="textColor" red="0.17000000000000001" green="0.17000000000000001" blue="0.34000000000000002" alpha="0.5" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -1017,19 +1035,19 @@
                                                             <rect key="frame" x="212" y="24" width="150" height="33"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sDX-y0-71n">
-                                                                    <rect key="frame" x="-8.5" y="-5" width="44.5" height="43"/>
+                                                                    <rect key="frame" x="-9.5" y="-5" width="44.5" height="43"/>
                                                                     <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="36"/>
                                                                     <color key="textColor" red="0.17399999999999999" green="0.17000000000000001" blue="0.33800000000000002" alpha="0.88" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lessons" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ueJ-pv-FCM">
-                                                                    <rect key="frame" x="49" y="-5" width="63.5" height="19.5"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shiurim" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ueJ-pv-FCM">
+                                                                    <rect key="frame" x="48" y="-5" width="59" height="19.5"/>
                                                                     <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="16"/>
                                                                     <color key="textColor" red="0.17000000000000001" green="0.17000000000000001" blue="0.34000000000000002" alpha="0.5" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Learned" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Yz-ED-5aK">
-                                                                    <rect key="frame" x="49" y="18.5" width="63" height="19.5"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="aprendidos" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Yz-ED-5aK">
+                                                                    <rect key="frame" x="48" y="18.5" width="87" height="19.5"/>
                                                                     <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="16"/>
                                                                     <color key="textColor" red="0.17000000000000001" green="0.17000000000000001" blue="0.34000000000000002" alpha="0.5" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -1043,7 +1061,7 @@
                                                                 <constraint firstAttribute="height" constant="33" id="Zor-ji-WYk"/>
                                                                 <constraint firstItem="ueJ-pv-FCM" firstAttribute="top" secondItem="sDX-y0-71n" secondAttribute="top" id="csg-4X-n3N"/>
                                                                 <constraint firstItem="sDX-y0-71n" firstAttribute="centerY" secondItem="vkr-Sv-ipR" secondAttribute="centerY" id="hVP-uD-z5c"/>
-                                                                <constraint firstAttribute="trailing" secondItem="5Yz-ED-5aK" secondAttribute="trailing" constant="38" id="oMH-ny-LeM"/>
+                                                                <constraint firstAttribute="trailing" secondItem="5Yz-ED-5aK" secondAttribute="trailing" constant="15" id="oMH-ny-LeM"/>
                                                                 <constraint firstItem="5Yz-ED-5aK" firstAttribute="bottom" secondItem="sDX-y0-71n" secondAttribute="bottom" id="y4o-lZ-Hg9"/>
                                                             </constraints>
                                                         </view>
@@ -1090,7 +1108,7 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="completionProgress" rowHeight="100" id="NtK-bg-pyg" customClass="CompletionProgressCell" customModule="Jabrutouch" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="348" width="414" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NtK-bg-pyg" id="hpB-H2-Tf2">
+                                        <tableViewCellContentView key="contentView" opaque="NO" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NtK-bg-pyg" id="hpB-H2-Tf2">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -1142,6 +1160,7 @@
                                         <connections>
                                             <outlet property="completionPercentage" destination="Ugh-r9-LCK" id="NsO-Qm-X5d"/>
                                             <outlet property="progressView" destination="2p2-T1-QSp" id="lsS-gW-YKw"/>
+                                            <outlet property="titleLabel" destination="h1B-Wb-BNS" id="h1z-hk-i40"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="GeneralInformationCell" rowHeight="50" id="aLr-wd-O5T" customClass="GeneralInformationCell" customModule="Jabrutouch" customModuleProvider="target">
@@ -1265,6 +1284,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="collectionView" destination="0cx-Z1-gsK" id="WZr-In-gb8"/>
+                                            <outlet property="titleLabel" destination="Lv8-ml-u8W" id="p6V-JS-O4K"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ButtonCell" rowHeight="50" id="8eT-es-qN9" customClass="ButtonCell" customModule="Jabrutouch" customModuleProvider="target">
@@ -1322,6 +1342,7 @@
                         <viewLayoutGuide key="safeArea" id="RpF-sA-L1p"/>
                     </view>
                     <connections>
+                        <outlet property="editButton" destination="BOA-J7-iIK" id="mQi-CR-NFs"/>
                         <outlet property="profileImage" destination="zce-kx-l9g" id="OK4-3E-93l"/>
                         <outlet property="tableView" destination="nTA-G2-CeG" id="7FV-j5-PSA"/>
                         <outlet property="versionLabel" destination="iXb-s5-uYY" id="qhg-DB-t8U"/>

@@ -25,7 +25,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var versionLabel: UILabel!
-
+    @IBOutlet weak var editButton: UIButton!
     
     //========================================
     // MARK: - LifeCycle
@@ -58,7 +58,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
         let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
         self.versionLabel.text = "Version \(version) (\(build))"
-
+        self.editButton.setTitle(Strings.edit, for: .normal)
     }
     
     private func roundCorners() {
@@ -124,14 +124,15 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             return cell
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "DonationInformationCell") as? DonationInformationCell else { return UITableViewCell() }
-            cell.donatedLabel.text = "20"
-            cell.learedLabel.text = "5"
+            cell.donatedLabel.text = "0"
+            cell.learedLabel.text = "0"
             cell.containerView.clipsToBounds = false
             return cell
         case 2:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "completionProgress") as? CompletionProgressCell else { return UITableViewCell() }
             let count = user?.profilePercent ?? 0
             let progress = CGFloat(count)/100
+//            cell.completionPercentage.text = "\(Int(count))% \(Strings.full)"
             cell.completionPercentage.text = "\(Int(count))% Full"
             cell.progressView.progress = progress
             return cell
@@ -139,26 +140,47 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "GeneralInformationCell") as? GeneralInformationCell else { return UITableViewCell() }
             switch indexPath.row {
             case 0:
-                cell.titleLabel.text = "Phone Number"
+                cell.titleLabel.text = Strings.profilePhoneNumber
                 cell.infoLabel.text = self.user!.phoneNumber
             case 1:
-                cell.titleLabel.text = "Birthday"
-                cell.infoLabel.text = self.user!.birthdayString
+                cell.titleLabel.text = Strings.birthday
+                if self.user!.birthdayString == "" {
+                    cell.infoLabel.text = Strings.empty
+                    cell.infoLabel.textColor = UIColor.lightGray
+                } else {
+                    cell.infoLabel.text = self.user!.birthdayString
+                }
+                
             case 2:
-                cell.titleLabel.text = "Community"
-                cell.infoLabel.text = self.user!.community?.name
+                cell.titleLabel.text = Strings.community
+                if self.user!.community?.name == nil {
+                    cell.infoLabel.text = Strings.empty
+                    cell.infoLabel.textColor = UIColor.lightGray
+                } else {
+                    cell.infoLabel.text = self.user!.community?.name
+                }
 //            case 3:
 //                cell.titleLabel.text = "Religious Level"
 //                cell.infoLabel.text = "\(self.user!.religiousLevel ?? 0) out of 10"
             case 3:
-                cell.titleLabel.text = "Education"
-                cell.infoLabel.text = self.user!.education?.name
+                cell.titleLabel.text = Strings.education
+                if self.user!.education?.name == nil {
+                    cell.infoLabel.text = Strings.empty
+                    cell.infoLabel.textColor = UIColor.lightGray
+                } else {
+                    cell.infoLabel.text = self.user!.education?.name
+                }
 //            case 5:
 //                cell.titleLabel.text = "Occupation"
 //                cell.infoLabel.text = self.user!.occupation?.name
             case 4:
-                cell.titleLabel.text = "Second Email"
-                cell.infoLabel.text = self.user!.secondEmail
+                cell.titleLabel.text = Strings.secondEmail
+                if self.user!.secondEmail == "" {
+                    cell.infoLabel.text = Strings.empty
+                    cell.infoLabel.textColor = UIColor.lightGray
+                } else {
+                    cell.infoLabel.text = self.user!.secondEmail
+                }
             default:
                 break
             }
@@ -167,6 +189,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         case 4:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "InterestsCell") as? InterestsCell else { return UITableViewCell() }
             cell.interests = self.user?.interest ?? []
+            cell.titleLabel.text = Strings.topicOfInterest
             cell.collectionView.reloadData()
             return cell
         case 5:
@@ -177,11 +200,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 cell.button.backgroundColor = #colorLiteral(red: 0.1764705882, green: 0.168627451, blue: 0.662745098, alpha: 1)
                 cell.button.setTitleColor(.white, for: .normal)
             case 1:
-                cell.button.setTitle("change password", for: .normal)
+                cell.button.setTitle(Strings.changePassword, for: .normal)
                 cell.button.setTitleColor(#colorLiteral(red: 0.1764705882, green: 0.168627451, blue: 0.662745098, alpha: 1), for: .normal)
                 cell.button.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
             case 2:
-                cell.button.setTitle("remove account", for: .normal)
+                cell.button.setTitle(Strings.removeAccount, for: .normal)
                 cell.button.setTitleColor(#colorLiteral(red: 0.1764705882, green: 0.168627451, blue: 0.662745098, alpha: 1), for: .normal)
                 cell.button.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
             default:
@@ -206,7 +229,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         case 3:
             return 50
         case 4:
-            return CGFloat(numOfRowInterestCollectionView(indexPath: indexPath) * 42) + 60
+            return CGFloat(numOfRowInterestCollectionView(indexPath: indexPath) * 42) + 70
         case 5:
             return 56
         default:
