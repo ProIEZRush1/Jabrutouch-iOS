@@ -45,4 +45,12 @@ class Storyboards {
             return self.galleryStoryboard().instantiateViewController(withIdentifier: "GalleryViewController") as! GalleryViewController
         }
     }
+    
+    class Donation {
+        private class func donationStoryboard() -> UIStoryboard { return UIStoryboard(name: "Donations", bundle: Bundle.main) }
+        
+        class var  donateNavigationController: DonateNavigationController {
+            return self.donationStoryboard().instantiateViewController(withIdentifier: "DonateNavigationController") as! DonateNavigationController
+        }
+    }
 }

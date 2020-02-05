@@ -27,7 +27,11 @@ class DedicationCardView: UIView {
     @IBOutlet weak var dedicationLabel: UILabel!
     @IBOutlet weak var textField: TextFieldWithPadding!
     @IBOutlet weak var textFieldView: UIView!
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var topLabelConstraint: NSLayoutConstraint!
+    @IBOutlet weak var editNameButton: UIButton!
+    @IBOutlet weak var editNameTFView: UIView!
+    @IBOutlet weak var editNameTextField: TextFieldWithPadding!
     
     
     //========================================
@@ -80,18 +84,30 @@ class DedicationCardView: UIView {
     func roundCornors() {
         self.textFieldView.layer.cornerRadius = self.textFieldView.bounds.height/2
         self.textField.layer.cornerRadius = self.textField.bounds.height/2
+        self.editNameTFView.layer.cornerRadius = self.editNameTFView.bounds.height/2
+        self.editNameTextField.layer.cornerRadius = self.editNameTextField.bounds.height/2
         self.layer.cornerRadius = 15
+        self.containerView.layer.cornerRadius = 15
+        self.profileImage.layer.cornerRadius = self.profileImage.bounds.height/2
         
     }
+    
     func setBorders() {
         self.textFieldView.layer.borderColor = Colors.borderGray.cgColor
         self.textFieldView.layer.borderWidth = 1.0
+        
+        self.editNameTFView.layer.borderColor = Colors.borderGray.cgColor
+        self.editNameTFView.layer.borderWidth = 1.0
     }
     
     func setShadow() {
-        let color = #colorLiteral(red: 0.1, green: 0.12, blue: 0.57, alpha: 0.4)
-        Utils.dropViewShadow(view: self, shadowColor: color, shadowRadius: 12, shadowOffset: CGSize(width: 0, height: 12))
+        let color = #colorLiteral(red: 0.157, green: 0.166, blue: 0.393, alpha: 0.2)
+        Utils.dropViewShadow(view: self.containerView, shadowColor: color, shadowRadius: 14, shadowOffset: CGSize(width: 0, height: 14))
     }
     
+    @IBAction func editNameButtonPressed(_ sender: Any) {
+        self.userNameLabel.isHidden = true
+        self.editNameTFView.isHidden = false
+    }
     
 }

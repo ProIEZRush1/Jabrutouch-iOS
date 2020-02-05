@@ -123,6 +123,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.lessonWatched = UserDefaultsProvider.shared.lessonWatched
         self.setContent()
         self.setCornerRadius()
+        self.setDefaulteIcons()
         setView()
     }
     
@@ -426,8 +427,9 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
             self.donationsImageView.alpha = 1.0
             self.donationsLabel.alpha = 1.0
         }
-        self.presentDonationsViewController()
-//        self.presentOldDonations()
+//        self.presentDonationWalkThrough()
+//        self.presentDonationsViewController()
+        self.presentOldDonations()
     }
     
     @IBAction func donationsButtonTouchedUpOutside(_ sender: UIButton) {
@@ -484,6 +486,10 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.presentMessages()
     }
     
+    @IBAction func unwindToMain(segue:UIStoryboardSegue) {
+        self.dismissMainModal()
+    }
+    
     //========================================
     // MARK: - Navigation
     //========================================
@@ -507,6 +513,10 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     
     private func presentMessages() {
         self.performSegue(withIdentifier: "toMessages", sender: self)
+    }
+    
+    private func presentDonationWalkThrough() {
+        self.performSegue(withIdentifier: "presentDonationWalkTrough", sender: self)
     }
     
     private func presentOldDonations() {
@@ -660,8 +670,9 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
         case .messageCenter:
             presentMessages()
         case .donationsCenter:
-            presentDonationsViewController()
-//            presentOldDonations()
+//            presentDonationWalkThrough()
+//            presentDonationsViewController()
+            presentOldDonations()
         default:
             presentInDevelopmentAlert()
         }

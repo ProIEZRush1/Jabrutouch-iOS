@@ -103,8 +103,11 @@ class DonateViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+//        self.dismiss(animated: true, completion: nil)
+//        self.navigationController?.popViewController(animated: true)
+        performSegue(withIdentifier: "unwindToMain", sender: self)
     }
+    
     
     @IBAction func singelPaymentButtonPressed(_ sender: Any) {
         self.amountToPayTF.text = "1000"

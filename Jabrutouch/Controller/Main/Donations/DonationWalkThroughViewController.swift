@@ -1,75 +1,89 @@
-//בעזרת ה׳ החונן לאדם דעת
-//  WalkThroughViewController.swift
+//
+//  DonationWalkThroughViewController.swift
 //  Jabrutouch
 //
-//  Created by Yoni Reiss on 15/07/2019.
-//  Copyright © 2019 Ravtech. All rights reserved.
+//  Created by Shlomo Carmen on 04/02/2020.
+//  Copyright © 2020 Ravtech. All rights reserved.
 //
 
 import UIKit
 
-class WalkThroughViewController: UIViewController {
-
+class DonationWalkThroughViewController: UIViewController {
+    
     @IBOutlet weak private var collectionView: UICollectionView!
     @IBOutlet weak var barPageIndicator: JTBarPageIndicator!
-
+    @IBOutlet weak var backButton: UIButton!
+    
+    
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return [.portrait]
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
     }
     
-    private func navigateToSignIn() {
-        let signInViewController = Storyboards.SignIn.signInViewController
-        appDelegate.setRootViewController(viewController: signInViewController, animated: true)
+    private func navigateToDonations() {
+        let donateViewController = Storyboards.Donation.donateNavigationController
+        donateViewController.modalTransitionStyle = .crossDissolve
+        donateViewController.modalPresentationStyle = .fullScreen
+        self.present(donateViewController, animated: true)
+//        appDelegate.setRootViewController(viewController: donateViewController, animated: true)
     }
-
+    
+    @IBAction func backButtonPreesed(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
 }
 
-extension WalkThroughViewController: UICollectionViewDataSource {
+extension DonationWalkThroughViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 4
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "walkThroughCell", for: indexPath) as? WalkThroughCollectionViewCell
-        else {
-            return UICollectionViewCell()
+            else {
+                return UICollectionViewCell()
         }
-        cell.setIndex(indexPath.item, "sginIn")
+        cell.setIndex(indexPath.item, "donations")
         return cell
     }
 }
 
-extension WalkThroughViewController: UICollectionViewDelegate {
+extension DonationWalkThroughViewController: UICollectionViewDelegate {
     func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.x > scrollView.bounds.width*3 {
             UserDefaultsProvider.shared.seenWalkThrough = true
-            self.navigateToSignIn()
+            self.navigateToDonations()
         }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.x < scrollView.bounds.width*0.5 {
             self.barPageIndicator.selectedIndex = 0
+            self.backButton.isHidden = false
         }
         else if scrollView.contentOffset.x < scrollView.bounds.width*1.5 {
             self.barPageIndicator.selectedIndex = 1
+            self.backButton.isHidden = true
         }
         else if scrollView.contentOffset.x < scrollView.bounds.width*2.5 {
             self.barPageIndicator.selectedIndex = 2
+            self.backButton.isHidden = true
         }
         else {
             self.barPageIndicator.selectedIndex = 3
+            self.backButton.isHidden = true
         }
         
     }
 }
-extension WalkThroughViewController: UICollectionViewDelegateFlowLayout {
+extension DonationWalkThroughViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return collectionView.bounds.size
     }
+    
 }

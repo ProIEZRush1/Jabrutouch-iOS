@@ -75,11 +75,9 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
     func setCardView(dedication: String, hidden: Bool) {
         let view = DedicationCardView()
         view.textField.delegate = self
+        view.editNameTextField.delegate = self
         view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         
-        view.layer.borderColor = Colors.borderGray.cgColor
-        view.layer.borderWidth = 1.0
-        view.clipsToBounds = false
         view.profileImage.image = user?.profileImage ?? #imageLiteral(resourceName: "Avatar")
         view.userNameLabel.text = "\(user?.firstName ?? "") \(user?.lastName ?? "")"
         view.countryLabel.text = user?.country ?? ""
@@ -88,7 +86,8 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
         view.textFieldView.isHidden = hidden
         view.setBorders()
         view.roundCornors()
-//        view.setShadow()
+        view.setShadow()
+        
         if hidden {
             view.topLabelConstraint.constant = 50
         }
@@ -138,6 +137,7 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
         if let name = card.textField.text {
             self.name = name
         }
+        self.performSegue(withIdentifier: "presentPayment", sender: self)
     }
     
     //========================================
@@ -162,7 +162,6 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
 
         let view = self.views[index]
         view.frame = frame
-//        view.setShadow()
         
         return view
         
