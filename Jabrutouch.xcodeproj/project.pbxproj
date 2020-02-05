@@ -146,6 +146,10 @@
 		4628E0E423215E1200D963E6 /* DonatedAlert.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4628E0E323215E1200D963E6 /* DonatedAlert.xib */; };
 		4628E0E72322954800D963E6 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4628E0E62322953300D963E6 /* Application.swift */; };
 		4628E0E923245BF600D963E6 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4628E0E823245BF600D963E6 /* AboutViewController.swift */; };
+		46C652F223CF6C5E00F6D0DD /* EditUserParametersRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C652F123CF6C5E00F6D0DD /* EditUserParametersRepository.swift */; };
+		46C652F423CF764F00F6D0DD /* JTUserProfileParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C652F323CF764F00F6D0DD /* JTUserProfileParameters.swift */; };
+		46C652F623CF770800F6D0DD /* GetEditUserParametersResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C652F523CF770800F6D0DD /* GetEditUserParametersResponse.swift */; };
+		46C652F823CF798700F6D0DD /* JTUserProfileParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C652F723CF798700F6D0DD /* JTUserProfileParameter.swift */; };
 		538691452379E8B500CC95B5 /* PersonalDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5386913C2379E8B500CC95B5 /* PersonalDetailsCell.swift */; };
 		538691462379E8B500CC95B5 /* TopicCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5386913D2379E8B500CC95B5 /* TopicCollectionViewCell.swift */; };
 		538691472379E8B500CC95B5 /* EditPersonalDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5386913E2379E8B500CC95B5 /* EditPersonalDetailsCell.swift */; };
@@ -193,11 +197,29 @@
 		836A88502396A4E800F68539 /* ForgotPasswordResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836A884F2396A4E800F68539 /* ForgotPasswordResponse.swift */; };
 		839CB4CB2381C91B0086554B /* SelectInterestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839CB4CA2381C91B0086554B /* SelectInterestViewController.swift */; };
 		839E1E7C238588C100578C60 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839E1E7B238588C100578C60 /* UserRepository.swift */; };
+		83A7A0C323E205B40041BE28 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A7A0C223E205B30041BE28 /* iCarousel.m */; };
+		83A7A0C523E206A10041BE28 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A7A0C423E206A10041BE28 /* QuartzCore.framework */; };
+		83A7A0C723E2DB920041BE28 /* DedicationCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83A7A0C623E2DB920041BE28 /* DedicationCardView.xib */; };
+		83A7A0C923E2E36E0041BE28 /* DedicationCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A7A0C823E2E36E0041BE28 /* DedicationCardView.swift */; };
+		83A7A0CB23E84C3D0041BE28 /* ChangePasswordResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A7A0CA23E84C3C0041BE28 /* ChangePasswordResponse.swift */; };
+		83A7A0CD23E999300041BE28 /* DonationWalkThroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A7A0CC23E9992F0041BE28 /* DonationWalkThroughViewController.swift */; };
+		83A7A0CF23E9A3440041BE28 /* DonateNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A7A0CE23E9A3430041BE28 /* DonateNavigationController.swift */; };
+		83A7A0D123EAEE080041BE28 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A7A0D023EAEE080041BE28 /* PaymentViewController.swift */; };
+		83A936AB23D9D53A007BA207 /* Donations.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83A936AA23D9D53A007BA207 /* Donations.storyboard */; };
+		83A936AD23D9E8D8007BA207 /* DonationsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A936AC23D9E8D8007BA207 /* DonationsNavigationController.swift */; };
+		83A936AF23DDEA93007BA207 /* OldDonationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A936AE23DDEA93007BA207 /* OldDonationsViewController.swift */; };
+		83A936B223DEF8E4007BA207 /* DonorsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A936B123DEF8E4007BA207 /* DonorsCell.swift */; };
+		83A936B423DF6E3A007BA207 /* HistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A936B323DF6E3A007BA207 /* HistoryCell.swift */; };
+		83B3556723E06A8400E2C485 /* DonateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B3556623E06A8400E2C485 /* DonateViewController.swift */; };
+		83B3556923E1C03000E2C485 /* DedicationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B3556823E1C02F00E2C485 /* DedicationViewController.swift */; };
 		83CCB12123783F6100C86450 /* JTMasechetDownloadedGemaraLessons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB12023783F6100C86450 /* JTMasechetDownloadedGemaraLessons.swift */; };
 		83CCB1232379EEB700C86450 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB1222379EEB700C86450 /* EditProfileViewController.swift */; };
 		83CCB127237C8D6F00C86450 /* EditPasswordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB126237C8D6F00C86450 /* EditPasswordCell.swift */; };
 		83CCB129237DA32D00C86450 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB128237DA32D00C86450 /* ForgotPasswordViewController.swift */; };
 		DD5D1C1F23CCD4AF0087A6DB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD5D1C1E23CCD4AF0087A6DB /* GoogleService-Info.plist */; };
+		DDCA933923D0B1BB00388EC6 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = DDCA933823D0B1B700388EC6 /* background.png */; };
+		DDCA933B23D0B31700388EC6 /* Jabrutouch.png in Resources */ = {isa = PBXBuildFile; fileRef = DDCA933A23D0B31700388EC6 /* Jabrutouch.png */; };
+		DDCA933D23D0B34200388EC6 /* lunchScreenIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = DDCA933C23D0B34200388EC6 /* lunchScreenIcon.png */; };
 		F7AEA20A7CC7E87A1BEC48AF /* Pods_Jabrutouch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0F9377FF1E3DA5E9F901D68 /* Pods_Jabrutouch.framework */; };
 		FB51711422F19C3F003BCAFC /* MishnaMasechetCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB51711322F19C3F003BCAFC /* MishnaMasechetCellController.swift */; };
 		FB51711622F19FD2003BCAFC /* JTMishnaMasechet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB51711522F19FD2003BCAFC /* JTMishnaMasechet.swift */; };
@@ -369,6 +391,10 @@
 		4628E0E52321B51800D963E6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4628E0E62322953300D963E6 /* Application.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		4628E0E823245BF600D963E6 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		46C652F123CF6C5E00F6D0DD /* EditUserParametersRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserParametersRepository.swift; sourceTree = "<group>"; };
+		46C652F323CF764F00F6D0DD /* JTUserProfileParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTUserProfileParameters.swift; sourceTree = "<group>"; };
+		46C652F523CF770800F6D0DD /* GetEditUserParametersResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEditUserParametersResponse.swift; sourceTree = "<group>"; };
+		46C652F723CF798700F6D0DD /* JTUserProfileParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTUserProfileParameter.swift; sourceTree = "<group>"; };
 		5386913C2379E8B500CC95B5 /* PersonalDetailsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalDetailsCell.swift; sourceTree = "<group>"; };
 		5386913D2379E8B500CC95B5 /* TopicCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicCollectionViewCell.swift; sourceTree = "<group>"; };
 		5386913E2379E8B500CC95B5 /* EditPersonalDetailsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPersonalDetailsCell.swift; sourceTree = "<group>"; };
@@ -417,6 +443,22 @@
 		836A884F2396A4E800F68539 /* ForgotPasswordResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordResponse.swift; sourceTree = "<group>"; };
 		839CB4CA2381C91B0086554B /* SelectInterestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectInterestViewController.swift; sourceTree = "<group>"; };
 		839E1E7B238588C100578C60 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		83A7A0C123E205A90041BE28 /* iCarousel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
+		83A7A0C223E205B30041BE28 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
+		83A7A0C423E206A10041BE28 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		83A7A0C623E2DB920041BE28 /* DedicationCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DedicationCardView.xib; sourceTree = "<group>"; };
+		83A7A0C823E2E36E0041BE28 /* DedicationCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DedicationCardView.swift; sourceTree = "<group>"; };
+		83A7A0CA23E84C3C0041BE28 /* ChangePasswordResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordResponse.swift; sourceTree = "<group>"; };
+		83A7A0CC23E9992F0041BE28 /* DonationWalkThroughViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonationWalkThroughViewController.swift; sourceTree = "<group>"; };
+		83A7A0CE23E9A3430041BE28 /* DonateNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonateNavigationController.swift; sourceTree = "<group>"; };
+		83A7A0D023EAEE080041BE28 /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
+		83A936AA23D9D53A007BA207 /* Donations.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Donations.storyboard; sourceTree = "<group>"; };
+		83A936AC23D9E8D8007BA207 /* DonationsNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DonationsNavigationController.swift; path = Jabrutouch/View/Storyboards/DonationsNavigationController.swift; sourceTree = SOURCE_ROOT; };
+		83A936AE23DDEA93007BA207 /* OldDonationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OldDonationsViewController.swift; path = Jabrutouch/View/Storyboards/OldDonationsViewController.swift; sourceTree = SOURCE_ROOT; };
+		83A936B123DEF8E4007BA207 /* DonorsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonorsCell.swift; sourceTree = "<group>"; };
+		83A936B323DF6E3A007BA207 /* HistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCell.swift; sourceTree = "<group>"; };
+		83B3556623E06A8400E2C485 /* DonateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonateViewController.swift; sourceTree = "<group>"; };
+		83B3556823E1C02F00E2C485 /* DedicationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DedicationViewController.swift; sourceTree = "<group>"; };
 		83CCB12023783F6100C86450 /* JTMasechetDownloadedGemaraLessons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTMasechetDownloadedGemaraLessons.swift; sourceTree = "<group>"; };
 		83CCB1222379EEB700C86450 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		83CCB124237C0F9E00C86450 /* JTDonor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTDonor.swift; sourceTree = "<group>"; };
@@ -424,6 +466,9 @@
 		83CCB128237DA32D00C86450 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		C0F9377FF1E3DA5E9F901D68 /* Pods_Jabrutouch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jabrutouch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD5D1C1E23CCD4AF0087A6DB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DDCA933823D0B1B700388EC6 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		DDCA933A23D0B31700388EC6 /* Jabrutouch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Jabrutouch.png; path = "Jabrutouch/Assets.xcassets/JabrutouchTitle-1.imageset/Jabrutouch.png"; sourceTree = SOURCE_ROOT; };
+		DDCA933C23D0B34200388EC6 /* lunchScreenIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lunchScreenIcon.png; path = Jabrutouch/Assets.xcassets/splashIcon.imageset/lunchScreenIcon.png; sourceTree = SOURCE_ROOT; };
 		F71C57777BA59A6B8E3F7474 /* Pods-Jabrutouch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jabrutouch.release.xcconfig"; path = "Target Support Files/Pods-Jabrutouch/Pods-Jabrutouch.release.xcconfig"; sourceTree = "<group>"; };
 		FB51711322F19C3F003BCAFC /* MishnaMasechetCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MishnaMasechetCellController.swift; sourceTree = "<group>"; };
 		FB51711522F19FD2003BCAFC /* JTMishnaMasechet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTMishnaMasechet.swift; sourceTree = "<group>"; };
@@ -455,6 +500,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83A7A0C523E206A10041BE28 /* QuartzCore.framework in Frameworks */,
 				21F89DCC2319645600540658 /* PDFKit.framework in Frameworks */,
 				212ECEAE23126628005AEB36 /* WebKit.framework in Frameworks */,
 				F7AEA20A7CC7E87A1BEC48AF /* Pods_Jabrutouch.framework in Frameworks */,
@@ -467,6 +513,7 @@
 		1371B014ACF312EFC7849D49 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				83A7A0C423E206A10041BE28 /* QuartzCore.framework */,
 				21F89DCB2319645500540658 /* PDFKit.framework */,
 				212ECEAD23126627005AEB36 /* WebKit.framework */,
 				C0F9377FF1E3DA5E9F901D68 /* Pods_Jabrutouch.framework */,
@@ -551,6 +598,7 @@
 		2126D0DF2302CD5400CB501D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				83A7A0BF23E204980041BE28 /* iCarousel */,
 				2126D6D02302CE7900CB501D /* Reachability */,
 			);
 			path = Frameworks;
@@ -604,7 +652,6 @@
 			isa = PBXGroup;
 			children = (
 				833E621F23992DCB00EC93C7 /* Messages */,
-				212ECEB12312F93C005AEB36 /* Profile */,
 			);
 			path = Modals;
 			sourceTree = "<group>";
@@ -612,6 +659,7 @@
 		212ECEB12312F93C005AEB36 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				5386913B2379E8B500CC95B5 /* profileCells */,
 				83CCB1222379EEB700C86450 /* EditProfileViewController.swift */,
 				FBB434FD22FB2CA4008EE211 /* ProfileViewController.swift */,
 				FB6877C122FC49AE0096465D /* AlertViewController.swift */,
@@ -624,7 +672,6 @@
 		212ECEB22312F954005AEB36 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				5386913B2379E8B500CC95B5 /* profileCells */,
 				FBDEF16C22E89E3B00A300DA /* HeaderCellController.swift */,
 				FBD9375022F328CC00BC94DC /* LessonDownloadCellController.swift */,
 			);
@@ -647,6 +694,8 @@
 				836A884F2396A4E800F68539 /* ForgotPasswordResponse.swift */,
 				833E6228239FB88C00EC93C7 /* GetMessagesResponse.swift */,
 				833E622E23A13BE400EC93C7 /* GetCreateMessageResponse.swift */,
+				46C652F523CF770800F6D0DD /* GetEditUserParametersResponse.swift */,
+				83A7A0CA23E84C3C0041BE28 /* ChangePasswordResponse.swift */,
 			);
 			path = "API Response models";
 			sourceTree = "<group>";
@@ -668,6 +717,7 @@
 				21F89DCD231B173500540658 /* VideoPlayer.xib */,
 				4628E0E323215E1200D963E6 /* DonatedAlert.xib */,
 				8359192F23A2636000F0B4D8 /* ChatControls.xib */,
+				83A7A0C623E2DB920041BE28 /* DedicationCardView.xib */,
 			);
 			path = "Single Views";
 			sourceTree = "<group>";
@@ -745,6 +795,7 @@
 				2133C21122DCA0E000F910B9 /* WalkThrough */,
 				2133C20F22DCA0CD00F910B9 /* SignIn */,
 				2133C21022DCA0D900F910B9 /* Main */,
+				212ECEB12312F93C005AEB36 /* Profile */,
 				212ECEB02312F92E005AEB36 /* Modals */,
 				219BFF3E22E7171700ABBEE2 /* Menus */,
 				212ECEA4230F3687005AEB36 /* Player */,
@@ -800,6 +851,9 @@
 		2133C21222DCA57900F910B9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DDCA933823D0B1B700388EC6 /* background.png */,
+				DDCA933C23D0B34200388EC6 /* lunchScreenIcon.png */,
+				DDCA933A23D0B31700388EC6 /* Jabrutouch.png */,
 				21419CB1230D51F700145F1F /* Bridging Headers */,
 				FB67A5E222E47E61009E4DF9 /* Documents */,
 				2120BE2522DF2C62004854DB /* Fonts */,
@@ -838,6 +892,7 @@
 				836A8844238FD00100F68539 /* Gallery.storyboard */,
 				836A884C23968C8D00F68539 /* ForgotPassword.storyboard */,
 				833E621D23992C2500EC93C7 /* Messages.storyboard */,
+				83A936AA23D9D53A007BA207 /* Donations.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -885,6 +940,8 @@
 			children = (
 				213196AB22F38B6800B0AF5F /* JTCommunity.swift */,
 				213196AC22F38B6800B0AF5F /* JTUser.swift */,
+				46C652F323CF764F00F6D0DD /* JTUserProfileParameters.swift */,
+				46C652F723CF798700F6D0DD /* JTUserProfileParameter.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -988,6 +1045,7 @@
 				83605BA42382B01A00B93603 /* JTImageRepsitory.swift */,
 				839E1E7B238588C100578C60 /* UserRepository.swift */,
 				833E6226239FB72A00EC93C7 /* MessagesRepository.swift */,
+				46C652F123CF6C5E00F6D0DD /* EditUserParametersRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1096,7 +1154,16 @@
 		8342BA772373029300C3239C /* Donations */ = {
 			isa = PBXGroup;
 			children = (
+				83A936B023DEF8B3007BA207 /* Cells */,
 				8342BA78237302AE00C3239C /* DonationsViewController.swift */,
+				83A936AC23D9E8D8007BA207 /* DonationsNavigationController.swift */,
+				83A936AE23DDEA93007BA207 /* OldDonationsViewController.swift */,
+				83B3556623E06A8400E2C485 /* DonateViewController.swift */,
+				83B3556823E1C02F00E2C485 /* DedicationViewController.swift */,
+				83A7A0C823E2E36E0041BE28 /* DedicationCardView.swift */,
+				83A7A0CC23E9992F0041BE28 /* DonationWalkThroughViewController.swift */,
+				83A7A0CE23E9A3430041BE28 /* DonateNavigationController.swift */,
+				83A7A0D023EAEE080041BE28 /* PaymentViewController.swift */,
 			);
 			path = Donations;
 			sourceTree = "<group>";
@@ -1135,6 +1202,24 @@
 				83CCB128237DA32D00C86450 /* ForgotPasswordViewController.swift */,
 			);
 			path = ForgotPassword;
+			sourceTree = "<group>";
+		};
+		83A7A0BF23E204980041BE28 /* iCarousel */ = {
+			isa = PBXGroup;
+			children = (
+				83A7A0C123E205A90041BE28 /* iCarousel.h */,
+				83A7A0C223E205B30041BE28 /* iCarousel.m */,
+			);
+			path = iCarousel;
+			sourceTree = "<group>";
+		};
+		83A936B023DEF8B3007BA207 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				83A936B123DEF8E4007BA207 /* DonorsCell.swift */,
+				83A936B323DF6E3A007BA207 /* HistoryCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		9A9C05757DCAA6D93F172828 /* Pods */ = {
@@ -1290,6 +1375,7 @@
 				21678D5922DF2CEC007BC74C /* SF-Pro-Rounded-Bold.otf in Resources */,
 				21678D5A22DF2CEC007BC74C /* SF-Pro-Rounded-Heavy.otf in Resources */,
 				219BFF3122E5B67C00ABBEE2 /* countries.json in Resources */,
+				DDCA933D23D0B34200388EC6 /* lunchScreenIcon.png in Resources */,
 				21678D5B22DF2CED007BC74C /* SF-Pro-Rounded-Light.otf in Resources */,
 				21678D5C22DF2CED007BC74C /* SF-Pro-Rounded-Medium.otf in Resources */,
 				836A8845238FD00100F68539 /* Gallery.storyboard in Resources */,
@@ -1306,6 +1392,7 @@
 				213196B722F6DDB000B0AF5F /* ActivityView.xib in Resources */,
 				21678D6322DF2CED007BC74C /* SF-Pro-Text-Bold.otf in Resources */,
 				21678D6422DF2CED007BC74C /* SF-Pro-Text-BoldItalic.otf in Resources */,
+				DDCA933B23D0B31700388EC6 /* Jabrutouch.png in Resources */,
 				21678D6522DF2CED007BC74C /* SF-Pro-Text-Heavy.otf in Resources */,
 				21678D6622DF2CED007BC74C /* SF-Pro-Text-HeavyItalic.otf in Resources */,
 				21678D6722DF2CED007BC74C /* SF-Pro-Text-Light.otf in Resources */,
@@ -1314,16 +1401,19 @@
 				21678D6A22DF2CED007BC74C /* SF-Pro-Text-MediumItalic.otf in Resources */,
 				21678D6B22DF2CED007BC74C /* SF-Pro-Text-Regular.otf in Resources */,
 				21678D6C22DF2CED007BC74C /* SF-Pro-Text-RegularItalic.otf in Resources */,
+				DDCA933923D0B1BB00388EC6 /* background.png in Resources */,
 				21678D6D22DF2CED007BC74C /* SF-Pro-Text-Semibold.otf in Resources */,
 				21678D6E22DF2CED007BC74C /* SF-Pro-Text-SemiboldItalic.otf in Resources */,
 				21678D6F22DF2CED007BC74C /* SF-Pro-Text-Thin.otf in Resources */,
 				21678D7022DF2CED007BC74C /* SF-Pro-Text-ThinItalic.otf in Resources */,
 				21F89DCE231B173500540658 /* VideoPlayer.xib in Resources */,
 				FBB18FAC22F85019006886FD /* Gemara.storyboard in Resources */,
+				83A7A0C723E2DB920041BE28 /* DedicationCardView.xib in Resources */,
 				21CC093E22F04C4000E8FE27 /* daf_yomi.json in Resources */,
 				21678D7122DF2CED007BC74C /* SF-Pro-Text-Ultralight.otf in Resources */,
 				4628E0E423215E1200D963E6 /* DonatedAlert.xib in Resources */,
 				21678D7222DF2CED007BC74C /* SF-Pro-Text-UltralightItalic.otf in Resources */,
+				83A936AB23D9D53A007BA207 /* Donations.storyboard in Resources */,
 				2133C21522DCA5D200F910B9 /* Localizable.strings in Resources */,
 				2133C20E22DCA0BC00F910B9 /* SignIn.storyboard in Resources */,
 				212ECEA8230F36BF005AEB36 /* LessonPlayerViewController.xib in Resources */,
@@ -1412,11 +1502,14 @@
 				FB51712122F1D374003BCAFC /* MishnaChapterViewController.swift in Sources */,
 				21ED3BD12304847A009D8E3D /* JTLessonPresenter.swift in Sources */,
 				8359193323A2724400F0B4D8 /* ChatControlsView.swift in Sources */,
+				83A7A0CF23E9A3440041BE28 /* DonateNavigationController.swift in Sources */,
 				219BFF2F22E5A11900ABBEE2 /* TextFieldWithPadding.swift in Sources */,
 				836A883C238DB30D00F68539 /* JTGallery.swift in Sources */,
 				2126D6D623033CF800CB501D /* JTSeder.swift in Sources */,
+				46C652F823CF798700F6D0DD /* JTUserProfileParameter.swift in Sources */,
 				213016B72321940F00B9DD2B /* AnalyticsManager.swift in Sources */,
 				FBD9375122F328CC00BC94DC /* LessonDownloadCellController.swift in Sources */,
+				83A936B423DF6E3A007BA207 /* HistoryCell.swift in Sources */,
 				21999F36231823FF003DB1B4 /* CustomTrackHeightSlider.swift in Sources */,
 				212ECEB42317C790005AEB36 /* VideoPlayer.swift in Sources */,
 				FBB434FE22FB2CA4008EE211 /* ProfileViewController.swift in Sources */,
@@ -1435,6 +1528,7 @@
 				83CCB129237DA32D00C86450 /* ForgotPasswordViewController.swift in Sources */,
 				538691492379E8B500CC95B5 /* CompletionProgressCell.swift in Sources */,
 				836A884B23951CA700F68539 /* JBView.swift in Sources */,
+				83B3556923E1C03000E2C485 /* DedicationViewController.swift in Sources */,
 				8342BA75237301D800C3239C /* MainViewController.swift in Sources */,
 				833E622123992DED00EC93C7 /* MessagesViewController.swift in Sources */,
 				FBB18FAE22F85773006886FD /* GemaraMasechetCellController.swift in Sources */,
@@ -1462,12 +1556,15 @@
 				210628B922F6EAE6008BBD8C /* SplashScreenViewController.swift in Sources */,
 				FB51711A22F1A100003BCAFC /* JTMishnaChapter.swift in Sources */,
 				FB51711422F19C3F003BCAFC /* MishnaMasechetCellController.swift in Sources */,
+				83A7A0D123EAEE080041BE28 /* PaymentViewController.swift in Sources */,
 				836A88502396A4E800F68539 /* ForgotPasswordResponse.swift in Sources */,
 				2133C22622DDCD3E00F910B9 /* Colors.swift in Sources */,
+				46C652F623CF770800F6D0DD /* GetEditUserParametersResponse.swift in Sources */,
 				FB51712322F1D7CC003BCAFC /* MishnaChapterCellController.swift in Sources */,
 				213196AE22F38B6800B0AF5F /* JTUser.swift in Sources */,
 				219BFF3522E5B6F700ABBEE2 /* Country.swift in Sources */,
 				FBB18FB022F863AF006886FD /* JTGemaraSeder.swift in Sources */,
+				83B3556723E06A8400E2C485 /* DonateViewController.swift in Sources */,
 				839CB4CB2381C91B0086554B /* SelectInterestViewController.swift in Sources */,
 				FB51711D22F1A275003BCAFC /* JTMishnaSeder.swift in Sources */,
 				8342BA74237301D800C3239C /* MainCollectionCellViewController.swift in Sources */,
@@ -1478,15 +1575,19 @@
 				219BFF2722E50A0A00ABBEE2 /* DownloadsNavigationController.swift in Sources */,
 				2131969C22F38B2E00B0AF5F /* UserDefaultsProvider.swift in Sources */,
 				213016B9232198E800B9DD2B /* PostAnalyticsEventResponse.swift in Sources */,
+				83A936B223DEF8E4007BA207 /* DonorsCell.swift in Sources */,
 				21419CBD230EAF9C00145F1F /* JTMishnaLessonRecord.swift in Sources */,
 				538691482379E8B500CC95B5 /* DonationInformationCell.swift in Sources */,
 				833E622D23A1344A00EC93C7 /* JTChatMessage.swift in Sources */,
 				2145858F22EF7D980062F830 /* API.swift in Sources */,
+				83A7A0C923E2E36E0041BE28 /* DedicationCardView.swift in Sources */,
 				2120BE1D22DF273F004854DB /* SignInViewController.swift in Sources */,
 				2120BE2322DF279D004854DB /* ValidateVerificationCodeViewController.swift in Sources */,
 				8342BA6C2370528600C3239C /* Fonts.swift in Sources */,
+				83A936AF23DDEA93007BA207 /* OldDonationsViewController.swift in Sources */,
 				212ECEB62317CD6E005AEB36 /* AudioPlayer.swift in Sources */,
 				8342BA76237301D800C3239C /* ModalsContainerViewController.swift in Sources */,
+				83A7A0CD23E999300041BE28 /* DonationWalkThroughViewController.swift in Sources */,
 				836A883A238DB1CF00F68539 /* JTVideoPart.swift in Sources */,
 				2131969822F38B1200B0AF5F /* ServerGenericResponse.swift in Sources */,
 				4628E0E72322954800D963E6 /* Application.swift in Sources */,
@@ -1496,6 +1597,7 @@
 				839E1E7C238588C100578C60 /* UserRepository.swift in Sources */,
 				21CC094422F05D8A00E8FE27 /* DafYomiRepository.swift in Sources */,
 				21ED3BD823048835009D8E3D /* GetMishnaLessonsResponse.swift in Sources */,
+				46C652F223CF6C5E00F6D0DD /* EditUserParametersRepository.swift in Sources */,
 				2133C21B22DCA5FC00F910B9 /* Strings.swift in Sources */,
 				213196B322F6DAC600B0AF5F /* LoginManager.swift in Sources */,
 				21CC094122F05D1500E8FE27 /* DafYomi.swift in Sources */,
@@ -1508,6 +1610,7 @@
 				219B06FA230408F400A7EBBA /* ServerFieldError.swift in Sources */,
 				2126D6DA2303E81700CB501D /* GetMasechtotResponse.swift in Sources */,
 				4628E0E923245BF600D963E6 /* AboutViewController.swift in Sources */,
+				83A7A0C323E205B40041BE28 /* iCarousel.m in Sources */,
 				8359193F23A795BD00F0B4D8 /* CoreDataManager.swift in Sources */,
 				21678D7622E08565007BC74C /* DownloadsViewController.swift in Sources */,
 				83CCB127237C8D6F00C86450 /* EditPasswordCell.swift in Sources */,
@@ -1523,6 +1626,8 @@
 				2133C22422DDCCD500F910B9 /* JBBarPageIndicator.swift in Sources */,
 				21ED3BCC23042A3C009D8E3D /* JTMishnaChapterItem.swift in Sources */,
 				213196A922F38B3E00B0AF5F /* ResendCodeResponse.swift in Sources */,
+				83A7A0CB23E84C3D0041BE28 /* ChangePasswordResponse.swift in Sources */,
+				83A936AD23D9E8D8007BA207 /* DonationsNavigationController.swift in Sources */,
 				213196A622F38B3E00B0AF5F /* ValidateCodeResponse.swift in Sources */,
 				21419CB0230D50CB00145F1F /* AWSS3Provider.swift in Sources */,
 				2126D6E3230404BD00CB501D /* GemaraNavigationController.swift in Sources */,
@@ -1544,6 +1649,7 @@
 				83605BA72382DCD200B93603 /* ImagePicker.swift in Sources */,
 				8359193823A6943800F0B4D8 /* IncomingMessageCell.swift in Sources */,
 				21419CB9230DD91100145F1F /* JTSederDownloadedMishnaLessons.swift in Sources */,
+				46C652F423CF764F00F6D0DD /* JTUserProfileParameters.swift in Sources */,
 				FBB18FB222F8649A006886FD /* JTGemaraMasechetItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1706,7 +1812,7 @@
 				CODE_SIGN_ENTITLEMENTS = Jabrutouch/Jabrutouch.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = LT8NS64PFR;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -1717,7 +1823,7 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = il.co.jabrutouch.Jabrutouch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1731,12 +1837,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F71C57777BA59A6B8E3F7474 /* Pods-Jabrutouch.release.xcconfig */;
 			buildSettings = {
-				API_BASE_URL = "https://jabrutouch-dev.ravtech.co.il/api/";
+				API_BASE_URL = "https://jabrutouch.ravtech.co.il/api/";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Jabrutouch/Jabrutouch.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = LT8NS64PFR;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Jabrutouch/Info.plist;
@@ -1746,7 +1852,7 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = il.co.jabrutouch.Jabrutouch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

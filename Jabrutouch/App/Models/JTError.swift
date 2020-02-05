@@ -18,12 +18,15 @@ enum JTError: Error {
     case unableToCreateRequest
     case unableToParseResponse
     case serverError(Error)
+    case invalidToken
     case custom(String)
     
     var message: String {
         switch self {
         case .serverError(let error):
             return error.localizedDescription
+        case .invalidToken:
+            return "Invalid Token."
         case .custom(let message):
             return message
         default:

@@ -75,6 +75,36 @@ class API {
         }
     }
     
+    class func changePassword(userId: Int, oldPassword: String?, newPassword: String?, token: String, completionHandler:@escaping (_ response: APIResult<ChangePasswordResponse>)->Void) {
+        guard let request = HttpRequestsFactory.changePasswordRequest(userId: userId, oldPassword: oldPassword, newPassword: newPassword, token: token) else {
+            completionHandler(APIResult.failure(.unableToCreateRequest))
+            return
+        }
+        HttpServiceProvider.shared.excecuteRequest(request: request) { (data, response, error) in
+            self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
+        }
+    }
+    
+    class func getEditUserParameters(authToken: String, completionHandler:@escaping (_ response: APIResult<GetEditUserParametersResponse>)->Void) {
+        guard let request = HttpRequestsFactory.createGetEditUserParameters( token: authToken) else {
+            completionHandler(APIResult.failure(.unableToCreateRequest))
+            return
+        }
+        HttpServiceProvider.shared.excecuteRequest(request: request) { (data, response, error) in
+            self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
+        }
+    }
+    
+    class func setUserParameters(authToken: String, user: JTUser, completionHandler:@escaping (_ response: APIResult<LoginResponse>)->Void) {
+        guard let request = HttpRequestsFactory.createSetUserRequest(user: user, token: authToken) else {
+            completionHandler(APIResult.failure(.unableToCreateRequest))
+            return
+        }
+        HttpServiceProvider.shared.excecuteRequest(request: request) { (data, response, error) in
+            self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
+        }
+    }
+
     //========================================
     // MARK: - Content
     //========================================
@@ -193,7 +223,12 @@ class API {
                 // TODO - implement specific error evaluation
                 if serverResponse.errors.count > 0 {
                     let fieldError = serverResponse.errors[0]
-                    completionHandler(.failure(.custom(fieldError.message)))
+                    switch fieldError.message {
+                    case "Invalid token.":
+                        completionHandler(.failure(.invalidToken))
+                    default:
+                        completionHandler(.failure(.custom(fieldError.message)))
+                    }
                 }
                 else {
                     completionHandler(.failure(.unknown))

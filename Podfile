@@ -15,6 +15,7 @@ target 'Jabrutouch' do
   pod 'Firebase/Firestore'
   pod 'Firebase/Messaging'
   pod 'Firebase/Analytics'
+  pod 'iRecordView'
 
 
 end

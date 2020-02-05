@@ -36,6 +36,10 @@ class UserRepository {
         UserDefaultsProvider.shared.currentUser = user
     }
     
+    func setProfileImage(image: UIImage?) {
+        self.currentUser?.profileImage = image
+    }
+    
     func updateCurrentUser(_ user: JTUser) {
         self.currentUser = user
         UserDefaultsProvider.shared.currentUser = user

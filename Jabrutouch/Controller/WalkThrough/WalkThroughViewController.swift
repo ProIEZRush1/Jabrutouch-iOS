@@ -39,7 +39,7 @@ extension WalkThroughViewController: UICollectionViewDataSource {
         else {
             return UICollectionViewCell()
         }
-        cell.setIndex(indexPath.item)
+        cell.setIndex(indexPath.item, "sginIn")
         return cell
     }
 }

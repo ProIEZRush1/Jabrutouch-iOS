@@ -704,7 +704,12 @@ class ContentRepository {
             case .success(let response):
                 completion(.success(response.lessons))
             case .failure(let error):
-                completion(.failure(error))
+                switch error {
+                case .invalidToken:
+                    self.logOut()
+                default:
+                    completion(.failure(error))
+                }
             }
         }
     }
@@ -719,7 +724,12 @@ class ContentRepository {
             case .success(let response):
                 completion(.success(response.lesson))
             case .failure(let error):
-                completion(.failure(error))
+                switch error {
+                case .invalidToken:
+                    self.logOut()
+                default:
+                    completion(.failure(error))
+                }
             }
         }
     }
@@ -735,7 +745,12 @@ class ContentRepository {
             case .success(let response):
                 completion(.success(response.lessons))
             case .failure(let error):
-                completion(.failure(error))
+                switch error {
+                case .invalidToken:
+                    self.logOut()
+                default:
+                    completion(.failure(error))
+                }
             }
         }
     }
@@ -814,6 +829,20 @@ extension ContentRepository: DownloadTaskDelegate {
         DispatchQueue.main.async {
             for delegate in self.downloadDelegates {
                 delegate.downloadProgress(downloadId: downloadId, progress: progress, mediaType: mediaType )
+            }
+        }
+    }
+    
+    func logOut() {
+        let titel = "Invalid Token"
+        let message = "You must sign in again"
+        let vc = appDelegate.topmostViewController
+        DispatchQueue.main.async {
+        Utils.showAlertMessage(message, title: titel, viewControler: vc!) { (action) in
+            LoginManager.shared.signOut {
+                    let signInViewController = Storyboards.SignIn.signInViewController
+                    appDelegate.setRootViewController(viewController: signInViewController, animated: true)
+                }
             }
         }
     }
