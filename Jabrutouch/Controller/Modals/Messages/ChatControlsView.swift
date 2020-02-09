@@ -12,6 +12,7 @@ import AVFoundation
 protocol ChatControlsViewDelegate: class {
     func sendMessageButtonPressed()
     func textViewChanged()
+    func sendVoiceMessage()
 }
 
 class ChatControlsView: UIView {
@@ -20,8 +21,10 @@ class ChatControlsView: UIView {
     // MARK: - Properties
     //========================================
     var soundRecorder: AVAudioRecorder?
-    //    var soundPlayer = AVAudioPlayer()
-    var fileName: String = "audioFile.m4a"
+    var soundPlayer : AVAudioPlayer?
+    var fileName: String = ""
+
+    
     
     weak var delegate: ChatControlsViewDelegate?
     //========================================
@@ -45,7 +48,6 @@ class ChatControlsView: UIView {
         self.xibSetup()
         self.inputTextView.delegate = self
         
-        //        self.setUpRecord()
         self.setRoundCorners()
     }
     
@@ -99,6 +101,13 @@ class ChatControlsView: UIView {
         self.shadowView.layer.borderWidth = 1.0
     }
     
+    func createFileName(){
+        let time = String(Date().timeIntervalSince1970 * 1000)
+        let suffix = time.replacingOccurrences(of: ".", with: "_")
+//        suffix += ".mp3"
+        self.fileName = suffix
+    }
+    
     //========================================
     // MARK: - @IBActions
     //========================================
@@ -114,11 +123,15 @@ class ChatControlsView: UIView {
     }
     
     @IBAction func recordButtonPressed(_ sender: Any) {
-        //        self.soundRecorder.record()
+        print("pressed recorder")
+        self.createFileName()
+        AudioMessagesManager.shared.startRecording(self.fileName)
     }
     
     @IBAction func recordButtonTouchedUp(_ sender: Any) {
-        //        self.soundRecorder.stop()
+        print("TouchedUp recorder")
+        AudioMessagesManager.shared.stopRecoredr(self.fileName)
+        self.delegate?.sendVoiceMessage()
     }
     
     @IBAction func recordButtonDragLeft(_ sender: Any) {
@@ -150,48 +163,4 @@ extension ChatControlsView: UITextViewDelegate {
     
 }
 
-extension ChatControlsView: AVAudioPlayerDelegate, AVAudioRecorderDelegate {
-    
-//        func setUpRecord() {
-//            let recordSettings = [AVFormatIDKey: kAudioFormatAppleLossless,
-//                                  AVEncoderAudioQualityKey: AVAudioQuality.max.rawValue,
-//                                  AVEncoderBitRateKey: 320000,
-//                                  AVNumberOfChannelsKey: 2,
-//                                  AVSampleRateKey: 44100.0 ] as [String : Any]
-//    
-//            let url = getDocumentDirectory().appendingPathComponent(fileName)
-//            do {
-//                self.soundRecorder = try AVAudioRecorder(url: url, settings: recordSettings)
-//                self.soundRecorder.delegate = self
-//                self.soundRecorder.prepareToRecord()
-//            }
-//            catch {
-//                print(error)
-//            }
-//        }
-//    
-//        func setUpPlayer() {
-//            let url = getDocumentDirectory().appendingPathComponent(fileName)
-//            do {
-//                self.soundPlayer = try AVAudioPlayer(contentsOf: url)
-//                self.soundPlayer.delegate = self
-//                self.soundPlayer.prepareToPlay()
-//                self.soundPlayer.volume = 1.0
-//    
-//            }
-//            catch {
-//                print(error)
-//            }
-//        }
-//    
-//        func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
-//            //        self.playButton.isHidden = false
-//            //        self.playButton.isEnabled = true
-//        }
-//    
-//        func getDocumentDirectory()-> URL {
-//            let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-//            return paths[0]
-//        }
-}
 

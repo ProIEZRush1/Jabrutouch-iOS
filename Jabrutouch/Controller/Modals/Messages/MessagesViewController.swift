@@ -36,9 +36,8 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.messagesArray.append("test")
-        self.chatsArray = CoreDataManager.shared.getAllChats()
 
-//        self.chatsArray = MessagesRepository.shared.allChats
+        self.chatsArray = MessagesRepository.shared.allChats
         
     }
     
@@ -63,8 +62,8 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
             self.searchButton.isHidden =  true
         }
 //        self.tableView.reloadData()
-        self.chatsArray = CoreDataManager.shared.getAllChats()
                DispatchQueue.main.async {
+                self.chatsArray = CoreDataManager.shared.getAllChats()
                    self.tableView.reloadData()
                    
                }
@@ -101,10 +100,14 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
         cell.timeLabel.text = self.getTime(lastMessageTime: chatsArray[indexPath.row].lastMessageTime)
         cell.groupName.text = chatsArray[indexPath.row].title
         cell.message.text = chatsArray[indexPath.row].lastMessage
-        if chatsArray[indexPath.row].read{
-            cell.timeLabel.font = Fonts.boldFont(size: 15)
-            cell.groupName.font = Fonts.heavyFont(size: 17)
-            cell.message.font = Fonts.boldFont(size: 15)
+        if !chatsArray[indexPath.row].read{
+            cell.timeLabel.font = Fonts.heavyFont(size: 15)
+            cell.groupName.font = Fonts.blackFont(size: 17)
+            cell.message.font = Fonts.heavyFont(size: 15)
+        }else{
+            cell.timeLabel.font = Fonts.mediumTextFont(size: 15)
+            cell.groupName.font = Fonts.mediumTextFont(size: 17)
+            cell.message.font = Fonts.mediumTextFont(size: 15)
         }
         
         return cell
@@ -151,11 +154,8 @@ extension MessagesViewController: MessagesRepositoryDelegate{
     }
     
     func didReciveNewMessage() {
-        self.chatsArray = CoreDataManager.shared.getAllChats()
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-            
-        }
+        self.setTableView()
+       
     }
 }
 

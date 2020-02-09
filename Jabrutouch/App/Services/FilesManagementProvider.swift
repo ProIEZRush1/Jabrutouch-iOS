@@ -11,6 +11,8 @@ import Foundation
 enum FileDirectory {
     case cache
     case documents
+    case recorders
+    
     
     var url: URL? {
         switch self {
@@ -18,6 +20,8 @@ enum FileDirectory {
             return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first
         case .documents:
             return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+        case .recorders:
+            return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first
         }
     }
     
@@ -97,8 +101,8 @@ class FilesManagementProvider {
     }
     
     //2813_aud.mp3
-    func loadFile(link: String, directory: FileDirectory) {
-        
+    func loadFile(link: String, directory: FileDirectory) -> URL{
+         return directory.url!.appendingPathComponent(link)
     }
     // MARK: - Private methods
     

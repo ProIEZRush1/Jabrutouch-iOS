@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AVFoundation
 import Firebase
 import FirebaseMessaging
 
@@ -16,7 +17,7 @@ class MessagesRepository: NSObject, MessagingDelegate {
     var fcmToken = ""
     var allChats: [JTChatMessage] = []
     var messages: [JTMessage] = []
-    
+   
     
     static private var manager: MessagesRepository?
     
@@ -33,7 +34,7 @@ class MessagesRepository: NSObject, MessagingDelegate {
                 switch result {
                 case .success(let response):
                     self.getAllChatsFromDB()
-//                    print(response)
+                //                    print(response)
                 case .failure(let error):
                     print(error)
                 }
@@ -71,11 +72,11 @@ class MessagesRepository: NSObject, MessagingDelegate {
         // pars message and save in DB
     }
     
-//    func didReciveMessage(message: JTMessage){
-//        self.saveMessageInDB(message: message)
-//    }
-//
-   
+    //    func didReciveMessage(message: JTMessage){
+    //        self.saveMessageInDB(message: message)
+    //    }
+    //
+    
     
     func saveMessageInDB(message: JTMessage){
         CoreDataManager.shared.saveMessage(message: message)
@@ -99,7 +100,7 @@ class MessagesRepository: NSObject, MessagingDelegate {
             case .failure(let error):
                 completion(.failure(error))
             }
-
+            
         }
     }
     
@@ -111,13 +112,8 @@ class MessagesRepository: NSObject, MessagingDelegate {
         API.getMessages(authToken: authToken) { (result: APIResult<GetMessagesResponse>) in
             switch result {
             case .success(let response):
-                for chat in response.chats {
-                    self.saveChatInDB(chat: chat)
-                    for message in chat.messages{
-                        self.saveMessageInDB(message: message)
-                    }
-                    completion(.success(response.chats))
-                }
+                CoreDataManager.shared.rebootMessages(chats: response.chats)
+                completion(.success(response.chats))
             case .failure(let error):
                 print(error)
                 completion(.failure(error))
@@ -134,5 +130,6 @@ class MessagesRepository: NSObject, MessagingDelegate {
     }
     
 }
+
 
 

@@ -100,7 +100,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="aboutTop4" translatesAutoresizingMaskIntoConstraints="NO" id="Vft-EU-sa4">
-                                                <rect key="frame" x="-34" y="8" width="430" height="39"/>
+                                                <rect key="frame" x="73.5" y="8" width="215" height="39"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="39" id="aZz-ly-wAr"/>
                                                 </constraints>
@@ -210,7 +210,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="DonationImage" translatesAutoresizingMaskIntoConstraints="NO" id="H7X-My-WbT">
-                                <rect key="frame" x="0.0" y="44" width="414" height="1302"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="651"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JQF-YX-CLf" userLabel="Back">
                                 <rect key="frame" x="0.0" y="44" width="66" height="53"/>
@@ -263,7 +263,7 @@
                                 <rect key="frame" x="17" y="296" width="380" height="314"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="X" translatesAutoresizingMaskIntoConstraints="NO" id="pPr-xo-Sy3">
-                                        <rect key="frame" x="342" y="15" width="18" height="32"/>
+                                        <rect key="frame" x="342" y="23" width="18" height="16"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="18" id="S04-c9-nqW"/>
                                         </constraints>
@@ -363,14 +363,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="O2J-hW-RpU">
-                                <rect key="frame" x="20" y="605" width="374" height="257"/>
+                                <rect key="frame" x="20" y="334.5" width="374" height="527.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="aboutTop1" translatesAutoresizingMaskIntoConstraints="NO" id="2vN-fi-tx9">
-                                <rect key="frame" x="-207" y="54" width="828" height="541"/>
+                                <rect key="frame" x="0.0" y="54" width="414" height="270.5"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qm9-mk-KyU" userLabel="Back Btn">
                                 <rect key="frame" x="10" y="45.5" width="66" height="53"/>
@@ -384,13 +384,13 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PGa-Xk-uaA">
-                                <rect key="frame" x="-54" y="84" width="522" height="80"/>
+                                <rect key="frame" x="74" y="84" width="266" height="80"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="aboutTop2" translatesAutoresizingMaskIntoConstraints="NO" id="QEO-c2-txo">
-                                        <rect key="frame" x="107" y="11" width="415" height="58"/>
+                                        <rect key="frame" x="58.5" y="25.5" width="207.5" height="29"/>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="aboutTop3" translatesAutoresizingMaskIntoConstraints="NO" id="bM5-7q-LgD">
-                                        <rect key="frame" x="0.0" y="0.0" width="97" height="80"/>
+                                        <rect key="frame" x="0.0" y="20" width="48.5" height="40"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -459,7 +459,7 @@
                                                 </constraints>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OI8-sg-Y0L">
-                                                <rect key="frame" x="0.0" y="14" width="73.5" height="52"/>
+                                                <rect key="frame" x="0.0" y="-12" width="73.5" height="104"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="73.5" id="FTS-2f-0OZ"/>
                                                 </constraints>
@@ -546,16 +546,16 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Welcome" translatesAutoresizingMaskIntoConstraints="NO" id="nTO-Sk-Ujz">
-                                        <rect key="frame" x="76" y="228" width="262" height="212"/>
+                                        <rect key="frame" x="76" y="228" width="262" height="424"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="262" id="BxK-HN-WLm"/>
                                         </constraints>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1qD-92-wJ1" userLabel="Todays Daf Container">
-                                        <rect key="frame" x="0.0" y="470" width="414" height="138"/>
+                                        <rect key="frame" x="0.0" y="682" width="414" height="138"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TODAY'S DAF YOMI" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fI9-Bx-Pnq">
-                                                <rect key="frame" x="21" y="0.0" width="136" height="20"/>
+                                                <rect key="frame" x="21" y="0.0" width="147.5" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="wjx-ma-fd3"/>
                                                 </constraints>
@@ -579,25 +579,25 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adar 21, 5779" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ivd-wy-Oxn">
-                                                        <rect key="frame" x="20" y="60.5" width="205" height="19.5"/>
+                                                        <rect key="frame" x="20" y="61" width="205" height="19"/>
                                                         <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="16"/>
                                                         <color key="textColor" red="0.50980392156862742" green="0.50980392156862742" blue="0.50980392156862742" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Audio" translatesAutoresizingMaskIntoConstraints="NO" id="Vqi-r0-05t">
-                                                        <rect key="frame" x="245" y="27" width="21" height="36.5"/>
+                                                        <rect key="frame" x="245" y="8.5" width="21" height="73"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="21" id="KaL-II-DnE"/>
                                                         </constraints>
                                                     </imageView>
                                                     <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Video" translatesAutoresizingMaskIntoConstraints="NO" id="7su-KL-efv">
-                                                        <rect key="frame" x="301" y="31" width="30" height="28.5"/>
+                                                        <rect key="frame" x="301" y="16.5" width="30" height="57"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="30" id="4fC-gl-2xw"/>
                                                         </constraints>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E0U-C0-eco">
-                                                        <rect key="frame" x="225" y="19" width="61" height="52.5"/>
+                                                        <rect key="frame" x="194.5" y="-7.5" width="122" height="105"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" image="audio-nat"/>
                                                         <connections>
@@ -664,10 +664,10 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ra4-LB-TLt" userLabel="Gemara Container">
-                                        <rect key="frame" x="0.0" y="638" width="414" height="134"/>
+                                        <rect key="frame" x="0.0" y="850" width="414" height="134"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RECENTS PAGES ON GEMARA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wzb-dy-Imq">
-                                                <rect key="frame" x="21" y="0.0" width="212" height="20"/>
+                                                <rect key="frame" x="21" y="0.0" width="230" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="S31-gO-7H2"/>
                                                 </constraints>
@@ -718,24 +718,24 @@
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Audio" translatesAutoresizingMaskIntoConstraints="NO" id="Auq-u1-yTw">
-                                                                            <rect key="frame" x="177" y="18.5" width="21" height="36.5"/>
+                                                                            <rect key="frame" x="177" y="0.0" width="21" height="73"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="21" id="giV-9i-cZR"/>
                                                                             </constraints>
                                                                         </imageView>
                                                                         <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Video" translatesAutoresizingMaskIntoConstraints="NO" id="KsI-AG-M2p">
-                                                                            <rect key="frame" x="228" y="22.5" width="30" height="28.5"/>
+                                                                            <rect key="frame" x="228" y="8" width="30" height="57"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="30" id="HCR-mg-vUi"/>
                                                                             </constraints>
                                                                         </imageView>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XCv-hY-b4u">
-                                                                            <rect key="frame" x="157" y="10.5" width="61" height="52.5"/>
+                                                                            <rect key="frame" x="126.5" y="-16" width="122" height="105"/>
                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <state key="normal" image="audio-nat"/>
                                                                         </button>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="syV-Uc-KkF">
-                                                                            <rect key="frame" x="212.5" y="10.5" width="61" height="52.5"/>
+                                                                            <rect key="frame" x="182" y="-16" width="122" height="105"/>
                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <state key="normal" image="video-nat"/>
                                                                         </button>
@@ -817,10 +817,10 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SuE-5a-ARU" userLabel="Mishna Container">
-                                        <rect key="frame" x="0.0" y="782" width="414" height="134"/>
+                                        <rect key="frame" x="0.0" y="994" width="414" height="134"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RECENTS PAGES ON MISHNA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TQ2-2v-sxn">
-                                                <rect key="frame" x="21" y="0.0" width="208" height="20"/>
+                                                <rect key="frame" x="21" y="0.0" width="224" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="zFE-Ra-pQQ"/>
                                                 </constraints>
@@ -871,24 +871,24 @@
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Audio" translatesAutoresizingMaskIntoConstraints="NO" id="HS3-rE-qol">
-                                                                            <rect key="frame" x="179" y="18.5" width="21" height="36.5"/>
+                                                                            <rect key="frame" x="179" y="0.0" width="21" height="73"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="21" id="LUy-UM-kXj"/>
                                                                             </constraints>
                                                                         </imageView>
                                                                         <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Video" translatesAutoresizingMaskIntoConstraints="NO" id="j3j-Wd-rfb">
-                                                                            <rect key="frame" x="230" y="22.5" width="30" height="28.5"/>
+                                                                            <rect key="frame" x="230" y="8" width="30" height="57"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="30" id="L7F-Y0-Ah0"/>
                                                                             </constraints>
                                                                         </imageView>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GUW-ye-jee">
-                                                                            <rect key="frame" x="159" y="10.5" width="61" height="52.5"/>
+                                                                            <rect key="frame" x="128.5" y="-16" width="122" height="105"/>
                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <state key="normal" image="audio-nat"/>
                                                                         </button>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fJx-ws-v8h">
-                                                                            <rect key="frame" x="214.5" y="10.5" width="61" height="52.5"/>
+                                                                            <rect key="frame" x="184" y="-16" width="122" height="105"/>
                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <state key="normal" image="video-nat"/>
                                                                         </button>
@@ -1000,10 +1000,10 @@
                                         <rect key="frame" x="0.0" y="0.0" width="103.5" height="85"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DownloadsNatural" translatesAutoresizingMaskIntoConstraints="NO" id="rP6-iM-ZM4">
-                                                <rect key="frame" x="30.5" y="11.5" width="42.5" height="42.5"/>
+                                                <rect key="frame" x="9.5" y="-10" width="85" height="85"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Downloads" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JHT-9r-OyC">
-                                                <rect key="frame" x="19" y="60" width="66" height="17"/>
+                                                <rect key="frame" x="16.5" y="60.5" width="70.5" height="16.5"/>
                                                 <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="14"/>
                                                 <color key="textColor" red="0.40392156862745099" green="0.62352941176470589" blue="0.91800000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -1033,10 +1033,10 @@
                                         <rect key="frame" x="103.5" y="0.0" width="103.5" height="85"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GemaraNatural" translatesAutoresizingMaskIntoConstraints="NO" id="fau-za-HIW">
-                                                <rect key="frame" x="35.5" y="14.5" width="32.5" height="36"/>
+                                                <rect key="frame" x="19.5" y="-3.5" width="65" height="72"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gemara" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L4b-Gk-dkC">
-                                                <rect key="frame" x="28.5" y="60" width="47" height="17"/>
+                                                <rect key="frame" x="27" y="60.5" width="50" height="16.5"/>
                                                 <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="14"/>
                                                 <color key="textColor" red="0.4039215686" green="0.62352941179999999" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -1066,10 +1066,10 @@
                                         <rect key="frame" x="207" y="0.0" width="103.5" height="85"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MishnaNatural" translatesAutoresizingMaskIntoConstraints="NO" id="AYo-I6-pyK">
-                                                <rect key="frame" x="32.5" y="14.5" width="39" height="36"/>
+                                                <rect key="frame" x="13" y="-3.5" width="78" height="72"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mishna" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bgp-mR-fuJ">
-                                                <rect key="frame" x="30.5" y="60" width="43" height="17"/>
+                                                <rect key="frame" x="29" y="60.5" width="45.5" height="16.5"/>
                                                 <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="14"/>
                                                 <color key="textColor" red="0.4039215686" green="0.62352941179999999" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -1099,10 +1099,10 @@
                                         <rect key="frame" x="310.5" y="0.0" width="103.5" height="85"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Donations" translatesAutoresizingMaskIntoConstraints="NO" id="43y-Mw-dCv">
-                                                <rect key="frame" x="31" y="14.5" width="41.5" height="36.5"/>
+                                                <rect key="frame" x="10.5" y="-4" width="83" height="73"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Donations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="grj-PZ-3qy">
-                                                <rect key="frame" x="22" y="60" width="60" height="17"/>
+                                                <rect key="frame" x="20" y="60.5" width="64" height="16.5"/>
                                                 <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="14"/>
                                                 <color key="textColor" red="0.4039215686" green="0.62352941179999999" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -1265,19 +1265,19 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="emailaddress@address.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="enP-y2-8fU">
-                                                        <rect key="frame" x="94" y="110.5" width="226.5" height="21"/>
+                                                        <rect key="frame" x="85" y="110.5" width="244.5" height="21"/>
                                                         <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="18"/>
                                                         <color key="textColor" red="0.17254901959999999" green="0.16862745100000001" blue="0.33725490200000002" alpha="0.88" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="phone number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sq9-H9-eHL">
-                                                        <rect key="frame" x="19" y="152.5" width="104.5" height="19"/>
+                                                        <rect key="frame" x="19" y="152.5" width="112" height="19"/>
                                                         <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="16"/>
                                                         <color key="textColor" red="1" green="0.37254901959999998" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+3566334344343" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qpw-IH-LCX">
-                                                        <rect key="frame" x="254" y="151.5" width="141" height="21"/>
+                                                        <rect key="frame" x="231" y="151.5" width="164" height="21"/>
                                                         <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="18"/>
                                                         <color key="textColor" red="0.17254901959999999" green="0.16862745100000001" blue="0.33725490200000002" alpha="0.88" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -1325,7 +1325,7 @@
                                                 </constraints>
                                             </view>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Avatar" translatesAutoresizingMaskIntoConstraints="NO" id="bOI-Oe-GlK">
-                                                <rect key="frame" x="165.5" y="14.5" width="83" height="167"/>
+                                                <rect key="frame" x="165.5" y="14.5" width="83" height="83.5"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="83" id="8w4-4e-7e5"/>

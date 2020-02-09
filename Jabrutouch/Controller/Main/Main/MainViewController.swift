@@ -113,6 +113,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.setConstraints()
         UserDefaultsProvider.shared.notFirstTime = true
         self.setButtonsBackground()
+        CoreDataManager.shared.delegate = self
 //        self.setCornerRadius()
     }
     
@@ -130,13 +131,15 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     // MARK: - Setup
     //========================================
     private func setCornerRadius(){
-        self.unReadedLable.layer.cornerRadius = self.unReadedLable.bounds.height / 2
-        self.unReadedLable.clipsToBounds = true
         let unReded  = CoreDataManager.shared.getUnReadedChats()
-        if unReded > 0  {
-            self.unReadedLable.text = "\(unReded)"
-        }else{
-            self.unReadedLable.isHidden = true
+        DispatchQueue.main.async {
+            if unReded > 0  {
+                self.unReadedLable.layer.cornerRadius = self.unReadedLable.bounds.height / 2
+                self.unReadedLable.clipsToBounds = true
+                self.unReadedLable.text = "\(unReded)"
+            }else{
+                self.unReadedLable.isHidden = true
+            }
         }
     }
     
@@ -732,6 +735,7 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
 
 extension MainViewController: MessagesRepositoryDelegate{
     func didReciveNewMessage() {
+       
           self.setCornerRadius()
     }
     

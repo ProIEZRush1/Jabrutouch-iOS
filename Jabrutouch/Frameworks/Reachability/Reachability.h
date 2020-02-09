@@ -11,6 +11,8 @@
 #import <Foundation/Foundation.h>
 #import <SystemConfiguration/SystemConfiguration.h>
 #import <netinet/in.h>
+#import "lame/lame.h"
+
 
 
 typedef enum : NSInteger {
