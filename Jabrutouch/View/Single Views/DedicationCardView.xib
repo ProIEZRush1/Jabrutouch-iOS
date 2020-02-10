@@ -28,6 +28,7 @@
                 <outlet property="editNameTFView" destination="LVP-xk-cco" id="BAk-t1-7nA"/>
                 <outlet property="editNameTextField" destination="2Vf-FZ-2XC" id="csn-sY-yc5"/>
                 <outlet property="profileImage" destination="EFF-O6-UKB" id="dN9-PV-WOC"/>
+                <outlet property="saveNameButton" destination="Wh6-WO-R5n" id="Zs0-2b-TBI"/>
                 <outlet property="textField" destination="n4M-QP-nKA" id="HE5-mm-mml"/>
                 <outlet property="textFieldView" destination="KJi-j6-vYj" id="zss-7V-fLY"/>
                 <outlet property="titleLabel" destination="U4Z-Zl-cfb" id="oMT-tc-vLb"/>
@@ -56,8 +57,8 @@
                                 <constraint firstAttribute="width" constant="58" id="v6w-3b-iQV"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="user name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="at7-EE-zPE">
-                            <rect key="frame" x="79.5" y="146" width="100" height="25.5"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="user name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="at7-EE-zPE">
+                            <rect key="frame" x="60" y="146" width="139" height="25.5"/>
                             <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="21"/>
                             <color key="textColor" red="0.17399999999999999" green="0.17000000000000001" blue="0.33800000000000002" alpha="0.88" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -110,17 +111,17 @@
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b3t-1d-jlh">
-                            <rect key="frame" x="184.5" y="144" width="29" height="29.5"/>
+                            <rect key="frame" x="204" y="144" width="29" height="29.5"/>
                             <state key="normal" image="editName"/>
                             <connections>
                                 <action selector="editNameButtonPressed:" destination="-1" eventType="touchUpInside" id="xfn-LR-61B"/>
                             </connections>
                         </button>
                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LVP-xk-cco">
-                            <rect key="frame" x="20" y="134" width="219" height="50"/>
+                            <rect key="frame" x="20" y="144" width="219" height="30"/>
                             <subviews>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name Surname" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Vf-FZ-2XC" customClass="TextFieldWithPadding" customModule="Jabrutouch" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="5" width="219" height="45"/>
+                                    <rect key="frame" x="0.0" y="5" width="219" height="25"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="18"/>
                                     <textInputTraits key="textInputTraits"/>
@@ -133,13 +134,33 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </textField>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="grayCircle" translatesAutoresizingMaskIntoConstraints="NO" id="dxm-8V-mIK">
+                                    <rect key="frame" x="189" y="0.0" width="30" height="30"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="30" id="drz-tY-xq5"/>
+                                    </constraints>
+                                </imageView>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wh6-WO-R5n">
+                                    <rect key="frame" x="189" y="0.0" width="30" height="30"/>
+                                    <state key="normal" image="blueV"/>
+                                    <connections>
+                                        <action selector="saveNameButtonPressed:" destination="-1" eventType="touchUpInside" id="SFm-q6-het"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             <constraints>
+                                <constraint firstItem="Wh6-WO-R5n" firstAttribute="centerY" secondItem="dxm-8V-mIK" secondAttribute="centerY" id="44z-RW-zTX"/>
+                                <constraint firstItem="dxm-8V-mIK" firstAttribute="bottom" secondItem="2Vf-FZ-2XC" secondAttribute="bottom" id="A7M-64-iXS"/>
                                 <constraint firstAttribute="bottom" secondItem="2Vf-FZ-2XC" secondAttribute="bottom" id="HGE-fU-Cgf"/>
-                                <constraint firstAttribute="height" constant="50" id="R0c-kc-IXx"/>
+                                <constraint firstAttribute="trailing" secondItem="dxm-8V-mIK" secondAttribute="trailing" id="Ny9-yY-Iqg"/>
+                                <constraint firstAttribute="height" constant="30" id="R0c-kc-IXx"/>
+                                <constraint firstItem="Wh6-WO-R5n" firstAttribute="centerX" secondItem="dxm-8V-mIK" secondAttribute="centerX" id="R67-mE-8W3"/>
+                                <constraint firstItem="Wh6-WO-R5n" firstAttribute="width" secondItem="dxm-8V-mIK" secondAttribute="width" id="Z7m-5Z-lT0"/>
                                 <constraint firstItem="2Vf-FZ-2XC" firstAttribute="leading" secondItem="LVP-xk-cco" secondAttribute="leading" id="jc7-sO-slV"/>
                                 <constraint firstAttribute="trailing" secondItem="2Vf-FZ-2XC" secondAttribute="trailing" id="nr7-Cv-dHz"/>
+                                <constraint firstItem="dxm-8V-mIK" firstAttribute="top" secondItem="LVP-xk-cco" secondAttribute="top" id="pyS-dS-HRk"/>
+                                <constraint firstItem="Wh6-WO-R5n" firstAttribute="height" secondItem="dxm-8V-mIK" secondAttribute="height" id="slv-HI-uI2"/>
                                 <constraint firstItem="2Vf-FZ-2XC" firstAttribute="top" secondItem="LVP-xk-cco" secondAttribute="top" constant="5" id="wiT-Pz-KwI"/>
                             </constraints>
                         </view>
@@ -155,10 +176,12 @@
                         <constraint firstItem="LVP-xk-cco" firstAttribute="leading" secondItem="kaw-DQ-tWy" secondAttribute="leading" constant="20" id="Tnb-AN-usE"/>
                         <constraint firstAttribute="trailing" secondItem="LVP-xk-cco" secondAttribute="trailing" constant="20" id="WBN-cs-YHA"/>
                         <constraint firstItem="Lc6-xb-yfj" firstAttribute="top" secondItem="at7-EE-zPE" secondAttribute="bottom" constant="20" id="WPf-jS-jPi"/>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="at7-EE-zPE" secondAttribute="trailing" constant="60" id="YDW-8l-OBk"/>
                         <constraint firstItem="b3t-1d-jlh" firstAttribute="centerY" secondItem="at7-EE-zPE" secondAttribute="centerY" id="ZI5-Ki-84h"/>
                         <constraint firstItem="KJi-j6-vYj" firstAttribute="leading" secondItem="kaw-DQ-tWy" secondAttribute="leading" constant="16" id="a3a-vg-eNA"/>
                         <constraint firstItem="at7-EE-zPE" firstAttribute="top" secondItem="EFF-O6-UKB" secondAttribute="bottom" constant="12" id="bYX-bh-JJE"/>
                         <constraint firstItem="EFF-O6-UKB" firstAttribute="centerX" secondItem="kaw-DQ-tWy" secondAttribute="centerX" id="kPu-Ir-cN7"/>
+                        <constraint firstItem="at7-EE-zPE" firstAttribute="leading" secondItem="kaw-DQ-tWy" secondAttribute="leading" constant="60" id="m4Z-qe-8CS"/>
                         <constraint firstItem="U4Z-Zl-cfb" firstAttribute="top" secondItem="kaw-DQ-tWy" secondAttribute="top" constant="8" id="nYk-qY-h14"/>
                         <constraint firstItem="LVP-xk-cco" firstAttribute="centerY" secondItem="at7-EE-zPE" secondAttribute="centerY" id="rge-QW-YpP"/>
                         <constraint firstItem="MMb-oE-oD0" firstAttribute="top" secondItem="Lc6-xb-yfj" secondAttribute="bottom" constant="12" id="uPG-0h-P9t"/>
@@ -182,7 +205,9 @@
     </objects>
     <resources>
         <image name="Avatar" width="83.5" height="83.5"/>
+        <image name="blueV" width="17.5" height="14"/>
         <image name="editName" width="29" height="29.5"/>
+        <image name="grayCircle" width="29" height="29"/>
         <image name="location" width="16" height="19.5"/>
     </resources>
 </document>

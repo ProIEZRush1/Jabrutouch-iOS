@@ -30,8 +30,14 @@ class DonateViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var continueLabel: UILabel!
     @IBOutlet weak var amountToDonateLabel: UILabel!
     
-    var isSingelPayment: Bool = true
-    var isSubscription: Bool = false
+    var isSingelPayment: Bool = false
+    var isSubscription: Bool = true
+    
+    var donation: JTDonation?
+    var crowns: [JTCrown] = []
+    var dedication: [JTDedication] = []
+    var numberOfCrownsSinget = 5
+    var numberOfCrownsSubsciption = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +48,7 @@ class DonateViewController: UIViewController, UITextFieldDelegate {
         self.setBorders()
         self.setRoundCorners()
         self.setSlider()
+        self.getDonationDatd()
     }
     override func viewWillAppear(_ animated: Bool) {
         self.setButtonsColorAndFont()
@@ -53,9 +60,9 @@ class DonateViewController: UIViewController, UITextFieldDelegate {
         self.shadowView.clipsToBounds = true
         self.amountToPayTF.layer.cornerRadius = 10
         self.amountToPayTF.clipsToBounds = true
-        self.continueButton.layer.cornerRadius = 15
+        self.continueButton.layer.cornerRadius = 18
         self.continueButton.clipsToBounds = true
-        self.continueView.layer.cornerRadius = 15
+        self.continueView.layer.cornerRadius = 18
         self.continueView.clipsToBounds = true
     }
     
@@ -65,7 +72,7 @@ class DonateViewController: UIViewController, UITextFieldDelegate {
     }
     
     func setSlider() {
-        self.slider.setThumbImage(#imageLiteral(resourceName: "ellipseSlider"), for: .normal)
+        self.slider.value = 0
         
     }
     
@@ -73,12 +80,14 @@ class DonateViewController: UIViewController, UITextFieldDelegate {
         self.setButtonsColorAndFont()
         guard let amountToDonate = self.amountToPayTF.text else { return }
         guard let amount = Int(amountToDonate) else { return }
-        let numberOfKetarim = amount / 5
+        var numberOfKetarim = self.numberOfCrownsSubsciption
         if self.isSingelPayment {
+            numberOfKetarim = amount / self.numberOfCrownsSinget
             self.monthlyLabel.text = "One Time Donation"
             self.donationValueLabel.isHidden = true
             self.cancelSubscriptionLabel.isHidden = true
         } else {
+            numberOfKetarim = amount / self.numberOfCrownsSubsciption
             self.monthlyLabel.text = "Monthly"
             self.donationValueLabel.isHidden = false
             self.cancelSubscriptionLabel.isHidden = false
@@ -102,6 +111,27 @@ class DonateViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    func getDonationDatd() {
+        DonationManager.shared.getDonationData( completion: { result in
+            switch result {
+            case .success(let donation):
+                self.donation = donation
+                self.dedication = donation.dedication
+                self.crowns = donation.crowns
+                for crown in self.crowns {
+                    if crown.paymentType == "singel" {
+                        self.numberOfCrownsSinget = crown.dollarPerCrown
+                    }
+                    if crown.paymentType == "Subscription" {
+                        self.numberOfCrownsSubsciption = crown.dollarPerCrown
+                    }
+                }
+            case .failure(_):
+                break
+            }
+        })
+    }
+    
     @IBAction func backButtonPressed(_ sender: Any) {
 //        self.dismiss(animated: true, completion: nil)
 //        self.navigationController?.popViewController(animated: true)
@@ -110,16 +140,16 @@ class DonateViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func singelPaymentButtonPressed(_ sender: Any) {
-        self.amountToPayTF.text = "1000"
-        self.slider.value = 0.5
+        self.amountToPayTF.text = "54"
+        self.slider.value = 54 / 200
         self.isSingelPayment = true
         self.isSubscription = false
         self.setState()
     }
     
     @IBAction func subscriptionButtonPressed(_ sender: Any) {
-        self.amountToPayTF.text = "100"
-        self.slider.value = 0.5
+        self.amountToPayTF.text = "18"
+        self.slider.value = 0
         self.isSingelPayment = false
         self.isSubscription = true
         self.setState()
@@ -135,13 +165,19 @@ class DonateViewController: UIViewController, UITextFieldDelegate {
             let value = sender.value * 2000
             sender.minimumValue = 0
             sender.maximumValue = 1
-            let displayValue = Int(value)
+            var displayValue = Int(value)
+            if Int(value) < 18 {
+                displayValue = 18
+            }
             amountToPayTF.text = String(displayValue)
         } else {
             let value = sender.value * 200
             sender.minimumValue = 0
             sender.maximumValue = 1
-            let displayValue = Int(value)
+            var displayValue = Int(value)
+            if Int(value) < 18 {
+                displayValue = 18
+            }
             amountToPayTF.text = String(displayValue)
         }
         self.setState()
@@ -159,7 +195,11 @@ class DonateViewController: UIViewController, UITextFieldDelegate {
                 } else {
                     displayValue = Float(value) / Float(200.0)
                 }
-                self.slider.value = displayValue
+                if value <= 18 {
+                    self.slider.value = 0
+                } else {
+                    self.slider.value = displayValue
+                }
             }
         }
         return true
@@ -176,8 +216,23 @@ class DonateViewController: UIViewController, UITextFieldDelegate {
                 } else {
                     displayValue = Float(value) / Float(200.0)
                 }
-                self.slider.value = displayValue
+                if value <= 18 {
+                    self.slider.value = 0
+                } else {
+                    self.slider.value = displayValue
+                }
             }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "presentDedication" {
+            let dedicationVC = segue.destination as? DedicationViewController
+            if let amountToPay = Int(self.amountToDonateLabel.text ?? "0") {
+                dedicationVC?.amountToPay = amountToPay
+            }
+            dedicationVC?.isSubscription = self.isSubscription
+            dedicationVC?.dedication = self.dedication
         }
     }
 }

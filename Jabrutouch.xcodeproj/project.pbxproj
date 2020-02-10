@@ -162,6 +162,12 @@
 		538691502379E8E500CC95B5 /* JBProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5386914E2379E8E500CC95B5 /* JBProgressBar.swift */; };
 		538691512379E8E500CC95B5 /* LabelWithPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5386914F2379E8E500CC95B5 /* LabelWithPadding.swift */; };
 		538691532379E9B100CC95B5 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 538691522379E9B100CC95B5 /* Profile.storyboard */; };
+		83137EFD23F04024003B9DA6 /* JTDonation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83137EFC23F04024003B9DA6 /* JTDonation.swift */; };
+		83137EFF23F040E5003B9DA6 /* DonationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83137EFE23F040E5003B9DA6 /* DonationResponse.swift */; };
+		83137F0123F046CB003B9DA6 /* JTCrown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83137F0023F046CB003B9DA6 /* JTCrown.swift */; };
+		83137F0323F04769003B9DA6 /* JTDedication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83137F0223F04769003B9DA6 /* JTDedication.swift */; };
+		83137F0523F04C5F003B9DA6 /* DonationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83137F0423F04C5F003B9DA6 /* DonationManager.swift */; };
+		83137F0723F07050003B9DA6 /* JTPostDedication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83137F0623F07050003B9DA6 /* JTPostDedication.swift */; };
 		833E621E23992C2500EC93C7 /* Messages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 833E621D23992C2500EC93C7 /* Messages.storyboard */; };
 		833E622123992DED00EC93C7 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833E622023992DED00EC93C7 /* MessagesViewController.swift */; };
 		833E62232399591400EC93C7 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833E62222399591400EC93C7 /* ChatCell.swift */; };
@@ -205,6 +211,7 @@
 		83A7A0CD23E999300041BE28 /* DonationWalkThroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A7A0CC23E9992F0041BE28 /* DonationWalkThroughViewController.swift */; };
 		83A7A0CF23E9A3440041BE28 /* DonateNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A7A0CE23E9A3430041BE28 /* DonateNavigationController.swift */; };
 		83A7A0D123EAEE080041BE28 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A7A0D023EAEE080041BE28 /* PaymentViewController.swift */; };
+		83A7A0D323EB3AC60041BE28 /* CreditCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A7A0D223EB3AC60041BE28 /* CreditCardViewController.swift */; };
 		83A936AB23D9D53A007BA207 /* Donations.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83A936AA23D9D53A007BA207 /* Donations.storyboard */; };
 		83A936AD23D9E8D8007BA207 /* DonationsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A936AC23D9E8D8007BA207 /* DonationsNavigationController.swift */; };
 		83A936AF23DDEA93007BA207 /* OldDonationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A936AE23DDEA93007BA207 /* OldDonationsViewController.swift */; };
@@ -408,6 +415,12 @@
 		5386914F2379E8E500CC95B5 /* LabelWithPadding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelWithPadding.swift; sourceTree = "<group>"; };
 		538691522379E9B100CC95B5 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		715A51EC96A60C90B07F8038 /* Pods-Jabrutouch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jabrutouch.debug.xcconfig"; path = "Target Support Files/Pods-Jabrutouch/Pods-Jabrutouch.debug.xcconfig"; sourceTree = "<group>"; };
+		83137EFC23F04024003B9DA6 /* JTDonation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTDonation.swift; sourceTree = "<group>"; };
+		83137EFE23F040E5003B9DA6 /* DonationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonationResponse.swift; sourceTree = "<group>"; };
+		83137F0023F046CB003B9DA6 /* JTCrown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTCrown.swift; sourceTree = "<group>"; };
+		83137F0223F04769003B9DA6 /* JTDedication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTDedication.swift; sourceTree = "<group>"; };
+		83137F0423F04C5F003B9DA6 /* DonationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonationManager.swift; sourceTree = "<group>"; };
+		83137F0623F07050003B9DA6 /* JTPostDedication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTPostDedication.swift; sourceTree = "<group>"; };
 		833E621D23992C2500EC93C7 /* Messages.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Messages.storyboard; sourceTree = "<group>"; };
 		833E622023992DED00EC93C7 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		833E62222399591400EC93C7 /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
@@ -452,6 +465,7 @@
 		83A7A0CC23E9992F0041BE28 /* DonationWalkThroughViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonationWalkThroughViewController.swift; sourceTree = "<group>"; };
 		83A7A0CE23E9A3430041BE28 /* DonateNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonateNavigationController.swift; sourceTree = "<group>"; };
 		83A7A0D023EAEE080041BE28 /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
+		83A7A0D223EB3AC60041BE28 /* CreditCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditCardViewController.swift; sourceTree = "<group>"; };
 		83A936AA23D9D53A007BA207 /* Donations.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Donations.storyboard; sourceTree = "<group>"; };
 		83A936AC23D9E8D8007BA207 /* DonationsNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DonationsNavigationController.swift; path = Jabrutouch/View/Storyboards/DonationsNavigationController.swift; sourceTree = SOURCE_ROOT; };
 		83A936AE23DDEA93007BA207 /* OldDonationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OldDonationsViewController.swift; path = Jabrutouch/View/Storyboards/OldDonationsViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -696,6 +710,7 @@
 				833E622E23A13BE400EC93C7 /* GetCreateMessageResponse.swift */,
 				46C652F523CF770800F6D0DD /* GetEditUserParametersResponse.swift */,
 				83A7A0CA23E84C3C0041BE28 /* ChangePasswordResponse.swift */,
+				83137EFE23F040E5003B9DA6 /* DonationResponse.swift */,
 			);
 			path = "API Response models";
 			sourceTree = "<group>";
@@ -999,6 +1014,7 @@
 				213196B222F6DAC600B0AF5F /* LoginManager.swift */,
 				219BFF3722E5B72000ABBEE2 /* LocalizationManager.swift */,
 				213016B62321940F00B9DD2B /* AnalyticsManager.swift */,
+				83137F0423F04C5F003B9DA6 /* DonationManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -1093,6 +1109,10 @@
 				836A883B238DB30D00F68539 /* JTGallery.swift */,
 				833E6224239FB11600EC93C7 /* JTMessage.swift */,
 				833E622C23A1344A00EC93C7 /* JTChatMessage.swift */,
+				83137EFC23F04024003B9DA6 /* JTDonation.swift */,
+				83137F0023F046CB003B9DA6 /* JTCrown.swift */,
+				83137F0223F04769003B9DA6 /* JTDedication.swift */,
+				83137F0623F07050003B9DA6 /* JTPostDedication.swift */,
 			);
 			path = "Domain Models";
 			sourceTree = "<group>";
@@ -1164,6 +1184,7 @@
 				83A7A0CC23E9992F0041BE28 /* DonationWalkThroughViewController.swift */,
 				83A7A0CE23E9A3430041BE28 /* DonateNavigationController.swift */,
 				83A7A0D023EAEE080041BE28 /* PaymentViewController.swift */,
+				83A7A0D223EB3AC60041BE28 /* CreditCardViewController.swift */,
 			);
 			path = Donations;
 			sourceTree = "<group>";
@@ -1494,8 +1515,10 @@
 			files = (
 				83605BA82384361400B93603 /* JTDonor.swift in Sources */,
 				21999F3923185D39003DB1B4 /* PlaybackSpeed.swift in Sources */,
+				83137F0123F046CB003B9DA6 /* JTCrown.swift in Sources */,
 				219BFF4122E7173C00ABBEE2 /* MainMenuViewController.swift in Sources */,
 				213196A722F38B3E00B0AF5F /* SendCodeResponse.swift in Sources */,
+				83137EFF23F040E5003B9DA6 /* DonationResponse.swift in Sources */,
 				FB51711622F19FD2003BCAFC /* JTMishnaMasechet.swift in Sources */,
 				833E622F23A13BE400EC93C7 /* GetCreateMessageResponse.swift in Sources */,
 				836A88492390136000F68539 /* GalleryViewController.swift in Sources */,
@@ -1528,6 +1551,7 @@
 				83CCB129237DA32D00C86450 /* ForgotPasswordViewController.swift in Sources */,
 				538691492379E8B500CC95B5 /* CompletionProgressCell.swift in Sources */,
 				836A884B23951CA700F68539 /* JBView.swift in Sources */,
+				83137F0523F04C5F003B9DA6 /* DonationManager.swift in Sources */,
 				83B3556923E1C03000E2C485 /* DedicationViewController.swift in Sources */,
 				8342BA75237301D800C3239C /* MainViewController.swift in Sources */,
 				833E622123992DED00EC93C7 /* MessagesViewController.swift in Sources */,
@@ -1536,6 +1560,7 @@
 				212ECEAC2312585A005AEB36 /* JTLessonType.swift in Sources */,
 				83605BAA23846E3700B93603 /* OldProfileViewController.swift in Sources */,
 				FB6877C222FC49AE0096465D /* AlertViewController.swift in Sources */,
+				83137F0723F07050003B9DA6 /* JTPostDedication.swift in Sources */,
 				833E62232399591400EC93C7 /* ChatCell.swift in Sources */,
 				FBB18FB422F866C8006886FD /* GemaraLessonsViewController.swift in Sources */,
 				216A0E6E22EEFD1400F7FBC1 /* HttpServiceProvider.swift in Sources */,
@@ -1548,6 +1573,7 @@
 				5386914A2379E8B500CC95B5 /* ButtonCell.swift in Sources */,
 				212ECEA7230F36BF005AEB36 /* LessonPlayerViewController.swift in Sources */,
 				213196A822F38B3E00B0AF5F /* APIResponseModel.swift in Sources */,
+				83137EFD23F04024003B9DA6 /* JTDonation.swift in Sources */,
 				2126D6E12304025A00CB501D /* MishnaNavigationController.swift in Sources */,
 				FBAB071622E74ABD00C8DCD7 /* DownloadsCellController.swift in Sources */,
 				2133C21F22DCFC6600F910B9 /* WalkThroughViewController.swift in Sources */,
@@ -1564,6 +1590,7 @@
 				213196AE22F38B6800B0AF5F /* JTUser.swift in Sources */,
 				219BFF3522E5B6F700ABBEE2 /* Country.swift in Sources */,
 				FBB18FB022F863AF006886FD /* JTGemaraSeder.swift in Sources */,
+				83137F0323F04769003B9DA6 /* JTDedication.swift in Sources */,
 				83B3556723E06A8400E2C485 /* DonateViewController.swift in Sources */,
 				839CB4CB2381C91B0086554B /* SelectInterestViewController.swift in Sources */,
 				FB51711D22F1A275003BCAFC /* JTMishnaSeder.swift in Sources */,
@@ -1601,6 +1628,7 @@
 				2133C21B22DCA5FC00F910B9 /* Strings.swift in Sources */,
 				213196B322F6DAC600B0AF5F /* LoginManager.swift in Sources */,
 				21CC094122F05D1500E8FE27 /* DafYomi.swift in Sources */,
+				83A7A0D323EB3AC60041BE28 /* CreditCardViewController.swift in Sources */,
 				219BFF3D22E5B7BA00ABBEE2 /* Utils.swift in Sources */,
 				5386914D2379E8B500CC95B5 /* GeneralInformationCell.swift in Sources */,
 				21678D7A22E085B1007BC74C /* MishnaViewController.swift in Sources */,

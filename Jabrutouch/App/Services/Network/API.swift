@@ -149,6 +149,16 @@ class API {
         }
     }
     
+    class func getDonationsData(authToken: String, completionHandler:@escaping (_ response: APIResult<DonationResponse>)->Void) {
+        guard let request = HttpRequestsFactory.createGetDonationData(token: authToken) else {
+            completionHandler(APIResult.failure(.unableToCreateRequest))
+            return
+        }
+        HttpServiceProvider.shared.excecuteRequest(request: request) { (data, response, error) in
+            self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
+        }
+    }
+    
     //========================================
     // MARK: - Messages
     //========================================

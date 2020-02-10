@@ -8,12 +8,17 @@
 
 import UIKit
 
+protocol DedicationCardDelegate {
+    func changedName(_ name: String)
+}
+
 class DedicationCardView: UIView {
 
     //========================================
     // MARK: - Properties
     //========================================
    
+    var delegate: DedicationCardDelegate?
    
     //========================================
     // MARK: - @IBOutlets
@@ -32,6 +37,7 @@ class DedicationCardView: UIView {
     @IBOutlet weak var editNameButton: UIButton!
     @IBOutlet weak var editNameTFView: UIView!
     @IBOutlet weak var editNameTextField: TextFieldWithPadding!
+    @IBOutlet weak var saveNameButton: UIButton!
     
     
     //========================================
@@ -106,8 +112,20 @@ class DedicationCardView: UIView {
     }
     
     @IBAction func editNameButtonPressed(_ sender: Any) {
+        self.editNameTextField.becomeFirstResponder()
         self.userNameLabel.isHidden = true
         self.editNameTFView.isHidden = false
+    }
+    
+    @IBAction func saveNameButtonPressed(_ sender: Any) {
+        self.userNameLabel.isHidden = false
+        self.editNameTFView.isHidden = true
+        self.editNameTextField.resignFirstResponder()
+        
+        if let name = self.editNameTextField.text {
+            self.delegate?.changedName(name)
+        }
+//        self.editNameTextField.text = ""
     }
     
 }

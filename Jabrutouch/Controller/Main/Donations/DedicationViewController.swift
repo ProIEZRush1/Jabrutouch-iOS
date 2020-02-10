@@ -17,6 +17,10 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
     var user: JTUser?
     var anonimus: Bool = false
     var name: String = ""
+    var amountToPay: Int = 0
+    var isSubscription: Bool = false
+    var dedication: [JTDedication] = []
+    
     //========================================
     // MARK: - @IBOutlets
     //========================================
@@ -26,6 +30,7 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var barPageIndicator: JTBarPageIndicator!
     @IBOutlet weak var continuButton: UIButton!
+    @IBOutlet weak var carouselTopConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var anonimusView: UIView!
     @IBOutlet weak var anonimusButton: UIButton!
@@ -45,7 +50,7 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
         self.setCarousel()
         self.setRoundCorners()
         self.leftArrowButton.isHidden = true
-        // Do any additional setup after loading the view.
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,7 +72,7 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
     }
     
     private func setRoundCorners() {
-        self.continuButton.layer.cornerRadius = 15
+        self.continuButton.layer.cornerRadius = 18
         self.continuButton.clipsToBounds = true
         
     }
@@ -76,6 +81,7 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
         let view = DedicationCardView()
         view.textField.delegate = self
         view.editNameTextField.delegate = self
+        view.delegate = self
         view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         
         view.profileImage.image = user?.profileImage ?? #imageLiteral(resourceName: "Avatar")
@@ -96,10 +102,9 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
     
     func setCurrentCards() {
         self.setCardView(dedication: "", hidden: true)
-        self.setCardView(dedication: "Para la pronta curación de", hidden: false)
-        self.setCardView(dedication: "Para el éxito de", hidden: false)
-        self.setCardView(dedication: "In memoria de", hidden: false)
-        
+        for dedication in self.dedication {
+            self.setCardView(dedication: dedication.name, hidden: false)
+        }
     }
     
     //========================================
@@ -207,10 +212,48 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
             self.rightArrowButton.isHidden = true
         }
     }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        UIView.animate(withDuration: 0.3) {
+            self.carouselTopConstraint.constant = -90
+            self.view.layoutIfNeeded()
+        }
+    }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        UIView.animate(withDuration: 0.3) {
+            self.carouselTopConstraint.constant = 20
+            self.view.layoutIfNeeded()
+        }
         
         return true
     }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        UIView.animate(withDuration: 0.3) {
+            self.carouselTopConstraint.constant = 20
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "presentPayment" {
+            let paymentVC = segue.destination as? PaymentViewController
+            paymentVC?.amountToPay = self.amountToPay
+            paymentVC?.isSubscription = self.isSubscription
+        }
+    }
+}
+
+extension DedicationViewController: DedicationCardDelegate {
+    func changedName(_ name: String) {
+        if name != "" {
+            for card in self.views {
+                card.userNameLabel.text = name
+            }
+        }
+        self.carouselView.reloadData()
+    }
+    
 }

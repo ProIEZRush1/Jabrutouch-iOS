@@ -427,9 +427,9 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
             self.donationsImageView.alpha = 1.0
             self.donationsLabel.alpha = 1.0
         }
-//        self.presentDonationWalkThrough()
+        self.presentDonationWalkThrough()
 //        self.presentDonationsViewController()
-        self.presentOldDonations()
+//        self.presentOldDonations()
     }
     
     @IBAction func donationsButtonTouchedUpOutside(_ sender: UIButton) {
@@ -670,9 +670,9 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
         case .messageCenter:
             presentMessages()
         case .donationsCenter:
-//            presentDonationWalkThrough()
+            presentDonationWalkThrough()
 //            presentDonationsViewController()
-            presentOldDonations()
+//            presentOldDonations()
         default:
             presentInDevelopmentAlert()
         }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PassKit
 
 class PaymentViewController: UIViewController {
 
@@ -22,14 +23,18 @@ class PaymentViewController: UIViewController {
     @IBOutlet weak var payPalView: UIView!
     @IBOutlet weak var payPalButton: UIButton!
     
+    var amountToPay: Int = 0
+    var isSubscription: Bool = false
     
+    let SupportedPaymentNetworks = [PKPaymentNetwork.visa, PKPaymentNetwork.masterCard, PKPaymentNetwork.amex]
+    let ApplePayMerchantID = "merchant.il.co.jabrutouch.Jabrutouch"
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
+//        applePayButton.isHidden = !PKPaymentAuthorizationViewController.canMakePayments(usingNetworks: SupportedPaymentNetworks)
         self.setBorders()
         self.roundCornors()
         self.setShadow()
-        // Do any additional setup after loading the view.
     }
     
     func setBorders() {
@@ -69,15 +74,47 @@ class PaymentViewController: UIViewController {
     }
     
     @IBAction func creditCardButtonPressed(_ sender: Any) {
-        
+        performSegue(withIdentifier: "toCreditCard", sender: self)
     }
     
     @IBAction func applePayButtonPressed(_ sender: Any) {
+        let request = PKPaymentRequest()
+        request.merchantIdentifier = self.ApplePayMerchantID
+        request.supportedNetworks = SupportedPaymentNetworks
+        request.merchantCapabilities = PKMerchantCapability.capability3DS
+        request.countryCode = "US"
+        request.currencyCode = "USD"
+
+        request.paymentSummaryItems = [
+                   PKPaymentSummaryItem(label: "Some Product", amount: 9.99)
+               ]
+        let applePayController = PKPaymentAuthorizationViewController(paymentRequest: request)
+        applePayController?.delegate = self
         
+        self.present(applePayController!, animated: true, completion: nil)
+
     }
     
     @IBAction func payPalButtonPressed(_ sender: Any) {
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toCreditCard" {
+            let creditCardVC = segue.destination as? CreditCardViewController
+            creditCardVC?.amountToPay = self.amountToPay
+            creditCardVC?.isSubscription = self.isSubscription
+        }
+    }
+    
+}
+
+extension PaymentViewController: PKPaymentAuthorizationViewControllerDelegate {
+    func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, completion: @escaping ((PKPaymentAuthorizationStatus) -> Void)) {
+        completion(PKPaymentAuthorizationStatus.success)
+    }
+    
+    func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {
+        controller.dismiss(animated: true, completion: nil)
+    }
 }
