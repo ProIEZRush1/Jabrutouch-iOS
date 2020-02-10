@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hlJ-VD-Lqd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hlJ-VD-Lqd">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -185,6 +185,14 @@
             </objects>
             <point key="canvasLocation" x="-551" y="-580"/>
         </scene>
+        <!--Donations-->
+        <scene sceneID="Opo-Hd-Xor">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Donations" id="Xea-Td-CjP" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ESB-9c-yl9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-552" y="-504"/>
+        </scene>
         <!--Gemara-->
         <scene sceneID="IHn-Qr-1Q9">
             <objects>
@@ -201,10 +209,18 @@
             </objects>
             <point key="canvasLocation" x="433" y="-236"/>
         </scene>
-        <!--Donations View Controller-->
+        <!--Donations-->
+        <scene sceneID="UlP-4G-G3L">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Donations" id="XSp-1R-jLf" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5ao-fc-3zk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="733" y="-225"/>
+        </scene>
+        <!--Old Donations View Controller-->
         <scene sceneID="wqN-I7-b5z">
             <objects>
-                <viewController id="6YE-v2-5Hc" customClass="DonationsViewController" customModule="Jabrutouch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="6YE-v2-5Hc" customClass="OldDonationsViewController" customModule="Jabrutouch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nTo-1r-ILA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="981"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -222,7 +238,7 @@
                                     <color key="titleColor" red="0.2901960784" green="0.2666666667" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="backButtonPressed:" destination="6YE-v2-5Hc" eventType="touchUpInside" id="Gtc-Gv-3rC"/>
+                                    <action selector="backButtonPressed:" destination="6YE-v2-5Hc" eventType="touchUpInside" id="21n-Rf-bCx"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1203,6 +1219,7 @@
                         <segue destination="UeY-nm-KDD" kind="presentation" identifier="presentProfile" modalPresentationStyle="currentContext" id="eN5-yq-N07"/>
                         <segue destination="aWT-VA-QZb" kind="presentation" identifier="presentOldProfile" modalPresentationStyle="currentContext" id="zG4-O3-ljI"/>
                         <segue destination="yNO-t6-X4Y" kind="presentation" identifier="toMessages" modalPresentationStyle="currentContext" id="kxv-Gm-dsa"/>
+                        <segue destination="Xea-Td-CjP" kind="presentation" identifier="presentDonationWalkTrough" modalPresentationStyle="fullScreen" id="2a9-cc-ucS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MyD-j7-MvK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1220,10 +1237,11 @@
                         <viewLayoutGuide key="safeArea" id="JKq-Kd-1Ej"/>
                     </view>
                     <connections>
-                        <segue destination="6YE-v2-5Hc" kind="presentation" identifier="presentDonations" modalPresentationStyle="currentContext" id="1Eq-Xo-pbZ"/>
                         <segue destination="xwk-Vq-Xrs" kind="presentation" identifier="presentDownloads" modalPresentationStyle="currentContext" id="POK-Y0-SqV"/>
                         <segue destination="JVG-Qg-8AU" kind="presentation" identifier="presentMishna" modalPresentationStyle="currentContext" id="Rcw-p9-fF4"/>
                         <segue destination="Ld6-3Q-y7r" kind="presentation" identifier="presentGemara" modalPresentationStyle="currentContext" id="AcG-ey-UNh"/>
+                        <segue destination="XSp-1R-jLf" kind="presentation" identifier="presentDonations" modalPresentationStyle="currentContext" id="I4c-7R-cOT"/>
+                        <segue destination="6YE-v2-5Hc" kind="presentation" identifier="presentOldDonation" modalPresentationStyle="currentContext" id="sae-mY-haW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4ZF-Ew-sWy" userLabel="First Responder" sceneMemberID="firstResponder"/>

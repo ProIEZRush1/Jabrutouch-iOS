@@ -378,4 +378,83 @@ class Strings {
     class var noLessons: String {
         return NSLocalizedString("noLessons", comment: "")
     }
+    // Profil
+    class var edit: String {
+        return NSLocalizedString("edit", comment: "")
+    }
+    
+    class var donateLessons: String {
+        return NSLocalizedString("donateLessons", comment: "")
+    }
+    
+    class var full: String {
+        return NSLocalizedString("full", comment: "")
+    }
+    
+    class var completionProgress: String {
+        return NSLocalizedString("completionProgress", comment: "")
+    }
+    
+    class var birthday: String {
+        return NSLocalizedString("birthday", comment: "")
+    }
+    
+    class var empty: String {
+        return NSLocalizedString("empty", comment: "")
+    }
+    
+    class var education: String {
+        return NSLocalizedString("education", comment: "")
+    }
+    
+    class var secondEmail: String {
+        return NSLocalizedString("secondEmail", comment: "")
+    }
+    
+    class var topicOfInterest: String {
+        return NSLocalizedString("topicOfInterest", comment: "")
+    }
+    
+    class var changePassword: String {
+        return NSLocalizedString("changePassword", comment: "")
+    }
+    
+    class var removeAccount: String {
+        return NSLocalizedString("removeAccount", comment: "")
+    }
+    
+    class var editProfile: String {
+        return NSLocalizedString("editProfile", comment: "")
+    }
+    
+    class var addPhoto: String {
+        return NSLocalizedString("addPhoto", comment: "")
+    }
+    
+    class var community: String {
+        return NSLocalizedString("community", comment: "")
+    }
+    
+    class var oldPassowrd: String {
+        return NSLocalizedString("oldPassowrd", comment: "")
+    }
+
+    class var newPassowrd: String {
+        return NSLocalizedString("newPassowrd", comment: "")
+    }
+
+    class var confirmPassowrd: String {
+        return NSLocalizedString("confirmPassowrd", comment: "")
+    }
+    
+    class var save: String {
+        return NSLocalizedString("save", comment: "")
+    }
+
+    class var profilePhoneNumber: String {
+        return NSLocalizedString("profilePhoneNumber", comment: "")
+    }
+    
+    
+    
 }

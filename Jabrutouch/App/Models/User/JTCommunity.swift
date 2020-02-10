@@ -22,6 +22,10 @@ struct JTCommunity {
         } else { return nil }
     }
     
+    init(editUserParameter: JTUserProfileParameter) {
+        self.id = editUserParameter.id
+        self.name = editUserParameter.name
+    }
     var values: [String: Any] {
         var values: [String:Any] = [:]
         values["id"] = self.id

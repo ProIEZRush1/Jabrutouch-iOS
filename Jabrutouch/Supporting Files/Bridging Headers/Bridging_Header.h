@@ -10,5 +10,10 @@
 #define Bridging_Header_h
 
 #import <AWSS3/AWSS3.h>
+
 #import "AudioWrapper.h"
+
+#import "iCarousel.h"
+
+
 #endif /* Bridging_Header_h */
