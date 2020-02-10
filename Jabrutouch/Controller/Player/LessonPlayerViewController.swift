@@ -169,7 +169,7 @@ class LessonPlayerViewController: UIViewController {
         self.setUpGallery()
         self.pdfView.isOpaque = false
         self.pdfView.backgroundColor = UIColor.clear
-
+        self.setProgressRing()
         NotificationCenter.default.addObserver(self, selector: #selector(self.orientationDidChange(_:)), name: UIDevice.orientationDidChangeNotification, object: nil)
         ContentRepository.shared.addDelegate(self)
 
@@ -260,6 +260,15 @@ class LessonPlayerViewController: UIViewController {
     //====================================================
     // MARK: - Setup
     //====================================================
+    private func setProgressRing() {
+        let startColor: UIColor = UIColor(red: 0.3, green: 0.31, blue: 0.82, alpha: 1)
+        let endColor: UIColor = UIColor(red: 1, green: 0.37, blue: 0.31, alpha: 1)
+        
+        self.portraitDownloadProgressView.gradientOptions = UICircularRingGradientOptions(startPosition: .topRight,
+        endPosition: .bottomRight,
+        colors: [startColor, endColor],
+        colorLocations: [0.1, 1])
+    }
     
     private func setUpGallery() {
         DispatchQueue.main.async {
@@ -841,6 +850,8 @@ extension LessonPlayerViewController: ContentRepositoryDownloadDelegate {
     
     func downloadProgress(downloadId: Int, progress: Float, mediaType: JTLessonMediaType) {
         if downloadId == self.lesson.id {
+            
+//            self.portraitDownloadProgressView.gradientColors = [Colors.appBlue, Colors.appOrange]
             self.portraitDownloadProgressView.value = CGFloat(progress*100)
             self.landscapeDownlaodProgressView.value = CGFloat(progress*100)
         }
