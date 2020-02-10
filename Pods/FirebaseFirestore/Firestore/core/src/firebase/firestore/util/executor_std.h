@@ -21,6 +21,7 @@
 #include <atomic>
 #include <condition_variable>  // NOLINT(build/c++11)
 #include <deque>
+#include <memory>
 #include <mutex>  // NOLINT(build/c++11)
 #include <string>
 #include <thread>  // NOLINT(build/c++11)
@@ -93,7 +94,12 @@ class Schedule {
 
       // To minimize busy waiting, sleep until either the nearest entry in the
       // future either changes, or else becomes due.
-      const auto until = scheduled_.front().due;
+
+      // Workaround for Visual Studio 2015: cast to a time point with resolution
+      // that's at least as fine-grained as the clock on which `wait_until` is
+      // parametrized.
+      const auto until =
+          std::chrono::time_point_cast<Clock::duration>(scheduled_.front().due);
       cv_.wait_until(lock, until, [this, until] {
         return scheduled_.empty() || scheduled_.front().due != until;
       });
@@ -268,7 +274,7 @@ class ExecutorStd : public Executor {
 
   std::vector<std::thread> worker_thread_pool_;
   // Used to stop the worker thread.
-  std::atomic<bool> shutting_down_{false};
+  std::shared_ptr<std::atomic<bool>> shutting_down_;
 
   std::atomic<Id> current_id_{0};
 };

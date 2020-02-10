@@ -20,6 +20,8 @@
 #include <memory>
 #include <sstream>
 
+#include "absl/memory/memory.h"
+
 namespace firebase {
 namespace firestore {
 namespace util {
@@ -38,7 +40,8 @@ std::string ThreadIdToString(const std::thread::id thread_id) {
 
 // MARK: - ExecutorStd
 
-ExecutorStd::ExecutorStd(int threads) {
+ExecutorStd::ExecutorStd(int threads)
+    : shutting_down_(std::make_shared<std::atomic<bool>>()) {
   HARD_ASSERT(threads > 0);
 
   // Somewhat counter-intuitively, constructor of `std::atomic` assigns the
@@ -47,14 +50,14 @@ ExecutorStd::ExecutorStd(int threads) {
   // See [this thread](https://stackoverflow.com/questions/25609858) for context
   // on the constructor.
   current_id_ = 0;
-  shutting_down_ = false;
+  *shutting_down_ = false;
   for (int i = 0; i < threads; ++i) {
     worker_thread_pool_.emplace_back(&ExecutorStd::PollingThread, this);
   }
 }
 
 ExecutorStd::~ExecutorStd() {
-  shutting_down_ = true;
+  *shutting_down_ = true;
 
   // Make sure the worker threads are not blocked, so that the call to `join`
   // doesn't hang. It's not deterministic which thread will pick up an entry,
@@ -64,7 +67,14 @@ ExecutorStd::~ExecutorStd() {
   }
 
   for (std::thread& thread : worker_thread_pool_) {
-    thread.join();
+    // If the current thread is running this destructor, we can't join the
+    // thread. Instead detach it and rely on PollingThread to notice that
+    // *shutting_down_ is now true.
+    if (std::this_thread::get_id() == thread.get_id()) {
+      thread.detach();
+    } else {
+      thread.join();
+    }
   }
 }
 
@@ -103,7 +113,10 @@ ExecutorStd::Id ExecutorStd::PushOnSchedule(Operation&& operation,
 }
 
 void ExecutorStd::PollingThread() {
-  while (!shutting_down_) {
+  // Keep a local shared_ptr here to ensure that the atomic pointed to by
+  // shutting_down_ remains valid even after the destruction of the executor.
+  std::shared_ptr<std::atomic<bool>> local_shutting_down = shutting_down_;
+  while (!*local_shutting_down) {
     Entry entry = schedule_.PopBlocking();
     if (entry.tagged.operation) {
       entry.tagged.operation();
@@ -181,8 +194,7 @@ std::unique_ptr<Executor> Executor::CreateSerial(const char*) {
   return absl::make_unique<ExecutorStd>(/*threads=*/1);
 }
 
-std::unique_ptr<Executor> Executor::CreateConcurrent(const char* label,
-                                                     int threads) {
+std::unique_ptr<Executor> Executor::CreateConcurrent(const char*, int threads) {
   return absl::make_unique<ExecutorStd>(threads);
 }
 

@@ -124,6 +124,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.lessonWatched = UserDefaultsProvider.shared.lessonWatched
         self.setContent()
         self.setCornerRadius()
+        self.setDefaulteIcons()
         setView()
     }
     
@@ -429,7 +430,9 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
             self.donationsImageView.alpha = 1.0
             self.donationsLabel.alpha = 1.0
         }
-        self.presentDonationsViewController()
+//        self.presentDonationWalkThrough()
+//        self.presentDonationsViewController()
+        self.presentOldDonations()
     }
     
     @IBAction func donationsButtonTouchedUpOutside(_ sender: UIButton) {
@@ -486,6 +489,10 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.presentMessages()
     }
     
+    @IBAction func unwindToMain(segue:UIStoryboardSegue) {
+        self.dismissMainModal()
+    }
+    
     //========================================
     // MARK: - Navigation
     //========================================
@@ -509,6 +516,24 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     
     private func presentMessages() {
         self.performSegue(withIdentifier: "toMessages", sender: self)
+    }
+    
+    private func presentDonationWalkThrough() {
+        self.performSegue(withIdentifier: "presentDonationWalkTrough", sender: self)
+    }
+    
+    private func presentOldDonations() {
+        if self.currentPresentedModal != nil && self.currentPresentedModal != .donations {
+            self.modalsPresentingVC.dismiss(animated: true) {
+                self.modalsPresentingVC.performSegue(withIdentifier: "presentOldDonation", sender: nil)
+            }
+        }
+        else if self.currentPresentedModal == nil{
+            self.view.bringSubviewToFront(self.modalsContainer)
+            self.modalsPresentingVC.performSegue(withIdentifier: "presentOldDonation", sender: nil)
+        }
+        self.currentPresentedModal = .donations
+        
     }
     
     private func presentDownloadsViewController() {
@@ -635,8 +660,8 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
     func optionSelected(option: MenuOption) {
         switch option {
         case .profile:
-//            presentProfile()
-            presentOldProfile()
+            presentProfile()
+//            presentOldProfile()
         case .signOut:
             presentLogoutAlert()
         case .mishna:
@@ -647,6 +672,10 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
             presentAboutUs()
         case .messageCenter:
             presentMessages()
+        case .donationsCenter:
+//            presentDonationWalkThrough()
+//            presentDonationsViewController()
+            presentOldDonations()
         default:
             presentInDevelopmentAlert()
         }
