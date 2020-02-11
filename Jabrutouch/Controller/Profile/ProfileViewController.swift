@@ -125,7 +125,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "DonationInformationCell") as? DonationInformationCell else { return UITableViewCell() }
             cell.donatedLabel.text = "0"
-            cell.learedLabel.text = "0"
+            cell.learedLabel.text = "\(self.user?.lessonWatchCount ?? 0)"
             cell.containerView.clipsToBounds = false
             return cell
         case 2:

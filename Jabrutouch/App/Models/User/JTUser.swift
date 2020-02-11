@@ -28,6 +28,7 @@ struct JTUser {
     var token: String
     var profileImage: UIImage?
     var lessonWatched: [JTLessonWatched] = []
+    var lessonWatchCount: Int?
     var profilePercent: Int?
     var profileImageFileName: String {
         return "profile_image_\(self.id).jpeg"
@@ -90,6 +91,10 @@ struct JTUser {
             self.lessonWatched = lessonWatchedValues.compactMap{JTLessonWatched(values: $0)}
         }
         
+        if let lessonWatchCountValues = values["lesson_watch_count"] as? Int {
+            self.lessonWatchCount = lessonWatchCountValues
+        }
+        
         self.imageLink = values["image"] as? String ?? ""
         self.birthdayString = values["birthday"] as? String ?? ""
         self.country = values["country"] as? String ?? ""
@@ -132,6 +137,7 @@ struct JTUser {
         values["token"] = self.token
         values["lessonWatched"] = self.lessonWatched.map{$0.values}
         values["profile_percent"] = self.profilePercent
+        values["lesson_watch_count"] = self.lessonWatchCount
         return values
     }
     
@@ -152,6 +158,7 @@ struct JTUser {
         values["interest_id"] = self.interest.map{$0.id}
         values["second_email"] = self.secondEmail
         values["is_presenter"] = self.isPresenter
+        values["lesson_watch_count"] = self.lessonWatchCount
         return values
     }
 
