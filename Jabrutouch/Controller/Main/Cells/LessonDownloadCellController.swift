@@ -35,6 +35,8 @@ class LessonDownloadCellController: UITableViewCell {
     @IBOutlet weak var progressBarTrailingConstraint: NSLayoutConstraint!
     @IBOutlet weak var cellViewLeadingConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var downloadAudioImage: UIImageView!
+    @IBOutlet weak var downloadVideoImage: UIImageView!
     //=====================================================
     // MARK: - Properties
     //=====================================================
@@ -49,6 +51,8 @@ class LessonDownloadCellController: UITableViewCell {
         super.awakeFromNib()
         let cellGestureRecognizer = (UITapGestureRecognizer(target: self, action: #selector(cellPressed)))
         cellView.addGestureRecognizer(cellGestureRecognizer)
+        
+        self.setProgressRing()
     }
     
     //=====================================================
@@ -102,10 +106,10 @@ class LessonDownloadCellController: UITableViewCell {
         self.audioImage.isHidden = (lesson.audioURL == nil)
         self.videoImage.isHidden = (lesson.videoURL == nil)
         
-        self.downloadAudioButton.isHidden = (lesson.audioURL == nil)
-        self.downloadVideoButton.isHidden = (lesson.videoURL == nil)
-        self.downloadAudioButtonImageView.isHidden = (lesson.audioURL == nil)
-        self.downloadVideoButtonImageView.isHidden = (lesson.videoURL == nil)
+//        self.downloadAudioButton.isHidden = (lesson.audioURL == nil)
+//        self.downloadVideoButton.isHidden = (lesson.videoURL == nil)
+//        self.downloadAudioButtonImageView.isHidden = (lesson.audioURL == nil)
+//        self.downloadVideoButtonImageView.isHidden = (lesson.videoURL == nil)
     }
     
     private func setDownloadModeForLesson(_ lesson: JTLesson) {
@@ -125,23 +129,32 @@ class LessonDownloadCellController: UITableViewCell {
         if lesson.isAudioDownloaded {
             self.playAudioButton.setImage(#imageLiteral(resourceName: "audio-downloaded"), for: .normal)
             self.playAudioButton.setImage(#imageLiteral(resourceName: "audio-downloaded"), for: .highlighted)
+            self.downloadAudioImage.image = #imageLiteral(resourceName: "RedAudio")
+            self.downloadAudioButtonImageView.image = #imageLiteral(resourceName: "RedV")
              
         } else {
             self.playAudioButton.setImage(#imageLiteral(resourceName: "audio-nat"), for: .normal)
             self.playAudioButton.setImage(#imageLiteral(resourceName: "audio-prs"), for: .highlighted)
+            self.downloadAudioImage.image = #imageLiteral(resourceName: "TransparentAudio")
+            self.downloadAudioButtonImageView.image = #imageLiteral(resourceName: "DownloadInCircle")
         }
-        self.downloadAudioButtonImageView.isHidden = lesson.isAudioDownloaded
+//        self.downloadAudioButtonImageView.isHidden = lesson.isAudioDownloaded
         
         if lesson.isVideoDownloaded {
             self.playVideoButton.setImage(#imageLiteral(resourceName: "video-downloaded"), for: .normal)
             self.playVideoButton.setImage(#imageLiteral(resourceName: "video-downloaded"), for: .highlighted)
+            
+            self.downloadVideoImage.image = #imageLiteral(resourceName: "RedVideo")
+            self.downloadVideoButtonImageView.image = #imageLiteral(resourceName: "RedV")
     
         } else {
             self.playVideoButton.setImage(#imageLiteral(resourceName: "video-nat"), for: .normal)
             self.playVideoButton.setImage(#imageLiteral(resourceName: "video-prs"), for: .highlighted)
+            self.downloadVideoImage.image = #imageLiteral(resourceName: "TransparentVideo")
+            self.downloadVideoButtonImageView.image = #imageLiteral(resourceName: "DownloadInCircle")
             
         }
-        self.downloadVideoButtonImageView.isHidden = lesson.isVideoDownloaded
+//        self.downloadVideoButtonImageView.isHidden = lesson.isVideoDownloaded
 
     }
     
@@ -154,7 +167,7 @@ class LessonDownloadCellController: UITableViewCell {
             self.redAudioVImage.isHidden = true
         }
         
-        self.downloadAudioButtonImageView.isHidden = lesson.isAudioDownloaded
+//        self.downloadAudioButtonImageView.isHidden = lesson.isAudioDownloaded
         
         if lesson.isVideoDownloaded {
             self.videoImage?.image = UIImage(named: "RedVideo")
@@ -164,9 +177,18 @@ class LessonDownloadCellController: UITableViewCell {
             self.redVideoVImage.isHidden = true
         }
         
-        self.downloadVideoButtonImageView.isHidden = lesson.isVideoDownloaded
+//        self.downloadVideoButtonImageView.isHidden = lesson.isVideoDownloaded
     }
     
+    private func setProgressRing() {
+        let startColor: UIColor = UIColor(red: 0.3, green: 0.31, blue: 0.82, alpha: 1)
+        let endColor: UIColor = UIColor(red: 1, green: 0.37, blue: 0.31, alpha: 1)
+        
+        self.downloadProgressView.gradientOptions = UICircularRingGradientOptions(startPosition: .topRight,
+        endPosition: .bottomRight,
+        colors: [startColor, endColor],
+        colorLocations: [0.1, 1])
+    }
     
     //=====================================================
     // MARK: - @IBActions
@@ -221,11 +243,11 @@ class LessonDownloadCellController: UITableViewCell {
     }
     
     @IBAction func downloadAudioButtonTouchedDown(_ sender: UIButton) {
-        self.downloadAudioButtonImageView.alpha = 0.3
+//        self.downloadAudioButtonImageView.alpha = 0.3
     }
     
     @IBAction func downloadVideoButtonTouchedDown(_ sender: UIButton) {
-        self.downloadVideoButtonImageView.alpha = 0.3
+//        self.downloadVideoButtonImageView.alpha = 0.3
     }
     
     @IBAction func playAudioButtonTouchedUp(_ sender: UIButton) {
