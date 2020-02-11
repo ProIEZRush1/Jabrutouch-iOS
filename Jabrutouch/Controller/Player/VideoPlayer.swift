@@ -558,7 +558,7 @@ class VideoPlayer: UIView {
         return .success
     }
     
-    @objc private func pause() -> MPRemoteCommandHandlerStatus {
+    @objc func pause() -> MPRemoteCommandHandlerStatus {
         self.player?.pause()
         self.playPauseButtonItem.image = #imageLiteral(resourceName: "play_large")
         self.playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)

@@ -78,11 +78,9 @@ class LessonDownloadCellController: UITableViewCell {
                 self.cellViewTrailingConstraint.constant = 18
             }
             self.layoutIfNeeded()
-
-            
         }
-
     }
+    
     private func animateImagesVisibilityIfNeeded(_ lesson: JTLesson, isCurrentlyEditing: Bool) {
         if (self.audioImage.isHidden) == !isCurrentlyEditing { // Animate only when a change occurred
             UIView.animate(withDuration: 0.2, delay: isCurrentlyEditing ? 0 : 0.1, animations: {
@@ -106,10 +104,10 @@ class LessonDownloadCellController: UITableViewCell {
         self.audioImage.isHidden = (lesson.audioURL == nil)
         self.videoImage.isHidden = (lesson.videoURL == nil)
         
-//        self.downloadAudioButton.isHidden = (lesson.audioURL == nil)
-//        self.downloadVideoButton.isHidden = (lesson.videoURL == nil)
-//        self.downloadAudioButtonImageView.isHidden = (lesson.audioURL == nil)
-//        self.downloadVideoButtonImageView.isHidden = (lesson.videoURL == nil)
+        self.downloadAudioButton.isHidden = (lesson.audioURL == nil)
+        self.downloadVideoButton.isHidden = (lesson.videoURL == nil)
+        self.downloadAudioButtonImageView.isHidden = (lesson.audioURL == nil)
+        self.downloadVideoButtonImageView.isHidden = (lesson.videoURL == nil)
     }
     
     private func setDownloadModeForLesson(_ lesson: JTLesson) {

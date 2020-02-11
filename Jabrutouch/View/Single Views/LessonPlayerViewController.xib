@@ -11,6 +11,9 @@
         <array key="SF-Pro-Display-Regular.otf">
             <string>SFProDisplay-Regular</string>
         </array>
+        <array key="SF-Pro-Display-Semibold.otf">
+            <string>SFProDisplay-Semibold</string>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LessonPlayerViewController" customModule="Jabrutouch" customModuleProvider="target">
@@ -22,6 +25,8 @@
                 <outlet property="audioPlayerContainerWidthConstraint" destination="E1L-Rk-BxF" id="9gs-so-rPF"/>
                 <outlet property="audioSlider" destination="qLG-Mb-rc7" id="zZI-VA-Qeq"/>
                 <outlet property="audioSliderContainer" destination="g9a-z6-oSS" id="QkP-tQ-oIH"/>
+                <outlet property="buttonsContainer" destination="jXg-7i-mnI" id="ChQ-j7-WAp"/>
+                <outlet property="cancelMessageButton" destination="DrN-1C-YyA" id="a7s-bb-4Ib"/>
                 <outlet property="landscapeBackButton" destination="cGw-63-Nnm" id="DZj-pX-owV"/>
                 <outlet property="landscapeButtonsStackView" destination="lza-jw-Xcp" id="JwU-4N-m1B"/>
                 <outlet property="landscapeChatButton" destination="xFx-hS-NpJ" id="CkI-bj-eEs"/>
@@ -30,6 +35,7 @@
                 <outlet property="landscapeHeaderView" destination="WR2-vv-yUg" id="2B4-jn-tSs"/>
                 <outlet property="landscapePhotoButton" destination="etC-d3-PiM" id="fmJ-sX-AbM"/>
                 <outlet property="masechetTitleLabel" destination="6aZ-3K-Pk6" id="2LW-ds-IIs"/>
+                <outlet property="messageHeaderView" destination="zuv-na-0eb" id="yJV-Bu-HGb"/>
                 <outlet property="pdfView" destination="REd-5W-jRm" id="Ll8-h1-Eq0"/>
                 <outlet property="pdfViewBottomConstraint" destination="0XX-xF-AtX" id="USm-Dj-zvX"/>
                 <outlet property="pdfViewLeadingConstraint" destination="1Mm-ON-hHc" id="yMG-OA-Pdt"/>
@@ -169,7 +175,7 @@
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6aZ-3K-Pk6">
-                                    <rect key="frame" x="75" y="16" width="44.5" height="21"/>
+                                    <rect key="frame" x="75" y="16" width="41.5" height="21.5"/>
                                     <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="18"/>
                                     <color key="textColor" red="0.17399999999999999" green="0.17000000000000001" blue="0.33800000000000002" alpha="0.88" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
@@ -267,6 +273,48 @@
                                 <constraint firstAttribute="height" constant="53" id="yGU-af-0l6"/>
                             </constraints>
                         </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zuv-na-0eb">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="53"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cb2-OI-0R6">
+                                    <rect key="frame" x="0.0" y="0.0" width="66" height="53"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="66" id="Fbq-9F-KtD"/>
+                                    </constraints>
+                                    <color key="tintColor" red="1" green="0.37254901959999998" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <state key="normal" image="chat"/>
+                                    <connections>
+                                        <action selector="chatButtonPressed:" destination="-1" eventType="touchUpInside" id="5Vf-fz-82n"/>
+                                    </connections>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ask the Rabbi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S6y-sm-dWL">
+                                    <rect key="frame" x="71" y="14.5" width="121.5" height="24"/>
+                                    <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="20"/>
+                                    <color key="textColor" red="0.17399999999999999" green="0.17000000000000001" blue="0.33800000000000002" alpha="0.88" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DrN-1C-YyA">
+                                    <rect key="frame" x="346" y="9.5" width="53" height="34"/>
+                                    <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="18"/>
+                                    <state key="normal" title="Cancel">
+                                        <color key="titleColor" red="0.17799999999999999" green="0.16800000000000001" blue="0.66300000000000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="cancelMessageButtonPressed:" destination="-1" eventType="touchUpInside" id="cPi-tr-0H4"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="cb2-OI-0R6" secondAttribute="bottom" id="4kn-9X-rD1"/>
+                                <constraint firstItem="cb2-OI-0R6" firstAttribute="leading" secondItem="zuv-na-0eb" secondAttribute="leading" id="4mD-YU-7jW"/>
+                                <constraint firstItem="DrN-1C-YyA" firstAttribute="centerY" secondItem="zuv-na-0eb" secondAttribute="centerY" id="7JT-kN-VkI"/>
+                                <constraint firstAttribute="trailing" secondItem="DrN-1C-YyA" secondAttribute="trailing" constant="15" id="BW5-pa-vwf"/>
+                                <constraint firstItem="cb2-OI-0R6" firstAttribute="top" secondItem="zuv-na-0eb" secondAttribute="top" id="ZoS-io-GXJ"/>
+                                <constraint firstItem="S6y-sm-dWL" firstAttribute="leading" secondItem="cb2-OI-0R6" secondAttribute="trailing" constant="5" id="vrW-yN-gcw"/>
+                                <constraint firstItem="S6y-sm-dWL" firstAttribute="centerY" secondItem="zuv-na-0eb" secondAttribute="centerY" id="w0a-ov-IXQ"/>
+                            </constraints>
+                        </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g9a-z6-oSS">
                             <rect key="frame" x="0.0" y="53" width="414" height="47"/>
                             <subviews>
@@ -283,13 +331,13 @@
                                     </connections>
                                 </slider>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--:--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3HV-ge-hZE">
-                                    <rect key="frame" x="20" y="-1" width="22.5" height="14"/>
+                                    <rect key="frame" x="20" y="-1.5" width="24" height="14.5"/>
                                     <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="12"/>
                                     <color key="textColor" red="0.45098039215686275" green="0.45098039215686275" blue="0.45098039215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DCe-9U-JAe">
-                                    <rect key="frame" x="364" y="-7" width="30" height="26"/>
+                                    <rect key="frame" x="364" y="-7.5" width="30" height="27"/>
                                     <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="12"/>
                                     <state key="normal" title="--:--">
                                         <color key="titleColor" red="0.45098039220000002" green="0.45098039220000002" blue="0.45098039220000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -313,10 +361,14 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstItem="zuv-na-0eb" firstAttribute="bottom" secondItem="jXg-7i-mnI" secondAttribute="bottom" id="91n-Yb-o10"/>
                         <constraint firstAttribute="bottom" secondItem="g9a-z6-oSS" secondAttribute="bottom" id="Ma9-e3-HTh"/>
                         <constraint firstItem="g9a-z6-oSS" firstAttribute="top" secondItem="jXg-7i-mnI" secondAttribute="bottom" id="Oc9-eI-4Sg"/>
+                        <constraint firstItem="zuv-na-0eb" firstAttribute="leading" secondItem="jXg-7i-mnI" secondAttribute="leading" id="SRG-Ib-CGi"/>
                         <constraint firstAttribute="height" constant="100" id="YEt-6E-Ier"/>
+                        <constraint firstItem="zuv-na-0eb" firstAttribute="trailing" secondItem="jXg-7i-mnI" secondAttribute="trailing" id="Ywm-FJ-ihh"/>
                         <constraint firstItem="jXg-7i-mnI" firstAttribute="leading" secondItem="PVv-ui-sj5" secondAttribute="leading" id="a2I-Xv-fyt"/>
+                        <constraint firstItem="zuv-na-0eb" firstAttribute="top" secondItem="jXg-7i-mnI" secondAttribute="top" id="cfi-by-vEp"/>
                         <constraint firstItem="g9a-z6-oSS" firstAttribute="leading" secondItem="PVv-ui-sj5" secondAttribute="leading" id="d3B-pZ-atC"/>
                         <constraint firstAttribute="trailing" secondItem="jXg-7i-mnI" secondAttribute="trailing" id="e37-tp-bSD"/>
                         <constraint firstItem="jXg-7i-mnI" firstAttribute="top" secondItem="PVv-ui-sj5" secondAttribute="top" id="sA7-g0-uIe"/>

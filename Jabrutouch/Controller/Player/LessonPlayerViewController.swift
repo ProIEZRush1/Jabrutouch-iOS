@@ -43,6 +43,11 @@ class LessonPlayerViewController: UIViewController {
     @IBOutlet weak var landscapeButtonsStackView: UIStackView!
     @IBOutlet weak var masechetTitleLabel: UILabel!
     
+    // send message header view
+    @IBOutlet weak var buttonsContainer: UIView!
+    @IBOutlet weak var messageHeaderView: UIView!
+    @IBOutlet weak var cancelMessageButton: UIButton!
+    
     // Audio Player
     @IBOutlet weak var audioPlayerContainer: UIView!
     @IBOutlet weak var audioPlayerContainerWidthConstraint: NSLayoutConstraint!
@@ -106,7 +111,14 @@ class LessonPlayerViewController: UIViewController {
     var masechet = ""
     var daf = ""
     var lessonParts: [Double] = []
-
+    var textingMode: Bool = false
+    
+    private lazy var chatControlsView: ChatControlsView = {
+        var view = ChatControlsView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 70))
+        
+        return view
+    }()
+    
     //====================================================
     // MARK: - LifeCycle
     //====================================================
@@ -141,7 +153,9 @@ class LessonPlayerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.messageHeaderView.isHidden = true
+        self.chatControlsView.delegate = self
+
         self.pdfView.delegate = self
         self.user = UserRepository.shared.getCurrentUser()
         self.masechetTitleLabel.text = "\(self.masechet) \(self.daf)"
@@ -172,11 +186,12 @@ class LessonPlayerViewController: UIViewController {
         self.setProgressRing()
         NotificationCenter.default.addObserver(self, selector: #selector(self.orientationDidChange(_:)), name: UIDevice.orientationDidChangeNotification, object: nil)
         ContentRepository.shared.addDelegate(self)
-
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+                
         DispatchQueue(label: "player_loader", qos: .utility, attributes: .concurrent, autoreleaseFrequency: .inherit, target: nil).async {
             self.loadPDF()
             
@@ -192,6 +207,18 @@ class LessonPlayerViewController: UIViewController {
         self.saveLessonLocation()
         NotificationCenter.default.removeObserver(self)
         ContentRepository.shared.removeDelegate(self)
+    }
+    
+    override var canBecomeFirstResponder: Bool {
+        return true
+    }
+    
+    override var inputAccessoryView: UIView? {
+        if self.textingMode {
+            return self.chatControlsView
+        } else {
+            return nil
+        }
     }
     
     @objc func orientationDidChange(_ notification: Notification) {
@@ -673,7 +700,8 @@ class LessonPlayerViewController: UIViewController {
             self.landscapeDownloadButton.isEnabled = !self.lesson.isDownloadingAudio
         }
         
-        self.portraitChatButton.tintColor = #colorLiteral(red: 0.286, green: 0.286, blue: 0.286, alpha: 1)
+//        self.portraitChatButton.tintColor = #colorLiteral(red: 0.286, green: 0.286, blue: 0.286, alpha: 1)
+        
         self.portraitChatButton.isEnabled = true
         self.landscapeChatButton.isEnabled = true
         
@@ -758,8 +786,39 @@ class LessonPlayerViewController: UIViewController {
     }
     
     @IBAction func chatButtonPressed(_ sender: UIButton) {
-//        Utils.showAlertMessage(Strings.inDevelopment, viewControler: self)
+        self.buttonsContainer.isHidden = true
+        self.messageHeaderView.isHidden = false
+        switch self.mediaType {
+        case .video:
+            let _ = self.videoPlayer.pause()
+            self.pdfViewTopConstraint.constant = self.messageHeaderView.bounds.height
+            self.videoPlayer.isHidden = true
+        case .audio:
+            let _ = self.audioPlayer.pause()
+        }
+    
+        self.textingMode = true
+        self.becomeFirstResponder()
+        self.reloadInputViews()
+        self.chatControlsView.inputTextView.becomeFirstResponder()
 
+    }
+    
+    @IBAction func cancelMessageButtonPressed(_ sender: Any) {
+        self.textingMode = false
+        self.reloadInputViews()
+        self.chatControlsView.inputTextView.resignFirstResponder()
+        self.buttonsContainer.isHidden = false
+        self.messageHeaderView.isHidden = true
+        switch self.mediaType {
+        case .video:
+            let _ = self.videoPlayer.play()
+            let screenWidth = min(UIScreen.main.bounds.width, UIScreen.main.bounds.height)
+            self.pdfViewTopConstraint.constant = self.portraitHeaderViewVideoHeight + screenWidth * self.videoAspectRatio
+            self.videoPlayer.isHidden = false
+        case .audio:
+            let _ = self.audioPlayer.play()
+        }
     }
     
     @IBAction func audioEndTimeButtonPressed(_ sender: UIButton) {
@@ -873,4 +932,29 @@ extension LessonPlayerViewController: DonatedAlertDelegate {
             }
         }
     }
+}
+
+extension LessonPlayerViewController: ChatControlsViewDelegate {
+    func sendMessageButtonPressed() {
+        self.textingMode = false
+        self.chatControlsView.inputTextView.resignFirstResponder()
+        self.buttonsContainer.isHidden = false
+        self.messageHeaderView.isHidden = true
+        self.reloadInputViews()
+        switch self.mediaType {
+        case .video:
+            let _ = self.videoPlayer.play()
+            let screenWidth = min(UIScreen.main.bounds.width, UIScreen.main.bounds.height)
+            self.pdfViewTopConstraint.constant = self.portraitHeaderViewVideoHeight + screenWidth * self.videoAspectRatio
+            self.videoPlayer.isHidden = false
+        case .audio:
+            let _ = self.audioPlayer.play()
+        }
+    }
+    
+    func textViewChanged() {
+        
+    }
+    
+    
 }
