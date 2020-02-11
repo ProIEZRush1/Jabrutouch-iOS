@@ -935,6 +935,10 @@ extension LessonPlayerViewController: DonatedAlertDelegate {
 }
 
 extension LessonPlayerViewController: ChatControlsViewDelegate {
+    func willSendMessage(_ fileName: String) {
+        
+    }
+    
     func sendMessageButtonPressed() {
         self.textingMode = false
         self.chatControlsView.inputTextView.resignFirstResponder()

@@ -33,6 +33,11 @@
                         <constraint firstAttribute="width" constant="61" id="6zc-a9-HSg"/>
                     </constraints>
                     <state key="normal" title="Button" image="mic"/>
+                    <connections>
+                        <action selector="recordButtonPressed:" destination="-1" eventType="touchDown" id="PpC-of-izn"/>
+                        <action selector="recordButtonTouchedUp:" destination="-1" eventType="touchUpInside" id="7Yf-Hx-ehG"/>
+                        <action selector="recordButtonTouchedUp:" destination="-1" eventType="touchUpOutside" id="W2k-01-WFD"/>
+                    </connections>
                 </button>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Phd-06-aL4">
                     <rect key="frame" x="341" y="18.5" width="61" height="26.5"/>

@@ -8,6 +8,10 @@
 
 import UIKit
 import AVFoundation
+class PlayButton: UIButton{
+    var indexPath: IndexPath?
+    
+}
 
 class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -17,10 +21,46 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     // MARK: - Properties
     //========================================
     
+    enum MessageType: Int {
+        case text  = 1
+        case voice = 2
+    }
+    
+    enum VoiceMessageType: String{
+        case outgoing, incoming
+        struct Images {
+            let play: String, pause: String
+        }
+        var images: Images{
+            switch self {
+            case .outgoing:
+                return Images(play: "play_large", pause: "pause1")
+            case .incoming:
+                return Images(play: "play1", pause: "pause")
+            }
+        }
+    }
+    
     var messagesArray: [[JTMessage]] = []
     var user: JTUser?
     var currentChat: JTChatMessage?
     var dates: [String]?
+    var playingCellIndexPath: IndexPath? {
+        didSet{
+            guard let indexPath = oldValue else { return }
+            if indexPath != playingCellIndexPath{
+                var oldMessage = messagesArray[indexPath.section][indexPath.row]
+                oldMessage.isPlay = false
+                guard let cell = self.tableView.cellForRow(at: indexPath) as? UserRecorderCell else { return }
+                DispatchQueue.main.async {
+                    cell.playButton.setImage(UIImage(named: oldMessage.isMine
+                    ? VoiceMessageType.outgoing.images.play
+                    :VoiceMessageType.incoming.images.play), for: .normal)
+                }
+            }
+        }
+    }
+    var selectedMessage:JTMessage?
     
     private lazy var chatControlsView: ChatControlsView = {
         var view = ChatControlsView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 70))
@@ -45,6 +85,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         CoreDataManager.shared.setChatReadById(chatId: currentChat!.chatId, status: true)
         self.chatControlsView.delegate = self
+        AudioMessagesManager.shared.delegate = self
         MessagesRepository.shared.getAllMessagesFromDB(chatId: currentChat!.chatId)
         (self.messagesArray, self.dates) = self.groupArrayByDate(messages: MessagesRepository.shared.messages)
         self.tableView.delegate = self
@@ -53,7 +94,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.roundCorners()
         self.user = UserRepository.shared.getCurrentUser()
         
-
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -61,22 +102,12 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         CoreDataManager.shared.delegate = self
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
     }
-//    override func viewDidAppear(_ animated: Bool) {
-//        //        self.tableView.scrollToRow(at: IndexPath(row: self.messagesArray.count-1, section: 0), at: UITableView.ScrollPosition.bottom, animated: false)
-//        self.tableView.scrollToRow(at: IndexPath(
-//            row: self.messagesArray[self.messagesArray.count-1].count-1,
-//            section: self.messagesArray.count-1 ), at: UITableView.ScrollPosition.bottom, animated: false)
-//        
-//    }
-//    
+   
     
     override func viewDidLayoutSubviews() {
         
-//        self.tableView.scrollToRow(at: IndexPath(
-//            row: self.messagesArray[self.messagesArray.count-1].count-1,
-//            section: self.messagesArray.count-1 ), at: UITableView.ScrollPosition.bottom, animated: false)
+        
         let (row, section) = currentPosition(position: currentChat?.unreadMessages)
         self.tableView.scrollToRow(at: IndexPath(row:row , section: section), at: UITableView.ScrollPosition.bottom, animated: false)
     }
@@ -188,28 +219,16 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         dateFormatter.dateFormat = "HH:mm:ss"
         let string = dateFormatter.string(from: toDayAgain)
         
-        
-        
         return string
         
     }
-    //    func getTime(lastMessageTime: Date)-> String {
-    //
-    //        let calander = Calendar.current
-    //        let dateFormatter = DateIntervalFormatter()
-    //        if calander.isDateInToday(lastMessageTime){
-    //            dateFormatter.dateTemplate = "HH:mm:ss"
-    //            return dateFormatter.string(from: lastMessageTime, to: lastMessageTime)
-    //        }else if calander.isDateInYesterday(lastMessageTime){
-    //            dateFormatter.dateTemplate = "HH:mm"
-    //            return "Yesterday,\(dateFormatter.string(from: lastMessageTime,to: lastMessageTime)) "
-    //        }else{
-    //            dateFormatter.dateTemplate = "MMM d, HH:mm"
-    //            return dateFormatter.string(from: lastMessageTime,to: lastMessageTime)
-    //        }
-    //    }
     
-    
+    func getDuration(_ url : String)->CMTime{
+        let audioAsset = AVURLAsset.init(url: FilesManagementProvider.shared.loadFile(link: url, directory: FileDirectory.recorders) as URL, options: nil)
+        let duration = audioAsset.duration
+        return duration
+    }
+   
     
     func getImageFromURL(imageLink: String) {
         
@@ -246,16 +265,13 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                 
             }else{
                 innerArray.append(message)
-                
             }
         }
         if mainArray.count < dates.count{
             mainArray.append(innerArray)
             innerArray.removeAll()
         }
-       
-        
-        return (mainArray,dates)
+                return (mainArray,dates)
     }
     
     //========================================
@@ -284,38 +300,93 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if self.messagesArray[indexPath.section][indexPath.row].isMine{
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "userMessageCell", for: indexPath) as? UserMessageCell else { return UITableViewCell() }
-            let text = self.messagesArray[indexPath.section][indexPath.row].message
-            let height = self.getViewHeight(text)
-            cell.messageViewHeightConstraint.constant = height + 32
-            cell.message.text = text
-            cell.timeLabel.text = self.getTime(lastMessageTime: messagesArray[indexPath.section][indexPath.row].sentDate)
-            cell.userImage.image = user?.profileImage ?? #imageLiteral(resourceName: "Avatar")
+        var theCell: UITableViewCell?
+        
+        switch self.messagesArray[indexPath.section][indexPath.row].messageType {
+        case MessageType.text.rawValue:
+            if self.messagesArray[indexPath.section][indexPath.row].isMine{
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "userMessageCell", for: indexPath) as? UserMessageCell else { return UITableViewCell() }
+                let text = self.messagesArray[indexPath.section][indexPath.row].message
+                let height = self.getViewHeight(text)
+                cell.messageViewHeightConstraint.constant = height + 32
+                cell.message.text = text
+                cell.timeLabel.text = self.getTime(lastMessageTime: messagesArray[indexPath.section][indexPath.row].sentDate)
+                cell.userImage.image = user?.profileImage ?? #imageLiteral(resourceName: "Avatar")
+                theCell = cell
+                
+            }else {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "incomingMessageCell", for: indexPath) as? IncomingMessageCell else { return UITableViewCell() }
+                let text = self.messagesArray[indexPath.section][indexPath.row].message
+                let height = self.getViewHeight(text)
+                cell.messageViewHeightConstraint.constant = height + 32
+                cell.message.text = text
+                cell.timeLabel.text =  self.getTime(lastMessageTime: messagesArray[indexPath.section][indexPath.row].sentDate)
+                cell.userImage.image = #imageLiteral(resourceName: "incomingUserImege")
+                theCell = cell
+            }
             
-            return cell
-        }else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "incomingMessageCell", for: indexPath) as? IncomingMessageCell else { return UITableViewCell() }
-            let text = self.messagesArray[indexPath.section][indexPath.row].message
-            let height = self.getViewHeight(text)
-            cell.messageViewHeightConstraint.constant = height + 32
-            cell.message.text = text
-            cell.timeLabel.text = self.getTime(lastMessageTime: messagesArray[indexPath.section][indexPath.row].sentDate)
-            cell.userImage.image = #imageLiteral(resourceName: "incomingUserImege")
-            
-            return cell
+        case MessageType.voice.rawValue:
+            if self.messagesArray[indexPath.section][indexPath.row].isMine{
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "userRecorderCell", for: indexPath) as? UserRecorderCell else { return UITableViewCell() }
+                let message = self.messagesArray[indexPath.section][indexPath.row]
+                cell.dateLable.text = self.getTime(lastMessageTime: messagesArray[indexPath.section][indexPath.row].sentDate)
+                cell.playButton.indexPath = indexPath
+                if message.isPlay{
+                    cell.playButton.setImage(UIImage(named: VoiceMessageType.outgoing.images.pause), for: .normal)
+                }else{
+                    cell.playButton.setImage(UIImage(named: VoiceMessageType.outgoing.images.play), for: .normal)
+                }
+                cell.timeLabel.text = message.currentTime > 0
+                    ? Utils.convertTimeintervalToHumanTime(TimeInterval(message.currentTime))
+                    : self.getDuration(message.message).positionalTime
+                cell.playButton.addTarget(self, action: #selector(self.playAudio(_:)), for: .touchUpInside)
+//                cell.slider.value = message.currentTime
+                cell.slider.setValue(message.currentTime, animated: true)
+                cell.slider.setThumbImage(#imageLiteral(resourceName: "newThumb"), for: .normal)
+                if let image = Utils.linearGradientImage(endXPoint: 0.0, size: cell.slider.frame.size, colors: [Colors.appBlue, Colors.appOrange]) {
+                    cell.slider.setMinimumTrackImage(image, for: .normal)
+                }
+                cell.userImage.image = #imageLiteral(resourceName: "Avatar")
+                theCell = cell
+                
+            }else {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "incomingRecordCell", for: indexPath) as? UserRecorderCell else { return UITableViewCell() }
+                let message = self.messagesArray[indexPath.section][indexPath.row]
+                cell.dateLable.text = self.getTime(lastMessageTime: messagesArray[indexPath.section][indexPath.row].sentDate)
+                cell.playButton.indexPath = indexPath
+                if message.isPlay{
+                    cell.playButton.setImage(UIImage(named: VoiceMessageType.incoming.images.pause), for: .normal)
+                }else{
+                    cell.playButton.setImage(UIImage(named: VoiceMessageType.incoming.images.play), for: .normal)
+                }
+                cell.timeLabel.text = message.currentTime > 0
+                    ? Utils.convertTimeintervalToHumanTime(TimeInterval(message.currentTime))
+                    : self.getDuration(message.message).positionalTime
+                cell.playButton.addTarget(self, action: #selector(self.playAudio(_:)), for: .touchUpInside)
+                cell.slider.value = message.currentTime
+                cell.slider.setThumbImage(#imageLiteral(resourceName: "newThumb"), for: .normal)
+                if let image = Utils.linearGradientImage(endXPoint: 0.0, size: cell.slider.frame.size, colors: [Colors.appBlue, Colors.appOrange]) {
+                    cell.slider.setMinimumTrackImage(image, for: .normal)
+                }
+                cell.slider.setValue(message.currentTime, animated: true)
+                cell.userImage.image = #imageLiteral(resourceName: "JBlogo")
+                theCell = cell
+            }
+        default:
+            print("empty")
         }
+        
+        return theCell!
+        
     }
-    
-    
-    
-    
+        
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let text = self.messagesArray[indexPath.section][indexPath.row].message
         let height = self.getViewHeight(text)
         return height + 90
         
     }
+   
     
     
     //========================================
@@ -328,16 +399,109 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         
     }
     
-    //    func sendMessage(message: String, sentAt:Date, title: String, messageType: Int, toUser: Int, chatId: Int){
-    //        MessagesRepository.shared.sendMessage(message: message, sentAt:sentAt, title: title, messageType: messageType, toUser: toUser, chatId: chatId, completion:  { (resulte) in
-    //            print(resulte)
-    //        })
-    //    }
+    @objc func playAudio(_ sender: PlayButton) {
+        guard let indexPath = sender.indexPath else { return }
+        self.playingCellIndexPath = sender.indexPath
+        self.selectedMessage = self.messagesArray[indexPath.section][indexPath.row]
+        self.selectedMessage?.isPlay.toggle()
+        guard let message = self.selectedMessage else { return }
+        guard let cell = self.tableView.cellForRow(at: indexPath) as? UserRecorderCell else { return }
+          if  message.isPlay{
+            self.playMusic(cell, message)
+        }else{
+            self.playingCellIndexPath = nil
+            self.stopMusic(cell, message)
+        }
+    }
+    
+
+    
+func playMusic(_ cell:UserRecorderCell, _ message: JTMessage){
+    AudioMessagesManager.shared.startPlayer(message.message)
+    AudioMessagesManager.shared.setCurrentTime(message.currentTime)
+    DispatchQueue.main.async {
+        cell.playButton.setImage(UIImage(named: message.isMine
+            ? VoiceMessageType.outgoing.images.pause
+            :VoiceMessageType.incoming.images.pause), for: .normal)
+    }
+}
+
+    func stopMusic(_ cell:UserRecorderCell, _ message: JTMessage){
+        message.isPlay = false
+        AudioMessagesManager.shared.stopPlayer()
+         DispatchQueue.main.async {
+               cell.playButton.setImage(UIImage(named: message.isMine
+                   ? VoiceMessageType.outgoing.images.play
+                   :VoiceMessageType.incoming.images.play), for: .normal)
+           }
+    }
+    
+}
+
+extension CMTime {
+    var roundedSeconds: TimeInterval {
+        return seconds.rounded()
+    }
+    var hours:  Int { return Int(roundedSeconds / 3600) }
+    var minute: Int { return Int(roundedSeconds.truncatingRemainder(dividingBy: 3600) / 60) }
+    var second: Int { return Int(roundedSeconds.truncatingRemainder(dividingBy: 60)) }
+    var positionalTime: String {
+        return hours > 0 ?
+            String(format: "%d:%02d:%02d",
+                   hours, minute, second) :
+            String(format: "%02d:%02d",
+                   minute, second)
+    }
+}
+extension ChatViewController: AudioMessagesManagerDelegate{
+    
+      func currentTimeChanged(currentTime: TimeInterval) {
+          self.selectedMessage?.currentTime = Float(currentTime)
+        guard let indexPath = self.playingCellIndexPath, let message = self.selectedMessage else {
+              return
+          }
+          DispatchQueue.main.async {
+              guard let cell = self.tableView.cellForRow(at: indexPath) as? UserRecorderCell else {return}
+                cell.timeLabel.text = message.currentTime > 0
+                    ? Utils.convertTimeintervalToHumanTime(TimeInterval(message.currentTime))
+                    : self.getDuration(message.message).positionalTime
+                cell.slider.maximumValue = Float(self.getDuration(message.message).roundedSeconds)
+                cell.slider.setValue(message.currentTime, animated: true)
+                cell.slider.setThumbImage(#imageLiteral(resourceName: "newThumb"), for: .normal)
+                if let image = Utils.linearGradientImage(endXPoint: 0.0, size: cell.slider.frame.size, colors: [Colors.appBlue, Colors.appOrange]) {
+                    cell.slider.setMinimumTrackImage(image, for: .normal)
+                    
+                }
+            }
+          
+      }
+    
+    
+    func playerDidFinish() {
+        self.selectedMessage?.isPlay = false
+        self.selectedMessage?.currentTime = 0.0
+        DispatchQueue.main.async {
+            guard let indexPath = self.playingCellIndexPath else { return }
+            guard let cell = self.tableView.cellForRow(at: indexPath) as? UserRecorderCell else { return }
+            cell.playButton.setImage(UIImage(named: self.messagesArray[indexPath.section][indexPath.row].isMine
+                ? VoiceMessageType.outgoing.images.play
+                :VoiceMessageType.incoming.images.play), for: .normal)
+        }
+        self.playingCellIndexPath = nil
+    }
     
     
 }
 
 extension ChatViewController: ChatControlsViewDelegate, MessagesRepositoryDelegate {
+    
+    func textViewChanged() {}
+    
+    
+    func willSendMessage(_ fileName: String) {
+         self.createMessage(fileName, MessageType.voice)
+    }
+    
     func didSendMessage() {
         guard let chat = self.currentChat else{return}
         MessagesRepository.shared.getAllMessagesFromDB(chatId: chat.chatId)
@@ -347,49 +511,46 @@ extension ChatViewController: ChatControlsViewDelegate, MessagesRepositoryDelega
             self.tableView.scrollToRow(at: IndexPath(
                 row: self.messagesArray[self.messagesArray.count-1].count-1,
                 section: self.messagesArray.count-1 ), at: UITableView.ScrollPosition.bottom, animated: false)
-            
         }
     }
     
-    func didReciveNewMessage() {
+    func didReciveNewMessage() {}
+    
+    func createMessage(_ text: String, _ type: MessageType){
+        guard let chat = self.currentChat else{return}
+        MessagesRepository.shared.sendMessage(
+            message: text,
+            sentAt: Date(),
+            title: chat.title,
+            messageType: type.rawValue,
+            toUser: chat.fromUser,
+            chatId: chat.chatId, completion:  { (resulte) in
+                print("")
+        })
         
-        
+        if let createMessage = JTMessage(values: [
+            "message": text,
+            "sent_at": Date().timeIntervalSince1970 * 1000 ,
+            "title": chat.title,
+            "message_type": type.rawValue,
+            "from_user": self.user?.id ?? chat.toUser,
+            "to_user": chat.fromUser,
+            "read": true,
+            "is_mine": true,
+            "chat_id": chat.chatId]){
+            MessagesRepository.shared.saveMessageInDB(message: createMessage)
+        }
     }
     
     func sendMessageButtonPressed() {
-        guard let chat = self.currentChat else{return}
         if let text = self.chatControlsView.inputTextView.text {
-            #warning("change the message type to Enum. and check the type of the message!!!")
-            MessagesRepository.shared.sendMessage(message: text,
-                                                  sentAt: Date(),
-                                                  title: chat.title,
-                                                  messageType: 1,
-                                                  toUser: chat.fromUser,
-                                                  chatId: chat.chatId, completion:  { (resulte) in
-                                                    print("")
-            })
-            
-            if let createMessage = JTMessage(values: [
-                "message": text,
-                "sent_at": Date().timeIntervalSince1970 * 1000 ,
-                "title": chat.title,
-                "message_type": 1,
-                "from_user": self.user?.id ?? chat.toUser,
-                "to_user": chat.fromUser,
-                "read": true,
-                "is_mine": true,
-                "chat_id": chat.chatId]){
-                MessagesRepository.shared.saveMessageInDB(message: createMessage)
-                
-            }
+            self.createMessage(text, MessageType.text)
             
         }
     }
     
     
-    func textViewChanged() {
-        
-    }
+   
 }
 
 

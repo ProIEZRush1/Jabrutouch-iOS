@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct JTMessage {
+class JTMessage {
     
     var messageId: Int
     var sentDate: Date
@@ -21,6 +21,9 @@ struct JTMessage {
     var chatId: Int
     var isMine: Bool
     var image: String
+    var currentTime: Float = 0
+    var duration: Float = 0
+    var isPlay: Bool = false
    
     init?(values: [String:Any]) {
         if let messageId = values["message_id"] as? Int {

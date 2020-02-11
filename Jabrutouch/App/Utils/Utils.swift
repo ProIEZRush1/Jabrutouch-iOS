@@ -135,7 +135,18 @@ class Utils {
         return "\(minutesString):\(secondsString)"
     }
     
-   
+   class func convertTimeintervalToHumanTime(_ time: TimeInterval) -> String{
+          var hours:  Int { return Int(time / 3600) }
+          var minute: Int { return Int(time.truncatingRemainder(dividingBy: 3600) / 60) }
+          var second: Int { return Int(time.truncatingRemainder(dividingBy: 60)) }
+          var positionalTime: String {
+              return hours > 0 ?
+                  String(format: "%d:%02d:%02d",
+                         hours, minute, second) :
+                  String(format: "%02d:%02d",
+                         minute, second)
+          };return positionalTime
+      }
     
     // MARK: - ActivityView
     

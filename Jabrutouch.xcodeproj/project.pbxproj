@@ -184,7 +184,6 @@
 		8342BA79237302AE00C3239C /* DonationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8342BA78237302AE00C3239C /* DonationsViewController.swift */; };
 		8359193023A2636000F0B4D8 /* ChatControls.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8359192F23A2636000F0B4D8 /* ChatControls.xib */; };
 		8359193323A2724400F0B4D8 /* ChatControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8359193223A2724400F0B4D8 /* ChatControlsView.swift */; };
-		8359193823A6943800F0B4D8 /* IncomingMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8359193723A6943800F0B4D8 /* IncomingMessageCell.swift */; };
 		8359193C23A695EB00F0B4D8 /* UserMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8359193B23A695EB00F0B4D8 /* UserMessageCell.swift */; };
 		8359193F23A795BD00F0B4D8 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8359193E23A795BD00F0B4D8 /* CoreDataManager.swift */; };
 		8359194223A7984A00F0B4D8 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8359194023A7984A00F0B4D8 /* DataModel.xcdatamodeld */; };
@@ -223,6 +222,10 @@
 		83CCB1232379EEB700C86450 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB1222379EEB700C86450 /* EditProfileViewController.swift */; };
 		83CCB127237C8D6F00C86450 /* EditPasswordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB126237C8D6F00C86450 /* EditPasswordCell.swift */; };
 		83CCB129237DA32D00C86450 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB128237DA32D00C86450 /* ForgotPasswordViewController.swift */; };
+		DD51CDEC23F185D30063167E /* AudioMessagesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD51CDEB23F185D30063167E /* AudioMessagesManager.swift */; };
+		DD51CDF023F186AE0063167E /* UserRecorderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD51CDEE23F186AE0063167E /* UserRecorderCell.swift */; };
+		DD51CDF423F186D70063167E /* AudioWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = DD51CDF323F186D70063167E /* AudioWrapper.m */; };
+		DD5AE5A223F2C747009CF8AC /* IncomingMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5AE5A123F2C747009CF8AC /* IncomingMessageCell.swift */; };
 		DD5D1C1F23CCD4AF0087A6DB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD5D1C1E23CCD4AF0087A6DB /* GoogleService-Info.plist */; };
 		DDCA933923D0B1BB00388EC6 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = DDCA933823D0B1B700388EC6 /* background.png */; };
 		DDCA933B23D0B31700388EC6 /* Jabrutouch.png in Resources */ = {isa = PBXBuildFile; fileRef = DDCA933A23D0B31700388EC6 /* Jabrutouch.png */; };
@@ -438,7 +441,6 @@
 		8359192F23A2636000F0B4D8 /* ChatControls.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatControls.xib; sourceTree = "<group>"; };
 		8359193223A2724400F0B4D8 /* ChatControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatControlsView.swift; sourceTree = "<group>"; };
 		8359193423A64DC300F0B4D8 /* Jabrutouch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Jabrutouch.entitlements; sourceTree = "<group>"; };
-		8359193723A6943800F0B4D8 /* IncomingMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncomingMessageCell.swift; sourceTree = "<group>"; };
 		8359193B23A695EB00F0B4D8 /* UserMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMessageCell.swift; sourceTree = "<group>"; };
 		8359193E23A795BD00F0B4D8 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		8359194123A7984A00F0B4D8 /* DataModal.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModal.xcdatamodel; sourceTree = "<group>"; };
@@ -479,6 +481,11 @@
 		83CCB126237C8D6F00C86450 /* EditPasswordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPasswordCell.swift; sourceTree = "<group>"; };
 		83CCB128237DA32D00C86450 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		C0F9377FF1E3DA5E9F901D68 /* Pods_Jabrutouch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jabrutouch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD51CDEB23F185D30063167E /* AudioMessagesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioMessagesManager.swift; sourceTree = "<group>"; };
+		DD51CDEE23F186AE0063167E /* UserRecorderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRecorderCell.swift; sourceTree = "<group>"; };
+		DD51CDF223F186D70063167E /* AudioWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioWrapper.h; sourceTree = "<group>"; };
+		DD51CDF323F186D70063167E /* AudioWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioWrapper.m; sourceTree = "<group>"; };
+		DD5AE5A123F2C747009CF8AC /* IncomingMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncomingMessageCell.swift; sourceTree = "<group>"; };
 		DD5D1C1E23CCD4AF0087A6DB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DDCA933823D0B1B700388EC6 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		DDCA933A23D0B31700388EC6 /* Jabrutouch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Jabrutouch.png; path = "Jabrutouch/Assets.xcassets/JabrutouchTitle-1.imageset/Jabrutouch.png"; sourceTree = SOURCE_ROOT; };
@@ -612,6 +619,7 @@
 		2126D0DF2302CD5400CB501D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DD51CDF123F186D70063167E /* ConvertToMP3 */,
 				83A7A0BF23E204980041BE28 /* iCarousel */,
 				2126D6D02302CE7900CB501D /* Reachability */,
 			);
@@ -1011,6 +1019,7 @@
 		219BFF3622E5B6FD00ABBEE2 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				DD51CDEB23F185D30063167E /* AudioMessagesManager.swift */,
 				213196B222F6DAC600B0AF5F /* LoginManager.swift */,
 				219BFF3722E5B72000ABBEE2 /* LocalizationManager.swift */,
 				213016B62321940F00B9DD2B /* AnalyticsManager.swift */,
@@ -1192,7 +1201,8 @@
 		8359193123A2714A00F0B4D8 /* MessagesCells */ = {
 			isa = PBXGroup;
 			children = (
-				8359193723A6943800F0B4D8 /* IncomingMessageCell.swift */,
+				DD5AE5A123F2C747009CF8AC /* IncomingMessageCell.swift */,
+				DD51CDEE23F186AE0063167E /* UserRecorderCell.swift */,
 				833E62222399591400EC93C7 /* ChatCell.swift */,
 				8359193B23A695EB00F0B4D8 /* UserMessageCell.swift */,
 			);
@@ -1250,6 +1260,15 @@
 				F71C57777BA59A6B8E3F7474 /* Pods-Jabrutouch.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		DD51CDF123F186D70063167E /* ConvertToMP3 */ = {
+			isa = PBXGroup;
+			children = (
+				DD51CDF223F186D70063167E /* AudioWrapper.h */,
+				DD51CDF323F186D70063167E /* AudioWrapper.m */,
+			);
+			path = ConvertToMP3;
 			sourceTree = "<group>";
 		};
 		FB51711222F19C07003BCAFC /* Mishna */ = {
@@ -1606,6 +1625,7 @@
 				21419CBD230EAF9C00145F1F /* JTMishnaLessonRecord.swift in Sources */,
 				538691482379E8B500CC95B5 /* DonationInformationCell.swift in Sources */,
 				833E622D23A1344A00EC93C7 /* JTChatMessage.swift in Sources */,
+				DD5AE5A223F2C747009CF8AC /* IncomingMessageCell.swift in Sources */,
 				2145858F22EF7D980062F830 /* API.swift in Sources */,
 				83A7A0C923E2E36E0041BE28 /* DedicationCardView.swift in Sources */,
 				2120BE1D22DF273F004854DB /* SignInViewController.swift in Sources */,
@@ -1617,6 +1637,7 @@
 				83A7A0CD23E999300041BE28 /* DonationWalkThroughViewController.swift in Sources */,
 				836A883A238DB1CF00F68539 /* JTVideoPart.swift in Sources */,
 				2131969822F38B1200B0AF5F /* ServerGenericResponse.swift in Sources */,
+				DD51CDF023F186AE0063167E /* UserRecorderCell.swift in Sources */,
 				4628E0E72322954800D963E6 /* Application.swift in Sources */,
 				538691452379E8B500CC95B5 /* PersonalDetailsCell.swift in Sources */,
 				2131969622F38B1200B0AF5F /* JTError.swift in Sources */,
@@ -1657,6 +1678,7 @@
 				83A7A0CB23E84C3D0041BE28 /* ChangePasswordResponse.swift in Sources */,
 				83A936AD23D9E8D8007BA207 /* DonationsNavigationController.swift in Sources */,
 				213196A622F38B3E00B0AF5F /* ValidateCodeResponse.swift in Sources */,
+				DD51CDEC23F185D30063167E /* AudioMessagesManager.swift in Sources */,
 				21419CB0230D50CB00145F1F /* AWSS3Provider.swift in Sources */,
 				2126D6E3230404BD00CB501D /* GemaraNavigationController.swift in Sources */,
 				2131969D22F38B2E00B0AF5F /* FilesManagementProvider.swift in Sources */,
@@ -1665,6 +1687,7 @@
 				213196B122F38B9E00B0AF5F /* ActivityView.swift in Sources */,
 				2133C1F822DB5B8200F910B9 /* AppDelegate.swift in Sources */,
 				FB51711F22F1AE0B003BCAFC /* JTLessonDownload.swift in Sources */,
+				DD51CDF423F186D70063167E /* AudioWrapper.m in Sources */,
 				8359194223A7984A00F0B4D8 /* DataModel.xcdatamodeld in Sources */,
 				21678D7822E08594007BC74C /* GemaraViewController.swift in Sources */,
 				2126D6DC2303EA8600CB501D /* ContentRepository.swift in Sources */,
@@ -1675,7 +1698,6 @@
 				FBDEF16822E8868600A300DA /* JTDownloadGroup.swift in Sources */,
 				5386914B2379E8B500CC95B5 /* InterestsCell.swift in Sources */,
 				83605BA72382DCD200B93603 /* ImagePicker.swift in Sources */,
-				8359193823A6943800F0B4D8 /* IncomingMessageCell.swift in Sources */,
 				21419CB9230DD91100145F1F /* JTSederDownloadedMishnaLessons.swift in Sources */,
 				46C652F423CF764F00F6D0DD /* JTUserProfileParameters.swift in Sources */,
 				FBB18FB222F8649A006886FD /* JTGemaraMasechetItem.swift in Sources */,
@@ -1843,6 +1865,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = LT8NS64PFR;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Jabrutouch/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1872,6 +1895,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = LT8NS64PFR;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Jabrutouch/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
