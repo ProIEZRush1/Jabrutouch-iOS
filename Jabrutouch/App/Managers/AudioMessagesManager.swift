@@ -110,7 +110,6 @@ class AudioMessagesManager {
             timer.invalidate()
             self.delegate?.playerDidFinish()
         }
-        
     }
     
     func getCurrentTime() -> TimeInterval {

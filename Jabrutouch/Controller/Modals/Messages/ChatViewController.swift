@@ -229,8 +229,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         return duration
     }
    
-  
-    
     
     func getImageFromURL(imageLink: String) {
         
@@ -348,7 +346,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                 if let image = Utils.linearGradientImage(endXPoint: 0.0, size: cell.slider.frame.size, colors: [Colors.appBlue, Colors.appOrange]) {
                     cell.slider.setMinimumTrackImage(image, for: .normal)
                 }
-                cell.userImage.image = user?.profileImage ?? #imageLiteral(resourceName: "Avatar")
+                cell.userImage.image = #imageLiteral(resourceName: "Avatar")
                 theCell = cell
                 
             }else {
@@ -381,9 +379,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         return theCell!
         
     }
-    
-    func createCells(){}
-    
+        
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let text = self.messagesArray[indexPath.section][indexPath.row].message
         let height = self.getViewHeight(text)
@@ -499,6 +495,12 @@ extension ChatViewController: AudioMessagesManagerDelegate{
 
 extension ChatViewController: ChatControlsViewDelegate, MessagesRepositoryDelegate {
     
+    func textViewChanged() {}
+    
+    
+    func willSendMessage(_ fileName: String) {
+         self.createMessage(fileName, MessageType.voice)
+    }
     
     func didSendMessage() {
         guard let chat = self.currentChat else{return}
@@ -509,25 +511,21 @@ extension ChatViewController: ChatControlsViewDelegate, MessagesRepositoryDelega
             self.tableView.scrollToRow(at: IndexPath(
                 row: self.messagesArray[self.messagesArray.count-1].count-1,
                 section: self.messagesArray.count-1 ), at: UITableView.ScrollPosition.bottom, animated: false)
-            
         }
     }
     
-    func didReciveNewMessage() {
-        
-        
-    }
-    
+    func didReciveNewMessage() {}
     
     func createMessage(_ text: String, _ type: MessageType){
         guard let chat = self.currentChat else{return}
-        MessagesRepository.shared.sendMessage(message: text,
-                                              sentAt: Date(),
-                                              title: chat.title,
-                                              messageType: type.rawValue,
-                                              toUser: chat.fromUser,
-                                              chatId: chat.chatId, completion:  { (resulte) in
-                                                print("")
+        MessagesRepository.shared.sendMessage(
+            message: text,
+            sentAt: Date(),
+            title: chat.title,
+            messageType: type.rawValue,
+            toUser: chat.fromUser,
+            chatId: chat.chatId, completion:  { (resulte) in
+                print("")
         })
         
         if let createMessage = JTMessage(values: [
@@ -541,10 +539,8 @@ extension ChatViewController: ChatControlsViewDelegate, MessagesRepositoryDelega
             "is_mine": true,
             "chat_id": chat.chatId]){
             MessagesRepository.shared.saveMessageInDB(message: createMessage)
-            
         }
     }
-    
     
     func sendMessageButtonPressed() {
         if let text = self.chatControlsView.inputTextView.text {
@@ -554,14 +550,7 @@ extension ChatViewController: ChatControlsViewDelegate, MessagesRepositoryDelega
     }
     
     
-    func textViewChanged() {
-        
-        
-    }
-    
-    func sendVoiceMessage(){
-        self.createMessage("\(chatControlsView.fileName).mp3", MessageType.voice)
-    }
+   
 }
 
 

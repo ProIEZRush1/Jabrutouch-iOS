@@ -124,9 +124,7 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
     // MARK: - @IBActions
     //========================================
 
-    @IBAction func searchButtonPressed(_ sender: Any) {
-        
-    }
+    @IBAction func searchButtonPressed(_ sender: Any) {}
     
 
     @IBAction func backButtonPressed(_ sender: Any) {
