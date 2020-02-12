@@ -753,6 +753,48 @@ class LessonPlayerViewController: UIViewController {
         }
         self.didSetMediaUrl = true
     }
+    
+    func startTextinfMode() {
+        self.buttonsContainer.isHidden = true
+        self.messageHeaderView.isHidden = false
+        switch self.mediaType {
+        case .video:
+            let _ = self.videoPlayer.pause()
+            UIView.animate(withDuration: 0.3) {
+                self.pdfViewTopConstraint.constant = self.messageHeaderView.bounds.height
+                self.videoPlayer.isHidden = true
+                self.view.layoutIfNeeded()
+            }
+        case .audio:
+            let _ = self.audioPlayer.pause()
+        }
+        
+        self.textingMode = true
+        self.becomeFirstResponder()
+        self.reloadInputViews()
+        self.chatControlsView.inputTextView.becomeFirstResponder()
+        
+    }
+    
+    func stopTextingMode() {
+        self.textingMode = false
+        self.reloadInputViews()
+        self.chatControlsView.inputTextView.resignFirstResponder()
+        self.buttonsContainer.isHidden = false
+        self.messageHeaderView.isHidden = true
+        switch self.mediaType {
+        case .video:
+            let _ = self.videoPlayer.play()
+            UIView.animate(withDuration: 0.3) {
+                let screenWidth = min(UIScreen.main.bounds.width, UIScreen.main.bounds.height)
+                self.pdfViewTopConstraint.constant = self.portraitHeaderViewVideoHeight + screenWidth * self.videoAspectRatio
+                self.videoPlayer.isHidden = false
+                self.view.layoutIfNeeded()
+            }
+        case .audio:
+            let _ = self.audioPlayer.play()
+        }
+    }
     //====================================================
     // MARK: - @IBActions
     //====================================================
@@ -786,39 +828,11 @@ class LessonPlayerViewController: UIViewController {
     }
     
     @IBAction func chatButtonPressed(_ sender: UIButton) {
-        self.buttonsContainer.isHidden = true
-        self.messageHeaderView.isHidden = false
-        switch self.mediaType {
-        case .video:
-            let _ = self.videoPlayer.pause()
-            self.pdfViewTopConstraint.constant = self.messageHeaderView.bounds.height
-            self.videoPlayer.isHidden = true
-        case .audio:
-            let _ = self.audioPlayer.pause()
-        }
-    
-        self.textingMode = true
-        self.becomeFirstResponder()
-        self.reloadInputViews()
-        self.chatControlsView.inputTextView.becomeFirstResponder()
-
+        self.startTextinfMode()
     }
     
     @IBAction func cancelMessageButtonPressed(_ sender: Any) {
-        self.textingMode = false
-        self.reloadInputViews()
-        self.chatControlsView.inputTextView.resignFirstResponder()
-        self.buttonsContainer.isHidden = false
-        self.messageHeaderView.isHidden = true
-        switch self.mediaType {
-        case .video:
-            let _ = self.videoPlayer.play()
-            let screenWidth = min(UIScreen.main.bounds.width, UIScreen.main.bounds.height)
-            self.pdfViewTopConstraint.constant = self.portraitHeaderViewVideoHeight + screenWidth * self.videoAspectRatio
-            self.videoPlayer.isHidden = false
-        case .audio:
-            let _ = self.audioPlayer.play()
-        }
+        self.stopTextingMode()
     }
     
     @IBAction func audioEndTimeButtonPressed(_ sender: UIButton) {
@@ -940,20 +954,7 @@ extension LessonPlayerViewController: ChatControlsViewDelegate {
     }
     
     func sendMessageButtonPressed() {
-        self.textingMode = false
-        self.chatControlsView.inputTextView.resignFirstResponder()
-        self.buttonsContainer.isHidden = false
-        self.messageHeaderView.isHidden = true
-        self.reloadInputViews()
-        switch self.mediaType {
-        case .video:
-            let _ = self.videoPlayer.play()
-            let screenWidth = min(UIScreen.main.bounds.width, UIScreen.main.bounds.height)
-            self.pdfViewTopConstraint.constant = self.portraitHeaderViewVideoHeight + screenWidth * self.videoAspectRatio
-            self.videoPlayer.isHidden = false
-        case .audio:
-            let _ = self.audioPlayer.play()
-        }
+        self.stopTextingMode()
     }
     
     func textViewChanged() {
