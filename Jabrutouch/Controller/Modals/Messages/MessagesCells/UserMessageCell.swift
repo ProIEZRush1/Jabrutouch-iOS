@@ -12,6 +12,7 @@ class UserMessageCell: UITableViewCell {
     
     @IBOutlet weak var messageView: UIView!
     @IBOutlet weak var message: UILabel!
+    @IBOutlet weak var messageTextView: UITextView!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var userImage: UIImageView!
     
@@ -23,6 +24,7 @@ class UserMessageCell: UITableViewCell {
         
         self.roundCorners()
         self.setShadow()
+        self.messageTextView.dataDetectorTypes = .all
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
