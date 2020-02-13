@@ -210,26 +210,29 @@ extension AppDelegate:UNUserNotificationCenterDelegate {
        
         if let key = userInfo["data"] as? String, let values = self.convertToJson(text: key){
             if let message = JTMessage(values: values){
-                MessagesRepository.shared.saveMessageInDB(message: message)
+                if message.messageType == 1 {
+                    MessagesRepository.shared.saveMessageInDB(message: message)
+                }
                 if message.messageType == 2 {
                     AWSS3Provider.shared.handleFileDownload(fileName: "users-record/\(message.message)", bucketName: AWSS3Provider.appS3BucketName, progressBlock: nil, completion: {  (result) in
                         switch result{
                         case .success(let data):
-                        do{
-                            try
-                                FilesManagementProvider.shared.overwriteFile(
-                                    path: FilesManagementProvider.shared.loadFile(link: "\(message.message)", directory: FileDirectory.recorders),
-                                    data: data)
-                        }catch{
-                            print("error")
+                            do{
+                                try
+                                    FilesManagementProvider.shared.overwriteFile(
+                                        path: FilesManagementProvider.shared.loadFile(link: "\(message.message)", directory: FileDirectory.recorders),
+                                        data: data)
+                                MessagesRepository.shared.saveMessageInDB(message: message)
+                            }catch{
+                                print("error")
                             }
-
+                            
                         case .failure(let error):
                             print(error)
                             break
                         }
                     }
-                )}
+                    )}
             }
         }
         print("willPresent: ")

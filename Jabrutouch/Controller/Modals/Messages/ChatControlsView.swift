@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import iRecordView
 
 protocol ChatControlsViewDelegate: class {
     func sendMessageButtonPressed()
@@ -15,7 +16,8 @@ protocol ChatControlsViewDelegate: class {
     func willSendMessage(_ fileName: String)
 }
 
-class ChatControlsView: UIView {
+class ChatControlsView: UIView, RecordViewDelegate {
+    
     
     //========================================
     // MARK: - Properties
@@ -23,8 +25,8 @@ class ChatControlsView: UIView {
     var soundRecorder: AVAudioRecorder?
     var soundPlayer : AVAudioPlayer?
     var fileName: String = ""
-
     
+    let recordView = RecordView()
     
     weak var delegate: ChatControlsViewDelegate?
     //========================================
@@ -35,7 +37,7 @@ class ChatControlsView: UIView {
     @IBOutlet weak var inputTextView:UITextView!
     @IBOutlet weak var plaseHolderLabel: UILabel!
     @IBOutlet weak var sendMessageButton: UIButton!
-    @IBOutlet weak var recordMessageButton: UIButton!
+    @IBOutlet weak var recordMessageButton: RecordButton!
     @IBOutlet weak var shadowView: UIView!
     @IBOutlet weak var inputTextContainerView: UIView!
     
@@ -47,6 +49,9 @@ class ChatControlsView: UIView {
         super.init(frame: frame)
         self.xibSetup()
         self.inputTextView.delegate = self
+        
+        recordView.delegate = self
+        
         
         self.setRoundCorners()
     }
@@ -65,12 +70,31 @@ class ChatControlsView: UIView {
     
     func xibSetup() {
         self.view = loadViewFromNib()
-        
+        recordMessageButton.translatesAutoresizingMaskIntoConstraints = false
+        recordView.translatesAutoresizingMaskIntoConstraints = false
         // use bounds not frame or it'll be offset
         self.view.frame = bounds
         
         // Make the view stretch with containing view
         self.view.autoresizingMask = [UIView.AutoresizingMask.flexibleWidth, UIView.AutoresizingMask.flexibleHeight]
+        
+        inputTextView.addSubview(recordView)
+        
+        //        recordMessageButton.widthAnchor.constraint(equalToConstant: 35).isActive = true
+        //        recordMessageButton.heightAnchor.constraint(equalToConstant: 35).isActive = true
+        //
+        //        recordMessageButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8).isActive = true
+        //        recordMessageButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -16).isActive = true
+        
+        
+        recordView.trailingAnchor.constraint(equalTo: recordMessageButton.leadingAnchor, constant: -40).isActive = true
+        recordView.leadingAnchor.constraint(equalTo: inputTextView.leadingAnchor, constant: 5).isActive = true
+        recordView.centerYAnchor.constraint(equalTo: plaseHolderLabel.centerYAnchor).isActive = true
+        
+        recordView.durationTimerColor = #colorLiteral(red: 0.1764705882, green: 0.168627451, blue: 0.662745098, alpha: 1)
+        recordView.smallMicImage = #imageLiteral(resourceName: "mic2")
+        
+        recordMessageButton.recordView = recordView
         
         // Adding custom subview on top of our view (over any custom drawing > see note below)
         self.addSubview(view)
@@ -91,6 +115,7 @@ class ChatControlsView: UIView {
     // MARK: - Setup
     //========================================
     
+    
     func setRoundCorners() {
         self.inputTextView.layer.cornerRadius = 22.5
         self.inputTextContainerView.layer.cornerRadius = 22.5
@@ -104,23 +129,25 @@ class ChatControlsView: UIView {
     func createFileName(){
         let time = String(Date().timeIntervalSince1970 * 1000)
         let suffix = time.replacingOccurrences(of: ".", with: "_")
-//        suffix += ".mp3"
         self.fileName = suffix
     }
     
     func saveRecordInS3(url: URL, fileName: String, completion: @escaping (Result<Void,Error>)->Void) {
-           AWSS3Provider.shared.handleFileUpload(fileUrl: url, fileName: fileName, contentType: "audio/mp3", bucketName: AWSS3Provider.appS3BucketName  , progressBlock: { (progress) in
-               print(progress)
-           }) { (result:Result<String, Error>) in
-               switch result {
-               case .success(_):
-                   completion(.success(()))
-               case .failure(let error):
-                   completion(.failure(error))
-               }
-           }
-           
-       }
+        AWSS3Provider.shared.handleFileUpload(
+            fileUrl: url, fileName: fileName,
+            contentType: "audio/mp3",
+            bucketName: AWSS3Provider.appS3BucketName,
+            progressBlock: { (progress) in
+//                print(progress)
+        }) { (result:Result<String, Error>) in
+            switch result {
+            case .success(_):
+                completion(.success(()))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
     
     //========================================
     // MARK: - @IBActions
@@ -133,43 +160,58 @@ class ChatControlsView: UIView {
         self.sendMessageButton.isHidden = true
         self.recordMessageButton.isHidden = false
         
-        
     }
     
-    @IBAction func recordButtonPressed(_ sender: Any) {
+    func onStart() {
+        self.plaseHolderLabel.isHidden = true
         self.createFileName()
         AudioMessagesManager.shared.startRecording(self.fileName)
     }
     
-    @IBAction func recordButtonTouchedUp(_ sender: Any) {
-        print("TouchedUp recorder")
+    func onCancel() {
         AudioMessagesManager.shared.stopRecoredr(self.fileName)
         let file = "\(self.fileName).mp3"
         let url = FilesManagementProvider.shared.loadFile(link: file, directory: FileDirectory.recorders)
-        self.delegate?.willSendMessage(file)
-        self.saveRecordInS3(url: url, fileName: "users-record/\(file)" , completion:{ (result: Result<Void, Error>) in
-            switch result{
-            case .success(let data):
-                print(data)
-            case .failure(let error):
-                print(error)
-            }
-        })
+        do{
+            try FilesManagementProvider.shared.removeFile(atPath: url)
+            print("The record deleted")
+        }catch{
+            print("The record didn't deleted.")
+        }
     }
     
-    @IBAction func recordButtonDragLeft(_ sender: Any) {
+    func onFinished(duration: CGFloat) {
+        if duration < 1.0 {
+            self.onCancel()
+        }else{
+            AudioMessagesManager.shared.stopRecoredr(self.fileName)
+            let file = "\(self.fileName).mp3"
+            let url = FilesManagementProvider.shared.loadFile(link: file, directory: FileDirectory.recorders)
+            self.delegate?.willSendMessage(file)
+            self.saveRecordInS3(url: url, fileName: "users-record/\(file)" , completion:{ (result: Result<Void, Error>) in
+                switch result{
+                case .success(let data):
+                    print(data)
+                case .failure(let error):
+                    print(error)
+                }
+            })
+        }
+        self.plaseHolderLabel.isHidden = false
     }
+    
+    func onAnimationEnd() {
+        self.plaseHolderLabel.isHidden = false
+    }
+    
     
 }
 
 extension ChatControlsView: UITextViewDelegate {
+    
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        
-        //        self.setHeightOfTextView(text: "\(textView.text ?? "")\(text)")
         return true
     }
-    
-    
     
     func textViewDidChange(_ textView: UITextView) {
         if inputTextView.text.isEmpty {

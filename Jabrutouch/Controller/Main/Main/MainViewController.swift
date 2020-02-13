@@ -133,7 +133,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     //========================================
     private func setCornerRadius(){
         let unReded  = CoreDataManager.shared.getUnReadedChats()
-//        DispatchQueue.main.async {
+        DispatchQueue.main.async {
             if unReded > 0  {
                 print("unReaded: ",unReded)
                 self.unReadedLable.layer.cornerRadius = self.unReadedLable.bounds.height / 2
@@ -142,7 +142,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
             }else{
                 self.unReadedLable.isHidden = true
             }
-//        }
+        }
     }
     
     
@@ -764,14 +764,12 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
 }
 
 extension MainViewController: MessagesRepositoryDelegate{
-    func didReciveNewMessage() {
-       
+    func didReciveNewMessage(){
           self.setCornerRadius()
     }
     
-    func didSendMessage() {
-        
-    }
+func didSendMessage() {}
+    
     
   
 }
