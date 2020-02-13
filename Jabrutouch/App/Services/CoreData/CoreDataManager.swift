@@ -29,7 +29,7 @@ class CoreDataManager {
         return self.manager!
     }
     weak var delegate: MessagesRepositoryDelegate?
-    let managedContext = appDelegate.persistentContainer.viewContext
+    let managedContext = appDelegate.managedObjectContext!
     
     func rebootMessages(chats: [JTChatMessage]){
         
@@ -60,6 +60,8 @@ class CoreDataManager {
                 newMessage.setValue(message.fromUser, forKey: "fromUser")
                 newMessage.setValue(message.read, forKey: "read")
                 newMessage.setValue(message.isMine, forKey: "isMine")
+                newMessage.setValue(message.linkTo, forKey: "linkTo")
+
             }
         }
         do{
@@ -114,6 +116,7 @@ class CoreDataManager {
         newMessage.setValue(message.fromUser, forKey: "fromUser")
         newMessage.setValue(message.read, forKey: "read")
         newMessage.setValue(message.isMine, forKey: "isMine")
+        newMessage.setValue(message.linkTo, forKey: "linkTo")
         
         do{
             try managedContext.save()
