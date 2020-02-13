@@ -519,7 +519,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.performSegue(withIdentifier: "toMessages", sender: self)
     }
     
-    private func presentDonationWalkThrough() {
+    func presentDonationWalkThrough() {
         self.performSegue(withIdentifier: "presentDonationWalkTrough", sender: self)
     }
     
@@ -537,7 +537,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         
     }
     
-    private func presentDownloadsViewController() {
+    func presentDownloadsViewController() {
         if self.currentPresentedModal != nil && self.currentPresentedModal != .downloads {
             self.modalsPresentingVC.dismiss(animated: true) {
                 self.modalsPresentingVC.performSegue(withIdentifier: "presentDownloads", sender: nil)
@@ -550,7 +550,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.currentPresentedModal = .downloads
     }
     
-    private func presentGemaraViewController() {
+    func presentGemaraViewController() {
         if self.currentPresentedModal != nil && self.currentPresentedModal != .gemara {
             self.modalsPresentingVC.dismiss(animated: true) {
                 self.modalsPresentingVC.performSegue(withIdentifier: "presentGemara", sender: nil)
@@ -563,7 +563,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.currentPresentedModal = .gemara
     }
     
-    private func presentMishnaViewController() {
+    func presentMishnaViewController() {
         if self.currentPresentedModal != nil && self.currentPresentedModal != .mishna {
             self.modalsPresentingVC.dismiss(animated: true) {
                 self.modalsPresentingVC.performSegue(withIdentifier: "presentMishna", sender: nil)
@@ -576,7 +576,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.currentPresentedModal = .mishna
     }
     
-    private func presentDonationsViewController() {
+    func presentDonationsViewController() {
         if self.currentPresentedModal != nil && self.currentPresentedModal != .donations {
             self.modalsPresentingVC.dismiss(animated: true) {
                 self.modalsPresentingVC.performSegue(withIdentifier: "presentDonations", sender: nil)

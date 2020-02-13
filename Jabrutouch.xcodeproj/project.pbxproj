@@ -460,6 +460,7 @@
 		836A884F2396A4E800F68539 /* ForgotPasswordResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordResponse.swift; sourceTree = "<group>"; };
 		839991D623F4046F00B40A28 /* GemaraTempViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GemaraTempViewController.swift; sourceTree = "<group>"; };
 		839991D823F404AA00B40A28 /* LessonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonCell.swift; sourceTree = "<group>"; };
+		839991DA23F5597900B40A28 /* DataModel_v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel_v2.xcdatamodel; sourceTree = "<group>"; };
 		839CB4CA2381C91B0086554B /* SelectInterestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectInterestViewController.swift; sourceTree = "<group>"; };
 		839E1E7B238588C100578C60 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		83A7A0C123E205A90041BE28 /* iCarousel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
@@ -1949,9 +1950,10 @@
 		8359194023A7984A00F0B4D8 /* DataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				839991DA23F5597900B40A28 /* DataModel_v2.xcdatamodel */,
 				8359194123A7984A00F0B4D8 /* DataModal.xcdatamodel */,
 			);
-			currentVersion = 8359194123A7984A00F0B4D8 /* DataModal.xcdatamodel */;
+			currentVersion = 839991DA23F5597900B40A28 /* DataModel_v2.xcdatamodel */;
 			path = DataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

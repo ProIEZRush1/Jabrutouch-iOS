@@ -24,6 +24,7 @@ class JTMessage {
     var currentTime: Float = 0
     var duration: Float = 0
     var isPlay: Bool = false
+    var linkTo: Int
    
     init?(values: [String:Any]) {
         if let messageId = values["message_id"] as? Int {
@@ -71,9 +72,15 @@ class JTMessage {
             self.image = image
         } else { self.image = "" }
         
+//        if let linkTo = Int(values["link_to"] as? String ?? "0") {
+//            self.linkTo = linkTo
+//        } else { self.linkTo = 0 }
+        
+        if let linkTo = values["link_to"] as? Int{
+            self.linkTo = linkTo
+        } else { self.linkTo = 0 }
     }
-   
-   
+    
     
     init?(values: NSManagedObject) {
         
@@ -121,6 +128,11 @@ class JTMessage {
             self.isMine = isMine
         } else { return nil }
         
+        if let linkTo = values.value(forKey: "linkTo") as? Int {
+            self.linkTo = linkTo
+        } else { self.linkTo = 0 }
+
+        
     }
     
     var values: [String:Any] {
@@ -136,6 +148,7 @@ class JTMessage {
         values["chat_id"] = self.chatId
         values["is_mine"] = self.isMine
         values["image"] = self.image
+        values["link_to"] = self.linkTo
         
         return values
     }

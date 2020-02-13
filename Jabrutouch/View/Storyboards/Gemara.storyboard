@@ -558,7 +558,7 @@
         <!--Gemara Navigation Controller-->
         <scene sceneID="QZ7-ne-rsU">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="mAt-cH-Aqw" customClass="GemaraNavigationController" customModule="Jabrutouch" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="GemaraNavigationController" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="mAt-cH-Aqw" customClass="GemaraNavigationController" customModule="Jabrutouch" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kvX-qb-F4a">

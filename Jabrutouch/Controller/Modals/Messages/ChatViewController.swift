@@ -20,10 +20,19 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     //========================================
     // MARK: - Properties
     //========================================
+    enum LinkType {
+        case crowns
+        case download
+        case gemara
+        case mishna
+    }
     
     enum MessageType: Int {
         case text  = 1
         case voice = 2
+        case video = 3
+        case image = 4
+        case link = 5
     }
     
     enum VoiceMessageType: String{
@@ -201,16 +210,16 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         
     }
     
-    private func getViewWidth(_ text: String) -> CGFloat {
-        let label = UILabel()
-        label.font = Fonts.mediumTextFont(size: 18)
-        label.numberOfLines = 0
-        label.text = text
-        label.lineBreakMode = .byWordWrapping
-        let width = label.sizeThatFits(CGSize(width: 218, height: 600)).width
-        return width
-        
-    }
+//    private func getViewWidth(_ text: String) -> CGFloat {
+//        let label = UILabel()
+//        label.font = Fonts.mediumTextFont(size: 18)
+//        label.numberOfLines = 0
+//        label.text = text
+//        label.lineBreakMode = .byWordWrapping
+//        let width = label.sizeThatFits(CGSize(width: 218, height: 600)).width
+//        return width
+//
+//    }
     
     func getTime(lastMessageTime: Date)-> String {
         let timeStemp = lastMessageTime.timeIntervalSince1970
@@ -229,12 +238,12 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         return duration
     }
    
-    
-    func getImageFromURL(imageLink: String) {
-        
-    }
-    
-    
+//
+//    func getImageFromURL(imageLink: String) {
+//
+//    }
+//
+//
     //========================================
     // MARK: - group
     //========================================
@@ -313,7 +322,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                 cell.messageTextView.textContainer.lineBreakMode = .byWordWrapping
                 cell.messageTextView.text = text
                 cell.timeLabel.text = self.getTime(lastMessageTime: messagesArray[indexPath.section][indexPath.row].sentDate)
-                cell.userImage.image = user?.profileImage ?? #imageLiteral(resourceName: "Avatar")
+                cell.userImage.image = #imageLiteral(resourceName: "Avatar")
                 theCell = cell
                 
             }else {
@@ -325,7 +334,11 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                 cell.messageTextView.textContainer.lineBreakMode = .byWordWrapping
                 cell.messageTextView.text = text
                 cell.timeLabel.text =  self.getTime(lastMessageTime: messagesArray[indexPath.section][indexPath.row].sentDate)
-                cell.userImage.image = #imageLiteral(resourceName: "incomingUserImege")
+                if self.currentChat?.chatType == 1 {
+                    cell.userImage.image = #imageLiteral(resourceName: "incomingUserImege")
+                } else {
+                    cell.userImage.image = #imageLiteral(resourceName: "JBlogo")
+                }
                 theCell = cell
             }
             
@@ -373,9 +386,46 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                     cell.slider.setMinimumTrackImage(image, for: .normal)
                 }
                 cell.slider.setValue(message.currentTime, animated: true)
-                cell.userImage.image = #imageLiteral(resourceName: "JBlogo")
+                if self.currentChat?.chatType == 1 {
+                    cell.userImage.image = #imageLiteral(resourceName: "incomingUserImege")
+                } else {
+                    cell.userImage.image = #imageLiteral(resourceName: "JBlogo")
+                }
                 theCell = cell
+                
             }
+        case MessageType.link.rawValue:
+            
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "incomingMessageCell", for: indexPath) as? IncomingMessageCell else { return UITableViewCell() }
+            let text = self.messagesArray[indexPath.section][indexPath.row].message
+            let height = self.getViewHeight(text)
+            cell.messageViewHeightConstraint.constant = height + 40
+            var link = ""
+            switch self.messagesArray[indexPath.section][indexPath.row].linkTo {
+            case 1:
+                link = "crowns"
+            case 2:
+                link = "download"
+            case 3:
+                link = "gemara"
+            case 4:
+                link = "mishna"
+            default:
+                break
+            }
+            let attributedString = NSMutableAttributedString(string: text, attributes: [NSAttributedString.Key.link: "jabrutouch://\(link)", NSAttributedString.Key.foregroundColor: UIColor.blue,NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue, NSAttributedString.Key.font: Fonts.mediumTextFont(size: 16)])
+
+            cell.message.text = text
+//            cell.messageTextView.textContainer.lineBreakMode = .byWordWrapping
+            cell.messageTextView.attributedText = attributedString
+
+            cell.timeLabel.text =  self.getTime(lastMessageTime: messagesArray[indexPath.section][indexPath.row].sentDate)
+            if self.currentChat?.chatType == 1 {
+                cell.userImage.image = #imageLiteral(resourceName: "incomingUserImege")
+            } else {
+                cell.userImage.image = #imageLiteral(resourceName: "JBlogo")
+            }
+            theCell = cell
         default:
             print("empty")
         }
