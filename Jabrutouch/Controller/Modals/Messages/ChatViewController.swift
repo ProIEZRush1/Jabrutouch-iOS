@@ -49,7 +49,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         didSet{
             guard let indexPath = oldValue else { return }
             if indexPath != playingCellIndexPath{
-                var oldMessage = messagesArray[indexPath.section][indexPath.row]
+                let oldMessage = messagesArray[indexPath.section][indexPath.row]
                 oldMessage.isPlay = false
                 guard let cell = self.tableView.cellForRow(at: indexPath) as? UserRecorderCell else { return }
                 DispatchQueue.main.async {
@@ -310,6 +310,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                 let height = self.getViewHeight(text)
                 cell.messageViewHeightConstraint.constant = height + 32
                 cell.message.text = text
+                cell.messageTextView.textContainer.lineBreakMode = .byWordWrapping
+                cell.messageTextView.text = text
                 cell.timeLabel.text = self.getTime(lastMessageTime: messagesArray[indexPath.section][indexPath.row].sentDate)
                 cell.userImage.image = user?.profileImage ?? #imageLiteral(resourceName: "Avatar")
                 theCell = cell
@@ -320,6 +322,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                 let height = self.getViewHeight(text)
                 cell.messageViewHeightConstraint.constant = height + 32
                 cell.message.text = text
+                cell.messageTextView.textContainer.lineBreakMode = .byWordWrapping
+                cell.messageTextView.text = text
                 cell.timeLabel.text =  self.getTime(lastMessageTime: messagesArray[indexPath.section][indexPath.row].sentDate)
                 cell.userImage.image = #imageLiteral(resourceName: "incomingUserImege")
                 theCell = cell
@@ -548,9 +552,7 @@ extension ChatViewController: ChatControlsViewDelegate, MessagesRepositoryDelega
             
         }
     }
-    
-    
-   
+        
 }
 
 
