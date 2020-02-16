@@ -57,16 +57,16 @@ class Storyboards {
     class Gemara {
         private class func gemaraStoryboard() -> UIStoryboard { return UIStoryboard(name: "Gemara", bundle: Bundle.main) }
         
-        class var  gemaraNavigationController: GemaraNavigationController {
-            return self.gemaraStoryboard().instantiateViewController(withIdentifier: "GemaraNavigationController") as! GemaraNavigationController
+        class var  gemaraViewController: GemaraViewController {
+            return self.gemaraStoryboard().instantiateViewController(withIdentifier: "GemaraViewController") as! GemaraViewController
         }
     }
     
     class Mishna {
         private class func mishnaStoryboard() -> UIStoryboard { return UIStoryboard(name: "Mishna", bundle: Bundle.main) }
         
-        class var  mishnaNavigationController: MishnaNavigationController {
-            return self.mishnaStoryboard().instantiateViewController(withIdentifier: "MishnaNavigationController") as! MishnaNavigationController
+        class var  mishnaViewController: MishnaViewController {
+            return self.mishnaStoryboard().instantiateViewController(withIdentifier: "MishnaViewController") as! MishnaViewController
         }
     }
     

@@ -25,7 +25,7 @@
         <!--Gemara View Controller-->
         <scene sceneID="0wv-lh-BnW">
             <objects>
-                <viewController id="w5P-xi-dck" customClass="GemaraViewController" customModule="Jabrutouch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GemaraViewController" id="w5P-xi-dck" customClass="GemaraViewController" customModule="Jabrutouch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1mo-Yd-AtK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -64,17 +64,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let host = url.host {
             let mainViewController = Storyboards.Main.mainViewController
             mainViewController.modalPresentationStyle = .fullScreen
+
             if host == "crowns" {
-                self.topmostViewController?.present(mainViewController, animated: true, completion: nil)
-                mainViewController.presentDonationWalkThrough()
+                self.topmostViewController?.present(mainViewController, animated: false, completion: nil)
+                mainViewController.presentOldDonations()
             } else if host == "download" {
-                self.topmostViewController?.present(mainViewController, animated: true, completion: nil)
+                self.topmostViewController?.present(mainViewController, animated: false, completion: nil)
                 mainViewController.presentDownloadsViewController()
             } else if host == "gemara" {
-                self.topmostViewController?.present(mainViewController, animated: true, completion: nil)
+                self.topmostViewController?.present(mainViewController, animated: false, completion: nil)
                 mainViewController.presentAllGemara()
             } else if host == "mishna" {
-                self.topmostViewController?.present(mainViewController, animated: true, completion: nil)
+                self.topmostViewController?.present(mainViewController, animated: false, completion: nil)
                 mainViewController.presentAllMishna()
             }
             

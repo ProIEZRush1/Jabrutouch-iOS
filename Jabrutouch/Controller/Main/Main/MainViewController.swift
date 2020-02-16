@@ -124,7 +124,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.lessonWatched = UserDefaultsProvider.shared.lessonWatched
         self.setContent()
         self.setCornerRadius()
-        self.setDefaulteIcons()
+//        self.setDefaulteIcons()
         setView()
     }
     
@@ -364,7 +364,6 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     //========================================
     
     @IBAction func downloadsButtonTouchedDown(_ sender: UIButton) {
-        self.setIcons(string: "downloads")
 
     }
     
@@ -384,7 +383,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     }
     
     @IBAction func gemaraButtonTouchedDown(_ sender: UIButton) {
-        self.setIcons(string: "gemara")
+
     }
     
     @IBAction func gemaraButtonTouchedUp(_ sender: UIButton) {
@@ -403,7 +402,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     }
     
     @IBAction func mishnaButtonTouchedDown(_ sender: UIButton) {
-        self.setIcons(string: "mishna")
+
     }
     
     @IBAction func mishnaButtonTouchedUp(_ sender: UIButton) {
@@ -422,7 +421,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     }
     
     @IBAction func donationsButtonTouchedDown(_ sender: UIButton) {
-        self.setIcons(string: "donations")
+
         
     }
     
@@ -431,9 +430,9 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
             self.donationsImageView.alpha = 1.0
             self.donationsLabel.alpha = 1.0
         }
-        self.presentDonationWalkThrough()
+//        self.presentDonationWalkThrough()
 //        self.presentDonationsViewController()
-//        self.presentOldDonations()
+        self.presentOldDonations()
     }
     
     @IBAction func donationsButtonTouchedUpOutside(_ sender: UIButton) {
@@ -523,7 +522,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.performSegue(withIdentifier: "presentDonationWalkTrough", sender: self)
     }
     
-    private func presentOldDonations() {
+    func presentOldDonations() {
         if self.currentPresentedModal != nil && self.currentPresentedModal != .donations {
             self.modalsPresentingVC.dismiss(animated: true) {
                 self.modalsPresentingVC.performSegue(withIdentifier: "presentOldDonation", sender: nil)
@@ -534,6 +533,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
             self.modalsPresentingVC.performSegue(withIdentifier: "presentOldDonation", sender: nil)
         }
         self.currentPresentedModal = .donations
+        self.setIcons(string: "donations")
         
     }
     
@@ -548,6 +548,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
             self.modalsPresentingVC.performSegue(withIdentifier: "presentDownloads", sender: nil)
         }
         self.currentPresentedModal = .downloads
+        self.setIcons(string: "downloads")
     }
     
     func presentGemaraViewController() {
@@ -561,6 +562,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
             self.modalsPresentingVC.performSegue(withIdentifier: "presentGemara", sender: nil)
         }
         self.currentPresentedModal = .gemara
+        self.setIcons(string: "gemara")
     }
     
     func presentMishnaViewController() {
@@ -574,6 +576,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
             self.modalsPresentingVC.performSegue(withIdentifier: "presentMishna", sender: nil)
         }
         self.currentPresentedModal = .mishna
+        self.setIcons(string: "mishna")
     }
     
     func presentDonationsViewController() {
@@ -605,13 +608,12 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     
     func presentAllGemara() {
         self.presentGemaraViewController()
-        self.setIcons(string: "gemara")
     }
     
     func presentAllMishna() {
         self.presentMishnaViewController()
-        self.setIcons(string: "mishna")
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "embedModalsVC" {
             self.modalsPresentingVC = segue.destination as? ModalsContainerViewController
@@ -674,9 +676,9 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
         case .messageCenter:
             presentMessages()
         case .donationsCenter:
-            presentDonationWalkThrough()
+//            presentDonationWalkThrough()
 //            presentDonationsViewController()
-//            presentOldDonations()
+            presentOldDonations()
         default:
             presentInDevelopmentAlert()
         }
