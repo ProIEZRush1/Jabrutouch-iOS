@@ -20,23 +20,13 @@ class LessonDownloadCellController: UITableViewCell {
     @IBOutlet weak var downloadButtonsContainerView: UIView!
     @IBOutlet weak var lessonNumber: UILabel!
     @IBOutlet weak var lessonLength: UILabel!
-    @IBOutlet weak var downloadProgressView: UICircularProgressRing!
-    @IBOutlet weak var audioImage: UIImageView!
-    @IBOutlet weak var videoImage: UIImageView!
-    @IBOutlet weak var redAudioVImage: UIImageView!
-    @IBOutlet weak var redVideoVImage: UIImageView!
-    @IBOutlet weak var playAudioButton: UIButton!
-    @IBOutlet weak var playVideoButton: UIButton!
-    @IBOutlet weak var downloadAudioButton: UIButton!
-    @IBOutlet weak var downloadVideoButton: UIButton!
-    @IBOutlet weak var downloadAudioButtonImageView: UIImageView!
-    @IBOutlet weak var downloadVideoButtonImageView: UIImageView!
     @IBOutlet weak var cellViewTrailingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var progressBarTrailingConstraint: NSLayoutConstraint!
     @IBOutlet weak var cellViewLeadingConstraint: NSLayoutConstraint!
-    
-    @IBOutlet weak var downloadAudioImage: UIImageView!
-    @IBOutlet weak var downloadVideoImage: UIImageView!
+    @IBOutlet weak var downloadVideoPBWB: JBProgressBarWithButton!
+    @IBOutlet weak var downloadAudioPBWB: JBProgressBarWithButton!
+    @IBOutlet weak var cellVideoPBWB: JBProgressBarWithButton!
+    @IBOutlet weak var cellAudioPBWB: JBProgressBarWithButton!
+       
     //=====================================================
     // MARK: - Properties
     //=====================================================
@@ -51,28 +41,71 @@ class LessonDownloadCellController: UITableViewCell {
         super.awakeFromNib()
         let cellGestureRecognizer = (UITapGestureRecognizer(target: self, action: #selector(cellPressed)))
         cellView.addGestureRecognizer(cellGestureRecognizer)
-        
-        self.setProgressRing()
+
     }
     
     //=====================================================
     // MARK: - Setup
     //=====================================================
+    
+    func setProgressViewButtons(_ lesson: JTLesson) {
+        
+        if lesson.isAudioDownloaded {
+            self.downloadAudioPBWB.setButtonImage(NormalImage: #imageLiteral(resourceName: "audio-downloaded"), highlightedImage: #imageLiteral(resourceName: "audio-downloaded"))
+            self.cellAudioPBWB.setButtonImage(NormalImage: #imageLiteral(resourceName: "audio-downloaded"), highlightedImage: #imageLiteral(resourceName: "audio-downloaded"))
+            
+        } else {
+            self.downloadAudioPBWB.setButtonImage(NormalImage: #imageLiteral(resourceName: "downloadAudio"), highlightedImage: #imageLiteral(resourceName: "downloadAudio"))
+            self.cellAudioPBWB.setButtonImage(NormalImage: #imageLiteral(resourceName: "audio-nat"), highlightedImage: #imageLiteral(resourceName: "audio-prs"))
+            self.cellAudioPBWB.button.addTarget(self, action: #selector(playAudio(_:)), for: .touchUpInside)
+            self.downloadAudioPBWB.button.addTarget(self, action: #selector(downloadAudio(_:)), for: .touchUpInside)
+            
+        }
+        if lesson.isVideoDownloaded {
+            self.downloadVideoPBWB.setButtonImage(NormalImage: #imageLiteral(resourceName: "video-downloaded"), highlightedImage: #imageLiteral(resourceName: "video-downloaded"))
+            self.cellVideoPBWB.setButtonImage(NormalImage: #imageLiteral(resourceName: "video-downloaded"), highlightedImage: #imageLiteral(resourceName: "video-downloaded"))
+            
+        } else {
+            self.downloadVideoPBWB.setButtonImage(NormalImage: #imageLiteral(resourceName: "downloadVideo"), highlightedImage: #imageLiteral(resourceName: "downloadVideo"))
+            self.cellVideoPBWB.setButtonImage(NormalImage: #imageLiteral(resourceName: "video-nat"), highlightedImage: #imageLiteral(resourceName: "video-prs"))
+            self.cellVideoPBWB.button.addTarget(self, action: #selector(playVideo(_:)), for: .touchUpInside)
+            self.downloadVideoPBWB.button.addTarget(self, action: #selector(downloadVideo(_:)), for: .touchUpInside)
+            
+        }
+        
+        self.downloadVideoPBWB.setProgress(progress: nil, fontColor: .white, ringColor: Colors.appBlue)
+        self.downloadAudioPBWB.setProgress(progress: nil, fontColor: .white, ringColor: Colors.appBlue)
+        self.cellVideoPBWB.setProgress(progress: nil, fontColor: .black, ringColor: .lightGray)
+        self.cellAudioPBWB.setProgress(progress: nil, fontColor: .black, ringColor: .lightGray)
+        
+    }
+    
+    @objc func playAudio(_ sender: UIButton) {
+        delegate?.playAudioPressed(selectedRow: selectedRow)
+    }
+    
+    @objc func playVideo(_ sender: UIButton) {
+        delegate?.playVideoPressed(selectedRow: selectedRow)
+    }
+    
+    @objc func downloadAudio(_ sender: UIButton) {
+        delegate?.downloadAudioPressed(selectedRow: selectedRow)
+    }
+    
+    @objc func downloadVideo(_ sender: UIButton) {
+        delegate?.downloadVideoPressed(selectedRow: selectedRow)
+    }
+    
     func setLesson(_ lesson: JTLesson) {
-        self.setHiddenButtonsForLesson(lesson)
-//        self.setImagesForLesson(lesson)
-        self.setDownloadModeForLesson(lesson)
-        self.setButtonBackground(lesson)
+        self.setProgressViewButtons(lesson)
         self.downloadButtonsContainerView.layoutIfNeeded()
         self.cellView.layoutIfNeeded()
     }
     
     func setEditingIfNeeded(lesson: JTLesson, isCurrentlyEditing: Bool) {
-        self.animateImagesVisibilityIfNeeded(lesson, isCurrentlyEditing: isCurrentlyEditing)
+        self.animateImagesVisibility(isCurrentlyEditing: isCurrentlyEditing)
         UIView.animate(withDuration: 0.6) {
-            let isDownloading = lesson.isDownloadingAudio || lesson.isDownloadingVideo
-
-            if isCurrentlyEditing && !isDownloading {
+            if isCurrentlyEditing {
                 self.cellViewTrailingConstraint.constant = UIScreen.main.bounds.size.width / 2 - 20
             } else {
                 self.cellViewTrailingConstraint.constant = 18
@@ -81,111 +114,29 @@ class LessonDownloadCellController: UITableViewCell {
         }
     }
     
-    private func animateImagesVisibilityIfNeeded(_ lesson: JTLesson, isCurrentlyEditing: Bool) {
-        if (self.audioImage.isHidden) == !isCurrentlyEditing { // Animate only when a change occurred
-            UIView.animate(withDuration: 0.2, delay: isCurrentlyEditing ? 0 : 0.1, animations: {
-                if lesson.isAudioDownloaded  { // Animate only when suppose to be visible
-                    self.redAudioVImage.isHidden = isCurrentlyEditing ? true : false
-                }
-                if lesson.isVideoDownloaded {
-                    self.redVideoVImage.isHidden = isCurrentlyEditing ? true : false
-                }
-                self.audioImage.isHidden = isCurrentlyEditing ? true : false
-                self.videoImage.isHidden = isCurrentlyEditing ? true : false
-                self.playAudioButton.isHidden = isCurrentlyEditing ? true : false
-                self.playVideoButton.isHidden = isCurrentlyEditing ? true : false
-            })
-        }
+    private func animateImagesVisibility(isCurrentlyEditing: Bool) {
+        self.cellVideoPBWB.isHidden = isCurrentlyEditing ? true : false
+        self.cellAudioPBWB.isHidden = isCurrentlyEditing ? true : false
     }
     
-    private func setHiddenButtonsForLesson(_ lesson: JTLesson) {
-        self.playAudioButton.isHidden = (lesson.audioURL == nil)
-        self.playVideoButton.isHidden = (lesson.videoURL == nil)
-        self.audioImage.isHidden = (lesson.audioURL == nil)
-        self.videoImage.isHidden = (lesson.videoURL == nil)
-        
-        self.downloadAudioButton.isHidden = (lesson.audioURL == nil)
-        self.downloadVideoButton.isHidden = (lesson.videoURL == nil)
-        self.downloadAudioButtonImageView.isHidden = (lesson.audioURL == nil)
-        self.downloadVideoButtonImageView.isHidden = (lesson.videoURL == nil)
-    }
-    
-    private func setDownloadModeForLesson(_ lesson: JTLesson) {
-        let progress = lesson.audioDownloadProgress ?? lesson.videoDownloadProgress ?? 0.0
-        let isDownloading = lesson.isDownloadingAudio || lesson.isDownloadingVideo
-        self.downloadProgressView.value = CGFloat(progress*100)
-       
-        self.downloadProgressView.isHidden = !isDownloading
-        self.downloadAudioButton.isEnabled = !isDownloading
-        self.downloadVideoButton.isEnabled = !isDownloading
-        
-        self.downloadAudioButtonImageView.alpha = lesson.isDownloadingAudio ? 0.3 : 1.0
-        self.downloadVideoButtonImageView.alpha = lesson.isDownloadingVideo ? 0.3 : 1.0
-    }
-    
-    func setButtonBackground(_ lesson: JTLesson){
-        if lesson.isAudioDownloaded {
-            self.playAudioButton.setImage(#imageLiteral(resourceName: "audio-downloaded"), for: .normal)
-            self.playAudioButton.setImage(#imageLiteral(resourceName: "audio-downloaded"), for: .highlighted)
-            self.downloadAudioImage.image = #imageLiteral(resourceName: "RedAudio")
-            self.downloadAudioButtonImageView.image = #imageLiteral(resourceName: "RedV")
-             
+    func setDownloadModeForLesson(_ lesson: JTLesson, isCurrentlyEditing: Bool) {
+        let downloadingProgress = lesson.audioDownloadProgress ?? lesson.videoDownloadProgress ?? 0.0
+        let progress = CGFloat(downloadingProgress * 100)
+        if isCurrentlyEditing {
+            if lesson.isDownloadingAudio {
+                self.downloadAudioPBWB.setProgress(progress: progress, fontColor: .white, ringColor: Colors.appBlue)
+                self.downloadVideoPBWB.button.isEnabled = false
+            } else if lesson.isDownloadingVideo {
+                self.downloadVideoPBWB.setProgress(progress: progress, fontColor: .white, ringColor: Colors.appBlue)
+                self.downloadAudioPBWB.button.isEnabled = false
+            }
         } else {
-            self.playAudioButton.setImage(#imageLiteral(resourceName: "audio-nat"), for: .normal)
-            self.playAudioButton.setImage(#imageLiteral(resourceName: "audio-prs"), for: .highlighted)
-            self.downloadAudioImage.image = #imageLiteral(resourceName: "TransparentAudio")
-            self.downloadAudioButtonImageView.image = #imageLiteral(resourceName: "DownloadInCircle")
+            if lesson.isDownloadingAudio {
+                self.cellAudioPBWB.setProgress(progress: progress, fontColor: .black, ringColor: .lightGray)
+            } else if lesson.isDownloadingVideo {
+                self.cellVideoPBWB.setProgress(progress: progress, fontColor: .black, ringColor: .lightGray)
+            }
         }
-//        self.downloadAudioButtonImageView.isHidden = lesson.isAudioDownloaded
-        
-        if lesson.isVideoDownloaded {
-            self.playVideoButton.setImage(#imageLiteral(resourceName: "video-downloaded"), for: .normal)
-            self.playVideoButton.setImage(#imageLiteral(resourceName: "video-downloaded"), for: .highlighted)
-            
-            self.downloadVideoImage.image = #imageLiteral(resourceName: "RedVideo")
-            self.downloadVideoButtonImageView.image = #imageLiteral(resourceName: "RedV")
-    
-        } else {
-            self.playVideoButton.setImage(#imageLiteral(resourceName: "video-nat"), for: .normal)
-            self.playVideoButton.setImage(#imageLiteral(resourceName: "video-prs"), for: .highlighted)
-            self.downloadVideoImage.image = #imageLiteral(resourceName: "TransparentVideo")
-            self.downloadVideoButtonImageView.image = #imageLiteral(resourceName: "DownloadInCircle")
-            
-        }
-//        self.downloadVideoButtonImageView.isHidden = lesson.isVideoDownloaded
-
-    }
-    
-    private func setImagesForLesson(_ lesson: JTLesson) {
-        if lesson.isAudioDownloaded {
-            self.audioImage?.image = UIImage(named: "RedAudio")
-            self.redAudioVImage.isHidden = false
-        } else {
-            self.audioImage?.image = UIImage(named: "Audio")
-            self.redAudioVImage.isHidden = true
-        }
-        
-//        self.downloadAudioButtonImageView.isHidden = lesson.isAudioDownloaded
-        
-        if lesson.isVideoDownloaded {
-            self.videoImage?.image = UIImage(named: "RedVideo")
-            self.redVideoVImage.isHidden = false
-        } else {
-            self.videoImage?.image = UIImage(named: "Video")
-            self.redVideoVImage.isHidden = true
-        }
-        
-//        self.downloadVideoButtonImageView.isHidden = lesson.isVideoDownloaded
-    }
-    
-    private func setProgressRing() {
-        let startColor: UIColor = UIColor(red: 0.3, green: 0.31, blue: 0.82, alpha: 1)
-        let endColor: UIColor = UIColor(red: 1, green: 0.37, blue: 0.31, alpha: 1)
-        
-        self.downloadProgressView.gradientOptions = UICircularRingGradientOptions(startPosition: .topRight,
-        endPosition: .bottomRight,
-        colors: [startColor, endColor],
-        colorLocations: [0.1, 1])
     }
     
     //=====================================================
@@ -198,79 +149,6 @@ class LessonDownloadCellController: UITableViewCell {
 
     }
     
-    @IBAction func playAudioButtonPressed(_ sender: UIButton) {
-        UIView.animate(withDuration: 0.3) {
-            self.audioImage.alpha = 1.0
-        }
-        delegate?.playAudioPressed(selectedRow: selectedRow)
-    }
-    
-    @IBAction func playVideoButtonPressed(_ sender: UIButton) {
-        UIView.animate(withDuration: 0.3) {
-            self.videoImage.alpha = 1.0
-        }
-        delegate?.playVideoPressed(selectedRow: selectedRow)
-    }
-    
-    @IBAction func downloadAudioButtonPressed(_ sender: UIButton) {
-        UIView.animate(withDuration: 0.3) {
-            self.downloadAudioButtonImageView.alpha = 1.0
-        }
-        delegate?.downloadAudioPressed(selectedRow: selectedRow)
-    }
-    
-    @IBAction func downloadVideoButtonPressed(_ sender: UIButton) {
-        UIView.animate(withDuration: 0.3) {
-            self.downloadVideoButtonImageView.alpha = 1.0
-        }
-        delegate?.downloadVideoPressed(selectedRow: selectedRow)
-    }
-    
-    @IBAction func playAudioButtonTouchedDown(_ sender: UIButton) {
-        UIView.animate(withDuration: 0.3) {
-            self.downloadAudioButtonImageView.alpha = 1.0
-        }
-        self.audioImage.alpha = 0.3
-    }
-    
-    @IBAction func playVideoButtonTouchedDown(_ sender: UIButton) {
-        UIView.animate(withDuration: 0.3) {
-            self.downloadVideoButtonImageView.alpha = 1.0
-        }
-        self.videoImage.alpha = 0.3
-    }
-    
-    @IBAction func downloadAudioButtonTouchedDown(_ sender: UIButton) {
-//        self.downloadAudioButtonImageView.alpha = 0.3
-    }
-    
-    @IBAction func downloadVideoButtonTouchedDown(_ sender: UIButton) {
-//        self.downloadVideoButtonImageView.alpha = 0.3
-    }
-    
-    @IBAction func playAudioButtonTouchedUp(_ sender: UIButton) {
-        UIView.animate(withDuration: 0.3) {
-            self.audioImage.alpha = 1.0
-        }
-    }
-    
-    @IBAction func playVideoButtonTouchedUp(_ sender: UIButton) {
-        UIView.animate(withDuration: 0.3) {
-            self.videoImage.alpha = 1.0
-        }
-    }
-    
-    @IBAction func downloadAudioButtonTouchedUp(_ sender: UIButton) {
-        UIView.animate(withDuration: 0.3) {
-            self.downloadAudioButtonImageView.alpha = 1.0
-        }
-    }
-    
-    @IBAction func downloadVideoButtonTouchedUp(_ sender: UIButton) {
-        UIView.animate(withDuration: 0.3) {
-            self.downloadVideoButtonImageView.alpha = 1.0
-        }
-    }
 }
 
 protocol MishnaLessonCellDelegate: class {

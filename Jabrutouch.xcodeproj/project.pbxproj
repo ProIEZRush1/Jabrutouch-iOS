@@ -200,8 +200,8 @@
 		836A884B23951CA700F68539 /* JBView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836A884A23951CA700F68539 /* JBView.swift */; };
 		836A884D23968C8E00F68539 /* ForgotPassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 836A884C23968C8D00F68539 /* ForgotPassword.storyboard */; };
 		836A88502396A4E800F68539 /* ForgotPasswordResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836A884F2396A4E800F68539 /* ForgotPasswordResponse.swift */; };
-		839991D723F4046F00B40A28 /* GemaraTempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839991D623F4046F00B40A28 /* GemaraTempViewController.swift */; };
-		839991D923F404AA00B40A28 /* LessonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839991D823F404AA00B40A28 /* LessonCell.swift */; };
+		8395978B23F97745007B96EB /* JBProgressBarWithButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8395978A23F97745007B96EB /* JBProgressBarWithButton.swift */; };
+		8395978D23F98CEF007B96EB /* ProgressBarWithButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8395978C23F98CEF007B96EB /* ProgressBarWithButton.xib */; };
 		839CB4CB2381C91B0086554B /* SelectInterestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839CB4CA2381C91B0086554B /* SelectInterestViewController.swift */; };
 		839E1E7C238588C100578C60 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839E1E7B238588C100578C60 /* UserRepository.swift */; };
 		83A7A0C323E205B40041BE28 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A7A0C223E205B30041BE28 /* iCarousel.m */; };
@@ -458,8 +458,8 @@
 		836A884A23951CA700F68539 /* JBView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JBView.swift; sourceTree = "<group>"; };
 		836A884C23968C8D00F68539 /* ForgotPassword.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ForgotPassword.storyboard; sourceTree = "<group>"; };
 		836A884F2396A4E800F68539 /* ForgotPasswordResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordResponse.swift; sourceTree = "<group>"; };
-		839991D623F4046F00B40A28 /* GemaraTempViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GemaraTempViewController.swift; sourceTree = "<group>"; };
-		839991D823F404AA00B40A28 /* LessonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonCell.swift; sourceTree = "<group>"; };
+		8395978A23F97745007B96EB /* JBProgressBarWithButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JBProgressBarWithButton.swift; sourceTree = "<group>"; };
+		8395978C23F98CEF007B96EB /* ProgressBarWithButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressBarWithButton.xib; sourceTree = "<group>"; };
 		839991DA23F5597900B40A28 /* DataModel_v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel_v2.xcdatamodel; sourceTree = "<group>"; };
 		839CB4CA2381C91B0086554B /* SelectInterestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectInterestViewController.swift; sourceTree = "<group>"; };
 		839E1E7B238588C100578C60 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
@@ -701,7 +701,6 @@
 			children = (
 				FBDEF16C22E89E3B00A300DA /* HeaderCellController.swift */,
 				FBD9375022F328CC00BC94DC /* LessonDownloadCellController.swift */,
-				839991D823F404AA00B40A28 /* LessonCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -747,6 +746,7 @@
 				4628E0E323215E1200D963E6 /* DonatedAlert.xib */,
 				8359192F23A2636000F0B4D8 /* ChatControls.xib */,
 				83A7A0C623E2DB920041BE28 /* DedicationCardView.xib */,
+				8395978C23F98CEF007B96EB /* ProgressBarWithButton.xib */,
 			);
 			path = "Single Views";
 			sourceTree = "<group>";
@@ -994,6 +994,7 @@
 				21407C8822F72632002F9690 /* TextFieldWithDeleteDelegate.swift */,
 				21999F35231823FF003DB1B4 /* CustomTrackHeightSlider.swift */,
 				836A884A23951CA700F68539 /* JBView.swift */,
+				8395978A23F97745007B96EB /* JBProgressBarWithButton.swift */,
 			);
 			path = "Custom Controlles";
 			sourceTree = "<group>";
@@ -1315,7 +1316,6 @@
 				2126D6E2230404BD00CB501D /* GemaraNavigationController.swift */,
 				21678D7722E08594007BC74C /* GemaraViewController.swift */,
 				FBB18FB322F866C8006886FD /* GemaraLessonsViewController.swift */,
-				839991D623F4046F00B40A28 /* GemaraTempViewController.swift */,
 			);
 			path = Gemara;
 			sourceTree = "<group>";
@@ -1459,6 +1459,7 @@
 				21CC093E22F04C4000E8FE27 /* daf_yomi.json in Resources */,
 				21678D7122DF2CED007BC74C /* SF-Pro-Text-Ultralight.otf in Resources */,
 				4628E0E423215E1200D963E6 /* DonatedAlert.xib in Resources */,
+				8395978D23F98CEF007B96EB /* ProgressBarWithButton.xib in Resources */,
 				21678D7222DF2CED007BC74C /* SF-Pro-Text-UltralightItalic.otf in Resources */,
 				83A936AB23D9D53A007BA207 /* Donations.storyboard in Resources */,
 				2133C21522DCA5D200F910B9 /* Localizable.strings in Resources */,
@@ -1642,7 +1643,6 @@
 				212ECEB62317CD6E005AEB36 /* AudioPlayer.swift in Sources */,
 				8342BA76237301D800C3239C /* ModalsContainerViewController.swift in Sources */,
 				83A7A0CD23E999300041BE28 /* DonationWalkThroughViewController.swift in Sources */,
-				839991D723F4046F00B40A28 /* GemaraTempViewController.swift in Sources */,
 				836A883A238DB1CF00F68539 /* JTVideoPart.swift in Sources */,
 				2131969822F38B1200B0AF5F /* ServerGenericResponse.swift in Sources */,
 				DD51CDF023F186AE0063167E /* UserRecorderCell.swift in Sources */,
@@ -1665,6 +1665,7 @@
 				83CCB12123783F6100C86450 /* JTMasechetDownloadedGemaraLessons.swift in Sources */,
 				833E6229239FB88C00EC93C7 /* GetMessagesResponse.swift in Sources */,
 				219B06FA230408F400A7EBBA /* ServerFieldError.swift in Sources */,
+				8395978B23F97745007B96EB /* JBProgressBarWithButton.swift in Sources */,
 				2126D6DA2303E81700CB501D /* GetMasechtotResponse.swift in Sources */,
 				4628E0E923245BF600D963E6 /* AboutViewController.swift in Sources */,
 				83A7A0C323E205B40041BE28 /* iCarousel.m in Sources */,
@@ -1696,7 +1697,6 @@
 				2133C1F822DB5B8200F910B9 /* AppDelegate.swift in Sources */,
 				FB51711F22F1AE0B003BCAFC /* JTLessonDownload.swift in Sources */,
 				DD51CDF423F186D70063167E /* AudioWrapper.m in Sources */,
-				839991D923F404AA00B40A28 /* LessonCell.swift in Sources */,
 				8359194223A7984A00F0B4D8 /* DataModel.xcdatamodeld in Sources */,
 				21678D7822E08594007BC74C /* GemaraViewController.swift in Sources */,
 				2126D6DC2303EA8600CB501D /* ContentRepository.swift in Sources */,
