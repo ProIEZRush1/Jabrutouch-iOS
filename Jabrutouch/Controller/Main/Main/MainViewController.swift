@@ -768,7 +768,9 @@ extension MainViewController: MessagesRepositoryDelegate{
           self.setCornerRadius()
     }
     
-func didSendMessage() {}
+func didSendMessage() {
+//    self.setCornerRadius()
+    }
     
     
   

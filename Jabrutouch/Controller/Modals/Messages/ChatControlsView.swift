@@ -11,9 +11,9 @@ import AVFoundation
 import iRecordView
 
 protocol ChatControlsViewDelegate: class {
-    func sendMessageButtonPressed()
+    func sendTextMessageButtonPressed()
     func textViewChanged()
-    func willSendMessage(_ fileName: String)
+    func sendVoiceMessageButtonTouchUp(_ fileName: String)
 }
 
 class ChatControlsView: UIView, RecordViewDelegate {
@@ -78,21 +78,25 @@ class ChatControlsView: UIView, RecordViewDelegate {
         // Make the view stretch with containing view
         self.view.autoresizingMask = [UIView.AutoresizingMask.flexibleWidth, UIView.AutoresizingMask.flexibleHeight]
         
-        inputTextView.addSubview(recordView)
+        view.addSubview(recordView)
         
-        //        recordMessageButton.widthAnchor.constraint(equalToConstant: 35).isActive = true
-        //        recordMessageButton.heightAnchor.constraint(equalToConstant: 35).isActive = true
-        //
-        //        recordMessageButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8).isActive = true
-        //        recordMessageButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -16).isActive = true
+//                recordMessageButton.widthAnchor.constraint(equalToConstant: 35).isActive = true
+//                recordMessageButton.heightAnchor.constraint(equalToConstant: 35).isActive = true
+//        
+//                recordMessageButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8).isActive = true
+//                recordMessageButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -16).isActive = true
         
         
         recordView.trailingAnchor.constraint(equalTo: recordMessageButton.leadingAnchor, constant: -40).isActive = true
         recordView.leadingAnchor.constraint(equalTo: inputTextView.leadingAnchor, constant: 5).isActive = true
-        recordView.centerYAnchor.constraint(equalTo: plaseHolderLabel.centerYAnchor).isActive = true
+        recordView.centerYAnchor.constraint(equalTo:inputTextView.centerYAnchor).isActive = true
         
+        recordView.offset = 20
         recordView.durationTimerColor = #colorLiteral(red: 0.1764705882, green: 0.168627451, blue: 0.662745098, alpha: 1)
         recordView.smallMicImage = #imageLiteral(resourceName: "mic2")
+        recordView.slideToCancelTextColor = #colorLiteral(red: 0.6039215686, green: 0.6039215686, blue: 0.6039215686, alpha: 1)
+        recordView.slideToCancelArrowImage = #imageLiteral(resourceName: "arrow")
+        recordView.clipsToBounds = false
         
         recordMessageButton.recordView = recordView
         
@@ -154,7 +158,7 @@ class ChatControlsView: UIView, RecordViewDelegate {
     //========================================
     
     @IBAction func sendMessageButtonPressed(_ sender: Any) {
-        self.delegate?.sendMessageButtonPressed()
+        self.delegate?.sendTextMessageButtonPressed()
         self.inputTextView.text = ""
         self.plaseHolderLabel.isHidden = false
         self.sendMessageButton.isHidden = true
@@ -187,7 +191,7 @@ class ChatControlsView: UIView, RecordViewDelegate {
             AudioMessagesManager.shared.stopRecoredr(self.fileName)
             let file = "\(self.fileName).mp3"
             let url = FilesManagementProvider.shared.loadFile(link: file, directory: FileDirectory.recorders)
-            self.delegate?.willSendMessage(file)
+            self.delegate?.sendVoiceMessageButtonTouchUp(file)
             self.saveRecordInS3(url: url, fileName: "users-record/\(file)" , completion:{ (result: Result<Void, Error>) in
                 switch result{
                 case .success(let data):

@@ -133,7 +133,7 @@ class CoreDataManager {
     }
     
     func createChatObject(message: JTMessage)->JTChatMessage{
-
+        
         return JTChatMessage(
             chatId:  message.chatId,
             createdDate: message.sentDate,
@@ -144,8 +144,8 @@ class CoreDataManager {
             lastMessage: message.message,
             lastMessageTime: message.sentDate,
             image: message.image,
-            read: message.read,
-            unreadMessages: 1
+            read: message.isMine ? true : false,
+            unreadMessages: message.isMine ? 0 : 1
             
         )
     }

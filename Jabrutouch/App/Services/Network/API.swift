@@ -173,8 +173,8 @@ class API {
         }
     }
     
-    class func createMessage(message: String, sentAt: Date, title: String, messageType: Int, toUser: Int, chatId: Int, token: String, completionHandler:@escaping (_ response: APIResult<GetCreateMessageResponse>)->Void) {
-        guard let request = HttpRequestsFactory.createMessageRequest(message: message, sentAt: sentAt, title: title, messageType: messageType, toUser: toUser, chatId: chatId, token: token) else {
+    class func createMessage(message: String, sentAt: Date, title: String, messageType: Int, toUser: Int, chatId: Int?, lessonId:Int?, gemara: Bool?, linkTo: Int?, token: String, completionHandler:@escaping (_ response: APIResult<GetCreateMessageResponse>)->Void) {
+        guard let request = HttpRequestsFactory.createMessageRequest(message: message, sentAt: sentAt, title: title, messageType: messageType, toUser: toUser, chatId: chatId, lessonId: lessonId, gemara: gemara, linkTo: linkTo, token: token) else {
                completionHandler(APIResult.failure(.unableToCreateRequest))
                return
            }

@@ -87,16 +87,17 @@ class MessagesRepository: NSObject, MessagingDelegate {
         CoreDataManager.shared.seveChat(chat: chat)
     }
     
-    func sendMessage(message: String, sentAt:Date, title: String, messageType: Int, toUser: Int, chatId: Int, completion: @escaping (_ result: Result<[GetCreateMessageResponse],JTError>)->Void) {
+    func sendMessage(message: String, sentAt:Date, title: String, messageType: Int, toUser: Int, chatId: Int?, lessonId:Int?, gemara: Bool?, linkTo: Int?, completion: @escaping (_ result: Result<GetCreateMessageResponse,JTError>)->Void) {
         guard let authToken = UserDefaultsProvider.shared.currentUser?.token else {
             completion(.failure(.authTokenMissing))
             return
         }
         
-        API.createMessage(message: message, sentAt: sentAt, title: title, messageType: messageType, toUser: toUser, chatId: chatId, token: authToken) { (result: APIResult<GetCreateMessageResponse>) in
+        API.createMessage(message: message, sentAt: sentAt, title: title, messageType: messageType, toUser: toUser, chatId: chatId, lessonId: lessonId, gemara: gemara, linkTo: linkTo,  token: authToken) { (result: APIResult<GetCreateMessageResponse>) in
             switch result {
             case .success(let response):
-                print("response: ", response)
+//                print("response: ", response)
+                completion(.success(response))
             case .failure(let error):
                 switch error {
                 case .invalidToken:
