@@ -53,4 +53,36 @@ class Storyboards {
             return self.donationStoryboard().instantiateViewController(withIdentifier: "DonateNavigationController") as! DonateNavigationController
         }
     }
+    
+    class Gemara {
+        private class func gemaraStoryboard() -> UIStoryboard { return UIStoryboard(name: "Gemara", bundle: Bundle.main) }
+        
+        class var  gemaraViewController: GemaraViewController {
+            return self.gemaraStoryboard().instantiateViewController(withIdentifier: "GemaraViewController") as! GemaraViewController
+        }
+    }
+    
+    class Mishna {
+        private class func mishnaStoryboard() -> UIStoryboard { return UIStoryboard(name: "Mishna", bundle: Bundle.main) }
+        
+        class var  mishnaViewController: MishnaViewController {
+            return self.mishnaStoryboard().instantiateViewController(withIdentifier: "MishnaViewController") as! MishnaViewController
+        }
+    }
+    
+    class Download {
+        private class func downloadStoryboard() -> UIStoryboard { return UIStoryboard(name: "Download", bundle: Bundle.main) }
+        
+        class var  downloadsNavigationController: DownloadsNavigationController {
+            return self.downloadStoryboard().instantiateViewController(withIdentifier: "DownloadsNavigationController") as! DownloadsNavigationController
+        }
+    }
+    
+    class Messages {
+        private class func messagesStoryboard() -> UIStoryboard { return UIStoryboard(name: "Messages", bundle: Bundle.main) }
+        
+        class var  messagesNavigationController: MessagesNavigationController {
+            return self.messagesStoryboard().instantiateViewController(withIdentifier: "MessagesNavigationController") as! MessagesNavigationController
+        }
+    }
 }

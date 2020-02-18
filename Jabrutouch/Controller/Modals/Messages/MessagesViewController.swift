@@ -37,7 +37,7 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
         self.tableView.dataSource = self
         self.messagesArray.append("test")
 
-        self.chatsArray = MessagesRepository.shared.allChats
+        self.chatsArray = MessagesRepository.shared.getAllChatsFromDB()
         
     }
     
@@ -118,10 +118,19 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        CoreDataManager.shared.setChatReadById(chatId: chatsArray[indexPath.row].chatId, status: true)
-        performSegue(withIdentifier: "openChat", sender: indexPath)
     
+        performSegue(withIdentifier: "openChat", sender: indexPath)
     }
     
+    func presentChat(_ index: Int){
+        self.chatsArray = MessagesRepository.shared.getAllChatsFromDB()
+        for (i, chat) in self.chatsArray.enumerated(){
+            if chat.chatId == index{
+            performSegue(withIdentifier: "openChat", sender: IndexPath(row: i, section: 0))
+            return
+            }
+        }
+    }
     
     //========================================
     // MARK: - @IBActions

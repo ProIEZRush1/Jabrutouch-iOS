@@ -381,73 +381,31 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gds-RT-u9W">
                                                     <rect key="frame" x="18.5" y="0.0" width="377" height="75"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TransparentAudio" translatesAutoresizingMaskIntoConstraints="NO" id="U6e-Lu-Tay">
-                                                            <rect key="frame" x="258" y="25.499999999999996" width="21" height="24.500000000000004"/>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PuM-Hc-PVX" customClass="JBProgressBarWithButton" customModule="Jabrutouch" customModuleProvider="target">
+                                                            <rect key="frame" x="305" y="7.5" width="60" height="60"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="21" id="4Pa-Pd-jDY"/>
+                                                                <constraint firstAttribute="width" constant="60" id="Ukl-MO-NGu"/>
+                                                                <constraint firstAttribute="height" constant="60" id="lnp-BW-nZZ"/>
                                                             </constraints>
-                                                        </imageView>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DownloadInCircle" translatesAutoresizingMaskIntoConstraints="NO" id="ng7-wN-7ut">
-                                                            <rect key="frame" x="270" y="40.5" width="24" height="24"/>
+                                                        </view>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0wR-B3-y14" customClass="JBProgressBarWithButton" customModule="Jabrutouch" customModuleProvider="target">
+                                                            <rect key="frame" x="245" y="7.5" width="60" height="60"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="24" id="TZY-XF-XaX"/>
+                                                                <constraint firstAttribute="height" constant="60" id="TFF-mX-wfF"/>
+                                                                <constraint firstAttribute="width" constant="60" id="hl4-Tj-H3G"/>
                                                             </constraints>
-                                                        </imageView>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TransparentVideo" translatesAutoresizingMaskIntoConstraints="NO" id="xC0-m1-ums">
-                                                            <rect key="frame" x="322" y="28" width="30" height="19.5"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="30" id="Q4K-gv-Xr9"/>
-                                                            </constraints>
-                                                        </imageView>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DownloadInCircle" translatesAutoresizingMaskIntoConstraints="NO" id="iDk-8f-50Q">
-                                                            <rect key="frame" x="334" y="40.5" width="24" height="24"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="24" id="Dgw-g0-JGu"/>
-                                                            </constraints>
-                                                        </imageView>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ufI-f0-6Z8">
-                                                            <rect key="frame" x="243.5" y="12.5" width="50" height="50"/>
-                                                            <accessibility key="accessibilityConfiguration" identifier="MLVC Underneath Audio Btn"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="50" id="KT5-n4-hEM"/>
-                                                                <constraint firstAttribute="height" constant="50" id="eVL-OW-WZD"/>
-                                                            </constraints>
-                                                            <connections>
-                                                                <action selector="downloadAudioButtonPressed:" destination="zpL-YV-WaS" eventType="touchUpInside" id="dHe-o2-CAF"/>
-                                                                <action selector="downloadAudioButtonTouchedDown:" destination="zpL-YV-WaS" eventType="touchDown" id="MwT-0F-Zx5"/>
-                                                                <action selector="downloadAudioButtonTouchedUp:" destination="zpL-YV-WaS" eventType="touchUpOutside" id="E3E-RE-nC1"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3QU-cv-qyG">
-                                                            <rect key="frame" x="312" y="12.5" width="50" height="50"/>
-                                                            <accessibility key="accessibilityConfiguration" identifier="MLVC Underneath Video Btn"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="50" id="bGc-qW-EFh"/>
-                                                                <constraint firstAttribute="width" constant="50" id="ozj-f6-WxY"/>
-                                                            </constraints>
-                                                            <connections>
-                                                                <action selector="downloadVideoButtonPressed:" destination="zpL-YV-WaS" eventType="touchUpInside" id="Plb-wA-tzX"/>
-                                                                <action selector="downloadVideoButtonTouchedDown:" destination="zpL-YV-WaS" eventType="touchDown" id="o2V-Nb-J9b"/>
-                                                                <action selector="downloadVideoButtonTouchedUp:" destination="zpL-YV-WaS" eventType="touchUpOutside" id="9dx-B1-aBD"/>
-                                                            </connections>
-                                                        </button>
+                                                        </view>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.31764705882352939" green="0.31372549019607843" blue="0.54117647058823526" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <accessibility key="accessibilityConfiguration" identifier="MLVC Underneath Cell"/>
                                                     <constraints>
-                                                        <constraint firstItem="ufI-f0-6Z8" firstAttribute="centerY" secondItem="U6e-Lu-Tay" secondAttribute="centerY" id="15N-KA-dA8"/>
-                                                        <constraint firstItem="xC0-m1-ums" firstAttribute="leading" secondItem="U6e-Lu-Tay" secondAttribute="trailing" constant="43" id="31D-7T-uLS"/>
                                                         <constraint firstAttribute="height" constant="75" id="8fV-mv-ZAz"/>
-                                                        <constraint firstItem="U6e-Lu-Tay" firstAttribute="centerY" secondItem="Gds-RT-u9W" secondAttribute="centerY" id="A0M-Ab-dU0"/>
-                                                        <constraint firstItem="ng7-wN-7ut" firstAttribute="centerY" secondItem="Gds-RT-u9W" secondAttribute="centerY" multiplier="1.4:1" id="D0k-3D-L72"/>
-                                                        <constraint firstItem="3QU-cv-qyG" firstAttribute="centerX" secondItem="xC0-m1-ums" secondAttribute="centerX" id="DhS-31-2mC"/>
-                                                        <constraint firstItem="ufI-f0-6Z8" firstAttribute="centerX" secondItem="U6e-Lu-Tay" secondAttribute="centerX" id="F4j-iw-lv2"/>
-                                                        <constraint firstItem="ng7-wN-7ut" firstAttribute="leading" secondItem="U6e-Lu-Tay" secondAttribute="trailing" constant="-9" id="JeM-lo-1gb"/>
-                                                        <constraint firstItem="3QU-cv-qyG" firstAttribute="centerY" secondItem="xC0-m1-ums" secondAttribute="centerY" id="TDD-OX-tnG"/>
-                                                        <constraint firstItem="iDk-8f-50Q" firstAttribute="centerY" secondItem="Gds-RT-u9W" secondAttribute="centerY" multiplier="1.4:1" id="U0w-3B-H6O"/>
-                                                        <constraint firstAttribute="trailing" secondItem="xC0-m1-ums" secondAttribute="trailing" constant="25" id="gER-at-8Jh"/>
-                                                        <constraint firstItem="iDk-8f-50Q" firstAttribute="leading" secondItem="xC0-m1-ums" secondAttribute="trailing" constant="-18" id="jWW-pY-JfV"/>
-                                                        <constraint firstItem="xC0-m1-ums" firstAttribute="centerY" secondItem="Gds-RT-u9W" secondAttribute="centerY" id="kRX-12-aL8"/>
+                                                        <constraint firstAttribute="trailing" secondItem="PuM-Hc-PVX" secondAttribute="trailing" constant="12" id="IfS-vY-sqq"/>
+                                                        <constraint firstItem="0wR-B3-y14" firstAttribute="centerY" secondItem="Gds-RT-u9W" secondAttribute="centerY" id="MWZ-1f-MhD"/>
+                                                        <constraint firstItem="PuM-Hc-PVX" firstAttribute="leading" secondItem="0wR-B3-y14" secondAttribute="trailing" id="PVt-Mg-vsn"/>
+                                                        <constraint firstItem="PuM-Hc-PVX" firstAttribute="centerY" secondItem="Gds-RT-u9W" secondAttribute="centerY" id="Wo0-aq-nsO"/>
                                                     </constraints>
                                                 </view>
                                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OLh-nb-C0S" userLabel="Cell Content">
@@ -472,79 +430,21 @@
                                                             <color key="textColor" red="0.27900000000000003" green="0.27900000000000003" blue="0.27900000000000003" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4N3-XG-gV8">
-                                                            <rect key="frame" x="269" y="19.5" width="21" height="36.5"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="21" id="RX7-dm-2eE"/>
-                                                            </constraints>
-                                                        </imageView>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hbR-Kg-6gP">
-                                                            <rect key="frame" x="290" y="43.5" width="8.5" height="11"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="8.6999999999999993" id="GUb-LE-Opz"/>
-                                                            </constraints>
-                                                        </imageView>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UKg-qS-8kR">
-                                                            <rect key="frame" x="323" y="23.5" width="30" height="28.5"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="30" id="rzU-1A-TRz"/>
-                                                            </constraints>
-                                                        </imageView>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5qk-2s-D53">
-                                                            <rect key="frame" x="353" y="43.5" width="8.5" height="11"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="8.6999999999999993" id="hJN-oQ-sdo"/>
-                                                            </constraints>
-                                                        </imageView>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tez-4Z-to1" userLabel="Audio Button">
-                                                            <rect key="frame" x="264.5" y="20.5" width="30" height="34"/>
-                                                            <accessibility key="accessibilityConfiguration" identifier="MLVC Audio Btn"/>
-                                                            <connections>
-                                                                <action selector="playAudioButtonPressed:" destination="zpL-YV-WaS" eventType="touchUpInside" id="Mlb-JC-lxb"/>
-                                                                <action selector="playAudioButtonTouchedDown:" destination="zpL-YV-WaS" eventType="touchDown" id="xoP-6W-5Vm"/>
-                                                                <action selector="playAudioButtonTouchedUp:" destination="zpL-YV-WaS" eventType="touchUpOutside" id="9Tl-SG-ufZ"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VB4-BN-dkY" userLabel="Video Button">
-                                                            <rect key="frame" x="323" y="20.5" width="30" height="34"/>
-                                                            <accessibility key="accessibilityConfiguration" identifier="MLVC Video Btn"/>
-                                                            <connections>
-                                                                <action selector="playVideoButtonPressed:" destination="zpL-YV-WaS" eventType="touchUpInside" id="inb-HV-cko"/>
-                                                                <action selector="playVideoButtonTouchedDown:" destination="zpL-YV-WaS" eventType="touchDown" id="Toy-eJ-HDV"/>
-                                                                <action selector="playVideoButtonTouchedUp:" destination="zpL-YV-WaS" eventType="touchUpOutside" id="UiX-i6-zmP"/>
-                                                            </connections>
-                                                        </button>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y0a-Fb-JWh" customClass="UICircularProgressRing" customModule="UICircularProgressRing">
-                                                            <rect key="frame" x="162" y="7.5" width="60" height="60"/>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FbV-lN-egA" customClass="JBProgressBarWithButton" customModule="Jabrutouch" customModuleProvider="target">
+                                                            <rect key="frame" x="306" y="7.5" width="60" height="60"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="60" id="7U5-cq-L8i"/>
-                                                                <constraint firstAttribute="width" constant="60" id="Ycr-ig-JGK"/>
+                                                                <constraint firstAttribute="width" constant="60" id="TIs-tm-fhC"/>
+                                                                <constraint firstAttribute="height" constant="60" id="eEK-KB-nld"/>
                                                             </constraints>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="shouldShowValueText" value="YES"/>
-                                                                <userDefinedRuntimeAttribute type="color" keyPath="innerRingColor">
-                                                                    <color key="value" red="1" green="0.37254901959999998" blue="0.31372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="outerRingWidth">
-                                                                    <real key="value" value="1"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="minValue">
-                                                                    <real key="value" value="0.0"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="maxValue">
-                                                                    <real key="value" value="100"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="value">
-                                                                    <real key="value" value="0.0"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="startAngle">
-                                                                    <real key="value" value="270"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="color" keyPath="outerRingColor">
-                                                                    <color key="value" red="0.16862745100000001" green="0.1764705882" blue="0.66274509800000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
+                                                        </view>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0U0-Sc-XWy" customClass="JBProgressBarWithButton" customModule="Jabrutouch" customModuleProvider="target">
+                                                            <rect key="frame" x="246" y="7.5" width="60" height="60"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="60" id="dVt-Z9-W1O"/>
+                                                                <constraint firstAttribute="height" constant="60" id="e7y-uY-chu"/>
+                                                            </constraints>
                                                         </view>
                                                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YWH-7D-L1U" customClass="JBProgressBar" customModule="Jabrutouch" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="71" width="378" height="4"/>
@@ -557,30 +457,20 @@
                                                     <color key="backgroundColor" red="0.99607843139999996" green="0.99607843139999996" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
                                                     <accessibility key="accessibilityConfiguration" identifier="Mishna Leson Cell Content"/>
                                                     <constraints>
-                                                        <constraint firstItem="5qk-2s-D53" firstAttribute="leading" secondItem="UKg-qS-8kR" secondAttribute="trailing" id="00M-io-kbF"/>
                                                         <constraint firstItem="fua-4O-pDP" firstAttribute="leading" secondItem="BEz-O8-4hd" secondAttribute="trailing" constant="50" id="335-t8-hb4"/>
-                                                        <constraint firstItem="Y0a-Fb-JWh" firstAttribute="centerY" secondItem="OLh-nb-C0S" secondAttribute="centerY" id="4X5-ZN-r6S"/>
-                                                        <constraint firstItem="VB4-BN-dkY" firstAttribute="centerY" secondItem="UKg-qS-8kR" secondAttribute="centerY" id="55E-fD-zbv"/>
-                                                        <constraint firstItem="UKg-qS-8kR" firstAttribute="leading" secondItem="4N3-XG-gV8" secondAttribute="trailing" constant="33" id="5bQ-M7-z40"/>
-                                                        <constraint firstItem="Tez-4Z-to1" firstAttribute="centerX" secondItem="4N3-XG-gV8" secondAttribute="centerX" id="7Cc-eG-At6"/>
-                                                        <constraint firstItem="5qk-2s-D53" firstAttribute="centerY" secondItem="OLh-nb-C0S" secondAttribute="centerY" multiplier="1.3:1" id="9JT-c0-xmm"/>
                                                         <constraint firstItem="fua-4O-pDP" firstAttribute="centerY" secondItem="OLh-nb-C0S" secondAttribute="centerY" id="IWO-c4-5hF"/>
-                                                        <constraint firstItem="Tez-4Z-to1" firstAttribute="centerY" secondItem="4N3-XG-gV8" secondAttribute="centerY" id="JJg-dY-p5r"/>
-                                                        <constraint firstItem="UKg-qS-8kR" firstAttribute="centerY" secondItem="OLh-nb-C0S" secondAttribute="centerY" id="M5F-le-kvp"/>
-                                                        <constraint firstItem="hbR-Kg-6gP" firstAttribute="centerY" secondItem="OLh-nb-C0S" secondAttribute="centerY" multiplier="1.3:1" id="MtH-p7-EX5"/>
+                                                        <constraint firstItem="FbV-lN-egA" firstAttribute="leading" secondItem="0U0-Sc-XWy" secondAttribute="trailing" id="LLQ-pM-mhB"/>
                                                         <constraint firstItem="BEz-O8-4hd" firstAttribute="leading" secondItem="OLh-nb-C0S" secondAttribute="leading" constant="26" id="RrV-uI-YS6"/>
-                                                        <constraint firstAttribute="trailing" secondItem="UKg-qS-8kR" secondAttribute="trailing" constant="25" id="SqK-zw-IJD"/>
                                                         <constraint firstAttribute="bottom" secondItem="YWH-7D-L1U" secondAttribute="bottom" id="TwD-G8-Jdf"/>
+                                                        <constraint firstAttribute="trailing" secondItem="FbV-lN-egA" secondAttribute="trailing" constant="12" id="UJg-1y-Sak"/>
                                                         <constraint firstItem="YWH-7D-L1U" firstAttribute="leading" secondItem="OLh-nb-C0S" secondAttribute="leading" id="USl-1I-2DK"/>
-                                                        <constraint firstItem="Y0a-Fb-JWh" firstAttribute="leading" secondItem="45m-7C-8f3" secondAttribute="trailing" constant="8" id="aki-qr-Dpo"/>
-                                                        <constraint firstItem="hbR-Kg-6gP" firstAttribute="leading" secondItem="4N3-XG-gV8" secondAttribute="trailing" id="fJx-zg-86v"/>
                                                         <constraint firstItem="BEz-O8-4hd" firstAttribute="centerY" secondItem="OLh-nb-C0S" secondAttribute="centerY" id="gE1-r4-cum"/>
+                                                        <constraint firstItem="FbV-lN-egA" firstAttribute="centerY" secondItem="OLh-nb-C0S" secondAttribute="centerY" id="gVW-qC-Mba"/>
                                                         <constraint firstAttribute="height" constant="75" id="iYz-xn-ha4"/>
-                                                        <constraint firstItem="4N3-XG-gV8" firstAttribute="centerY" secondItem="OLh-nb-C0S" secondAttribute="centerY" id="pZF-yf-XAg"/>
                                                         <constraint firstAttribute="trailing" secondItem="YWH-7D-L1U" secondAttribute="trailing" id="qk1-pt-SVw"/>
                                                         <constraint firstItem="45m-7C-8f3" firstAttribute="leading" secondItem="fua-4O-pDP" secondAttribute="trailing" constant="7" id="qt0-YF-Yqn"/>
                                                         <constraint firstItem="45m-7C-8f3" firstAttribute="centerY" secondItem="OLh-nb-C0S" secondAttribute="centerY" id="s8P-2J-Kgu"/>
-                                                        <constraint firstItem="VB4-BN-dkY" firstAttribute="centerX" secondItem="UKg-qS-8kR" secondAttribute="centerX" id="vW0-5S-ioz"/>
+                                                        <constraint firstItem="0U0-Sc-XWy" firstAttribute="centerY" secondItem="OLh-nb-C0S" secondAttribute="centerY" id="sw2-5Q-L0H"/>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ULo-EW-8BT" userLabel="Bottom Padding">
@@ -608,26 +498,16 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
-                                            <outlet property="audioImage" destination="4N3-XG-gV8" id="Wia-Ci-tu4"/>
+                                            <outlet property="cellAudioPBWB" destination="0U0-Sc-XWy" id="lB8-OK-tNn"/>
+                                            <outlet property="cellVideoPBWB" destination="FbV-lN-egA" id="g1a-fT-cBq"/>
                                             <outlet property="cellView" destination="OLh-nb-C0S" id="G6T-uT-dFu"/>
                                             <outlet property="cellViewTrailingConstraint" destination="ShS-46-av1" id="Tbw-Wb-297"/>
-                                            <outlet property="downloadAudioButton" destination="ufI-f0-6Z8" id="0YS-7Z-hGz"/>
-                                            <outlet property="downloadAudioButtonImageView" destination="ng7-wN-7ut" id="qXb-es-ir1"/>
-                                            <outlet property="downloadAudioImage" destination="U6e-Lu-Tay" id="Jaw-iV-WQf"/>
+                                            <outlet property="downloadAudioPBWB" destination="0wR-B3-y14" id="prg-f3-CQ9"/>
                                             <outlet property="downloadButtonsContainerView" destination="Gds-RT-u9W" id="oT2-2C-C8K"/>
-                                            <outlet property="downloadProgressView" destination="Y0a-Fb-JWh" id="W4o-VL-wg5"/>
-                                            <outlet property="downloadVideoButton" destination="3QU-cv-qyG" id="URZ-Or-OLc"/>
-                                            <outlet property="downloadVideoButtonImageView" destination="iDk-8f-50Q" id="qKx-gi-9pM"/>
-                                            <outlet property="downloadVideoImage" destination="xC0-m1-ums" id="ccI-Kn-OJz"/>
+                                            <outlet property="downloadVideoPBWB" destination="PuM-Hc-PVX" id="pOT-eQ-qOD"/>
                                             <outlet property="lessonLength" destination="45m-7C-8f3" id="7cX-nM-SDy"/>
                                             <outlet property="lessonNumber" destination="BEz-O8-4hd" id="y4q-8m-brQ"/>
                                             <outlet property="lessonProgressBar" destination="YWH-7D-L1U" id="wjy-xd-55v"/>
-                                            <outlet property="playAudioButton" destination="Tez-4Z-to1" id="XlY-ng-Dan"/>
-                                            <outlet property="playVideoButton" destination="VB4-BN-dkY" id="JR1-W8-YUt"/>
-                                            <outlet property="progressBarTrailingConstraint" destination="qk1-pt-SVw" id="NOn-vG-Wn2"/>
-                                            <outlet property="redAudioVImage" destination="hbR-Kg-6gP" id="Ys5-DL-zl3"/>
-                                            <outlet property="redVideoVImage" destination="5qk-2s-D53" id="b2E-kA-4DB"/>
-                                            <outlet property="videoImage" destination="UKg-qS-8kR" id="tmY-gG-mMe"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -662,7 +542,7 @@
         <!--Mishna Navigation Controller-->
         <scene sceneID="KJi-RF-DlG">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="jD1-EW-zAP" customClass="MishnaNavigationController" customModule="Jabrutouch" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MishnaNavigationController" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="jD1-EW-zAP" customClass="MishnaNavigationController" customModule="Jabrutouch" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="LJ3-TO-Dd6">
@@ -681,11 +561,8 @@
     <resources>
         <image name="BlueRightArrow" width="9" height="16"/>
         <image name="Download" width="19.5" height="26"/>
-        <image name="DownloadInCircle" width="24.5" height="24"/>
         <image name="LeftArrow" width="27.5" height="19.5"/>
         <image name="Loupe" width="23" height="22.5"/>
-        <image name="TransparentAudio" width="23" height="24.5"/>
-        <image name="TransparentVideo" width="33" height="19.5"/>
         <image name="clockGray" width="15.5" height="17"/>
     </resources>
 </document>

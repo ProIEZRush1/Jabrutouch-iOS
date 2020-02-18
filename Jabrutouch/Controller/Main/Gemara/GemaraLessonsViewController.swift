@@ -129,7 +129,7 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
         Utils.dropViewShadow(view: cell.downloadButtonsContainerView, shadowColor: Colors.shadowColor, shadowRadius: 36, shadowOffset: shadowOffset)
         
         cell.setLesson(lesson)
-        
+        cell.setDownloadModeForLesson(lesson, isCurrentlyEditing: self.isCurrentlyEditing)
         if !isFirstLoading {
             cell.setEditingIfNeeded(lesson: lesson, isCurrentlyEditing: self.isCurrentlyEditing)
             self.view.layoutIfNeeded()
@@ -310,6 +310,7 @@ extension GemaraLessonsViewController: ContentRepositoryDownloadDelegate {
         guard let cell = self.tableView.cellForRow(at:  IndexPath(row: index, section: 0)) as? LessonDownloadCellController else { return }
         
         cell.setLesson(self.lessons[index])
+        cell.setDownloadModeForLesson(self.lessons[index], isCurrentlyEditing: self.isCurrentlyEditing)
         if !isFirstLoading {
             cell.setEditingIfNeeded(lesson: self.lessons[index], isCurrentlyEditing: self.isCurrentlyEditing)
             self.view.layoutIfNeeded()

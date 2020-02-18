@@ -33,7 +33,7 @@ class MessagesRepository: NSObject, MessagingDelegate {
             self.getAllMessages { (result: Result<[JTChatMessage], JTError>) in
                 switch result {
                 case .success(let response):
-                    self.getAllChatsFromDB()
+                    self.allChats = self.getAllChatsFromDB()
                 //                    print(response)
                 case .failure(let error):
                     print(error)
@@ -131,8 +131,8 @@ class MessagesRepository: NSObject, MessagingDelegate {
         }
     }
     
-    func getAllChatsFromDB() {
-        self.allChats = CoreDataManager.shared.getAllChats()
+    func getAllChatsFromDB() -> [JTChatMessage]{
+        return CoreDataManager.shared.getAllChats()
     }
     
     func getAllMessagesFromDB(chatId: Int) {
