@@ -25,6 +25,8 @@ class JTMessage {
     var duration: Float = 0
     var isPlay: Bool = false
     var linkTo: Int
+    var lessonId: Int?
+    var gemara: Bool
    
     init?(values: [String:Any]) {
         if let messageId = values["message_id"] as? Int {
@@ -41,6 +43,7 @@ class JTMessage {
         } else { return nil }
         
         if let read = values["read"] as? Bool {
+            
             self.read = read
         } else { return nil }
         
@@ -72,13 +75,17 @@ class JTMessage {
             self.image = image
         } else { self.image = "" }
         
-//        if let linkTo = Int(values["link_to"] as? String ?? "0") {
-//            self.linkTo = linkTo
-//        } else { self.linkTo = 0 }
-        
         if let linkTo = values["link_to"] as? Int{
             self.linkTo = linkTo
         } else { self.linkTo = 0 }
+        
+        if let lessonId = values["lesson_id"] as? Int{
+                   self.lessonId = lessonId
+        } else { self.lessonId = nil }
+        
+        if let gemara = values["gemara"] as? Bool{
+                   self.gemara = gemara
+               } else { self.gemara = false }
     }
     
     
@@ -132,7 +139,13 @@ class JTMessage {
             self.linkTo = linkTo
         } else { self.linkTo = 0 }
 
+        if let lessonId = values.value(forKey: "lessonId") as? Int {
+            self.lessonId = lessonId
+        } else { self.lessonId = nil }
         
+        if let gemara = values.value(forKey: "gemara") as? Bool {
+            self.gemara = gemara
+        } else { self.gemara = false }
     }
     
     var values: [String:Any] {
@@ -149,6 +162,8 @@ class JTMessage {
         values["is_mine"] = self.isMine
         values["image"] = self.image
         values["link_to"] = self.linkTo
+        values["lesson_id"] = self.lessonId
+        values["gemara"] = self.gemara
         
         return values
     }

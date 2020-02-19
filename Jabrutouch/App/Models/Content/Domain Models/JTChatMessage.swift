@@ -23,8 +23,10 @@ struct JTChatMessage {
     var read: Bool = false
     var messages: [JTMessage] = []
     var unreadMessages: Int
+    var lessonId: Int?
+    var gemara: Bool?
    
-    init(chatId: Int, createdDate: Date, title: String, fromUser: Int, toUser: Int, chatType: Int, lastMessage: String, lastMessageTime: Date, image: String, read: Bool, unreadMessages: Int) {
+    init(chatId: Int, createdDate: Date, title: String, fromUser: Int, toUser: Int, chatType: Int, lastMessage: String, lastMessageTime: Date, image: String, read: Bool, unreadMessages: Int, lessonId: Int?, gemara: Bool) {
         self.chatId = chatId
         self.createdDate = createdDate
         self.title = title
@@ -36,6 +38,8 @@ struct JTChatMessage {
         self.image = image
         self.read = read
         self.unreadMessages = unreadMessages
+        self.lessonId = lessonId
+        self.gemara = gemara
         
     }
     
@@ -145,6 +149,18 @@ struct JTChatMessage {
         } else {
             self.unreadMessages = 0
         }
+        
+        if let lessonId = values.value(forKey: "lessonId") as? Int {
+            self.lessonId = lessonId
+        } else {
+            self.lessonId = nil
+        }
+        
+        if let gemara = values.value(forKey: "gemara") as? Bool {
+                   self.gemara = gemara
+               } else {
+                   self.gemara = false
+               }
        }
     
     var values: [String:Any] {

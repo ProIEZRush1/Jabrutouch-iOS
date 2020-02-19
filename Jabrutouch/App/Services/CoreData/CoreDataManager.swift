@@ -46,6 +46,8 @@ class CoreDataManager {
             newChat.setValue(chat.image, forKey: "userImage")
             newChat.setValue(true, forKey: "read")
             newChat.setValue(0, forKey: "unreadMessages")
+            newChat.setValue(chat.lessonId, forKey: "lessonId")
+            newChat.setValue(chat.gemara, forKey: "gemara")
             
             for message in chat.messages {
                 let newMessage = NSEntityDescription.insertNewObject(forEntityName: "Message", into: managedContext)
@@ -61,6 +63,8 @@ class CoreDataManager {
                 newMessage.setValue(message.read, forKey: "read")
                 newMessage.setValue(message.isMine, forKey: "isMine")
                 newMessage.setValue(message.linkTo, forKey: "linkTo")
+                newMessage.setValue(message.lessonId, forKey: "lessonId")
+                newMessage.setValue(message.gemara, forKey: "gemara")
 
             }
         }
@@ -90,6 +94,9 @@ class CoreDataManager {
         newChat.setValue(chat.image, forKey: "userImage")
         newChat.setValue(chat.read, forKey: "read")
         newChat.setValue(chat.unreadMessages, forKey: "unreadMessages")
+        newChat.setValue(chat.lessonId, forKey: "lessonId")
+        newChat.setValue(chat.gemara, forKey: "gemara")
+
 
 
         do{
@@ -117,6 +124,8 @@ class CoreDataManager {
         newMessage.setValue(message.read, forKey: "read")
         newMessage.setValue(message.isMine, forKey: "isMine")
         newMessage.setValue(message.linkTo, forKey: "linkTo")
+        newMessage.setValue(message.lessonId, forKey: "lessonId")
+        newMessage.setValue(message.gemara, forKey: "gemara")
         
         do{
             try managedContext.save()
@@ -136,7 +145,7 @@ class CoreDataManager {
     }
     
     func createChatObject(message: JTMessage)->JTChatMessage{
-
+        
         return JTChatMessage(
             chatId:  message.chatId,
             createdDate: message.sentDate,
@@ -147,8 +156,10 @@ class CoreDataManager {
             lastMessage: message.message,
             lastMessageTime: message.sentDate,
             image: message.image,
-            read: message.read,
-            unreadMessages: 1
+            read: message.isMine ? true : false,
+            unreadMessages: message.isMine ? 0 : 1,
+            lessonId: message.lessonId,
+            gemara: message.gemara
             
         )
     }

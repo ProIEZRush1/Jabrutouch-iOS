@@ -77,4 +77,12 @@ class Storyboards {
             return self.downloadStoryboard().instantiateViewController(withIdentifier: "DownloadsNavigationController") as! DownloadsNavigationController
         }
     }
+    
+    class Messages {
+        private class func messagesStoryboard() -> UIStoryboard { return UIStoryboard(name: "Messages", bundle: Bundle.main) }
+        
+        class var  messagesNavigationController: MessagesNavigationController {
+            return self.messagesStoryboard().instantiateViewController(withIdentifier: "MessagesNavigationController") as! MessagesNavigationController
+        }
+    }
 }

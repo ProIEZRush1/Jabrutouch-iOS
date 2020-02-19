@@ -949,17 +949,56 @@ extension LessonPlayerViewController: DonatedAlertDelegate {
 }
 
 extension LessonPlayerViewController: ChatControlsViewDelegate {
-    func willSendMessage(_ fileName: String) {
-        
+    
+    func sendVoiceMessageButtonTouchUp(_ fileName: String) {
+        self.createMessage(fileName, MessageType.voice)
     }
     
-    func sendMessageButtonPressed() {
+    func sendTextMessageButtonPressed() {
         self.stopTextingMode()
+        if let text = self.chatControlsView.inputTextView.text {
+            self.createMessage(text, MessageType.text)
+        }
     }
     
-    func textViewChanged() {
+    func textViewChanged() {}
         
-    }
     
+    
+    func createMessage(_ text: String, _ type: MessageType){
+        var gemara = true
+        var title = "ask the rabbi: \(self.masechet): "
+        if let _ = self.lesson as? JTGemaraLesson {
+            title += self.daf
+        }else{
+            title += "\(self.chapter ?? ""): \(self.daf)"
+            gemara = false
+        }
+//        guard let toUser = self.lesson.presenter?.id else{return}
+                    MessagesRepository.shared.sendMessage(
+                       message: text,
+                       sentAt: Date(),
+                       title: title,
+                       messageType: type.rawValue,
+                       toUser: 112,
+                       chatId: nil,
+                       lessonId: self.lesson.id,
+                       gemara: gemara,
+                       linkTo: nil,
+                       completion:  { (result) in
+                           print("result",result)
+                        switch result{
+                        case .success(let data):
+                            data.message.title = title
+                            MessagesRepository.shared.saveMessageInDB(message: data.message)
+                            print("success", data.message.chatId)
+                        case .failure(_):
+                            print("error")
+                        }
+                   })
+       
+        }
+       
+       
     
 }

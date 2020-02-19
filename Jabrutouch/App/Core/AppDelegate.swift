@@ -18,9 +18,9 @@ let notificatioCenter = UNUserNotificationCenter.current()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
-
+    
     var topmostViewController: UIViewController? {
         guard let window = self.window else { return nil }
         guard var viewController = window.rootViewController else { return nil }
@@ -37,14 +37,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
+        
         Fabric.with([Crashlytics.self])
         
         print(UserDefaultsProvider.shared.currentUser?.token ?? "")
         print((UserDefaults.standard.object(forKey: "AppleLanguages") as! [String]).first!)
         // Initialize
         _ = ContentRepository.shared
-//        _ = MessagesRepository.shared
+        //        _ = MessagesRepository.shared
         FirebaseApp.configure()
         registerForPushNotifications(application: application)
         Messaging.messaging().delegate = MessagesRepository.shared
@@ -64,7 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let host = url.host {
             let mainViewController = Storyboards.Main.mainViewController
             mainViewController.modalPresentationStyle = .fullScreen
-
+            
             if host == "crowns" {
                 self.topmostViewController?.present(mainViewController, animated: false, completion: nil)
                 mainViewController.presentOldDonations()
@@ -82,7 +82,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         return true
     }
-
+    
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -231,7 +231,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-
+    
 }
 
 
@@ -239,8 +239,9 @@ extension AppDelegate:UNUserNotificationCenterDelegate {
     
     func centerNotificationManager(){
         notificatioCenter.getDeliveredNotifications { (notifications:[UNNotification]) in
-            for n in notifications{
-                print(n,"getDeliveredNotifications")
+            for notification in notifications{
+                let userInfo = notification.request.content.userInfo
+                self.saveNewNotificationInDB(userInfo){ (chatId) in}
             }
         }
         
@@ -250,14 +251,30 @@ extension AppDelegate:UNUserNotificationCenterDelegate {
             }
         }
     }
-  
+    
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        if let key = userInfo["data"] as? String, let values = self.convertToJson(text: key){
-            if let message = JTMessage(values: values){
-                MessagesRepository.shared.saveMessageInDB(message: message)
+        
+        if application.applicationState == .background || application.applicationState == .inactive{
+            saveNewNotificationInDB(userInfo) {(chatId) in
+                let navigationVC = Storyboards.Messages.messagesNavigationController
+                navigationVC.modalPresentationStyle = .fullScreen
+                self.topmostViewController?.present(navigationVC, animated: false, completion: nil)
+                if let messageVC = navigationVC.children.first as? MessagesViewController{
+                    messageVC.presentChat(chatId)
+                }
+            }
+        }else{
+            if let key = userInfo["data"] as? String, let values = self.convertToJson(text: key){
+                if let message = JTMessage(values: values) {
+                    let navigationVC = Storyboards.Messages.messagesNavigationController
+                    navigationVC.modalPresentationStyle = .fullScreen
+                    self.topmostViewController?.present(navigationVC, animated: false, completion: nil)
+                    if let messageVC = navigationVC.children.first as? MessagesViewController{
+                        messageVC.presentChat(message.chatId)
+                    }
+                }
             }
         }
-        print("Received: \(userInfo)")
         completionHandler(.newData)
     }
     
@@ -265,58 +282,62 @@ extension AppDelegate:UNUserNotificationCenterDelegate {
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         let userInfo = notification.request.content.userInfo
-       
+        saveNewNotificationInDB(userInfo) { (chatId) in
+//            if self.topmostViewController is MessagesViewController {
+//                let  ChatViewController = ChatViewController.self.getChatId()
+//                let displayChatId = controller.currentChat?.chatId
+//                if displayChatId == chatId{
+//                    return
+//                }
+//            }
+            completionHandler([.alert, .sound])
+        }
+    }
+    
+    func saveNewNotificationInDB(_ userInfo: [AnyHashable : Any], completion: @escaping (_ chatId: Int)->Void) {
         if let key = userInfo["data"] as? String, let values = self.convertToJson(text: key){
-            if let message = JTMessage(values: values){
-                MessagesRepository.shared.saveMessageInDB(message: message)
-                if message.messageType == 2 {
-                    AWSS3Provider.shared.handleFileDownload(fileName: "users-record/\(message.message)", bucketName: AWSS3Provider.appS3BucketName, progressBlock: nil, completion: {  (result) in
+            if let message = JTMessage(values: values) {
+                if message.messageType == 1 {
+                    MessagesRepository.shared.saveMessageInDB(message: message)
+                    completion(message.chatId)
+                    return
+                }
+                else if message.messageType == 2 {
+                    AWSS3Provider.shared.handleFileDownload(fileName: "users-record/\(message.message)", bucketName: AWSS3Provider.appS3BucketName, progressBlock: nil) {  (result) in
                         switch result{
                         case .success(let data):
-                        do{
-                            try
-                                FilesManagementProvider.shared.overwriteFile(
-                                    path: FilesManagementProvider.shared.loadFile(link: "\(message.message)", directory: FileDirectory.recorders),
-                                    data: data)
-                        }catch{
-                            print("error")
+                            do{
+                                try
+                                    FilesManagementProvider.shared.overwriteFile(
+                                        path: FilesManagementProvider.shared.loadFile(link: "\(message.message)",
+                                            directory: FileDirectory.recorders),
+                                        data: data)
+                                MessagesRepository.shared.saveMessageInDB(message: message)
+                                completion(message.chatId)
+                            } catch {
+                                print("error")
                             }
-
+                            
                         case .failure(let error):
                             print(error)
                             break
                         }
                     }
-                )}
+                }
             }
         }
-        print("willPresent: ")
-
-        completionHandler([.alert, .sound])
     }
     
     func convertToJson(text: String) -> [String: Any]? {
-            if let data = text.data(using: .utf8) {
-                do {
-                    return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-                } catch {
-                    print(error.localizedDescription)
-                }
+        if let data = text.data(using: .utf8) {
+            do {
+                return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+            } catch {
+                print(error.localizedDescription)
             }
-            return nil
+        }
+        return nil
     }
-//
-//    private func sendUserNotification(body: String, userInfo: [AnyHashable:Any]) {
-//        let content = UNMutableNotificationContent()
-//        content.body = body
-//        content.userInfo = userInfo
-//
-//        let request = UNNotificationRequest(identifier: "", content: content, trigger: nil)
-//        UNUserNotificationCenter.current().add(request) { (error:Error?) in
-//            if let error = error {
-//                print("Failed adding notification request, with error: \(error)")
-//            }
-//        }
-//    }
    
+    
 }

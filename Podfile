@@ -16,5 +16,6 @@ target 'Jabrutouch' do
   pod 'Firebase/Messaging'
   pod 'Firebase/Analytics'
   pod 'mp3lame-for-ios'
+  pod 'iRecordView'
 
 end

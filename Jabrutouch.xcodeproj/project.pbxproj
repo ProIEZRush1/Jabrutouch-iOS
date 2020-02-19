@@ -229,6 +229,7 @@
 		DD51CDF423F186D70063167E /* AudioWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = DD51CDF323F186D70063167E /* AudioWrapper.m */; };
 		DD5AE5A223F2C747009CF8AC /* IncomingMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5AE5A123F2C747009CF8AC /* IncomingMessageCell.swift */; };
 		DD5D1C1F23CCD4AF0087A6DB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD5D1C1E23CCD4AF0087A6DB /* GoogleService-Info.plist */; };
+		DD61996523FC189700C06356 /* MessagesNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD61996423FC189700C06356 /* MessagesNavigationController.swift */; };
 		DDCA933923D0B1BB00388EC6 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = DDCA933823D0B1B700388EC6 /* background.png */; };
 		DDCA933B23D0B31700388EC6 /* Jabrutouch.png in Resources */ = {isa = PBXBuildFile; fileRef = DDCA933A23D0B31700388EC6 /* Jabrutouch.png */; };
 		DDCA933D23D0B34200388EC6 /* lunchScreenIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = DDCA933C23D0B34200388EC6 /* lunchScreenIcon.png */; };
@@ -492,6 +493,9 @@
 		DD51CDF323F186D70063167E /* AudioWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioWrapper.m; sourceTree = "<group>"; };
 		DD5AE5A123F2C747009CF8AC /* IncomingMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncomingMessageCell.swift; sourceTree = "<group>"; };
 		DD5D1C1E23CCD4AF0087A6DB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DD61996423FC189700C06356 /* MessagesNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesNavigationController.swift; sourceTree = "<group>"; };
+		DD61996623FC278000C06356 /* DataModel_v3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel_v3.xcdatamodel; sourceTree = "<group>"; };
+		DD61996723FC392B00C06356 /* DataModel_v4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel_v4.xcdatamodel; sourceTree = "<group>"; };
 		DDCA933823D0B1B700388EC6 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		DDCA933A23D0B31700388EC6 /* Jabrutouch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Jabrutouch.png; path = "Jabrutouch/Assets.xcassets/JabrutouchTitle-1.imageset/Jabrutouch.png"; sourceTree = SOURCE_ROOT; };
 		DDCA933C23D0B34200388EC6 /* lunchScreenIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lunchScreenIcon.png; path = Jabrutouch/Assets.xcassets/splashIcon.imageset/lunchScreenIcon.png; sourceTree = SOURCE_ROOT; };
@@ -1165,6 +1169,7 @@
 				833E622023992DED00EC93C7 /* MessagesViewController.swift */,
 				833E622A239FC33300EC93C7 /* ChatViewController.swift */,
 				8359193223A2724400F0B4D8 /* ChatControlsView.swift */,
+				DD61996423FC189700C06356 /* MessagesNavigationController.swift */,
 			);
 			path = Messages;
 			sourceTree = "<group>";
@@ -1683,6 +1688,7 @@
 				21E0BE942304217800F820D4 /* JTMishnaMasechetItem.swift in Sources */,
 				2133C22422DDCCD500F910B9 /* JBBarPageIndicator.swift in Sources */,
 				21ED3BCC23042A3C009D8E3D /* JTMishnaChapterItem.swift in Sources */,
+				DD61996523FC189700C06356 /* MessagesNavigationController.swift in Sources */,
 				213196A922F38B3E00B0AF5F /* ResendCodeResponse.swift in Sources */,
 				83A7A0CB23E84C3D0041BE28 /* ChangePasswordResponse.swift in Sources */,
 				83A936AD23D9E8D8007BA207 /* DonationsNavigationController.swift in Sources */,
@@ -1877,7 +1883,7 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Jabrutouch/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1907,7 +1913,7 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Jabrutouch/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1950,10 +1956,12 @@
 		8359194023A7984A00F0B4D8 /* DataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				DD61996723FC392B00C06356 /* DataModel_v4.xcdatamodel */,
+				DD61996623FC278000C06356 /* DataModel_v3.xcdatamodel */,
 				839991DA23F5597900B40A28 /* DataModel_v2.xcdatamodel */,
 				8359194123A7984A00F0B4D8 /* DataModal.xcdatamodel */,
 			);
-			currentVersion = 839991DA23F5597900B40A28 /* DataModel_v2.xcdatamodel */;
+			currentVersion = DD61996723FC392B00C06356 /* DataModel_v4.xcdatamodel */;
 			path = DataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
