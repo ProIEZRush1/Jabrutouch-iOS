@@ -100,6 +100,10 @@ class FilesManagementProvider {
         return FileManager.default.fileExists(atPath: url.absoluteString)
     }
     
+    func isFileExist(atString url: String) -> Bool {
+        return FileManager.default.fileExists(atPath: url)
+    }
+    
     //2813_aud.mp3
     func loadFile(link: String, directory: FileDirectory) -> URL{
          return directory.url!.appendingPathComponent(link)

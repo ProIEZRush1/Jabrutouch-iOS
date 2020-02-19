@@ -949,9 +949,12 @@ extension LessonPlayerViewController: DonatedAlertDelegate {
 }
 
 extension LessonPlayerViewController: ChatControlsViewDelegate {
+    func recordSavedInS3(_ fileName: String) {
+        self.createMessage(fileName, MessageType.voice)
+    }
+    
     
     func sendVoiceMessageButtonTouchUp(_ fileName: String) {
-        self.createMessage(fileName, MessageType.voice)
     }
     
     func sendTextMessageButtonPressed() {

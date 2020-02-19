@@ -283,22 +283,24 @@ extension AppDelegate:UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         let userInfo = notification.request.content.userInfo
         saveNewNotificationInDB(userInfo) { (chatId) in
-//            if self.topmostViewController is MessagesViewController {
-//                let  ChatViewController = ChatViewController.self.getChatId()
-//                let displayChatId = controller.currentChat?.chatId
-//                if displayChatId == chatId{
-//                    return
-//                }
-//            }
-            completionHandler([.alert, .sound])
+            DispatchQueue.main.async {
+                if let vc = (self.topmostViewController as? MessagesViewController )?.navigationController?.visibleViewController as? ChatViewController {
+                    if vc.currentChat?.chatId == chatId{
+                        return
+                    }
+                }
+            }
         }
+        completionHandler([.alert, .sound])
     }
     
     func saveNewNotificationInDB(_ userInfo: [AnyHashable : Any], completion: @escaping (_ chatId: Int)->Void) {
         if let key = userInfo["data"] as? String, let values = self.convertToJson(text: key){
             if let message = JTMessage(values: values) {
                 if message.messageType == 1 {
-                    MessagesRepository.shared.saveMessageInDB(message: message)
+                    if !CoreDataManager.shared.messageIsExsist(messageId: message.messageId){
+                        MessagesRepository.shared.saveMessageInDB(message: message)
+                    }
                     completion(message.chatId)
                     return
                 }
@@ -312,7 +314,9 @@ extension AppDelegate:UNUserNotificationCenterDelegate {
                                         path: FilesManagementProvider.shared.loadFile(link: "\(message.message)",
                                             directory: FileDirectory.recorders),
                                         data: data)
-                                MessagesRepository.shared.saveMessageInDB(message: message)
+                                if !CoreDataManager.shared.messageIsExsist(messageId: message.messageId){
+                                    MessagesRepository.shared.saveMessageInDB(message: message)
+                                }
                                 completion(message.chatId)
                             } catch {
                                 print("error")
@@ -338,6 +342,6 @@ extension AppDelegate:UNUserNotificationCenterDelegate {
         }
         return nil
     }
-   
+    
     
 }

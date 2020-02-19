@@ -107,7 +107,9 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.titleLabel.text = currentChat?.title
         self.roundCorners()
         self.user = UserRepository.shared.getCurrentUser()
-        
+        self.downloadRecorde(messages: MessagesRepository.shared.messages)
+        UNUserNotificationCenter.current().removeAllDeliveredNotifications() // For removing all delivered notification
+//        UNUserNotificationCenter.current().removeAllPendingNotificationRequests() // For removing all pending notifications which are not delivered yet but scheduled. 
         
     }
     
@@ -243,10 +245,35 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         return duration
     }
     
-//    func getChatId() ->Int? {
-//        return self.currentChat?.chatId
-//    }
-
+    
+    func downloadRecorde(messages:[JTMessage]){
+        for message in messages {
+            if message.messageType == 2 {
+                let fileUrl =  "\(FileDirectory.recorders.url!.absoluteString)\( message.message)"
+                if !(FilesManagementProvider.shared.isFileExist(atString: fileUrl)){
+                    AWSS3Provider.shared.handleFileDownload(fileName: "users-record/\(message.message)", bucketName: AWSS3Provider.appS3BucketName, progressBlock: nil) {  (result) in
+                        switch result{
+                        case .success(let data):
+                            do{
+                                try FilesManagementProvider.shared.overwriteFile(
+                                    path: FilesManagementProvider.shared.loadFile(link: "\(message.message)",
+                                        directory: FileDirectory.recorders),
+                                    data: data)
+                            } catch {
+                                print("error")
+                            }
+                        case .failure(let error):
+                            print(error)
+                        }
+                    }
+                }
+            }
+        }
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
     //========================================
     // MARK: - group
     //========================================
@@ -552,8 +579,12 @@ extension ChatViewController: AudioMessagesManagerDelegate{
 
 extension ChatViewController: ChatControlsViewDelegate, MessagesRepositoryDelegate {
     
+    
     func textViewChanged() {}
     
+    func recordSavedInS3(_ fileName: String) {
+        self.sendMessage(fileName, MessageType.voice)
+    }
     
     func sendVoiceMessageButtonTouchUp(_ fileName: String) {
         self.createMessage(fileName, MessageType.voice)
@@ -562,6 +593,7 @@ extension ChatViewController: ChatControlsViewDelegate, MessagesRepositoryDelega
     func sendTextMessageButtonPressed() {
         if let text = self.chatControlsView.inputTextView.text {
             self.createMessage(text, MessageType.text)
+            self.sendMessage(text, MessageType.text)
         }
         
     }
@@ -582,7 +614,7 @@ extension ChatViewController: ChatControlsViewDelegate, MessagesRepositoryDelega
         
     }
     
-    func createMessage(_ text: String, _ type: MessageType){
+    func sendMessage(_ text: String, _ type: MessageType){
         guard let chat = self.currentChat else{return}
         let toUser = chat.fromUser == UserRepository.shared.getCurrentUser()?.id ?chat.toUser : chat.fromUser
         MessagesRepository.shared.sendMessage(
@@ -598,7 +630,10 @@ extension ChatViewController: ChatControlsViewDelegate, MessagesRepositoryDelega
             completion:  { (resulte) in
                 print("")
         })
-        
+    }
+    
+    func createMessage(_ text: String, _ type: MessageType){
+        guard let chat = self.currentChat else{return}
         if let createMessage = JTMessage(values: [
             "message": text,
             "sent_at": Date().timeIntervalSince1970 * 1000 ,

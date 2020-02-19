@@ -183,6 +183,24 @@ class CoreDataManager {
         }
     }
     
+    func messageIsExsist(messageId:Int)->Bool{
+           let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Message")
+           let predicate = NSPredicate(format: "messageId = %i", messageId)
+           request.predicate = predicate
+           request.returnsObjectsAsFaults = false
+           do {
+               let result = try managedContext.fetch(request)
+               if result.isEmpty {
+                   return false
+               }else{
+                   return true
+               }
+           } catch {
+               print("Failed")
+               return false
+           }
+       }
+    
     func getAllChats() ->[JTChatMessage] {
         
         var allChats: [JTChatMessage] = []

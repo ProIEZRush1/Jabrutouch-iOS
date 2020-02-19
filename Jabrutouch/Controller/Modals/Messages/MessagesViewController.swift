@@ -54,19 +54,18 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
     //========================================
     
     func setTableView() {
-        if self.chatsArray.count > 0 {
-            self.noMessagesImage.isHidden = true
-            self.noMessagesLabel.isHidden = true
-        } else {
-            self.tableView.isHidden = true
-            self.searchButton.isHidden =  true
+        DispatchQueue.main.async {
+            if self.chatsArray.count > 0 {
+                self.noMessagesImage.isHidden = true
+                self.noMessagesLabel.isHidden = true
+            } else {
+                self.tableView.isHidden = true
+                self.searchButton.isHidden =  true
+            }
+            self.chatsArray = CoreDataManager.shared.getAllChats()
+            self.tableView.reloadData()
+            
         }
-//        self.tableView.reloadData()
-               DispatchQueue.main.async {
-                self.chatsArray = CoreDataManager.shared.getAllChats()
-                   self.tableView.reloadData()
-                   
-               }
     }
     
     
