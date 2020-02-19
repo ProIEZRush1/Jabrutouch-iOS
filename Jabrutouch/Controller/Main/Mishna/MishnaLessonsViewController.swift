@@ -230,7 +230,7 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
         } else {
             self.lessons[selectedRow].isDownloadingVideo = true
             self.toggleEditingMode()
-            ContentRepository.shared.lessonStartedDownloading(lesson.id, mediaType: .audio)
+            ContentRepository.shared.lessonStartedDownloading(lesson.id, mediaType: .video)
             ContentRepository.shared.downloadLesson(lesson, mediaType: .video, delegate: ContentRepository.shared)
         }
     }
