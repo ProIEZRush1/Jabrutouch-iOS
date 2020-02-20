@@ -32,7 +32,7 @@ class MessagesRepository: NSObject, MessagingDelegate {
         if self.isEmpty{
             self.getAllMessages { (result: Result<[JTChatMessage], JTError>) in
                 switch result {
-                case .success(let response):
+                case .success(_):
                     self.allChats = self.getAllChatsFromDB()
                 //                    print(response)
                 case .failure(let error):
@@ -41,7 +41,7 @@ class MessagesRepository: NSObject, MessagingDelegate {
             }
         }
         else {
-            self.getAllChatsFromDB()
+            self.allChats = self.getAllChatsFromDB()
         }
     }
     

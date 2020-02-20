@@ -949,12 +949,16 @@ extension LessonPlayerViewController: DonatedAlertDelegate {
 }
 
 extension LessonPlayerViewController: ChatControlsViewDelegate {
+    
     func recordSavedInS3(_ fileName: String) {
         self.createMessage(fileName, MessageType.voice)
     }
     
     
     func sendVoiceMessageButtonTouchUp(_ fileName: String) {
+        self.stopTextingMode()
+        self.setMediaURL(startPlaying: true)
+//        self.createMessage(fileName, MessageType.voice)
     }
     
     func sendTextMessageButtonPressed() {
@@ -977,13 +981,13 @@ extension LessonPlayerViewController: ChatControlsViewDelegate {
             title += "\(self.chapter ?? ""): \(self.daf)"
             gemara = false
         }
-//        guard let toUser = self.lesson.presenter?.id else{return}
+        guard let toUser = self.lesson.presenter?.id else{ return }
                     MessagesRepository.shared.sendMessage(
                        message: text,
                        sentAt: Date(),
                        title: title,
                        messageType: type.rawValue,
-                       toUser: 112,
+                       toUser: toUser,
                        chatId: nil,
                        lessonId: self.lesson.id,
                        gemara: gemara,

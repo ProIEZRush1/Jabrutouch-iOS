@@ -40,6 +40,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     }
     
     private var activityView: ActivityView?
+    
     //========================================
     // MARK: - @IBOutlets
     //========================================
@@ -114,7 +115,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         UserDefaultsProvider.shared.notFirstTime = true
         self.setButtonsBackground()
         CoreDataManager.shared.delegate = self
-//        self.setCornerRadius()
+//        self.setUnReadedIcon()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -123,7 +124,8 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.setTodaysDafProgressBar()
         self.lessonWatched = UserDefaultsProvider.shared.lessonWatched
         self.setContent()
-        self.setCornerRadius()
+        let unReded = CoreDataManager.shared.getUnReadedChats()
+        self.setUnReadedIcon(unReded)
 //        self.setDefaulteIcons()
         setView()
     }
@@ -131,14 +133,13 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     //========================================
     // MARK: - Setup
     //========================================
-    private func setCornerRadius(){
-        let unReded  = CoreDataManager.shared.getUnReadedChats()
+    private func setUnReadedIcon(_ unReded :Int){
         DispatchQueue.main.async {
             if unReded > 0  {
-                print("unReaded: ",unReded)
                 self.unReadedLable.layer.cornerRadius = self.unReadedLable.bounds.height / 2
                 self.unReadedLable.clipsToBounds = true
                 self.unReadedLable.text = "\(unReded)"
+                
             }else{
                 self.unReadedLable.isHidden = true
             }
@@ -767,11 +768,12 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
 
 extension MainViewController: MessagesRepositoryDelegate{
     func didReciveNewMessage(){
-          self.setCornerRadius()
+        let unReded = CoreDataManager.shared.getUnReadedChats()
+        self.setUnReadedIcon(unReded)
     }
     
 func didSendMessage() {
-//    self.setCornerRadius()
+//    self.setUnReadedIcon()
     }
     
     

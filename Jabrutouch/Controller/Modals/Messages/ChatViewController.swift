@@ -249,8 +249,10 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     func downloadRecorde(messages:[JTMessage]){
         for message in messages {
             if message.messageType == 2 {
-                let fileUrl =  "\(FileDirectory.recorders.url!.absoluteString)\( message.message)"
-                if !(FilesManagementProvider.shared.isFileExist(atString: fileUrl)){
+                guard let baseUrl = FileDirectory.recorders.url?.absoluteString else { return }
+                let fileUrl = "\(baseUrl)\(message.message)"
+                let isExsist = FileManager.default.fileExists(atPath: URL.init(string: fileUrl)!.path )
+                if !(isExsist){
                     AWSS3Provider.shared.handleFileDownload(fileName: "users-record/\(message.message)", bucketName: AWSS3Provider.appS3BucketName, progressBlock: nil) {  (result) in
                         switch result{
                         case .success(let data):
@@ -595,7 +597,6 @@ extension ChatViewController: ChatControlsViewDelegate, MessagesRepositoryDelega
             self.createMessage(text, MessageType.text)
             self.sendMessage(text, MessageType.text)
         }
-        
     }
     
     func didSendMessage() {

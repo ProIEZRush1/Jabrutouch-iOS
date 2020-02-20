@@ -121,7 +121,8 @@ class AudioMessagesManager {
       }
       
     var isFinishedPlayer: Bool {
-       let playerStatus = soundPlayer!.isPlaying
+        
+        let playerStatus = soundPlayer?.isPlaying ?? false
             return playerStatus
     }
     

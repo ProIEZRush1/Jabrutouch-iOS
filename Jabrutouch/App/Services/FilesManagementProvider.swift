@@ -21,7 +21,7 @@ enum FileDirectory {
         case .documents:
             return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
         case .recorders:
-            return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first
+            return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
         }
     }
     

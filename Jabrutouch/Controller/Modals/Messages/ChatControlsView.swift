@@ -34,7 +34,7 @@ class ChatControlsView: UIView, RecordViewDelegate {
     // MARK: - @IBOutlets
     //========================================
     
-    @IBOutlet weak var inputTextViewHeightConstraint: NSLayoutConstraint!
+//    @IBOutlet weak var inputTextViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var inputTextView:UITextView!
     @IBOutlet weak var plaseHolderLabel: UILabel!
     @IBOutlet weak var sendMessageButton: UIButton!
@@ -94,9 +94,8 @@ class ChatControlsView: UIView, RecordViewDelegate {
         
         recordView.offset = 20
         recordView.durationTimerColor = #colorLiteral(red: 0.1764705882, green: 0.168627451, blue: 0.662745098, alpha: 1)
-        recordView.smallMicImage = #imageLiteral(resourceName: "mic2")
         recordView.slideToCancelTextColor = #colorLiteral(red: 0.6039215686, green: 0.6039215686, blue: 0.6039215686, alpha: 1)
-        recordView.slideToCancelArrowImage = #imageLiteral(resourceName: "arrow")
+//        recordView.slideToCancelArrowImage = #imageLiteral(resourceName: "leftGrayArrow")
         recordView.clipsToBounds = false
         
         recordMessageButton.recordView = recordView
@@ -160,6 +159,7 @@ class ChatControlsView: UIView, RecordViewDelegate {
     
     @IBAction func sendMessageButtonPressed(_ sender: Any) {
         self.delegate?.sendTextMessageButtonPressed()
+        self.inputTextView.isHidden = false
         self.inputTextView.text = ""
         self.plaseHolderLabel.isHidden = false
         self.sendMessageButton.isHidden = true
@@ -169,6 +169,7 @@ class ChatControlsView: UIView, RecordViewDelegate {
     
     func onStart() {
         self.plaseHolderLabel.isHidden = true
+        self.inputTextView.isHidden = true
         self.createFileName()
         AudioMessagesManager.shared.startRecording(self.fileName)
     }
@@ -204,10 +205,12 @@ class ChatControlsView: UIView, RecordViewDelegate {
             })
         }
         self.plaseHolderLabel.isHidden = false
+        self.inputTextView.isHidden = false
     }
     
     func onAnimationEnd() {
         self.plaseHolderLabel.isHidden = false
+        self.inputTextView.isHidden = false
     }
     
     
