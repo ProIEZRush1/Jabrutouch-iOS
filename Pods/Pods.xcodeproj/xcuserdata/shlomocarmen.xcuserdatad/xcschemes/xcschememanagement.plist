@@ -105,7 +105,7 @@
 		<key>FirebaseInstallations.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>32</integer>
+			<integer>33</integer>
 		</dict>
 		<key>FirebaseInstanceID.xcscheme</key>
 		<dict>
@@ -166,7 +166,7 @@
 		<key>PromisesObjC.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>34</integer>
+			<integer>36</integer>
 		</dict>
 		<key>Protobuf.xcscheme</key>
 		<dict>
@@ -217,6 +217,16 @@
 			<key>orderHint</key>
 			<integer>23</integer>
 		</dict>
+		<key>iRecordView-iRecordView.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>34</integer>
+		</dict>
+		<key>iRecordView.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>32</integer>
+		</dict>
 		<key>leveldb-library.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -227,7 +237,7 @@
 		<key>mp3lame-for-ios.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>33</integer>
+			<integer>35</integer>
 		</dict>
 		<key>nanopb.xcscheme</key>
 		<dict>

@@ -951,6 +951,8 @@ extension LessonPlayerViewController: DonatedAlertDelegate {
 extension LessonPlayerViewController: ChatControlsViewDelegate {
     
     func sendVoiceMessageButtonTouchUp(_ fileName: String) {
+        self.stopTextingMode()
+        self.setMediaURL(startPlaying: true)
         self.createMessage(fileName, MessageType.voice)
     }
     
