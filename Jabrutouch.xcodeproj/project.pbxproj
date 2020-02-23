@@ -202,6 +202,10 @@
 		836A88502396A4E800F68539 /* ForgotPasswordResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836A884F2396A4E800F68539 /* ForgotPasswordResponse.swift */; };
 		8395978B23F97745007B96EB /* JBProgressBarWithButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8395978A23F97745007B96EB /* JBProgressBarWithButton.swift */; };
 		8395978D23F98CEF007B96EB /* ProgressBarWithButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8395978C23F98CEF007B96EB /* ProgressBarWithButton.xib */; };
+		8395979A23FE98AA007B96EB /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8395979923FE98AA007B96EB /* VideoViewController.swift */; };
+		8395979C24028B8F007B96EB /* TzedakaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8395979B24028B8E007B96EB /* TzedakaViewController.swift */; };
+		8395979E24029C31007B96EB /* HoursView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8395979D24029C30007B96EB /* HoursView.xib */; };
+		839597A024029E26007B96EB /* HoursView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8395979F24029E26007B96EB /* HoursView.swift */; };
 		839CB4CB2381C91B0086554B /* SelectInterestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839CB4CA2381C91B0086554B /* SelectInterestViewController.swift */; };
 		839E1E7C238588C100578C60 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839E1E7B238588C100578C60 /* UserRepository.swift */; };
 		83A7A0C323E205B40041BE28 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A7A0C223E205B30041BE28 /* iCarousel.m */; };
@@ -440,7 +444,7 @@
 		8342BA71237301D700C3239C /* MainCollectionCellViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCollectionCellViewController.swift; sourceTree = "<group>"; };
 		8342BA72237301D700C3239C /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		8342BA73237301D700C3239C /* ModalsContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalsContainerViewController.swift; sourceTree = "<group>"; };
-		8342BA78237302AE00C3239C /* DonationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DonationsViewController.swift; path = Jabrutouch/Controller/Main/DonationsViewController.swift; sourceTree = SOURCE_ROOT; };
+		8342BA78237302AE00C3239C /* DonationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DonationsViewController.swift; path = "Jabrutouch/Controller/Main/Donations/not in use/DonationsViewController.swift"; sourceTree = SOURCE_ROOT; };
 		8359192F23A2636000F0B4D8 /* ChatControls.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatControls.xib; sourceTree = "<group>"; };
 		8359193223A2724400F0B4D8 /* ChatControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatControlsView.swift; sourceTree = "<group>"; };
 		8359193423A64DC300F0B4D8 /* Jabrutouch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Jabrutouch.entitlements; sourceTree = "<group>"; };
@@ -461,6 +465,10 @@
 		836A884F2396A4E800F68539 /* ForgotPasswordResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordResponse.swift; sourceTree = "<group>"; };
 		8395978A23F97745007B96EB /* JBProgressBarWithButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JBProgressBarWithButton.swift; sourceTree = "<group>"; };
 		8395978C23F98CEF007B96EB /* ProgressBarWithButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressBarWithButton.xib; sourceTree = "<group>"; };
+		8395979923FE98AA007B96EB /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
+		8395979B24028B8E007B96EB /* TzedakaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TzedakaViewController.swift; sourceTree = "<group>"; };
+		8395979D24029C30007B96EB /* HoursView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HoursView.xib; sourceTree = "<group>"; };
+		8395979F24029E26007B96EB /* HoursView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoursView.swift; sourceTree = "<group>"; };
 		839991DA23F5597900B40A28 /* DataModel_v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel_v2.xcdatamodel; sourceTree = "<group>"; };
 		839CB4CA2381C91B0086554B /* SelectInterestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectInterestViewController.swift; sourceTree = "<group>"; };
 		839E1E7B238588C100578C60 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
@@ -751,6 +759,7 @@
 				8359192F23A2636000F0B4D8 /* ChatControls.xib */,
 				83A7A0C623E2DB920041BE28 /* DedicationCardView.xib */,
 				8395978C23F98CEF007B96EB /* ProgressBarWithButton.xib */,
+				8395979D24029C30007B96EB /* HoursView.xib */,
 			);
 			path = "Single Views";
 			sourceTree = "<group>";
@@ -999,6 +1008,7 @@
 				21999F35231823FF003DB1B4 /* CustomTrackHeightSlider.swift */,
 				836A884A23951CA700F68539 /* JBView.swift */,
 				8395978A23F97745007B96EB /* JBProgressBarWithButton.swift */,
+				8395979F24029E26007B96EB /* HoursView.swift */,
 			);
 			path = "Custom Controlles";
 			sourceTree = "<group>";
@@ -1195,17 +1205,16 @@
 		8342BA772373029300C3239C /* Donations */ = {
 			isa = PBXGroup;
 			children = (
+				8395979823FE96D7007B96EB /* not in use */,
 				83A936B023DEF8B3007BA207 /* Cells */,
-				8342BA78237302AE00C3239C /* DonationsViewController.swift */,
 				83A936AC23D9E8D8007BA207 /* DonationsNavigationController.swift */,
 				83A936AE23DDEA93007BA207 /* OldDonationsViewController.swift */,
 				83B3556623E06A8400E2C485 /* DonateViewController.swift */,
 				83B3556823E1C02F00E2C485 /* DedicationViewController.swift */,
 				83A7A0C823E2E36E0041BE28 /* DedicationCardView.swift */,
-				83A7A0CC23E9992F0041BE28 /* DonationWalkThroughViewController.swift */,
 				83A7A0CE23E9A3430041BE28 /* DonateNavigationController.swift */,
-				83A7A0D023EAEE080041BE28 /* PaymentViewController.swift */,
-				83A7A0D223EB3AC60041BE28 /* CreditCardViewController.swift */,
+				8395979923FE98AA007B96EB /* VideoViewController.swift */,
+				8395979B24028B8E007B96EB /* TzedakaViewController.swift */,
 			);
 			path = Donations;
 			sourceTree = "<group>";
@@ -1245,6 +1254,17 @@
 				83CCB128237DA32D00C86450 /* ForgotPasswordViewController.swift */,
 			);
 			path = ForgotPassword;
+			sourceTree = "<group>";
+		};
+		8395979823FE96D7007B96EB /* not in use */ = {
+			isa = PBXGroup;
+			children = (
+				8342BA78237302AE00C3239C /* DonationsViewController.swift */,
+				83A7A0CC23E9992F0041BE28 /* DonationWalkThroughViewController.swift */,
+				83A7A0D023EAEE080041BE28 /* PaymentViewController.swift */,
+				83A7A0D223EB3AC60041BE28 /* CreditCardViewController.swift */,
+			);
+			path = "not in use";
 			sourceTree = "<group>";
 		};
 		83A7A0BF23E204980041BE28 /* iCarousel */ = {
@@ -1426,6 +1446,7 @@
 				21678D5822DF2CEC007BC74C /* SF-Pro-Rounded-Black.otf in Resources */,
 				21678D5922DF2CEC007BC74C /* SF-Pro-Rounded-Bold.otf in Resources */,
 				21678D5A22DF2CEC007BC74C /* SF-Pro-Rounded-Heavy.otf in Resources */,
+				8395979E24029C31007B96EB /* HoursView.xib in Resources */,
 				219BFF3122E5B67C00ABBEE2 /* countries.json in Resources */,
 				DDCA933D23D0B34200388EC6 /* lunchScreenIcon.png in Resources */,
 				21678D5B22DF2CED007BC74C /* SF-Pro-Rounded-Light.otf in Resources */,
@@ -1549,6 +1570,7 @@
 				21999F3923185D39003DB1B4 /* PlaybackSpeed.swift in Sources */,
 				83137F0123F046CB003B9DA6 /* JTCrown.swift in Sources */,
 				219BFF4122E7173C00ABBEE2 /* MainMenuViewController.swift in Sources */,
+				839597A024029E26007B96EB /* HoursView.swift in Sources */,
 				213196A722F38B3E00B0AF5F /* SendCodeResponse.swift in Sources */,
 				83137EFF23F040E5003B9DA6 /* DonationResponse.swift in Sources */,
 				FB51711622F19FD2003BCAFC /* JTMishnaMasechet.swift in Sources */,
@@ -1606,6 +1628,7 @@
 				212ECEA7230F36BF005AEB36 /* LessonPlayerViewController.swift in Sources */,
 				213196A822F38B3E00B0AF5F /* APIResponseModel.swift in Sources */,
 				83137EFD23F04024003B9DA6 /* JTDonation.swift in Sources */,
+				8395979C24028B8F007B96EB /* TzedakaViewController.swift in Sources */,
 				2126D6E12304025A00CB501D /* MishnaNavigationController.swift in Sources */,
 				FBAB071622E74ABD00C8DCD7 /* DownloadsCellController.swift in Sources */,
 				2133C21F22DCFC6600F910B9 /* WalkThroughViewController.swift in Sources */,
@@ -1639,6 +1662,7 @@
 				538691482379E8B500CC95B5 /* DonationInformationCell.swift in Sources */,
 				833E622D23A1344A00EC93C7 /* JTChatMessage.swift in Sources */,
 				DD5AE5A223F2C747009CF8AC /* IncomingMessageCell.swift in Sources */,
+				8395979A23FE98AA007B96EB /* VideoViewController.swift in Sources */,
 				2145858F22EF7D980062F830 /* API.swift in Sources */,
 				83A7A0C923E2E36E0041BE28 /* DedicationCardView.swift in Sources */,
 				2120BE1D22DF273F004854DB /* SignInViewController.swift in Sources */,

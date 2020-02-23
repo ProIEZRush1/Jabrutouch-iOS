@@ -15,8 +15,8 @@ class DonationsNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let donationViewController = self.children.first as? DonationsViewController {
-            donationViewController.delegate = self.modalDelegate
+        if let tzedakaViewController = self.children.first as? TzedakaViewController {
+            tzedakaViewController.delegate = self.modalDelegate
         }
     }
     

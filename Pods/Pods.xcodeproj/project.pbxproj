@@ -2285,9 +2285,6 @@
 		834CF1D91E4B58AD2457F78BF2032D38 /* grpc_library.h in Copy impl Public Headers */ = {isa = PBXBuildFile; fileRef = 506CA9C6FBCA70216903E9E22FE276B9 /* grpc_library.h */; };
 		83695D8E2C1BCEC7659C2E540D4BC934 /* ssl_session.h in Copy src/core/tsi/ssl/session_cache Public Headers */ = {isa = PBXBuildFile; fileRef = BD22218F37D3CF05A55734BA15A85BD6 /* ssl_session.h */; };
 		8374D4DE50595CAB6ACC6196F3199768 /* FIRPhoneAuthCredential_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = F7E08ECF2837F45C038D05325B032461 /* FIRPhoneAuthCredential_Internal.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		8395979423FD9403007B96EB /* leftGrayArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8395979123FD9401007B96EB /* leftGrayArrow@2x.png */; };
-		8395979523FD9403007B96EB /* leftGrayArrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8395979223FD9402007B96EB /* leftGrayArrow@3x.png */; };
-		8395979623FD9403007B96EB /* leftGrayArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8395979323FD9403007B96EB /* leftGrayArrow.png */; };
 		83AC2C30C916449B3E8DF75F55C52DB8 /* time.h in Headers */ = {isa = PBXBuildFile; fileRef = C8217E53C1071DC16A38537D47578423 /* time.h */; };
 		83CB6F389000C869EA0D0F5CD0E2D103 /* FIRAuthDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = C58787213922387E9DC42FF626A6F3CF /* FIRAuthDispatcher.m */; };
 		83CE67311E06ED5B3951E9C87B047497 /* client_channel.h in Headers */ = {isa = PBXBuildFile; fileRef = 9EC9A16F8539E550647B53FEDE44FD0E /* client_channel.h */; };
@@ -9569,9 +9566,6 @@
 		832FDA811445D162432C1AB1154995AB /* FIRInstanceIDAPNSInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRInstanceIDAPNSInfo.h; path = Firebase/InstanceID/FIRInstanceIDAPNSInfo.h; sourceTree = "<group>"; };
 		836DCAA19B5C5DBD0A1019A5BDCCFEC9 /* zone_info_source.cc */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.cpp; name = zone_info_source.cc; path = absl/time/internal/cctz/src/zone_info_source.cc; sourceTree = "<group>"; };
 		838E75F594E12F6BF4B63169E99C45C5 /* local_subchannel_pool.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = local_subchannel_pool.h; path = src/core/ext/filters/client_channel/local_subchannel_pool.h; sourceTree = "<group>"; };
-		8395979123FD9401007B96EB /* leftGrayArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "leftGrayArrow@2x.png"; path = "../../../../Downloads/Jabrutouch (7)/leftGrayArrow@2x.png"; sourceTree = "<group>"; };
-		8395979223FD9402007B96EB /* leftGrayArrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "leftGrayArrow@3x.png"; path = "../../../../Downloads/Jabrutouch (7)/leftGrayArrow@3x.png"; sourceTree = "<group>"; };
-		8395979323FD9403007B96EB /* leftGrayArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = leftGrayArrow.png; path = "../../../../Downloads/Jabrutouch (7)/leftGrayArrow.png"; sourceTree = "<group>"; };
 		83981EECCCB6D16CCB1EEAF4A6D875A0 /* AWSTMDiskCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AWSTMDiskCache.m; path = AWSCore/TMCache/AWSTMDiskCache.m; sourceTree = "<group>"; };
 		83BE4B0BB29806B488DA5C52B02365B2 /* bad_optional_access.cc */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.cpp; name = bad_optional_access.cc; path = absl/types/bad_optional_access.cc; sourceTree = "<group>"; };
 		83C48625A2BF04A6D8FDEFFCBF834319 /* no_document.cc */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.cpp; name = no_document.cc; path = Firestore/core/src/firebase/firestore/model/no_document.cc; sourceTree = "<group>"; };
@@ -12162,9 +12156,6 @@
 				81105BEF4DAB320B44E78BC98B593291 /* Images */,
 				93FBD2C7E7895453014C0902CCFB5BCC /* mic_blue@1x.png */,
 				854E981F75C26E75098A024B0BAF6DBE /* mic_blue@2x.png */,
-				8395979323FD9403007B96EB /* leftGrayArrow.png */,
-				8395979123FD9401007B96EB /* leftGrayArrow@2x.png */,
-				8395979223FD9402007B96EB /* leftGrayArrow@3x.png */,
 				E43D8D0CF09A410007F850BD2996FF1B /* mic_blue@3x.png */,
 				36456A030AD1DAE4610C79470491B34C /* mic_red@1x.png */,
 				32445C49CF88126D30F443560CB46B2A /* mic_red@2x.png */,
@@ -18493,9 +18484,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8395979423FD9403007B96EB /* leftGrayArrow@2x.png in Resources */,
-				8395979523FD9403007B96EB /* leftGrayArrow@3x.png in Resources */,
-				8395979623FD9403007B96EB /* leftGrayArrow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
