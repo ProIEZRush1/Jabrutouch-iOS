@@ -15,6 +15,7 @@ class DonateViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var amountToPayTF: UITextField!
     @IBOutlet weak var shadowView: UIView!
     @IBOutlet weak var slider: CustomTrackHeightSlider!
+    @IBOutlet weak var buttonsView: UIView!
     @IBOutlet weak var subscriptionButton: UIButton!
     @IBOutlet weak var monthlyLabel: UILabel!
     @IBOutlet weak var singelPaymentButton: UIButton!
@@ -38,6 +39,7 @@ class DonateViewController: UIViewController, UITextFieldDelegate {
     var dedication: [JTDedication] = []
     var numberOfCrownsSinget = 5
     var numberOfCrownsSubsciption = 1
+    var showVideo: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,10 +51,14 @@ class DonateViewController: UIViewController, UITextFieldDelegate {
         self.setRoundCorners()
         self.setSlider()
         self.getDonationDatd()
+        self.setShadows()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         self.setButtonsColorAndFont()
         self.setState()
+        
+        self.presentVideo()
     }
     
     private func setRoundCorners() {
@@ -64,6 +70,9 @@ class DonateViewController: UIViewController, UITextFieldDelegate {
         self.continueButton.clipsToBounds = true
         self.continueView.layer.cornerRadius = 18
         self.continueView.clipsToBounds = true
+        self.buttonsView.layer.cornerRadius = self.buttonsView.bounds.height / 2
+        self.subscriptionButton.layer.cornerRadius = self.subscriptionButton.bounds.height / 2
+        self.singelPaymentButton.layer.cornerRadius = self.singelPaymentButton.bounds.height / 2
     }
     
     func setBorders() {
@@ -74,6 +83,18 @@ class DonateViewController: UIViewController, UITextFieldDelegate {
     func setSlider() {
         self.slider.value = 0
         
+    }
+    
+    func presentVideo() {
+        if self.showVideo {
+            self.performSegue(withIdentifier: "presentVideo", sender: self)
+            self.showVideo = false
+        }
+    }
+    private func setShadows() {
+        let shadowOffset = CGSize(width: 0.0, height: 12)
+        let color = #colorLiteral(red: 0.16, green: 0.17, blue: 0.39, alpha: 0.2)
+        Utils.dropViewShadow(view: self.buttonsView, shadowColor: color, shadowRadius: 20, shadowOffset: shadowOffset)
     }
     
     func setState() {
@@ -99,15 +120,15 @@ class DonateViewController: UIViewController, UITextFieldDelegate {
     }
     
     fileprivate func setButtonsColorAndFont() {
-        singelPaymentButton.backgroundColor = isSingelPayment ? .white : UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)
-        subscriptionButton.backgroundColor = isSubscription ? .white : UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)
+        singelPaymentButton.backgroundColor = isSingelPayment ? #colorLiteral(red: 0.1764705882, green: 0.168627451, blue: 0.662745098, alpha: 1) : .clear
+        subscriptionButton.backgroundColor = isSubscription ? #colorLiteral(red: 0.1764705882, green: 0.168627451, blue: 0.662745098, alpha: 1) : .clear
         
         
-        singelPaymentButton.titleLabel?.font = isSingelPayment ? UIFont(name: "SFProDisplay-Heavy", size: 18) : UIFont(name: "SFProDisplay-Medium", size: 18)
-        subscriptionButton.titleLabel?.font = isSubscription ? UIFont(name: "SFProDisplay-Heavy", size: 18) : UIFont(name: "SFProDisplay-Medium", size: 18)
+        singelPaymentButton.titleLabel?.font = isSingelPayment ? UIFont(name: "SFProDisplay-Heavy", size: 18) : UIFont(name: "SFProDisplay-Regular", size: 18)
+        subscriptionButton.titleLabel?.font = isSubscription ? UIFont(name: "SFProDisplay-Heavy", size: 18) : UIFont(name: "SFProDisplay-Regular", size: 18)
         
-        singelPaymentButton.setTitleColor(isSingelPayment ? UIColor(red: 0.29, green: 0.27, blue: 0.57, alpha: 1) : UIColor(red: 0.29, green: 0.27, blue: 0.57, alpha: 0.55), for: .normal)
-        subscriptionButton.setTitleColor(isSubscription ? UIColor(red: 0.29, green: 0.27, blue: 0.57, alpha: 1) : UIColor(red: 0.29, green: 0.27, blue: 0.57, alpha: 0.55), for: .normal)
+        singelPaymentButton.setTitleColor(isSingelPayment ? #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) : #colorLiteral(red: 0.2359343767, green: 0.2592330873, blue: 0.7210982442, alpha: 0.48), for: .normal)
+        subscriptionButton.setTitleColor(isSubscription ?  #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) : #colorLiteral(red: 0.2359343767, green: 0.2592330873, blue: 0.7210982442, alpha: 0.48), for: .normal)
         
     }
     
@@ -141,7 +162,7 @@ class DonateViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func singelPaymentButtonPressed(_ sender: Any) {
         self.amountToPayTF.text = "54"
-        self.slider.value = 54 / 200
+        self.slider.value = 54 / 2000
         self.isSingelPayment = true
         self.isSubscription = false
         self.setState()

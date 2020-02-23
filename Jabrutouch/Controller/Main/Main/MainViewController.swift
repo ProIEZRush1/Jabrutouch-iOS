@@ -432,8 +432,9 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
             self.donationsLabel.alpha = 1.0
         }
 //        self.presentDonationWalkThrough()
-//        self.presentDonationsViewController()
-        self.presentOldDonations()
+        self.presentDonationsNavigationViewController()
+//        presentDonationsViewController()
+//        self.presentOldDonations()
     }
     
     @IBAction func donationsButtonTouchedUpOutside(_ sender: UIButton) {
@@ -519,9 +520,9 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.performSegue(withIdentifier: "toMessages", sender: self)
     }
     
-    func presentDonationWalkThrough() {
-        self.performSegue(withIdentifier: "presentDonationWalkTrough", sender: self)
-    }
+//    func presentDonationWalkThrough() {
+//        self.performSegue(withIdentifier: "presentDonationWalkTrough", sender: self)
+//    }
     
     func presentOldDonations() {
         if self.currentPresentedModal != nil && self.currentPresentedModal != .donations {
@@ -580,7 +581,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.setIcons(string: "mishna")
     }
     
-    func presentDonationsViewController() {
+    func presentDonationsNavigationViewController() {
         if self.currentPresentedModal != nil && self.currentPresentedModal != .donations {
             self.modalsPresentingVC.dismiss(animated: true) {
                 self.modalsPresentingVC.performSegue(withIdentifier: "presentDonations", sender: nil)
@@ -591,6 +592,12 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
             self.modalsPresentingVC.performSegue(withIdentifier: "presentDonations", sender: nil)
         }
         self.currentPresentedModal = .donations
+        self.setIcons(string: "donations")
+    }
+    
+    func presentDonationsViewController() {
+        self.performSegue(withIdentifier: "presentFirstTimeDonation", sender: self)
+        
     }
     
     private func presentInDevelopmentAlert() {
@@ -677,9 +684,10 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
         case .messageCenter:
             presentMessages()
         case .donationsCenter:
+//            presentDonationsNavigationViewController()
+            presentDonationsViewController()
+//            presentOldDonations()
 //            presentDonationWalkThrough()
-//            presentDonationsViewController()
-            presentOldDonations()
         default:
             presentInDevelopmentAlert()
         }
