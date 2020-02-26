@@ -431,8 +431,8 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
             self.donationsLabel.alpha = 1.0
         }
 //        self.presentDonationWalkThrough()
-        self.presentDonationsNavigationViewController()
-//        presentDonationsViewController()
+//        self.presentDonationsNavigationViewController()
+        presentDonationsViewController()
 //        self.presentOldDonations()
     }
     
