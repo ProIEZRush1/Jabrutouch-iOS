@@ -17,5 +17,6 @@ target 'Jabrutouch' do
   pod 'Firebase/Analytics'
   pod 'mp3lame-for-ios'
   pod 'iRecordView'
-
+  pod 'Starscream', '~> 4.0.0'
+  
 end
