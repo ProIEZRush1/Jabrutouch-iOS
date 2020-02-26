@@ -19,7 +19,7 @@ struct JTDonation {
             self.crowns = crownsValues.compactMap{JTCrown(values: $0)}
         } else { return nil }
         
-        if let dedicationValues = values["dedication"] as? [[String: Any]] {
+        if let dedicationValues = values["dedication_templates"] as? [[String: Any]] {
             self.dedication = dedicationValues.compactMap{ JTDedication(values: $0)}
         } else { return nil }
         
@@ -29,7 +29,7 @@ struct JTDonation {
     var values: [String:Any] {
         var values: [String:Any] = [:]
         values["crowns"] = self.crowns
-        values["dedication"] = self.dedication
+        values["dedication_templates"] = self.dedication
         
         return values
     }
