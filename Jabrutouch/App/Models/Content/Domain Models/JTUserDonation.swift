@@ -14,6 +14,7 @@ struct JTUserDonation {
     var unUsedCrowns: Int
     var likes: Int
     var watchCount: Int
+    var donatePerMonth: Int
     
     init?(values: [String:Any]) {
         if let allCrowns = values["all_crowns"] as? Int {
@@ -32,6 +33,10 @@ struct JTUserDonation {
             self.watchCount = watchCount
         } else { return nil }
         
+        if let donatePerMonth = values["donate_per_month"] as? Int {
+            self.donatePerMonth = donatePerMonth
+        } else { return nil }
+        
     }
     
     var values: [String:Any] {
@@ -40,6 +45,8 @@ struct JTUserDonation {
         values["unused_crowns"] = self.unUsedCrowns
         values["likes"] = self.likes
         values["watch_count"] = self.watchCount
+        values["donate_per_month"] = self.donatePerMonth
+
         
         return values
     }
