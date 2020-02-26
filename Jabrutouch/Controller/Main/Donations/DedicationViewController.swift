@@ -14,6 +14,7 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
     //========================================
    
     var views: [DedicationCardView] = []
+    var postDedication: JTPostDedication?
     var user: JTUser?
     var anonimus: Bool = false
     var name: String = ""
@@ -80,12 +81,24 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
     func setCardView(dedication: String, hidden: Bool) {
         let view = DedicationCardView()
         view.textField.delegate = self
+        view.textField.tag = 1
+        view.textField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
         view.editNameTextField.delegate = self
+        view.editNameTextField.tag = 2
+        view.editNameTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
         view.delegate = self
         view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         
         view.profileImage.image = user?.profileImage ?? #imageLiteral(resourceName: "Avatar")
-        view.userNameLabel.text = "\(user?.firstName ?? "") \(user?.lastName ?? "")"
+        if self.postDedication?.nameToRepresent != "" {
+            view.userNameLabel.text = self.postDedication?.nameToRepresent
+        } else {
+            view.userNameLabel.text = "\(user?.firstName ?? "") \(user?.lastName ?? "")"
+            
+        }
+        if self.postDedication?.dedicationText != "" {
+            view.textField.text = self.postDedication?.dedicationText
+        }
         view.countryLabel.text = user?.country ?? ""
         view.dedicationLabel.text = dedication
         view.dedicationLabel.isHidden = hidden
@@ -101,9 +114,12 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
     }
     
     func setCurrentCards() {
-        self.setCardView(dedication: "", hidden: true)
         for dedication in self.dedication {
-            self.setCardView(dedication: dedication.name, hidden: false)
+            if dedication.name == "default" {
+                self.setCardView(dedication: "", hidden: true)
+            } else {
+                self.setCardView(dedication: dedication.name, hidden: false)
+            }
         }
     }
     
@@ -111,6 +127,15 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
     // MARK: - @IBAction
     //========================================
     
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        if textField.tag == 1 {
+            self.postDedication?.dedicationText = textField.text ?? ""
+        }
+        if textField.tag == 2 {
+            self.postDedication?.nameToRepresent = textField.text ?? ""
+        }
+    }
+
     @IBAction func backButtonBack(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -137,18 +162,37 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
     }
     
     @IBAction func continueButtonPressed(_ sender: Any) {
+        guard let postDedication = self.postDedication else { return }
         let index = self.barPageIndicator.selectedIndex
         let card = self.views[index]
-        if let name = card.textField.text {
-            self.name = name
+        if let dedicationText = card.textField.text {
+            self.postDedication?.dedicationText = dedicationText
         }
-        self.performSegue(withIdentifier: "presentPayment", sender: self)
+        if let nameToRepresent = card.editNameTextField.text {
+            self.postDedication?.nameToRepresent = nameToRepresent
+        }
+        self.postDedication?.dedicationTemplate = index
+        self.postDedication?.status = "pending"
+        
+        self.createPayment(postDedication: postDedication)
+        //        self.performSegue(withIdentifier: "presentPayment", sender: self)
+    }
+    
+    func createPayment(postDedication: JTPostDedication) {
+        DonationManager.shared.createPaymen(postTedication: postDedication) { (result) in
+            switch result {
+            case .success(let success):
+                print(success)
+//        self.performSegue(withIdentifier: "presentTzedaka", sender: self)
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
     //========================================
     // MARK: - iCarousel
     //========================================
-    
     
     func numberOfItems(in carousel: iCarousel) -> Int {
         return self.views.count
@@ -213,6 +257,10 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
         }
     }
     
+    //========================================
+    // MARK: - textField
+    //========================================
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         UIView.animate(withDuration: 0.3) {
             self.carouselTopConstraint.constant = -90
@@ -236,6 +284,10 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
             self.view.layoutIfNeeded()
         }
     }
+    
+    //========================================
+    // MARK: - Navigation
+    //========================================
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "presentPayment" {
