@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hlJ-VD-Lqd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hlJ-VD-Lqd">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -209,10 +209,10 @@
             </objects>
             <point key="canvasLocation" x="433" y="-236"/>
         </scene>
-        <!--Donations-->
+        <!--Tzedaka-->
         <scene sceneID="UlP-4G-G3L">
             <objects>
-                <viewControllerPlaceholder storyboardName="Donations" id="XSp-1R-jLf" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Tzedaka" id="XSp-1R-jLf" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5ao-fc-3zk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="733" y="-225"/>
@@ -1240,7 +1240,7 @@
                         <segue destination="xwk-Vq-Xrs" kind="presentation" identifier="presentDownloads" modalPresentationStyle="currentContext" id="POK-Y0-SqV"/>
                         <segue destination="JVG-Qg-8AU" kind="presentation" identifier="presentMishna" modalPresentationStyle="currentContext" id="Rcw-p9-fF4"/>
                         <segue destination="Ld6-3Q-y7r" kind="presentation" identifier="presentGemara" modalPresentationStyle="currentContext" id="AcG-ey-UNh"/>
-                        <segue destination="XSp-1R-jLf" kind="presentation" identifier="presentDonations" modalPresentationStyle="currentContext" id="I4c-7R-cOT"/>
+                        <segue destination="XSp-1R-jLf" kind="presentation" identifier="presentTzedaka" modalPresentationStyle="currentContext" id="I4c-7R-cOT"/>
                         <segue destination="6YE-v2-5Hc" kind="presentation" identifier="presentOldDonation" modalPresentationStyle="currentContext" id="sae-mY-haW"/>
                     </connections>
                 </viewController>

@@ -584,12 +584,12 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     func presentDonationsNavigationViewController() {
         if self.currentPresentedModal != nil && self.currentPresentedModal != .donations {
             self.modalsPresentingVC.dismiss(animated: true) {
-                self.modalsPresentingVC.performSegue(withIdentifier: "presentDonations", sender: nil)
+                self.modalsPresentingVC.performSegue(withIdentifier: "presentTzedaka", sender: nil)
             }
         }
         else if self.currentPresentedModal == nil{
             self.view.bringSubviewToFront(self.modalsContainer)
-            self.modalsPresentingVC.performSegue(withIdentifier: "presentDonations", sender: nil)
+            self.modalsPresentingVC.performSegue(withIdentifier: "presentTzedaka", sender: nil)
         }
         self.currentPresentedModal = .donations
         self.setIcons(string: "donations")
@@ -684,8 +684,8 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
         case .messageCenter:
             presentMessages()
         case .donationsCenter:
-//            presentDonationsNavigationViewController()
-            presentDonationsViewController()
+            presentDonationsNavigationViewController()
+//            presentDonationsViewController()
 //            presentOldDonations()
 //            presentDonationWalkThrough()
         default:
