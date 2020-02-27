@@ -296,10 +296,14 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.indexPath = indexPath
         if tableView == gemaraTableView {
             cell.isFirstTable = true
-
-            let lessons = self.gemaraDownloads[indexPath.section].records.sorted(by:{
-                $0.lesson.page < $1.lesson.page
-                })
+            let lessons = self.gemaraDownloads[indexPath.section].records.sorted { (download1, download2) in
+                if download1.masechetId != download2.masechetId {
+                    return download1.masechetId < download2.masechetId
+                }
+                else {
+                    return download1.lesson.page < download2.lesson.page
+                }
+            }
             let lesson = lessons[indexPath.row]
             cell.book.text = lesson.masechetName
             cell.chapter.text = ""
@@ -318,9 +322,14 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
             }
         } else {
             cell.isFirstTable = false
-            let lessons = self.mishnaDownloads[indexPath.section].records.sorted(by:{
-                $0.lesson.mishna < $1.lesson.mishna
-                })
+            let lessons = self.mishnaDownloads[indexPath.section].records.sorted { (download1, download2) in
+                if download1.masechetId != download2.masechetId {
+                    return download1.masechetId < download2.masechetId
+                }
+                else {
+                    return download1.lesson.mishna < download2.lesson.mishna
+                }
+            }
             let lesson = lessons[indexPath.row]
             cell.book.text = lesson.masechetName
             cell.chapter.text = lesson.chapter
@@ -425,9 +434,14 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
                 if let indexPath = self.gemaraTableView.indexPath(for: cell) {
                    
                     // Remove from storage
-                    let lessons = self.gemaraDownloads[indexPath.section].records.sorted(by:{
-                       $0.lesson.page < $1.lesson.page
-                       })
+                    let lessons = self.gemaraDownloads[indexPath.section].records.sorted { (download1, download2) in
+                        if download1.masechetId != download2.masechetId {
+                            return download1.masechetId < download2.masechetId
+                        }
+                        else {
+                            return download1.lesson.page < download2.lesson.page
+                        }
+                    }
                     let downloadedLesson = lessons[indexPath.row] //self.gemaraDownloads[indexPath.section].records[indexPath.row]
                     ContentRepository.shared.removeLessonFromDownloaded(downloadedLesson.lesson, sederId: "\(self.gemaraDownloads[indexPath.section].sederId)", masechetId: downloadedLesson.masechetId)
                     
@@ -447,9 +461,14 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
             } else {
                 if let indexPath = self.mishnaTableView.indexPath(for: cell) {
                    // Remove from storage
-                    let lessons = self.mishnaDownloads[indexPath.section].records.sorted(by:{
-                        $0.lesson.mishna < $1.lesson.mishna
-                        })
+                    let lessons = self.mishnaDownloads[indexPath.section].records.sorted { (download1, download2) in
+                        if download1.masechetId != download2.masechetId {
+                            return download1.masechetId < download2.masechetId
+                        }
+                        else {
+                            return download1.lesson.mishna < download2.lesson.mishna
+                        }
+                    }
                     let downloadedLesson = lessons[indexPath.row] //self.mishnaDownloads[indexPath.section].records[indexPath.row]
                     ContentRepository.shared.removeLessonFromDownloaded(downloadedLesson.lesson, sederId: "\(self.mishnaDownloads[indexPath.section].sederId)", masechetId: downloadedLesson.masechetId, chapter: downloadedLesson.chapter)
 
@@ -480,9 +499,14 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         
         switch lessonType {
         case .gemara:
-            let lessons = self.gemaraDownloads[indexPath.section].records.sorted(by:{
-                $0.lesson.page < $1.lesson.page
-                })
+            let lessons = self.gemaraDownloads[indexPath.section].records.sorted { (download1, download2) in
+                if download1.masechetId != download2.masechetId {
+                    return download1.masechetId < download2.masechetId
+                }
+                else {
+                    return download1.lesson.page < download2.lesson.page
+                }
+            }
             let curentLesson = lessons[indexPath.row]
             lesson = curentLesson.lesson //self.gemaraDownloads[indexPath.section].records[indexPath.row].lesson
             masechetName = curentLesson.masechetName //self.gemaraDownloads[indexPath.section].records[indexPath.row].masechetName
@@ -490,9 +514,14 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
             sederId = curentLesson.sederId //self.gemaraDownloads[indexPath.section].records[indexPath.row].sederId
             
         case .mishna:
-            let lessons = self.mishnaDownloads[indexPath.section].records.sorted(by:{
-                $0.lesson.mishna < $1.lesson.mishna
-                })
+            let lessons = self.mishnaDownloads[indexPath.section].records.sorted { (download1, download2) in
+                if download1.masechetId != download2.masechetId {
+                    return download1.masechetId < download2.masechetId
+                }
+                else {
+                    return download1.lesson.mishna < download2.lesson.mishna
+                }
+            }
             let curentLesson = lessons[indexPath.row]
             lesson = curentLesson.lesson//self.mishnaDownloads[indexPath.section].records[indexPath.row].lesson
             masechetName = curentLesson.masechetName // self.mishnaDownloads[indexPath.section].records[indexPath.row].masechetName
