@@ -14,6 +14,9 @@ class HoursView: UIView {
     
     @IBOutlet weak var currentLabel: UILabel!
     @IBOutlet weak var nextLabel: UILabel!
+    @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var currentNumberYConstraint: NSLayoutConstraint!
+    @IBOutlet weak var nextNumberYConstraint: NSLayoutConstraint!
     
     // MARK: - Properties
     
@@ -59,17 +62,34 @@ class HoursView: UIView {
     }
     
     // MARK: - Main Methods
-    func setButtonImage(NormalImage: UIImage, highlightedImage: UIImage) {
-        
+    func changeValue(newValue: String) {
+        self.nextLabel.text = newValue
+        UIView.animate(withDuration: 0.7, animations: {
+            self.currentNumberYConstraint.constant = -40
+            self.currentLabel.alpha = 0
+            self.nextNumberYConstraint.constant = 0
+            self.nextLabel.alpha = 1
+            DispatchQueue.main.asyncAfter(deadline:  .now() + 0.6) {
+                self.setDefultPosition()
+
+            }
+            self.layoutIfNeeded()
+        })
     }
     
-    func setProgress(progress: CGFloat?, fontColor: UIColor, ringColor: UIColor) {
-        
+    func setDefultPosition() {
+        self.currentNumberYConstraint.constant = 0
+        self.currentLabel.alpha = 1
+        self.nextNumberYConstraint.constant = 40
+        self.nextLabel.alpha = 0
+        self.currentLabel.text = self.nextLabel.text
     }
     
     // MARK: - Private Methods
     
-    private func setProgressRing() {
-        
+    func setShadow() {
+        let shadowOffset = CGSize(width: 0.0, height: 20)
+        let color = #colorLiteral(red: 0.2359343767, green: 0.2592330873, blue: 0.7210982442, alpha: 0.48)
+        Utils.dropViewShadow(view: self.currentLabel, shadowColor: color, shadowRadius: 20, shadowOffset: shadowOffset)
     }
 }

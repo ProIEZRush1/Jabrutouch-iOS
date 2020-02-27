@@ -18,7 +18,7 @@ struct JTDedication {
             self.id = id
         } else { return nil }
         
-        if let name = values["name"] as? String {
+        if let name = values["template"] as? String {
             self.name = name
         } else { return nil }
         
@@ -27,7 +27,7 @@ struct JTDedication {
     var values: [String:Any] {
         var values: [String:Any] = [:]
         values["id"] = self.id
-        values["name"] = self.name
+        values["template"] = self.name
         
         return values
     }

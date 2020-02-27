@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Starscream
 
-class DonateViewController: UIViewController, UITextFieldDelegate {
+class DonateViewController: UIViewController, UITextFieldDelegate, WebSocketDelegate {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var backButton: UIButton!
@@ -31,15 +32,24 @@ class DonateViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var continueLabel: UILabel!
     @IBOutlet weak var amountToDonateLabel: UILabel!
     
-    var isSingelPayment: Bool = false
-    var isSubscription: Bool = true
+    @IBOutlet weak var firstView: HoursView!
+    @IBOutlet weak var secondView: HoursView!
+    @IBOutlet weak var thirdView: HoursView!
+    @IBOutlet weak var fourthView: HoursView!
+    @IBOutlet weak var fifthView: HoursView!
+    @IBOutlet weak var sixthView: HoursView!
     
+    var isSingelPayment: Bool = false
     var donation: JTDonation?
     var crowns: [JTCrown] = []
     var dedication: [JTDedication] = []
+    var postDedication: JTPostDedication?
     var numberOfCrownsSinget = 5
     var numberOfCrownsSubsciption = 1
-    var showVideo: Bool = true
+    var showVideo: Bool = UserDefaultsProvider.shared.videoWatched
+    var watchCount: Int?
+    var socket: WebSocket! = nil
+    var isConnected = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,15 +60,20 @@ class DonateViewController: UIViewController, UITextFieldDelegate {
         self.setBorders()
         self.setRoundCorners()
         self.setSlider()
-        self.getDonationDatd()
+        self.getDonationData()
         self.setShadows()
+        self.setHoursViews()
+        self.watchCount = DonationManager.shared.userDonation?.watchCount
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.setButtonsColorAndFont()
         self.setState()
-        
+        self.initSocket()
         self.presentVideo()
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        self.changeValue()
     }
     
     private func setRoundCorners() {
@@ -75,6 +90,15 @@ class DonateViewController: UIViewController, UITextFieldDelegate {
         self.singelPaymentButton.layer.cornerRadius = self.singelPaymentButton.bounds.height / 2
     }
     
+    func setHoursViews() {
+        self.setNumberView(view: self.firstView)
+        self.setNumberView(view: self.secondView)
+        self.setNumberView(view: self.thirdView)
+        self.setNumberView(view: self.fourthView)
+        self.setNumberView(view: self.fifthView)
+        self.setNumberView(view: self.sixthView)
+    }
+    
     func setBorders() {
         self.shadowView.layer.borderColor = Colors.borderGray.cgColor
         self.shadowView.layer.borderWidth = 1.0
@@ -86,9 +110,9 @@ class DonateViewController: UIViewController, UITextFieldDelegate {
     }
     
     func presentVideo() {
-        if self.showVideo {
+        if !self.showVideo {
             self.performSegue(withIdentifier: "presentVideo", sender: self)
-            self.showVideo = false
+            UserDefaultsProvider.shared.videoWatched = true
         }
     }
     private func setShadows() {
@@ -121,36 +145,129 @@ class DonateViewController: UIViewController, UITextFieldDelegate {
     
     fileprivate func setButtonsColorAndFont() {
         singelPaymentButton.backgroundColor = isSingelPayment ? #colorLiteral(red: 0.1764705882, green: 0.168627451, blue: 0.662745098, alpha: 1) : .clear
-        subscriptionButton.backgroundColor = isSubscription ? #colorLiteral(red: 0.1764705882, green: 0.168627451, blue: 0.662745098, alpha: 1) : .clear
+        subscriptionButton.backgroundColor = !isSingelPayment ? #colorLiteral(red: 0.1764705882, green: 0.168627451, blue: 0.662745098, alpha: 1) : .clear
         
         
         singelPaymentButton.titleLabel?.font = isSingelPayment ? UIFont(name: "SFProDisplay-Heavy", size: 18) : UIFont(name: "SFProDisplay-Regular", size: 18)
-        subscriptionButton.titleLabel?.font = isSubscription ? UIFont(name: "SFProDisplay-Heavy", size: 18) : UIFont(name: "SFProDisplay-Regular", size: 18)
+        subscriptionButton.titleLabel?.font = !isSingelPayment ? UIFont(name: "SFProDisplay-Heavy", size: 18) : UIFont(name: "SFProDisplay-Regular", size: 18)
         
         singelPaymentButton.setTitleColor(isSingelPayment ? #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) : #colorLiteral(red: 0.2359343767, green: 0.2592330873, blue: 0.7210982442, alpha: 0.48), for: .normal)
-        subscriptionButton.setTitleColor(isSubscription ?  #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) : #colorLiteral(red: 0.2359343767, green: 0.2592330873, blue: 0.7210982442, alpha: 0.48), for: .normal)
+        subscriptionButton.setTitleColor(!isSingelPayment ?  #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) : #colorLiteral(red: 0.2359343767, green: 0.2592330873, blue: 0.7210982442, alpha: 0.48), for: .normal)
         
     }
     
-    func getDonationDatd() {
-        DonationManager.shared.getDonationData( completion: { result in
-            switch result {
-            case .success(let donation):
-                self.donation = donation
-                self.dedication = donation.dedication
-                self.crowns = donation.crowns
-                for crown in self.crowns {
-                    if crown.paymentType == "singel" {
-                        self.numberOfCrownsSinget = crown.dollarPerCrown
-                    }
-                    if crown.paymentType == "Subscription" {
-                        self.numberOfCrownsSubsciption = crown.dollarPerCrown
-                    }
-                }
-            case .failure(_):
-                break
+    func initSocket() {
+        let request = URLRequest(url: URL(string: "wss://jabrutouch-dev.ravtech.co.il/ws/lesson_watch_count")!)
+//        request.timeoutInterval = 5
+        self.socket = WebSocket(request: request)
+        self.socket.delegate = self
+        self.socket.connect()
+//        self.socket = socket
+    }
+    
+    func didReceive(event: WebSocketEvent, client: WebSocket) {
+        switch event {
+        case .connected(let headers):
+            isConnected = true
+            print("websocket is connected: \(headers)")
+        case .disconnected(let reason, let code):
+            isConnected = false
+            print("websocket is disconnected: \(reason) with code: \(code)")
+        case .text(let string):
+            print("Received text: \(string)")
+        case .binary(let data):
+            print("Received data: \(data.count)")
+        case .ping(_):
+            break
+        case .pong(_):
+            break
+        case .viablityChanged(_):
+            break
+        case .reconnectSuggested(_):
+            break
+        case .cancelled:
+            isConnected = false
+        case .error(let error):
+            isConnected = false
+            if let error = error as? WSError {
+                print("websocket encountered an error: \(error.message)")
             }
-        })
+        }
+    }
+    
+    func getDonationData() {
+        self.donation = DonationManager.shared.donation
+        self.dedication = DonationManager.shared.dedication
+        self.crowns = DonationManager.shared.crowns
+        for crown in self.crowns {
+            if crown.paymentType == "regular" {
+                self.numberOfCrownsSinget = crown.dollarPerCrown
+            }
+            if crown.paymentType == "subscription" {
+                self.numberOfCrownsSubsciption = crown.dollarPerCrown
+            }
+        }
+    }
+    
+    func setNumberView(view: HoursView) {
+        view.layer.cornerRadius = 4
+        view.layer.borderColor = Colors.borderGray.cgColor
+        view.layer.borderWidth = 1
+    }
+    
+    func changeValue() {
+        guard let counter = self.watchCount else {return}
+//        let counter = 538629
+        var digits = "\(counter)".compactMap{ $0.wholeNumberValue }
+        while digits.count < 6 {
+            digits.insert(0, at: 0)
+        }
+        if self.firstView.currentLabel.text != "\(digits[0])" {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                self.firstView.changeValue(newValue: "\(digits[0])")
+            }
+        }
+        if self.secondView.currentLabel.text != "\(digits[1])" {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                self.secondView.changeValue(newValue: "\(digits[1])")
+            }
+        }
+        if self.thirdView.currentLabel.text != "\(digits[2])" {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                self.thirdView.changeValue(newValue: "\(digits[2])")
+            }
+        }
+        if self.fourthView.currentLabel.text != "\(digits[3])" {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                self.fourthView.changeValue(newValue: "\(digits[3])")
+            }
+        }
+        if self.fifthView.currentLabel.text != "\(digits[4])" {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.fifthView.changeValue(newValue: "\(digits[4])")
+            }
+        }
+        if self.sixthView.currentLabel.text != "\(digits[5])" {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+                self.sixthView.changeValue(newValue: "\(digits[5])")
+            }
+        }
+
+    }
+    
+    func createPostDedication() {
+        var sum = 0
+         if let amountToPay = Int(self.amountToDonateLabel.text ?? "0") {
+             sum = amountToPay
+         }
+         let paymentType = self.isSingelPayment ? 14 : 15
+        
+        if self.postDedication == nil {
+            self.postDedication = JTPostDedication(sum: sum, paymenType: paymentType, nameToRepresent: "", dedicationText: "", status: "", dedicationTemplate: 0)
+        } else {
+            self.postDedication!.sum = sum
+            self.postDedication!.paymentType = paymentType
+        }
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
@@ -164,7 +281,6 @@ class DonateViewController: UIViewController, UITextFieldDelegate {
         self.amountToPayTF.text = "54"
         self.slider.value = 54 / 2000
         self.isSingelPayment = true
-        self.isSubscription = false
         self.setState()
     }
     
@@ -172,11 +288,11 @@ class DonateViewController: UIViewController, UITextFieldDelegate {
         self.amountToPayTF.text = "18"
         self.slider.value = 0
         self.isSingelPayment = false
-        self.isSubscription = true
         self.setState()
     }
     
     @IBAction func continueButtonPressed(_ sender: Any) {
+        self.createPostDedication()
         self.performSegue(withIdentifier: "presentDedication", sender: self)
     }
     
@@ -249,11 +365,11 @@ class DonateViewController: UIViewController, UITextFieldDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "presentDedication" {
             let dedicationVC = segue.destination as? DedicationViewController
-            if let amountToPay = Int(self.amountToDonateLabel.text ?? "0") {
-                dedicationVC?.amountToPay = amountToPay
-            }
-            dedicationVC?.isSubscription = self.isSubscription
+//            if let amountToPay = Int(self.amountToDonateLabel.text ?? "0") {
+//                dedicationVC?.amountToPay = amountToPay
+//            }
             dedicationVC?.dedication = self.dedication
+            dedicationVC?.postDedication = self.postDedication
         }
     }
 }

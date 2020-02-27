@@ -206,6 +206,10 @@
 		8395979C24028B8F007B96EB /* TzedakeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8395979B24028B8E007B96EB /* TzedakeViewController.swift */; };
 		8395979E24029C31007B96EB /* HoursView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8395979D24029C30007B96EB /* HoursView.xib */; };
 		839597A024029E26007B96EB /* HoursView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8395979F24029E26007B96EB /* HoursView.swift */; };
+		839597A22403F81B007B96EB /* JTUserDonation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839597A12403F81A007B96EB /* JTUserDonation.swift */; };
+		839597A42403FA51007B96EB /* UserDonationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839597A32403FA51007B96EB /* UserDonationResponse.swift */; };
+		839597A6240417D1007B96EB /* LessonDonationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839597A5240417D1007B96EB /* LessonDonationResponse.swift */; };
+		839597A824041901007B96EB /* JTDonated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839597A724041900007B96EB /* JTDonated.swift */; };
 		839CB4CB2381C91B0086554B /* SelectInterestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839CB4CA2381C91B0086554B /* SelectInterestViewController.swift */; };
 		839E1E7C238588C100578C60 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839E1E7B238588C100578C60 /* UserRepository.swift */; };
 		83A7A0C323E205B40041BE28 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A7A0C223E205B30041BE28 /* iCarousel.m */; };
@@ -473,6 +477,10 @@
 		8395979B24028B8E007B96EB /* TzedakeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TzedakeViewController.swift; sourceTree = "<group>"; };
 		8395979D24029C30007B96EB /* HoursView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HoursView.xib; sourceTree = "<group>"; };
 		8395979F24029E26007B96EB /* HoursView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoursView.swift; sourceTree = "<group>"; };
+		839597A12403F81A007B96EB /* JTUserDonation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTUserDonation.swift; sourceTree = "<group>"; };
+		839597A32403FA51007B96EB /* UserDonationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDonationResponse.swift; sourceTree = "<group>"; };
+		839597A5240417D1007B96EB /* LessonDonationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonDonationResponse.swift; sourceTree = "<group>"; };
+		839597A724041900007B96EB /* JTDonated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTDonated.swift; sourceTree = "<group>"; };
 		839991DA23F5597900B40A28 /* DataModel_v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel_v2.xcdatamodel; sourceTree = "<group>"; };
 		839CB4CA2381C91B0086554B /* SelectInterestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectInterestViewController.swift; sourceTree = "<group>"; };
 		839E1E7B238588C100578C60 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
@@ -744,6 +752,8 @@
 				46C652F523CF770800F6D0DD /* GetEditUserParametersResponse.swift */,
 				83A7A0CA23E84C3C0041BE28 /* ChangePasswordResponse.swift */,
 				83137EFE23F040E5003B9DA6 /* DonationResponse.swift */,
+				839597A32403FA51007B96EB /* UserDonationResponse.swift */,
+				839597A5240417D1007B96EB /* LessonDonationResponse.swift */,
 			);
 			path = "API Response models";
 			sourceTree = "<group>";
@@ -1152,6 +1162,8 @@
 				83137F0023F046CB003B9DA6 /* JTCrown.swift */,
 				83137F0223F04769003B9DA6 /* JTDedication.swift */,
 				83137F0623F07050003B9DA6 /* JTPostDedication.swift */,
+				839597A12403F81A007B96EB /* JTUserDonation.swift */,
+				839597A724041900007B96EB /* JTDonated.swift */,
 			);
 			path = "Domain Models";
 			sourceTree = "<group>";
@@ -1647,6 +1659,7 @@
 				2133C21F22DCFC6600F910B9 /* WalkThroughViewController.swift in Sources */,
 				833E6225239FB11600EC93C7 /* JTMessage.swift in Sources */,
 				210628BB22F6EBB3008BBD8C /* Storyboards.swift in Sources */,
+				839597A6240417D1007B96EB /* LessonDonationResponse.swift in Sources */,
 				210628B922F6EAE6008BBD8C /* SplashScreenViewController.swift in Sources */,
 				FB51711A22F1A100003BCAFC /* JTMishnaChapter.swift in Sources */,
 				FB51711422F19C3F003BCAFC /* MishnaMasechetCellController.swift in Sources */,
@@ -1655,6 +1668,7 @@
 				DD51946724069F760085E2A8 /* SubscribeViewController.swift in Sources */,
 				2133C22622DDCD3E00F910B9 /* Colors.swift in Sources */,
 				46C652F623CF770800F6D0DD /* GetEditUserParametersResponse.swift in Sources */,
+				839597A22403F81B007B96EB /* JTUserDonation.swift in Sources */,
 				FB51712322F1D7CC003BCAFC /* MishnaChapterCellController.swift in Sources */,
 				DDF1D227240445180080D564 /* NoDonationViewController.swift in Sources */,
 				213196AE22F38B6800B0AF5F /* JTUser.swift in Sources */,
@@ -1724,6 +1738,7 @@
 				8342BA79237302AE00C3239C /* DonationsViewController.swift in Sources */,
 				2120BE1F22DF2758004854DB /* SignUpViewController.swift in Sources */,
 				213196AD22F38B6800B0AF5F /* JTCommunity.swift in Sources */,
+				839597A42403FA51007B96EB /* UserDonationResponse.swift in Sources */,
 				FBDEF16D22E89E3B00A300DA /* HeaderCellController.swift in Sources */,
 				21E0BE942304217800F820D4 /* JTMishnaMasechetItem.swift in Sources */,
 				2133C22422DDCCD500F910B9 /* JBBarPageIndicator.swift in Sources */,
@@ -1752,6 +1767,7 @@
 				833E622B239FC33300EC93C7 /* ChatViewController.swift in Sources */,
 				FBDEF16822E8868600A300DA /* JTDownloadGroup.swift in Sources */,
 				5386914B2379E8B500CC95B5 /* InterestsCell.swift in Sources */,
+				839597A824041901007B96EB /* JTDonated.swift in Sources */,
 				83605BA72382DCD200B93603 /* ImagePicker.swift in Sources */,
 				21419CB9230DD91100145F1F /* JTSederDownloadedMishnaLessons.swift in Sources */,
 				46C652F423CF764F00F6D0DD /* JTUserProfileParameters.swift in Sources */,

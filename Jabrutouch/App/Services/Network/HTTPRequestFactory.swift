@@ -175,7 +175,46 @@ class HttpRequestsFactory {
         return request
     }
     
+    class func createGetUserDonation(token: String) -> URLRequest?{
+        guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
+        let link = baseUrl.appendingPathComponent("user/donation").absoluteString
+        guard let url = self.createUrl(fromLink: link, urlParams: nil) else { return nil }
+        let additionalHeaders: [String:String] = ["Authorization": "token \(token)"]
+        let request = self.createRequest(url, method: .get, body: nil, additionalHeaders: additionalHeaders)
+        return request
+    }
     
+    class func createGetLessonDonationRequest(token: String) -> URLRequest?{
+        guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
+        let link = baseUrl.appendingPathComponent("lesson_donations").absoluteString
+        guard let url = self.createUrl(fromLink: link, urlParams: nil) else { return nil }
+        let additionalHeaders: [String:String] = ["Authorization": "token \(token)"]
+        
+        let request = self.createRequest(url, method: .get, body: nil, additionalHeaders: additionalHeaders)
+        return request
+    }
+    
+    class func createDonationLikeRequest(lessonId: Int, isGemara: Bool, crownId: Int, token: String) -> URLRequest?{
+        guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
+        let link = baseUrl.appendingPathComponent("user_payment").absoluteString
+       let body: [String:Any] = ["lesson_id": lessonId, "is_gemara": isGemara, "crown_id": crownId]
+        guard let url = self.createUrl(fromLink: link, urlParams: nil) else { return nil }
+        let additionalHeaders: [String:String] = ["Authorization": "token \(token)"]
+        
+        let request = self.createRequest(url, method: .post, body: body, additionalHeaders: additionalHeaders)
+        return request
+    }
+    
+    class func createDonationPaymentRequest(sum: Int, paymentType: Int, nameToRepresent: String, dedicationText: String, status: String, dedicationTemplate:Int, token: String) -> URLRequest?{
+        guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
+        let link = baseUrl.appendingPathComponent("user_payment").absoluteString
+        let body: [String:Any] = ["sum": sum, "payment_type": paymentType, "name_to_represent": nameToRepresent, "dedication_text": dedicationText, "status": status, "dedication_template": dedicationTemplate]
+        guard let url = self.createUrl(fromLink: link, urlParams: nil) else { return nil }
+        let additionalHeaders: [String:String] = ["Authorization": "token \(token)"]
+        
+        let request = self.createRequest(url, method: .post, body: body, additionalHeaders: additionalHeaders)
+        return request
+    }
     
     class func createGetMessageListRequest(token: String) -> URLRequest?{
         guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }

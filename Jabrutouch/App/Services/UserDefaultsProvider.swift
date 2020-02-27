@@ -19,6 +19,7 @@ class UserDefaultsProvider {
         case appLanguages = "AppleLanguages"
         case index = "Index"
         case lessonWatched = "LessonWatched"
+        case videoWatched = "VideoWatched"
     }
     
     static private var provider: UserDefaultsProvider?
@@ -119,6 +120,16 @@ class UserDefaultsProvider {
         }
         set (lessonWatched) {
             self.defaults.set(lessonWatched.map{$0.values}, forKey: UserDefaultsKeys.lessonWatched.rawValue)
+            self.defaults.synchronize()
+        }
+    }
+    
+    var videoWatched: Bool {
+        get {
+            return self.defaults.bool(forKey: UserDefaultsKeys.videoWatched.rawValue)
+        }
+        set (value) {
+            self.defaults.set(value, forKey: UserDefaultsKeys.videoWatched.rawValue)
             self.defaults.synchronize()
         }
     }

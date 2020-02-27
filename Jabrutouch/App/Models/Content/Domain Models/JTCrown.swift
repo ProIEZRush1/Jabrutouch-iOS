@@ -23,7 +23,7 @@ struct JTCrown {
             self.paymentType = paymentType
         } else { return nil }
         
-        if let dollarPerCrown = values["dollar_per_crown"] as? Int {
+        if let dollarPerCrown = values["price"] as? Int {
             self.dollarPerCrown = dollarPerCrown
         } else { return nil }
         
@@ -34,7 +34,7 @@ struct JTCrown {
         var values: [String:Any] = [:]
         values["id"] = self.id
         values["payment_type"] = self.paymentType
-        values["dollar_per_crown"] = self.dollarPerCrown
+        values["price"] = self.dollarPerCrown
         
         return values
     }

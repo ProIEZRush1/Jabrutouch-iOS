@@ -149,8 +149,52 @@ class API {
         }
     }
     
+    //========================================
+    // MARK: - Donations
+    //========================================
+    
     class func getDonationsData(authToken: String, completionHandler:@escaping (_ response: APIResult<DonationResponse>)->Void) {
         guard let request = HttpRequestsFactory.createGetDonationData(token: authToken) else {
+            completionHandler(APIResult.failure(.unableToCreateRequest))
+            return
+        }
+        HttpServiceProvider.shared.excecuteRequest(request: request) { (data, response, error) in
+            self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
+        }
+    }
+    
+    class func getUserDonations(authToken: String, completionHandler:@escaping (_ response: APIResult<UserDonationResponse>)->Void) {
+        guard let request = HttpRequestsFactory.createGetUserDonation(token: authToken) else {
+            completionHandler(APIResult.failure(.unableToCreateRequest))
+            return
+        }
+        HttpServiceProvider.shared.excecuteRequest(request: request) { (data, response, error) in
+            self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
+        }
+    }
+    
+    class func getLessonDonation(authToken: String, completionHandler:@escaping (_ response: APIResult<LessonDonationResponse>)->Void) {
+        guard let request = HttpRequestsFactory.createGetLessonDonationRequest(token: authToken) else {
+            completionHandler(APIResult.failure(.unableToCreateRequest))
+            return
+        }
+        HttpServiceProvider.shared.excecuteRequest(request: request) { (data, response, error) in
+            self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
+        }
+    }
+    
+    class func createDonationLikeRequest(lessonId: Int, isGemara: Bool, crownId: Int, authToken: String, completionHandler:@escaping (_ response: APIResult<LessonDonationResponse>)->Void) {
+        guard let request = HttpRequestsFactory.createDonationLikeRequest(lessonId: lessonId, isGemara: isGemara, crownId: crownId, token: authToken) else {
+            completionHandler(APIResult.failure(.unableToCreateRequest))
+            return
+        }
+        HttpServiceProvider.shared.excecuteRequest(request: request) { (data, response, error) in
+            self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
+        }
+    }
+    
+    class func createDonationPayment(sum: Int, paymentType: Int, nameToRepresent: String, dedicationText: String, status: String, dedicationTemplate:Int, authToken: String, completionHandler:@escaping (_ response: APIResult<LessonDonationResponse>)->Void) {
+        guard let request = HttpRequestsFactory.createDonationPaymentRequest(sum: sum, paymentType: paymentType, nameToRepresent: nameToRepresent, dedicationText: dedicationText, status: status, dedicationTemplate: dedicationTemplate, token: authToken) else {
             completionHandler(APIResult.failure(.unableToCreateRequest))
             return
         }
