@@ -173,8 +173,18 @@ class API {
         }
     }
     
-    class func getLessonDonation(lessonId: String, isGemara: Bool, authToken: String, completionHandler:@escaping (_ response: APIResult<LessonDonationResponse>)->Void) {
-        guard let request = HttpRequestsFactory.createGetLessonDonationRequest(lessonId: lessonId, isGemara: isGemara, token: authToken) else {
+    class func getLessonDonation(authToken: String, completionHandler:@escaping (_ response: APIResult<LessonDonationResponse>)->Void) {
+        guard let request = HttpRequestsFactory.createGetLessonDonationRequest(token: authToken) else {
+            completionHandler(APIResult.failure(.unableToCreateRequest))
+            return
+        }
+        HttpServiceProvider.shared.excecuteRequest(request: request) { (data, response, error) in
+            self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
+        }
+    }
+    
+    class func createDonationLikeRequest(lessonId: Int, isGemara: Bool, crownId: Int, authToken: String, completionHandler:@escaping (_ response: APIResult<LessonDonationResponse>)->Void) {
+        guard let request = HttpRequestsFactory.createDonationLikeRequest(lessonId: lessonId, isGemara: isGemara, crownId: crownId, token: authToken) else {
             completionHandler(APIResult.failure(.unableToCreateRequest))
             return
         }

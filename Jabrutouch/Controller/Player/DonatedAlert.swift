@@ -23,12 +23,18 @@ class DonatedAlert: UIViewController {
     @IBOutlet weak var avatarImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var location: UILabel!
+    @IBOutlet weak var dedicationLabel: UILabel!
+    @IBOutlet weak var dedicationNameLabel: UILabel!
     
     //====================================================
     // MARK: - Properties
     //====================================================
     
     weak var delegate: DonatedAlertDelegate?
+    var dedicationText: String = ""
+    var dedicationNameText: String = ""
+    var nameText: String = ""
+    var locationText: String = ""
     
     //====================================================
     // MARK: - Life Cycle
@@ -43,7 +49,8 @@ class DonatedAlert: UIViewController {
         self.setStrings()
         self.setCornerRadius()
         self.setShadow()
-        self.setDonor()
+//        self.setDonor()
+//        self.getDonorText()
         // Do any additional setup after loading the view.
     }
     
@@ -56,6 +63,10 @@ class DonatedAlert: UIViewController {
     //====================================================
     func setStrings() {
         self.titleLabel.text = Strings.donatedTitle
+        self.dedicationLabel.text = self.dedicationText
+        self.dedicationNameLabel.text = self.dedicationNameText
+        self.location.text = self.locationText
+        self.nameLabel.text = self.nameText
         self.startBtn.setTitle(Strings.donatedBtn, for: .normal)
     }
 

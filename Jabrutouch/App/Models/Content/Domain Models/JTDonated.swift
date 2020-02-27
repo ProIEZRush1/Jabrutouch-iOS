@@ -11,13 +11,19 @@ import Foundation
 struct JTDonated {
     
     var dedicationText: String
+    var dedicationTemplateText: String
     var nameToRepresent: String
     var firstName: String
     var lastName: String
+    var country: String
     
     init?(values: [String:Any]) {
         if let dedicationText = values["dedication_text"] as? String {
             self.dedicationText = dedicationText
+        } else { return nil }
+        
+        if let dedicationTemplateText = values["dedication_template_text"] as? String {
+            self.dedicationTemplateText = dedicationTemplateText
         } else { return nil }
         
         if let nameToRepresent = values["name_to_represent"] as? String {
@@ -32,14 +38,20 @@ struct JTDonated {
             self.lastName = lastName
         } else { return nil }
         
+        if let country = values["country"] as? String {
+            self.country = country
+        } else { return nil }
+        
     }
     
     var values: [String:Any] {
         var values: [String:Any] = [:]
         values["dedication_text"] = self.dedicationText
+        values["dedication_template_text"] = self.dedicationTemplateText
         values["name_to_represent"] = self.nameToRepresent
         values["first_name"] = self.firstName
         values["last_name"] = self.lastName
+        values["country"] = self.lastName
         
         return values
     }

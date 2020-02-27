@@ -58,10 +58,23 @@ class DonationManager {
         }
     }
     
-    func getDonatedBy(lessonId: String, isGemara: Bool, completion:@escaping (_ result: Result<Any, JTError>)->Void) {
+    func getDonationAllertData(completion:@escaping (_ result: Result<LessonDonationResponse, JTError>)->Void) {
         guard let authToken = UserDefaultsProvider.shared.currentUser?.token else { return }
-        API.getLessonDonation(lessonId: lessonId, isGemara: isGemara, authToken: authToken) { (result: APIResult<LessonDonationResponse>) in
+        API.getLessonDonation(authToken: authToken) { (result: APIResult<LessonDonationResponse>) in
             switch result {
+            case .success(let response):
+                completion(.success(response))
+            case .failure(let error):
+                completion(.failure(error))
+
+            }
+        }
+    }
+    
+    func createLike(lessonId: Int, isGemara: Bool, crownId: Int, completion:@escaping (_ result: Result<Any, JTError>)->Void) {
+        guard let authToken = UserDefaultsProvider.shared.currentUser?.token else { return }
+        API.createDonationLikeRequest(lessonId: lessonId, isGemara: isGemara, crownId: crownId, authToken: authToken) { (result: APIResult<LessonDonationResponse>) in
+            switch result{
             case .success(let response):
                 completion(.success(response))
             case .failure(let error):

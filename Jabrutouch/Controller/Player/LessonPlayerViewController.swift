@@ -112,6 +112,8 @@ class LessonPlayerViewController: UIViewController {
     var daf = ""
     var lessonParts: [Double] = []
     var textingMode: Bool = false
+    var donationAllertData: JTDonated?
+    var crownId: Int?
     
     private lazy var chatControlsView: ChatControlsView = {
         var view = ChatControlsView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 70))
@@ -153,6 +155,7 @@ class LessonPlayerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.getDonorText()
         self.messageHeaderView.isHidden = true
         self.chatControlsView.delegate = self
 
@@ -167,9 +170,9 @@ class LessonPlayerViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if self.shouldDisplayDonationPopUp {
-            self.presentDonateAlert()
-        }
+//        if self.shouldDisplayDonationPopUp {
+//            self.presentDonateAlert()
+//        }
         self.lessonWatched = UserDefaultsProvider.shared.lessonWatched
         self.showActivityView()
         self.roundCorners()
@@ -287,6 +290,27 @@ class LessonPlayerViewController: UIViewController {
     //====================================================
     // MARK: - Setup
     //====================================================
+
+    func getDonorText() {
+        DonationManager.shared.getDonationAllertData { (result) in
+            switch result {
+            case .success(let response):
+                self.donationAllertData = response.donatedBy[0]
+                self.crownId = response.crownId
+                if self.shouldDisplayDonationPopUp {
+                    DispatchQueue.main.async {
+                        self.presentDonateAlert()
+                    }
+                }
+            case .failure(let error):
+                let title = Strings.error
+                let message = error.message
+                Utils.showAlertMessage(message, title: title, viewControler: self)
+                
+            }
+        }
+    }
+
     private func setProgressRing() {
         let startColor: UIColor = UIColor(red: 0.3, green: 0.31, blue: 0.82, alpha: 1)
         let endColor: UIColor = UIColor(red: 1, green: 0.37, blue: 0.31, alpha: 1)
@@ -377,9 +401,16 @@ class LessonPlayerViewController: UIViewController {
     }
     
     private func presentDonateAlert() {
+        guard let donationData = self.donationAllertData else { return }
         let alertVC = DonatedAlert()
         alertVC.modalTransitionStyle = .crossDissolve
         alertVC.delegate = self
+        if donationData.dedicationTemplateText != "" {
+            alertVC.dedicationText = donationData.dedicationText
+            alertVC.dedicationNameText = donationData.nameToRepresent
+        }
+        alertVC.nameText = "\(donationData.firstName) \(donationData.lastName)"
+        alertVC.locationText = donationData.country
         alertVC.modalPresentationStyle = .overFullScreen
         self.present(alertVC, animated: true, completion: nil)
     }
@@ -943,6 +974,18 @@ extension LessonPlayerViewController: DonatedAlertDelegate {
                 let _ = self.videoPlayer.play()
             case .audio:
                 let _ = self.audioPlayer.play()
+            }
+        }
+        var isGemara = false
+        if let _ = self.lesson as? JTGemaraLesson {
+            isGemara = true
+        }
+        DonationManager.shared.createLike(lessonId: self.lesson.id, isGemara: isGemara, crownId: self.crownId ?? 0) { (result) in
+            switch result {
+            case .success(let response):
+                print(response)
+            case .failure(let error):
+                print(error)
             }
         }
     }
