@@ -9,7 +9,7 @@
 import UIKit
 
 
-class TzedakaViewController: UIViewController{
+class TzedakaViewController: UIViewController, DedicationViewControllerDelegate{
     
     
     //========================================
@@ -47,8 +47,12 @@ class TzedakaViewController: UIViewController{
         self.setBorders()
         self.setShadows()
         self.userDonation = DonationManager.shared.userDonation
-        self.setContainerView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         self.user = UserRepository.shared.getCurrentUser()
+        //        self.setContainerView()
+        self.present(2)
     }
     //========================================
     // MARK: - LifeCycle
@@ -82,24 +86,32 @@ class TzedakaViewController: UIViewController{
         Utils.dropViewShadow(view: self.donateView, shadowColor: color, shadowRadius: 20, shadowOffset: shadowOffset)
 
     }
+    
+    func createPayment() {
+        self.present(4)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10){
+            self.setContainerView()
+        }
+    }
+    
     func setContainerView(){
-        
         guard let userDonation = self.userDonation else { return }
         guard let user = self.user else { return }
         let donated = user.lessonDonated?.donated
-        if isPending {
+        if isPending && donated == false {
             self.present(5)
             return
         }
         if userDonation.donatePerMonth > 0 {
             self.present(3)
         }
-        else if userDonation.allCrowns == 0 {
-            self.present(1)
-        }
-        else {
+       else if userDonation.donatePerMonth == 0 {
             self.present(2)
         }
+        if userDonation.allCrowns == 0 {
+            self.present(1)
+        }
+        
     }
     
     func present(_ childToPresent: Int){
@@ -156,9 +168,11 @@ class TzedakaViewController: UIViewController{
     }
     
     @IBAction func historyButtonPressed(_ sender: Any) {
+        Utils.showAlertMessage(Strings.inDevelopment, viewControler: self)
     }
     
     @IBAction func donateButtonPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: "presentDonation", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -169,7 +183,7 @@ class TzedakaViewController: UIViewController{
         else if segue.identifier == "singleDonation" {
             let singleDonationVC = segue.destination as? SingleDonationViewController
             singleDonationVC?.ketarim = self.userDonation?.allCrowns ?? 0
-            self.singleDonationViewController =  singleDonationVC
+            self.singleDonationViewController = singleDonationVC
             
         }
         else if segue.identifier == "subscribe" {

@@ -34,6 +34,9 @@ class UserRepository {
         UserDefaultsProvider.shared.currentUsername = user.email
         UserDefaultsProvider.shared.currentPassword = password
         UserDefaultsProvider.shared.currentUser = user
+        if user.lessonDonated?.donated == true {
+            UserDefaultsProvider.shared.donationPending = false
+        }
     }
     
     func setProfileImage(image: UIImage?) {

@@ -242,11 +242,20 @@
                         <outlet property="singleDonationContainer" destination="Of6-lq-zRu" id="qD8-FO-XYM"/>
                         <outlet property="subscribeContainer" destination="Ovv-kX-Int" id="mLv-Z3-SEQ"/>
                         <outlet property="thankYouContainer" destination="mJ3-h2-7gS" id="sRr-4w-PUe"/>
+                        <segue destination="mcc-Xy-gw8" kind="presentation" identifier="presentDonation" modalPresentationStyle="fullScreen" id="cdE-Gg-22B"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3xC-Lt-mOB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2429.5999999999999" y="-746.17691154422789"/>
+        </scene>
+        <!--Donations-->
+        <scene sceneID="3uO-6v-VSY">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Donations" id="mcc-Xy-gw8" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="17V-l0-vtC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2045" y="-341"/>
         </scene>
         <!--No Donation View Controller-->
         <scene sceneID="dBl-Ef-AYQ">

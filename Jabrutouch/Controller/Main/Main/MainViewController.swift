@@ -363,7 +363,8 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     
     func presentDonation (){
         guard let user = self.user else{ return }
-        if user.lessonDonated?.donated ?? false {
+        
+        if user.lessonDonated?.donated ?? false || UserDefaultsProvider.shared.donationPending {
             self.presentDonationsNavigationViewController()
         }else {
             self.presentDonationsViewController()

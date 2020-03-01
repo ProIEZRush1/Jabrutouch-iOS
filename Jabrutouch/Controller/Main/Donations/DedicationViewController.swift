@@ -7,7 +7,9 @@
 //
 
 import UIKit
-
+protocol DedicationViewControllerDelegate{
+    func createPayment()
+}
 class DedicationViewController: UIViewController, iCarouselDataSource, iCarouselDelegate, UITextFieldDelegate{
    //========================================
     // MARK: - Properties
@@ -21,6 +23,7 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
     var amountToPay: Int = 0
     var isSubscription: Bool = false
     var dedication: [JTDedication] = []
+    var delegate: DedicationViewControllerDelegate?
     
     //========================================
     // MARK: - @IBOutlets
@@ -183,7 +186,12 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
             switch result {
             case .success(let success):
                 print(success)
-//        self.performSegue(withIdentifier: "presentTzedaka", sender: self)
+                UserDefaultsProvider.shared.donationPending = true
+                let mainViewController = Storyboards.Main.mainViewController
+                mainViewController.modalPresentationStyle = .fullScreen
+                self.present(mainViewController, animated: false, completion: nil)
+                mainViewController.presentDonationsNavigationViewController()
+                self.delegate?.createPayment()
             case .failure(let error):
                 print(error)
             }
