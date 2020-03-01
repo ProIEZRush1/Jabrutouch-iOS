@@ -205,10 +205,10 @@ class HttpRequestsFactory {
         return request
     }
     
-    class func createDonationPaymentRequest(sum: Int, paymentType: Int, nameToRepresent: String, dedicationText: String, status: String, dedicationTemplate:Int, token: String) -> URLRequest?{
+    class func createDonationPaymentRequest(sum: Int, paymentType: Int, nameToRepresent: String, dedicationText: String, status: String, dedicationTemplate:Int, country: String, token: String) -> URLRequest?{
         guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
         let link = baseUrl.appendingPathComponent("user_payment").absoluteString
-        let body: [String:Any] = ["sum": sum, "payment_type": paymentType, "name_to_represent": nameToRepresent, "dedication_text": dedicationText, "status": status, "dedication_template": dedicationTemplate]
+        let body: [String:Any] = ["sum": sum, "payment_type": paymentType, "dedication_text": dedicationText, "status": status, "dedication_template": dedicationTemplate, "name_to_represent": nameToRepresent, "country": country]
         guard let url = self.createUrl(fromLink: link, urlParams: nil) else { return nil }
         let additionalHeaders: [String:String] = ["Authorization": "token \(token)"]
         

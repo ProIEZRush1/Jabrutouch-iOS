@@ -115,7 +115,7 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
     
     func setCurrentCards() {
         for dedication in self.dedication {
-            if dedication.name == "default" {
+            if dedication.name == "" {
                 self.setCardView(dedication: "", hidden: true)
             } else {
                 self.setCardView(dedication: dedication.name, hidden: false)
@@ -171,7 +171,7 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
         if let nameToRepresent = card.editNameTextField.text {
             self.postDedication?.nameToRepresent = nameToRepresent
         }
-        self.postDedication?.dedicationTemplate = index
+        self.postDedication?.dedicationTemplate = index + 1
         self.postDedication?.status = "pending"
         
         self.createPayment(postDedication: postDedication)
@@ -179,7 +179,7 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
     }
     
     func createPayment(postDedication: JTPostDedication) {
-        DonationManager.shared.createPaymen(postTedication: postDedication) { (result) in
+        DonationManager.shared.createPaymen(postDedication) { (result) in
             switch result {
             case .success(let success):
                 print(success)

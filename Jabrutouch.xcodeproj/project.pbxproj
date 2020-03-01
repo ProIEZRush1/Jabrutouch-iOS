@@ -202,6 +202,7 @@
 		836A88502396A4E800F68539 /* ForgotPasswordResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836A884F2396A4E800F68539 /* ForgotPasswordResponse.swift */; };
 		8391EC62240BCBE5007B5F98 /* CreateLikeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8391EC61240BCBE5007B5F98 /* CreateLikeResponse.swift */; };
 		8391EC64240BDCD1007B5F98 /* JTLessonDonated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8391EC63240BDCD1007B5F98 /* JTLessonDonated.swift */; };
+		8391EC66240BFDA3007B5F98 /* CreatePaymentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8391EC65240BFDA3007B5F98 /* CreatePaymentResponse.swift */; };
 		8395978B23F97745007B96EB /* JBProgressBarWithButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8395978A23F97745007B96EB /* JBProgressBarWithButton.swift */; };
 		8395978D23F98CEF007B96EB /* ProgressBarWithButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8395978C23F98CEF007B96EB /* ProgressBarWithButton.xib */; };
 		8395979A23FE98AA007B96EB /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8395979923FE98AA007B96EB /* VideoViewController.swift */; };
@@ -475,6 +476,7 @@
 		836A884F2396A4E800F68539 /* ForgotPasswordResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordResponse.swift; sourceTree = "<group>"; };
 		8391EC61240BCBE5007B5F98 /* CreateLikeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateLikeResponse.swift; sourceTree = "<group>"; };
 		8391EC63240BDCD1007B5F98 /* JTLessonDonated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTLessonDonated.swift; sourceTree = "<group>"; };
+		8391EC65240BFDA3007B5F98 /* CreatePaymentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePaymentResponse.swift; sourceTree = "<group>"; };
 		8395978A23F97745007B96EB /* JBProgressBarWithButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JBProgressBarWithButton.swift; sourceTree = "<group>"; };
 		8395978C23F98CEF007B96EB /* ProgressBarWithButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressBarWithButton.xib; sourceTree = "<group>"; };
 		8395979923FE98AA007B96EB /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
@@ -759,6 +761,7 @@
 				839597A32403FA51007B96EB /* UserDonationResponse.swift */,
 				839597A5240417D1007B96EB /* LessonDonationResponse.swift */,
 				8391EC61240BCBE5007B5F98 /* CreateLikeResponse.swift */,
+				8391EC65240BFDA3007B5F98 /* CreatePaymentResponse.swift */,
 			);
 			path = "API Response models";
 			sourceTree = "<group>";
@@ -1612,6 +1615,7 @@
 				8359193323A2724400F0B4D8 /* ChatControlsView.swift in Sources */,
 				83A7A0CF23E9A3440041BE28 /* DonateNavigationController.swift in Sources */,
 				219BFF2F22E5A11900ABBEE2 /* TextFieldWithPadding.swift in Sources */,
+				8391EC66240BFDA3007B5F98 /* CreatePaymentResponse.swift in Sources */,
 				836A883C238DB30D00F68539 /* JTGallery.swift in Sources */,
 				2126D6D623033CF800CB501D /* JTSeder.swift in Sources */,
 				46C652F823CF798700F6D0DD /* JTUserProfileParameter.swift in Sources */,

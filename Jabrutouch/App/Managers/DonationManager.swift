@@ -84,9 +84,10 @@ class DonationManager {
         }
     }
     
-    func createPaymen(postTedication: JTPostDedication, completion:@escaping (_ result: Result<Any, JTError>)->Void) {
+    func createPaymen(_ postDedication: JTPostDedication, completion:@escaping (_ result: Result<Any, JTError>)->Void) {
         guard let authToken = UserDefaultsProvider.shared.currentUser?.token else { return }
-        API.createDonationPayment(sum: postTedication.sum, paymentType: postTedication.paymentType, nameToRepresent: postTedication.nameToRepresent, dedicationText: postTedication.dedicationText, status: postTedication.status, dedicationTemplate: postTedication.dedicationTemplate, authToken: authToken) { (result: APIResult<LessonDonationResponse>) in
+        let country = UserDefaultsProvider.shared.currentUser?.country ?? ""
+        API.createDonationPayment(sum: postDedication.sum, paymentType: postDedication.paymentType, dedicationText: postDedication.dedicationText, status: postDedication.status, dedicationTemplate: postDedication.dedicationTemplate, nameToRepresent: postDedication.nameToRepresent, country: country, authToken: authToken) { (result: APIResult<CreatePaymentResponse>) in
             switch result {
             case .success(let response):
                 completion(.success(response))
