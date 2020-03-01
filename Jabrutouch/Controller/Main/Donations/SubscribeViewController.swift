@@ -10,11 +10,11 @@ import UIKit
 
 class SubscribeViewController: UIViewController {
 
-    @IBOutlet var donateLabels: [UILabel]!
+    @IBOutlet weak var ketarimLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.donateLabels[0].text = "hhhj"
+        self.ketarimLabel.text = "\(30) out of 50 Ketarim"
         // Do any additional setup after loading the view.
     }
     

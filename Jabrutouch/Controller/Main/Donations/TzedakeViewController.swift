@@ -31,6 +31,7 @@ class TzedakaViewController: UIViewController{
     @IBOutlet weak var noDonationContainer: UIView!
     @IBOutlet weak var singleDonationContainer: UIView!
     @IBOutlet weak var subscribeContainer: UIView!
+    @IBOutlet weak var thankYouContainer: UIView!
     
     weak var noDonationViewController: NoDonationViewController?
     weak var singleDonationViewController: SingleDonationViewController?
@@ -72,6 +73,8 @@ class TzedakaViewController: UIViewController{
         let shadowOffset = CGSize(width: 0.0, height: 12)
         let color = #colorLiteral(red: 0.16, green: 0.17, blue: 0.39, alpha: 0.2)
         Utils.dropViewShadow(view: self.buttonsView, shadowColor: color, shadowRadius: 20, shadowOffset: shadowOffset)
+        Utils.dropViewShadow(view: self.donateView, shadowColor: color, shadowRadius: 20, shadowOffset: shadowOffset)
+
     }
     
     func present(){
@@ -79,16 +82,25 @@ class TzedakaViewController: UIViewController{
             self.noDonationContainer.isHidden = false
             self.singleDonationContainer.isHidden = true
             self.subscribeContainer.isHidden = true
+            self.thankYouContainer.isHidden = true
         }
         else if self.childToPresent == 2 {
             self.noDonationContainer.isHidden = true
             self.singleDonationContainer.isHidden = false
             self.subscribeContainer.isHidden = true
+            self.thankYouContainer.isHidden = true
         }
         else if self.childToPresent == 3 {
             self.noDonationContainer.isHidden = true
             self.singleDonationContainer.isHidden = true
             self.subscribeContainer.isHidden = false
+            self.thankYouContainer.isHidden = true
+        }
+        else if self.childToPresent == 4 {
+            self.noDonationContainer.isHidden = true
+            self.singleDonationContainer.isHidden = true
+            self.subscribeContainer.isHidden = true
+            self.thankYouContainer.isHidden = false
         }
     }
     
