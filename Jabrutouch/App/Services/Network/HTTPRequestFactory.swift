@@ -196,8 +196,8 @@ class HttpRequestsFactory {
     
     class func createDonationLikeRequest(lessonId: Int, isGemara: Bool, crownId: Int, token: String) -> URLRequest?{
         guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
-        let link = baseUrl.appendingPathComponent("user_payment").absoluteString
-       let body: [String:Any] = ["lesson_id": lessonId, "is_gemara": isGemara, "crown_id": crownId]
+        let link = baseUrl.appendingPathComponent("like").absoluteString
+        let body: [String:Any] = ["lesson_id": lessonId, "is_gemara": isGemara, "crown_id": crownId]
         guard let url = self.createUrl(fromLink: link, urlParams: nil) else { return nil }
         let additionalHeaders: [String:String] = ["Authorization": "token \(token)"]
         

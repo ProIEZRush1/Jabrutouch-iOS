@@ -200,6 +200,7 @@
 		836A884B23951CA700F68539 /* JBView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836A884A23951CA700F68539 /* JBView.swift */; };
 		836A884D23968C8E00F68539 /* ForgotPassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 836A884C23968C8D00F68539 /* ForgotPassword.storyboard */; };
 		836A88502396A4E800F68539 /* ForgotPasswordResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836A884F2396A4E800F68539 /* ForgotPasswordResponse.swift */; };
+		8391EC62240BCBE5007B5F98 /* CreateLikeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8391EC61240BCBE5007B5F98 /* CreateLikeResponse.swift */; };
 		8395978B23F97745007B96EB /* JBProgressBarWithButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8395978A23F97745007B96EB /* JBProgressBarWithButton.swift */; };
 		8395978D23F98CEF007B96EB /* ProgressBarWithButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8395978C23F98CEF007B96EB /* ProgressBarWithButton.xib */; };
 		8395979A23FE98AA007B96EB /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8395979923FE98AA007B96EB /* VideoViewController.swift */; };
@@ -471,6 +472,7 @@
 		836A884A23951CA700F68539 /* JBView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JBView.swift; sourceTree = "<group>"; };
 		836A884C23968C8D00F68539 /* ForgotPassword.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ForgotPassword.storyboard; sourceTree = "<group>"; };
 		836A884F2396A4E800F68539 /* ForgotPasswordResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordResponse.swift; sourceTree = "<group>"; };
+		8391EC61240BCBE5007B5F98 /* CreateLikeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateLikeResponse.swift; sourceTree = "<group>"; };
 		8395978A23F97745007B96EB /* JBProgressBarWithButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JBProgressBarWithButton.swift; sourceTree = "<group>"; };
 		8395978C23F98CEF007B96EB /* ProgressBarWithButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressBarWithButton.xib; sourceTree = "<group>"; };
 		8395979923FE98AA007B96EB /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
@@ -754,6 +756,7 @@
 				83137EFE23F040E5003B9DA6 /* DonationResponse.swift */,
 				839597A32403FA51007B96EB /* UserDonationResponse.swift */,
 				839597A5240417D1007B96EB /* LessonDonationResponse.swift */,
+				8391EC61240BCBE5007B5F98 /* CreateLikeResponse.swift */,
 			);
 			path = "API Response models";
 			sourceTree = "<group>";
@@ -1748,6 +1751,7 @@
 				83A7A0CB23E84C3D0041BE28 /* ChangePasswordResponse.swift in Sources */,
 				83A936AD23D9E8D8007BA207 /* DonationsNavigationController.swift in Sources */,
 				213196A622F38B3E00B0AF5F /* ValidateCodeResponse.swift in Sources */,
+				8391EC62240BCBE5007B5F98 /* CreateLikeResponse.swift in Sources */,
 				DD51CDEC23F185D30063167E /* AudioMessagesManager.swift in Sources */,
 				21419CB0230D50CB00145F1F /* AWSS3Provider.swift in Sources */,
 				2126D6E3230404BD00CB501D /* GemaraNavigationController.swift in Sources */,

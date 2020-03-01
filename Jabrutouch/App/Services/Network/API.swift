@@ -183,7 +183,7 @@ class API {
         }
     }
     
-    class func createDonationLikeRequest(lessonId: Int, isGemara: Bool, crownId: Int, authToken: String, completionHandler:@escaping (_ response: APIResult<LessonDonationResponse>)->Void) {
+    class func createDonationLikeRequest(lessonId: Int, isGemara: Bool, crownId: Int, authToken: String, completionHandler:@escaping (_ response: APIResult<CreateLikeResponse>)->Void) {
         guard let request = HttpRequestsFactory.createDonationLikeRequest(lessonId: lessonId, isGemara: isGemara, crownId: crownId, token: authToken) else {
             completionHandler(APIResult.failure(.unableToCreateRequest))
             return
