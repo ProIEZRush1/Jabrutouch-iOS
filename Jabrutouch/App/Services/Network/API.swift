@@ -193,8 +193,8 @@ class API {
         }
     }
     
-    class func createDonationPayment(sum: Int, paymentType: Int, nameToRepresent: String, dedicationText: String, status: String, dedicationTemplate:Int, authToken: String, completionHandler:@escaping (_ response: APIResult<LessonDonationResponse>)->Void) {
-        guard let request = HttpRequestsFactory.createDonationPaymentRequest(sum: sum, paymentType: paymentType, nameToRepresent: nameToRepresent, dedicationText: dedicationText, status: status, dedicationTemplate: dedicationTemplate, token: authToken) else {
+    class func createDonationPayment(sum: Int, paymentType: Int, dedicationText: String, status: String, dedicationTemplate:Int, nameToRepresent: String, country: String, authToken: String, completionHandler:@escaping (_ response: APIResult<CreatePaymentResponse>)->Void) {
+        guard let request = HttpRequestsFactory.createDonationPaymentRequest(sum: sum, paymentType: paymentType, nameToRepresent: nameToRepresent, dedicationText: dedicationText, status: status, dedicationTemplate: dedicationTemplate, country: country, token: authToken) else {
             completionHandler(APIResult.failure(.unableToCreateRequest))
             return
         }
