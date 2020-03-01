@@ -40,7 +40,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     }
     
     private var activityView: ActivityView?
-    
+    var user : JTUser?
     //========================================
     // MARK: - @IBOutlets
     //========================================
@@ -115,7 +115,8 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         UserDefaultsProvider.shared.notFirstTime = true
         self.setButtonsBackground()
         CoreDataManager.shared.delegate = self
-//        self.setUnReadedIcon()
+        self.user = UserRepository.shared.getCurrentUser()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -360,6 +361,17 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         }
     }
     
+    func presentDonation (){
+        guard let user = self.user else{ return }
+        if user.lessonDonated?.donated ?? false {
+            self.presentDonationsNavigationViewController()
+        }else {
+            self.presentDonationsViewController()
+        }
+        
+        
+    }
+    
     //========================================
     // MARK: - @IBActions
     //========================================
@@ -431,10 +443,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
             self.donationsImageView.alpha = 1.0
             self.donationsLabel.alpha = 1.0
         }
-//        self.presentDonationWalkThrough()
-        self.presentDonationsNavigationViewController()
-//        presentDonationsViewController()
-//        self.presentOldDonations()
+        self.presentDonation()
     }
     
     @IBAction func donationsButtonTouchedUpOutside(_ sender: UIButton) {
@@ -641,8 +650,8 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
             let profileVC = segue.destination as? OldProfileViewController
             profileVC?.mainViewController = self
         }
+      
         
-
     }
     
     //============================================================
@@ -684,10 +693,7 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
         case .messageCenter:
             presentMessages()
         case .donationsCenter:
-            presentDonationsNavigationViewController()
-//            presentDonationsViewController()
-//            presentOldDonations()
-//            presentDonationWalkThrough()
+            self.presentDonation()
         default:
             presentInDevelopmentAlert()
         }

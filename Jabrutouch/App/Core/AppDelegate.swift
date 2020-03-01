@@ -67,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             if host == "crowns" {
                 self.topmostViewController?.present(mainViewController, animated: false, completion: nil)
-                mainViewController.presentOldDonations()
+                mainViewController.presentDonation()
             } else if host == "download" {
                 self.topmostViewController?.present(mainViewController, animated: false, completion: nil)
                 mainViewController.presentDownloadsViewController()

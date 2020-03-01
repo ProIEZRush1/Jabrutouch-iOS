@@ -16,8 +16,11 @@ class TzedakaViewController: UIViewController{
     // MARK: - Properties
     //========================================
     var delegate: MainModalDelegate?
-    
-    var childToPresent = 3
+    var userDonation : JTUserDonation?
+    var childToPresent: Int?
+    var isSubscription: Bool?
+    var isPending: Bool = UserDefaultsProvider.shared.donationPending
+    var user: JTUser?
     
     //========================================
     // MARK: - @IBOutlets
@@ -32,6 +35,7 @@ class TzedakaViewController: UIViewController{
     @IBOutlet weak var singleDonationContainer: UIView!
     @IBOutlet weak var subscribeContainer: UIView!
     @IBOutlet weak var thankYouContainer: UIView!
+    @IBOutlet weak var donatePendingContainer: UIView!
     
     weak var noDonationViewController: NoDonationViewController?
     weak var singleDonationViewController: SingleDonationViewController?
@@ -42,7 +46,9 @@ class TzedakaViewController: UIViewController{
         self.setRoundCorners()
         self.setBorders()
         self.setShadows()
-        self.present()
+        self.userDonation = DonationManager.shared.userDonation
+        self.setContainerView()
+        self.user = UserRepository.shared.getCurrentUser()
     }
     //========================================
     // MARK: - LifeCycle
@@ -76,31 +82,61 @@ class TzedakaViewController: UIViewController{
         Utils.dropViewShadow(view: self.donateView, shadowColor: color, shadowRadius: 20, shadowOffset: shadowOffset)
 
     }
+    func setContainerView(){
+        
+        guard let userDonation = self.userDonation else { return }
+        guard let user = self.user else { return }
+        let donated = user.lessonDonated?.donated
+        if isPending {
+            self.present(5)
+            return
+        }
+        if userDonation.donatePerMonth > 0 {
+            self.present(3)
+        }
+        else if userDonation.allCrowns == 0 {
+            self.present(1)
+        }
+        else {
+            self.present(2)
+        }
+    }
     
-    func present(){
-        if self.childToPresent == 1 {
+    func present(_ childToPresent: Int){
+        if childToPresent == 1 {
             self.noDonationContainer.isHidden = false
             self.singleDonationContainer.isHidden = true
             self.subscribeContainer.isHidden = true
             self.thankYouContainer.isHidden = true
+            self.donatePendingContainer.isHidden = true
         }
-        else if self.childToPresent == 2 {
+        else if childToPresent == 2 {
             self.noDonationContainer.isHidden = true
             self.singleDonationContainer.isHidden = false
             self.subscribeContainer.isHidden = true
             self.thankYouContainer.isHidden = true
+            self.donatePendingContainer.isHidden = true
         }
-        else if self.childToPresent == 3 {
+        else if childToPresent == 3 {
             self.noDonationContainer.isHidden = true
             self.singleDonationContainer.isHidden = true
             self.subscribeContainer.isHidden = false
             self.thankYouContainer.isHidden = true
+            self.donatePendingContainer.isHidden = true
         }
-        else if self.childToPresent == 4 {
+        else if childToPresent == 4 {
             self.noDonationContainer.isHidden = true
             self.singleDonationContainer.isHidden = true
             self.subscribeContainer.isHidden = true
             self.thankYouContainer.isHidden = false
+            self.donatePendingContainer.isHidden = true
+        }
+        else if childToPresent == 5 {
+            self.noDonationContainer.isHidden = true
+            self.singleDonationContainer.isHidden = true
+            self.subscribeContainer.isHidden = true
+            self.thankYouContainer.isHidden = true
+            self.donatePendingContainer.isHidden = false
         }
     }
     
@@ -129,11 +165,17 @@ class TzedakaViewController: UIViewController{
         if segue.identifier == "noDonation" {
             self.noDonationViewController = segue.destination as? NoDonationViewController
         }
+            
         else if segue.identifier == "singleDonation" {
-            self.singleDonationViewController = segue.destination as? SingleDonationViewController
+            let singleDonationVC = segue.destination as? SingleDonationViewController
+            singleDonationVC?.ketarim = self.userDonation?.allCrowns ?? 0
+            self.singleDonationViewController =  singleDonationVC
+            
         }
         else if segue.identifier == "subscribe" {
-            self.subscribeViewController = segue.destination as? SubscribeViewController
+            let subscribeDonationVC = segue.destination as? SubscribeViewController
+            subscribeDonationVC?.ketarim = self.userDonation?.allCrowns ?? 0
+            self.subscribeViewController = subscribeDonationVC
         }
     }
 }

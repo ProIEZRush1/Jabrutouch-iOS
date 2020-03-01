@@ -20,6 +20,7 @@ class UserDefaultsProvider {
         case index = "Index"
         case lessonWatched = "LessonWatched"
         case videoWatched = "VideoWatched"
+        case donationPending = "DonationPending"
     }
     
     static private var provider: UserDefaultsProvider?
@@ -130,6 +131,16 @@ class UserDefaultsProvider {
         }
         set (value) {
             self.defaults.set(value, forKey: UserDefaultsKeys.videoWatched.rawValue)
+            self.defaults.synchronize()
+        }
+    }
+    
+    var donationPending: Bool {
+        get {
+            return self.defaults.bool(forKey: UserDefaultsKeys.donationPending.rawValue)
+        }
+        set (value) {
+            self.defaults.set(value, forKey: UserDefaultsKeys.donationPending.rawValue)
             self.defaults.synchronize()
         }
     }
