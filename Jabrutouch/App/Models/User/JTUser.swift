@@ -30,6 +30,7 @@ struct JTUser {
     var lessonWatched: [JTLessonWatched] = []
     var lessonWatchCount: Int?
     var profilePercent: Int?
+    var lessonDonated: JTLessonDonated?
     var profileImageFileName: String {
         return "profile_image_\(self.id).jpeg"
     }
@@ -106,6 +107,9 @@ struct JTUser {
         if let occupation = values["occupation"] as? [String: Any] {
             self.occupation = JTUserProfileParameter(data: occupation)
         }
+        if let lessonDonated = values["lesson_donated"] as? [String: Any] {
+            self.lessonDonated = JTLessonDonated(values: lessonDonated)
+        }
         if let interest = values["interest"] as? [[String: Any]] {
             self.interest = interest.compactMap{ JTUserProfileParameter(data: $0) }
         } else {
@@ -138,6 +142,7 @@ struct JTUser {
         values["lessonWatched"] = self.lessonWatched.map{$0.values}
         values["profile_percent"] = self.profilePercent
         values["lesson_watch_count"] = self.lessonWatchCount
+        values["lesson_donated"] = self.lessonDonated?.values
         return values
     }
     
