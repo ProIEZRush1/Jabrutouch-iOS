@@ -271,9 +271,9 @@ class DonateViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
-//        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
 //        self.navigationController?.popViewController(animated: true)
-        performSegue(withIdentifier: "unwindToMain", sender: self)
+//        performSegue(withIdentifier: "unwindToMain", sender: self)
     }
     
     

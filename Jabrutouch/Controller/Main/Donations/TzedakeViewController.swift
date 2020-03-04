@@ -75,7 +75,7 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate,
     override func viewWillAppear(_ animated: Bool) {
         self.user = UserRepository.shared.getCurrentUser()
         //        self.setContainerView()
-        self.present(donationDisplay.donatePending)
+        self.present(donationDisplay.singleDonation)
     }
     override func viewDidAppear(_ animated: Bool) {
         self.changeValue()

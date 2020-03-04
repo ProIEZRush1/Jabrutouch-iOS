@@ -15,6 +15,7 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
     // MARK: - Properties
     //========================================
    
+    private var activityView: ActivityView?
     var views: [DedicationCardView] = []
     var postDedication: JTPostDedication?
     var user: JTUser?
@@ -182,20 +183,24 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
     }
     
     func createPayment(postDedication: JTPostDedication) {
+        self.showActivityView()
         DonationManager.shared.createPaymen(postDedication) { (result) in
             switch result {
             case .success(let success):
                 print(success)
                 UserDefaultsProvider.shared.donationPending = true
-                let mainViewController = Storyboards.Main.mainViewController
                 DispatchQueue.main.async {
+                    self.removeActivityView()
+                    let mainViewController = Storyboards.Main.mainViewController
                     mainViewController.modalPresentationStyle = .fullScreen
                     self.present(mainViewController, animated: false, completion: nil)
                     mainViewController.presentDonationsNavigationViewController()
                 }
                 self.delegate?.createPayment()
             case .failure(let error):
+                self.removeActivityView()
                 print(error)
+                Utils.showAlertMessage("Failed to create payment please try again", viewControler: self)
             }
         }
     }
@@ -306,6 +311,25 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
             paymentVC?.isSubscription = self.isSubscription
         }
     }
+    //============================================================
+    // MARK: - ActivityView
+    //============================================================
+       
+       private func showActivityView() {
+           DispatchQueue.main.async {
+               if self.activityView == nil {
+                   self.activityView = Utils.showActivityView(inView: self.view, withFrame: self.view.frame, text: nil)
+               }
+           }
+       }
+       private func removeActivityView() {
+           DispatchQueue.main.async {
+               if let view = self.activityView {
+                   Utils.removeActivityView(view)
+               }
+           }
+       }
+    
 }
 
 extension DedicationViewController: DedicationCardDelegate {
