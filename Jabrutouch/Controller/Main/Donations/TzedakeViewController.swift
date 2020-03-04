@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Starscream
 
 enum donationDisplay {
     case noDonation
@@ -16,7 +17,7 @@ enum donationDisplay {
     case donatePending
     
 }
-class TzedakaViewController: UIViewController, DedicationViewControllerDelegate{
+class TzedakaViewController: UIViewController, DedicationViewControllerDelegate, WebSocketDelegate{
     
     
     //========================================
@@ -28,6 +29,10 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate{
     var isSubscription: Bool?
     var isPending: Bool = UserDefaultsProvider.shared.donationPending
     var user: JTUser?
+    
+    var socket: WebSocket! = nil
+    var isConnected = false
+    var watchCount: Int?
     
     //========================================
     // MARK: - @IBOutlets
@@ -44,7 +49,15 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate{
     @IBOutlet weak var thankYouContainer: UIView!
     @IBOutlet weak var donatePendingContainer: UIView!
     
-//    weak var noDonationViewController: NoDonationViewController?
+    
+    @IBOutlet weak var firstView: HoursView!
+    @IBOutlet weak var secondView: HoursView!
+    @IBOutlet weak var thirdView: HoursView!
+    @IBOutlet weak var fourthView: HoursView!
+    @IBOutlet weak var fifthView: HoursView!
+    @IBOutlet weak var sixthView: HoursView!
+    
+    //    weak var noDonationViewController: NoDonationViewController?
     weak var singleDonationViewController: SingleDonationViewController?
     weak var subscribeViewController: SubscribeViewController?
     
@@ -54,12 +67,18 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate{
         self.setBorders()
         self.setShadows()
         self.userDonation = DonationManager.shared.userDonation
+        self.setHoursViews()
+        self.watchCount = DonationManager.shared.userDonation?.watchCount
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.user = UserRepository.shared.getCurrentUser()
         //        self.setContainerView()
         self.present(donationDisplay.donatePending)
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        self.changeValue()
     }
     //========================================
     // MARK: - LifeCycle
@@ -91,7 +110,7 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate{
         let color = #colorLiteral(red: 0.16, green: 0.17, blue: 0.39, alpha: 0.2)
         Utils.dropViewShadow(view: self.buttonsView, shadowColor: color, shadowRadius: 20, shadowOffset: shadowOffset)
         Utils.dropViewShadow(view: self.donateView, shadowColor: color, shadowRadius: 20, shadowOffset: shadowOffset)
-
+        
     }
     
     func createPayment() {
@@ -99,6 +118,101 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate{
         DispatchQueue.main.asyncAfter(deadline: .now() + 10){
             self.setContainerView()
         }
+    }
+    
+    func setNumberView(view: HoursView) {
+        view.layer.cornerRadius = 4
+        view.layer.borderColor = Colors.borderGray.cgColor
+        view.layer.borderWidth = 1
+    }
+    
+    func setHoursViews() {
+        self.setNumberView(view: self.firstView)
+        self.setNumberView(view: self.secondView)
+        self.setNumberView(view: self.thirdView)
+        self.setNumberView(view: self.fourthView)
+        self.setNumberView(view: self.fifthView)
+        self.setNumberView(view: self.sixthView)
+    }
+    
+    func initSocket() {
+        let request = URLRequest(url: URL(string: "wss://jabrutouch-dev.ravtech.co.il/ws/lesson_watch_count")!)
+        //        request.timeoutInterval = 5
+        self.socket = WebSocket(request: request)
+        self.socket.delegate = self
+        self.socket.connect()
+        //        self.socket = socket
+    }
+    
+    func didReceive(event: WebSocketEvent, client: WebSocket) {
+        switch event {
+        case .connected(let headers):
+            isConnected = true
+            print("websocket is connected: \(headers)")
+        case .disconnected(let reason, let code):
+            isConnected = false
+            print("websocket is disconnected: \(reason) with code: \(code)")
+        case .text(let string):
+            print("Received text: \(string)")
+        case .binary(let data):
+            print("Received data: \(data.count)")
+        case .ping(_):
+            break
+        case .pong(_):
+            break
+        case .viablityChanged(_):
+            break
+        case .reconnectSuggested(_):
+            break
+        case .cancelled:
+            isConnected = false
+        case .error(let error):
+            isConnected = false
+            if let error = error as? WSError {
+                print("websocket encountered an error: \(error.message)")
+            }
+        }
+    }
+    
+    
+    func changeValue() {
+        guard let counter = self.watchCount else {return}
+        //        let counter = 538629
+        var digits = "\(counter)".compactMap{ $0.wholeNumberValue }
+        while digits.count < 6 {
+            digits.insert(0, at: 0)
+        }
+        if self.firstView.currentLabel.text != "\(digits[0])" {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                self.firstView.changeValue(newValue: "\(digits[0])")
+            }
+        }
+        if self.secondView.currentLabel.text != "\(digits[1])" {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                self.secondView.changeValue(newValue: "\(digits[1])")
+            }
+        }
+        if self.thirdView.currentLabel.text != "\(digits[2])" {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                self.thirdView.changeValue(newValue: "\(digits[2])")
+            }
+        }
+        if self.fourthView.currentLabel.text != "\(digits[3])" {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                self.fourthView.changeValue(newValue: "\(digits[3])")
+            }
+        }
+        if self.fifthView.currentLabel.text != "\(digits[4])" {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.fifthView.changeValue(newValue: "\(digits[4])")
+            }
+        }
+        if self.sixthView.currentLabel.text != "\(digits[5])" {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+                self.sixthView.changeValue(newValue: "\(digits[5])")
+            }
+        }
+        
     }
     
     func setContainerView(){
@@ -112,7 +226,7 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate{
         if userDonation.donatePerMonth > 0 {
             self.present(donationDisplay.subscribe)
         }
-       else if userDonation.donatePerMonth == 0 {
+        else if userDonation.donatePerMonth == 0 {
             self.present(donationDisplay.singleDonation)
         }
         if userDonation.allCrowns == 0 {
@@ -183,11 +297,11 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate{
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "noDonation" {
-//            self.noDonationViewController = segue.destination as? NoDonationViewController
-//        }
-//
-       if segue.identifier == "singleDonation" {
+        //        if segue.identifier == "noDonation" {
+        //            self.noDonationViewController = segue.destination as? NoDonationViewController
+        //        }
+        //
+        if segue.identifier == "singleDonation" {
             let singleDonationVC = segue.destination as? SingleDonationViewController
             singleDonationVC?.unUsedCrowns = self.userDonation?.unUsedCrowns ?? 0
             singleDonationVC?.allCrowns = self.userDonation?.allCrowns ?? 0

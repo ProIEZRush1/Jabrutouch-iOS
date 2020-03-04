@@ -188,9 +188,11 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
                 print(success)
                 UserDefaultsProvider.shared.donationPending = true
                 let mainViewController = Storyboards.Main.mainViewController
-                mainViewController.modalPresentationStyle = .fullScreen
-                self.present(mainViewController, animated: false, completion: nil)
-                mainViewController.presentDonationsNavigationViewController()
+                DispatchQueue.main.async {
+                    mainViewController.modalPresentationStyle = .fullScreen
+                    self.present(mainViewController, animated: false, completion: nil)
+                    mainViewController.presentDonationsNavigationViewController()
+                }
                 self.delegate?.createPayment()
             case .failure(let error):
                 print(error)

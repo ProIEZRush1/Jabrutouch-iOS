@@ -9,7 +9,7 @@
 import UIKit
 import Starscream
 
-class DonateViewController: UIViewController, UITextFieldDelegate, WebSocketDelegate {
+class DonateViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var backButton: UIButton!
@@ -32,12 +32,12 @@ class DonateViewController: UIViewController, UITextFieldDelegate, WebSocketDele
     @IBOutlet weak var continueLabel: UILabel!
     @IBOutlet weak var amountToDonateLabel: UILabel!
     
-    @IBOutlet weak var firstView: HoursView!
-    @IBOutlet weak var secondView: HoursView!
-    @IBOutlet weak var thirdView: HoursView!
-    @IBOutlet weak var fourthView: HoursView!
-    @IBOutlet weak var fifthView: HoursView!
-    @IBOutlet weak var sixthView: HoursView!
+//    @IBOutlet weak var firstView: HoursView!
+//    @IBOutlet weak var secondView: HoursView!
+//    @IBOutlet weak var thirdView: HoursView!
+//    @IBOutlet weak var fourthView: HoursView!
+//    @IBOutlet weak var fifthView: HoursView!
+//    @IBOutlet weak var sixthView: HoursView!
     
     var isSingelPayment: Bool = false
     var donation: JTDonation?
@@ -47,9 +47,9 @@ class DonateViewController: UIViewController, UITextFieldDelegate, WebSocketDele
     var numberOfCrownsSinget = 5
     var numberOfCrownsSubsciption = 1
     var showVideo: Bool = UserDefaultsProvider.shared.videoWatched
-    var watchCount: Int?
-    var socket: WebSocket! = nil
-    var isConnected = false
+//    var watchCount: Int?
+//    var socket: WebSocket! = nil
+//    var isConnected = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,18 +62,18 @@ class DonateViewController: UIViewController, UITextFieldDelegate, WebSocketDele
         self.setSlider()
         self.getDonationData()
         self.setShadows()
-        self.setHoursViews()
-        self.watchCount = DonationManager.shared.userDonation?.watchCount
+//        self.setHoursViews()
+//        self.watchCount = DonationManager.shared.userDonation?.watchCount
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.setButtonsColorAndFont()
         self.setState()
-        self.initSocket()
+//        self.initSocket()
         self.presentVideo()
     }
     override func viewDidAppear(_ animated: Bool) {
-        self.changeValue()
+//        self.changeValue()
     }
     
     private func setRoundCorners() {
@@ -90,14 +90,14 @@ class DonateViewController: UIViewController, UITextFieldDelegate, WebSocketDele
         self.singelPaymentButton.layer.cornerRadius = self.singelPaymentButton.bounds.height / 2
     }
     
-    func setHoursViews() {
-        self.setNumberView(view: self.firstView)
-        self.setNumberView(view: self.secondView)
-        self.setNumberView(view: self.thirdView)
-        self.setNumberView(view: self.fourthView)
-        self.setNumberView(view: self.fifthView)
-        self.setNumberView(view: self.sixthView)
-    }
+//    func setHoursViews() {
+//        self.setNumberView(view: self.firstView)
+//        self.setNumberView(view: self.secondView)
+//        self.setNumberView(view: self.thirdView)
+//        self.setNumberView(view: self.fourthView)
+//        self.setNumberView(view: self.fifthView)
+//        self.setNumberView(view: self.sixthView)
+//    }
     
     func setBorders() {
         self.shadowView.layer.borderColor = Colors.borderGray.cgColor
@@ -156,45 +156,45 @@ class DonateViewController: UIViewController, UITextFieldDelegate, WebSocketDele
         
     }
     
-    func initSocket() {
-        let request = URLRequest(url: URL(string: "wss://jabrutouch-dev.ravtech.co.il/ws/lesson_watch_count")!)
-//        request.timeoutInterval = 5
-        self.socket = WebSocket(request: request)
-        self.socket.delegate = self
-        self.socket.connect()
-//        self.socket = socket
-    }
+//    func initSocket() {
+//        let request = URLRequest(url: URL(string: "wss://jabrutouch-dev.ravtech.co.il/ws/lesson_watch_count")!)
+////        request.timeoutInterval = 5
+//        self.socket = WebSocket(request: request)
+//        self.socket.delegate = self
+//        self.socket.connect()
+////        self.socket = socket
+//    }
     
-    func didReceive(event: WebSocketEvent, client: WebSocket) {
-        switch event {
-        case .connected(let headers):
-            isConnected = true
-            print("websocket is connected: \(headers)")
-        case .disconnected(let reason, let code):
-            isConnected = false
-            print("websocket is disconnected: \(reason) with code: \(code)")
-        case .text(let string):
-            print("Received text: \(string)")
-        case .binary(let data):
-            print("Received data: \(data.count)")
-        case .ping(_):
-            break
-        case .pong(_):
-            break
-        case .viablityChanged(_):
-            break
-        case .reconnectSuggested(_):
-            break
-        case .cancelled:
-            isConnected = false
-        case .error(let error):
-            isConnected = false
-            if let error = error as? WSError {
-                print("websocket encountered an error: \(error.message)")
-            }
-        }
-    }
-    
+//    func didReceive(event: WebSocketEvent, client: WebSocket) {
+//        switch event {
+//        case .connected(let headers):
+//            isConnected = true
+//            print("websocket is connected: \(headers)")
+//        case .disconnected(let reason, let code):
+//            isConnected = false
+//            print("websocket is disconnected: \(reason) with code: \(code)")
+//        case .text(let string):
+//            print("Received text: \(string)")
+//        case .binary(let data):
+//            print("Received data: \(data.count)")
+//        case .ping(_):
+//            break
+//        case .pong(_):
+//            break
+//        case .viablityChanged(_):
+//            break
+//        case .reconnectSuggested(_):
+//            break
+//        case .cancelled:
+//            isConnected = false
+//        case .error(let error):
+//            isConnected = false
+//            if let error = error as? WSError {
+//                print("websocket encountered an error: \(error.message)")
+//            }
+//        }
+//    }
+//
     func getDonationData() {
         self.donation = DonationManager.shared.donation
         self.dedication = DonationManager.shared.dedication
@@ -214,46 +214,46 @@ class DonateViewController: UIViewController, UITextFieldDelegate, WebSocketDele
         view.layer.borderColor = Colors.borderGray.cgColor
         view.layer.borderWidth = 1
     }
-    
-    func changeValue() {
-        guard let counter = self.watchCount else {return}
-//        let counter = 538629
-        var digits = "\(counter)".compactMap{ $0.wholeNumberValue }
-        while digits.count < 6 {
-            digits.insert(0, at: 0)
-        }
-        if self.firstView.currentLabel.text != "\(digits[0])" {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                self.firstView.changeValue(newValue: "\(digits[0])")
-            }
-        }
-        if self.secondView.currentLabel.text != "\(digits[1])" {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-                self.secondView.changeValue(newValue: "\(digits[1])")
-            }
-        }
-        if self.thirdView.currentLabel.text != "\(digits[2])" {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
-                self.thirdView.changeValue(newValue: "\(digits[2])")
-            }
-        }
-        if self.fourthView.currentLabel.text != "\(digits[3])" {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
-                self.fourthView.changeValue(newValue: "\(digits[3])")
-            }
-        }
-        if self.fifthView.currentLabel.text != "\(digits[4])" {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                self.fifthView.changeValue(newValue: "\(digits[4])")
-            }
-        }
-        if self.sixthView.currentLabel.text != "\(digits[5])" {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
-                self.sixthView.changeValue(newValue: "\(digits[5])")
-            }
-        }
-
-    }
+//
+//    func changeValue() {
+//        guard let counter = self.watchCount else {return}
+////        let counter = 538629
+//        var digits = "\(counter)".compactMap{ $0.wholeNumberValue }
+//        while digits.count < 6 {
+//            digits.insert(0, at: 0)
+//        }
+//        if self.firstView.currentLabel.text != "\(digits[0])" {
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+//                self.firstView.changeValue(newValue: "\(digits[0])")
+//            }
+//        }
+//        if self.secondView.currentLabel.text != "\(digits[1])" {
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+//                self.secondView.changeValue(newValue: "\(digits[1])")
+//            }
+//        }
+//        if self.thirdView.currentLabel.text != "\(digits[2])" {
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+//                self.thirdView.changeValue(newValue: "\(digits[2])")
+//            }
+//        }
+//        if self.fourthView.currentLabel.text != "\(digits[3])" {
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+//                self.fourthView.changeValue(newValue: "\(digits[3])")
+//            }
+//        }
+//        if self.fifthView.currentLabel.text != "\(digits[4])" {
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//                self.fifthView.changeValue(newValue: "\(digits[4])")
+//            }
+//        }
+//        if self.sixthView.currentLabel.text != "\(digits[5])" {
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+//                self.sixthView.changeValue(newValue: "\(digits[5])")
+//            }
+//        }
+//
+//    }
     
     func createPostDedication() {
         var sum = 0
