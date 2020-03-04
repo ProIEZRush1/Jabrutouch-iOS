@@ -13,11 +13,14 @@ class SingleDonationViewController: UIViewController {
     @IBOutlet var ketarimLabel: UILabel!
     @IBOutlet weak var progressView: UIView!
     @IBOutlet weak var hearts: UILabel!
-    var ketarim = 0
+    var unUsedCrowns = 0
+    var allCrowns = 0
+    var likes = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ketarimLabel.text = "\(ketarim) out of 50 ketarim"
+        ketarimLabel.text = "\(unUsedCrowns) out of \(allCrowns) ketarim"
+        hearts.text = "\(likes)"
        
     }
     

@@ -8,7 +8,14 @@
 
 import UIKit
 
-
+enum donationDisplay {
+    case noDonation
+    case singleDonation
+    case subscribe
+    case thankYou
+    case donatePending
+    
+}
 class TzedakaViewController: UIViewController, DedicationViewControllerDelegate{
     
     
@@ -37,7 +44,7 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate{
     @IBOutlet weak var thankYouContainer: UIView!
     @IBOutlet weak var donatePendingContainer: UIView!
     
-    weak var noDonationViewController: NoDonationViewController?
+//    weak var noDonationViewController: NoDonationViewController?
     weak var singleDonationViewController: SingleDonationViewController?
     weak var subscribeViewController: SubscribeViewController?
     
@@ -52,7 +59,7 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate{
     override func viewWillAppear(_ animated: Bool) {
         self.user = UserRepository.shared.getCurrentUser()
         //        self.setContainerView()
-        self.present(2)
+        self.present(donationDisplay.donatePending)
     }
     //========================================
     // MARK: - LifeCycle
@@ -88,7 +95,7 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate{
     }
     
     func createPayment() {
-        self.present(4)
+        self.present(donationDisplay.thankYou)
         DispatchQueue.main.asyncAfter(deadline: .now() + 10){
             self.setContainerView()
         }
@@ -99,51 +106,51 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate{
         guard let user = self.user else { return }
         let donated = user.lessonDonated?.donated
         if isPending && donated == false {
-            self.present(5)
+            self.present(donationDisplay.donatePending)
             return
         }
         if userDonation.donatePerMonth > 0 {
-            self.present(3)
+            self.present(donationDisplay.subscribe)
         }
        else if userDonation.donatePerMonth == 0 {
-            self.present(2)
+            self.present(donationDisplay.singleDonation)
         }
         if userDonation.allCrowns == 0 {
-            self.present(1)
+            self.present(donationDisplay.noDonation)
         }
         
     }
     
-    func present(_ childToPresent: Int){
-        if childToPresent == 1 {
+    func present(_ childToPresent: donationDisplay){
+        if childToPresent == donationDisplay.noDonation {
             self.noDonationContainer.isHidden = false
             self.singleDonationContainer.isHidden = true
             self.subscribeContainer.isHidden = true
             self.thankYouContainer.isHidden = true
             self.donatePendingContainer.isHidden = true
         }
-        else if childToPresent == 2 {
+        else if childToPresent == donationDisplay.singleDonation {
             self.noDonationContainer.isHidden = true
             self.singleDonationContainer.isHidden = false
             self.subscribeContainer.isHidden = true
             self.thankYouContainer.isHidden = true
             self.donatePendingContainer.isHidden = true
         }
-        else if childToPresent == 3 {
+        else if childToPresent == donationDisplay.subscribe {
             self.noDonationContainer.isHidden = true
             self.singleDonationContainer.isHidden = true
             self.subscribeContainer.isHidden = false
             self.thankYouContainer.isHidden = true
             self.donatePendingContainer.isHidden = true
         }
-        else if childToPresent == 4 {
+        else if childToPresent == donationDisplay.thankYou {
             self.noDonationContainer.isHidden = true
             self.singleDonationContainer.isHidden = true
             self.subscribeContainer.isHidden = true
             self.thankYouContainer.isHidden = false
             self.donatePendingContainer.isHidden = true
         }
-        else if childToPresent == 5 {
+        else if childToPresent == donationDisplay.donatePending {
             self.noDonationContainer.isHidden = true
             self.singleDonationContainer.isHidden = true
             self.subscribeContainer.isHidden = true
@@ -176,13 +183,15 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate{
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "noDonation" {
-            self.noDonationViewController = segue.destination as? NoDonationViewController
-        }
-            
-        else if segue.identifier == "singleDonation" {
+//        if segue.identifier == "noDonation" {
+//            self.noDonationViewController = segue.destination as? NoDonationViewController
+//        }
+//
+       if segue.identifier == "singleDonation" {
             let singleDonationVC = segue.destination as? SingleDonationViewController
-            singleDonationVC?.ketarim = self.userDonation?.allCrowns ?? 0
+            singleDonationVC?.unUsedCrowns = self.userDonation?.unUsedCrowns ?? 0
+            singleDonationVC?.allCrowns = self.userDonation?.allCrowns ?? 0
+            singleDonationVC?.likes = self.userDonation?.likes ?? 0
             self.singleDonationViewController = singleDonationVC
             
         }
