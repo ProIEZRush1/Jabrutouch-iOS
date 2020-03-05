@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Starscream
+import SwiftWebSocket
 
 enum donationDisplay {
     case noDonation
@@ -17,7 +17,7 @@ enum donationDisplay {
     case donatePending
     
 }
-class TzedakaViewController: UIViewController, DedicationViewControllerDelegate, WebSocketDelegate{
+class TzedakaViewController: UIViewController, DedicationViewControllerDelegate{
     
     
     //========================================
@@ -30,7 +30,6 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate,
     var isPending: Bool = UserDefaultsProvider.shared.donationPending
     var user: JTUser?
     
-    var socket: WebSocket! = nil
     var isConnected = false
     var watchCount: Int?
     
@@ -63,22 +62,26 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate,
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        DonationManager.shared.getUserDonation()
         self.setRoundCorners()
         self.setBorders()
         self.setShadows()
         self.userDonation = DonationManager.shared.userDonation
         self.setHoursViews()
-        self.watchCount = DonationManager.shared.userDonation?.watchCount
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.watchCount = DonationManager.shared.userDonation?.watchCount
         self.user = UserRepository.shared.getCurrentUser()
         //        self.setContainerView()
         self.present(donationDisplay.singleDonation)
     }
+    
     override func viewDidAppear(_ animated: Bool) {
-        self.changeValue()
+        self.initSwiftWebSocket()
+        guard let counter = self.watchCount else {return}
+        self.changeValue(counter)
     }
     //========================================
     // MARK: - LifeCycle
@@ -135,49 +138,34 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate,
         self.setNumberView(view: self.sixthView)
     }
     
-    func initSocket() {
-        let request = URLRequest(url: URL(string: "wss://jabrutouch-dev.ravtech.co.il/ws/lesson_watch_count")!)
-        //        request.timeoutInterval = 5
-        self.socket = WebSocket(request: request)
-        self.socket.delegate = self
-        self.socket.connect()
-        //        self.socket = socket
+    func initSwiftWebSocket() {
+        let webSocket = SwiftWebSocket.WebSocket("wss://jabrutouch-dev.ravtech.co.il/ws/lesson_watch_count")
+        
+        webSocket.event.open = {
+            print("SwiftWebSocket opened")
+        }
+        
+        webSocket.event.error = { (error) in
+            print("SwiftWebSocket error: \(error)")
+        }
+        
+        webSocket.event.message = self.webSocket(didReceive:)
+
+        webSocket.open()
     }
     
-    func didReceive(event: WebSocketEvent, client: WebSocket) {
-        switch event {
-        case .connected(let headers):
-            isConnected = true
-            print("websocket is connected: \(headers)")
-        case .disconnected(let reason, let code):
-            isConnected = false
-            print("websocket is disconnected: \(reason) with code: \(code)")
-        case .text(let string):
-            print("Received text: \(string)")
-        case .binary(let data):
-            print("Received data: \(data.count)")
-        case .ping(_):
-            break
-        case .pong(_):
-            break
-        case .viablityChanged(_):
-            break
-        case .reconnectSuggested(_):
-            break
-        case .cancelled:
-            isConnected = false
-        case .error(let error):
-            isConnected = false
-            if let error = error as? WSError {
-                print("websocket encountered an error: \(error.message)")
-            }
+    func webSocket(didReceive message: Any) {
+        let contentString = message as! String
+        guard let content = Utils.convertStringToDictionary(contentString) as? [String:Any] else { return }
+
+        if let watchCount = content["watch_count"] as? Int {
+            self.changeValue(watchCount)
         }
     }
+
     
-    
-    func changeValue() {
-        guard let counter = self.watchCount else {return}
-        //        let counter = 538629
+    func changeValue(_ counter: Int) {
+
         var digits = "\(counter)".compactMap{ $0.wholeNumberValue }
         while digits.count < 6 {
             digits.insert(0, at: 0)

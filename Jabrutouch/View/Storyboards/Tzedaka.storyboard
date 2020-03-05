@@ -252,7 +252,7 @@
                                             <color key="titleColor" red="0.17799999999999999" green="0.16800000000000001" blue="0.66300000000000003" alpha="0.47999999999999998" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="myPlanButtonPressed:" destination="n5v-uS-egV" eventType="touchUpInside" id="j0E-h3-s09"/>
+                                            <action selector="historyButtonPressed:" destination="n5v-uS-egV" eventType="touchUpInside" id="Tpe-Ua-RpW"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sPc-2z-5bs">
@@ -263,7 +263,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="historyButtonPressed:" destination="n5v-uS-egV" eventType="touchUpInside" id="NEQ-oR-o3G"/>
+                                            <action selector="myPlanButtonPressed:" destination="n5v-uS-egV" eventType="touchUpInside" id="oKM-H0-UAP"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -308,8 +308,8 @@
                         <outlet property="fifthView" destination="h4S-SD-amv" id="WdL-Yf-hdM"/>
                         <outlet property="firstView" destination="nBv-Xx-T3c" id="eDu-z7-EUd"/>
                         <outlet property="fourthView" destination="lUN-zN-Ka0" id="14a-uG-bcX"/>
-                        <outlet property="historyButton" destination="sPc-2z-5bs" id="UvS-Cu-Atf"/>
-                        <outlet property="myPlanButton" destination="mk6-NJ-kzn" id="4Bl-Ok-B1U"/>
+                        <outlet property="historyButton" destination="mk6-NJ-kzn" id="N2Y-5j-3AC"/>
+                        <outlet property="myPlanButton" destination="sPc-2z-5bs" id="qAu-gU-g1Y"/>
                         <outlet property="noDonationContainer" destination="NdR-79-Zab" id="dFp-4F-vkG"/>
                         <outlet property="secondView" destination="bWL-y3-cix" id="dgd-QI-ja7"/>
                         <outlet property="singleDonationContainer" destination="Of6-lq-zRu" id="qD8-FO-XYM"/>
@@ -905,7 +905,7 @@ communal desire for knowledge</string>
         <image name="donate_keter" width="53" height="33.5"/>
         <image name="flower" width="73.5" height="95"/>
         <image name="ring" width="70" height="70"/>
-        <image name="ring_crown" width="74" height="74"/>
+        <image name="ring_crown" width="73.5" height="73"/>
         <image name="watering" width="135.5" height="175"/>
     </resources>
 </document>
