@@ -303,6 +303,7 @@ PODS:
   - Protobuf (3.11.4)
   - SnapKit (5.0.1)
   - Starscream (4.0.0)
+  - SwiftWebSocket (2.7.0)
   - UICircularProgressRing (6.5.0)
 
 DEPENDENCIES:
@@ -317,6 +318,7 @@ DEPENDENCIES:
   - mp3lame-for-ios
   - SnapKit (~> 5.0.0)
   - Starscream (~> 4.0.0)
+  - SwiftWebSocket
   - UICircularProgressRing
 
 SPEC REPOS:
@@ -354,6 +356,7 @@ SPEC REPOS:
     - Protobuf
     - SnapKit
     - Starscream
+    - SwiftWebSocket
     - UICircularProgressRing
 
 SPEC CHECKSUMS:
@@ -390,8 +393,9 @@ SPEC CHECKSUMS:
   Protobuf: 176220c526ad8bd09ab1fb40a978eac3fef665f7
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   Starscream: 04b26f02727e10a002e6b5d21b188ba0d049910b
+  SwiftWebSocket: 612c9729fd503cb6b0b8b45390c788686dac306f
   UICircularProgressRing: e6852e8f88e296cbbbe2720cccb55241acda6708
 
-PODFILE CHECKSUM: 07e05b76067d831c5c8f779a80f3b5ce2738d0e4
+PODFILE CHECKSUM: 5bcdac5c1fc8cb5f3a438205048b4ef5680bbc74
 
 COCOAPODS: 1.8.4
