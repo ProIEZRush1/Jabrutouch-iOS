@@ -75,7 +75,13 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate,
     override func viewWillAppear(_ animated: Bool) {
         self.user = UserRepository.shared.getCurrentUser()
         //        self.setContainerView()
-        self.present(donationDisplay.singleDonation)
+//        self.present(donationDisplay.noDonation)
+//        self.present(donationDisplay.singleDonation)
+self.present(donationDisplay.subscribe)
+//        self.present(donationDisplay.thankYou)
+//        self.present(donationDisplay.donatePending)
+
+        
     }
     override func viewDidAppear(_ animated: Bool) {
         self.changeValue()
@@ -311,7 +317,9 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate,
         }
         else if segue.identifier == "subscribe" {
             let subscribeDonationVC = segue.destination as? SubscribeViewController
-            subscribeDonationVC?.ketarim = self.userDonation?.allCrowns ?? 0
+            subscribeDonationVC?.unUsedCrowns = 15// self.userDonation?.unUsedCrowns ?? 0
+            subscribeDonationVC?.allCrowns = 50 //self.userDonation?.allCrowns ?? 0
+            subscribeDonationVC?.likes = self.userDonation?.likes ?? 0
             self.subscribeViewController = subscribeDonationVC
         }
     }

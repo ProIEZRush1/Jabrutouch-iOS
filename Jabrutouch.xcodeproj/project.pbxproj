@@ -162,6 +162,7 @@
 		538691502379E8E500CC95B5 /* JBProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5386914E2379E8E500CC95B5 /* JBProgressBar.swift */; };
 		538691512379E8E500CC95B5 /* LabelWithPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5386914F2379E8E500CC95B5 /* LabelWithPadding.swift */; };
 		538691532379E9B100CC95B5 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 538691522379E9B100CC95B5 /* Profile.storyboard */; };
+		608CC713241129F9002136A8 /* lf20_QuQgM5.json in Resources */ = {isa = PBXBuildFile; fileRef = 608CC712241129F8002136A8 /* lf20_QuQgM5.json */; };
 		83137EFD23F04024003B9DA6 /* JTDonation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83137EFC23F04024003B9DA6 /* JTDonation.swift */; };
 		83137EFF23F040E5003B9DA6 /* DonationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83137EFE23F040E5003B9DA6 /* DonationResponse.swift */; };
 		83137F0123F046CB003B9DA6 /* JTCrown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83137F0023F046CB003B9DA6 /* JTCrown.swift */; };
@@ -206,7 +207,7 @@
 		8395978B23F97745007B96EB /* JBProgressBarWithButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8395978A23F97745007B96EB /* JBProgressBarWithButton.swift */; };
 		8395978D23F98CEF007B96EB /* ProgressBarWithButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8395978C23F98CEF007B96EB /* ProgressBarWithButton.xib */; };
 		8395979A23FE98AA007B96EB /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8395979923FE98AA007B96EB /* VideoViewController.swift */; };
-		8395979C24028B8F007B96EB /* TzedakeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8395979B24028B8E007B96EB /* TzedakeViewController.swift */; };
+		8395979C24028B8F007B96EB /* TzedakaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8395979B24028B8E007B96EB /* TzedakaViewController.swift */; };
 		8395979E24029C31007B96EB /* HoursView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8395979D24029C30007B96EB /* HoursView.xib */; };
 		839597A024029E26007B96EB /* HoursView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8395979F24029E26007B96EB /* HoursView.swift */; };
 		839597A22403F81B007B96EB /* JTUserDonation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839597A12403F81A007B96EB /* JTUserDonation.swift */; };
@@ -435,6 +436,7 @@
 		5386914E2379E8E500CC95B5 /* JBProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JBProgressBar.swift; sourceTree = "<group>"; };
 		5386914F2379E8E500CC95B5 /* LabelWithPadding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelWithPadding.swift; sourceTree = "<group>"; };
 		538691522379E9B100CC95B5 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		608CC712241129F8002136A8 /* lf20_QuQgM5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = lf20_QuQgM5.json; sourceTree = "<group>"; };
 		715A51EC96A60C90B07F8038 /* Pods-Jabrutouch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jabrutouch.debug.xcconfig"; path = "Target Support Files/Pods-Jabrutouch/Pods-Jabrutouch.debug.xcconfig"; sourceTree = "<group>"; };
 		83137EFC23F04024003B9DA6 /* JTDonation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTDonation.swift; sourceTree = "<group>"; };
 		83137EFE23F040E5003B9DA6 /* DonationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonationResponse.swift; sourceTree = "<group>"; };
@@ -480,7 +482,7 @@
 		8395978A23F97745007B96EB /* JBProgressBarWithButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JBProgressBarWithButton.swift; sourceTree = "<group>"; };
 		8395978C23F98CEF007B96EB /* ProgressBarWithButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressBarWithButton.xib; sourceTree = "<group>"; };
 		8395979923FE98AA007B96EB /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
-		8395979B24028B8E007B96EB /* TzedakeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TzedakeViewController.swift; sourceTree = "<group>"; };
+		8395979B24028B8E007B96EB /* TzedakaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TzedakaViewController.swift; sourceTree = "<group>"; };
 		8395979D24029C30007B96EB /* HoursView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HoursView.xib; sourceTree = "<group>"; };
 		8395979F24029E26007B96EB /* HoursView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoursView.swift; sourceTree = "<group>"; };
 		839597A12403F81A007B96EB /* JTUserDonation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTUserDonation.swift; sourceTree = "<group>"; };
@@ -919,6 +921,7 @@
 		2133C21222DCA57900F910B9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				608CC712241129F8002136A8 /* lf20_QuQgM5.json */,
 				DDCA933823D0B1B700388EC6 /* background.png */,
 				DDCA933C23D0B34200388EC6 /* lunchScreenIcon.png */,
 				DDCA933A23D0B31700388EC6 /* Jabrutouch.png */,
@@ -1244,7 +1247,7 @@
 				83A7A0C823E2E36E0041BE28 /* DedicationCardView.swift */,
 				83A7A0CE23E9A3430041BE28 /* DonateNavigationController.swift */,
 				8395979923FE98AA007B96EB /* VideoViewController.swift */,
-				8395979B24028B8E007B96EB /* TzedakeViewController.swift */,
+				8395979B24028B8E007B96EB /* TzedakaViewController.swift */,
 				DDF1D226240445180080D564 /* NoDonationViewController.swift */,
 				DD4E3A7F24056BF400A889BE /* SingleDonationViewController.swift */,
 				DD51946624069F760085E2A8 /* SubscribeViewController.swift */,
@@ -1456,6 +1459,7 @@
 				21678D4622DF2CEC007BC74C /* SF-Pro-Display-Black.otf in Resources */,
 				21678D4722DF2CEC007BC74C /* SF-Pro-Display-BlackItalic.otf in Resources */,
 				21678D4822DF2CEC007BC74C /* SF-Pro-Display-Bold.otf in Resources */,
+				608CC713241129F9002136A8 /* lf20_QuQgM5.json in Resources */,
 				21678D4922DF2CEC007BC74C /* SF-Pro-Display-BoldItalic.otf in Resources */,
 				FB67A5DF22E4723F009E4DF9 /* Download.storyboard in Resources */,
 				21678D4A22DF2CEC007BC74C /* SF-Pro-Display-Heavy.otf in Resources */,
@@ -1664,7 +1668,7 @@
 				212ECEA7230F36BF005AEB36 /* LessonPlayerViewController.swift in Sources */,
 				213196A822F38B3E00B0AF5F /* APIResponseModel.swift in Sources */,
 				83137EFD23F04024003B9DA6 /* JTDonation.swift in Sources */,
-				8395979C24028B8F007B96EB /* TzedakeViewController.swift in Sources */,
+				8395979C24028B8F007B96EB /* TzedakaViewController.swift in Sources */,
 				2126D6E12304025A00CB501D /* MishnaNavigationController.swift in Sources */,
 				FBAB071622E74ABD00C8DCD7 /* DownloadsCellController.swift in Sources */,
 				2133C21F22DCFC6600F910B9 /* WalkThroughViewController.swift in Sources */,

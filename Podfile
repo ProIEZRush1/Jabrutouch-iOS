@@ -18,5 +18,5 @@ target 'Jabrutouch' do
   pod 'mp3lame-for-ios'
   pod 'iRecordView'
   pod 'Starscream', '~> 4.0.0'
-  
+  pod 'lottie-ios'
 end
