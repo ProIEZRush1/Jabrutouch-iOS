@@ -51,6 +51,7 @@ class DonateViewController: UIViewController, UITextFieldDelegate, DonationManag
         self.setSlider()
         self.getDonationData()
         self.setShadows()
+        self.setText()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -84,6 +85,14 @@ class DonateViewController: UIViewController, UITextFieldDelegate, DonationManag
         
     }
     
+    func setText() {
+        self.titleLabel.text = Strings.donations
+        self.subscriptionButton.setTitle(Strings.subscription, for: .normal)
+        self.singelPaymentButton.setTitle(Strings.singlePayment, for: .normal)
+        self.donationValueLabel.text = Strings.x5Value
+        self.donationValueLabel.text = Strings.x5Value
+    }
+    
     func presentVideo() {
         if !self.showVideo {
             self.performSegue(withIdentifier: "presentVideo", sender: self)
@@ -103,12 +112,15 @@ class DonateViewController: UIViewController, UITextFieldDelegate, DonationManag
         var numberOfKetarim = self.numberOfCrownsSubsciption
         if self.isSingelPayment {
             numberOfKetarim = amount / self.numberOfCrownsSingel
-            self.monthlyLabel.text = "One Time Donation"
+            self.monthlyLabel.text = Strings.singlePayment //"One Time Donation"
+            self.descriptionTitleLabel.text = Strings.singlePayment
             self.donationValueLabel.isHidden = true
             self.cancelSubscriptionLabel.isHidden = true
         } else {
             numberOfKetarim = amount / self.numberOfCrownsSubsciption
-            self.monthlyLabel.text = "Monthly"
+            self.monthlyLabel.text = Strings.monthly //"Monthly"
+            self.descriptionTitleLabel.text = Strings.paidMonthly
+            self.cancelSubscriptionLabel.text = Strings.cancelSubscriptionLabel
             self.donationValueLabel.isHidden = false
             self.cancelSubscriptionLabel.isHidden = false
 
@@ -166,7 +178,7 @@ class DonateViewController: UIViewController, UITextFieldDelegate, DonationManag
         }
     }
     
-    func donationsDataResived() {
+    func donationsDataReceived() {
         self.getDonationData()
     }
     

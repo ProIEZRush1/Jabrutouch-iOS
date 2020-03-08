@@ -9,7 +9,7 @@
 import Foundation
 
 protocol DonationManagerDelegate: class {
-     func donationsDataResived()
+     func donationsDataReceived()
 }
 
 class DonationManager: NSObject {
@@ -43,7 +43,7 @@ class DonationManager: NSObject {
                 self.donation = data.donation
                 self.dedication = data.donation.dedication
                 self.crowns = data.donation.crowns
-                self.delegate?.donationsDataResived()
+                self.delegate?.donationsDataReceived()
             case .failure(let error):
                 print(error)
                 
