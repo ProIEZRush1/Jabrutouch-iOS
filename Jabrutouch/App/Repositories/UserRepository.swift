@@ -54,5 +54,7 @@ class UserRepository {
         UserDefaultsProvider.shared.currentPassword = nil
         UserDefaultsProvider.shared.currentUser = nil
         UserDefaultsProvider.shared.lessonWatched = []
+        UserDefaultsProvider.shared.videoWatched = false
+        UserDefaultsProvider.shared.donationPending = false
     }
 }

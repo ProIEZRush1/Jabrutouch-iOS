@@ -8,8 +8,8 @@
 
 import UIKit
 
-class DonateViewController: UIViewController, UITextFieldDelegate {
-
+class DonateViewController: UIViewController, UITextFieldDelegate, DonationManagerDelegate {
+   
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var amountToPayTF: UITextField!
@@ -36,7 +36,7 @@ class DonateViewController: UIViewController, UITextFieldDelegate {
     var crowns: [JTCrown] = []
     var dedication: [JTDedication] = []
     var postDedication: JTPostDedication?
-    var numberOfCrownsSinget = 5
+    var numberOfCrownsSingel = 5
     var numberOfCrownsSubsciption = 1
     var showVideo: Bool = UserDefaultsProvider.shared.videoWatched
     
@@ -57,8 +57,9 @@ class DonateViewController: UIViewController, UITextFieldDelegate {
         self.setButtonsColorAndFont()
         self.setState()
         self.presentVideo()
+        
     }
-  
+    
     private func setRoundCorners() {
         self.shadowView.layer.cornerRadius = 10
         self.shadowView.clipsToBounds = true
@@ -101,7 +102,7 @@ class DonateViewController: UIViewController, UITextFieldDelegate {
         guard let amount = Int(amountToDonate) else { return }
         var numberOfKetarim = self.numberOfCrownsSubsciption
         if self.isSingelPayment {
-            numberOfKetarim = amount / self.numberOfCrownsSinget
+            numberOfKetarim = amount / self.numberOfCrownsSingel
             self.monthlyLabel.text = "One Time Donation"
             self.donationValueLabel.isHidden = true
             self.cancelSubscriptionLabel.isHidden = true
@@ -136,7 +137,7 @@ class DonateViewController: UIViewController, UITextFieldDelegate {
         self.crowns = DonationManager.shared.crowns
         for crown in self.crowns {
             if crown.paymentType == "regular" {
-                self.numberOfCrownsSinget = crown.dollarPerCrown
+                self.numberOfCrownsSingel = crown.dollarPerCrown
             }
             if crown.paymentType == "subscription" {
                 self.numberOfCrownsSubsciption = crown.dollarPerCrown
@@ -163,6 +164,10 @@ class DonateViewController: UIViewController, UITextFieldDelegate {
             self.postDedication!.sum = sum
             self.postDedication!.paymentType = paymentType
         }
+    }
+    
+    func donationsDataResived() {
+        self.getDonationData()
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
