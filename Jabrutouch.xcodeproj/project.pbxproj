@@ -163,6 +163,7 @@
 		538691512379E8E500CC95B5 /* LabelWithPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5386914F2379E8E500CC95B5 /* LabelWithPadding.swift */; };
 		538691532379E9B100CC95B5 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 538691522379E9B100CC95B5 /* Profile.storyboard */; };
 		608CC713241129F9002136A8 /* lf20_QuQgM5.json in Resources */ = {isa = PBXBuildFile; fileRef = 608CC712241129F8002136A8 /* lf20_QuQgM5.json */; };
+		60DB15772415494C00BD470F /* ChangeSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DB15762415494C00BD470F /* ChangeSettingsViewController.swift */; };
 		83137EFD23F04024003B9DA6 /* JTDonation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83137EFC23F04024003B9DA6 /* JTDonation.swift */; };
 		83137EFF23F040E5003B9DA6 /* DonationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83137EFE23F040E5003B9DA6 /* DonationResponse.swift */; };
 		83137F0123F046CB003B9DA6 /* JTCrown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83137F0023F046CB003B9DA6 /* JTCrown.swift */; };
@@ -437,6 +438,7 @@
 		5386914F2379E8E500CC95B5 /* LabelWithPadding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelWithPadding.swift; sourceTree = "<group>"; };
 		538691522379E9B100CC95B5 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		608CC712241129F8002136A8 /* lf20_QuQgM5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = lf20_QuQgM5.json; sourceTree = "<group>"; };
+		60DB15762415494C00BD470F /* ChangeSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeSettingsViewController.swift; sourceTree = "<group>"; };
 		715A51EC96A60C90B07F8038 /* Pods-Jabrutouch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jabrutouch.debug.xcconfig"; path = "Target Support Files/Pods-Jabrutouch/Pods-Jabrutouch.debug.xcconfig"; sourceTree = "<group>"; };
 		83137EFC23F04024003B9DA6 /* JTDonation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTDonation.swift; sourceTree = "<group>"; };
 		83137EFE23F040E5003B9DA6 /* DonationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonationResponse.swift; sourceTree = "<group>"; };
@@ -1251,6 +1253,7 @@
 				DDF1D226240445180080D564 /* NoDonationViewController.swift */,
 				DD4E3A7F24056BF400A889BE /* SingleDonationViewController.swift */,
 				DD51946624069F760085E2A8 /* SubscribeViewController.swift */,
+				60DB15762415494C00BD470F /* ChangeSettingsViewController.swift */,
 			);
 			path = Donations;
 			sourceTree = "<group>";
@@ -1683,6 +1686,7 @@
 				DD51946724069F760085E2A8 /* SubscribeViewController.swift in Sources */,
 				2133C22622DDCD3E00F910B9 /* Colors.swift in Sources */,
 				46C652F623CF770800F6D0DD /* GetEditUserParametersResponse.swift in Sources */,
+				60DB15772415494C00BD470F /* ChangeSettingsViewController.swift in Sources */,
 				839597A22403F81B007B96EB /* JTUserDonation.swift in Sources */,
 				FB51712322F1D7CC003BCAFC /* MishnaChapterCellController.swift in Sources */,
 				DDF1D227240445180080D564 /* NoDonationViewController.swift in Sources */,

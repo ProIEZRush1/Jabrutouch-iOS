@@ -237,5 +237,29 @@ class Utils {
         return nil
     }
     
+   
     
+}
+extension UIView {
+    func linearGradientView(colors: [UIColor], locations: [NSNumber]?, startPoint: CGPoint, endPoint: CGPoint) -> Void {
+           self.layoutIfNeeded()
+           self.setNeedsLayout()
+           
+           for l in self.layer.sublayers ?? []{
+               
+               if (l is CAGradientLayer){
+                   
+                   l.removeFromSuperlayer()
+               }
+           }
+           
+        let gradientLayer: CAGradientLayer = CAGradientLayer()
+        gradientLayer.frame = self.bounds
+        gradientLayer.colors = colors.map { $0.cgColor }
+        gradientLayer.locations = locations
+        gradientLayer.startPoint = startPoint
+        gradientLayer.endPoint = endPoint
+        gradientLayer.cornerRadius = self.layer.cornerRadius
+        self.layer.insertSublayer(gradientLayer, at: 0)
+       }
 }
