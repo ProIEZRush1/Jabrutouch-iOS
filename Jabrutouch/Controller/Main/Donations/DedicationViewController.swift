@@ -55,7 +55,7 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
         self.setCarousel()
         self.setRoundCorners()
         self.leftArrowButton.isHidden = true
-        
+        self.descriptionLabel.text = "Si lo deseas, también puedes dedicar la clase de Torá a una causa especial"
     }
     
     override func viewWillAppear(_ animated: Bool) {
