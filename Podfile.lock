@@ -293,6 +293,7 @@ PODS:
   - GTMSessionFetcher/Core (1.3.1)
   - iRecordView (0.1.1)
   - leveldb-library (1.22)
+  - lottie-ios (3.1.6)
   - mp3lame-for-ios (0.1.1)
   - nanopb (0.3.9011):
     - nanopb/decode (= 0.3.9011)
@@ -315,6 +316,7 @@ DEPENDENCIES:
   - Firebase/Firestore
   - Firebase/Messaging
   - iRecordView
+  - lottie-ios
   - mp3lame-for-ios
   - SnapKit (~> 5.0.0)
   - Starscream (~> 4.0.0)
@@ -350,6 +352,7 @@ SPEC REPOS:
     - GTMSessionFetcher
     - iRecordView
     - leveldb-library
+    - lottie-ios
     - mp3lame-for-ios
     - nanopb
     - PromisesObjC
@@ -387,6 +390,7 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: cea130bbfe5a7edc8d06d3f0d17288c32ffe9925
   iRecordView: 5f3096f87c3ed2687d69a74a2850d53422352bb6
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
+  lottie-ios: 85ce835dd8c53e02509f20729fc7d6a4e6645a0a
   mp3lame-for-ios: 4daeb5686885be66438154050e3fe975d4ee1f07
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
@@ -396,6 +400,6 @@ SPEC CHECKSUMS:
   SwiftWebSocket: 612c9729fd503cb6b0b8b45390c788686dac306f
   UICircularProgressRing: e6852e8f88e296cbbbe2720cccb55241acda6708
 
-PODFILE CHECKSUM: 5bcdac5c1fc8cb5f3a438205048b4ef5680bbc74
+PODFILE CHECKSUM: 36f9e464d1987ac1b58de0b424cf7d59a31c6af5
 
 COCOAPODS: 1.8.4

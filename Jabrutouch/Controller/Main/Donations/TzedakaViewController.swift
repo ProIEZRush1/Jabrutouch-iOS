@@ -69,13 +69,24 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate{
         self.userDonation = DonationManager.shared.userDonation
         self.setHoursViews()
         
+        let nc = NotificationCenter.default
+        nc.addObserver(self, selector: #selector(subscribePressed), name: NSNotification.Name(rawValue: "subscribePressed"), object: nil)
+
+       
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.watchCount = DonationManager.shared.userDonation?.watchCount
         self.user = UserRepository.shared.getCurrentUser()
+        self.setContainerView()
         //        self.setContainerView()
-        self.present(donationDisplay.singleDonation)
+//        self.present(donationDisplay.noDonation)
+//        self.present(donationDisplay.singleDonation)
+//self.present(donationDisplay.subscribe)
+//        self.present(donationDisplay.thankYou)
+//        self.present(donationDisplay.donatePending)
+
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -163,6 +174,9 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate{
         }
     }
 
+    @objc func subscribePressed(){
+        performSegue(withIdentifier: "presentSetings", sender: self)
+    }
     
     func changeValue(_ counter: Int) {
 
@@ -285,21 +299,20 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate{
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //        if segue.identifier == "noDonation" {
-        //            self.noDonationViewController = segue.destination as? NoDonationViewController
-        //        }
-        //
+       
         if segue.identifier == "singleDonation" {
             let singleDonationVC = segue.destination as? SingleDonationViewController
-            singleDonationVC?.unUsedCrowns = self.userDonation?.unUsedCrowns ?? 0
-            singleDonationVC?.allCrowns = self.userDonation?.allCrowns ?? 0
+            singleDonationVC?.unUsedCrowns = 170 //self.userDonation?.unUsedCrowns ?? 0
+            singleDonationVC?.allCrowns = 20 //self.userDonation?.allCrowns ?? 0
             singleDonationVC?.likes = self.userDonation?.likes ?? 0
             self.singleDonationViewController = singleDonationVC
             
         }
         else if segue.identifier == "subscribe" {
             let subscribeDonationVC = segue.destination as? SubscribeViewController
-            subscribeDonationVC?.ketarim = self.userDonation?.allCrowns ?? 0
+            subscribeDonationVC?.unUsedCrowns = 15// self.userDonation?.unUsedCrowns ?? 0
+            subscribeDonationVC?.allCrowns = 50 //self.userDonation?.allCrowns ?? 0
+            subscribeDonationVC?.likes = self.userDonation?.likes ?? 0
             self.subscribeViewController = subscribeDonationVC
         }
     }

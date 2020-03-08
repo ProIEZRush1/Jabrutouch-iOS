@@ -19,5 +19,6 @@ target 'Jabrutouch' do
   pod 'iRecordView'
   pod 'Starscream', '~> 4.0.0'
   pod 'SwiftWebSocket'
-  
+  pod 'lottie-ios'
+
 end
