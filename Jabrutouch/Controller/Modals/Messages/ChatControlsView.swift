@@ -197,7 +197,8 @@ class ChatControlsView: UIView, RecordViewDelegate {
             self.saveRecordInS3(url: url, fileName: "users-record/\(file)" , completion:{ (result: Result<Void, Error>) in
                 switch result{
                 case .success(let data):
-                    self.delegate?.recordSavedInS3(file)
+//                    self.delegate?.recordSavedInS3(file)
+                    self.delegate?.recordSavedInS3("/users-record/\(file)")
                     print(data)
                 case .failure(let error):
                     print(error)

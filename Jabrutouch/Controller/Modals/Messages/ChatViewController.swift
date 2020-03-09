@@ -253,12 +253,13 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                 let fileUrl = "\(baseUrl)\(message.message)"
                 let isExsist = FileManager.default.fileExists(atPath: URL.init(string: fileUrl)!.path )
                 if !(isExsist){
-                    AWSS3Provider.shared.handleFileDownload(fileName: "users-record/\(message.message)", bucketName: AWSS3Provider.appS3BucketName, progressBlock: nil) {  (result) in
+                    let recordUrl = message.message.components(separatedBy: "/")
+                    AWSS3Provider.shared.handleFileDownload(fileName: "users-record/\(recordUrl[recordUrl.count-1])", bucketName: AWSS3Provider.appS3BucketName, progressBlock: nil) {  (result) in
                         switch result{
                         case .success(let data):
                             do{
                                 try FilesManagementProvider.shared.overwriteFile(
-                                    path: FilesManagementProvider.shared.loadFile(link: "\(message.message)",
+                                    path: FilesManagementProvider.shared.loadFile(link: "\(recordUrl[recordUrl.count-1])",
                                         directory: FileDirectory.recorders),
                                     data: data)
                             } catch {

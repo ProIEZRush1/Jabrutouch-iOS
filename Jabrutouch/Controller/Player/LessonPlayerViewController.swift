@@ -843,9 +843,7 @@ class LessonPlayerViewController: UIViewController {
         self.landscapeDownlaodProgressView.isHidden = false
 
         ContentRepository.shared.downloadLesson(lesson, mediaType: self.mediaType, delegate: ContentRepository.shared)
-        
         ContentRepository.shared.lessonStartedDownloading(self.lesson.id, mediaType: self.mediaType)
-        
     }
     
     @IBAction func photoButtonPressed(_ sender: UIButton) {
@@ -904,7 +902,6 @@ class LessonPlayerViewController: UIViewController {
 
 extension LessonPlayerViewController: WKUIDelegate {
     
-    
 }
 
 extension LessonPlayerViewController: PDFViewDelegate {
@@ -932,12 +929,9 @@ extension LessonPlayerViewController: AudioPlayerDelegate, VideoPlayerDelegate {
     }
     
     func didFinishPlaying() {
-        
     }
-    
-    
-}
 
+}
 
 extension LessonPlayerViewController: ContentRepositoryDownloadDelegate {
     func downloadCompleted(downloadId: Int, mediaType: JTLessonMediaType) {        
@@ -954,7 +948,6 @@ extension LessonPlayerViewController: ContentRepositoryDownloadDelegate {
     
     func downloadProgress(downloadId: Int, progress: Float, mediaType: JTLessonMediaType) {
         if downloadId == self.lesson.id {
-            
 //            self.portraitDownloadProgressView.gradientColors = [Colors.appBlue, Colors.appOrange]
             self.portraitDownloadProgressView.value = CGFloat(progress*100)
             self.landscapeDownlaodProgressView.value = CGFloat(progress*100)
@@ -997,7 +990,6 @@ extension LessonPlayerViewController: ChatControlsViewDelegate {
         self.createMessage(fileName, MessageType.voice)
     }
     
-    
     func sendVoiceMessageButtonTouchUp(_ fileName: String) {
         self.stopTextingMode()
         self.setMediaURL(startPlaying: true)
@@ -1012,8 +1004,6 @@ extension LessonPlayerViewController: ChatControlsViewDelegate {
     }
     
     func textViewChanged() {}
-        
-    
     
     func createMessage(_ text: String, _ type: MessageType){
         var gemara = true
@@ -1025,30 +1015,17 @@ extension LessonPlayerViewController: ChatControlsViewDelegate {
             gemara = false
         }
         guard let toUser = self.lesson.presenter?.id else{ return }
-                    MessagesRepository.shared.sendMessage(
-                       message: text,
-                       sentAt: Date(),
-                       title: title,
-                       messageType: type.rawValue,
-                       toUser: toUser,
-                       chatId: nil,
-                       lessonId: self.lesson.id,
-                       gemara: gemara,
-                       linkTo: nil,
-                       completion:  { (result) in
-                           print("result",result)
-                        switch result{
-                        case .success(let data):
-                            data.message.title = title
-                            MessagesRepository.shared.saveMessageInDB(message: data.message)
-                            print("success", data.message.chatId)
-                        case .failure(_):
-                            print("error")
-                        }
-                   })
-       
-        }
-       
-       
+        MessagesRepository.shared.sendMessage( message: text,  sentAt: Date(), title: title, messageType: type.rawValue, toUser: toUser, chatId: nil, lessonId: self.lesson.id, gemara: gemara, linkTo: nil, completion:  { (result) in
+            print("result",result)
+            switch result{
+            case .success(let data):
+                data.message.title = title
+                MessagesRepository.shared.saveMessageInDB(message: data.message)
+                print("success", data.message.chatId)
+            case .failure(_):
+                print("error")
+            }
+        })
+    }
     
 }

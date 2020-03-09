@@ -115,47 +115,303 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E0792A39-A7E2-40B7-9810-110760B09B75"
+            uuid = "ED48FC09-8545-4BFF-BA81-814E6781C2B6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Jabrutouch/Controller/Main/Donations/SubscribeViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "setConstraints()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A0EF0516-EDE5-4BC8-94F5-A44F97114CE4"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Jabrutouch/Controller/Main/Donations/SubscribeViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
-            landmarkName = "setConstraints()"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "setProgress(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "893458D5-8CB8-4123-AD19-3CA1BEE5C340"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Jabrutouch/Controller/Main/Donations/TzedakaViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "320"
+            endingLineNumber = "320"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7F171330-3D20-46C9-9B4A-BDFFEAE028B0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Jabrutouch/Controller/Main/Donations/TzedakaViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "235"
+            endingLineNumber = "235"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AB87274B-6355-4497-B713-34600F85F1B3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Jabrutouch/Controller/Modals/Messages/ChatControlsView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "197"
+            endingLineNumber = "197"
+            landmarkName = "onFinished(duration:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "E0792A39-A7E2-40B7-9810-110760B09B75 - d6552d68b983ca57"
-                  shouldBeEnabled = "Yes"
+                  uuid = "AB87274B-6355-4497-B713-34600F85F1B3 - 63a92fd894279602"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Jabrutouch.SubscribeViewController.(setConstraints in _5CB9638C281A614C58A5344F39E8FC3A)() -&gt; ()"
+                  symbolName = "Jabrutouch.ChatControlsView.onFinished(duration: CoreGraphics.CGFloat) -&gt; ()"
                   moduleName = "Jabrutouch"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/avrahamdeutsch/Workspace/jabrutouch_ios/Jabrutouch/Controller/Main/Donations/SubscribeViewController.swift"
+                  urlString = "file:///Users/avrahamdeutsch/Workspace/jabrutouch_ios/Jabrutouch/Controller/Modals/Messages/ChatControlsView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "51"
-                  endingLineNumber = "51"
-                  offsetFromSymbolStart = "400">
+                  startingLineNumber = "197"
+                  endingLineNumber = "197"
+                  offsetFromSymbolStart = "960">
                </Location>
                <Location
-                  uuid = "E0792A39-A7E2-40B7-9810-110760B09B75 - d6552d68b983ca57"
+                  uuid = "AB87274B-6355-4497-B713-34600F85F1B3 - f9c0726d582a55e2"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;(), Swift.Error&gt;) -&gt; () in Jabrutouch.ChatControlsView.onFinished(duration: CoreGraphics.CGFloat) -&gt; ()"
+                  moduleName = "Jabrutouch"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/avrahamdeutsch/Workspace/jabrutouch_ios/Jabrutouch/Controller/Modals/Messages/ChatControlsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "199"
+                  endingLineNumber = "199"
+                  offsetFromSymbolStart = "200">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "212EF633-EA50-4425-9F22-D6085C359343"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Jabrutouch/Controller/Modals/Messages/ChatControlsView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
+            landmarkName = "onFinished(duration:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1EB1D1BD-B382-44E0-B9B4-12451A877A06"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Jabrutouch/Controller/Modals/Messages/ChatControlsView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "200"
+            endingLineNumber = "200"
+            landmarkName = "onFinished(duration:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B9333A33-97B7-4614-976F-896F2D110514"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Jabrutouch/Controller/Modals/Messages/ChatViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "589"
+            endingLineNumber = "589"
+            landmarkName = "recordSavedInS3(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C5A9CB4E-A4B3-4935-8A86-1C00BEC80F0D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Jabrutouch/Controller/Player/LessonPlayerViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "991"
+            endingLineNumber = "991"
+            landmarkName = "recordSavedInS3(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "41F1013A-5A15-4C9E-9020-22C34ACD0F38"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Jabrutouch/Controller/Player/LessonPlayerViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1009"
+            endingLineNumber = "1009"
+            landmarkName = "createMessage(_:_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0B03F428-9F7D-44CC-8BBD-774F4F773723"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Jabrutouch/App/Core/AppDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "257"
+            endingLineNumber = "257"
+            landmarkName = "application(_:didReceiveRemoteNotification:fetchCompletionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2BED689E-D4AE-46FA-82A1-66BF69535727"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Jabrutouch/App/Core/AppDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "311"
+            endingLineNumber = "311"
+            landmarkName = "saveNewNotificationInDB(_:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2BED689E-D4AE-46FA-82A1-66BF69535727 - b4696cd5d8eb2a8c"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Jabrutouch.SubscribeViewController.(setConstraints in _5CB9638C281A614C58A5344F39E8FC3A)() -&gt; ()"
+                  symbolName = "closure #1 (Swift.Result&lt;Foundation.Data, Swift.Error&gt;) -&gt; () in Jabrutouch.AppDelegate.saveNewNotificationInDB(_: Swift.Dictionary&lt;Swift.AnyHashable, Any&gt;, completion: (Swift.Int) -&gt; ()) -&gt; ()"
                   moduleName = "Jabrutouch"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/avrahamdeutsch/Workspace/jabrutouch_ios/Jabrutouch/Controller/Main/Donations/SubscribeViewController.swift"
+                  urlString = "file:///Users/avrahamdeutsch/Workspace/jabrutouch_ios/Jabrutouch/App/Core/AppDelegate.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "51"
-                  endingLineNumber = "51"
-                  offsetFromSymbolStart = "500">
+                  startingLineNumber = "311"
+                  endingLineNumber = "311"
+                  offsetFromSymbolStart = "272">
+               </Location>
+               <Location
+                  uuid = "2BED689E-D4AE-46FA-82A1-66BF69535727 - b4696cd5d8eb2a8c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Foundation.Data, Swift.Error&gt;) -&gt; () in Jabrutouch.AppDelegate.saveNewNotificationInDB(_: Swift.Dictionary&lt;Swift.AnyHashable, Any&gt;, completion: (Swift.Int) -&gt; ()) -&gt; ()"
+                  moduleName = "Jabrutouch"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/avrahamdeutsch/Workspace/jabrutouch_ios/Jabrutouch/App/Core/AppDelegate.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "311"
+                  endingLineNumber = "311"
+                  offsetFromSymbolStart = "308">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "94D2B7C5-D660-43A6-8038-CFAEAF9B92D2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Jabrutouch/App/Core/AppDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "309"
+            endingLineNumber = "309"
+            landmarkName = "saveNewNotificationInDB(_:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "94D2B7C5-D660-43A6-8038-CFAEAF9B92D2 - 7f048390b3463754"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Jabrutouch.AppDelegate.saveNewNotificationInDB(_: Swift.Dictionary&lt;Swift.AnyHashable, Any&gt;, completion: (Swift.Int) -&gt; ()) -&gt; ()"
+                  moduleName = "Jabrutouch"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/avrahamdeutsch/Workspace/jabrutouch_ios/Jabrutouch/App/Core/AppDelegate.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "309"
+                  endingLineNumber = "309"
+                  offsetFromSymbolStart = "1232">
+               </Location>
+               <Location
+                  uuid = "94D2B7C5-D660-43A6-8038-CFAEAF9B92D2 - b4696cd5d8eb2a8c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Foundation.Data, Swift.Error&gt;) -&gt; () in Jabrutouch.AppDelegate.saveNewNotificationInDB(_: Swift.Dictionary&lt;Swift.AnyHashable, Any&gt;, completion: (Swift.Int) -&gt; ()) -&gt; ()"
+                  moduleName = "Jabrutouch"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/avrahamdeutsch/Workspace/jabrutouch_ios/Jabrutouch/App/Core/AppDelegate.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "311"
+                  endingLineNumber = "311"
+                  offsetFromSymbolStart = "272">
                </Location>
             </Locations>
          </BreakpointContent>
