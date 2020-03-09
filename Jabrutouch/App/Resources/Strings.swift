@@ -463,6 +463,14 @@ class Strings {
         return NSLocalizedString("myPlan", comment: "")
     }
     
+    class var history: String {
+        return NSLocalizedString("history", comment: "")
+    }
+    
+    class var donationEligeble: String {
+        return NSLocalizedString("donationEligeble", comment: "")
+    }
+    
     class var yourDonation: String {
         return NSLocalizedString("yourDonation", comment: "")
     }
@@ -498,6 +506,10 @@ class Strings {
     class var numberOfKetarimLeft: String {
         return NSLocalizedString("numberOfKetarimLeft", comment: "")
     }
+    
+    class var numberOfKetarimSubTitle: String {
+           return NSLocalizedString("numberOfKetarimSubTitle", comment: "")
+       }
     
     class var thankedYou: String {
         return NSLocalizedString("thankedYou", comment: "")

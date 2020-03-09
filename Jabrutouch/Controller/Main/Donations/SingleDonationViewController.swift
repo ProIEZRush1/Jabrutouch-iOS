@@ -15,6 +15,9 @@ class SingleDonationViewController: UIViewController, DonationManagerDelegate {
     @IBOutlet var progressAnimation: UIView!
     @IBOutlet weak var progressAnimationTraiing: NSLayoutConstraint!
     @IBOutlet weak var hearts: UILabel!
+    @IBOutlet weak var numberOfKetarimSubTitle: UILabel!
+    @IBOutlet weak var yourTzedakaLabel: UILabel!
+    @IBOutlet weak var thankedYouLabel: UILabel!
     
     var userDonation : JTUserDonation?
     private var activityView: ActivityView?
@@ -71,8 +74,16 @@ class SingleDonationViewController: UIViewController, DonationManagerDelegate {
     }
     
     private func setText() {
-        self.ketarimLabel.text = "\(self.unUsedCrowns) out of \(self.allCrowns) ketarim"
+        let string = String(format: Strings.numberOfKetarimLeft, arguments: ["\(self.unUsedCrowns)", "\(self.allCrowns)"])
+        let attributedString = NSMutableAttributedString(string: string, attributes: [NSAttributedString.Key.font: Fonts.mediumDisplayFont(size:18)])
+        let range = (string as NSString).range(of: "\(self.unUsedCrowns)")
+        attributedString.addAttributes([NSAttributedString.Key.font: Fonts.boldFont(size:27)], range: range)
+        self.numberOfKetarimSubTitle.attributedText = attributedString
+        self.ketarimLabel.text = Strings.numberOfKetarimSubTitle
+        self.ketarimLabel.font = Fonts.regularFont(size: 14)
         self.hearts.text = "\(self.likes)"
+        self.yourTzedakaLabel.text = Strings.yourDonation
+        self.thankedYouLabel.text = Strings.thankedYou
     }
     
     private func setDonationData() {

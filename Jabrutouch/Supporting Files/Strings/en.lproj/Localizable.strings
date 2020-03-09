@@ -206,7 +206,9 @@
 "youHaveNotDonateYet" = "You have not donate yet";
 "joinOthers" = "Join many others in supporting the communal desire of knowledge";
 
-"numberOfKetarimLeft" = "15 out of 50 ketarim left to use by students";
+"donationEligeble" = "Your donation elegible for %@ lessons each month";
+"numberOfKetarimLeft" = "%@ out of %@ ketarim";
+"numberOfKetarimSubTitle" = "left to use by students";
 "thankedYou" = "Thanked you";
 "yourSubscription" = "Your subscription";
 "singlePayment" = "Single payment";

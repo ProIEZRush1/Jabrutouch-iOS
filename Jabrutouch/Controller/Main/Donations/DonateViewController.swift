@@ -126,8 +126,8 @@ class DonateViewController: UIViewController, UITextFieldDelegate, DonationManag
             self.cancelSubscriptionLabel.isHidden = false
 
         }
-//        self.descreptionLabel.text = "Your donation eligeble for \(numberOfKetarim) lessons each month"
-        self.descreptionLabel.text = "Con tu pago puedes regalar \(numberOfKetarim) clases"
+        let string = String(format: Strings.donationEligeble, "\(numberOfKetarim)")
+        self.descreptionLabel.text = string
         self.numberOfKtarimLabel.text = "\(numberOfKetarim)"
         self.amountToDonateLabel.text = "\(amountToDonate)"
     }

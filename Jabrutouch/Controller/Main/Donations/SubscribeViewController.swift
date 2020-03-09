@@ -12,12 +12,16 @@ import Lottie
 class SubscribeViewController: UIViewController, DonationManagerDelegate {
     
     
+    @IBOutlet weak var yourTzedakaLabel: UILabel!
     @IBOutlet weak var ketarimLabel: UILabel!
     @IBOutlet weak var hearts: UILabel!
     @IBOutlet weak var progress: UIView!
     @IBOutlet var progressAnimation: UIView!
     @IBOutlet weak var progressAnimationTraiing: NSLayoutConstraint!
     @IBOutlet weak var subsciptionButton: UIButton!
+    @IBOutlet weak var numberOfKetarimSubTitle: UILabel!
+    @IBOutlet weak var thankedYouLabel: UILabel!
+    
     
     var userDonation : JTUserDonation?
     
@@ -79,9 +83,17 @@ class SubscribeViewController: UIViewController, DonationManagerDelegate {
     }
     
     private func setText() {
-       
-        self.ketarimLabel.text = "\(self.unUsedCrowns) out of \(self.allCrowns) ketarim"
+        let string = String(format: Strings.numberOfKetarimLeft, arguments: ["\(self.unUsedCrowns)", "\(self.allCrowns)"])
+        let attributedString = NSMutableAttributedString(string: string, attributes: [NSAttributedString.Key.font: Fonts.mediumDisplayFont(size:18)])
+        let range = (string as NSString).range(of: "\(self.unUsedCrowns)")
+        attributedString.addAttributes([NSAttributedString.Key.font: Fonts.boldFont(size:27)], range: range)
+        self.numberOfKetarimSubTitle.attributedText = attributedString
+        self.ketarimLabel.text = Strings.numberOfKetarimSubTitle
+        self.ketarimLabel.font = Fonts.regularFont(size: 14)
         self.hearts.text = "\(self.likes)"
+        self.thankedYouLabel.text = Strings.thankedYou
+        self.subsciptionButton.setTitle(Strings.yourSubscription, for: .normal)
+        self.yourTzedakaLabel.text = Strings.yourDonation
     }
     
     private func setDonationData() {

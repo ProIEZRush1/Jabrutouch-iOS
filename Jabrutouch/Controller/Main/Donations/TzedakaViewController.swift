@@ -36,6 +36,8 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate{
     //========================================
     // MARK: - @IBOutlets
     //========================================
+    
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var buttonsView: UIView!
     @IBOutlet weak var myPlanButton: UIButton!
     @IBOutlet weak var historyButton: UIButton!
@@ -48,7 +50,7 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate{
     @IBOutlet weak var thankYouContainer: UIView!
     @IBOutlet weak var donatePendingContainer: UIView!
     
-    
+    @IBOutlet weak var hoursViewTitleLabel: UILabel!
     @IBOutlet weak var firstView: HoursView!
     @IBOutlet weak var secondView: HoursView!
     @IBOutlet weak var thirdView: HoursView!
@@ -68,6 +70,7 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate{
         self.setShadows()
         self.userDonation = DonationManager.shared.userDonation
         self.setHoursViews()
+        self.setText()
         
         let nc = NotificationCenter.default
         nc.addObserver(self, selector: #selector(subscribePressed), name: NSNotification.Name(rawValue: "subscribePressed"), object: nil)
@@ -78,9 +81,9 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate{
     override func viewWillAppear(_ animated: Bool) {
         self.watchCount = DonationManager.shared.userDonation?.watchCount
         self.user = UserRepository.shared.getCurrentUser()
-//        self.setContainerView()
+        self.setContainerView()
 //        self.present(donationDisplay.noDonation)
-        self.present(donationDisplay.singleDonation)
+//        self.present(donationDisplay.singleDonation)
 //        self.present(donationDisplay.subscribe)
 //        self.present(donationDisplay.thankYou)
 //        self.present(donationDisplay.donatePending)
@@ -124,6 +127,14 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate{
         Utils.dropViewShadow(view: self.buttonsView, shadowColor: color, shadowRadius: 20, shadowOffset: shadowOffset)
         Utils.dropViewShadow(view: self.donateView, shadowColor: color, shadowRadius: 20, shadowOffset: shadowOffset)
         
+    }
+    
+    func setText() {
+        self.myPlanButton.setTitle(Strings.myPlan, for: .normal)
+        self.historyButton.setTitle(Strings.history, for: .normal)
+        self.donateButton.setTitle(Strings.donateCapital, for: .normal)
+        self.hoursViewTitleLabel.text = Strings.hoursLearnedGlobally
+        self.titleLabel.text = Strings.tzedaka
     }
     
     func createPayment() {

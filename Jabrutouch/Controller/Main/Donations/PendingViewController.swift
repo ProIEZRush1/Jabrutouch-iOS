@@ -1,31 +1,28 @@
 //
-//  firstChildViewController.swift
+//  PendingViewController.swift
 //  Jabrutouch
 //
-//  Created by AviDeutsch on 24/02/2020.
+//  Created by Shlomo Carmen on 09/03/2020.
 //  Copyright © 2020 Ravtech. All rights reserved.
 //
 
 import UIKit
 
-class NoDonationViewController: UIViewController {
-    
+class PendingViewController: UIViewController {
+
     @IBOutlet weak var yourDonationLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subTitleLabel: UILabel!
-    @IBOutlet weak var donateMore: UILabel!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         self.setText()
     }
     
     private func setText() {
         self.yourDonationLabel.text = Strings.yourDonation
-        self.titleLabel.text = Strings.noKetarimLeft
-        self.subTitleLabel.text = Strings.suportMembers
-        self.donateMore.text = Strings.donateMore
+        self.titleLabel.text = Strings.youHaveNotDonateYet
+        self.subTitleLabel.text = Strings.joinOthers
     }
-    
 }
