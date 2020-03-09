@@ -36,6 +36,7 @@ class SubscribeViewController: UIViewController, DonationManagerDelegate {
         self.setRoundCorners()
         self.setConstraints()
         self.userDonation = DonationManager.shared.userDonation
+        DonationManager.shared.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,11 +59,12 @@ class SubscribeViewController: UIViewController, DonationManagerDelegate {
         if self.unUsedCrowns == 0 || self.allCrowns == 0 {
             return
         }
-        let ratio = CGFloat(Float(self.unUsedCrowns) / Float(self.allCrowns))
+        let ratio = CGFloat(1 - (Float(self.unUsedCrowns) / Float(self.allCrowns)))
+        self.setProgress(ratio)
         let width = self.progress.bounds.width
         self.progressAnimationTraiing.constant = width * ratio
         self.progressAnimation.updateConstraints()
-        self.setProgress(ratio)
+        self.view.layoutIfNeeded()
         
     }
     
@@ -77,6 +79,7 @@ class SubscribeViewController: UIViewController, DonationManagerDelegate {
     }
     
     private func setText() {
+       
         self.ketarimLabel.text = "\(self.unUsedCrowns) out of \(self.allCrowns) ketarim"
         self.hearts.text = "\(self.likes)"
     }

@@ -19,7 +19,7 @@ class DonationManager: NSObject {
     var crowns: [JTCrown] = []
     var dedication: [JTDedication] = []
     
-    private weak var delegate: DonationManagerDelegate?
+    weak var delegate: DonationManagerDelegate?
     private static var manager: DonationManager?
     
     private override init() {

@@ -58,6 +58,7 @@ class DonateViewController: UIViewController, UITextFieldDelegate, DonationManag
         self.setButtonsColorAndFont()
         self.setState()
         self.presentVideo()
+        DonationManager.shared.delegate = self
         
     }
     

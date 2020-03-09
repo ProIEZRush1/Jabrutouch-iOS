@@ -17,7 +17,7 @@ class SingleDonationViewController: UIViewController, DonationManagerDelegate {
     @IBOutlet weak var hearts: UILabel!
     
     var userDonation : JTUserDonation?
-    
+    private var activityView: ActivityView?
     var unUsedCrowns = 120
     var allCrowns = 340
     var likes = 0
@@ -29,12 +29,16 @@ class SingleDonationViewController: UIViewController, DonationManagerDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        DonationManager.shared.delegate = self
         self.setDonationData()
-//        self.setText()
+        if self.userDonation == nil {
+            self.showActivityView()
+        }
+        self.setConstraints()
     }
     
     override func viewDidLayoutSubviews() {
-        setConstraints()
+        self.setConstraints()
     }
     
     private func setRoundCorners() {
@@ -47,11 +51,12 @@ class SingleDonationViewController: UIViewController, DonationManagerDelegate {
         if self.unUsedCrowns == 0 || self.allCrowns == 0 {
             return
         }
-        let ratio = CGFloat(Float(self.unUsedCrowns) / Float(self.allCrowns) )
+        let ratio = CGFloat(1 - (Float(self.unUsedCrowns) / Float(self.allCrowns)))
+        self.setProgress(ratio)
         let width = self.progress.bounds.width
         self.progressAnimationTraiing.constant = width * ratio
         self.progressAnimation.updateConstraints()
-        self.setProgress(ratio)
+        self.view.layoutIfNeeded()
         
     }
     
@@ -79,6 +84,26 @@ class SingleDonationViewController: UIViewController, DonationManagerDelegate {
     }
     
     func donationsDataReceived() {
+        self.removeActivityView()
         self.setDonationData()
     }
+    
+    //============================================================
+    // MARK: - ActivityView
+    //============================================================
+       
+       private func showActivityView() {
+           DispatchQueue.main.async {
+               if self.activityView == nil {
+                   self.activityView = Utils.showActivityView(inView: self.view, withFrame: self.view.frame, text: nil)
+               }
+           }
+       }
+       private func removeActivityView() {
+           DispatchQueue.main.async {
+               if let view = self.activityView {
+                   Utils.removeActivityView(view)
+               }
+           }
+       }
 }

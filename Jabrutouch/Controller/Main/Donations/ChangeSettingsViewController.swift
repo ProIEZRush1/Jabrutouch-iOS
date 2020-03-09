@@ -28,11 +28,11 @@ class ChangeSettingsViewController: UIViewController {
     }
     
     @IBAction func paymentMethodPressed(_ sender: Any) {
-        performSegue(withIdentifier: "presentSetings", sender: self)
+//        performSegue(withIdentifier: "presentSetings", sender: self)
     }
 
     @IBAction func subscriptionPressed(_ sender: Any) {
-        performSegue(withIdentifier: "presentSetings", sender: self)
+//        performSegue(withIdentifier: "presentSetings", sender: self)
     }
     
 

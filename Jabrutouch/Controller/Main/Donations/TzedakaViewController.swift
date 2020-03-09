@@ -78,9 +78,9 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate{
     override func viewWillAppear(_ animated: Bool) {
         self.watchCount = DonationManager.shared.userDonation?.watchCount
         self.user = UserRepository.shared.getCurrentUser()
-        self.setContainerView()
+//        self.setContainerView()
 //        self.present(donationDisplay.noDonation)
-//        self.present(donationDisplay.singleDonation)
+        self.present(donationDisplay.singleDonation)
 //        self.present(donationDisplay.subscribe)
 //        self.present(donationDisplay.thankYou)
 //        self.present(donationDisplay.donatePending)
@@ -127,10 +127,10 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate{
     }
     
     func createPayment() {
-        self.present(donationDisplay.thankYou)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 10){
-            self.setContainerView()
-        }
+        self.setContainerView()
+//        self.present(donationDisplay.thankYou)
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 10){
+//        }
     }
     
     func setNumberView(view: HoursView) {

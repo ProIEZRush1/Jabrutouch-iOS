@@ -174,8 +174,8 @@ class LoginManager {
     }
     
     private func userDidSignIn(user: JTUser, password: String) {
-        let _ = DonationManager.shared
         UserRepository.shared.setCurrentUser(user, password: password)
+        let _ = DonationManager.shared
         self.getProfileImage(fileName: user.imageLink) { (result: Result<UIImage, Error>) in
             switch result {
             case .success(let image):
