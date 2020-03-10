@@ -455,6 +455,104 @@ class Strings {
         return NSLocalizedString("profilePhoneNumber", comment: "")
     }
     
+    class var tzedaka: String {
+        return NSLocalizedString("tzedaka", comment: "")
+    }
     
+    class var myPlan: String {
+        return NSLocalizedString("myPlan", comment: "")
+    }
+    
+    class var history: String {
+        return NSLocalizedString("history", comment: "")
+    }
+    
+    class var donationEligeble: String {
+        return NSLocalizedString("donationEligeble", comment: "")
+    }
+    
+    class var yourDonation: String {
+        return NSLocalizedString("yourDonation", comment: "")
+    }
+    
+    class var noKetarimLeft: String {
+        return NSLocalizedString("noKetarimLeft", comment: "")
+    }
+    
+    class var suportMembers: String {
+        return NSLocalizedString("suportMembers", comment: "")
+    }
+    
+    class var donateMore: String {
+        return NSLocalizedString("donateMore", comment: "")
+    }
+    
+    class var donateCapital: String {
+        return NSLocalizedString("donateCapital", comment: "")
+    }
+    
+    class var hoursLearnedGlobally: String {
+        return NSLocalizedString("hoursLearnedGlobally", comment: "")
+    }
+    
+    class var youHaveNotDonateYet: String {
+        return NSLocalizedString("youHaveNotDonateYet", comment: "")
+    }
+    
+    class var joinOthers: String {
+        return NSLocalizedString("joinOthers", comment: "")
+    }
+    
+    class var numberOfKetarimLeft: String {
+        return NSLocalizedString("numberOfKetarimLeft", comment: "")
+    }
+    
+    class var numberOfKetarimSubTitle: String {
+           return NSLocalizedString("numberOfKetarimSubTitle", comment: "")
+       }
+    
+    class var thankedYou: String {
+        return NSLocalizedString("thankedYou", comment: "")
+    }
+    
+    class var yourSubscription: String {
+        return NSLocalizedString("yourSubscription", comment: "")
+    }
+    
+    class var singlePayment: String {
+        return NSLocalizedString("singlePayment", comment: "")
+    }
+    
+    class var subscription: String {
+        return NSLocalizedString("subscription", comment: "")
+    }
+    
+    class var monthly: String {
+        return NSLocalizedString("monthly", comment: "")
+    }
+    
+    class var paidMonthly: String {
+        return NSLocalizedString("paidMonthly", comment: "")
+    }
+    
+    class var cancelSubscriptionLabel: String {
+        return NSLocalizedString("cancelSubscriptionLabel", comment: "")
+    }
+    
+    class var x5Value: String {
+        return NSLocalizedString("x5Value", comment: "")
+    }
+    
+    class var dedication: String {
+        return NSLocalizedString("dedication", comment: "")
+    }
+    
+    class var lessonDonatedBy: String {
+        return NSLocalizedString("lessonDonatedBy", comment: "")
+    }
+    
+    class var fullName: String {
+        return NSLocalizedString("fullName", comment: "")
+    }
     
 }

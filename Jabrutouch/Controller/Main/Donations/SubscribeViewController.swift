@@ -9,15 +9,22 @@
 import UIKit
 import Lottie
 
-class SubscribeViewController: UIViewController {
+class SubscribeViewController: UIViewController, DonationManagerDelegate {
     
+    
+    @IBOutlet weak var yourTzedakaLabel: UILabel!
     @IBOutlet weak var ketarimLabel: UILabel!
     @IBOutlet weak var hearts: UILabel!
     @IBOutlet weak var progress: UIView!
     @IBOutlet var progressAnimation: UIView!
     @IBOutlet weak var progressAnimationTraiing: NSLayoutConstraint!
-    
     @IBOutlet weak var subsciptionButton: UIButton!
+    @IBOutlet weak var numberOfKetarimSubTitle: UILabel!
+    @IBOutlet weak var thankedYouLabel: UILabel!
+    
+    
+    var userDonation : JTUserDonation?
+    
     var unUsedCrowns = 30
     var allCrowns = 189
     var likes = 0
@@ -27,31 +34,41 @@ class SubscribeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.ketarimLabel.text = "\(unUsedCrowns) out of \(allCrowns) Ketarim"
-        self.hearts.text = "\(likes)"
+//        self.ketarimLabel.text = "\(unUsedCrowns) out of \(allCrowns) Ketarim"
+//        self.hearts.text = "\(likes)"
 //        self.progressAnimation = AnimationView.init(filePath: self.animationFileUrl.absoluteString)
         self.setRoundCorners()
-         setConstraints()
+        self.setConstraints()
+        self.userDonation = DonationManager.shared.userDonation
+        DonationManager.shared.delegate = self
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         self.setRoundCorners()
+        self.setDonationData()
+        
     }
-    // Do any additional setup after loading the view.
     
     override func viewDidLayoutSubviews() {
         setConstraints()
     }
+    
     private func setRoundCorners() {
         self.progress.layer.cornerRadius = self.progress.bounds.height / 2
         self.progressAnimation.layer.cornerRadius = self.progressAnimation.bounds.height / 2
         
     }
+    
     private func setConstraints() {
-        let ratio = CGFloat(Float(self.unUsedCrowns)  / Float(self.allCrowns) )
+        if self.unUsedCrowns == 0 || self.allCrowns == 0 {
+            return
+        }
+        let ratio = CGFloat(1 - (Float(self.unUsedCrowns) / Float(self.allCrowns)))
+        self.setProgress(ratio)
         let width = self.progress.bounds.width
         self.progressAnimationTraiing.constant = width * ratio
         self.progressAnimation.updateConstraints()
-        self.setProgress(ratio)
+        self.view.layoutIfNeeded()
         
     }
     
@@ -65,8 +82,35 @@ class SubscribeViewController: UIViewController {
         }
     }
     
+    private func setText() {
+        let string = String(format: Strings.numberOfKetarimLeft, arguments: ["\(self.unUsedCrowns)", "\(self.allCrowns)"])
+        let attributedString = NSMutableAttributedString(string: string, attributes: [NSAttributedString.Key.font: Fonts.mediumDisplayFont(size:18)])
+        let range = (string as NSString).range(of: "\(self.unUsedCrowns)")
+        attributedString.addAttributes([NSAttributedString.Key.font: Fonts.boldFont(size:27)], range: range)
+        self.numberOfKetarimSubTitle.attributedText = attributedString
+        self.ketarimLabel.text = Strings.numberOfKetarimSubTitle
+        self.ketarimLabel.font = Fonts.regularFont(size: 14)
+        self.hearts.text = "\(self.likes)"
+        self.thankedYouLabel.text = Strings.thankedYou
+        self.subsciptionButton.setTitle(Strings.yourSubscription, for: .normal)
+        self.yourTzedakaLabel.text = Strings.yourDonation
+    }
+    
+    private func setDonationData() {
+        guard let userDonation = self.userDonation else { return }
+        self.allCrowns = userDonation.allCrowns
+        self.unUsedCrowns = userDonation.unUsedCrowns
+        self.likes = userDonation.likes
+        self.setText()
+    }
+    
     @IBAction func subsciptionPressed(_ sender: Any) {
         let nc = NotificationCenter.default
         nc.post(name: NSNotification.Name(rawValue: "subscribePressed"), object: nil)
     }
+    
+    func donationsDataReceived() {
+        self.setDonationData()
+    }
+    
 }

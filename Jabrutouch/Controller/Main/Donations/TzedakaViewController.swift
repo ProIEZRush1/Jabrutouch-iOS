@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Starscream
+import SwiftWebSocket
 
 enum donationDisplay {
     case noDonation
@@ -17,7 +17,7 @@ enum donationDisplay {
     case donatePending
     
 }
-class TzedakaViewController: UIViewController, DedicationViewControllerDelegate, WebSocketDelegate{
+class TzedakaViewController: UIViewController, DedicationViewControllerDelegate{
     
     
     //========================================
@@ -30,13 +30,14 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate,
     var isPending: Bool = UserDefaultsProvider.shared.donationPending
     var user: JTUser?
     
-    var socket: WebSocket! = nil
     var isConnected = false
     var watchCount: Int?
     
     //========================================
     // MARK: - @IBOutlets
     //========================================
+    
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var buttonsView: UIView!
     @IBOutlet weak var myPlanButton: UIButton!
     @IBOutlet weak var historyButton: UIButton!
@@ -49,7 +50,7 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate,
     @IBOutlet weak var thankYouContainer: UIView!
     @IBOutlet weak var donatePendingContainer: UIView!
     
-    
+    @IBOutlet weak var hoursViewTitleLabel: UILabel!
     @IBOutlet weak var firstView: HoursView!
     @IBOutlet weak var secondView: HoursView!
     @IBOutlet weak var thirdView: HoursView!
@@ -63,12 +64,13 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate,
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        DonationManager.shared.getUserDonation()
         self.setRoundCorners()
         self.setBorders()
         self.setShadows()
         self.userDonation = DonationManager.shared.userDonation
         self.setHoursViews()
-        self.watchCount = DonationManager.shared.userDonation?.watchCount
+        self.setText()
         
         let nc = NotificationCenter.default
         nc.addObserver(self, selector: #selector(subscribePressed), name: NSNotification.Name(rawValue: "subscribePressed"), object: nil)
@@ -77,19 +79,22 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate,
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.watchCount = DonationManager.shared.userDonation?.watchCount
         self.user = UserRepository.shared.getCurrentUser()
         self.setContainerView()
-        //        self.setContainerView()
 //        self.present(donationDisplay.noDonation)
 //        self.present(donationDisplay.singleDonation)
-//self.present(donationDisplay.subscribe)
+//        self.present(donationDisplay.subscribe)
 //        self.present(donationDisplay.thankYou)
 //        self.present(donationDisplay.donatePending)
 
         
     }
+    
     override func viewDidAppear(_ animated: Bool) {
-        self.changeValue()
+        self.initSwiftWebSocket()
+        guard let counter = self.watchCount else {return}
+        self.changeValue(counter)
     }
     //========================================
     // MARK: - LifeCycle
@@ -124,11 +129,19 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate,
         
     }
     
+    func setText() {
+        self.myPlanButton.setTitle(Strings.myPlan, for: .normal)
+        self.historyButton.setTitle(Strings.history, for: .normal)
+        self.donateButton.setTitle(Strings.donateCapital, for: .normal)
+        self.hoursViewTitleLabel.text = Strings.hoursLearnedGlobally
+        self.titleLabel.text = Strings.tzedaka
+    }
+    
     func createPayment() {
-        self.present(donationDisplay.thankYou)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 10){
-            self.setContainerView()
-        }
+        self.setContainerView()
+//        self.present(donationDisplay.thankYou)
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 10){
+//        }
     }
     
     func setNumberView(view: HoursView) {
@@ -146,52 +159,37 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate,
         self.setNumberView(view: self.sixthView)
     }
     
-    func initSocket() {
-        let request = URLRequest(url: URL(string: "wss://jabrutouch-dev.ravtech.co.il/ws/lesson_watch_count")!)
-        //        request.timeoutInterval = 5
-        self.socket = WebSocket(request: request)
-        self.socket.delegate = self
-        self.socket.connect()
-        //        self.socket = socket
+    func initSwiftWebSocket() {
+        let webSocket = SwiftWebSocket.WebSocket("wss://jabrutouch-dev.ravtech.co.il/ws/lesson_watch_count")
+        
+        webSocket.event.open = {
+            print("SwiftWebSocket opened")
+        }
+        
+        webSocket.event.error = { (error) in
+            print("SwiftWebSocket error: \(error)")
+        }
+        
+        webSocket.event.message = self.webSocket(didReceive:)
+
+        webSocket.open()
     }
     
-    func didReceive(event: WebSocketEvent, client: WebSocket) {
-        switch event {
-        case .connected(let headers):
-            isConnected = true
-            print("websocket is connected: \(headers)")
-        case .disconnected(let reason, let code):
-            isConnected = false
-            print("websocket is disconnected: \(reason) with code: \(code)")
-        case .text(let string):
-            print("Received text: \(string)")
-        case .binary(let data):
-            print("Received data: \(data.count)")
-        case .ping(_):
-            break
-        case .pong(_):
-            break
-        case .viablityChanged(_):
-            break
-        case .reconnectSuggested(_):
-            break
-        case .cancelled:
-            isConnected = false
-        case .error(let error):
-            isConnected = false
-            if let error = error as? WSError {
-                print("websocket encountered an error: \(error.message)")
-            }
+    func webSocket(didReceive message: Any) {
+        let contentString = message as! String
+        guard let content = Utils.convertStringToDictionary(contentString) as? [String:Any] else { return }
+
+        if let watchCount = content["watch_count"] as? Int {
+            self.changeValue(watchCount)
         }
     }
-    
+
     @objc func subscribePressed(){
         performSegue(withIdentifier: "presentSetings", sender: self)
     }
     
-    func changeValue() {
-        guard let counter = self.watchCount else {return}
-        //        let counter = 538629
+    func changeValue(_ counter: Int) {
+
         var digits = "\(counter)".compactMap{ $0.wholeNumberValue }
         while digits.count < 6 {
             digits.insert(0, at: 0)
@@ -287,9 +285,6 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate,
         }
     }
     
-    
-    
-    
     //========================================
     // MARK: - Actions
     //========================================
@@ -310,23 +305,23 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate,
         self.performSegue(withIdentifier: "presentDonation", sender: self)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-       
-        if segue.identifier == "singleDonation" {
-            let singleDonationVC = segue.destination as? SingleDonationViewController
-            singleDonationVC?.unUsedCrowns = 170 //self.userDonation?.unUsedCrowns ?? 0
-            singleDonationVC?.allCrowns = 20 //self.userDonation?.allCrowns ?? 0
-            singleDonationVC?.likes = self.userDonation?.likes ?? 0
-            self.singleDonationViewController = singleDonationVC
-            
-        }
-        else if segue.identifier == "subscribe" {
-            let subscribeDonationVC = segue.destination as? SubscribeViewController
-            subscribeDonationVC?.unUsedCrowns = 15// self.userDonation?.unUsedCrowns ?? 0
-            subscribeDonationVC?.allCrowns = 50 //self.userDonation?.allCrowns ?? 0
-            subscribeDonationVC?.likes = self.userDonation?.likes ?? 0
-            self.subscribeViewController = subscribeDonationVC
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//
+//        if segue.identifier == "singleDonation" {
+//            let singleDonationVC = segue.destination as? SingleDonationViewController
+//            singleDonationVC?.unUsedCrowns = 170 //self.userDonation?.unUsedCrowns ?? 0
+//            singleDonationVC?.allCrowns = 20 //self.userDonation?.allCrowns ?? 0
+//            singleDonationVC?.likes = self.userDonation?.likes ?? 0
+//            self.singleDonationViewController = singleDonationVC
+//
+//        }
+//        else if segue.identifier == "subscribe" {
+//            let subscribeDonationVC = segue.destination as? SubscribeViewController
+//            subscribeDonationVC?.unUsedCrowns = 15// self.userDonation?.unUsedCrowns ?? 0
+//            subscribeDonationVC?.allCrowns = 50 //self.userDonation?.allCrowns ?? 0
+//            subscribeDonationVC?.likes = self.userDonation?.likes ?? 0
+//            self.subscribeViewController = subscribeDonationVC
+//        }
+//    }
 }
 

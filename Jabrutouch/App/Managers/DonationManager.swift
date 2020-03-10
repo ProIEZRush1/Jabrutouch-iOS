@@ -8,16 +8,22 @@
 
 import Foundation
 
-class DonationManager {
+protocol DonationManagerDelegate: class {
+     func donationsDataReceived()
+}
+
+class DonationManager: NSObject {
     
     var userDonation: JTUserDonation?
     var donation: JTDonation?
     var crowns: [JTCrown] = []
     var dedication: [JTDedication] = []
     
+    weak var delegate: DonationManagerDelegate?
     private static var manager: DonationManager?
     
-    private init() {
+    private override init() {
+        super.init()
         self.getUserDonation()
         self.getDonationData()
     }
@@ -37,6 +43,7 @@ class DonationManager {
                 self.donation = data.donation
                 self.dedication = data.donation.dedication
                 self.crowns = data.donation.crowns
+                self.delegate?.donationsDataReceived()
             case .failure(let error):
                 print(error)
                 

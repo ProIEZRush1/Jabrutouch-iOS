@@ -179,6 +179,7 @@
 		833E622B239FC33300EC93C7 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833E622A239FC33300EC93C7 /* ChatViewController.swift */; };
 		833E622D23A1344A00EC93C7 /* JTChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833E622C23A1344A00EC93C7 /* JTChatMessage.swift */; };
 		833E622F23A13BE400EC93C7 /* GetCreateMessageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833E622E23A13BE400EC93C7 /* GetCreateMessageResponse.swift */; };
+		83408E1324168C3900DD9229 /* PendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83408E1224168C3900DD9229 /* PendingViewController.swift */; };
 		8342BA6C2370528600C3239C /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8342BA6B2370528600C3239C /* Fonts.swift */; };
 		8342BA74237301D800C3239C /* MainCollectionCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8342BA71237301D700C3239C /* MainCollectionCellViewController.swift */; };
 		8342BA75237301D800C3239C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8342BA72237301D700C3239C /* MainViewController.swift */; };
@@ -455,6 +456,7 @@
 		833E622A239FC33300EC93C7 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		833E622C23A1344A00EC93C7 /* JTChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTChatMessage.swift; sourceTree = "<group>"; };
 		833E622E23A13BE400EC93C7 /* GetCreateMessageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCreateMessageResponse.swift; sourceTree = "<group>"; };
+		83408E1224168C3900DD9229 /* PendingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingViewController.swift; sourceTree = "<group>"; };
 		8342BA6B2370528600C3239C /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		8342BA71237301D700C3239C /* MainCollectionCellViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCollectionCellViewController.swift; sourceTree = "<group>"; };
 		8342BA72237301D700C3239C /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -1254,6 +1256,7 @@
 				DD4E3A7F24056BF400A889BE /* SingleDonationViewController.swift */,
 				DD51946624069F760085E2A8 /* SubscribeViewController.swift */,
 				60DB15762415494C00BD470F /* ChangeSettingsViewController.swift */,
+				83408E1224168C3900DD9229 /* PendingViewController.swift */,
 			);
 			path = Donations;
 			sourceTree = "<group>";
@@ -1781,6 +1784,7 @@
 				8359194223A7984A00F0B4D8 /* DataModel.xcdatamodeld in Sources */,
 				21678D7822E08594007BC74C /* GemaraViewController.swift in Sources */,
 				2126D6DC2303EA8600CB501D /* ContentRepository.swift in Sources */,
+				83408E1324168C3900DD9229 /* PendingViewController.swift in Sources */,
 				219BFF4422E7186D00ABBEE2 /* MenuTableViewCell.swift in Sources */,
 				2131969722F38B1200B0AF5F /* APIResult.swift in Sources */,
 				538691472379E8B500CC95B5 /* EditPersonalDetailsCell.swift in Sources */,

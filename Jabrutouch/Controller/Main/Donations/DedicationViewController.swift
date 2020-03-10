@@ -10,7 +10,8 @@ import UIKit
 protocol DedicationViewControllerDelegate{
     func createPayment()
 }
-class DedicationViewController: UIViewController, iCarouselDataSource, iCarouselDelegate, UITextFieldDelegate{
+class DedicationViewController: UIViewController, iCarouselDataSource, iCarouselDelegate, UITextFieldDelegate, DonationManagerDelegate{
+    
    //========================================
     // MARK: - Properties
     //========================================
@@ -52,13 +53,21 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if self.dedication.count > 0 {
+            self.continuButton.isEnabled = true
+            self.continuButton.backgroundColor = #colorLiteral(red: 0.1764705882, green: 0.168627451, blue: 0.662745098, alpha: 1)
+        } else {
+            self.continuButton.isEnabled = false
+            self.continuButton.backgroundColor = #colorLiteral(red: 0.1764705882, green: 0.168627451, blue: 0.662745098, alpha: 0.5)
+        }
         self.setCarousel()
         self.setRoundCorners()
         self.leftArrowButton.isHidden = true
-        
+        self.setText()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        DonationManager.shared.delegate = self
         self.user = UserRepository.shared.getCurrentUser()
         
         self.setCurrentCards()
@@ -66,6 +75,11 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
     override func viewDidAppear(_ animated: Bool) {
         self.carouselView.reloadData()
         self.view.layoutIfNeeded()
+    }
+    
+    func setText() {
+        self.descriptionLabel.text = "Si lo deseas, también puedes dedicar la clase de Torá a una causa especial"
+        self.titleLabel.text = Strings.dedication
     }
     
     func setCarousel() {
@@ -81,6 +95,14 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
         self.continuButton.clipsToBounds = true
         
     }
+    
+    func donationsDataReceived() {
+        self.dedication = DonationManager.shared.dedication
+        self.continuButton.backgroundColor = #colorLiteral(red: 0.1764705882, green: 0.168627451, blue: 0.662745098, alpha: 1)
+        self.continuButton.isEnabled = true
+        self.view.layoutIfNeeded()
+    }
+    
     
     func setCardView(dedication: String, hidden: Bool) {
         let view = DedicationCardView()
@@ -103,6 +125,8 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
         if self.postDedication?.dedicationText != "" {
             view.textField.text = self.postDedication?.dedicationText
         }
+        view.titleLabel.text = Strings.lessonDonatedBy
+        view.textField.placeholder = Strings.fullName
         view.countryLabel.text = user?.country ?? ""
         view.dedicationLabel.text = dedication
         view.dedicationLabel.isHidden = hidden

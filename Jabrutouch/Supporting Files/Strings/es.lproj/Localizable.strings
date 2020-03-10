@@ -130,3 +130,30 @@
 "newPassowrd" = "Nueva contraseña";
 "confirmPassowrd" = "Confirmar contraseña";
 "save" = "Guardar";
+
+"tzedaka" = "C.A.F.";
+"myPlan" = "Mi plan";
+"history" = "Historial";
+"yourDonation" = "Tu regalo";
+"noKetarimLeft" = "Ketarim restantes de tu regalo: O";
+"suportMembers" = "Nuestra comunidad existe y crece gracias al apoyo de sus miembros";
+"donateMore" = "Apóyanos regalando más";
+"donateCapital" = "REGALAR";
+"hoursLearnedGlobally" = "TOTAL DE HORAS ESTUDIADAS ";
+"donationEligeble" = "Con tu pago puedes regalar %@ clases";
+"youHaveNotDonateYet" = "Felicitaciones";
+"joinOthers" = "Tus ketarim aparecerán actualizados en esta pantalla ý podrás saber cuántos y a quién se han regalado.";
+                
+"numberOfKetarimLeft" = "%@ de %@ ketarim";
+"numberOfKetarimSubTitle" = "Ketarim restantes para regalar:";
+"thankedYou" = "Te dieron las gracias";
+"yourSubscription" = "Tu suscripción";
+"singlePayment" = "Pago único";
+"subscription" = "Suscripción";
+"monthly" = "Al mes";
+"paidMonthly" = "Pago mensual";
+"cancelSubscriptionLabel" = "*Puedes cancelar tu suscripción en cualquier momento";
+"x5Value" = "Tu regalo se multiplica x5";
+"dedication" = "Dedicatoria";
+"lessonDonatedBy" = "Recibiste esta clase como regalo de:";
+"fullName" = "Nombre y Apellido";
