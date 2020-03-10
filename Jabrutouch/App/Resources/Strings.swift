@@ -555,4 +555,7 @@ class Strings {
         return NSLocalizedString("fullName", comment: "")
     }
     
+    class var paymentMethod: String {
+        return NSLocalizedString("paymentMethod", comment: "")
+    }
 }

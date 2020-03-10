@@ -906,10 +906,10 @@ Cg
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleAspectFit" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="RRE-Up-2c2">
-                                <rect key="frame" x="40" y="124" width="334" height="188"/>
+                                <rect key="frame" x="40" y="124" width="334" height="94"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="8WW-JH-Oge">
-                                        <rect key="frame" x="0.0" y="15" width="166.5" height="158"/>
+                                        <rect key="frame" x="0.0" y="15" width="166.5" height="64"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment Method" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hYD-4u-qh8">
                                                 <rect key="frame" x="0.0" y="0.0" width="114.5" height="17"/>
@@ -923,14 +923,14 @@ Cg
                                                 <color key="textColor" red="1" green="0.373" blue="0.314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dedicaton" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M0I-gZ-UiV">
-                                                <rect key="frame" x="0.0" y="94" width="69" height="17"/>
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dedicaton" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M0I-gZ-UiV">
+                                                <rect key="frame" x="0.0" y="79" width="69" height="0.0"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="14"/>
                                                 <color key="textColor" red="1" green="0.373" blue="0.314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dedicaton Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JSq-95-9cM">
-                                                <rect key="frame" x="0.0" y="141" width="112" height="17"/>
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dedicaton Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JSq-95-9cM">
+                                                <rect key="frame" x="0.0" y="79" width="112" height="0.0"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="14"/>
                                                 <color key="textColor" red="1" green="0.373" blue="0.314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -938,7 +938,7 @@ Cg
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="u7S-nR-LHA">
-                                        <rect key="frame" x="166.5" y="0.0" width="167.5" height="188"/>
+                                        <rect key="frame" x="166.5" y="0.0" width="167.5" height="94"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ceM-MG-tem">
                                                 <rect key="frame" x="76.5" y="0.0" width="91" height="47"/>
@@ -962,16 +962,16 @@ Cg
                                                     <action selector="subscriptionPressed:" destination="JLA-ea-0QO" eventType="touchUpInside" id="6lQ-2N-vIl"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ohC-Zl-YxU">
-                                                <rect key="frame" x="119.5" y="94" width="48" height="47"/>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ohC-Zl-YxU">
+                                                <rect key="frame" x="119.5" y="94" width="48" height="0.0"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="15"/>
                                                 <inset key="titleEdgeInsets" minX="-20" minY="0.0" maxX="20" maxY="0.0"/>
                                                 <state key="normal" title="None" image="BlueRightArrow">
                                                     <color key="titleColor" red="0.17399999999999999" green="0.17000000000000001" blue="0.38800000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yzp-OV-Gzw">
-                                                <rect key="frame" x="112.5" y="141" width="55" height="47"/>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yzp-OV-Gzw">
+                                                <rect key="frame" x="112.5" y="94" width="55" height="0.0"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="15"/>
                                                 <inset key="titleEdgeInsets" minX="-20" minY="0.0" maxX="20" maxY="0.0"/>
                                                 <state key="normal" title="Empty" image="BlueRightArrow">
@@ -999,6 +999,12 @@ Cg
                             <constraint firstItem="2Jg-kM-a9n" firstAttribute="leading" secondItem="3p1-li-CUC" secondAttribute="leading" id="yi9-SI-D4s"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="paymentMethodButton" destination="ceM-MG-tem" id="6qW-gk-dF9"/>
+                        <outlet property="paymentMethodLabel" destination="hYD-4u-qh8" id="iXc-pj-dTY"/>
+                        <outlet property="subscriptionButton" destination="qgF-lG-Dk2" id="N3V-1x-a9q"/>
+                        <outlet property="subscriptionLabel" destination="eLC-pJ-qUx" id="rM3-R9-U0w"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Etr-vf-RhZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
