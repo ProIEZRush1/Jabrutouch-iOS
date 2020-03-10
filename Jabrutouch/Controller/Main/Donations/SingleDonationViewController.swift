@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Lottie
 
 class SingleDonationViewController: UIViewController, DonationManagerDelegate {
     
@@ -21,8 +22,8 @@ class SingleDonationViewController: UIViewController, DonationManagerDelegate {
     
     var userDonation : JTUserDonation?
     private var activityView: ActivityView?
-    var unUsedCrowns = 120
-    var allCrowns = 340
+    var unUsedCrowns = 0
+    var allCrowns = 0
     var likes = 0
     
     override func viewDidLoad() {
@@ -37,7 +38,7 @@ class SingleDonationViewController: UIViewController, DonationManagerDelegate {
         if self.userDonation == nil {
             self.showActivityView()
         }
-        self.setConstraints()
+//        self.setConstraints()
     }
     
     override func viewDidLayoutSubviews() {
@@ -54,12 +55,14 @@ class SingleDonationViewController: UIViewController, DonationManagerDelegate {
         if self.unUsedCrowns == 0 || self.allCrowns == 0 {
             return
         }
+        
         let ratio = CGFloat(1 - (Float(self.unUsedCrowns) / Float(self.allCrowns)))
         self.setProgress(ratio)
         let width = self.progress.bounds.width
         self.progressAnimationTraiing.constant = width * ratio
         self.progressAnimation.updateConstraints()
         self.view.layoutIfNeeded()
+        self.setAnimation()
         
     }
     
@@ -71,6 +74,19 @@ class SingleDonationViewController: UIViewController, DonationManagerDelegate {
             progress.linearGradientView(colors: [#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1), #colorLiteral(red: 0.911535253, green: 0.9137482772, blue: 1, alpha: 1)], locations: [0, 1], startPoint:CGPoint(x: 0, y: 0.2),endPoint: CGPoint(x: 0, y: 1))
             
         }
+    }
+    
+    func setAnimation() {
+        let animationView = AnimationView()
+        let animation = Animation.named("animation", bundle: Bundle.main)
+        animationView.animation = animation
+        animationView.loopMode = .loop
+        animationView.frame = self.progressAnimation.frame
+        animationView.layer.cornerRadius = animationView.bounds.height / 2
+        progressAnimation.addSubview(animationView)
+        self.view.layoutIfNeeded()
+        
+        animationView.play()
     }
     
     private func setText() {
