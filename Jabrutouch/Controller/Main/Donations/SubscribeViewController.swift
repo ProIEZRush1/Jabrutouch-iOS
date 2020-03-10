@@ -96,9 +96,6 @@ class SubscribeViewController: UIViewController, DonationManagerDelegate {
         self.yourTzedakaLabel.text = Strings.yourDonation
     }
     
-    func fective(){
-        print("go")
-    }
     private func setDonationData() {
         guard let userDonation = self.userDonation else { return }
         self.allCrowns = userDonation.allCrowns
