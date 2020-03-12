@@ -350,7 +350,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "userMessageCell", for: indexPath) as? UserMessageCell else { return UITableViewCell() }
                 let text = self.messagesArray[indexPath.section][indexPath.row].message
                 let height = self.getViewHeight(text)
-                cell.messageViewHeightConstraint.constant = height + 32
+                cell.messageViewHeightConstraint.constant = height + 40
                 cell.message.text = text
                 cell.messageTextView.textContainer.lineBreakMode = .byWordWrapping
                 cell.messageTextView.text = text
@@ -362,7 +362,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "incomingMessageCell", for: indexPath) as? IncomingMessageCell else { return UITableViewCell() }
                 let text = self.messagesArray[indexPath.section][indexPath.row].message
                 let height = self.getViewHeight(text)
-                cell.messageViewHeightConstraint.constant = height + 32
+                cell.messageViewHeightConstraint.constant = height + 40
                 cell.message.text = text
                 cell.messageTextView.textContainer.lineBreakMode = .byWordWrapping
                 cell.messageTextView.text = text
