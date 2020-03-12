@@ -33,7 +33,7 @@ class SingleDonationViewController: UIViewController, DonationManagerDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        DonationManager.shared.delegate = self
+//        DonationManager.shared.delegate = self
         self.setDonationData()
         if self.userDonation == nil {
             self.showActivityView()

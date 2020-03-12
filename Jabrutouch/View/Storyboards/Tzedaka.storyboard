@@ -352,7 +352,7 @@
                         <viewControllerLayoutGuide type="top" id="ZMY-1C-Hrw"/>
                         <viewControllerLayoutGuide type="bottom" id="T9n-Xj-5vE"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="5nw-sF-q7m">
+                    <view key="view" hidden="YES" contentMode="scaleToFill" id="5nw-sF-q7m">
                         <rect key="frame" x="0.0" y="0.0" width="382" height="196"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -446,7 +446,7 @@ support of it’s members.</string>
                         <viewControllerLayoutGuide type="top" id="wy1-bG-f8b"/>
                         <viewControllerLayoutGuide type="bottom" id="NWV-De-XiH"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="UbM-ly-Mvy">
+                    <view key="view" hidden="YES" contentMode="scaleToFill" id="UbM-ly-Mvy">
                         <rect key="frame" x="0.0" y="0.0" width="382" height="196"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -624,7 +624,7 @@ support of it’s members.</string>
                         <viewControllerLayoutGuide type="top" id="WwS-LH-5WU"/>
                         <viewControllerLayoutGuide type="bottom" id="Fvk-nu-X5B"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Gl9-aI-5bO">
+                    <view key="view" hidden="YES" contentMode="scaleToFill" id="Gl9-aI-5bO">
                         <rect key="frame" x="0.0" y="0.0" width="382" height="196"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -1018,7 +1018,7 @@ Cg
                         <viewControllerLayoutGuide type="top" id="DfJ-lF-kmA"/>
                         <viewControllerLayoutGuide type="bottom" id="hqT-1P-0Lq"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="GZ2-cm-Wfc">
+                    <view key="view" hidden="YES" contentMode="scaleToFill" id="GZ2-cm-Wfc">
                         <rect key="frame" x="0.0" y="0.0" width="382" height="196"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -1052,7 +1052,7 @@ soon</string>
                         <viewControllerLayoutGuide type="top" id="VsJ-gy-Wea"/>
                         <viewControllerLayoutGuide type="bottom" id="RnD-el-ewg"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="L9t-Gm-9s5">
+                    <view key="view" hidden="YES" contentMode="scaleToFill" id="L9t-Gm-9s5">
                         <rect key="frame" x="0.0" y="0.0" width="382" height="196"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
