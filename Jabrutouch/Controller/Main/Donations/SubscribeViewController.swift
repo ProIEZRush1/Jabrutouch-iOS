@@ -32,7 +32,7 @@ class SubscribeViewController: UIViewController, DonationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.userDonation = DonationManager.shared.userDonation
-        DonationManager.shared.delegate = self
+//        DonationManager.shared.delegate = self
        
     }
     

@@ -17,9 +17,8 @@ enum donationDisplay {
     case donatePending
     
 }
-class TzedakaViewController: UIViewController, DedicationViewControllerDelegate{
-    
-    
+class TzedakaViewController: UIViewController, DedicationViewControllerDelegate, DonationManagerDelegate{
+   
     //========================================
     // MARK: - Properties
     //========================================
@@ -29,7 +28,7 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate{
     var isSubscription: Bool?
     var isPending: Bool = UserDefaultsProvider.shared.donationPending
     var user: JTUser?
-    
+    private var activityView: ActivityView?
     var isConnected = false
     var watchCount: Int?
     
@@ -64,14 +63,14 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        DonationManager.shared.getUserDonation()
+//        DonationManager.shared.getUserDonation()
         self.setRoundCorners()
         self.setBorders()
         self.setShadows()
         self.userDonation = DonationManager.shared.userDonation
         self.setHoursViews()
         self.setText()
-        
+        DonationManager.shared.delegate = self
         let nc = NotificationCenter.default
         nc.addObserver(self, selector: #selector(subscribePressed), name: NSNotification.Name(rawValue: "subscribePressed"), object: nil)
 
@@ -228,7 +227,10 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate{
     }
     
     func setContainerView(){
-        guard let userDonation = self.userDonation else { return }
+        guard let userDonation = self.userDonation else {
+            self.showActivityView()
+            return
+        }
         guard let user = self.user else { return }
         let donated = user.lessonDonated?.donated
         if isPending && donated == false {
@@ -285,6 +287,11 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate{
         }
     }
     
+    func donationsDataReceived() {
+        self.removeActivityView()
+        self.setContainerView()
+    }
+    
     //========================================
     // MARK: - Actions
     //========================================
@@ -312,5 +319,24 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate{
             changeSettingsVC?.userDonation = self.userDonation
         }
     }
+    
+    //============================================================
+       // MARK: - ActivityView
+       //============================================================
+          
+          private func showActivityView() {
+              DispatchQueue.main.async {
+                  if self.activityView == nil {
+                      self.activityView = Utils.showActivityView(inView: self.view, withFrame: self.view.frame, text: nil)
+                  }
+              }
+          }
+          private func removeActivityView() {
+              DispatchQueue.main.async {
+                  if let view = self.activityView {
+                      Utils.removeActivityView(view)
+                  }
+              }
+          }
 }
 
