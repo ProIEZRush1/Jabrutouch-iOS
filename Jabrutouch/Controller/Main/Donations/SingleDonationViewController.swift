@@ -11,6 +11,18 @@ import Lottie
 
 class SingleDonationViewController: UIViewController, DonationManagerDelegate {
     
+    //============================================================
+    // MARK: - Properties
+    //============================================================
+    var userDonation : JTUserDonation?
+    private var activityView: ActivityView?
+    var unUsedCrowns = 0
+    var allCrowns = 0
+    var likes = 0
+    
+    //============================================================
+    // MARK: - Outlets
+    //============================================================
     @IBOutlet var ketarimLabel: UILabel!
     @IBOutlet weak var progress: UIView!
     @IBOutlet var progressAnimation: UIView!
@@ -20,11 +32,9 @@ class SingleDonationViewController: UIViewController, DonationManagerDelegate {
     @IBOutlet weak var yourTzedakaLabel: UILabel!
     @IBOutlet weak var thankedYouLabel: UILabel!
     
-    var userDonation : JTUserDonation?
-    private var activityView: ActivityView?
-    var unUsedCrowns = 0
-    var allCrowns = 0
-    var likes = 0
+    //============================================================
+    // MARK: - LifeCycle
+    //============================================================
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,15 +45,19 @@ class SingleDonationViewController: UIViewController, DonationManagerDelegate {
     override func viewWillAppear(_ animated: Bool) {
 //        DonationManager.shared.delegate = self
         self.setDonationData()
-        if self.userDonation == nil {
-            self.showActivityView()
-        }
+//        if self.userDonation == nil {
+//            self.showActivityView()
+//        }
 //        self.setConstraints()
     }
     
     override func viewDidLayoutSubviews() {
         self.setConstraints()
     }
+    
+    //============================================================
+    // MARK: - Setup
+    //============================================================
     
     private func setRoundCorners() {
         self.progress.layer.cornerRadius = self.progress.bounds.height / 2
@@ -57,6 +71,7 @@ class SingleDonationViewController: UIViewController, DonationManagerDelegate {
         }
         
         let ratio = CGFloat(1 - (Float(self.unUsedCrowns) / Float(self.allCrowns)))
+//        let ratio = CGFloat(1 - (Float(150) / Float(200)))
         self.setProgress(ratio)
         let width = self.progress.bounds.width
         self.progressAnimationTraiing.constant = width * ratio
@@ -109,8 +124,11 @@ class SingleDonationViewController: UIViewController, DonationManagerDelegate {
         self.likes = userDonation.likes
         self.setText()
     }
+    //========================================
+    // MARK: - Delegate Functions
+    //========================================
     
-    func donationsDataReceived() {
+    func userDonationDataReceived() {
         self.removeActivityView()
         self.setDonationData()
     }

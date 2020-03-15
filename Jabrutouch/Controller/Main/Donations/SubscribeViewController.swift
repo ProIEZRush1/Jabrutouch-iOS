@@ -11,6 +11,17 @@ import Lottie
 
 class SubscribeViewController: UIViewController, DonationManagerDelegate {
     
+    //========================================
+    // MARK: - Properties
+    //========================================
+    var userDonation : JTUserDonation?
+    var unUsedCrowns = 0
+    var allCrowns = 0
+    var likes = 0
+    
+    //========================================
+    // MARK: - @IBOutlets
+    //========================================
     
     @IBOutlet weak var yourTzedakaLabel: UILabel!
     @IBOutlet weak var ketarimLabel: UILabel!
@@ -22,12 +33,9 @@ class SubscribeViewController: UIViewController, DonationManagerDelegate {
     @IBOutlet weak var numberOfKetarimSubTitle: UILabel!
     @IBOutlet weak var thankedYouLabel: UILabel!
     
-    
-    var userDonation : JTUserDonation?
-    
-    var unUsedCrowns = 0
-    var allCrowns = 0
-    var likes = 0
+    //========================================
+    // MARK: - Setup
+    //========================================
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,7 +123,7 @@ class SubscribeViewController: UIViewController, DonationManagerDelegate {
         nc.post(name: NSNotification.Name(rawValue: "subscribePressed"), object: nil)
     }
     
-    func donationsDataReceived() {
+    func userDonationDataReceived() {
         self.setDonationData()
     }
     
