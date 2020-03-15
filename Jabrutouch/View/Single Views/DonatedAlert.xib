@@ -94,16 +94,16 @@
                                 <action selector="startButtonPressed:" destination="-1" eventType="touchUpInside" id="6Cm-zo-reC"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5at-l6-TtV">
-                            <rect key="frame" x="20" y="297.5" width="0.0" height="0.0"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In memoria de" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5at-l6-TtV">
+                            <rect key="frame" x="20" y="297.5" width="134" height="26.5"/>
                             <fontDescription key="fontDescription" name="SFProDisplay-Medium" family="SF Pro Display" pointSize="22"/>
-                            <color key="textColor" red="0.17399999999999999" green="0.17000000000000001" blue="0.33800000000000002" alpha="0.88" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textColor" red="0.28599999999999998" green="0.28599999999999998" blue="0.28599999999999998" alpha="0.77000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="voT-0B-Qqs">
-                            <rect key="frame" x="10" y="297.5" width="0.0" height="0.0"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" red="0.17399999999999999" green="0.17000000000000001" blue="0.33800000000000002" alpha="0.88" colorSpace="custom" customColorSpace="sRGB"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NAME SURENAME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="voT-0B-Qqs">
+                            <rect key="frame" x="164" y="297.5" width="180.5" height="26.5"/>
+                            <fontDescription key="fontDescription" name="SFProDisplay-Medium" family="SF Pro Display" pointSize="22"/>
+                            <color key="textColor" red="0.28599999999999998" green="0.28599999999999998" blue="0.28599999999999998" alpha="0.77000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
@@ -117,7 +117,7 @@
                         <constraint firstItem="tYr-Dk-T6V" firstAttribute="centerX" secondItem="fy0-g8-vAI" secondAttribute="centerX" id="RG4-pM-jTq"/>
                         <constraint firstItem="Mc1-1N-xF7" firstAttribute="height" secondItem="fy0-g8-vAI" secondAttribute="height" multiplier="65:516" id="X8y-Ln-15E"/>
                         <constraint firstItem="uEs-SI-opZ" firstAttribute="bottom" secondItem="Mc1-1N-xF7" secondAttribute="bottom" constant="18" id="b6x-1P-cxM"/>
-                        <constraint firstItem="voT-0B-Qqs" firstAttribute="leading" secondItem="uEs-SI-opZ" secondAttribute="leading" constant="10" id="ehW-Nc-pmh"/>
+                        <constraint firstItem="voT-0B-Qqs" firstAttribute="leading" secondItem="5at-l6-TtV" secondAttribute="trailing" constant="10" id="ehW-Nc-pmh"/>
                         <constraint firstItem="5at-l6-TtV" firstAttribute="leading" secondItem="uEs-SI-opZ" secondAttribute="leading" constant="20" id="gwR-5H-t04"/>
                         <constraint firstItem="Mc1-1N-xF7" firstAttribute="leading" secondItem="uEs-SI-opZ" secondAttribute="leading" constant="20" id="mFz-NY-dkg"/>
                         <constraint firstAttribute="height" constant="445" id="mKu-0D-8mM"/>
@@ -140,7 +140,7 @@
     </objects>
     <resources>
         <image name="Avatar" width="83.5" height="83.5"/>
-        <image name="Heart" width="25.5" height="23.5"/>
+        <image name="Heart" width="18.5" height="15.5"/>
         <image name="location" width="16" height="19.5"/>
     </resources>
 </document>
