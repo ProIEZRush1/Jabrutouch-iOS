@@ -6,79 +6,78 @@
   Copyright © 2019 Ravtech. All rights reserved.
 */
 
-"welcomeToJabrutouch" = "Welcome to \nJabrutouch";
+"welcomeToJabrutouch" = "Bienvenido a \nJabrutouch";
 "welcomeToNewJabrutouch" = "¡Bienvenido al nuevo \nJabrutouch!";
 
 "jabrutouch" = "Jabrutouch";
-"learnTalmudAndGemara" = "Learn Talmud and Gemara";
-"giveTheGiftOfLearning" = "Give the gift of learning";
-"askTheRabbiJoinTheJabruta" = "Ask the Rabbi,\n join the Jabruta";
+"learnTalmudAndGemara" = "El Talmud a tu alcance";
+"giveTheGiftOfLearning" = "Regala sesiones de estudio";
+"askTheRabbiJoinTheJabruta" = "Pregunta al Rav cuando quieras";
 "walkthrough1Text" = "Tu plataforma para estudiar Mishná y Guemará en cualquier lugar";
 "walkthrough2Text" = "Elige tu clase en audio o video.\nEstudia a tu gusto y a tu ritmo.";
 "walkthrough3Text" = "Con el sistema C.A.F puedes apoyar personalmente este gran proyecto.";
 "walkthrough4Text" = "Si te surge alguna pregunta, puedes resolverla con sólo apretar un botón";
 
-"emailOrPhoneNumber" = "Email or phone number";
-"password" = "Password";
-"dontHaveAccount" = "Don't have account? Sign up";
-"forgotPassword" = "Forgot Password?";
+"emailOrPhoneNumber" = "Email o teléfono";
+"password" = "Contraseña";
+"dontHaveAccount" = "No tienes una cuenta? Crear cuenta";
+"forgotPassword" = "¿Olvidaste tu contraseña?";
 
-"forgotPasswordText" = "Send password recovery options to your email:";
-"sendNow" = "SEND NOW";
-"forgotPasswordTitle" = "Forgot Password?";
-"forgotPasswordErrorMessage" = "User doesn't exist in system, you may be registerd on the site, you must also register separatly in the app";
+"forgotPasswordText" = "Ingresa tu e-mail para recibir una nueva contraseña:";
+"sendNow" = "Enviar";
+"forgotPasswordTitle" = "Recupera tu contraseña";
+"forgotPasswordErrorMessage" = "¡Vaya! Parece que no estás registrado en el sistema. Aunque te hayas registrado previamente en la Web, tendrás que registrarte de vuelta en la aplicación.";
 "forgotPasswordSuccessMessage" = "Acabamos de enviarte una nueva contraseña al siguiente e-mail:";
-"forgotPasswordSuccessTitle" = "Email Sent";
-"registerButtonTitle" = "Register";
+"forgotPasswordSuccessTitle" = "E- mail enviado";
+"registerButtonTitle" = "Registrarme";
+
 
 "main" = "Main";
-"downloads" = "Downloads";
-"gemara" = "Gemara";
-"mishna" = "Mishna";
-"donations" = "Donations";
-
-"viewAllTheLessons" = "View all the lessons";
-"noDownloadedFilesYet" = "No downloaded files yet";
-"verification" = "Verification";
-"weWillSendOTP" = "We will send you a one time password to verify your phone number";
-"country" = "Country";
-"phoneNumber" = "Phone number";
-"send" = "Send";
-
-"verificationCode" = "Verification Code";
-"enterTheVerificationCodeSentTo" = "Enter the verification code sent to";
-"resendCode" = "Didn’t get the code? Send again";
-"sendAgain" = "Send again";
-
-"firstName" = "First name";
-"surname" = "Surname";
-"emailAddress" = "Email address";
-"alreadyHaveAnAccountSignIn" = "Already have an account? Sign in";
-
-"signInCaps" = "SIGN IN";
-"signInTitle" = "Sign in";
-"signIn" = "Sign in";
-"signUp" = "Sign up";
-"signInPC" = "Sign In";
-"signUpPC" = "Sign Up";
+"downloads" = "Descargas";
+"gemara" = "Guemará";
+"mishna" = "Mishná";
+"donations" = "Regalos";
 "recentsGemara" = "ÚLTIMAS PÁGINAS DE GUEMARÁ";
 "recentsMishna" = "ÚLTIMAS PÁGINAS DE MISHNÁ";
+"viewAllTheLessons" = "Ver todas las clases";
+"noDownloadedFilesYet" = "No hay descargas todavía";
+"verification" = "Verificación";
+"weWillSendOTP" = "Te enviaremos un código para verificar tu número de teléfono";
+"country" = "PAÍS";
+"phoneNumber" = "TELÉFONO";
+"send" = "Enviar";
 
-"profile" = "Profile";
-"about" = "About";
-"messagesCenter" = "Messages Center";
-"messages" = "Messages";
-"donationsCenter" = "Donations Center";
-"donate" = "Donate";
-"logout" = "Log Out";
+"verificationCode" = "Código de verificación";
+"enterTheVerificationCodeSentTo" = "Introduce el código enviado al";
+"resendCode" = "¿No recibiste el código? Enviar otra vez";
+"sendAgain" = "Send again";
+
+"firstName" = "Nombre";
+"surname" = "Apellido";
+"emailAddress" = "Email address";
+"alreadyHaveAnAccountSignIn" = "¿Ya tienes una cuenta? Entrar";
+
+"signInTitle" = "Iniciar sesión";
+"signIn" = "Iniciar sesión";
+"signInCaps" = "INICIAR SESIÓN";
+"signUp" = "Crear cuenta";
+"signInPC" = "Entrar";
+"signUpPC" = "Crear cuenta";
+
+"profile" = "Perfil";
+"about" = "Sobre nosotros";
+"messagesCenter" = "Centro de mensajes";
+"messages" = "Mensajes";
+"donationsCenter" = "Centro de regalos";
+"donate" = "Regalar";
+"logout" = "Cerrar sesión";
 
 "passwordMissing" = "Password is missing";
 "usernameInvalid" = "Username must be a valid email or phone number";
 "usernameMissing" = "Username is missing.";
-
 "ok" = "OK";
 "error" = "Error";
-"signOut" = "Sign Out";
+"signOut" = "Cerrar sesión";
 "phoneNumberMissing" = "Phone number is missing";
 "phoneNumberInvalid" = "Phone Number is invalid";
 "pleaseSelectCountry" = "please select country";
@@ -88,138 +87,74 @@
 "emailInvalid" = "Email is invalid";
 "missingField" = "Missing Field";
 "invalidField" = "Invalid Field";
-"todaysDafYomi" = "Today’s daf yomi";
+"todaysDafYomi" = "DAF YOMI DE HOY";
 "page" = "Page";
 "pages" = "Pages";
-"chapter" = "Chapter";
-"chapters" = "Chapters";
+"chapter" = "Capítulo";
+"chapters" = "Capítulos";
 "seder"  = "Seder";
 "mishnayot" = "Mishnayot";
-"minutesShorthand" = "min";
-"donatedTitle" = "This lesson was\ndonated to you by:";
-"donatedBtn" = "Appreciate and start lesson";
-
-
-"yesterday" = "Yesterday";
-"areYouSure" = "Are you sure?";
-"youWontBeAbleToUseThisAccountAnymore" = "You won´t be able to use this account anymore";
-"yourNameWillStillBePresentedOnTheDonorsList" = "Your name will still be presented on the donor´s list";
-"removeAccount" = "Remove Account";
-"stayWithUs" = "Stay With Us";
-"edit" = "Edit";
-"lessonsDonated" = "Lessons donated";
-"lessonsLearned" = "Lessons learned";
-"donateLessons" = "Donate Lessons";
-"profileCompletionProgress" = "Profile Completion Progress";
-"contributeLessons" = "Contribute Lessons";
-"birthday" = "Birthday";
-"community" = "Community";
-"religiousLevel" = "Religious level";
-"education" = "Education";
-"occupation" = "Occupation";
-"secondEmail" = "Second email";
-"topicsOfInterest" = "Topics of interest";
-"changePassword" = "Change password";
-"removeAccount" = "Remove account";
-"editProfile" = "Edit profile";
-"done" = "Done";
-"full" = "Full";
-"addPhoto" = "Add photo";
-"forgot?" = "Forgot?";
-"oldPassword" = "Old password";
-"newPassword" = "New password";
-"confirmNewPassword" = "Confirm new password";
-"interests" = "Interests";
-"save" = "Save";
-"sendPasswordRecoveryOptionsToYourEmail" = "Send password recovery options to your email";
-"secondEmailAddress" = "Second email address";
-"sendNow" = "Send now";
-"emailSent" = "Email sent";
-"weSentAnEmailTo" = "We sent an email to";
-"pleaseCheckYourMailboxForFurtherInstructions" = "Please check your mailbox for further instructions";
-
-"newMessage"  = "New Message";
-"sendAMessageToSystemSupport" = "Send a message to system support";
-"askAQuestionFromTheRabbi" = "Ask a question from the Rabbi";
-"today" = "Today";
-"read" = "Read";
-"youToday" = "You, Today";
-"rabbiRead" = "Rabbi, Read";
-"newFeatureComing" = "New Feature Coming...";
-"n/a" = "N/A";
-"thereAreNoMessagesHereYet" = "There are no messages here yet";
-"welcomeToTheNewJabrutouch!" = "Welcome to the new Jabrutouch!";
-"recentPagesOnGemara" = "Recent pages on Gemara";
-"recentPagesOnMishna" = "Recent pages on Mishna";
-"history" = "History";
-"recentDonations" = "Recent donations";
-"donors" = "Donors";
-"thereAreNoDonationsYet" = "There are no donations yet";
-"contributeLessonsAndMakeAMizva" = "Contribute lessons and make a Mizva by helping jews all over the world learn Talmud";
-"xStudentsThankedYouForUsingYourDonationToLearn" = "%d students thanked you for using your donation to learn";
-"receipt" = "Receipt";
-
-"inDevelopment"="In development";
-"aboutUs" = "About Us";
+"minutesShorthand" = "min.";
+"donatedTitle" = "Has recibido esta\nclase como regalo de:";
+"donatedBtn" = "Dale las gracias y empieza la clase";
+"inDevelopment"="Próximamente";
+"aboutUs" = "Sobre nosotros";
 "aboutText" = "El término jabruta (lit: 'amistad'  o 'compañerismo') es el nombre con el que se conoce la técnica de estudio judía, dinámica e interactiva, mediante la cual, dos estudiantes o compañeros de estudio, analizan, comentan y debaten juntos un texto de Torá. La jabruta es el método de estudio del Talmud por excelencia.\n\nDebido a las características señaladas, hemos creído que \"Jabruta\" era el término idóneo y más apropiado para darle nombre a nuestra plataforma.\n\nLa meta principal de una jabruta es estudiar el Talmud eliminando el aura de oscuridad y confusión que para muchos esconde su estudio. Tenemos la plena convicción de que el Talmud se puede estudiar con claridad y convertirse en una experiencia inspiradora y entretenida. Para ello, hemos recurrido a los recursos tecnológicos más innovadores que nos ofrece el mundo actual.\n\nDesde que lanzamos hace once años nuestra revolucionaria iniciativa para enseñar Talmud en la red, la respuesta que hemos recibido ha sido, definitivamente, increíble.\n\nEn 2012, nuestro estimado amigo Eduardo Alfie de México, reunió a un grupo de personas que dedicaron en memoria de Alberto Saba Z\"L la primera versión de Jabrutouch iPad. Un año más tarde, y tras un éxito rotundo, conocimos a quien hoy es otro gran amigo, Jacobo Cojab, también de México. Él y su hermano apoyaron generosamente el desarrollo de la aplicación para teléfonos móviles facilitando el estudio del Talmud a miles de personas de todo el mundo desde cualquier dispositivo móvil. A todos ellos les estaremos eternamente agradecidos por habernos ayudado a convertir este gran proyecto en una realidad.\n\nHoy, con la experiencia adquirida y gracias a las nuevas posibilidades que nos ofrece la tecnología actual, damos la bienvenida a la nueva versión de Jabrutouch. Hemos creado una nueva plataforma de estudio, más potente y variada, que irá mejorando y actualizándose conforme a los deseos y peticiones de los usuarios.\n\nJabrutouch es un proyecto ambicioso y en constante desarrollo que, día a día, no deja de crecer y agregar más contenidos a su plataforma para ofrecer nuevas alternativas y llegar a más audiencias. Su alcance es tan grande, que se ha convertido en una herramienta de estudio popular en personas de toda condición que forman el mundo judío hispanoparlante.\n\nNo hay mejor recompensa que el agradecimiento por un trabajo bien hecho. Y la mejor prueba son las innumerables y sorprendentes muestras de agradecimiento que recibimos en todo tipo de lugares como sinagogas o incluso aeropuertos donde la gente se acerca para decirnos \"Hola, yo estudio con Jabrutouch\" o simplemente \"Gracias por haber hecho esto\". Historias como estas son el motor que nos impulsa a seguir trabajando.\n\n\nGracias,\n\nEl Equipo de Jabrutouch";
 
 "cancel" = "Cancel";
-"delete" = "Delete";
 "pleaseConfirm" = "Please Confirm";
 "deleteThisDownload" = "Delete this download(s)?";
 "yes" = "Yes";
 
-"areYouSure"="Are you sure?";
-"done" = "Done";
-"delete" = "Delete";
-"noLessons" = "No lessons";
+"areYouSure"="¿Estás seguro?";
+"done" = "Listo";
+"delete" = "Borrar";
+"noLessons" = "No hay clases todavía";
 
-"edit" = "Edit";
-"donateLessons" = "Donate Lessons";
-"completionProgress" = "Profile Completion progress";
-"full" = "Full";
-"profilePhoneNumber" = "Phone Number";
-"birthday" = "Birthday";
-"empty" = "Empty";
-"education" = "Education";
-"secondEmail" = "Second Email";
-"topicOfInterest" = "Topic Of Interest";
-"changePassword" = "Change Password";
-"removeAccount" = "Remove Account";
-"editProfile" = "Edit Profile";
-"addPhoto" = "add photo";
-"community" = "Community";
-"oldPassowrd" = "Old Passowrd";
-"newPassowrd" = "New Passowrd";
-"confirmPassowrd" = "Confirm New Passowrd";
-"save" = "Save";
+"edit" = "Editar";
+"donateLessons" = "DONAR SHIURIM";
+"completionProgress" = "Barra de progreso";
+"full" = "Perfil completado";
+"profilePhoneNumber" = "Número de teléfono";
+"birthday" = "Fecha de nacimiento";
+"empty" = "Vacío";
+"community" = "Kehila";
+"education" = "Educación";
+"secondEmail" = "Mail adicional";
+"topicOfInterest" = "Temas de interés";
+"changePassword" = "Cambiar contraseña";
+"removeAccount" = "Eliminar cuenta";
+"editProfile" = "Editar Perfil";
+"addPhoto" = "Subir foto";
+"oldPassowrd" = "Contraseña antigua";
+"newPassowrd" = "Nueva contraseña";
+"confirmPassowrd" = "Confirmar contraseña";
+"save" = "Guardar";
 
-"tzedaka" = "TZEDAKA";
-"myPlan" = "My Plan";
-"yourDonation" = "Your Donation";
-"noKetarimLeft" = "O Ketarim remaning of your donation";
-"suportMembers" = "Our community lives and thrives on the support of its members.";
-"donateMore" = "Donate more and continue your support";
-"donateCapital" = "DONATE";
-"hoursLearnedGlobally" = "HOURS LEARNED GLOBALLY";
-"donations" = "Donations";
-"youHaveNotDonateYet" = "You have not donate yet";
-"joinOthers" = "Join many others in supporting the communal desire of knowledge";
-
-"donationEligeble" = "Your donation elegible for %@ lessons each month";
-"numberOfKetarimLeft" = "%@ out of %@ ketarim";
-"numberOfKetarimSubTitle" = "left to use by students";
-"thankedYou" = "Thanked you";
-"yourSubscription" = "Your subscription";
-"singlePayment" = "Single payment";
-"subscription" = "Subscription";
-"monthly" = "Monthly";
-"paidMonthly" = "Paid Monthly";
-"cancelSubscriptionLabel" = "*You can cancel subscription at any time";
-"x5Value" = "x5 value";
-"dedication" = "Dedication";
-"lessonDonatedBy" = "This lesson was donated to you by:";
-"fullName" = "NAME SURNAME";
-"paymentMethod" = "Payment method";
-
-
+"tzedaka" = "C.A.F.";
+"myPlan" = "Mi plan";
+"history" = "Historial";
+"yourDonation" = "Tu regalo";
+"noKetarimLeft" = "Ketarim restantes de tu regalo: O";
+"suportMembers" = "Nuestra comunidad existe y crece gracias al apoyo de sus miembros";
+"donateMore" = "Apóyanos regalando más";
+"donateCapital" = "REGALAR";
+"hoursLearnedGlobally" = "TOTAL DE HORAS ESTUDIADAS ";
+"donationEligeble" = "Con tu pago puedes regalar %@ clases";
+"youHaveNotDonateYet" = "Felicitaciones";
+"joinOthers" = "Tus ketarim aparecerán actualizados en esta pantalla ý podrás saber cuántos y a quién se han regalado.";
+                
+"numberOfKetarimLeft" = "%@ de %@ ketarim";
+"numberOfKetarimSubTitle" = "Ketarim restantes para regalar:";
+"thankedYou" = "Te dieron las gracias";
+"yourSubscription" = "Tu suscripción";
+"singlePayment" = "Pago único";
+"subscription" = "Suscripción";
+"monthly" = "Al mes";
+"paidMonthly" = "Pago mensual";
+"cancelSubscriptionLabel" = "*Puedes cancelar tu suscripción en cualquier momento";
+"x5Value" = "Tu regalo se multiplica x5";
+"dedication" = "Dedicatoria";
+"lessonDonatedBy" = "Recibiste esta clase como regalo de:";
+"fullName" = "Nombre y Apellido";
+"paymentMethod" = "método de pago";
