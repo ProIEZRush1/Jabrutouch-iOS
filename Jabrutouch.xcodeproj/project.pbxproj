@@ -180,6 +180,7 @@
 		833E622D23A1344A00EC93C7 /* JTChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833E622C23A1344A00EC93C7 /* JTChatMessage.swift */; };
 		833E622F23A13BE400EC93C7 /* GetCreateMessageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833E622E23A13BE400EC93C7 /* GetCreateMessageResponse.swift */; };
 		83408E1324168C3900DD9229 /* PendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83408E1224168C3900DD9229 /* PendingViewController.swift */; };
+		83408E15241EBE3200DD9229 /* GRACIAS_BAJA_2.mov in Resources */ = {isa = PBXBuildFile; fileRef = 83408E14241EBE3100DD9229 /* GRACIAS_BAJA_2.mov */; };
 		8342BA6C2370528600C3239C /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8342BA6B2370528600C3239C /* Fonts.swift */; };
 		8342BA74237301D800C3239C /* MainCollectionCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8342BA71237301D700C3239C /* MainCollectionCellViewController.swift */; };
 		8342BA75237301D800C3239C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8342BA72237301D700C3239C /* MainViewController.swift */; };
@@ -457,6 +458,7 @@
 		833E622C23A1344A00EC93C7 /* JTChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTChatMessage.swift; sourceTree = "<group>"; };
 		833E622E23A13BE400EC93C7 /* GetCreateMessageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCreateMessageResponse.swift; sourceTree = "<group>"; };
 		83408E1224168C3900DD9229 /* PendingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingViewController.swift; sourceTree = "<group>"; };
+		83408E14241EBE3100DD9229 /* GRACIAS_BAJA_2.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = GRACIAS_BAJA_2.mov; sourceTree = "<group>"; };
 		8342BA6B2370528600C3239C /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		8342BA71237301D700C3239C /* MainCollectionCellViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCollectionCellViewController.swift; sourceTree = "<group>"; };
 		8342BA72237301D700C3239C /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -926,6 +928,7 @@
 			isa = PBXGroup;
 			children = (
 				608CC712241129F8002136A8 /* animation.json */,
+				83408E14241EBE3100DD9229 /* GRACIAS_BAJA_2.mov */,
 				DDCA933823D0B1B700388EC6 /* background.png */,
 				DDCA933C23D0B34200388EC6 /* lunchScreenIcon.png */,
 				DDCA933A23D0B31700388EC6 /* Jabrutouch.png */,
@@ -1528,6 +1531,7 @@
 				83A7A0C723E2DB920041BE28 /* DedicationCardView.xib in Resources */,
 				21CC093E22F04C4000E8FE27 /* daf_yomi.json in Resources */,
 				21678D7122DF2CED007BC74C /* SF-Pro-Text-Ultralight.otf in Resources */,
+				83408E15241EBE3200DD9229 /* GRACIAS_BAJA_2.mov in Resources */,
 				4628E0E423215E1200D963E6 /* DonatedAlert.xib in Resources */,
 				8395978D23F98CEF007B96EB /* ProgressBarWithButton.xib in Resources */,
 				21678D7222DF2CED007BC74C /* SF-Pro-Text-UltralightItalic.otf in Resources */,

@@ -46,13 +46,15 @@ class VideoViewController: UIViewController {
     }
 
     func playVideo() {
-        //        if let videoURL = self.videoUrl {
-        let videoURL = URL(string: "https://vod-progressive.akamaized.net/exp=1582466703~acl=%2A%2F1633894284.mp4%2A~hmac=e16e42e41e054f2f7c987e516597672068c7288341eb42d648a8b76d96bd6c0d/vimeo-prod-skyfire-std-us/01/2487/15/387438884/1633894284.mp4")
-        let player = AVPlayer(url: videoURL!)
+        guard let path = Bundle.main.path(forResource: "GRACIAS_BAJA_2", ofType:"mov") else {
+            print("video.mov not found")
+            return
+        }
+        let player = AVPlayer(url: URL(fileURLWithPath: path))
         let playerLayer = AVPlayerLayer(player: player)
         playerLayer.frame = self.videoView.bounds
         self.videoView.layer.addSublayer(playerLayer)
         player.play()
-//        }
+
     }
 }
