@@ -53,8 +53,10 @@ class CoreDataManager {
                 let newMessage = NSEntityDescription.insertNewObject(forEntityName: "Message", into: managedContext)
                 var recordUrl = message.message
                 if message.messageType == 2 {
-                    let newUrl = message.message.components(separatedBy: "/")
-                    recordUrl = newUrl[newUrl.count-1]
+                    if recordUrl.contains("/") {
+                        let newUrl = recordUrl.components(separatedBy: "/")
+                        recordUrl = newUrl[newUrl.count-1]
+                    }
                 }
                 newMessage.setValue(message.chatId, forKey: "chatId")
                 newMessage.setValue(message.image, forKey: "userImage")
@@ -116,11 +118,6 @@ class CoreDataManager {
     func saveMessage(message: JTMessage) {
         let messageEntity = NSEntityDescription.entity(forEntityName: "Message", in: managedContext)
         let newMessage = NSManagedObject(entity: messageEntity!, insertInto: managedContext)
-        var recordUrl = message.message
-        if message.messageType == 2 {
-            let newUrl = message.message.components(separatedBy: "/")
-            recordUrl = newUrl[newUrl.count-1]
-        }
         
         newMessage.setValue(message.chatId, forKey: "chatId")
         newMessage.setValue(message.image, forKey: "userImage")
@@ -129,7 +126,7 @@ class CoreDataManager {
         newMessage.setValue(message.sentDate, forKey: "sendAtDate")
         newMessage.setValue(message.messageType, forKey: "messageType")
         newMessage.setValue(message.messageId, forKey: "messageId")
-        newMessage.setValue(recordUrl, forKey: "message")
+        newMessage.setValue(message.message, forKey: "message")
         newMessage.setValue(message.fromUser, forKey: "fromUser")
         newMessage.setValue(message.read, forKey: "read")
         newMessage.setValue(message.isMine, forKey: "isMine")

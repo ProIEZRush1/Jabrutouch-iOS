@@ -316,6 +316,10 @@ extension AppDelegate:UNUserNotificationCenterDelegate {
                                         directory: FileDirectory.recorders),
                                         data: data)
                                 if !CoreDataManager.shared.messageIsExsist(messageId: message.messageId){
+                                    if message.message.contains("/") {
+                                        let newUrl = message.message.components(separatedBy: "/")
+                                        message.message = newUrl[newUrl.count-1]
+                                    }
                                     MessagesRepository.shared.saveMessageInDB(message: message)
                                 }
                                 completion(message.chatId)
