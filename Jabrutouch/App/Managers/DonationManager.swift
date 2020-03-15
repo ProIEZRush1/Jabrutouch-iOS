@@ -57,6 +57,7 @@ class DonationManager: NSObject {
             switch result{
             case .success(let data):
                 self.userDonation = data.userDonation
+                 self.delegate?.donationsDataReceived()
                 print(data)
             case .failure(let error):
                 print(error)

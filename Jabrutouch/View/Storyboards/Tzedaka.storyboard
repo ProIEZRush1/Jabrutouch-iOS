@@ -85,7 +85,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b1P-m7-QHc">
                                 <rect key="frame" x="0.0" y="119" width="414" height="743"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LFE-dE-HD3">
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LFE-dE-HD3">
                                         <rect key="frame" x="16" y="52" width="382" height="300"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PiJ-gg-CUj">
@@ -352,7 +352,7 @@
                         <viewControllerLayoutGuide type="top" id="ZMY-1C-Hrw"/>
                         <viewControllerLayoutGuide type="bottom" id="T9n-Xj-5vE"/>
                     </layoutGuides>
-                    <view key="view" hidden="YES" contentMode="scaleToFill" id="5nw-sF-q7m">
+                    <view key="view" contentMode="scaleToFill" id="5nw-sF-q7m">
                         <rect key="frame" x="0.0" y="0.0" width="382" height="196"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -446,7 +446,7 @@ support of it’s members.</string>
                         <viewControllerLayoutGuide type="top" id="wy1-bG-f8b"/>
                         <viewControllerLayoutGuide type="bottom" id="NWV-De-XiH"/>
                     </layoutGuides>
-                    <view key="view" hidden="YES" contentMode="scaleToFill" id="UbM-ly-Mvy">
+                    <view key="view" contentMode="scaleToFill" id="UbM-ly-Mvy">
                         <rect key="frame" x="0.0" y="0.0" width="382" height="196"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -455,19 +455,19 @@ support of it’s members.</string>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="ejW-qs-szP">
-                                        <rect key="frame" x="27" y="27" width="355" height="134"/>
+                                        <rect key="frame" x="27" y="27" width="0.0" height="134"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="749" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="Tk7-Wf-8sk">
-                                                <rect key="frame" x="0.0" y="0.0" width="355" height="134"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="134"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="749" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="bfT-Ra-pn9">
-                                                        <rect key="frame" x="0.0" y="0.0" width="213" height="134"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="134"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B8D-li-oHS">
-                                                                <rect key="frame" x="0.0" y="0.0" width="213" height="50"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="50"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="YOUR TZEDAKA" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qBv-WM-XbN">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="213" height="45"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="45"/>
                                                                         <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="14"/>
                                                                         <color key="textColor" red="0.1764705882" green="0.16862745100000001" blue="0.66274509800000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -482,22 +482,22 @@ support of it’s members.</string>
                                                                 </constraints>
                                                             </view>
                                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="15 out of 50 Ketarim" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4KX-l2-8mB">
-                                                                <rect key="frame" x="0.0" y="54" width="213" height="23"/>
+                                                                <rect key="frame" x="0.0" y="54" width="0.0" height="23"/>
                                                                 <fontDescription key="fontDescription" name="SFProDisplay-Medium" family="SF Pro Display" pointSize="19"/>
                                                                 <color key="textColor" red="0.17399999999999999" green="0.17000000000000001" blue="0.33800000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="left to use by students" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H8n-BF-WYA">
-                                                                <rect key="frame" x="0.0" y="81" width="213" height="17"/>
+                                                                <rect key="frame" x="0.0" y="81" width="0.0" height="17"/>
                                                                 <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="14"/>
                                                                 <color key="textColor" red="0.17399999999999999" green="0.17000000000000001" blue="0.33800000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FkQ-Jd-GA1">
-                                                                <rect key="frame" x="0.0" y="102" width="213" height="32"/>
+                                                                <rect key="frame" x="0.0" y="102" width="0.0" height="32"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8bx-II-Fdh">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="213" height="22"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="22"/>
                                                                         <subviews>
                                                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LlS-IU-dog">
                                                                                 <rect key="frame" x="1" y="1" width="136.5" height="20"/>
@@ -531,10 +531,10 @@ support of it’s members.</string>
                                                         </constraints>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="Vmp-tU-Lma">
-                                                        <rect key="frame" x="213" y="0.0" width="142" height="134"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="134"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ring_crown" translatesAutoresizingMaskIntoConstraints="NO" id="tXm-tV-G29">
-                                                                <rect key="frame" x="0.0" y="0.0" width="142" height="134"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="134"/>
                                                             </imageView>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -557,7 +557,7 @@ support of it’s members.</string>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Vp-7h-aKx">
-                                        <rect key="frame" x="27" y="161" width="355" height="50"/>
+                                        <rect key="frame" x="27" y="161" width="0.0" height="50"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gb1-Xu-59q">
                                                 <rect key="frame" x="0.0" y="9.5" width="34.5" height="31.5"/>
@@ -624,7 +624,7 @@ support of it’s members.</string>
                         <viewControllerLayoutGuide type="top" id="WwS-LH-5WU"/>
                         <viewControllerLayoutGuide type="bottom" id="Fvk-nu-X5B"/>
                     </layoutGuides>
-                    <view key="view" hidden="YES" contentMode="scaleToFill" id="Gl9-aI-5bO">
+                    <view key="view" contentMode="scaleToFill" id="Gl9-aI-5bO">
                         <rect key="frame" x="0.0" y="0.0" width="382" height="196"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -1018,7 +1018,7 @@ Cg
                         <viewControllerLayoutGuide type="top" id="DfJ-lF-kmA"/>
                         <viewControllerLayoutGuide type="bottom" id="hqT-1P-0Lq"/>
                     </layoutGuides>
-                    <view key="view" hidden="YES" contentMode="scaleToFill" id="GZ2-cm-Wfc">
+                    <view key="view" contentMode="scaleToFill" id="GZ2-cm-Wfc">
                         <rect key="frame" x="0.0" y="0.0" width="382" height="196"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -1052,7 +1052,7 @@ soon</string>
                         <viewControllerLayoutGuide type="top" id="VsJ-gy-Wea"/>
                         <viewControllerLayoutGuide type="bottom" id="RnD-el-ewg"/>
                     </layoutGuides>
-                    <view key="view" hidden="YES" contentMode="scaleToFill" id="L9t-Gm-9s5">
+                    <view key="view" contentMode="scaleToFill" id="L9t-Gm-9s5">
                         <rect key="frame" x="0.0" y="0.0" width="382" height="196"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>

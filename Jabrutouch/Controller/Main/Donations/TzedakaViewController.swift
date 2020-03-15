@@ -67,7 +67,6 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate,
         self.setRoundCorners()
         self.setBorders()
         self.setShadows()
-        self.userDonation = DonationManager.shared.userDonation
         self.setHoursViews()
         self.setText()
         DonationManager.shared.delegate = self
@@ -78,6 +77,7 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate,
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.userDonation = DonationManager.shared.userDonation
         self.watchCount = DonationManager.shared.userDonation?.watchCount
         self.user = UserRepository.shared.getCurrentUser()
         self.setContainerView()
@@ -231,19 +231,22 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate,
             self.showActivityView()
             return
         }
+        self.donateView.isHidden = false
         guard let user = self.user else { return }
         let donated = user.lessonDonated?.donated
         if isPending && donated == false {
             self.present(donationDisplay.donatePending)
             return
         }
-        if userDonation.donatePerMonth > 0 {
+        if userDonation.donatePerMonth > 0 && userDonation.unUsedCrowns > 0 {
             self.present(donationDisplay.subscription)
+            return
         }
-        else if userDonation.donatePerMonth == 0 {
+        else if userDonation.donatePerMonth == 0 && userDonation.unUsedCrowns > 0      {
             self.present(donationDisplay.singleDonation)
+            return
         }
-        if userDonation.allCrowns == 0 {
+        if userDonation.allCrowns > 0 && userDonation.unUsedCrowns == 0 {
             self.present(donationDisplay.noDonation)
         }
         
@@ -288,8 +291,11 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate,
     }
     
     func donationsDataReceived() {
-        self.removeActivityView()
-        self.setContainerView()
+        DispatchQueue.main.async {
+            self.userDonation = DonationManager.shared.userDonation
+            self.removeActivityView()
+            self.setContainerView()
+        }
     }
     
     //========================================

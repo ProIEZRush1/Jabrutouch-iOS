@@ -29,15 +29,15 @@ class SingleDonationViewController: UIViewController, DonationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setRoundCorners()
-        self.userDonation = DonationManager.shared.userDonation
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.userDonation = DonationManager.shared.userDonation
 //        DonationManager.shared.delegate = self
         self.setDonationData()
-        if self.userDonation == nil {
-            self.showActivityView()
-        }
+//        if self.userDonation == nil {
+//            self.showActivityView()
+//        }
 //        self.setConstraints()
     }
     
@@ -56,7 +56,7 @@ class SingleDonationViewController: UIViewController, DonationManagerDelegate {
             return
         }
         
-        let ratio = CGFloat(1 - (Float(self.unUsedCrowns) / Float(self.allCrowns)))
+        let ratio = CGFloat(1 - (1000 / Float(self.allCrowns)))
         self.setProgress(ratio)
         let width = self.progress.bounds.width
         self.progressAnimationTraiing.constant = width * ratio
