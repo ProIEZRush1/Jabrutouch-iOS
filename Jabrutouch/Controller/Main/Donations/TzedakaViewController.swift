@@ -32,6 +32,9 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate,
     var isConnected = false
     var watchCount: Int?
     
+    weak var singleDonationViewController: SingleDonationViewController?
+    weak var subscribeViewController: SubscribeViewController?
+    
     //========================================
     // MARK: - @IBOutlets
     //========================================
@@ -56,25 +59,24 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate,
     @IBOutlet weak var fourthView: HoursView!
     @IBOutlet weak var fifthView: HoursView!
     @IBOutlet weak var sixthView: HoursView!
-    
-    //    weak var noDonationViewController: NoDonationViewController?
-    weak var singleDonationViewController: SingleDonationViewController?
-    weak var subscribeViewController: SubscribeViewController?
+
+    //========================================
+    // MARK: - LifeCycle
+    //========================================
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        DonationManager.shared.getUserDonation()
+        DonationManager.shared.getUserDonation()
         self.setRoundCorners()
         self.setBorders()
         self.setShadows()
         self.userDonation = DonationManager.shared.userDonation
         self.setHoursViews()
         self.setText()
-        DonationManager.shared.delegate = self
+        DonationManager.shared.donationManagerDelegate = self
         let nc = NotificationCenter.default
         nc.addObserver(self, selector: #selector(subscribePressed), name: NSNotification.Name(rawValue: "subscribePressed"), object: nil)
 
-       
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -92,13 +94,11 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate,
     
     override func viewDidAppear(_ animated: Bool) {
         self.initSwiftWebSocket()
+        self.watchCount = DonationManager.shared.userDonation?.watchCount
         guard let counter = self.watchCount else {return}
         self.changeValue(counter)
     }
-    //========================================
-    // MARK: - LifeCycle
-    //========================================
-    
+   
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return [.portrait]
     }
@@ -115,6 +115,7 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate,
         self.historyButton.layer.cornerRadius = self.historyButton.bounds.height / 2
         self.donateButton.layer.cornerRadius = 14
     }
+    
     private func setBorders() {
         self.buttonsView.layer.borderColor = Colors.borderGray.cgColor
         self.buttonsView.layer.borderWidth = 1.0
@@ -125,7 +126,6 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate,
         let color = #colorLiteral(red: 0.16, green: 0.17, blue: 0.39, alpha: 0.2)
         Utils.dropViewShadow(view: self.buttonsView, shadowColor: color, shadowRadius: 20, shadowOffset: shadowOffset)
         Utils.dropViewShadow(view: self.donateView, shadowColor: color, shadowRadius: 20, shadowOffset: shadowOffset)
-        
     }
     
     func setText() {
@@ -136,96 +136,10 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate,
         self.titleLabel.text = Strings.tzedaka
     }
     
-    func createPayment() {
-        self.setContainerView()
-//        self.present(donationDisplay.thankYou)
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 10){
-//        }
-    }
-    
-    func setNumberView(view: HoursView) {
-        view.layer.cornerRadius = 4
-        view.layer.borderColor = Colors.borderGray.cgColor
-        view.layer.borderWidth = 1
-    }
-    
-    func setHoursViews() {
-        self.setNumberView(view: self.firstView)
-        self.setNumberView(view: self.secondView)
-        self.setNumberView(view: self.thirdView)
-        self.setNumberView(view: self.fourthView)
-        self.setNumberView(view: self.fifthView)
-        self.setNumberView(view: self.sixthView)
-    }
-    
-    func initSwiftWebSocket() {
-        let webSocket = SwiftWebSocket.WebSocket("wss://jabrutouch-dev.ravtech.co.il/ws/lesson_watch_count")
-        
-        webSocket.event.open = {
-            print("SwiftWebSocket opened")
-        }
-        
-        webSocket.event.error = { (error) in
-            print("SwiftWebSocket error: \(error)")
-        }
-        
-        webSocket.event.message = self.webSocket(didReceive:)
+    //========================================
+    // MARK: - Container View
+    //========================================
 
-        webSocket.open()
-    }
-    
-    func webSocket(didReceive message: Any) {
-        let contentString = message as! String
-        guard let content = Utils.convertStringToDictionary(contentString) as? [String:Any] else { return }
-
-        if let watchCount = content["watch_count"] as? Int {
-            self.changeValue(watchCount)
-        }
-    }
-
-    @objc func subscribePressed(){
-        performSegue(withIdentifier: "presentSetings", sender: self)
-    }
-    
-    func changeValue(_ counter: Int) {
-
-        var digits = "\(counter)".compactMap{ $0.wholeNumberValue }
-        while digits.count < 6 {
-            digits.insert(0, at: 0)
-        }
-        if self.firstView.currentLabel.text != "\(digits[0])" {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                self.firstView.changeValue(newValue: "\(digits[0])")
-            }
-        }
-        if self.secondView.currentLabel.text != "\(digits[1])" {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-                self.secondView.changeValue(newValue: "\(digits[1])")
-            }
-        }
-        if self.thirdView.currentLabel.text != "\(digits[2])" {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
-                self.thirdView.changeValue(newValue: "\(digits[2])")
-            }
-        }
-        if self.fourthView.currentLabel.text != "\(digits[3])" {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
-                self.fourthView.changeValue(newValue: "\(digits[3])")
-            }
-        }
-        if self.fifthView.currentLabel.text != "\(digits[4])" {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                self.fifthView.changeValue(newValue: "\(digits[4])")
-            }
-        }
-        if self.sixthView.currentLabel.text != "\(digits[5])" {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
-                self.sixthView.changeValue(newValue: "\(digits[5])")
-            }
-        }
-        
-    }
-    
     func setContainerView(){
         guard let userDonation = self.userDonation else {
             self.showActivityView()
@@ -287,15 +201,33 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate,
         }
     }
     
-    func donationsDataReceived() {
-        self.removeActivityView()
+    
+    //========================================
+    // MARK: - Delegate Functions
+    //========================================
+    
+    func userDonationDataReceived() {
+        DispatchQueue.main.async {
+            self.removeActivityView()
+            self.view.layoutIfNeeded()
+            self.setContainerView()
+        }
+    }
+    
+    func createPayment() {
         self.setContainerView()
+//        self.present(donationDisplay.thankYou)
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 10){
+//        }
     }
     
     //========================================
     // MARK: - Actions
     //========================================
     
+    @objc func subscribePressed(){
+        performSegue(withIdentifier: "presentSetings", sender: self)
+    }
     
     @IBAction func backButtonBack(_ sender: Any) {
         self.delegate?.dismissMainModal()
@@ -309,34 +241,123 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate,
     }
     
     @IBAction func donateButtonPressed(_ sender: Any) {
+//        UserDefaultsProvider.shared.videoWatched = true
         self.performSegue(withIdentifier: "presentDonation", sender: self)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    //============================================================
+    // MARK: - Web Socket
+    //============================================================
+    
+    func setNumberView(view: HoursView) {
+        view.layer.cornerRadius = 4
+        view.layer.borderColor = Colors.borderGray.cgColor
+        view.layer.borderWidth = 1
+    }
+    
+    func setHoursViews() {
+        self.setNumberView(view: self.firstView)
+        self.setNumberView(view: self.secondView)
+        self.setNumberView(view: self.thirdView)
+        self.setNumberView(view: self.fourthView)
+        self.setNumberView(view: self.fifthView)
+        self.setNumberView(view: self.sixthView)
+    }
+    
+    func initSwiftWebSocket() {
+        let webSocket = SwiftWebSocket.WebSocket("wss://jabrutouch-dev.ravtech.co.il/ws/lesson_watch_count")
+        
+        webSocket.event.open = {
+            print("SwiftWebSocket opened")
+        }
+        
+        webSocket.event.error = { (error) in
+            print("SwiftWebSocket error: \(error)")
+        }
+        
+        webSocket.event.message = self.webSocket(didReceive:)
 
+        webSocket.open()
+    }
+    
+    func webSocket(didReceive message: Any) {
+        let contentString = message as! String
+        guard let content = Utils.convertStringToDictionary(contentString) as? [String:Any] else { return }
+
+        if let watchCount = content["watch_count"] as? Int {
+            self.changeValue(watchCount)
+        }
+    }
+
+    func changeValue(_ counter: Int) {
+
+        var digits = "\(counter)".compactMap{ $0.wholeNumberValue }
+        while digits.count < 6 {
+            digits.insert(0, at: 0)
+        }
+        if self.firstView.currentLabel.text != "\(digits[0])" {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                self.firstView.changeValue(newValue: "\(digits[0])")
+            }
+        }
+        if self.secondView.currentLabel.text != "\(digits[1])" {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                self.secondView.changeValue(newValue: "\(digits[1])")
+            }
+        }
+        if self.thirdView.currentLabel.text != "\(digits[2])" {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                self.thirdView.changeValue(newValue: "\(digits[2])")
+            }
+        }
+        if self.fourthView.currentLabel.text != "\(digits[3])" {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                self.fourthView.changeValue(newValue: "\(digits[3])")
+            }
+        }
+        if self.fifthView.currentLabel.text != "\(digits[4])" {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.fifthView.changeValue(newValue: "\(digits[4])")
+            }
+        }
+        if self.sixthView.currentLabel.text != "\(digits[5])" {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+                self.sixthView.changeValue(newValue: "\(digits[5])")
+            }
+        }
+        
+    }
+    
+    //============================================================
+    // MARK: - ActivityView
+    //============================================================
+    
+    private func showActivityView() {
+        DispatchQueue.main.async {
+            if self.activityView == nil {
+                self.activityView = Utils.showActivityView(inView: self.view, withFrame: self.view.frame, text: nil)
+            }
+        }
+    }
+    private func removeActivityView() {
+        DispatchQueue.main.async {
+            if let view = self.activityView {
+                Utils.removeActivityView(view)
+            }
+        }
+    }
+    
+    //============================================================
+    // MARK: - Navgation
+    //============================================================
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == "presentSetings" {
             let changeSettingsVC = segue.destination as? ChangeSettingsViewController
             changeSettingsVC?.userDonation = self.userDonation
         }
     }
     
-    //============================================================
-       // MARK: - ActivityView
-       //============================================================
-          
-          private func showActivityView() {
-              DispatchQueue.main.async {
-                  if self.activityView == nil {
-                      self.activityView = Utils.showActivityView(inView: self.view, withFrame: self.view.frame, text: nil)
-                  }
-              }
-          }
-          private func removeActivityView() {
-              DispatchQueue.main.async {
-                  if let view = self.activityView {
-                      Utils.removeActivityView(view)
-                  }
-              }
-          }
 }
 

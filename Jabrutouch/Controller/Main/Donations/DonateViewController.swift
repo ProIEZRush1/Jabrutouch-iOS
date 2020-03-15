@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DonateViewController: UIViewController, UITextFieldDelegate, DonationManagerDelegate {
+class DonateViewController: UIViewController, UITextFieldDelegate, DonationDataDelegate {
    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var backButton: UIButton!
@@ -52,13 +52,13 @@ class DonateViewController: UIViewController, UITextFieldDelegate, DonationManag
         self.getDonationData()
         self.setShadows()
         self.setText()
+        self.presentVideo()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.setButtonsColorAndFont()
         self.setState()
-        self.presentVideo()
-        DonationManager.shared.delegate = self
+        DonationManager.shared.donationDataDelegate = self
         
     }
     
@@ -100,6 +100,7 @@ class DonateViewController: UIViewController, UITextFieldDelegate, DonationManag
             UserDefaultsProvider.shared.videoWatched = true
         }
     }
+    
     private func setShadows() {
         let shadowOffset = CGSize(width: 0.0, height: 12)
         let color = #colorLiteral(red: 0.16, green: 0.17, blue: 0.39, alpha: 0.2)

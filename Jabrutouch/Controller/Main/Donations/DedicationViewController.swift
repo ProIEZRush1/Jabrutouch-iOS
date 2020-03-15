@@ -10,7 +10,7 @@ import UIKit
 protocol DedicationViewControllerDelegate{
     func createPayment()
 }
-class DedicationViewController: UIViewController, iCarouselDataSource, iCarouselDelegate, UITextFieldDelegate, DonationManagerDelegate{
+class DedicationViewController: UIViewController, iCarouselDataSource, iCarouselDelegate, UITextFieldDelegate, DonationDataDelegate{
     
    //========================================
     // MARK: - Properties
@@ -67,7 +67,7 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        DonationManager.shared.delegate = self
+        DonationManager.shared.donationDataDelegate = self
         self.user = UserRepository.shared.getCurrentUser()
         
         self.setCurrentCards()
