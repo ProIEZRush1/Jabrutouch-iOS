@@ -406,10 +406,14 @@ class LessonPlayerViewController: UIViewController {
         alertVC.modalTransitionStyle = .crossDissolve
         alertVC.delegate = self
         if donationData.dedicationTemplateText != "" {
-            alertVC.dedicationText = donationData.dedicationText
-            alertVC.dedicationNameText = donationData.nameToRepresent
+            alertVC.dedicationText = donationData.dedicationTemplateText
+            alertVC.dedicationNameText = donationData.dedicationText
         }
-        alertVC.nameText = "\(donationData.firstName) \(donationData.lastName)"
+        if donationData.nameToRepresent != "" {
+            alertVC.nameText = donationData.nameToRepresent
+        } else {
+            alertVC.nameText = "\(donationData.firstName) \(donationData.lastName)"
+        }
         alertVC.locationText = donationData.country
         alertVC.modalPresentationStyle = .overFullScreen
         self.present(alertVC, animated: true, completion: nil)

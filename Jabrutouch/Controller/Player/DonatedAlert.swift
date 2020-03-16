@@ -63,8 +63,8 @@ class DonatedAlert: UIViewController {
     //====================================================
     func setStrings() {
         self.titleLabel.text = Strings.donatedTitle
-        self.dedicationLabel.text = self.dedicationText
-        self.dedicationNameLabel.text = self.dedicationNameText
+        let string = "\(self.dedicationText) \(self.dedicationNameText.uppercased())"
+        self.dedicationLabel.text = string
         self.location.text = self.locationText
         self.nameLabel.text = self.nameText
         self.startBtn.setTitle(Strings.donatedBtn, for: .normal)
