@@ -83,7 +83,8 @@ class AudioMessagesManager {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
             try AVAudioSession.sharedInstance().setActive(true)
             
-            soundPlayer = try AVAudioPlayer(contentsOf: urlFile, fileTypeHint: AVFileType.mp3.rawValue)
+//            soundPlayer = try AVAudioPlayer(contentsOf: urlFile, fileTypeHint: AVFileType.mp3.rawValue)
+            soundPlayer = try AVAudioPlayer(contentsOf: urlFile)
             soundPlayer?.delegate = self as? AVAudioPlayerDelegate
             soundPlayer?.prepareToPlay()
             soundPlayer?.play()

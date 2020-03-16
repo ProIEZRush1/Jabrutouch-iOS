@@ -85,7 +85,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b1P-m7-QHc">
                                 <rect key="frame" x="0.0" y="119" width="414" height="743"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LFE-dE-HD3">
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LFE-dE-HD3">
                                         <rect key="frame" x="16" y="52" width="382" height="300"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PiJ-gg-CUj">
@@ -1018,7 +1018,7 @@ Cg
                         <viewControllerLayoutGuide type="top" id="DfJ-lF-kmA"/>
                         <viewControllerLayoutGuide type="bottom" id="hqT-1P-0Lq"/>
                     </layoutGuides>
-                    <view key="view" hidden="YES" contentMode="scaleToFill" id="GZ2-cm-Wfc">
+                    <view key="view" contentMode="scaleToFill" id="GZ2-cm-Wfc">
                         <rect key="frame" x="0.0" y="0.0" width="382" height="196"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
