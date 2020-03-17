@@ -36,7 +36,9 @@ class AudioMessagesManager {
     
     func startRecording(_ fileName: String) {
         
-        let urlFile = FilesManagementProvider.shared.loadFile(link: "sample1.wav", directory: FileDirectory.recorders)
+//        let urlFile = FilesManagementProvider.shared.loadFile(link: "sample1.wav", directory: FileDirectory.recorders)
+        let urlFile = FilesManagementProvider.shared.loadFile(link: "\(fileName).m4a", directory: FileDirectory.recorders)
+
         
         let audioSession = AVAudioSession.sharedInstance()
         do {
@@ -52,7 +54,8 @@ class AudioMessagesManager {
             try audioSession.setActive(true)
             
             let settings = [
-                AVFormatIDKey: Int(kAudioFormatLinearPCM),
+//                AVFormatIDKey: Int(kAudioFormatLinearPCM),
+                AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
                 AVSampleRateKey: 44100,
                 AVNumberOfChannelsKey: 2,
                 AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
@@ -71,7 +74,7 @@ class AudioMessagesManager {
     func stopRecoredr(_ fileName: String) {
         soundRecorder?.stop()
         soundRecorder = nil
-        self.attempConvert(fileName)
+//        self.attempConvert(fileName)
     }
     
     
@@ -83,8 +86,8 @@ class AudioMessagesManager {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
             try AVAudioSession.sharedInstance().setActive(true)
             
-//            soundPlayer = try AVAudioPlayer(contentsOf: urlFile, fileTypeHint: AVFileType.mp3.rawValue)
-            soundPlayer = try AVAudioPlayer(contentsOf: urlFile)
+            soundPlayer = try AVAudioPlayer(contentsOf: urlFile, fileTypeHint: AVFileType.m4a.rawValue)
+//            soundPlayer = try AVAudioPlayer(contentsOf: urlFile)
             soundPlayer?.delegate = self as? AVAudioPlayerDelegate
             soundPlayer?.prepareToPlay()
             soundPlayer?.play()

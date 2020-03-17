@@ -139,7 +139,7 @@ class ChatControlsView: UIView, RecordViewDelegate {
     func saveRecordInS3(url: URL, fileName: String, completion: @escaping (Result<Void,Error>)->Void) {
         AWSS3Provider.shared.handleFileUpload(
             fileUrl: url, fileName: fileName,
-            contentType: "audio/mp3",
+            contentType: "audio/m4a",
             bucketName: AWSS3Provider.appS3BucketName,
             progressBlock: { (progress) in
 //                print(progress)
@@ -176,7 +176,7 @@ class ChatControlsView: UIView, RecordViewDelegate {
     
     func onCancel() {
         AudioMessagesManager.shared.stopRecoredr(self.fileName)
-        let file = "\(self.fileName).mp3"
+        let file = "\(self.fileName).m4a"
         let url = FilesManagementProvider.shared.loadFile(link: file, directory: FileDirectory.recorders)
         do{
             try FilesManagementProvider.shared.removeFile(atPath: url)
@@ -191,7 +191,7 @@ class ChatControlsView: UIView, RecordViewDelegate {
             self.onCancel()
         }else{
             AudioMessagesManager.shared.stopRecoredr(self.fileName)
-            let file = "\(self.fileName).mp3"
+            let file = "\(self.fileName).m4a"
             let url = FilesManagementProvider.shared.loadFile(link: file, directory: FileDirectory.recorders)
             self.delegate?.sendVoiceMessageButtonTouchUp(file)
             self.saveRecordInS3(url: url, fileName: "users-record/\(file)" , completion:{ (result: Result<Void, Error>) in
