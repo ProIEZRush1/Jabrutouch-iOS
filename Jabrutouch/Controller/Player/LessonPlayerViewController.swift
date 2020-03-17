@@ -1018,9 +1018,9 @@ extension LessonPlayerViewController: ChatControlsViewDelegate {
             title += "\(self.chapter ?? ""): \(self.daf)"
             gemara = false
         }
-//        guard let toUser = self.lesson.presenter?.id else{ return }
+        guard let toUser = self.lesson.presenter?.id else{ return }
        
-        MessagesRepository.shared.sendMessage( message: text,  sentAt: Date(), title: title, messageType: type.rawValue, toUser: 2, chatId: nil, lessonId: self.lesson.id, gemara: gemara, linkTo: nil, completion:  { (result) in
+        MessagesRepository.shared.sendMessage( message: text,  sentAt: Date(), title: title, messageType: type.rawValue, toUser: toUser, chatId: nil, lessonId: self.lesson.id, gemara: gemara, linkTo: nil, completion:  { (result) in
             print("result",result)
             switch result{
             case .success(let data):
