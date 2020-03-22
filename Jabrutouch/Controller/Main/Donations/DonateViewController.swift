@@ -39,6 +39,7 @@ class DonateViewController: UIViewController, UITextFieldDelegate, DonationDataD
     var numberOfCrownsSingel = 5
     var numberOfCrownsSubsciption = 1
     var showVideo: Bool = UserDefaultsProvider.shared.videoWatched
+    var paymentType: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -156,6 +157,7 @@ class DonateViewController: UIViewController, UITextFieldDelegate, DonationDataD
             if crown.paymentType == "subscription" {
                 self.numberOfCrownsSubsciption = crown.dollarPerCrown
             }
+            self.paymentType = crown.id
         }
     }
     
@@ -170,10 +172,9 @@ class DonateViewController: UIViewController, UITextFieldDelegate, DonationDataD
          if let amountToPay = Int(self.amountToDonateLabel.text ?? "0") {
              sum = amountToPay
          }
-         let paymentType = self.isSingelPayment ? 14 : 15
-        
+ֿ
         if self.postDedication == nil {
-            self.postDedication = JTPostDedication(sum: sum, paymenType: paymentType, nameToRepresent: "", dedicationText: "", status: "", dedicationTemplate: 0)
+            self.postDedication = JTPostDedication(sum: sum, paymenType: self.paymentType, nameToRepresent: "", dedicationText: "", status: "", dedicationTemplate: 0)
         } else {
             self.postDedication!.sum = sum
             self.postDedication!.paymentType = paymentType
