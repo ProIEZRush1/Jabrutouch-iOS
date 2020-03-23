@@ -1019,11 +1019,14 @@ extension LessonPlayerViewController: ChatControlsViewDelegate {
             gemara = false
         }
         guard let toUser = self.lesson.presenter?.id else{ return }
+       
         MessagesRepository.shared.sendMessage( message: text,  sentAt: Date(), title: title, messageType: type.rawValue, toUser: toUser, chatId: nil, lessonId: self.lesson.id, gemara: gemara, linkTo: nil, completion:  { (result) in
             print("result",result)
             switch result{
             case .success(let data):
+                let recordUrl = data.message.message.components(separatedBy: "/")
                 data.message.title = title
+                data.message.message = recordUrl[recordUrl.count-1]
                 MessagesRepository.shared.saveMessageInDB(message: data.message)
                 print("success", data.message.chatId)
             case .failure(_):

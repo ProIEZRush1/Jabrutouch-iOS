@@ -98,7 +98,7 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "chatCell", for: indexPath) as? ChatCell else { return UITableViewCell() }
         cell.timeLabel.text = self.getTime(lastMessageTime: chatsArray[indexPath.row].lastMessageTime)
         cell.groupName.text = chatsArray[indexPath.row].title
-        if chatsArray[indexPath.row].lastMessage.contains(".mp3") {
+        if chatsArray[indexPath.row].lastMessage.contains(".m4a") {
             cell.message.text = "Voice Message"
         } else {
             cell.message.text = chatsArray[indexPath.row].lastMessage
