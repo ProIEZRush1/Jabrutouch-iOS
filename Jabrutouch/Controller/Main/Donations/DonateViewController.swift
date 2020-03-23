@@ -172,7 +172,7 @@ class DonateViewController: UIViewController, UITextFieldDelegate, DonationDataD
          if let amountToPay = Int(self.amountToDonateLabel.text ?? "0") {
              sum = amountToPay
          }
-ֿ
+
         if self.postDedication == nil {
             self.postDedication = JTPostDedication(sum: sum, paymenType: self.paymentType, nameToRepresent: "", dedicationText: "", status: "", dedicationTemplate: 0)
         } else {
