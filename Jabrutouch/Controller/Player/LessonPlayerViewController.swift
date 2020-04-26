@@ -94,7 +94,7 @@ class LessonPlayerViewController: UIViewController {
     private var didSetMediaUrl: Bool = false
     private var shouldStartPlay: Bool
     private var shouldDisplayDonationPopUp: Bool
-
+    
     private var activityViewPortraitFrame: CGRect {
         let y = self.portraitHeaderView.frame.maxY
         return CGRect(x: 0, y: y, width: self.view.frame.width, height: self.view.frame.height - y)
@@ -113,6 +113,7 @@ class LessonPlayerViewController: UIViewController {
     var lessonParts: [Double] = []
     var textingMode: Bool = false
     var donationAllertData: JTDonated?
+    
     var crownId: Int?
     
     private lazy var chatControlsView: ChatControlsView = {
@@ -158,7 +159,7 @@ class LessonPlayerViewController: UIViewController {
         self.getDonorText()
         self.messageHeaderView.isHidden = true
         self.chatControlsView.delegate = self
-
+        
         self.pdfView.delegate = self
         self.user = UserRepository.shared.getCurrentUser()
         self.masechetTitleLabel.text = "\(self.masechet) \(self.daf)"
@@ -170,9 +171,9 @@ class LessonPlayerViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-//        if self.shouldDisplayDonationPopUp {
-//            self.presentDonateAlert()
-//        }
+        //        if self.shouldDisplayDonationPopUp {
+        //            self.presentDonateAlert()
+        //        }
         self.lessonWatched = UserDefaultsProvider.shared.lessonWatched
         self.showActivityView()
         self.roundCorners()
@@ -194,7 +195,7 @@ class LessonPlayerViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-                
+        
         DispatchQueue(label: "player_loader", qos: .utility, attributes: .concurrent, autoreleaseFrequency: .inherit, target: nil).async {
             self.loadPDF()
             
@@ -253,7 +254,7 @@ class LessonPlayerViewController: UIViewController {
         if let _ = self.lesson as? JTGemaraLesson {
             category = .gemara
         }
-        
+            
         else if let _ = self.lesson as? JTMishnaLesson {
             category = .mishna
         }
@@ -290,18 +291,27 @@ class LessonPlayerViewController: UIViewController {
     //====================================================
     // MARK: - Setup
     //====================================================
-
+    
     func getDonorText() {
         DonationManager.shared.getDonationAllertData { (result) in
             switch result {
             case .success(let response):
-                self.donationAllertData = response.donatedBy[0]
-                self.crownId = response.crownId
-                if self.shouldDisplayDonationPopUp {
-                    DispatchQueue.main.async {
-                        self.presentDonateAlert()
+                if response.donatedBy.count == 0 {
+                    self.donationAllertData = response.donatedBy[0]
+                    self.crownId = response.crownId
+                    if self.shouldDisplayDonationPopUp {
+                        DispatchQueue.main.async {
+                            self.presentDonateAlert()
+                        }
+                    }
+                } else {
+                    if self.shouldDisplayDonationPopUp {
+                        DispatchQueue.main.async {
+                            self.presentNotDonateAlert()
+                        }
                     }
                 }
+                
             case .failure(let error):
                 let title = Strings.error
                 let message = error.message
@@ -310,15 +320,15 @@ class LessonPlayerViewController: UIViewController {
             }
         }
     }
-
+    
     private func setProgressRing() {
         let startColor: UIColor = UIColor(red: 0.3, green: 0.31, blue: 0.82, alpha: 1)
         let endColor: UIColor = UIColor(red: 1, green: 0.37, blue: 0.31, alpha: 1)
         
         self.portraitDownloadProgressView.gradientOptions = UICircularRingGradientOptions(startPosition: .topRight,
-        endPosition: .bottomRight,
-        colors: [startColor, endColor],
-        colorLocations: [0.1, 1])
+                                                                                          endPosition: .bottomRight,
+                                                                                          colors: [startColor, endColor],
+                                                                                          colorLocations: [0.1, 1])
     }
     
     private func setUpGallery() {
@@ -402,6 +412,7 @@ class LessonPlayerViewController: UIViewController {
     
     private func presentDonateAlert() {
         guard let donationData = self.donationAllertData else { return }
+        
         let alertVC = DonatedAlert()
         alertVC.modalTransitionStyle = .crossDissolve
         alertVC.delegate = self
@@ -415,6 +426,14 @@ class LessonPlayerViewController: UIViewController {
             alertVC.nameText = "\(donationData.firstName) \(donationData.lastName)"
         }
         alertVC.locationText = donationData.country
+        alertVC.modalPresentationStyle = .overFullScreen
+        self.present(alertVC, animated: true, completion: nil)
+    }
+    
+    private func presentNotDonateAlert() {
+        let alertVC = NotDonateAlert()
+        alertVC.delegate = self
+        alertVC.modalTransitionStyle = .crossDissolve
         alertVC.modalPresentationStyle = .overFullScreen
         self.present(alertVC, animated: true, completion: nil)
     }
@@ -574,7 +593,7 @@ class LessonPlayerViewController: UIViewController {
         case .video:
             switch self.videoPlayerMode {
             case .fullScreen:
-                 self.setLessonParts(parts: self.lessonParts, view: self.videoPlayer.slider, width: 4, height: 16, sender: "video")
+                self.setLessonParts(parts: self.lessonParts, view: self.videoPlayer.slider, width: 4, height: 16, sender: "video")
             case .regular:
                 self.setLessonParts(parts: self.lessonParts, view: self.videoPlayer.slider, width: 4, height: 16, sender: "video")
             case .small:
@@ -680,7 +699,7 @@ class LessonPlayerViewController: UIViewController {
                 
                 self.portraitDownloadButton.isHidden = self.lesson.isVideoDownloaded
                 self.landscapeDownloadButton.isHidden = self.lesson.isVideoDownloaded
-            
+                
             }
             
         }
@@ -735,7 +754,7 @@ class LessonPlayerViewController: UIViewController {
             self.landscapeDownloadButton.isEnabled = !self.lesson.isDownloadingAudio
         }
         
-//        self.portraitChatButton.tintColor = #colorLiteral(red: 0.286, green: 0.286, blue: 0.286, alpha: 1)
+        //        self.portraitChatButton.tintColor = #colorLiteral(red: 0.286, green: 0.286, blue: 0.286, alpha: 1)
         
         self.portraitChatButton.isEnabled = true
         self.landscapeChatButton.isEnabled = true
@@ -845,7 +864,7 @@ class LessonPlayerViewController: UIViewController {
         
         self.portraitDownloadProgressView.isHidden = false
         self.landscapeDownlaodProgressView.isHidden = false
-
+        
         ContentRepository.shared.downloadLesson(lesson, mediaType: self.mediaType, delegate: ContentRepository.shared)
         ContentRepository.shared.lessonStartedDownloading(self.lesson.id, mediaType: self.mediaType)
     }
@@ -934,7 +953,7 @@ extension LessonPlayerViewController: AudioPlayerDelegate, VideoPlayerDelegate {
     
     func didFinishPlaying() {
     }
-
+    
 }
 
 extension LessonPlayerViewController: ContentRepositoryDownloadDelegate {
@@ -952,7 +971,7 @@ extension LessonPlayerViewController: ContentRepositoryDownloadDelegate {
     
     func downloadProgress(downloadId: Int, progress: Float, mediaType: JTLessonMediaType) {
         if downloadId == self.lesson.id {
-//            self.portraitDownloadProgressView.gradientColors = [Colors.appBlue, Colors.appOrange]
+            //            self.portraitDownloadProgressView.gradientColors = [Colors.appBlue, Colors.appOrange]
             self.portraitDownloadProgressView.value = CGFloat(progress*100)
             self.landscapeDownlaodProgressView.value = CGFloat(progress*100)
         }
@@ -961,7 +980,7 @@ extension LessonPlayerViewController: ContentRepositoryDownloadDelegate {
 
 extension LessonPlayerViewController: DonatedAlertDelegate {
     func didDismiss() {
-//        self.visualEffectView.isHidden = true
+        //        self.visualEffectView.isHidden = true
         if self.didSetMediaUrl == false {
             self.shouldStartPlay = true
         }
@@ -997,7 +1016,7 @@ extension LessonPlayerViewController: ChatControlsViewDelegate {
     func sendVoiceMessageButtonTouchUp(_ fileName: String) {
         self.stopTextingMode()
         self.setMediaURL(startPlaying: true)
-//        self.createMessage(fileName, MessageType.voice)
+        //        self.createMessage(fileName, MessageType.voice)
     }
     
     func sendTextMessageButtonPressed() {
@@ -1019,7 +1038,7 @@ extension LessonPlayerViewController: ChatControlsViewDelegate {
             gemara = false
         }
         guard let toUser = self.lesson.presenter?.id else{ return }
-       
+        
         MessagesRepository.shared.sendMessage( message: text,  sentAt: Date(), title: title, messageType: type.rawValue, toUser: toUser, chatId: nil, lessonId: self.lesson.id, gemara: gemara, linkTo: nil, completion:  { (result) in
             print("result",result)
             switch result{

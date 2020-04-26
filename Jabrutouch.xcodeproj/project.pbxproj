@@ -163,6 +163,9 @@
 		538691512379E8E500CC95B5 /* LabelWithPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5386914F2379E8E500CC95B5 /* LabelWithPadding.swift */; };
 		538691532379E9B100CC95B5 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 538691522379E9B100CC95B5 /* Profile.storyboard */; };
 		608CC713241129F9002136A8 /* animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 608CC712241129F8002136A8 /* animation.json */; };
+		609259FE2455A64100930DD4 /* NotDonationAlert.xib in Resources */ = {isa = PBXBuildFile; fileRef = 609259FD2455A64100930DD4 /* NotDonationAlert.xib */; };
+		60925A002455AAB400930DD4 /* NotDonationAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609259FF2455AAB400930DD4 /* NotDonationAlert.swift */; };
+		60B83D6D2455E0DA00E558C7 /* NotDonateAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B83D6C2455E0DA00E558C7 /* NotDonateAlert.swift */; };
 		60DB15772415494C00BD470F /* ChangeSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DB15762415494C00BD470F /* ChangeSettingsViewController.swift */; };
 		83137EFD23F04024003B9DA6 /* JTDonation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83137EFC23F04024003B9DA6 /* JTDonation.swift */; };
 		83137EFF23F040E5003B9DA6 /* DonationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83137EFE23F040E5003B9DA6 /* DonationResponse.swift */; };
@@ -440,6 +443,9 @@
 		5386914F2379E8E500CC95B5 /* LabelWithPadding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelWithPadding.swift; sourceTree = "<group>"; };
 		538691522379E9B100CC95B5 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		608CC712241129F8002136A8 /* animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = animation.json; sourceTree = "<group>"; };
+		609259FD2455A64100930DD4 /* NotDonationAlert.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotDonationAlert.xib; sourceTree = "<group>"; };
+		609259FF2455AAB400930DD4 /* NotDonationAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotDonationAlert.swift; sourceTree = "<group>"; };
+		60B83D6C2455E0DA00E558C7 /* NotDonateAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotDonateAlert.swift; sourceTree = "<group>"; };
 		60DB15762415494C00BD470F /* ChangeSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeSettingsViewController.swift; sourceTree = "<group>"; };
 		715A51EC96A60C90B07F8038 /* Pods-Jabrutouch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jabrutouch.debug.xcconfig"; path = "Target Support Files/Pods-Jabrutouch/Pods-Jabrutouch.debug.xcconfig"; sourceTree = "<group>"; };
 		83137EFC23F04024003B9DA6 /* JTDonation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTDonation.swift; sourceTree = "<group>"; };
@@ -713,6 +719,8 @@
 				212ECEA5230F36BF005AEB36 /* LessonPlayerViewController.swift */,
 				212ECEB32317C78F005AEB36 /* VideoPlayer.swift */,
 				212ECEB52317CD6E005AEB36 /* AudioPlayer.swift */,
+				609259FF2455AAB400930DD4 /* NotDonationAlert.swift */,
+				60B83D6C2455E0DA00E558C7 /* NotDonateAlert.swift */,
 			);
 			path = Player;
 			sourceTree = "<group>";
@@ -794,6 +802,7 @@
 				83A7A0C623E2DB920041BE28 /* DedicationCardView.xib */,
 				8395978C23F98CEF007B96EB /* ProgressBarWithButton.xib */,
 				8395979D24029C30007B96EB /* HoursView.xib */,
+				609259FD2455A64100930DD4 /* NotDonationAlert.xib */,
 			);
 			path = "Single Views";
 			sourceTree = "<group>";
@@ -865,7 +874,6 @@
 		2133C20B22DCA07000F910B9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				836A884E23968F7800F68539 /* ForgotPassword */,
 				836A883D238F05F600F68539 /* Gallery */,
 				213196BC22F6EA3E00B0AF5F /* SplashScreen */,
 				2133C21122DCA0E000F910B9 /* WalkThrough */,
@@ -964,9 +972,9 @@
 				213196BA22F6E98700B0AF5F /* SplashScreen.storyboard */,
 				213196B822F6E8F100B0AF5F /* WalkThrough.storyboard */,
 				2133C20D22DCA0BC00F910B9 /* SignIn.storyboard */,
-				2133C1FB22DB5B8200F910B9 /* Main.storyboard */,
 				FB67A5DE22E4723F009E4DF9 /* Download.storyboard */,
 				FBFB161522F0794600362012 /* Mishna.storyboard */,
+				2133C1FB22DB5B8200F910B9 /* Main.storyboard */,
 				FBB18FAB22F85019006886FD /* Gemara.storyboard */,
 				836A8844238FD00100F68539 /* Gallery.storyboard */,
 				836A884C23968C8D00F68539 /* ForgotPassword.storyboard */,
@@ -1393,6 +1401,7 @@
 		FBDEF16922E89A6100A300DA /* Custom Cells */ = {
 			isa = PBXGroup;
 			children = (
+				836A884E23968F7800F68539 /* ForgotPassword */,
 				FBDEF16A22E89ACB00A300DA /* DownloadsHeaderCell.xib */,
 			);
 			path = "Custom Cells";
@@ -1501,6 +1510,7 @@
 				538691532379E9B100CC95B5 /* Profile.storyboard in Resources */,
 				21678D5D22DF2CED007BC74C /* SF-Pro-Rounded-Regular.otf in Resources */,
 				21678D5E22DF2CED007BC74C /* SF-Pro-Rounded-Semibold.otf in Resources */,
+				609259FE2455A64100930DD4 /* NotDonationAlert.xib in Resources */,
 				21678D5F22DF2CED007BC74C /* SF-Pro-Rounded-Thin.otf in Resources */,
 				213196BB22F6E98700B0AF5F /* SplashScreen.storyboard in Resources */,
 				FBFB161622F0794600362012 /* Mishna.storyboard in Resources */,
@@ -1630,6 +1640,7 @@
 				83A7A0CF23E9A3440041BE28 /* DonateNavigationController.swift in Sources */,
 				219BFF2F22E5A11900ABBEE2 /* TextFieldWithPadding.swift in Sources */,
 				8391EC66240BFDA3007B5F98 /* CreatePaymentResponse.swift in Sources */,
+				60925A002455AAB400930DD4 /* NotDonationAlert.swift in Sources */,
 				836A883C238DB30D00F68539 /* JTGallery.swift in Sources */,
 				2126D6D623033CF800CB501D /* JTSeder.swift in Sources */,
 				46C652F823CF798700F6D0DD /* JTUserProfileParameter.swift in Sources */,
@@ -1760,6 +1771,7 @@
 				219BFF3822E5B72000ABBEE2 /* LocalizationManager.swift in Sources */,
 				213196A522F38B3E00B0AF5F /* SignUpResponse.swift in Sources */,
 				21419CB7230DD8C100145F1F /* JTSederDownloadedGemaraLessons.swift in Sources */,
+				60B83D6D2455E0DA00E558C7 /* NotDonateAlert.swift in Sources */,
 				8359193C23A695EB00F0B4D8 /* UserMessageCell.swift in Sources */,
 				8342BA79237302AE00C3239C /* DonationsViewController.swift in Sources */,
 				2120BE1F22DF2758004854DB /* SignUpViewController.swift in Sources */,
@@ -1886,7 +1898,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1942,7 +1954,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
