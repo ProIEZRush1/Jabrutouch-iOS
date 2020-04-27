@@ -907,6 +907,7 @@
 		2133C20B22DCA07000F910B9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				836A884E23968F7800F68539 /* ForgotPassword */,
 				836A883D238F05F600F68539 /* Gallery */,
 				213196BC22F6EA3E00B0AF5F /* SplashScreen */,
 				2133C21122DCA0E000F910B9 /* WalkThrough */,
@@ -1339,7 +1340,8 @@
 			children = (
 				83CCB128237DA32D00C86450 /* ForgotPasswordViewController.swift */,
 			);
-			path = ForgotPassword;
+			name = ForgotPassword;
+			path = "../View/Custom Cells/ForgotPassword";
 			sourceTree = "<group>";
 		};
 		8395979823FE96D7007B96EB /* not in use */ = {
@@ -1434,7 +1436,6 @@
 		FBDEF16922E89A6100A300DA /* Custom Cells */ = {
 			isa = PBXGroup;
 			children = (
-				836A884E23968F7800F68539 /* ForgotPassword */,
 				FBDEF16A22E89ACB00A300DA /* DownloadsHeaderCell.xib */,
 			);
 			path = "Custom Cells";
