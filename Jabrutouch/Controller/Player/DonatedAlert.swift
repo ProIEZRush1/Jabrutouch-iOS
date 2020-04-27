@@ -45,10 +45,10 @@ class DonatedAlert: UIViewController {
     }
     
     override func viewDidLoad() {
-     //   super.viewDidLoad()
-       // self.setStrings()
-        //self.setCornerRadius()
-        //self.setShadow()
+        super.viewDidLoad()
+        self.setStrings()
+        self.setCornerRadius()
+       self.setShadow()
 //        self.setDonor()
 //        self.getDonorText()
         // Do any additional setup after loading the view.
@@ -56,7 +56,7 @@ class DonatedAlert: UIViewController {
     
     override func loadView() {
        // Bundle.main.loadNibNamed("DonatedAlert", owner: self, options: nil)
-        Bundle.main.loadNibNamed("View", owner: self, options: nil)
+        Bundle.main.loadNibNamed("DonatedAlert", owner: self, options: nil)
     }
 
     //====================================================
