@@ -558,4 +558,21 @@ class Strings {
     class var paymentMethod: String {
         return NSLocalizedString("paymentMethod", comment: "")
     }
+    
+    class var theKetarimBank: String {
+        return NSLocalizedString("theKetarimBank", comment: "")
+    }
+    
+    class var itIsEmpty: String {
+        return NSLocalizedString("itIsEmpty!", comment: "")
+    }
+    
+    class var donateKetarim: String {
+        return NSLocalizedString("donateKetarim", comment: "")
+    }
+    
+    class var startTheLesson: String {
+        return NSLocalizedString("startTheLesson", comment: "")
+    }
 }
+

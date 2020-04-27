@@ -112,6 +112,10 @@
 		<string>SF-Pro-Text-ThinItalic.otf</string>
 		<string>SF-Pro-Text-Ultralight.otf</string>
 		<string>SF-Pro-Text-UltralightItalic.otf</string>
+		<string>GraphikBlack.otf</string>
+		<string>GraphikBlackItalic.otf</string>
+		<string>GraphikBold.otf</string>
+		<string>GraphikRegular.otf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>
