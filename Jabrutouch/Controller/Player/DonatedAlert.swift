@@ -51,14 +51,13 @@ class DonatedAlert: UIViewController {
        self.setShadow()
 //        self.setDonor()
 //        self.getDonorText()
-        // Do any additional setup after loading the view.
+
     }
     
     override func loadView() {
-       // Bundle.main.loadNibNamed("DonatedAlert", owner: self, options: nil)
         Bundle.main.loadNibNamed("DonatedAlert", owner: self, options: nil)
     }
-
+    
     //====================================================
     // MARK: - Setup
     //====================================================
@@ -70,7 +69,7 @@ class DonatedAlert: UIViewController {
         self.nameLabel.text = self.nameText
         self.startBtn.setTitle(Strings.donatedBtn, for: .normal)
     }
-
+    
     func setCornerRadius() {
         self.mainView.layer.cornerRadius = 31
         self.startBtn.layer.cornerRadius = 18
@@ -144,5 +143,5 @@ class DonatedAlert: UIViewController {
             self.delegate?.didDismiss()
         }
     }
-
+    
 }
