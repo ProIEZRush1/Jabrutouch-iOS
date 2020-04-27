@@ -1030,11 +1030,11 @@ extension LessonPlayerViewController: ChatControlsViewDelegate {
     
     func createMessage(_ text: String, _ type: MessageType){
         var gemara = true
-        var title = "ask the rabbi: \(self.masechet): "
+        var title = "ask the rabbi: \(self.masechet) "
         if let _ = self.lesson as? JTGemaraLesson {
             title += self.daf
         }else{
-            title += "\(self.chapter ?? ""): \(self.daf)"
+            title += "\(self.chapter ?? ""), \(self.daf)"
             gemara = false
         }
         guard let toUser = self.lesson.presenter?.id else{ return }
