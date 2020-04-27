@@ -296,7 +296,7 @@ class LessonPlayerViewController: UIViewController {
         DonationManager.shared.getDonationAllertData { (result) in
             switch result {
             case .success(let response):
-                if response.donatedBy.count == 0 {
+                if response.donatedBy.count > 0 {
                     self.donationAllertData = response.donatedBy[0]
                     self.crownId = response.crownId
                     if self.shouldDisplayDonationPopUp {

@@ -8,6 +8,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="GraphikRegular.otf">
+            <string>Graphik-Regular</string>
+        </array>
         <array key="SF-Pro-Display-Bold.otf">
             <string>SFProDisplay-Bold</string>
         </array>
@@ -24,6 +27,7 @@
                 <outlet property="nextButton" destination="Xch-bK-jd5" id="JBK-ny-lIZ"/>
                 <outlet property="subTitleLable" destination="MBA-NK-Ta3" id="E7e-56-Jji"/>
                 <outlet property="titleLabel" destination="NMk-s4-vXm" id="3N6-Kh-w21"/>
+                <outlet property="view" destination="iN0-l3-epB" id="IsJ-zg-jik"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -72,11 +76,11 @@
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xch-bK-jd5">
                             <rect key="frame" x="20" y="371" width="341" height="56"/>
-                            <color key="backgroundColor" red="0.1764705882" green="0.16862745100000001" blue="0.66274509800000003" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                            <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="17"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" name="Graphik-Regular" family="Graphik" pointSize="18"/>
                             <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <state key="normal" title="Button">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="titleColor" red="0.1764705882352941" green="0.16862745098039217" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
                                 <action selector="startLessonButtonPresed:" destination="-1" eventType="touchUpInside" id="kEi-Zn-Aea"/>
@@ -84,11 +88,12 @@
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dEj-4g-yS3">
                             <rect key="frame" x="20" y="301" width="341" height="56"/>
-                            <color key="backgroundColor" red="0.1764705882" green="0.16862745100000001" blue="0.66274509800000003" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                            <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="17"/>
+                            <color key="backgroundColor" red="1" green="0.37254901960784315" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="18"/>
                             <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <state key="normal" title="Button">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17"/>
                             </state>
                             <connections>
                                 <action selector="donatonButtonPressed:" destination="-1" eventType="touchUpInside" id="Ayc-YZ-9pM"/>
@@ -116,7 +121,7 @@
                     <viewLayoutGuide key="safeArea" id="CT1-Ks-X9y"/>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.058823529411764705" green="0.062745098039215685" blue="0.13725490196078433" alpha="0.0" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.14901960784313725" green="0.15686274509803921" blue="0.34901960784313724" alpha="0.32371040239726029" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="i3o-4X-1BO" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ah1-Gs-o8T"/>
                 <constraint firstItem="i3o-4X-1BO" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="ksV-xN-kli"/>
