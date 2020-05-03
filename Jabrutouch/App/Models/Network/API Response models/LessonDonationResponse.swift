@@ -10,7 +10,7 @@ import Foundation
 
 struct LessonDonationResponse: APIResponseModel {
     
-    var crownId: Int
+    var crownId: Int?
     var donatedBy: [JTDonated]
     
     init?(values: [String : Any]) {
@@ -22,7 +22,7 @@ struct LessonDonationResponse: APIResponseModel {
         
         if let crownId = values["crown_id"] as? Int {
             self.crownId = crownId
-        } else { return nil }
+        } else { self.crownId = nil }
         
     }
 }
