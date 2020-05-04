@@ -309,40 +309,46 @@ class VideoPlayer: UIView {
         self.videoLayer.resizeAndMove(frame: self.videoView.layer.bounds, animated: true, duration: 0.4)
     }
     
+    var asset: AVURLAsset?
     func setVideoUrl(_ url: URL, startPlaying: Bool) {
         self.url = url
-        self.playPauseButtonItem.isEnabled = true
-        self.forwardButtonItem.isEnabled = true
-        self.rewindButtonItem.isEnabled = true
-        self.playbackSpeedButton.isEnabled = true
-        
-        if self.player == nil {
-            self.player = AVPlayer(url: url)
-            self.player?.addObserver(self, forKeyPath: "timeControlStatus", options: [.old, .new], context: nil)
-            self.videoLayer.player = self.player
-        }
-        else {
-            let currentTime = self.player!.currentTime
-            self.player?.removeObserver(self, forKeyPath: "timeControlStatus")
-            self.player = AVPlayer(url: url)
-            self.player?.addObserver(self, forKeyPath: "timeControlStatus", options: [.old, .new], context: nil)
-            self.setCurrentTime(currentTime)
-            self.changePlaybackSpeed(self.currentSpeed)
-            self.videoLayer.player = self.player
-        }
-        
-        do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: .default, options: .mixWithOthers)
-            try AVAudioSession.sharedInstance().setActive(true)
-            self.setupRemoteTransportControls()
-        }
-        catch {
+        self.asset = AVURLAsset(url: url)
+        self.asset?.loadValuesAsynchronously(forKeys: [], completionHandler: {
+            self.playPauseButtonItem.isEnabled = true
+            self.forwardButtonItem.isEnabled = true
+            self.rewindButtonItem.isEnabled = true
+            self.playbackSpeedButton.isEnabled = true
             
-        }
-        
-        if startPlaying {
-            let _ = self.play()
-        }
+            if self.player == nil {
+                self.player = AVPlayer(url: url)
+                self.player?.addObserver(self, forKeyPath: "timeControlStatus", options: [.old, .new], context: nil)
+                self.videoLayer.player = self.player
+            }
+            else {
+                let currentTime = self.player!.currentTime
+                self.player?.removeObserver(self, forKeyPath: "timeControlStatus")
+                self.player = AVPlayer(url: url)
+                self.player?.addObserver(self, forKeyPath: "timeControlStatus", options: [.old, .new], context: nil)
+                self.setCurrentTime(currentTime)
+                self.changePlaybackSpeed(self.currentSpeed)
+                self.videoLayer.player = self.player
+            }
+            
+            do {
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: .default, options: .mixWithOthers)
+                try AVAudioSession.sharedInstance().setActive(true)
+                DispatchQueue.main.async {                    
+                    self.setupRemoteTransportControls()
+                }
+            }
+            catch {
+                
+            }
+            
+            if startPlaying {
+                let _ = self.play()
+            }
+        })
     }
     
     func stopAndRelease() {
@@ -675,19 +681,18 @@ class VideoPlayer: UIView {
         guard let avPlayer = self.player else { return }
         if object as AnyObject? === avPlayer {
             if keyPath == "timeControlStatus" {
-                if #available(iOS 10.0, *) {
-                    if avPlayer.timeControlStatus == .playing {
-                        self.delegate?.didStartPlaying()
-                        self.startPlayDate = Date()
-                    } else if avPlayer.timeControlStatus == .paused {
-                        if let date = self.startPlayDate {
-                            let duration = Date().timeIntervalSince(date)
-                            self.watchDuration += duration
-                            self.startPlayDate = nil
-                        }
+                if avPlayer.timeControlStatus == .playing {
+                    self.delegate?.didStartPlaying()
+                    self.startPlayDate = Date()
+                } else if avPlayer.timeControlStatus == .paused {
+                    if let date = self.startPlayDate {
+                        let duration = Date().timeIntervalSince(date)
+                        self.watchDuration += duration
+                        self.startPlayDate = nil
                     }
                 }
             }
+            
         }
     }
     
