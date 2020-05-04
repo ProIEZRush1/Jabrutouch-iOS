@@ -297,8 +297,10 @@ class LessonPlayerViewController: UIViewController {
             switch result {
             case .success(let response):
                 if response.donatedBy.count > 0 {
+                    if let crown_Id = response.crownId {
+                        self.crownId = crown_Id
+                    }
                     self.donationAllertData = response.donatedBy[0]
-                    self.crownId = response.crownId
                     if self.shouldDisplayDonationPopUp {
                         DispatchQueue.main.async {
                             self.presentDonateAlert()
