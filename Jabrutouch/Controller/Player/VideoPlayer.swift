@@ -75,6 +75,10 @@ class VideoPlayer: UIView {
     private var hideAccessoriesTimer: Timer?
     private var currentSpeed: PlaybackSpeed = .regular
     private var url: URL?
+    private var asset: AVURLAsset?
+    private var playerItem: AVPlayerItem?
+    private var shouldStartPlayingOnItemLoad = false
+    
     private var videoLayer: AVPlayerLayer!
     private let videoAspectRatio: CGFloat = (480/270)
     private var endTimeDisplayType: EndTimeDisplayMode = .duration
@@ -308,27 +312,36 @@ class VideoPlayer: UIView {
         }
         self.videoLayer.resizeAndMove(frame: self.videoView.layer.bounds, animated: true, duration: 0.4)
     }
-    
-    var asset: AVURLAsset?
+        
     func setVideoUrl(_ url: URL, startPlaying: Bool) {
         self.url = url
         self.asset = AVURLAsset(url: url)
+        
         self.asset?.loadValuesAsynchronously(forKeys: [], completionHandler: {
-            self.playPauseButtonItem.isEnabled = true
-            self.forwardButtonItem.isEnabled = true
-            self.rewindButtonItem.isEnabled = true
-            self.playbackSpeedButton.isEnabled = true
+            DispatchQueue.main.async {
+                self.playPauseButtonItem.isEnabled = true
+                self.forwardButtonItem.isEnabled = true
+                self.rewindButtonItem.isEnabled = true
+                self.playbackSpeedButton.isEnabled = true
+            }
             
             if self.player == nil {
-                self.player = AVPlayer(url: url)
+                self.playerItem = AVPlayerItem(asset: self.asset!)
+                self.player = AVPlayer(playerItem: self.playerItem)
                 self.player?.addObserver(self, forKeyPath: "timeControlStatus", options: [.old, .new], context: nil)
+                self.playerItem?.addObserver(self, forKeyPath: "status", options: [.old, .new], context: nil)
                 self.videoLayer.player = self.player
             }
             else {
                 let currentTime = self.player!.currentTime
                 self.player?.removeObserver(self, forKeyPath: "timeControlStatus")
-                self.player = AVPlayer(url: url)
+                self.playerItem?.removeObserver(self, forKeyPath: "status")
+               
+                self.playerItem = AVPlayerItem(asset: self.asset!)
+                self.player = AVPlayer(playerItem: self.playerItem)
                 self.player?.addObserver(self, forKeyPath: "timeControlStatus", options: [.old, .new], context: nil)
+                self.playerItem?.addObserver(self, forKeyPath: "status", options: [.old, .new], context: nil)
+
                 self.setCurrentTime(currentTime)
                 self.changePlaybackSpeed(self.currentSpeed)
                 self.videoLayer.player = self.player
@@ -345,9 +358,8 @@ class VideoPlayer: UIView {
                 
             }
             
-            if startPlaying {
-                let _ = self.play()
-            }
+            self.shouldStartPlayingOnItemLoad = startPlaying
+            
         })
     }
     
@@ -356,7 +368,11 @@ class VideoPlayer: UIView {
         guard let player = self.player else { return }
         self.watchLocation = player.currentTime
         self.player?.removeObserver(self, forKeyPath: "timeControlStatus")
+        self.playerItem?.removeObserver(self, forKeyPath: "status")
         self.player = nil
+        self.playerItem = nil
+        self.asset = nil
+        self.url = nil
         self.videoLayer.player = nil
         self.stopTimeUpdateTimer()
         NotificationCenter.default.removeObserver(self)
@@ -557,7 +573,7 @@ class VideoPlayer: UIView {
         self.playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
         self.videoPlayerPlayPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
         self.videoPlayerPlayPauseButton.setImage(#imageLiteral(resourceName: "w-pause-prs"), for: .highlighted)
-        player.play()
+        player.play() // Immediately(atRate: self.currentSpeed.rate)
         player.rate = self.currentSpeed.rate
         self.startTimeUpdateTimer()
         self.hideAccessoriesView()
@@ -681,18 +697,55 @@ class VideoPlayer: UIView {
         guard let avPlayer = self.player else { return }
         if object as AnyObject? === avPlayer {
             if keyPath == "timeControlStatus" {
-                if avPlayer.timeControlStatus == .playing {
+                switch avPlayer.timeControlStatus {
+                case .playing:
+                    print("DEBUGGING: playing")
                     self.delegate?.didStartPlaying()
                     self.startPlayDate = Date()
-                } else if avPlayer.timeControlStatus == .paused {
+                case .paused:
+                    print("DEBUGGING: paused")
                     if let date = self.startPlayDate {
                         let duration = Date().timeIntervalSince(date)
                         self.watchDuration += duration
                         self.startPlayDate = nil
                     }
+                case .waitingToPlayAtSpecifiedRate:
+                    print("DEBUGGING: waitingToPlayAtSpecifiedRate", terminator: " ")
+                    if let reason = avPlayer.reasonForWaitingToPlay {
+                        switch reason {
+                        case .evaluatingBufferingRate:
+                            print("evaluatingBufferingRate \(avPlayer.currentItem?.error.debugDescription ?? "")")
+                        case .noItemToPlay:
+                            print("noItemToPlay \(avPlayer.currentItem?.error.debugDescription ?? "")")
+                        case .toMinimizeStalls:
+                            print("toMinimizeStalls \(avPlayer.currentItem?.error.debugDescription ?? "")")
+                        default:
+                            break
+                        }
+                    }
+                @unknown default:
+                    break
                 }
             }
             
+        }
+        else if let playerItem = object as? AVPlayerItem {
+            if keyPath == "status" {
+                switch playerItem.status {
+                case .failed:
+                    print("DEBUGGING: playerItemStatus failed, error: \(playerItem.error.debugDescription)")
+                case .readyToPlay:
+                    print("DEBUGGING: playerItemStatus readyToPlay")
+                    if self.shouldStartPlayingOnItemLoad {
+                        _ = self.play()
+                        self.shouldStartPlayingOnItemLoad = false
+                    }
+                case .unknown:
+                    print("DEBUGGING: playerItemStatus unknown")
+                @unknown default:
+                    fatalError()
+                }
+            }
         }
     }
     
