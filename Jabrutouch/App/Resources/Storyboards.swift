@@ -38,6 +38,17 @@ class Storyboards {
         }
     }
     
+    class PopUp {
+        private class func popUpStoryboard() -> UIStoryboard { return UIStoryboard(name: "PopUps", bundle: Bundle.main) }
+        
+        class var  popUp1ViewController: PopUpViewController {
+            return self.popUpStoryboard().instantiateViewController(withIdentifier: "popup1") as! PopUpViewController
+        }
+        
+        
+        
+    }
+    
     class Gallery {
         private class func galleryStoryboard() -> UIStoryboard { return UIStoryboard(name: "Gallery", bundle: Bundle.main) }
         

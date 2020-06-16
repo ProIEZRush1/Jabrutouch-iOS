@@ -104,6 +104,16 @@ class API {
             self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
         }
     }
+    
+    class func getPopups(authToken: String, completionHandler:@escaping (_ response: APIResult<JTPopup>)->Void) {
+        guard let request = HttpRequestsFactory.createGetPopup( token: authToken) else {
+            completionHandler(APIResult.failure(.unableToCreateRequest))
+            return
+        }
+        HttpServiceProvider.shared.excecuteRequest(request: request) { (data, response, error) in
+            self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
+        }
+    }
 
     //========================================
     // MARK: - Content

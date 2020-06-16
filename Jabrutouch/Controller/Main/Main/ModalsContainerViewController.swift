@@ -51,6 +51,11 @@ class ModalsContainerViewController: UIViewController {
             let vc = segue.destination as? OldDonationsViewController
             vc?.delegate = self.delegate
         }
+        
+        else if segue.identifier == "popup" {
+            let vc = segue.destination as? PopUpViewController
+            vc?.delegate = self.delegate
+        }
     }
  
 

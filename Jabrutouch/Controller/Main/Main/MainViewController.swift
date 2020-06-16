@@ -23,7 +23,7 @@ protocol MainModalDelegate : class {
 }
 
 class MainViewController: UIViewController, MainModalDelegate, UICollectionViewDataSource {
-
+    
     //========================================
     // MARK: - Properties
     //========================================
@@ -41,6 +41,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     
     private var activityView: ActivityView?
     var user : JTUser?
+    var firstOnScreen = true
     //========================================
     // MARK: - @IBOutlets
     //========================================
@@ -116,6 +117,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.setButtonsBackground()
         CoreDataManager.shared.delegate = self
         self.user = UserRepository.shared.getCurrentUser()
+        self.getPopup()
         
     }
     
@@ -127,10 +129,11 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.setContent()
         let unReded = CoreDataManager.shared.getUnReadedChats()
         self.setUnReadedIcon(unReded)
-//        self.setDefaulteIcons()
-        setView()
+        //        self.setDefaulteIcons()
+        self.firstOnScreen ? self.getPopup() : nil
     }
     
+   
     //========================================
     // MARK: - Setup
     //========================================
@@ -185,7 +188,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.gemaraLabel.text = Strings.gemara
         self.mishnaLabel.text = Strings.mishna
         self.donationsLabel.text = Strings.donations
-//        self.titleLabel.text = Strings.jabrutouch
+        //        self.titleLabel.text = Strings.jabrutouch
         self.welcomeLabel.text = Strings.welcomeToNewJabrutouch        
     }
     
@@ -244,7 +247,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         
         self.todaysDafVideo.setImage(#imageLiteral(resourceName: "video-nat"), for: .normal)
         self.todaysDafVideo.setImage(#imageLiteral(resourceName: "video-prs"), for: .highlighted)
-
+        
         
     }
     //========================================
@@ -290,9 +293,9 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
                     }
                 }
             }
-
-//            cell.audio.image = lessonRecord.lesson.isAudioDownloaded ? #imageLiteral(resourceName: "audio-downloaded") : #imageLiteral(resourceName: "audio-nat")
-//            cell.video.image = lessonRecord.lesson.isVideoDownloaded ? #imageLiteral(resourceName: "video-downloaded") : #imageLiteral(resourceName: "video-nat")
+            
+            //            cell.audio.image = lessonRecord.lesson.isAudioDownloaded ? #imageLiteral(resourceName: "audio-downloaded") : #imageLiteral(resourceName: "audio-nat")
+            //            cell.video.image = lessonRecord.lesson.isVideoDownloaded ? #imageLiteral(resourceName: "video-downloaded") : #imageLiteral(resourceName: "video-nat")
         } else {
             let lessonRecord = mishnaHistory[indexPath.row]
             
@@ -321,8 +324,8 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
                     }
                 }
             }
-//            cell.audio.isHidden = !lessonRecord.lesson.isAudioDownloaded
-//            cell.video.isHidden = !lessonRecord.lesson.isVideoDownloaded
+            //            cell.audio.isHidden = !lessonRecord.lesson.isAudioDownloaded
+            //            cell.video.isHidden = !lessonRecord.lesson.isVideoDownloaded
         }
         
         
@@ -378,7 +381,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     //========================================
     
     @IBAction func downloadsButtonTouchedDown(_ sender: UIButton) {
-
+        
     }
     
     @IBAction func downloadsButtonTouchedUp(_ sender: UIButton) {
@@ -397,7 +400,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     }
     
     @IBAction func gemaraButtonTouchedDown(_ sender: UIButton) {
-
+        
     }
     
     @IBAction func gemaraButtonTouchedUp(_ sender: UIButton) {
@@ -416,7 +419,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     }
     
     @IBAction func mishnaButtonTouchedDown(_ sender: UIButton) {
-
+        
     }
     
     @IBAction func mishnaButtonTouchedUp(_ sender: UIButton) {
@@ -435,7 +438,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     }
     
     @IBAction func donationsButtonTouchedDown(_ sender: UIButton) {
-
+        
         
     }
     
@@ -505,6 +508,26 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.dismissMainModal()
     }
     
+    
+    //========================================
+    // MARK: - PopUps
+    //========================================
+    private func getPopup() {
+//        guard let values = JTPopup( values: ["type":1, "title":"aaaa", "sub_title":"bbbb"]) else{ return }
+//        self.presentPopup(values: values)
+        guard let authToken = UserDefaultsProvider.shared.currentUser?.token else { return }
+        API.getPopups(authToken: authToken, completionHandler: {(result:APIResult<JTPopup>) in
+            switch result {
+            case .success(let response):
+                self.firstOnScreen = false
+                self.presentPopup(values: response)
+            case .failure( _):
+                return
+
+            }
+        })
+    }
+    
     //========================================
     // MARK: - Navigation
     //========================================
@@ -512,6 +535,10 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     func navigateToSignIn() {
         let signInViewController = Storyboards.SignIn.signInViewController
         appDelegate.setRootViewController(viewController: signInViewController, animated: true)
+    }
+    
+    private func presentPopup(values: JTPopup) {
+        self.performSegue(withIdentifier: "popup", sender: values)
     }
     
     private func presentMenu() {
@@ -530,9 +557,9 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.performSegue(withIdentifier: "toMessages", sender: self)
     }
     
-//    func presentDonationWalkThrough() {
-//        self.performSegue(withIdentifier: "presentDonationWalkTrough", sender: self)
-//    }
+    //    func presentDonationWalkThrough() {
+    //        self.performSegue(withIdentifier: "presentDonationWalkTrough", sender: self)
+    //    }
     
     func presentOldDonations() {
         if self.currentPresentedModal != nil && self.currentPresentedModal != .donations {
@@ -637,7 +664,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
             self.modalsPresentingVC = segue.destination as? ModalsContainerViewController
             self.modalsPresentingVC?.delegate = self
         }
-        
+            
         else if segue.identifier == "presentMenu" {
             let menuVC = segue.destination as? MainMenuViewController
             menuVC?.delegate = self
@@ -651,7 +678,14 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
             let profileVC = segue.destination as? OldProfileViewController
             profileVC?.mainViewController = self
         }
-      
+            
+        else if segue.identifier == "popup" {
+          let popupVC = segue.destination as? PopUpViewController
+                guard let currentPopup = sender as? JTPopup else { return }
+                
+//                      popupVC?.mainViewController = self
+            popupVC?.currentPopup = currentPopup
+    }
         
     }
     
@@ -682,7 +716,7 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
         switch option {
         case .profile:
             presentProfile()
-//            presentOldProfile()
+        //            presentOldProfile()
         case .signOut:
             presentLogoutAlert()
         case .mishna:
@@ -718,9 +752,9 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
     func cellPressed(selectedRow: Int, isFirstCollection: Bool) {
         print("Cell pressed")
         if isFirstCollection {
-
+            
         } else {
-
+            
         }
     }
     
@@ -787,10 +821,10 @@ extension MainViewController: MessagesRepositoryDelegate{
         self.setUnReadedIcon(unReded)
     }
     
-func didSendMessage() {
-//    self.setUnReadedIcon()
+    func didSendMessage() {
+        //    self.setUnReadedIcon()
     }
     
     
-  
+    
 }

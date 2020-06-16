@@ -163,8 +163,17 @@
 		538691512379E8E500CC95B5 /* LabelWithPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5386914F2379E8E500CC95B5 /* LabelWithPadding.swift */; };
 		538691532379E9B100CC95B5 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 538691522379E9B100CC95B5 /* Profile.storyboard */; };
 		604C28C82457038E00A19D87 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604C28C72457038E00A19D87 /* ForgotPasswordViewController.swift */; };
+		606DAFF82498EFAC00EA79E2 /* FirstChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606DAFF72498EFAB00EA79E2 /* FirstChildVC.swift */; };
+		606DAFFA2498FC2C00EA79E2 /* SecondChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606DAFF92498FC2C00EA79E2 /* SecondChildVC.swift */; };
+		606DAFFC249905D800EA79E2 /* ThirdChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606DAFFB249905D800EA79E2 /* ThirdChildVC.swift */; };
+		606DAFFE2499062300EA79E2 /* FourthChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606DAFFD2499062300EA79E2 /* FourthChildVC.swift */; };
+		606DB0002499063F00EA79E2 /* FifthChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606DAFFF2499063F00EA79E2 /* FifthChildVC.swift */; };
+		608378EE249271D2005C60BE /* JTPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608378ED249271D2005C60BE /* JTPopup.swift */; };
+		608378F024927B0F005C60BE /* GetPopupResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608378EF24927B0F005C60BE /* GetPopupResponse.swift */; };
 		608CC713241129F9002136A8 /* animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 608CC712241129F8002136A8 /* animation.json */; };
 		609259FE2455A64100930DD4 /* NotDonationAlert.xib in Resources */ = {isa = PBXBuildFile; fileRef = 609259FD2455A64100930DD4 /* NotDonationAlert.xib */; };
+		609F80B32490E7D9003D1E9A /* PopUps.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 609F80B22490E7D9003D1E9A /* PopUps.storyboard */; };
+		609F80B524910144003D1E9A /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609F80B424910144003D1E9A /* PopUpViewController.swift */; };
 		60B83D6D2455E0DA00E558C7 /* NotDonateAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B83D6C2455E0DA00E558C7 /* NotDonateAlert.swift */; };
 		60DB15772415494C00BD470F /* ChangeSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DB15762415494C00BD470F /* ChangeSettingsViewController.swift */; };
 		83137EFD23F04024003B9DA6 /* JTDonation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83137EFC23F04024003B9DA6 /* JTDonation.swift */; };
@@ -460,8 +469,17 @@
 		604C28C32456E1D900A19D87 /* GraphikSemiboldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GraphikSemiboldItalic.otf; sourceTree = "<group>"; };
 		604C28C42456E1DA00A19D87 /* GraphikBlackItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GraphikBlackItalic.otf; sourceTree = "<group>"; };
 		604C28C72457038E00A19D87 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		606DAFF72498EFAB00EA79E2 /* FirstChildVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstChildVC.swift; sourceTree = "<group>"; };
+		606DAFF92498FC2C00EA79E2 /* SecondChildVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondChildVC.swift; sourceTree = "<group>"; };
+		606DAFFB249905D800EA79E2 /* ThirdChildVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdChildVC.swift; sourceTree = "<group>"; };
+		606DAFFD2499062300EA79E2 /* FourthChildVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourthChildVC.swift; sourceTree = "<group>"; };
+		606DAFFF2499063F00EA79E2 /* FifthChildVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FifthChildVC.swift; sourceTree = "<group>"; };
+		608378ED249271D2005C60BE /* JTPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTPopup.swift; sourceTree = "<group>"; };
+		608378EF24927B0F005C60BE /* GetPopupResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPopupResponse.swift; sourceTree = "<group>"; };
 		608CC712241129F8002136A8 /* animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = animation.json; sourceTree = "<group>"; };
 		609259FD2455A64100930DD4 /* NotDonationAlert.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotDonationAlert.xib; sourceTree = "<group>"; };
+		609F80B22490E7D9003D1E9A /* PopUps.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PopUps.storyboard; sourceTree = "<group>"; };
+		609F80B424910144003D1E9A /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		60B83D6C2455E0DA00E558C7 /* NotDonateAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotDonateAlert.swift; sourceTree = "<group>"; };
 		60DB15762415494C00BD470F /* ChangeSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeSettingsViewController.swift; sourceTree = "<group>"; };
 		715A51EC96A60C90B07F8038 /* Pods-Jabrutouch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jabrutouch.debug.xcconfig"; path = "Target Support Files/Pods-Jabrutouch/Pods-Jabrutouch.debug.xcconfig"; sourceTree = "<group>"; };
@@ -811,6 +829,7 @@
 				839597A5240417D1007B96EB /* LessonDonationResponse.swift */,
 				8391EC61240BCBE5007B5F98 /* CreateLikeResponse.swift */,
 				8391EC65240BFDA3007B5F98 /* CreatePaymentResponse.swift */,
+				608378EF24927B0F005C60BE /* GetPopupResponse.swift */,
 			);
 			path = "API Response models";
 			sourceTree = "<group>";
@@ -919,6 +938,7 @@
 				212ECEA4230F3687005AEB36 /* Player */,
 				213196AF22F38B9E00B0AF5F /* Supporting Views */,
 				219BFF2D22E5A10400ABBEE2 /* Custom Controlles */,
+				609F80B62491014B003D1E9A /* PopUp */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1014,6 +1034,7 @@
 				836A884C23968C8D00F68539 /* ForgotPassword.storyboard */,
 				833E621D23992C2500EC93C7 /* Messages.storyboard */,
 				83A936AA23D9D53A007BA207 /* Donations.storyboard */,
+				609F80B22490E7D9003D1E9A /* PopUps.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -1225,6 +1246,7 @@
 				839597A12403F81A007B96EB /* JTUserDonation.swift */,
 				839597A724041900007B96EB /* JTDonated.swift */,
 				8391EC63240BDCD1007B5F98 /* JTLessonDonated.swift */,
+				608378ED249271D2005C60BE /* JTPopup.swift */,
 			);
 			path = "Domain Models";
 			sourceTree = "<group>";
@@ -1260,6 +1282,19 @@
 				604C28C72457038E00A19D87 /* ForgotPasswordViewController.swift */,
 			);
 			path = ForgetPassword;
+			sourceTree = "<group>";
+		};
+		609F80B62491014B003D1E9A /* PopUp */ = {
+			isa = PBXGroup;
+			children = (
+				609F80B424910144003D1E9A /* PopUpViewController.swift */,
+				606DAFF72498EFAB00EA79E2 /* FirstChildVC.swift */,
+				606DAFF92498FC2C00EA79E2 /* SecondChildVC.swift */,
+				606DAFFB249905D800EA79E2 /* ThirdChildVC.swift */,
+				606DAFFD2499062300EA79E2 /* FourthChildVC.swift */,
+				606DAFFF2499063F00EA79E2 /* FifthChildVC.swift */,
+			);
+			path = PopUp;
 			sourceTree = "<group>";
 		};
 		833E621F23992DCB00EC93C7 /* Messages */ = {
@@ -1552,6 +1587,7 @@
 				21678D6122DF2CED007BC74C /* SF-Pro-Text-Black.otf in Resources */,
 				212ECEB82317DC57005AEB36 /* AudioPlayer.xib in Resources */,
 				21678D6222DF2CED007BC74C /* SF-Pro-Text-BlackItalic.otf in Resources */,
+				609F80B32490E7D9003D1E9A /* PopUps.storyboard in Resources */,
 				213196B722F6DDB000B0AF5F /* ActivityView.xib in Resources */,
 				21678D6322DF2CED007BC74C /* SF-Pro-Text-Bold.otf in Resources */,
 				21678D6422DF2CED007BC74C /* SF-Pro-Text-BoldItalic.otf in Resources */,
@@ -1673,6 +1709,7 @@
 				83A7A0CF23E9A3440041BE28 /* DonateNavigationController.swift in Sources */,
 				219BFF2F22E5A11900ABBEE2 /* TextFieldWithPadding.swift in Sources */,
 				8391EC66240BFDA3007B5F98 /* CreatePaymentResponse.swift in Sources */,
+				606DAFFE2499062300EA79E2 /* FourthChildVC.swift in Sources */,
 				604C28C82457038E00A19D87 /* ForgotPasswordViewController.swift in Sources */,
 				836A883C238DB30D00F68539 /* JTGallery.swift in Sources */,
 				2126D6D623033CF800CB501D /* JTSeder.swift in Sources */,
@@ -1684,6 +1721,7 @@
 				212ECEB42317C790005AEB36 /* VideoPlayer.swift in Sources */,
 				FBB434FE22FB2CA4008EE211 /* ProfileViewController.swift in Sources */,
 				21ED3BD42304858C009D8E3D /* JTMishnaLesson.swift in Sources */,
+				606DAFFC249905D800EA79E2 /* ThirdChildVC.swift in Sources */,
 				21ED3BDC23048970009D8E3D /* GetGemaraLessonsResponse.swift in Sources */,
 				2133C22122DCFEB500F910B9 /* WalkThroughCollectionViewCell.swift in Sources */,
 				833E6227239FB72A00EC93C7 /* MessagesRepository.swift in Sources */,
@@ -1707,6 +1745,7 @@
 				212ECEAC2312585A005AEB36 /* JTLessonType.swift in Sources */,
 				83605BAA23846E3700B93603 /* OldProfileViewController.swift in Sources */,
 				FB6877C222FC49AE0096465D /* AlertViewController.swift in Sources */,
+				606DAFF82498EFAC00EA79E2 /* FirstChildVC.swift in Sources */,
 				83137F0723F07050003B9DA6 /* JTPostDedication.swift in Sources */,
 				833E62232399591400EC93C7 /* ChatCell.swift in Sources */,
 				FBB18FB422F866C8006886FD /* GemaraLessonsViewController.swift in Sources */,
@@ -1728,9 +1767,11 @@
 				833E6225239FB11600EC93C7 /* JTMessage.swift in Sources */,
 				210628BB22F6EBB3008BBD8C /* Storyboards.swift in Sources */,
 				839597A6240417D1007B96EB /* LessonDonationResponse.swift in Sources */,
+				609F80B524910144003D1E9A /* PopUpViewController.swift in Sources */,
 				210628B922F6EAE6008BBD8C /* SplashScreenViewController.swift in Sources */,
 				FB51711A22F1A100003BCAFC /* JTMishnaChapter.swift in Sources */,
 				FB51711422F19C3F003BCAFC /* MishnaMasechetCellController.swift in Sources */,
+				608378EE249271D2005C60BE /* JTPopup.swift in Sources */,
 				83A7A0D123EAEE080041BE28 /* PaymentViewController.swift in Sources */,
 				836A88502396A4E800F68539 /* ForgotPasswordResponse.swift in Sources */,
 				DD51946724069F760085E2A8 /* SubscribeViewController.swift in Sources */,
@@ -1789,6 +1830,7 @@
 				219BFF3D22E5B7BA00ABBEE2 /* Utils.swift in Sources */,
 				5386914D2379E8B500CC95B5 /* GeneralInformationCell.swift in Sources */,
 				21678D7A22E085B1007BC74C /* MishnaViewController.swift in Sources */,
+				606DAFFA2498FC2C00EA79E2 /* SecondChildVC.swift in Sources */,
 				2126D6D823033D4D00CB501D /* JTMasechet.swift in Sources */,
 				83CCB12123783F6100C86450 /* JTMasechetDownloadedGemaraLessons.swift in Sources */,
 				833E6229239FB88C00EC93C7 /* GetMessagesResponse.swift in Sources */,
@@ -1809,6 +1851,7 @@
 				2120BE1F22DF2758004854DB /* SignUpViewController.swift in Sources */,
 				213196AD22F38B6800B0AF5F /* JTCommunity.swift in Sources */,
 				839597A42403FA51007B96EB /* UserDonationResponse.swift in Sources */,
+				606DB0002499063F00EA79E2 /* FifthChildVC.swift in Sources */,
 				FBDEF16D22E89E3B00A300DA /* HeaderCellController.swift in Sources */,
 				21E0BE942304217800F820D4 /* JTMishnaMasechetItem.swift in Sources */,
 				2133C22422DDCCD500F910B9 /* JBBarPageIndicator.swift in Sources */,
@@ -1827,6 +1870,7 @@
 				216A0E7022EEFDA300F7FBC1 /* HTTPRequestFactory.swift in Sources */,
 				213196B122F38B9E00B0AF5F /* ActivityView.swift in Sources */,
 				2133C1F822DB5B8200F910B9 /* AppDelegate.swift in Sources */,
+				608378F024927B0F005C60BE /* GetPopupResponse.swift in Sources */,
 				FB51711F22F1AE0B003BCAFC /* JTLessonDownload.swift in Sources */,
 				DD51CDF423F186D70063167E /* AudioWrapper.m in Sources */,
 				8359194223A7984A00F0B4D8 /* DataModel.xcdatamodeld in Sources */,
