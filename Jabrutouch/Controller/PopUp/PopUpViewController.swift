@@ -15,6 +15,7 @@ class PopUpViewController: UIViewController {
     
     
     @IBOutlet weak var popupButton: UIButton!
+    @IBOutlet weak var popupButtonTitle: UILabel!
     @IBOutlet weak var first: UIView!
     @IBOutlet weak var second: UIView!
     @IBOutlet weak var third: UIView!
@@ -33,7 +34,9 @@ class PopUpViewController: UIViewController {
     // ===============
     
     func setup(){
-        self.popupButton.layer.cornerRadius = 10
+        self.popupButton.layer.cornerRadius = 15
+        self.popupButtonTitle.layer.cornerRadius = 15
+        self.popupButtonTitle.layer.masksToBounds = true
     }
     
     
@@ -70,6 +73,7 @@ class PopUpViewController: UIViewController {
     }
     
     @IBAction func gotItButtonPressed(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -82,16 +86,16 @@ class PopUpViewController: UIViewController {
                 secondChildCV.currentPopup = self.currentPopup
             }
         }else if segue.identifier == "thirdChild" {
-            if let secondChildCV = segue.destination as? ThirdChildVC {
-                secondChildCV.currentPopup = self.currentPopup
+            if let thirdChildCV = segue.destination as? ThirdChildVC {
+                thirdChildCV.currentPopup = self.currentPopup
             }
-        }else if segue.identifier == "forthChild" {
-            if let secondChildCV = segue.destination as? FourthChildVC {
-                secondChildCV.currentPopup = self.currentPopup
+        }else if segue.identifier == "fourthChild" {
+            if let fourthChildCV = segue.destination as? FourthChildVC {
+                fourthChildCV.currentPopup = self.currentPopup
             }
         }else if segue.identifier == "fifthChild" {
-            if let secondChildCV = segue.destination as? FifthChildVC {
-                secondChildCV.currentPopup = self.currentPopup
+            if let fifthChildCV = segue.destination as? FifthChildVC {
+                fifthChildCV.currentPopup = self.currentPopup
             }
         }
     }

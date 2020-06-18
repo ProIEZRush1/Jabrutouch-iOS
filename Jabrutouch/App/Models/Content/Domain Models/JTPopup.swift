@@ -38,13 +38,13 @@ struct JTPopup: APIResponseModel {
         } else { self.image = "" }
     }
     
-//    var values: [String:Any] {
-//        var values: [String:Any] = [:]
-//        values["type"] = self.type
-//        values["type__description"] = self.typeDescription
-//        values["sub_title"] = self.subTitle
-//        values["description"] = self.description
-//        values["image"] = self.image
-//        return values
-//    }
+    var values: [String:Any] {
+        var values: [String:Any] = [:]
+        values["type"] = self.type
+        values["description"] = self.description
+        values["sub_title"] = self.subTitle
+        values["description"] = self.description
+        values["image"] = self.image
+        return values
+    }
 }

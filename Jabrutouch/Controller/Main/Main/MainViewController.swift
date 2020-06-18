@@ -117,8 +117,6 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.setButtonsBackground()
         CoreDataManager.shared.delegate = self
         self.user = UserRepository.shared.getCurrentUser()
-        self.getPopup()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -512,18 +510,18 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     //========================================
     // MARK: - PopUps
     //========================================
+    
     private func getPopup() {
-//        guard let values = JTPopup( values: ["type":1, "title":"aaaa", "sub_title":"bbbb"]) else{ return }
-//        self.presentPopup(values: values)
-        guard let authToken = UserDefaultsProvider.shared.currentUser?.token else { return }
-        API.getPopups(authToken: authToken, completionHandler: {(result:APIResult<JTPopup>) in
+        guard let token = UserDefaultsProvider.shared.currentUser?.token else { return }
+        API.getPopups(authToken: token, completionHandler: {(result:APIResult<JTPopup>) in
             switch result {
             case .success(let response):
                 self.firstOnScreen = false
-                self.presentPopup(values: response)
+                DispatchQueue.main.async {
+                    self.presentPopup(values: response)
+                }
             case .failure( _):
                 return
-
             }
         })
     }
@@ -680,12 +678,10 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         }
             
         else if segue.identifier == "popup" {
-          let popupVC = segue.destination as? PopUpViewController
-                guard let currentPopup = sender as? JTPopup else { return }
-                
-//                      popupVC?.mainViewController = self
+            let popupVC = segue.destination as? PopUpViewController
+            guard let currentPopup = sender as? JTPopup else { return }
             popupVC?.currentPopup = currentPopup
-    }
+        }
         
     }
     

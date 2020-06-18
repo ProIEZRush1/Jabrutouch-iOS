@@ -169,7 +169,6 @@
 		606DAFFE2499062300EA79E2 /* FourthChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606DAFFD2499062300EA79E2 /* FourthChildVC.swift */; };
 		606DB0002499063F00EA79E2 /* FifthChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606DAFFF2499063F00EA79E2 /* FifthChildVC.swift */; };
 		608378EE249271D2005C60BE /* JTPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608378ED249271D2005C60BE /* JTPopup.swift */; };
-		608378F024927B0F005C60BE /* GetPopupResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608378EF24927B0F005C60BE /* GetPopupResponse.swift */; };
 		608CC713241129F9002136A8 /* animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 608CC712241129F8002136A8 /* animation.json */; };
 		609259FE2455A64100930DD4 /* NotDonationAlert.xib in Resources */ = {isa = PBXBuildFile; fileRef = 609259FD2455A64100930DD4 /* NotDonationAlert.xib */; };
 		609F80B32490E7D9003D1E9A /* PopUps.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 609F80B22490E7D9003D1E9A /* PopUps.storyboard */; };
@@ -1870,7 +1869,6 @@
 				216A0E7022EEFDA300F7FBC1 /* HTTPRequestFactory.swift in Sources */,
 				213196B122F38B9E00B0AF5F /* ActivityView.swift in Sources */,
 				2133C1F822DB5B8200F910B9 /* AppDelegate.swift in Sources */,
-				608378F024927B0F005C60BE /* GetPopupResponse.swift in Sources */,
 				FB51711F22F1AE0B003BCAFC /* JTLessonDownload.swift in Sources */,
 				DD51CDF423F186D70063167E /* AudioWrapper.m in Sources */,
 				8359194223A7984A00F0B4D8 /* DataModel.xcdatamodeld in Sources */,

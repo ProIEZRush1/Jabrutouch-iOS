@@ -41,8 +41,8 @@ class Storyboards {
     class PopUp {
         private class func popUpStoryboard() -> UIStoryboard { return UIStoryboard(name: "PopUps", bundle: Bundle.main) }
         
-        class var  popUp1ViewController: PopUpViewController {
-            return self.popUpStoryboard().instantiateViewController(withIdentifier: "popup1") as! PopUpViewController
+        class var  popUpViewController: PopUpViewController {
+            return self.popUpStoryboard().instantiateViewController(withIdentifier: "popup") as! PopUpViewController
         }
         
         

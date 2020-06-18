@@ -12,17 +12,16 @@ class ThirdChildVC: UIViewController {
 
     @IBOutlet weak var popupTitle: UILabel!
     @IBOutlet weak var popupSubTitle: UILabel!
-    @IBOutlet weak var popupDescription: UILabel!
     
     var currentPopup: JTPopup?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      popupTitle.text = currentPopup?.title
+        popupTitle.text = currentPopup?.title
         popupSubTitle.text = currentPopup?.subTitle
-        
-      popupDescription.text = currentPopup?.description
     }
-
-
+    func setup(){
+        popupTitle.textColor =  UIColor(red: 0.174, green: 0.17, blue: 0.338, alpha: 0.88)
+    }
+    
 }
