@@ -83,6 +83,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         performSegue(withIdentifier: "toEditProfile", sender: self)
     }
     
+    @IBAction func donateButtonPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: "toDonation", sender: self)
+    }
+    
     //========================================
     // MARK: - UITableView
     //========================================
@@ -133,7 +137,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             let count = user?.profilePercent ?? 0
             let progress = CGFloat(count)/100
 //            cell.completionPercentage.text = "\(Int(count))% \(Strings.full)"
-            cell.completionPercentage.text = "\(Int(count))% Full"
+            cell.completionPercentage.text = "\(Int(count))% Perfil completado"
             cell.progressView.progress = progress
             return cell
         case 3:

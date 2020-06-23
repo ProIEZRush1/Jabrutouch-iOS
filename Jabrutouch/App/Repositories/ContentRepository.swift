@@ -245,6 +245,23 @@ class ContentRepository {
         
     }
     
+    func getMishnaLesson(masechetId: Int, chapter: Int, mishna: Int, forceRefresh:Bool = true, completion: @escaping (_ result:
+            Result<JTMishnaLesson,JTError>)->Void) {
+            
+        self.loadMishnaLesson(masechetId: masechetId, chapter: chapter, mishna: mishna) { (result:Result<JTMishnaLesson, JTError>) in
+                switch result {
+                case .success(let lesson):
+                    DispatchQueue.main.async {
+                        completion(.success(lesson))
+                    }
+                case .failure(let error):
+                    DispatchQueue.main.async {
+                        completion(.failure(error))
+                    }
+                }
+            }
+        }
+    
     func getMishnaLessons(masechetId: Int, chapter: Int, forceRefresh:Bool = true, completion: @escaping (_ result: Result<[JTMishnaLesson],JTError>)->Void) {
         
         if let lessonsDict = self.mishnaLessons["\(masechetId)"]?["\(chapter)"] {
@@ -676,6 +693,7 @@ class ContentRepository {
     // MARK: - Private methods
     //========================================
     
+
     private func loadShas() {
         API.getMasechtot { (result: APIResult<GetMasechtotResponse>) in
             DispatchQueue.main.async {
@@ -734,6 +752,25 @@ class ContentRepository {
         }
     }
     
+    private func loadMishnaLesson(masechetId: Int, chapter: Int, mishna: Int, completion: @escaping (_ result: Result<JTMishnaLesson,JTError>)->Void) {
+        guard let authToken = UserDefaultsProvider.shared.currentUser?.token else {
+            completion(.failure(.authTokenMissing))
+            return
+        }
+        API.getMishnaLesson(masechetId: masechetId, chapter: chapter, mishna: mishna, authToken: authToken) { (result: APIResult<GetMishnaLessonResponse>) in
+            switch result {
+            case .success(let response):
+                completion(.success(response.lesson))
+            case .failure(let error):
+                switch error {
+                case .invalidToken:
+                    self.logOut()
+                default:
+                    completion(.failure(error))
+                }
+            }
+        }
+    }
     
     private func loadMishnaLessons(masechetId: Int, chapter: Int, completion: @escaping (_ result: Result<[JTMishnaLesson],JTError>)->Void) {
         guard let authToken = UserDefaultsProvider.shared.currentUser?.token else {

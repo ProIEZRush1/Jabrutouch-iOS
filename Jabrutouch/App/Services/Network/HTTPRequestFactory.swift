@@ -175,6 +175,15 @@ class HttpRequestsFactory {
         return request
     }
     
+    class func createGetMishnaLessonRequest(masechetId: Int, chapter:Int, mishna: Int, token: String) -> URLRequest?{
+        guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
+        let link = baseUrl.appendingPathComponent("mishna/masechet/\(masechetId)/chapter/\(chapter)/mishna/\(mishna)").absoluteString
+        guard let url = self.createUrl(fromLink: link, urlParams: nil) else { return nil }
+        let additionalHeaders: [String:String] = ["Authorization": "token \(token)"]
+        let request = self.createRequest(url, method: .get, body: nil, additionalHeaders: additionalHeaders)
+        return request
+    }
+    
     class func createGetDonationData(token: String) -> URLRequest?{
         guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
         let link = baseUrl.appendingPathComponent("donation_data").absoluteString

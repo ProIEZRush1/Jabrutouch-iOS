@@ -128,10 +128,11 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         let unReded = CoreDataManager.shared.getUnReadedChats()
         self.setUnReadedIcon(unReded)
         //        self.setDefaulteIcons()
+        setView()
         self.firstOnScreen ? self.getPopup() : nil
     }
     
-   
+    
     //========================================
     // MARK: - Setup
     //========================================
@@ -753,6 +754,44 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
             
         }
     }
+    
+    func lessonFromDeepLink(_ values: JTDeepLinkLesson){
+        self.showActivityView()
+        if values.gemara == 1 {
+            guard let page = values.page else { return }
+            ContentRepository.shared.getGemaraLesson(masechetId: values.masechet, page: page) { (result: Result<JTGemaraLesson, JTError>) in
+                DispatchQueue.main.async {
+                    self.removeActivityView()
+                    switch result {
+                    case .success(let lesson):
+                        if values.video == 1 {
+                            self.playLesson(lesson, mediaType: values.video == 1 ? .video : .audio, sederId: "\(values.seder)", masechetId: "\(values.masechet)", chapter: nil, masechetName: values.masechetName)
+                        }
+                    case .failure:
+                        break
+                    }
+                }
+            }
+        } else {
+            if values.gemara == 0 {
+                guard let chapter = values.chapter else { return }
+                guard let mishna = values.mishna else { return }
+                ContentRepository.shared.getMishnaLesson(masechetId: values.masechet, chapter: chapter, mishna: mishna){ (result: Result<JTMishnaLesson, JTError>) in
+                    DispatchQueue.main.async {
+                        self.removeActivityView()
+                        switch result {
+                        case .success(let lesson):
+                            self.playLesson(lesson, mediaType: values.video == 1 ? .video : .audio , sederId: "\(values.seder)", masechetId: "\(values.masechet)", chapter: "\(chapter)", masechetName: values.masechetName)
+                        case .failure:
+                            break
+                        }
+                    }
+                }
+            }
+        }
+        self.showActivityView()
+    }
+    
     
     func audioPressed(selectedRow: Int, isFirstCollection: Bool) {
         DispatchQueue.main.async {

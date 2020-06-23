@@ -52,6 +52,47 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    func handleIncomingDynamicLink(_ dynamicLink: DynamicLink){
+        guard let url = dynamicLink.url else{
+            print("My dynamic link obj has no url")
+            return
+        }
+        guard let url1 = url.queryDictionary else { return }
+        
+        print("Your incoming link params \(url1)")
+        guard let values = JTDeepLinkLesson(values: url1) else { return }
+       let mainViewController = Storyboards.Main.mainViewController
+        mainViewController.modalPresentationStyle = .fullScreen
+        self.topmostViewController?.present(mainViewController, animated: false, completion: nil)
+        mainViewController.lessonFromDeepLink(values)
+
+    }
+   
+    
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity,
+                     restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        if let incomingURL = userActivity.webpageURL{
+            print("Incoming URL is \(incomingURL)")
+            let linkHandled = DynamicLinks.dynamicLinks().handleUniversalLink(incomingURL)
+            { (dynamicLink, error)in
+                guard error == nil else{
+                    print("Found an error! \(error!.localizedDescription)")
+                    return
+                }
+                if let dynamicLink = dynamicLink{
+                    self.handleIncomingDynamicLink(dynamicLink)
+                }
+            }
+            if linkHandled{
+                return true
+            } else { return false }
+        }
+        return false
+    }
+    
+    
+
+
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let token = deviceToken.map{ String(format: "%02.2hhx", $0) }.joined()
         print("Notifications token: " + token)
@@ -60,11 +101,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        
+       
         if let host = url.host {
             let mainViewController = Storyboards.Main.mainViewController
             mainViewController.modalPresentationStyle = .fullScreen
-            
+
             if host == "crowns" {
                 self.topmostViewController?.present(mainViewController, animated: false, completion: nil)
                 mainViewController.presentDonation()
@@ -78,7 +119,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 self.topmostViewController?.present(mainViewController, animated: false, completion: nil)
                 mainViewController.presentAllMishna()
             }
-            
+
         }
         return true
     }
@@ -349,4 +390,24 @@ extension AppDelegate:UNUserNotificationCenterDelegate {
     }
     
     
+}
+
+extension URL {
+    var queryDictionary: [String: String]? {
+        guard let query = self.query else { return nil}
+
+        var queryStrings = [String: String]()
+        for pair in query.components(separatedBy: "&") {
+
+            let key = pair.components(separatedBy: "=")[0]
+
+            let value = pair
+                .components(separatedBy:"=")[1]
+                .replacingOccurrences(of: "+", with: " ")
+                .removingPercentEncoding ?? ""
+
+            queryStrings[key] = value
+        }
+        return queryStrings
+    }
 }

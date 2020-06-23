@@ -149,6 +149,16 @@ class API {
         }
     }
     
+    class func getMishnaLesson(masechetId:Int, chapter: Int, mishna: Int,  authToken: String, completionHandler:@escaping (_ response: APIResult<GetMishnaLessonResponse>)->Void) {
+        guard let request = HttpRequestsFactory.createGetMishnaLessonRequest(masechetId: masechetId, chapter: chapter, mishna: mishna, token: authToken) else {
+            completionHandler(APIResult.failure(.unableToCreateRequest))
+            return
+        }
+        HttpServiceProvider.shared.excecuteRequest(request: request) { (data, response, error) in
+            self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
+        }
+    }
+    
     class func getMishnaLessons(masechetId:Int, chapter: Int, authToken: String, completionHandler:@escaping (_ response: APIResult<GetMishnaLessonsResponse>)->Void) {
         guard let request = HttpRequestsFactory.createGetMishnaLessonsRequest(masechetId: masechetId, chapter: chapter, token: authToken) else {
             completionHandler(APIResult.failure(.unableToCreateRequest))

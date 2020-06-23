@@ -21,3 +21,17 @@ struct GetMishnaLessonsResponse: APIResponseModel {
         }
     }
 }
+
+struct GetMishnaLessonResponse: APIResponseModel {
+    
+    var lesson: JTMishnaLesson
+    
+    init?(values: [String : Any]) {
+        if let lesson = JTMishnaLesson(values: values) {
+            self.lesson = lesson
+        }
+        else {
+            return nil
+        }
+    }
+}
