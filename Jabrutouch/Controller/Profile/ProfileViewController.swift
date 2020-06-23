@@ -252,13 +252,22 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             case 1:
                 self.changePassword()
             case 2:
-                print("remove account selected")
+                self.removeAccount()
             default:
                 break
             }
         default:
             break
         }
+    }
+    
+    func removeAccount(){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let myAlert = storyboard.instantiateViewController(withIdentifier: "removeAccountAlert") as! RemoveAccountAlertViewController
+        myAlert.delegate = self
+        myAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        myAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+        self.present(myAlert, animated: true, completion: nil)
     }
     
     func presentLogoutAlert() {

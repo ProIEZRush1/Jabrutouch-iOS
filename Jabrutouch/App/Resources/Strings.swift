@@ -220,6 +220,14 @@ class Strings {
         return NSLocalizedString("signOut", comment: "")
     }
     
+    class var removeAccount: String {
+        return NSLocalizedString("removeAccount", comment: "")
+    }
+    
+    class var stayWithUs: String {
+        return NSLocalizedString("stayWithUs", comment: "")
+    }
+    
     class var phoneNumberMissing: String {
         return NSLocalizedString("phoneNumberMissing", comment: "")
     }
@@ -417,10 +425,6 @@ class Strings {
     
     class var changePassword: String {
         return NSLocalizedString("changePassword", comment: "")
-    }
-    
-    class var removeAccount: String {
-        return NSLocalizedString("removeAccount", comment: "")
     }
     
     class var editProfile: String {

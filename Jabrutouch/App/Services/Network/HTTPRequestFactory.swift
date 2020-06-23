@@ -107,6 +107,15 @@ class HttpRequestsFactory {
         return request
     }
     
+    class func createRemoveAccount(userId: Int, token: String) -> URLRequest?{
+        guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
+        let link = baseUrl.appendingPathComponent("users/\(userId)").absoluteString
+        guard let url = self.createUrl(fromLink: link, urlParams: nil) else { return nil }
+        let additionalHeaders: [String:String] = ["Authorization": "token \(token)"]
+        let request = self.createRequest(url, method: .delete,  body: nil, additionalHeaders: additionalHeaders)
+        return request
+    }
+    
     class func createChangePasswordRequest(oldPassword: String, newPassword: String, token: String) -> URLRequest?{
         guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
         let link = baseUrl.appendingPathComponent("login/").absoluteString

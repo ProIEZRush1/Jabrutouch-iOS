@@ -172,6 +172,7 @@
 		608378EE249271D2005C60BE /* JTPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608378ED249271D2005C60BE /* JTPopup.swift */; };
 		608CC713241129F9002136A8 /* animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 608CC712241129F8002136A8 /* animation.json */; };
 		609259FE2455A64100930DD4 /* NotDonationAlert.xib in Resources */ = {isa = PBXBuildFile; fileRef = 609259FD2455A64100930DD4 /* NotDonationAlert.xib */; };
+		609D498524A23C640008E4AA /* RemoveAccountAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609D498424A23C640008E4AA /* RemoveAccountAlertViewController.swift */; };
 		609F80B32490E7D9003D1E9A /* PopUps.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 609F80B22490E7D9003D1E9A /* PopUps.storyboard */; };
 		609F80B524910144003D1E9A /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609F80B424910144003D1E9A /* PopUpViewController.swift */; };
 		60B83D6D2455E0DA00E558C7 /* NotDonateAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B83D6C2455E0DA00E558C7 /* NotDonateAlert.swift */; };
@@ -479,6 +480,7 @@
 		608378EF24927B0F005C60BE /* GetPopupResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPopupResponse.swift; sourceTree = "<group>"; };
 		608CC712241129F8002136A8 /* animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = animation.json; sourceTree = "<group>"; };
 		609259FD2455A64100930DD4 /* NotDonationAlert.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotDonationAlert.xib; sourceTree = "<group>"; };
+		609D498424A23C640008E4AA /* RemoveAccountAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveAccountAlertViewController.swift; sourceTree = "<group>"; };
 		609F80B22490E7D9003D1E9A /* PopUps.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PopUps.storyboard; sourceTree = "<group>"; };
 		609F80B424910144003D1E9A /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		60B83D6C2455E0DA00E558C7 /* NotDonateAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotDonateAlert.swift; sourceTree = "<group>"; };
@@ -789,6 +791,7 @@
 			isa = PBXGroup;
 			children = (
 				5386913B2379E8B500CC95B5 /* profileCells */,
+				609D498424A23C640008E4AA /* RemoveAccountAlertViewController.swift */,
 				83CCB1222379EEB700C86450 /* EditProfileViewController.swift */,
 				FBB434FD22FB2CA4008EE211 /* ProfileViewController.swift */,
 				FB6877C122FC49AE0096465D /* AlertViewController.swift */,
@@ -1762,6 +1765,7 @@
 				212ECEA7230F36BF005AEB36 /* LessonPlayerViewController.swift in Sources */,
 				213196A822F38B3E00B0AF5F /* APIResponseModel.swift in Sources */,
 				83137EFD23F04024003B9DA6 /* JTDonation.swift in Sources */,
+				609D498524A23C640008E4AA /* RemoveAccountAlertViewController.swift in Sources */,
 				8395979C24028B8F007B96EB /* TzedakaViewController.swift in Sources */,
 				2126D6E12304025A00CB501D /* MishnaNavigationController.swift in Sources */,
 				FBAB071622E74ABD00C8DCD7 /* DownloadsCellController.swift in Sources */,

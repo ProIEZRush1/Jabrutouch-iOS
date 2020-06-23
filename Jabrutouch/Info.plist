@@ -43,7 +43,7 @@
 			<string>Deeplink</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>https://jabrutouch.page.link</string>
+				<string>jabrutouch.page.link</string>
 			</array>
 		</dict>
 	</array>

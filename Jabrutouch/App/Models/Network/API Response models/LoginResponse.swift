@@ -17,3 +17,13 @@ struct LoginResponse: APIResponseModel {
         } else { return nil }
     }
 }
+
+struct AccountRemoved: APIResponseModel {
+    var status: Bool
+    
+    init?(values: [String : Any]) {
+        self.status = true
+    }
+    
+    
+}

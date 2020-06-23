@@ -105,6 +105,16 @@ class API {
         }
     }
     
+    class func removeAccount(authToken: String, userId: Int, completionHandler:@escaping (_ response: APIResult<AccountRemoved> )->Void) {
+        guard let request = HttpRequestsFactory.createRemoveAccount(userId: userId, token: authToken) else {
+            completionHandler(APIResult.failure(.unableToCreateRequest))
+            return
+        }
+        HttpServiceProvider.shared.excecuteRequest(request: request) { (data, response, error) in
+            self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
+        }
+    }
+    
     class func getPopups(authToken: String, completionHandler:@escaping (_ response: APIResult<JTPopup>)->Void) {
         guard let request = HttpRequestsFactory.createGetPopup( token: authToken) else {
             completionHandler(APIResult.failure(.unableToCreateRequest))
