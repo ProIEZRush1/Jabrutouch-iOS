@@ -61,10 +61,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         print("Your incoming link params \(url1)")
         guard let values = JTDeepLinkLesson(values: url1) else { return }
-       let mainViewController = Storyboards.Main.mainViewController
-        mainViewController.modalPresentationStyle = .fullScreen
-        self.topmostViewController?.present(mainViewController, animated: false, completion: nil)
-        mainViewController.lessonFromDeepLink(values)
+        if UserDefaultsProvider.shared.currentUser?.token != nil {
+            let mainViewController = Storyboards.Main.mainViewController
+            mainViewController.modalPresentationStyle = .fullScreen
+            self.topmostViewController?.present(mainViewController, animated: false, completion: nil)
+            mainViewController.lessonFromDeepLink(values)
+        } else {
+            let singinViewController = Storyboards.SignIn.signInViewController
+            singinViewController.modalPresentationStyle = .fullScreen
+            self.topmostViewController?.present(singinViewController, animated: false, completion: nil)
+        }
+       
 
     }
    
