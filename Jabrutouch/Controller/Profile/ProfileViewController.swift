@@ -118,10 +118,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         switch indexPath.section {
         case 0:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "PesonalDetailsCell") as? PersonalDetailsCell else { return UITableViewCell() }
-            cell.nameLabel.text = "\(self.user!.firstName) \(self.user!.lastName)"
-            cell.emailLabel.text = self.user!.email
-            if self.user!.country != "" {
-                cell.country.text = self.user!.country
+            guard let user = self.user else {
+                #warning("have to fix the user if not exist")
+                return cell
+            }
+            cell.nameLabel.text = "\(user.firstName) \(user.lastName)"
+            cell.emailLabel.text = user.email
+            if user.country != "" {
+                cell.country.text = user.country
             } else {
                 cell.country.text = LocalizationManager.shared.getDefaultCountry()?.localizedName
             }
