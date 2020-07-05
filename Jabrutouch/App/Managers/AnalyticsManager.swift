@@ -42,6 +42,7 @@ class AnalyticsManager {
             switch response {
             case .success:
                 print("SUCCESS")
+                UserDefaultsProvider.shared.lessonAnalitics = nil
             case .failure(let error):
                 print("ERROR: \(error)")
             }

@@ -156,10 +156,10 @@ class LessonPlayerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupWatchAnalistic()
         self.getDonorText()
         self.messageHeaderView.isHidden = true
         self.chatControlsView.delegate = self
-        
         self.pdfView.delegate = self
         self.user = UserRepository.shared.getCurrentUser()
         self.masechetTitleLabel.text = "\(self.masechet) \(self.daf)"
@@ -189,6 +189,7 @@ class LessonPlayerViewController: UIViewController {
         self.pdfView.backgroundColor = UIColor.clear
         self.setProgressRing()
         NotificationCenter.default.addObserver(self, selector: #selector(self.orientationDidChange(_:)), name: UIDevice.orientationDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.applicationWillTerminate(_:)), name: UIApplication.willTerminateNotification, object: nil)
         ContentRepository.shared.addDelegate(self)
         
     }
@@ -207,8 +208,9 @@ class LessonPlayerViewController: UIViewController {
         
         self.audioPlayer.stopAndRelease()
         self.videoPlayer.stopAndRelease()
-        self.postWatchAnalyticEvent()
+        let analisticEvent = self.createLessonAnalisticEvent()
         self.saveLessonLocation()
+        self.postWatchAnalyticEvent(event: analisticEvent)
         NotificationCenter.default.removeObserver(self)
         ContentRepository.shared.removeDelegate(self)
     }
@@ -238,7 +240,18 @@ class LessonPlayerViewController: UIViewController {
         }
     }
     
-    private func postWatchAnalyticEvent() {
+    @objc func applicationWillTerminate(_ notification: Notification) {
+        self.audioPlayer.stopAndRelease()
+        self.videoPlayer.stopAndRelease()
+        UserDefaultsProvider.shared.lessonAnalitics = createLessonAnalisticEvent()
+    }
+    
+    private func setupWatchAnalistic(){
+        guard let watchAnalitics = UserDefaultsProvider.shared.lessonAnalitics else { return }
+        self.postWatchAnalyticEvent(event: watchAnalitics)
+    }
+    
+    private func createLessonAnalisticEvent()-> JTLessonAnalitics{
         var category: AnalyticsEventCategory!
         var online: Bool!
         
@@ -259,9 +272,20 @@ class LessonPlayerViewController: UIViewController {
             category = .mishna
         }
         
-        AnalyticsManager.shared.postEvent(eventType: .watch, category: category, mediaType: self.mediaType, lessonId: self.lesson.id, duration: Int64(watchDuration) * 1000, online: online) { (result: Result<Any, JTError>) in
-            
-        }
+        return JTLessonAnalitics(eventType: .watch, category: category, mediaType: self.mediaType, lessonId: self.lesson.id, duration: Int64(watchDuration) * 1000, online: online)
+        
+    }
+    
+    private func postWatchAnalyticEvent(event: JTLessonAnalitics?) {
+        guard let event = event else { return }
+        AnalyticsManager.shared.postEvent(eventType: event.eventType, category: event.category, mediaType: event.mediaType, lessonId: event.lessonId, duration: event.duration, online: event.online, completion:{ result in
+            switch result {
+            case .success:
+                UserDefaultsProvider.shared.lessonAnalitics = nil
+            case.failure:
+                print("post watch analitics event faild.")
+            }
+        })
     }
     
     private func saveLessonLocation() {

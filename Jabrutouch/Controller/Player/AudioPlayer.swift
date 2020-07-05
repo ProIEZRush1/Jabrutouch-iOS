@@ -31,7 +31,7 @@ enum PlayerOrientation {
 }
 
 class AudioPlayer: UIView {
-
+    
     //----------------------------------------------------
     // MARK: - @IBOutlets
     //----------------------------------------------------
@@ -113,7 +113,7 @@ class AudioPlayer: UIView {
             
         }
     }
- 
+    
     func stopAndRelease() {
         let _ = self.pause()
         guard let player = self.player else { return }
@@ -154,7 +154,7 @@ class AudioPlayer: UIView {
             try AVAudioSession.sharedInstance().setActive(true)
             self.setupRemoteTransportControls()
         }
-        
+            
         catch {
             
         }
@@ -199,7 +199,7 @@ class AudioPlayer: UIView {
     @IBAction func rewindPauseButtonPressed(_ sender: UIButton) {
         DispatchQueue.main.async {
             self.rewind(10.0)
-//            self.rewind(30.0)
+            //            self.rewind(30.0)
         }
     }
     
@@ -236,6 +236,7 @@ class AudioPlayer: UIView {
             self.timeUpdateTimer?.invalidate()
             self.timeUpdateTimer = nil
             self.timeUpdateTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.updateTime), userInfo: nil, repeats: true)
+//            self.timeUpdateTimer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(self.updateAnaliticsTime), userInfo: nil, repeats: true)
             
             self.timeUpdateTimer?.fire()
         }
@@ -279,7 +280,7 @@ class AudioPlayer: UIView {
     private func changePlaybackSpeed(_ speed: PlaybackSpeed) {
         guard let player = self.player else { return }
         self.currentSpeed = speed
-
+        
         switch speed {
         case .regular:
             self.playbackSpeedButton.setTitle("1", for: .normal)
@@ -299,7 +300,7 @@ class AudioPlayer: UIView {
         return .success
     }
     
-
+    
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         guard let avPlayer = self.player else { return }
         if object as AnyObject? === avPlayer {
@@ -333,6 +334,16 @@ class AudioPlayer: UIView {
         }
     }
     
+//    @objc private func updateAnaliticsTime() {
+//        let duration  = Int64(self.currentTime) * 1000
+////        let duration = Int64(self.timeUpdateTimer?.tolerance ?? 0) * 1000
+//        if UIApplication.shared.applicationState == .active {
+//            print("inActive: \(duration)")
+//        } else {
+//            UserDefaultsProvider.shared.lessonAnalisticDuration = duration
+//            print("Background: \(duration)")
+//        }
+//    }
     //----------------------------------------------------
     // MARK: - Command Center
     //----------------------------------------------------
@@ -349,7 +360,7 @@ class AudioPlayer: UIView {
         commandCenter.pauseCommand.isEnabled = true
         commandCenter.changePlaybackPositionCommand.isEnabled = true
     }
-
+    
     private func removeRemoteTransportControls() {
         let commandCenter = MPRemoteCommandCenter.shared()
         
@@ -360,7 +371,7 @@ class AudioPlayer: UIView {
         commandCenter.pauseCommand.isEnabled = false
         commandCenter.changePlaybackPositionCommand.isEnabled = false
     }
-
+    
     func setupNowPlaying() {
         // Define Now Playing Info
         var nowPlayingInfo = [String : Any]()

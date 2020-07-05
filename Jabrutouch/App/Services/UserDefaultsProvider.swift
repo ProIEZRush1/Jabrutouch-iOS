@@ -21,6 +21,8 @@ class UserDefaultsProvider {
         case lessonWatched = "LessonWatched"
         case videoWatched = "VideoWatched"
         case donationPending = "DonationPending"
+        case lessonAnalisticDuration = "LessonAnalisticDuration"
+        case lessonAnalitics = "LessonAnalitics"
     }
     
     static private var provider: UserDefaultsProvider?
@@ -121,6 +123,27 @@ class UserDefaultsProvider {
         }
         set (lessonWatched) {
             self.defaults.set(lessonWatched.map{$0.values}, forKey: UserDefaultsKeys.lessonWatched.rawValue)
+            self.defaults.synchronize()
+        }
+    }
+    
+    var lessonAnalisticDuration: Int64? {
+        get {
+            return Int64(self.defaults.integer(forKey: UserDefaultsKeys.lessonAnalisticDuration.rawValue))
+        }
+        set (duration) {
+            self.defaults.set(duration, forKey: UserDefaultsKeys.lessonAnalisticDuration.rawValue)
+            self.defaults.synchronize()
+        }
+    }
+    
+    var lessonAnalitics: JTLessonAnalitics? {
+        get {
+            guard let values = self.defaults.object(forKey: UserDefaultsKeys.lessonAnalitics.rawValue) as? [String:Any] else { return nil }
+            return JTLessonAnalitics(values: values)
+        }
+        set (lesson) {
+            self.defaults.set(lesson?.values, forKey: UserDefaultsKeys.lessonAnalitics.rawValue)
             self.defaults.synchronize()
         }
     }
