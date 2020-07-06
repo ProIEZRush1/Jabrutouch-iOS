@@ -35,56 +35,27 @@ struct JTLessonAnalitics {
         if let event = values["event"] as? AnalyticsEventType {
             self.eventType = event
         } else {
-            if let event = values["event"] as? String {
-                switch event {
-                case "watch":
-                    self.eventType = AnalyticsEventType.watch
-                case "delete":
-                    self.eventType = AnalyticsEventType.delete
-                case "download":
-                    self.eventType = AnalyticsEventType.download
-                default:
-                    return nil
-                }
-            }else{
-                return nil
-            }
+            if let event = AnalyticsEventType(rawValue: values["event"] as! String) {
+                self.eventType = event
+            } else { return nil }
         }
         
         if let category = values["category"] as? AnalyticsEventCategory {
             self.category = category
         } else {
-            if let category = values["category"] as? String {
-                switch category {
-                case "Gemara":
-                    self.category = AnalyticsEventCategory.gemara
-                case "Mishna":
-                    self.category = AnalyticsEventCategory.mishna
-                default:
-                    return nil
-                }
-            }else{
-                return nil
-            }
+            if let category = AnalyticsEventCategory(rawValue: values["category"] as! String ){
+                self.category = category
+            } else { return nil }
         }
         
         if let mediaType = values["media_type"] as? JTLessonMediaType {
             self.mediaType = mediaType
         } else {
-            if let mediaType = values["media_type"] as? String {
-                switch mediaType {
-                case "video":
-                    self.mediaType = JTLessonMediaType.video
-                case "audio":
-                    self.mediaType = JTLessonMediaType.audio
-                default:
-                    return nil
-                }
-            }else{
-                return nil
-            }
-            
+            if let mediaType = JTLessonMediaType(rawValue: values["media_type"] as! String ) {
+                self.mediaType = mediaType
+            } else { return nil }
         }
+        
         if let lessonId = values["page_id"] as? Int {
             self.lessonId = lessonId
         } else { return nil }
