@@ -278,14 +278,18 @@ class LessonPlayerViewController: UIViewController {
     
     private func postWatchAnalyticEvent(event: JTLessonAnalitics?) {
         guard let event = event else { return }
-        AnalyticsManager.shared.postEvent(eventType: event.eventType, category: event.category, mediaType: event.mediaType, lessonId: event.lessonId, duration: event.duration, online: event.online, completion:{ result in
-            switch result {
-            case .success:
-                UserDefaultsProvider.shared.lessonAnalitics = nil
-            case.failure:
-                print("post watch analitics event faild.")
-            }
-        })
+        if event.duration > 0 {
+            AnalyticsManager.shared.postEvent(eventType: event.eventType, category: event.category, mediaType: event.mediaType, lessonId: event.lessonId, duration: event.duration, online: event.online, completion:{ result in
+                switch result {
+                case .success:
+                    UserDefaultsProvider.shared.lessonAnalitics = nil
+                case.failure:
+                    print("post watch analitics event faild.")
+                }
+            })
+        } else {
+            UserDefaultsProvider.shared.lessonAnalitics = nil
+        }
     }
     
     private func saveLessonLocation() {
@@ -320,6 +324,25 @@ class LessonPlayerViewController: UIViewController {
         DonationManager.shared.getDonationAllertData { (result) in
             switch result {
             case .success(let response):
+                // --- for object
+                //                if let donatedBy = response.donatedBy {
+                //                    if let crown_Id = response.crownId {
+                //                        self.crownId = crown_Id
+                //                    }
+                //                    self.donationAllertData = donatedBy
+                //                    if self.shouldDisplayDonationPopUp {
+                //                        DispatchQueue.main.async {
+                //                            self.presentDonateAlert()
+                //                        }
+                //                    }
+                //                } else {
+                //                    if self.shouldDisplayDonationPopUp {
+                //                        DispatchQueue.main.async {
+                //                            self.presentNotDonateAlert()
+                //                        }
+                //                    }
+                //                }
+                // --- for list
                 if response.donatedBy.count > 0 {
                     if let crown_Id = response.crownId {
                         self.crownId = crown_Id
@@ -445,6 +468,10 @@ class LessonPlayerViewController: UIViewController {
         if donationData.dedicationTemplateText != "" {
             alertVC.dedicationText = donationData.dedicationTemplateText
             alertVC.dedicationNameText = donationData.dedicationText
+        }
+        if (donationData.dedicationTemplateText.isEmpty && donationData.dedicationText.isEmpty) {
+            //            alertVC.dedicationText.
+            //            alertVC.dedicationNameText
         }
         if donationData.nameToRepresent != "" {
             alertVC.nameText = donationData.nameToRepresent
