@@ -63,8 +63,17 @@ class DonatedAlert: UIViewController {
     //====================================================
     func setStrings() {
         self.titleLabel.text = Strings.donatedTitle
-        let string = "\(self.dedicationText) \(self.dedicationNameText.uppercased())"
-        self.dedicationLabel.text = string
+        let dedicationString = "\(self.dedicationText)"
+        let dedicationNameString = "\(self.dedicationNameText)"
+        if dedicationString.isEmpty && dedicationNameString.isEmpty{
+            self.dedicationLabel.text = "Cuando termine la clase,"
+            self.dedicationNameLabel.text = "regala ketarim tú también."
+            self.dedicationLabel.font = self.dedicationLabel.font.withSize(18)
+            self.dedicationNameLabel.font = self.dedicationNameLabel.font.withSize(18)
+        } else {
+            self.dedicationLabel.text = dedicationString
+            self.dedicationNameLabel.text = dedicationNameString.uppercased()
+        }
         self.location.text = self.locationText
         self.nameLabel.text = self.nameText
         self.startBtn.setTitle(Strings.donatedBtn, for: .normal)
