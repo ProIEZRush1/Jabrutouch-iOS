@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ktH-Ne-cXw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ktH-Ne-cXw">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -482,13 +482,13 @@ support of it’s members.</string>
                                                                 </constraints>
                                                             </view>
                                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="15 out of 50 Ketarim" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4KX-l2-8mB">
-                                                                <rect key="frame" x="0.0" y="54" width="0.0" height="22.5"/>
+                                                                <rect key="frame" x="0.0" y="54" width="0.0" height="23"/>
                                                                 <fontDescription key="fontDescription" name="SFProDisplay-Medium" family="SF Pro Display" pointSize="19"/>
                                                                 <color key="textColor" red="0.17399999999999999" green="0.17000000000000001" blue="0.33800000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="left to use by students" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H8n-BF-WYA">
-                                                                <rect key="frame" x="0.0" y="80.5" width="0.0" height="17.5"/>
+                                                                <rect key="frame" x="0.0" y="81" width="0.0" height="17"/>
                                                                 <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="14"/>
                                                                 <color key="textColor" red="0.17399999999999999" green="0.17000000000000001" blue="0.33800000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -560,16 +560,16 @@ support of it’s members.</string>
                                         <rect key="frame" x="27" y="161" width="0.0" height="50"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gb1-Xu-59q">
-                                                <rect key="frame" x="0.0" y="10" width="29" height="30.5"/>
+                                                <rect key="frame" x="0.0" y="9.5" width="34.5" height="31.5"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="26"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Heart" translatesAutoresizingMaskIntoConstraints="NO" id="QFp-k8-9Vy">
-                                                <rect key="frame" x="34" y="19.5" width="18.5" height="15.5"/>
+                                                <rect key="frame" x="39.5" y="19" width="18.5" height="15.5"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thanked you" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cYH-He-jqa">
-                                                <rect key="frame" x="64.5" y="19" width="99" height="20.5"/>
+                                                <rect key="frame" x="70" y="18.5" width="99" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -909,7 +909,7 @@ Cg
                                 <rect key="frame" x="40" y="124" width="334" height="94"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="8WW-JH-Oge">
-                                        <rect key="frame" x="0.0" y="15" width="166.5" height="64"/>
+                                        <rect key="frame" x="0.0" y="15" width="174" height="64"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment Method" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hYD-4u-qh8">
                                                 <rect key="frame" x="0.0" y="0.0" width="114.5" height="17"/>
@@ -938,10 +938,10 @@ Cg
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="u7S-nR-LHA">
-                                        <rect key="frame" x="166.5" y="0.0" width="167.5" height="94"/>
+                                        <rect key="frame" x="174" y="0.0" width="160" height="94"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ceM-MG-tem">
-                                                <rect key="frame" x="76.5" y="0.0" width="91" height="47"/>
+                                                <rect key="frame" x="69" y="0.0" width="91" height="47"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="15"/>
                                                 <inset key="titleEdgeInsets" minX="-20" minY="0.0" maxX="20" maxY="0.0"/>
                                                 <state key="normal" title="Google Pay" image="BlueRightArrow">
@@ -952,10 +952,10 @@ Cg
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qgF-lG-Dk2">
-                                                <rect key="frame" x="52.5" y="47" width="115" height="47"/>
+                                                <rect key="frame" x="55" y="47" width="105" height="47"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="15"/>
                                                 <inset key="titleEdgeInsets" minX="-20" minY="0.0" maxX="20" maxY="0.0"/>
-                                                <state key="normal" title="$ 200 monthly" image="BlueRightArrow">
+                                                <state key="normal" title=" 200 monthly" image="BlueRightArrow">
                                                     <color key="titleColor" red="0.17254901959999999" green="0.16862745100000001" blue="0.33700000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
@@ -963,7 +963,7 @@ Cg
                                                 </connections>
                                             </button>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ohC-Zl-YxU">
-                                                <rect key="frame" x="119.5" y="94" width="48" height="0.0"/>
+                                                <rect key="frame" x="112" y="94" width="48" height="0.0"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="15"/>
                                                 <inset key="titleEdgeInsets" minX="-20" minY="0.0" maxX="20" maxY="0.0"/>
                                                 <state key="normal" title="None" image="BlueRightArrow">
@@ -971,7 +971,7 @@ Cg
                                                 </state>
                                             </button>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yzp-OV-Gzw">
-                                                <rect key="frame" x="112.5" y="94" width="55" height="0.0"/>
+                                                <rect key="frame" x="105" y="94" width="55" height="0.0"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="15"/>
                                                 <inset key="titleEdgeInsets" minX="-20" minY="0.0" maxX="20" maxY="0.0"/>
                                                 <state key="normal" title="Empty" image="BlueRightArrow">
