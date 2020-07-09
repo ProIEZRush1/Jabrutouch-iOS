@@ -22,6 +22,7 @@ protocol AudioPlayerDelegate: class {
     func currentTimeDidChange(currentTime: TimeInterval, duration: TimeInterval)
     func didStartPlaying()
     func didFinishPlaying()
+    func canSendLike()
 }
 
 
@@ -327,6 +328,9 @@ class AudioPlayer: UIView {
         let percentage = player.currentTime/player.duration
         self.slider.value = Float(percentage)
         self.delegate?.currentTimeDidChange(currentTime: player.currentTime, duration: player.duration)
+        if (Int(player.currentTime().seconds) == 30) {
+            self.delegate?.canSendLike()
+        }
         setupNowPlaying()
         if let image = Utils.linearGradientImage(endXPoint: percentage, size: self.slider.frame.size, colors: [Colors.appBlue, Colors.appOrange]) {
             self.slider.setMinimumTrackImage(image, for: .normal)
@@ -334,16 +338,7 @@ class AudioPlayer: UIView {
         }
     }
     
-//    @objc private func updateAnaliticsTime() {
-//        let duration  = Int64(self.currentTime) * 1000
-////        let duration = Int64(self.timeUpdateTimer?.tolerance ?? 0) * 1000
-//        if UIApplication.shared.applicationState == .active {
-//            print("inActive: \(duration)")
-//        } else {
-//            UserDefaultsProvider.shared.lessonAnalisticDuration = duration
-//            print("Background: \(duration)")
-//        }
-//    }
+
     //----------------------------------------------------
     // MARK: - Command Center
     //----------------------------------------------------

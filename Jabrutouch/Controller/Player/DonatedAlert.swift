@@ -9,7 +9,7 @@
 import UIKit
 
 protocol DonatedAlertDelegate: class {
-    func didDismiss()
+    func didDismiss(withDonation: Bool)
 }
 
 class DonatedAlert: UIViewController {
@@ -149,7 +149,7 @@ class DonatedAlert: UIViewController {
     
     @IBAction func startButtonPressed(_ sender: UIButton) {
         self.dismiss(animated: true) {
-            self.delegate?.didDismiss()
+            self.delegate?.didDismiss(withDonation: true)
         }
     }
     

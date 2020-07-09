@@ -115,6 +115,7 @@ class LessonPlayerViewController: UIViewController {
     var donationAllertData: JTDonated?
     
     var crownId: Int?
+    var withDonation = false
     
     private lazy var chatControlsView: ChatControlsView = {
         var view = ChatControlsView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 70))
@@ -321,7 +322,10 @@ class LessonPlayerViewController: UIViewController {
     //====================================================
     
     func getDonorText() {
-        DonationManager.shared.getDonationAllertData(isGemara:true, downloaded: true) { (result) in
+        var isGemara = false
+        if let _ = self.lesson as? JTGemaraLesson {isGemara = true}
+        let downloaded = lesson.isAudioDownloaded || lesson.isVideoDownloaded
+        DonationManager.shared.getDonationAllertData(isGemara: isGemara, downloaded: downloaded) { (result) in
             switch result {
             case .success(let response):
                 // --- for object
@@ -985,6 +989,7 @@ extension LessonPlayerViewController: PDFViewDelegate {
 }
 
 extension LessonPlayerViewController: AudioPlayerDelegate, VideoPlayerDelegate {
+    
     func videoPlayerModeDidChange(newMode: VideoPlayerMode) {
         self.videoPlayerMode = newMode
         if UIScreen.main.bounds.height <  UIScreen.main.bounds.width {
@@ -1005,6 +1010,24 @@ extension LessonPlayerViewController: AudioPlayerDelegate, VideoPlayerDelegate {
     }
     
     func didFinishPlaying() {
+    }
+    
+    func canSendLike() {
+        if self.withDonation {
+            var isGemara = false
+            if let _ = self.lesson as? JTGemaraLesson {
+                isGemara = true
+            }
+            DonationManager.shared.createLike(lessonId: self.lesson.id, isGemara: isGemara, crownId: self.crownId ?? 0) { (result) in
+                switch result {
+                case .success(let response):
+                    print(response)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
+        
     }
     
 }
@@ -1033,7 +1056,8 @@ extension LessonPlayerViewController: ContentRepositoryDownloadDelegate {
 
 extension LessonPlayerViewController: DonatedAlertDelegate {
     
-    func didDismiss() {
+    
+    func didDismiss(withDonation: Bool) {
         //        self.visualEffectView.isHidden = true
         if self.didSetMediaUrl == false {
             self.shouldStartPlay = true
@@ -1046,19 +1070,11 @@ extension LessonPlayerViewController: DonatedAlertDelegate {
                 let _ = self.audioPlayer.play()
             }
         }
-        var isGemara = false
-        if let _ = self.lesson as? JTGemaraLesson {
-            isGemara = true
-        }
-        DonationManager.shared.createLike(lessonId: self.lesson.id, isGemara: isGemara, crownId: self.crownId ?? 0) { (result) in
-            switch result {
-            case .success(let response):
-                print(response)
-            case .failure(let error):
-                print(error)
-            }
+        if withDonation {
+            self.withDonation = true
         }
     }
+    
 }
 
 extension LessonPlayerViewController: ChatControlsViewDelegate {

@@ -9,7 +9,7 @@
 import UIKit
 
 class NotDonateAlert: UIViewController, DonatedAlertDelegate {
-    func didDismiss() {
+    func didDismiss(withDonation: Bool) {
     }
     
     
@@ -101,7 +101,7 @@ class NotDonateAlert: UIViewController, DonatedAlertDelegate {
     
     @IBAction func startLessonButtonPresed(_ sender: Any) {
         self.dismiss(animated: true) {
-            self.delegate?.didDismiss()
+            self.delegate?.didDismiss(withDonation: false)
         }
         
     }
