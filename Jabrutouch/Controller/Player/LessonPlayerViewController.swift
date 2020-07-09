@@ -321,7 +321,7 @@ class LessonPlayerViewController: UIViewController {
     //====================================================
     
     func getDonorText() {
-        DonationManager.shared.getDonationAllertData { (result) in
+        DonationManager.shared.getDonationAllertData(isGemara:true, downloaded: true) { (result) in
             switch result {
             case .success(let response):
                 // --- for object
@@ -1032,6 +1032,7 @@ extension LessonPlayerViewController: ContentRepositoryDownloadDelegate {
 }
 
 extension LessonPlayerViewController: DonatedAlertDelegate {
+    
     func didDismiss() {
         //        self.visualEffectView.isHidden = true
         if self.didSetMediaUrl == false {

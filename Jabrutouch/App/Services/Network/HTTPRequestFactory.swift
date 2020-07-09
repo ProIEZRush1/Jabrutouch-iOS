@@ -211,10 +211,10 @@ class HttpRequestsFactory {
         return request
     }
     
-    class func createGetLessonDonationRequest(token: String) -> URLRequest?{
+    class func createGetLessonDonationRequest(isGemara:Bool, downloaded: Bool, token: String) -> URLRequest?{
         guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
         let link = baseUrl.appendingPathComponent("lesson_donations/81").absoluteString
-        guard let url = self.createUrl(fromLink: link, urlParams: ["is_gemara":"1","download":"1" ]) else { return nil }
+        guard let url = self.createUrl(fromLink: link, urlParams: ["is_gemara":"\(isGemara.intValue)","download":"\(downloaded.intValue)" ]) else { return nil }
         let additionalHeaders: [String:String] = ["Authorization": "token \(token)"]
         
         let request = self.createRequest(url, method: .get, body: nil, additionalHeaders: additionalHeaders)
