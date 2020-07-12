@@ -21,12 +21,12 @@ struct LessonDonationResponse: APIResponseModel {
         } else {
             self.donatedBy = []
         }
-        // --- for object
-        //        if let donatedByValues = values["donated_by"] as? [String: Any]{
-        //            if let donatedBy = JTDonated(values: donatedByValues){
-        //                self.donatedBy = donatedBy
-        //            } else { self.donatedBy = nil }
-        //        } else { self.donatedBy = nil }
+        //         --- for object
+        if let donatedByValues = values["donated_by"] as? [String: Any]{
+            if let donatedBy = JTDonated(values: donatedByValues){
+                self.donatedBy.append(donatedBy)
+            } else { self.donatedBy = [] }
+        } else { self.donatedBy = [] }
         
         if let crownId = values["crown_id"] as? Int {
             self.crownId = crownId

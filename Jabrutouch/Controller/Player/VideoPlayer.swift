@@ -29,6 +29,7 @@ protocol VideoPlayerDelegate: class {
     func didStartPlaying()
     func didFinishPlaying()
     func videoPlayerModeDidChange(newMode: VideoPlayerMode)
+    func sendLikeAfter30seconds()
 }
 
 class VideoPlayer: UIView {
@@ -637,6 +638,9 @@ class VideoPlayer: UIView {
         guard let player = self.player else { return }
         let count = self.currentTime / player.duration
         Utils.setProgressbar(count: count, view: self.videoProgressBar, rounded: false, cornerRadius: 8, bottomRadius: true)
+        if (Int(player.currentTime().seconds) == 30) {
+            self.delegate?.sendLikeAfter30seconds()
+        }
     }
     
     private func showAccessoriesView() {

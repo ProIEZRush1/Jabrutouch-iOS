@@ -1012,7 +1012,7 @@ extension LessonPlayerViewController: AudioPlayerDelegate, VideoPlayerDelegate {
     func didFinishPlaying() {
     }
     
-    func canSendLike() {
+    func sendLikeAfter30seconds() {
         if self.withDonation {
             var isGemara = false
             if let _ = self.lesson as? JTGemaraLesson {
