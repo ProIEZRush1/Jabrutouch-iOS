@@ -23,7 +23,7 @@ class UserDefaultsProvider {
         case donationPending = "DonationPending"
         case lessonAnalisticDuration = "LessonAnalisticDuration"
         case lessonAnalitics = "LessonAnalitics"
-    }
+        case lessonDonation = "LessonDonation"    }
     
     static private var provider: UserDefaultsProvider?
     
@@ -123,6 +123,17 @@ class UserDefaultsProvider {
         }
         set (lessonWatched) {
             self.defaults.set(lessonWatched.map{$0.values}, forKey: UserDefaultsKeys.lessonWatched.rawValue)
+            self.defaults.synchronize()
+        }
+    }
+    
+    var lessonDonation: [LessonDonationResponse]? {
+        get {
+            guard let values = self.defaults.object(forKey: UserDefaultsKeys.lessonDonation.rawValue) as? [[String:Any]] else { return []}
+            return values.compactMap{LessonDonationResponse(values: $0)}
+        }
+        set (lessonDonation) {
+            self.defaults.set(lessonDonation?.map{$0.values}, forKey: UserDefaultsKeys.lessonDonation.rawValue)
             self.defaults.synchronize()
         }
     }

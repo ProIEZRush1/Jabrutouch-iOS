@@ -211,9 +211,9 @@ class HttpRequestsFactory {
         return request
     }
     
-    class func createGetLessonDonationRequest(isGemara:Bool, downloaded: Bool, token: String) -> URLRequest?{
+    class func createGetLessonDonationRequest(lessonId:Int, isGemara:Bool, downloaded: Bool, token: String) -> URLRequest?{
         guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
-        let link = baseUrl.appendingPathComponent("lesson_donations/81").absoluteString
+        let link = baseUrl.appendingPathComponent("lesson_donations/\(lessonId)").absoluteString
         guard let url = self.createUrl(fromLink: link, urlParams: ["is_gemara":"\(isGemara.intValue)","download":"\(downloaded.intValue)" ]) else { return nil }
         let additionalHeaders: [String:String] = ["Authorization": "token \(token)"]
         

@@ -196,9 +196,9 @@ class ContentRepository {
         Result<JTGemaraLesson,JTError>)->Void) {
         
         
-//        if let lessonsDict = self.gemaraLessons["\(masechetId)"] {
-//
-//        }
+        //        if let lessonsDict = self.gemaraLessons["\(masechetId)"] {
+        //
+        //        }
         
         self.loadGemaraLesson(masechetId: masechetId, page: page) { (result:Result<JTGemaraLesson, JTError>) in
             switch result {
@@ -246,21 +246,21 @@ class ContentRepository {
     }
     
     func getMishnaLesson(masechetId: Int, chapter: Int, mishna: Int, forceRefresh:Bool = true, completion: @escaping (_ result:
-            Result<JTMishnaLesson,JTError>)->Void) {
-            
+        Result<JTMishnaLesson,JTError>)->Void) {
+        
         self.loadMishnaLesson(masechetId: masechetId, chapter: chapter, mishna: mishna) { (result:Result<JTMishnaLesson, JTError>) in
-                switch result {
-                case .success(let lesson):
-                    DispatchQueue.main.async {
-                        completion(.success(lesson))
-                    }
-                case .failure(let error):
-                    DispatchQueue.main.async {
-                        completion(.failure(error))
-                    }
+            switch result {
+            case .success(let lesson):
+                DispatchQueue.main.async {
+                    completion(.success(lesson))
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    completion(.failure(error))
                 }
             }
         }
+    }
     
     func getMishnaLessons(masechetId: Int, chapter: Int, forceRefresh:Bool = true, completion: @escaping (_ result: Result<[JTMishnaLesson],JTError>)->Void) {
         
@@ -271,7 +271,7 @@ class ContentRepository {
                 return
             }
         }
-            
+        
         
         self.loadMishnaLessons(masechetId: masechetId, chapter: chapter) { (result:Result<[JTMishnaLesson], JTError>) in
             switch result {
@@ -299,22 +299,22 @@ class ContentRepository {
         }
         
     }
-//    func getMasechetDownloadedGemaraLessons() -> [JTMasechetDownloadedGemaraLessons] {
-//        var downloadedLessons:[JTMasechetDownloadedGemaraLessons] = []
-//        for (sederId,masechtotDict) in self.downloadedGemaraLessons {
-//            guard let masechet = self.getMasechetById(sederId: sederId, masechetId: <#T##String#>) else {continue}
-//            var lessons: [JTGemaraLessonRecord] = []
-//            for (masechetId, _lessons) in masechtotDict {
-//                guard let masechet = self.getMasechetById(sederId: sederId, masechetId: masechetId) else { continue }
-//                for lesson in _lessons {
-//                    lessons.append(JTGemaraLessonRecord(lesson: lesson, masechetName: masechet.name, masechetId: masechetId, sederId: sederId))
-//                }
-//            }
-//            downloadedLessons.append(JTMasechetDownloadedGemaraLessons(masechetName: "", records: lessons, order: masechet.order))
-//        }
-//        downloadedLessons.sort{$0.order < $1.order}
-//        return downloadedLessons
-//    }
+    //    func getMasechetDownloadedGemaraLessons() -> [JTMasechetDownloadedGemaraLessons] {
+    //        var downloadedLessons:[JTMasechetDownloadedGemaraLessons] = []
+    //        for (sederId,masechtotDict) in self.downloadedGemaraLessons {
+    //            guard let masechet = self.getMasechetById(sederId: sederId, masechetId: <#T##String#>) else {continue}
+    //            var lessons: [JTGemaraLessonRecord] = []
+    //            for (masechetId, _lessons) in masechtotDict {
+    //                guard let masechet = self.getMasechetById(sederId: sederId, masechetId: masechetId) else { continue }
+    //                for lesson in _lessons {
+    //                    lessons.append(JTGemaraLessonRecord(lesson: lesson, masechetName: masechet.name, masechetId: masechetId, sederId: sederId))
+    //                }
+    //            }
+    //            downloadedLessons.append(JTMasechetDownloadedGemaraLessons(masechetName: "", records: lessons, order: masechet.order))
+    //        }
+    //        downloadedLessons.sort{$0.order < $1.order}
+    //        return downloadedLessons
+    //    }
     
     func getDownloadedGemaraLessons() -> [JTSederDownloadedGemaraLessons] {
         var downloadedLessons:[JTSederDownloadedGemaraLessons] = []
@@ -391,7 +391,7 @@ class ContentRepository {
     
     func lessonWatched(_ mishnaLesson: JTMishnaLesson, masechetName: String, masechetId: String, chapter: String, sederId: String) {
         let record = JTMishnaLessonRecord(lesson: mishnaLesson, masechetName: masechetName, masechetId: masechetId, chapter: chapter, sederId: sederId)
-
+        
         if self.lastWatchedMishnaLessons.contains(record) == false {
             self.lastWatchedMishnaLessons.insert(record, at: 0)
             if self.lastWatchedMishnaLessons.count > 4 {
@@ -693,7 +693,7 @@ class ContentRepository {
     // MARK: - Private methods
     //========================================
     
-
+    
     private func loadShas() {
         API.getMasechtot { (result: APIResult<GetMasechtotResponse>) in
             DispatchQueue.main.async {
@@ -829,6 +829,7 @@ class ContentRepository {
 }
 
 extension ContentRepository: DownloadTaskDelegate {
+    
     func downloadCompleted(downloadId: Int, mediaType: JTLessonMediaType, success: Bool) {
         self.lessonEndedDownloading(downloadId, mediaType: mediaType)
         if let (lesson,sederId,masechetId,chapter) = self.getLessonFromLocalStorage(withId: downloadId) {
@@ -847,6 +848,7 @@ extension ContentRepository: DownloadTaskDelegate {
                 if let mishnaLesson = lesson as? JTMishnaLesson, let _chapter = chapter {
                     self.addLessonToDownloaded(mishnaLesson, sederId: sederId, masechetId: masechetId, chapter: _chapter)
                 }
+                self.getLessonDonation(lesson: lesson)
             } else {
                 let VC = appDelegate.topmostViewController
                 Utils.showAlertMessage("Faild Downloding Lesson", viewControler: VC!)
@@ -856,6 +858,26 @@ extension ContentRepository: DownloadTaskDelegate {
         DispatchQueue.main.async {
             for delegate in self.downloadDelegates {
                 delegate.downloadCompleted(downloadId: downloadId, mediaType: mediaType)
+            }
+        }
+    }
+    
+    func getLessonDonation(lesson: JTLesson){
+        var isGemara = false
+        if let _ = lesson as? JTGemaraLesson {isGemara = true}
+        DonationManager.shared.getDonationAllertData(lessonId:lesson.id, isGemara: isGemara, downloaded: true) { (result) in
+            switch result {
+            case .success(var response):
+                if response.donatedBy.count > 0 {
+                    response.isgemara = isGemara
+                    response.lessId = lesson.id
+                    UserDefaultsProvider.shared.lessonDonation?.append(response)
+                } else {
+                    
+                }
+                
+            case .failure( let error):
+                    print(error)
             }
         }
     }
@@ -875,8 +897,8 @@ extension ContentRepository: DownloadTaskDelegate {
         let message = "You must sign in again"
         let vc = appDelegate.topmostViewController
         DispatchQueue.main.async {
-        Utils.showAlertMessage(message, title: titel, viewControler: vc!) { (action) in
-            LoginManager.shared.signOut {
+            Utils.showAlertMessage(message, title: titel, viewControler: vc!) { (action) in
+                LoginManager.shared.signOut {
                     let signInViewController = Storyboards.SignIn.signInViewController
                     appDelegate.setRootViewController(viewController: signInViewController, animated: true)
                 }

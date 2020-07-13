@@ -203,8 +203,8 @@ class API {
         }
     }
     
-    class func getLessonDonation(isGemara:Bool, downloaded: Bool,authToken: String, completionHandler:@escaping (_ response: APIResult<LessonDonationResponse>)->Void) {
-        guard let request = HttpRequestsFactory.createGetLessonDonationRequest(isGemara:isGemara, downloaded: downloaded,token: authToken) else {
+    class func getLessonDonation(lessonId:Int,isGemara:Bool, downloaded: Bool,authToken: String, completionHandler:@escaping (_ response: APIResult<LessonDonationResponse>)->Void) {
+        guard let request = HttpRequestsFactory.createGetLessonDonationRequest(lessonId:lessonId, isGemara:isGemara, downloaded: downloaded,token: authToken) else {
             completionHandler(APIResult.failure(.unableToCreateRequest))
             return
         }

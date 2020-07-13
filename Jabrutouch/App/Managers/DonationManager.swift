@@ -71,9 +71,9 @@ class DonationManager: NSObject {
         }
     }
     
-    func getDonationAllertData(isGemara:Bool, downloaded: Bool, completion:@escaping (_ result: Result<LessonDonationResponse, JTError>)->Void) {
+    func getDonationAllertData(lessonId:Int, isGemara:Bool, downloaded: Bool, completion:@escaping (_ result: Result<LessonDonationResponse, JTError>)->Void) {
         guard let authToken = UserDefaultsProvider.shared.currentUser?.token else { return }
-        API.getLessonDonation(isGemara:isGemara, downloaded: downloaded, authToken: authToken) { (result: APIResult<LessonDonationResponse>) in
+        API.getLessonDonation(lessonId:lessonId, isGemara:isGemara, downloaded: downloaded, authToken: authToken) { (result: APIResult<LessonDonationResponse>) in
             switch result {
             case .success(let response):
                 completion(.success(response))

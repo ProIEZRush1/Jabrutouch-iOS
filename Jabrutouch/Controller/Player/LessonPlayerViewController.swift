@@ -158,7 +158,7 @@ class LessonPlayerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupWatchAnalistic()
-        self.getDonorText()
+        !lesson.isAudioDownloaded && !lesson.isVideoDownloaded ? self.getDonorText() : self.getDonorDownloadText()
         self.messageHeaderView.isHidden = true
         self.chatControlsView.delegate = self
         self.pdfView.delegate = self
@@ -321,32 +321,41 @@ class LessonPlayerViewController: UIViewController {
     // MARK: - Setup
     //====================================================
     
+    func getDonorDownloadText() {
+        var isGemara = false
+        var newArray = [LessonDonationResponse]()
+        if let _ = self.lesson as? JTGemaraLesson {isGemara = true}
+        guard let userDefaultLessonDonations = UserDefaultsProvider.shared.lessonDonation else { return }
+        
+        for lessonDonation in userDefaultLessonDonations {
+            
+            if lessonDonation.isGemara == isGemara &&
+                lessonDonation.lessonId == self.lesson.id &&
+                lessonDonation.donatedBy.count > 0 {
+                self.donationAllertData = lessonDonation.copy().donatedBy[0]
+//                if self.shouldDisplayDonationPopUp {
+                self.shouldDisplayDonationPopUp = true
+                self.shouldStartPlay = false
+                    DispatchQueue.main.async {
+                        self.presentDonateAlert()
+                    }
+//                }
+            } else {
+                newArray.append(lessonDonation)
+            }
+        }
+        UserDefaultsProvider.shared.lessonDonation = newArray
+        
+    }
+    
     func getDonorText() {
         var isGemara = false
         if let _ = self.lesson as? JTGemaraLesson {isGemara = true}
         let downloaded = lesson.isAudioDownloaded || lesson.isVideoDownloaded
-        DonationManager.shared.getDonationAllertData(isGemara: isGemara, downloaded: downloaded) { (result) in
+        DonationManager.shared.getDonationAllertData(lessonId:lesson.id, isGemara: isGemara, downloaded: downloaded) { (result) in
             switch result {
             case .success(let response):
-                // --- for object
-                //                if let donatedBy = response.donatedBy {
-                //                    if let crown_Id = response.crownId {
-                //                        self.crownId = crown_Id
-                //                    }
-                //                    self.donationAllertData = donatedBy
-                //                    if self.shouldDisplayDonationPopUp {
-                //                        DispatchQueue.main.async {
-                //                            self.presentDonateAlert()
-                //                        }
-                //                    }
-                //                } else {
-                //                    if self.shouldDisplayDonationPopUp {
-                //                        DispatchQueue.main.async {
-                //                            self.presentNotDonateAlert()
-                //                        }
-                //                    }
-                //                }
-                // --- for list
+                
                 if response.donatedBy.count > 0 {
                     if let crown_Id = response.crownId {
                         self.crownId = crown_Id
