@@ -32,6 +32,8 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var gemaraLeadingConsraint: NSLayoutConstraint!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var gemaraMessageLabel: UILabel!
+    @IBOutlet weak var mishnaMessageLabel: UILabel!
     
     var delegate: MainModalDelegate?
     fileprivate var grayUpArrowXCentererdToGemara: NSLayoutConstraint?
@@ -119,6 +121,7 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
             if isGemaraSelected {
                 deleteButton.isHidden = !isHidden
             }
+            gemaraMessageLabel.isHidden = isHidden
             gemaraBooksImage.isHidden = isHidden
             gemaraNoDownloadedFilesMessage.isHidden = isHidden
             gemaraViewAllLessonsButton.isHidden = isHidden
@@ -126,6 +129,7 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
             if !isGemaraSelected {
                 deleteButton.isHidden = !isHidden
             }
+            mishnaMessageLabel.isHidden = isHidden
             mishnaBooksImage.isHidden = isHidden
             mishnaNoDownloadedFilesMessage.isHidden = isHidden
             mishnaViewAllLessonsButton.isHidden = isHidden

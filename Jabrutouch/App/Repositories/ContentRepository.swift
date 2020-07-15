@@ -489,6 +489,100 @@ class ContentRepository {
         self.updateDownloadedLessonsStorage()
     }
     
+    func removeOldDownloadedFiles(){
+        
+        for (sederId, masechet) in downloadedGemaraLessons {
+            for (masechetId, value) in masechet {
+                for lesson in value {
+                    
+                    self.removedOldFiles(gemara: lesson, mishna: nil, sederId: sederId, masechetId: masechetId ,chapter: nil)
+                    
+                }
+            }
+        }
+        
+        for (sederId, masechet) in downloadedMishnaLessons {
+            for (masechetId, chapter) in masechet {
+                for (chapterId, value) in chapter {
+                    for lesson in value {
+                        
+                        self.removedOldFiles(gemara: nil, mishna: lesson, sederId: sederId, masechetId: masechetId ,chapter: chapterId)
+                    }
+                }
+            }
+        }
+    }
+    
+    func removedOldFiles(gemara: JTGemaraLesson?, mishna: JTMishnaLesson? , sederId: String, masechetId: String, chapter: String?){
+        var lessonId = 0
+        gemara?.id != nil ? lessonId = gemara!.id : mishna?.id != nil ? lessonId = mishna!.id : nil
+        
+        let fileManager = FileManager.default
+        let files = ["\(lessonId)_aud.mp3", "\(lessonId)_vid.mp4", "\(lessonId)_text.pdf"]
+        var isRemovedAll = [false, false]
+        
+        for (i, file) in files.enumerated() {
+            guard let currentFile = FileDirectory.cache.url?.appendingPathComponent(file) else { return }
+            do{
+                if i == files.count-1 {
+                    if !isRemovedAll.allSatisfy({$0}) {
+                        return
+                    }
+                }
+                let attributes = try fileManager.attributesOfItem(atPath: currentFile.path)
+                
+                if let creationDate = attributes[FileAttributeKey.creationDate] as? Date {
+                    
+                    if Date().timeIntervalSince(creationDate) >= 60*10 {
+                        
+                        FilesManagementProvider.shared.removeFiles(currentFile) { (url, result) in
+                           
+                            switch result {
+                            case .success:
+                                i < files.count-1 ? isRemovedAll[i] = true :
+                                    print("Success in removing file: \(url.absoluteString)")
+                            case .failure(let error):
+                                i < files.count-1 ? isRemovedAll[i] = false :
+                                print("Failed removing file: \(url.absoluteString), with error: \(error)")
+                            }}}}
+            } catch {
+                print("Error while enumerating files \(currentFile.path): \(error.localizedDescription)")
+                i < files.count-1 ? isRemovedAll[i] = true : nil
+            }
+        }
+        
+        if isRemovedAll.allSatisfy({$0}) {
+            if mishna != nil && chapter != nil {
+                self.removeMishnaLessonFromArray(mishna!, sederId: sederId, masechetId: masechetId, chapter: chapter!)
+            } else if gemara != nil{
+                self.removeGemaraLessonFromArray(gemara!, sederId: sederId, masechetId: masechetId)
+            }
+            self.updateDownloadedLessonsStorage()
+        }
+    }
+    
+    func removeGemaraLessonFromArray(_ lesson: JTGemaraLesson, sederId: String, masechetId: String){
+        self.downloadedGemaraLessons[sederId]?[masechetId]?.remove(lesson)
+        if self.downloadedGemaraLessons[sederId]?[masechetId]?.count == 0 {
+            self.downloadedGemaraLessons[sederId]?.removeValue(forKey: masechetId)
+        }
+        if self.downloadedGemaraLessons[sederId]?.count == 0 {
+            self.downloadedGemaraLessons.removeValue(forKey: sederId)
+        }
+    }
+    
+    func removeMishnaLessonFromArray(_ lesson: JTMishnaLesson, sederId: String, masechetId: String, chapter: String) {
+        self.downloadedMishnaLessons[sederId]?[masechetId]?[chapter]?.remove(lesson)
+        if self.downloadedMishnaLessons[sederId]?[masechetId]?[chapter]?.count == 0 {
+            self.downloadedMishnaLessons[sederId]?[masechetId]?.removeValue(forKey: chapter)
+        }
+        if self.downloadedMishnaLessons[sederId]?[masechetId]?.count == 0 {
+            self.downloadedMishnaLessons[sederId]?.removeValue(forKey: masechetId)
+        }
+        if self.downloadedMishnaLessons[sederId]?.count == 0 {
+            self.downloadedMishnaLessons.removeValue(forKey: sederId)
+        }
+    }
     
     func removeLessonFromDownloaded(_ lesson: JTGemaraLesson, sederId: String, masechetId: String) {
         self.downloadedGemaraLessons[sederId]?[masechetId]?.remove(lesson)
@@ -877,14 +971,14 @@ extension ContentRepository: DownloadTaskDelegate {
                 }
                 
             case .failure( let error):
-                    print(error)
+                print(error)
             }
         }
     }
     
     func downloadProgress(downloadId: Int, progress: Float, mediaType: JTLessonMediaType) {        
         self.lessonDownloadProgress(downloadId, progress: progress, mediaType: mediaType)
-
+        
         DispatchQueue.main.async {
             for delegate in self.downloadDelegates {
                 delegate.downloadProgress(downloadId: downloadId, progress: progress, mediaType: mediaType )

@@ -28,6 +28,7 @@ class SplashScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.activityIndicator.isHidden = true
+        ContentRepository.shared.removeOldDownloadedFiles()
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Csn-pr-HK7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Csn-pr-HK7">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -133,17 +133,17 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LNg-ta-WbE" userLabel="Books Top Padding">
-                                <rect key="frame" x="0.0" y="271.66666666666669" width="414" height="61.666666666666686"/>
+                                <rect key="frame" x="0.0" y="271.66666666666669" width="414" height="124.66666666666669"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Books Top Padding"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pug-gw-ytS" userLabel="Middle Books Padding">
-                                <rect key="frame" x="0.0" y="536" width="414" height="22.666666666666629"/>
+                                <rect key="frame" x="0.0" y="599" width="414" height="22.666666666666629"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Middle Books Padding"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HBk-PX-EHn" userLabel="Bottom Books Padding">
-                                <rect key="frame" x="0.0" y="616" width="414" height="43"/>
+                                <rect key="frame" x="0.0" y="679" width="414" height="42.666666666666629"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Bottom Books Padding"/>
                             </view>
@@ -193,7 +193,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jyb-sK-pGD" userLabel="Audio">
-                                                            <rect key="frame" x="171.66666666666666" y="2" width="80.666666666666657" height="72.333333333333329"/>
+                                                            <rect key="frame" x="171" y="2" width="81" height="72.333333333333329"/>
                                                             <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                                             <state key="normal" image="audio-nat"/>
                                                             <connections>
@@ -201,7 +201,7 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pTh-16-GT2" userLabel="Video">
-                                                            <rect key="frame" x="267.33333333333331" y="1" width="70.666666666666686" height="74.333333333333329"/>
+                                                            <rect key="frame" x="267" y="1" width="71" height="74.333333333333329"/>
                                                             <inset key="contentEdgeInsets" minX="5" minY="11" maxX="5" maxY="11"/>
                                                             <state key="normal" image="video-nat"/>
                                                             <connections>
@@ -323,7 +323,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="efs-vY-7eU" userLabel="Audio">
-                                                            <rect key="frame" x="171.66666666666666" y="2" width="80.666666666666657" height="72.333333333333329"/>
+                                                            <rect key="frame" x="171" y="2" width="81" height="72.333333333333329"/>
                                                             <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                                             <state key="normal" image="audio-nat"/>
                                                             <connections>
@@ -331,7 +331,7 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gCk-Wa-Bj7" userLabel="Video">
-                                                            <rect key="frame" x="267.33333333333331" y="1" width="70.666666666666686" height="74.333333333333329"/>
+                                                            <rect key="frame" x="267" y="1" width="71" height="74.333333333333329"/>
                                                             <inset key="contentEdgeInsets" minX="5" minY="11" maxX="5" maxY="11"/>
                                                             <state key="normal" image="video-nat"/>
                                                             <connections>
@@ -411,32 +411,32 @@
                                 </prototypes>
                             </tableView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Books" translatesAutoresizingMaskIntoConstraints="NO" id="jYC-Qw-FwK">
-                                <rect key="frame" x="69.666666666666657" y="333.33333333333331" width="274.66666666666674" height="202.66666666666669"/>
+                                <rect key="frame" x="69.666666666666657" y="396.33333333333331" width="274.66666666666674" height="202.66666666666669"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Gemara Books Image"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="jYC-Qw-FwK" secondAttribute="height" multiplier="218:161" id="ug6-1i-UUs"/>
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Books" translatesAutoresizingMaskIntoConstraints="NO" id="w9c-e3-S7w">
-                                <rect key="frame" x="483.66666666666663" y="333.33333333333331" width="274.66666666666663" height="202.66666666666669"/>
+                                <rect key="frame" x="483.66666666666663" y="396.33333333333331" width="274.66666666666663" height="202.66666666666669"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Mishna Books Image"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No downloaded files yet" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oEo-6y-Cg5">
-                                <rect key="frame" x="102" y="558.66666666666663" width="210" height="57.333333333333371"/>
+                                <rect key="frame" x="102" y="621.66666666666663" width="210" height="57.333333333333371"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Gemara No download message"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <color key="textColor" red="0.1764705882352941" green="0.16862745098039217" blue="0.66274509803921566" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No downloaded files yet" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jn9-50-JQa">
-                                <rect key="frame" x="516" y="558.66666666666663" width="210" height="57.333333333333371"/>
+                                <rect key="frame" x="516" y="621.66666666666663" width="210" height="57.333333333333371"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Mishna No download message"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <color key="textColor" red="0.1764705882" green="0.16862745100000001" blue="0.66274509800000003" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2FK-Ux-bgO">
-                                <rect key="frame" x="33" y="658.66666666666663" width="348" height="47"/>
+                                <rect key="frame" x="33" y="721.66666666666663" width="348" height="47"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Gemara View all lessons button"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="47" id="rVy-Du-GVX"/>
@@ -450,7 +450,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dj4-bR-2Vk">
-                                <rect key="frame" x="447" y="658.66666666666663" width="348" height="47"/>
+                                <rect key="frame" x="447" y="721.66666666666663" width="348" height="47"/>
                                 <accessibility key="accessibilityConfiguration" identifier="Mishna View all lessons button"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="47" id="iCM-Ee-u5s"/>
@@ -463,11 +463,26 @@
                                     <action selector="mishnaAllLessonsPressed:" destination="AIk-jv-S31" eventType="touchUpInside" id="iMU-bH-tCX"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tus clases descargadas solo estarán disponibles 30 días." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ta7-gU-b6T">
+                                <rect key="frame" x="32.333333333333343" y="312.66666666666669" width="349.33333333333326" height="43"/>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="18"/>
+                                <color key="textColor" red="1" green="0.37254901959999998" blue="0.31372549020000001" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tus clases descargadas solo estarán disponibles 30 días." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fPL-aD-z7g">
+                                <rect key="frame" x="446.33333333333337" y="312.66666666666669" width="349.33333333333337" height="43"/>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="18"/>
+                                <color key="textColor" red="1" green="0.37254901959999998" blue="0.31372549020000001" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="shU-4x-Wkk" firstAttribute="bottom" secondItem="JXu-tQ-O0q" secondAttribute="bottom" id="07D-Rm-Nfx"/>
                             <constraint firstItem="2FK-Ux-bgO" firstAttribute="top" secondItem="HBk-PX-EHn" secondAttribute="bottom" id="0hR-Kp-hTL"/>
+                            <constraint firstItem="fPL-aD-z7g" firstAttribute="width" secondItem="JXu-tQ-O0q" secondAttribute="width" multiplier="341:404" id="130-HJ-ldz"/>
+                            <constraint firstItem="fPL-aD-z7g" firstAttribute="centerX" secondItem="JXu-tQ-O0q" secondAttribute="centerX" id="2uc-WY-fJd"/>
+                            <constraint firstItem="ta7-gU-b6T" firstAttribute="centerY" secondItem="LNg-ta-WbE" secondAttribute="centerY" id="4Ri-mU-ZLg"/>
                             <constraint firstItem="pug-gw-ytS" firstAttribute="top" secondItem="w9c-e3-S7w" secondAttribute="bottom" id="4vF-AO-CIo"/>
                             <constraint firstItem="LNg-ta-WbE" firstAttribute="top" secondItem="CHZ-zJ-NUU" secondAttribute="bottom" id="6qP-Xm-uWj"/>
                             <constraint firstItem="HBk-PX-EHn" firstAttribute="top" secondItem="jn9-50-JQa" secondAttribute="bottom" id="90B-82-qw2"/>
@@ -487,9 +502,11 @@
                             <constraint firstItem="CHZ-zJ-NUU" firstAttribute="top" secondItem="shU-4x-Wkk" secondAttribute="top" id="VK4-pa-mdu"/>
                             <constraint firstItem="jYC-Qw-FwK" firstAttribute="centerX" secondItem="Hqr-Cv-dqQ" secondAttribute="centerX" id="ViV-e1-ayd"/>
                             <constraint firstItem="w9c-e3-S7w" firstAttribute="centerX" secondItem="JXu-tQ-O0q" secondAttribute="centerX" id="Y0g-5T-52s"/>
+                            <constraint firstItem="ta7-gU-b6T" firstAttribute="width" secondItem="Hqr-Cv-dqQ" secondAttribute="width" multiplier="341:404" id="Y7d-AU-Ria"/>
                             <constraint firstItem="JXu-tQ-O0q" firstAttribute="leading" secondItem="Hqr-Cv-dqQ" secondAttribute="trailing" id="YpV-dc-pxk"/>
                             <constraint firstItem="jYC-Qw-FwK" firstAttribute="height" secondItem="shU-4x-Wkk" secondAttribute="height" multiplier="161:650" id="Yvv-78-Hgr"/>
                             <constraint firstItem="Hqr-Cv-dqQ" firstAttribute="leading" secondItem="shU-4x-Wkk" secondAttribute="leading" id="Zqn-bI-u5Z"/>
+                            <constraint firstItem="ta7-gU-b6T" firstAttribute="centerX" secondItem="Hqr-Cv-dqQ" secondAttribute="centerX" id="afI-D8-FdB"/>
                             <constraint firstItem="pug-gw-ytS" firstAttribute="centerX" secondItem="shU-4x-Wkk" secondAttribute="centerX" id="c24-qa-Cc5"/>
                             <constraint firstItem="2FK-Ux-bgO" firstAttribute="centerX" secondItem="Hqr-Cv-dqQ" secondAttribute="centerX" id="cj8-09-4ip"/>
                             <constraint firstItem="Dj4-bR-2Vk" firstAttribute="centerX" secondItem="JXu-tQ-O0q" secondAttribute="centerX" id="cvL-zw-w8i"/>
@@ -501,11 +518,12 @@
                             <constraint firstItem="oEo-6y-Cg5" firstAttribute="centerX" secondItem="Hqr-Cv-dqQ" secondAttribute="centerX" id="g6r-QT-4p3"/>
                             <constraint firstItem="Hqr-Cv-dqQ" firstAttribute="width" secondItem="shU-4x-Wkk" secondAttribute="width" id="hk1-Tf-hNf"/>
                             <constraint firstItem="nj7-2C-gXw" firstAttribute="top" secondItem="Eea-gi-JRr" secondAttribute="top" id="jmn-O9-84G"/>
-                            <constraint firstItem="LNg-ta-WbE" firstAttribute="height" secondItem="shU-4x-Wkk" secondAttribute="height" multiplier="49:650" id="kIB-wT-6mz"/>
+                            <constraint firstItem="LNg-ta-WbE" firstAttribute="height" secondItem="shU-4x-Wkk" secondAttribute="height" multiplier="99:650" id="kIB-wT-6mz"/>
                             <constraint firstItem="Dj4-bR-2Vk" firstAttribute="top" secondItem="HBk-PX-EHn" secondAttribute="bottom" id="kzY-fk-NuT"/>
                             <constraint firstItem="nj7-2C-gXw" firstAttribute="leading" secondItem="CHZ-zJ-NUU" secondAttribute="leading" id="lid-oK-ajh"/>
                             <constraint firstItem="nj7-2C-gXw" firstAttribute="trailing" secondItem="CHZ-zJ-NUU" secondAttribute="trailing" id="mBr-vB-xrm"/>
                             <constraint firstItem="pug-gw-ytS" firstAttribute="width" secondItem="shU-4x-Wkk" secondAttribute="width" id="mDw-WK-7xs"/>
+                            <constraint firstItem="fPL-aD-z7g" firstAttribute="centerY" secondItem="LNg-ta-WbE" secondAttribute="centerY" id="mcw-mP-egE"/>
                             <constraint firstItem="vgn-DB-j2Y" firstAttribute="centerX" secondItem="shU-4x-Wkk" secondAttribute="centerX" id="oOg-Hk-E2H"/>
                             <constraint firstItem="Hqr-Cv-dqQ" firstAttribute="top" secondItem="vgn-DB-j2Y" secondAttribute="bottom" id="rE0-fN-y4O"/>
                             <constraint firstItem="vgn-DB-j2Y" firstAttribute="height" secondItem="shU-4x-Wkk" secondAttribute="height" multiplier="20:650" id="rO3-OV-GAQ"/>
@@ -530,6 +548,7 @@
                         <outlet property="gemaraBooksImage" destination="jYC-Qw-FwK" id="5hQ-Um-cUn"/>
                         <outlet property="gemaraButton" destination="XRG-CS-ct2" id="4Lg-xb-Tl0"/>
                         <outlet property="gemaraLeadingConsraint" destination="Zqn-bI-u5Z" id="Xwo-Fk-3E4"/>
+                        <outlet property="gemaraMessageLabel" destination="ta7-gU-b6T" id="qtD-IX-Vuu"/>
                         <outlet property="gemaraNoDownloadedFilesMessage" destination="oEo-6y-Cg5" id="tJS-zP-LkA"/>
                         <outlet property="gemaraTableView" destination="Hqr-Cv-dqQ" id="ElJ-y4-PxG"/>
                         <outlet property="gemaraViewAllLessonsButton" destination="2FK-Ux-bgO" id="fUM-Jh-Pno"/>
@@ -538,6 +557,7 @@
                         <outlet property="initialGrayUpArrowXCentererdToGemara" destination="AIR-0i-SQJ" id="J8g-Qy-de8"/>
                         <outlet property="mishnaBooksImage" destination="w9c-e3-S7w" id="ds6-xO-44P"/>
                         <outlet property="mishnaButton" destination="Vuv-pD-qgu" id="XIv-Ur-58T"/>
+                        <outlet property="mishnaMessageLabel" destination="fPL-aD-z7g" id="cDg-A9-6c3"/>
                         <outlet property="mishnaNoDownloadedFilesMessage" destination="jn9-50-JQa" id="LV6-C1-5XZ"/>
                         <outlet property="mishnaTableView" destination="JXu-tQ-O0q" id="TAt-d4-uv6"/>
                         <outlet property="mishnaViewAllLessonsButton" destination="Dj4-bR-2Vk" id="3EZ-eu-oK8"/>
@@ -546,7 +566,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p42-VI-XV0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1095.6521739130435" y="133.92857142857142"/>
+            <point key="canvasLocation" x="1088" y="140"/>
         </scene>
         <!--Downloads Navigation Controller-->
         <scene sceneID="fbL-Gk-Soo">

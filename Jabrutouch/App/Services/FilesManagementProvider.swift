@@ -85,6 +85,18 @@ class FilesManagementProvider {
         }
     }
     
+    func removeFiles(_ url: URL, completion: (URL, Result<Void,Error>)->Void) {
+        
+            do {
+                try FileManager.default.removeItem(at: url)
+                completion(url, .success(()) )
+            }
+            catch let error{
+                completion(url, .failure(error))
+            }
+        
+    }
+    
     func getResource(resourceName: String, extensionName: String) -> Data? {
         guard let url = Bundle.main.url(forResource: resourceName, withExtension: extensionName) else { return nil }
         do {
@@ -140,22 +152,23 @@ class FilesManagementProvider {
     }
     
     func overwriteFile(path:URL, data: Data,  completion: @escaping(Result<Void,Error>)->Void) throws {
-           if self.isFileExist(atUrl: path) {
-               do {
-                   try self.removeFile(atPath: path)
-               }
-               catch let error {
-                   throw error
-               }
-           }
-           
-           do {
-               try data.write(to: path)
+        if self.isFileExist(atUrl: path) {
+            do {
+                try self.removeFile(atPath: path)
+            }
+            catch let error {
+                throw error
+            }
+        }
+        
+        do {
+            try data.write(to: path)
             
-           }
-           catch let error {
-               throw error
-           }
-       }
+        }
+        catch let error {
+            throw error
+        }
+    }
+    
     
 }
