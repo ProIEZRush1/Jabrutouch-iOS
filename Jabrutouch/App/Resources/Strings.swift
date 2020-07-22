@@ -371,6 +371,18 @@ class Strings {
         return NSLocalizedString("walkthrough4Text", comment: "")
     }
     
+    class var tourwalkthrough1Text: String {
+        return NSLocalizedString("tourwalkthrough1Text", comment: "")
+    }
+    class var tourwalkthrough2Text: String {
+        return NSLocalizedString("tourwalkthrough2Text", comment: "")
+    }
+    class var tourwalkthrough3Text: String {
+        return NSLocalizedString("tourwalkthrough3Text", comment: "")
+    }
+    class var tourwalkthrough4Text: String {
+        return NSLocalizedString("tourwalkthrough4Text", comment: "")
+    }
     class var recentsGemara: String {
         return NSLocalizedString("recentsGemara", comment: "")
     }

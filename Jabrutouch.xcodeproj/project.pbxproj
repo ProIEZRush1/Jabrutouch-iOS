@@ -171,11 +171,16 @@
 		606DB0002499063F00EA79E2 /* FifthChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606DAFFF2499063F00EA79E2 /* FifthChildVC.swift */; };
 		60717D5C24AE19790099DB1D /* JTLessonAnalitics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60717D5B24AE19790099DB1D /* JTLessonAnalitics.swift */; };
 		608378EE249271D2005C60BE /* JTPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608378ED249271D2005C60BE /* JTPopup.swift */; };
+		6087D86524C5B74400EF6902 /* TourWalkThroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6087D86424C5B74400EF6902 /* TourWalkThroughViewController.swift */; };
+		6087D86724C5B7AF00EF6902 /* TourWalkThroughCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6087D86624C5B7AF00EF6902 /* TourWalkThroughCollectionViewCell.swift */; };
+		6087D86924C5B96D00EF6902 /* JTTourBarPageInddicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6087D86824C5B96D00EF6902 /* JTTourBarPageInddicator.swift */; };
+		6087D86C24C5CC5900EF6902 /* TourWalkThrough.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6087D86B24C5CC5900EF6902 /* TourWalkThrough.storyboard */; };
 		608CC713241129F9002136A8 /* animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 608CC712241129F8002136A8 /* animation.json */; };
 		609259FE2455A64100930DD4 /* NotDonationAlert.xib in Resources */ = {isa = PBXBuildFile; fileRef = 609259FD2455A64100930DD4 /* NotDonationAlert.xib */; };
 		609D498524A23C640008E4AA /* RemoveAccountAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609D498424A23C640008E4AA /* RemoveAccountAlertViewController.swift */; };
 		609F80B32490E7D9003D1E9A /* PopUps.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 609F80B22490E7D9003D1E9A /* PopUps.storyboard */; };
 		609F80B524910144003D1E9A /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609F80B424910144003D1E9A /* PopUpViewController.swift */; };
+		60B6021E24C898AB00D960C9 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 60B6021D24C8984B00D960C9 /* Roboto-Light.ttf */; };
 		60B83D6D2455E0DA00E558C7 /* NotDonateAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B83D6C2455E0DA00E558C7 /* NotDonateAlert.swift */; };
 		60DB15772415494C00BD470F /* ChangeSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DB15762415494C00BD470F /* ChangeSettingsViewController.swift */; };
 		83137EFD23F04024003B9DA6 /* JTDonation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83137EFC23F04024003B9DA6 /* JTDonation.swift */; };
@@ -480,11 +485,16 @@
 		60717D5B24AE19790099DB1D /* JTLessonAnalitics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTLessonAnalitics.swift; sourceTree = "<group>"; };
 		608378ED249271D2005C60BE /* JTPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTPopup.swift; sourceTree = "<group>"; };
 		608378EF24927B0F005C60BE /* GetPopupResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPopupResponse.swift; sourceTree = "<group>"; };
+		6087D86424C5B74400EF6902 /* TourWalkThroughViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourWalkThroughViewController.swift; sourceTree = "<group>"; };
+		6087D86624C5B7AF00EF6902 /* TourWalkThroughCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourWalkThroughCollectionViewCell.swift; sourceTree = "<group>"; };
+		6087D86824C5B96D00EF6902 /* JTTourBarPageInddicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTTourBarPageInddicator.swift; sourceTree = "<group>"; };
+		6087D86B24C5CC5900EF6902 /* TourWalkThrough.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TourWalkThrough.storyboard; sourceTree = "<group>"; };
 		608CC712241129F8002136A8 /* animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = animation.json; sourceTree = "<group>"; };
 		609259FD2455A64100930DD4 /* NotDonationAlert.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotDonationAlert.xib; sourceTree = "<group>"; };
 		609D498424A23C640008E4AA /* RemoveAccountAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveAccountAlertViewController.swift; sourceTree = "<group>"; };
 		609F80B22490E7D9003D1E9A /* PopUps.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PopUps.storyboard; sourceTree = "<group>"; };
 		609F80B424910144003D1E9A /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
+		60B6021D24C8984B00D960C9 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
 		60B83D6C2455E0DA00E558C7 /* NotDonateAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotDonateAlert.swift; sourceTree = "<group>"; };
 		60DB15762415494C00BD470F /* ChangeSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeSettingsViewController.swift; sourceTree = "<group>"; };
 		715A51EC96A60C90B07F8038 /* Pods-Jabrutouch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jabrutouch.debug.xcconfig"; path = "Target Support Files/Pods-Jabrutouch/Pods-Jabrutouch.debug.xcconfig"; sourceTree = "<group>"; };
@@ -659,6 +669,7 @@
 		2120BE2522DF2C62004854DB /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				60B6021D24C8984B00D960C9 /* Roboto-Light.ttf */,
 				21678D1A22DF2CB9007BC74C /* SF-Pro-Display-Black.otf */,
 				21678D3622DF2CC5007BC74C /* SF-Pro-Display-BlackItalic.otf */,
 				21678D2D22DF2CC2007BC74C /* SF-Pro-Display-Bold.otf */,
@@ -935,6 +946,7 @@
 				604C28C9245703B200A19D87 /* ForgetPassword */,
 				836A883D238F05F600F68539 /* Gallery */,
 				213196BC22F6EA3E00B0AF5F /* SplashScreen */,
+				6087D86A24C5C71200EF6902 /* TourWalkThrough */,
 				2133C21122DCA0E000F910B9 /* WalkThrough */,
 				2133C20F22DCA0CD00F910B9 /* SignIn */,
 				2133C21022DCA0D900F910B9 /* Main */,
@@ -1041,6 +1053,7 @@
 				833E621D23992C2500EC93C7 /* Messages.storyboard */,
 				83A936AA23D9D53A007BA207 /* Donations.storyboard */,
 				609F80B22490E7D9003D1E9A /* PopUps.storyboard */,
+				6087D86B24C5CC5900EF6902 /* TourWalkThrough.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -1115,6 +1128,7 @@
 				836A884A23951CA700F68539 /* JBView.swift */,
 				8395978A23F97745007B96EB /* JBProgressBarWithButton.swift */,
 				8395979F24029E26007B96EB /* HoursView.swift */,
+				6087D86824C5B96D00EF6902 /* JTTourBarPageInddicator.swift */,
 			);
 			path = "Custom Controlles";
 			sourceTree = "<group>";
@@ -1290,6 +1304,15 @@
 				604C28C72457038E00A19D87 /* ForgotPasswordViewController.swift */,
 			);
 			path = ForgetPassword;
+			sourceTree = "<group>";
+		};
+		6087D86A24C5C71200EF6902 /* TourWalkThrough */ = {
+			isa = PBXGroup;
+			children = (
+				6087D86424C5B74400EF6902 /* TourWalkThroughViewController.swift */,
+				6087D86624C5B7AF00EF6902 /* TourWalkThroughCollectionViewCell.swift */,
+			);
+			path = TourWalkThrough;
 			sourceTree = "<group>";
 		};
 		609F80B62491014B003D1E9A /* PopUp */ = {
@@ -1550,6 +1573,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60B6021E24C898AB00D960C9 /* Roboto-Light.ttf in Resources */,
 				21678D4622DF2CEC007BC74C /* SF-Pro-Display-Black.otf in Resources */,
 				21678D4722DF2CEC007BC74C /* SF-Pro-Display-BlackItalic.otf in Resources */,
 				21678D4822DF2CEC007BC74C /* SF-Pro-Display-Bold.otf in Resources */,
@@ -1583,6 +1607,7 @@
 				21678D5B22DF2CED007BC74C /* SF-Pro-Rounded-Light.otf in Resources */,
 				21678D5C22DF2CED007BC74C /* SF-Pro-Rounded-Medium.otf in Resources */,
 				836A8845238FD00100F68539 /* Gallery.storyboard in Resources */,
+				6087D86C24C5CC5900EF6902 /* TourWalkThrough.storyboard in Resources */,
 				538691532379E9B100CC95B5 /* Profile.storyboard in Resources */,
 				21678D5D22DF2CED007BC74C /* SF-Pro-Rounded-Regular.otf in Resources */,
 				21678D5E22DF2CED007BC74C /* SF-Pro-Rounded-Semibold.otf in Resources */,
@@ -1736,6 +1761,7 @@
 				2126D6DF2303EC5400CB501D /* NotificationsNames.swift in Sources */,
 				219BFF2C22E59F4500ABBEE2 /* Extensions.swift in Sources */,
 				83605BAC23853BCC00B93603 /* JTLessonWatched.swift in Sources */,
+				6087D86724C5B7AF00EF6902 /* TourWalkThroughCollectionViewCell.swift in Sources */,
 				2120BE2122DF2787004854DB /* RequestVerificationCodeViewController.swift in Sources */,
 				8391EC64240BDCD1007B5F98 /* JTLessonDonated.swift in Sources */,
 				21ED3BDA230488E3009D8E3D /* JTGemaraLesson.swift in Sources */,
@@ -1770,6 +1796,7 @@
 				83137EFD23F04024003B9DA6 /* JTDonation.swift in Sources */,
 				609D498524A23C640008E4AA /* RemoveAccountAlertViewController.swift in Sources */,
 				8395979C24028B8F007B96EB /* TzedakaViewController.swift in Sources */,
+				6087D86524C5B74400EF6902 /* TourWalkThroughViewController.swift in Sources */,
 				2126D6E12304025A00CB501D /* MishnaNavigationController.swift in Sources */,
 				FBAB071622E74ABD00C8DCD7 /* DownloadsCellController.swift in Sources */,
 				2133C21F22DCFC6600F910B9 /* WalkThroughViewController.swift in Sources */,
@@ -1852,6 +1879,7 @@
 				83A7A0C323E205B40041BE28 /* iCarousel.m in Sources */,
 				8359193F23A795BD00F0B4D8 /* CoreDataManager.swift in Sources */,
 				21678D7622E08565007BC74C /* DownloadsViewController.swift in Sources */,
+				6087D86924C5B96D00EF6902 /* JTTourBarPageInddicator.swift in Sources */,
 				83CCB127237C8D6F00C86450 /* EditPasswordCell.swift in Sources */,
 				219BFF3822E5B72000ABBEE2 /* LocalizationManager.swift in Sources */,
 				213196A522F38B3E00B0AF5F /* SignUpResponse.swift in Sources */,

@@ -533,7 +533,7 @@ class ContentRepository {
                 
                 if let creationDate = attributes[FileAttributeKey.creationDate] as? Date {
                     
-                    if Date().timeIntervalSince(creationDate) >= 60*10 {
+                    if Date().timeIntervalSince(creationDate) >= 60*60*24*30 {
                         
                         FilesManagementProvider.shared.removeFiles(currentFile) { (url, result) in
                            

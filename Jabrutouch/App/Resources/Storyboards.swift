@@ -18,6 +18,14 @@ class Storyboards {
         }
     }
     
+    class TourWalkThrough {
+        private class func tourWalkThroughStoryboard() -> UIStoryboard { return UIStoryboard(name: "TourWalkThrough", bundle: Bundle.main) }
+        
+        class var  tourWalkThroughViewController: TourWalkThroughViewController {
+            return self.tourWalkThroughStoryboard().instantiateViewController(withIdentifier: "tourWalkThroughViewController") as! TourWalkThroughViewController
+        }
+    }
+    
     class SignIn {
         private class func signInStoryboard() -> UIStoryboard { return UIStoryboard(name: "SignIn", bundle: Bundle.main) }
         

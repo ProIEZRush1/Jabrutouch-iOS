@@ -131,7 +131,7 @@ class DonateViewController: UIViewController, UITextFieldDelegate, DonationDataD
         let string = String(format: Strings.donationEligeble, "\(numberOfKetarim)")
         self.descreptionLabel.text = string
         self.numberOfKtarimLabel.text = "\(numberOfKetarim)"
-        self.amountToDonateLabel.text = "\(amountToDonate)"
+        self.amountToDonateLabel.text = " \(amountToDonate)"
     }
     
     fileprivate func setButtonsColorAndFont() {
