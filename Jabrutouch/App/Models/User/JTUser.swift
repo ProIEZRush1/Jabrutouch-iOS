@@ -34,7 +34,8 @@ struct JTUser {
     var profileImageFileName: String {
         return "profile_image_\(self.id).jpeg"
     }
-    
+    var rank: Int?
+    var showTour: Int?    
     var profileImageFileURL: URL? {
         return FileDirectory.cache.url?.appendingPathComponent(self.profileImageFileName)
     }
@@ -119,6 +120,12 @@ struct JTUser {
         self.isPresenter = values["is_presenter"] as? Bool ?? false
         self.profilePercent = values["profile_percent"] as? Int
         self.loadProfileImageFromLocalFile()
+        if let rank = values["rank"] as? Int {
+            self.rank = rank
+        }
+        if let showTour = values["show_tour"] as? Int {
+            self.showTour = showTour
+        }
     }
     
     var values: [String:Any] {
@@ -143,6 +150,8 @@ struct JTUser {
         values["profile_percent"] = self.profilePercent
         values["lesson_watch_count"] = self.lessonWatchCount
         values["lesson_donated"] = self.lessonDonated?.values
+        values["rank"] = self.rank
+        values["show_tour"] = self.showTour
         return values
     }
     
@@ -164,6 +173,8 @@ struct JTUser {
         values["second_email"] = self.secondEmail
         values["is_presenter"] = self.isPresenter
         values["lesson_watch_count"] = self.lessonWatchCount
+        values["rank"] = self.rank
+        values["show_tour"] = self.showTour
         return values
     }
 

@@ -95,6 +95,16 @@ class API {
         }
     }
     
+    class func setUserTour(authToken: String, tourNum: Int, user: Int, viewed: Bool, completionHandler:()) {
+    guard let request = HttpRequestsFactory.createSetUserTour(token: authToken, tourNum: tourNum, user: user, viewed: viewed) else {
+            completionHandler
+            return
+        }
+        HttpServiceProvider.shared.excecuteRequest(request: request) { (data, response, error) in
+//            self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
+        }
+    }
+    
     class func setUserParameters(authToken: String, user: JTUser, completionHandler:@escaping (_ response: APIResult<LoginResponse>)->Void) {
         guard let request = HttpRequestsFactory.createSetUserRequest(user: user, token: authToken) else {
             completionHandler(APIResult.failure(.unableToCreateRequest))

@@ -15,7 +15,7 @@ class TourWalkThroughViewController: UIViewController {
     @IBOutlet weak var buttonView: UIView!
     @IBOutlet weak var button: UIButton!
     @IBOutlet weak var ButtonText: UILabel!
-    @IBOutlet weak var link: UILabel!
+    @IBOutlet weak var link: UITextView!
     @IBOutlet weak var exitButton: UIButton!
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return [.portrait]
@@ -28,25 +28,47 @@ class TourWalkThroughViewController: UIViewController {
     
     func setup(){
         buttonView.layer.cornerRadius = buttonView.bounds.height / 2
-        self.setItems(index: index)
-    }
-    
-   
-    private func navigateToSignIn() {
-        let signInViewController = Storyboards.SignIn.signInViewController
-        appDelegate.setRootViewController(viewController: signInViewController, animated: true)
+        setItems(index: index)
+        let attributedString = NSMutableAttributedString(string: "¿Qué es el Talmud?")
+        attributedString.addAttribute(.link, value: "https://www.jabrutouch.com/", range: NSRange(location: 0, length: attributedString.string.count))
+        
+        link.attributedText = attributedString
+        link.textAlignment = .center
     }
 
+    //============================================================
+    // MARK: - Actions
+    //============================================================
+    
     @IBAction func buttonPressed(_ sender: Any) {
         if self.index < 3 {
             let indexPath = IndexPath(item: self.index + 1, section: 0)
             collectionView.scrollToItem(at: indexPath, at: .left, animated: true)
         } else {
-            print("End")
+            self.performSegue(withIdentifier: "main", sender: self)
         }
     
     }
     @IBAction func exitButtonPressed(_ sender: Any) {
+        navigateToMain()
+    }
+    
+    //============================================================
+    // MARK: - Navigation
+    //============================================================
+    
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "main" {
+            let mainVC = segue.destination as? MainViewController
+            mainVC?.presentTodayDafLessonVideo()
+        }
+    }
+    
+    private func navigateToMain() {
+        let mainViewController = Storyboards.Main.mainViewController
+        appDelegate.setRootViewController(viewController: mainViewController, animated: true)
     }
 }
 
@@ -60,21 +82,14 @@ extension TourWalkThroughViewController: UICollectionViewDataSource {
         else {
             return UICollectionViewCell()
         }
-        cell.setIndex(indexPath.item, "sginIn")
+        cell.setIndex(indexPath.item)
+        
         return cell
     }
 }
 
 extension TourWalkThroughViewController: UICollectionViewDelegate {
-    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.x > scrollView.bounds.width*3 {
-            UserDefaultsProvider.shared.seenWalkThrough = true
-            self.navigateToSignIn()
-        }
-    }
-    
-    
-    
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.x < scrollView.bounds.width*0.5 {
             self.setItems(index: 0)
@@ -108,5 +123,12 @@ extension TourWalkThroughViewController: UICollectionViewDelegate {
 extension TourWalkThroughViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return collectionView.bounds.size
+    }
+}
+
+extension TourWalkThroughViewController: UITextViewDelegate{
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        UIApplication.shared.open(URL)
+        return false
     }
 }

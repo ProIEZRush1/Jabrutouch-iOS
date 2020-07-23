@@ -223,7 +223,9 @@ class SignUpViewController: UIViewController {
             self.removeActivityView()
             switch result {
             case .success:
-                self.navigateToMain()
+
+                self.navigateToWelcomeTour()
+//                self.navigateToMain()
                 MessagesRepository.shared.getMessages()
             case .failure(let error):
                 let title = Strings.error
@@ -260,7 +262,10 @@ class SignUpViewController: UIViewController {
     private func navigateToMain() {
         let mainViewController = Storyboards.Main.mainViewController
         appDelegate.setRootViewController(viewController: mainViewController, animated: true)
-
+    }
+    private func navigateToWelcomeTour() {
+        let welcomeTourViewController = Storyboards.TourWalkThrough.welcomeTourViewController
+        appDelegate.setRootViewController(viewController: welcomeTourViewController, animated: true)
     }
 }
 

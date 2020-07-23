@@ -182,6 +182,8 @@
 		609F80B524910144003D1E9A /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609F80B424910144003D1E9A /* PopUpViewController.swift */; };
 		60B6021E24C898AB00D960C9 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 60B6021D24C8984B00D960C9 /* Roboto-Light.ttf */; };
 		60B83D6D2455E0DA00E558C7 /* NotDonateAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B83D6C2455E0DA00E558C7 /* NotDonateAlert.swift */; };
+		60C8989F24C99B310032FBBB /* WelcomeTourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C8989E24C99B310032FBBB /* WelcomeTourViewController.swift */; };
+		60C898A324C9ABE60032FBBB /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 60C898A224C9ABE50032FBBB /* background.png */; };
 		60DB15772415494C00BD470F /* ChangeSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DB15762415494C00BD470F /* ChangeSettingsViewController.swift */; };
 		83137EFD23F04024003B9DA6 /* JTDonation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83137EFC23F04024003B9DA6 /* JTDonation.swift */; };
 		83137EFF23F040E5003B9DA6 /* DonationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83137EFE23F040E5003B9DA6 /* DonationResponse.swift */; };
@@ -266,7 +268,6 @@
 		DD5CA3A82402AE6A00AF1FA4 /* Tzedaka.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD5CA3A72402AE6900AF1FA4 /* Tzedaka.storyboard */; };
 		DD5D1C1F23CCD4AF0087A6DB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD5D1C1E23CCD4AF0087A6DB /* GoogleService-Info.plist */; };
 		DD61996523FC189700C06356 /* MessagesNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD61996423FC189700C06356 /* MessagesNavigationController.swift */; };
-		DDCA933923D0B1BB00388EC6 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = DDCA933823D0B1B700388EC6 /* background.png */; };
 		DDCA933B23D0B31700388EC6 /* Jabrutouch.png in Resources */ = {isa = PBXBuildFile; fileRef = DDCA933A23D0B31700388EC6 /* Jabrutouch.png */; };
 		DDCA933D23D0B34200388EC6 /* lunchScreenIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = DDCA933C23D0B34200388EC6 /* lunchScreenIcon.png */; };
 		DDF1D227240445180080D564 /* NoDonationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF1D226240445180080D564 /* NoDonationViewController.swift */; };
@@ -496,6 +497,8 @@
 		609F80B424910144003D1E9A /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		60B6021D24C8984B00D960C9 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
 		60B83D6C2455E0DA00E558C7 /* NotDonateAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotDonateAlert.swift; sourceTree = "<group>"; };
+		60C8989E24C99B310032FBBB /* WelcomeTourViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeTourViewController.swift; sourceTree = "<group>"; };
+		60C898A224C9ABE50032FBBB /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		60DB15762415494C00BD470F /* ChangeSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeSettingsViewController.swift; sourceTree = "<group>"; };
 		715A51EC96A60C90B07F8038 /* Pods-Jabrutouch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jabrutouch.debug.xcconfig"; path = "Target Support Files/Pods-Jabrutouch/Pods-Jabrutouch.debug.xcconfig"; sourceTree = "<group>"; };
 		83137EFC23F04024003B9DA6 /* JTDonation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTDonation.swift; sourceTree = "<group>"; };
@@ -588,7 +591,6 @@
 		DD61996423FC189700C06356 /* MessagesNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesNavigationController.swift; sourceTree = "<group>"; };
 		DD61996623FC278000C06356 /* DataModel_v3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel_v3.xcdatamodel; sourceTree = "<group>"; };
 		DD61996723FC392B00C06356 /* DataModel_v4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel_v4.xcdatamodel; sourceTree = "<group>"; };
-		DDCA933823D0B1B700388EC6 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		DDCA933A23D0B31700388EC6 /* Jabrutouch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Jabrutouch.png; path = "Jabrutouch/Assets.xcassets/JabrutouchTitle-1.imageset/Jabrutouch.png"; sourceTree = SOURCE_ROOT; };
 		DDCA933C23D0B34200388EC6 /* lunchScreenIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lunchScreenIcon.png; path = Jabrutouch/Assets.xcassets/splashIcon.imageset/lunchScreenIcon.png; sourceTree = SOURCE_ROOT; };
 		DDF1D226240445180080D564 /* NoDonationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDonationViewController.swift; sourceTree = "<group>"; };
@@ -1009,7 +1011,7 @@
 			children = (
 				608CC712241129F8002136A8 /* animation.json */,
 				83408E14241EBE3100DD9229 /* GRACIAS_BAJA_2.mov */,
-				DDCA933823D0B1B700388EC6 /* background.png */,
+				60C898A224C9ABE50032FBBB /* background.png */,
 				DDCA933C23D0B34200388EC6 /* lunchScreenIcon.png */,
 				DDCA933A23D0B31700388EC6 /* Jabrutouch.png */,
 				21419CB1230D51F700145F1F /* Bridging Headers */,
@@ -1311,6 +1313,7 @@
 			children = (
 				6087D86424C5B74400EF6902 /* TourWalkThroughViewController.swift */,
 				6087D86624C5B7AF00EF6902 /* TourWalkThroughCollectionViewCell.swift */,
+				60C8989E24C99B310032FBBB /* WelcomeTourViewController.swift */,
 			);
 			path = TourWalkThrough;
 			sourceTree = "<group>";
@@ -1633,10 +1636,10 @@
 				21678D6A22DF2CED007BC74C /* SF-Pro-Text-MediumItalic.otf in Resources */,
 				21678D6B22DF2CED007BC74C /* SF-Pro-Text-Regular.otf in Resources */,
 				21678D6C22DF2CED007BC74C /* SF-Pro-Text-RegularItalic.otf in Resources */,
-				DDCA933923D0B1BB00388EC6 /* background.png in Resources */,
 				21678D6D22DF2CED007BC74C /* SF-Pro-Text-Semibold.otf in Resources */,
 				21678D6E22DF2CED007BC74C /* SF-Pro-Text-SemiboldItalic.otf in Resources */,
 				21678D6F22DF2CED007BC74C /* SF-Pro-Text-Thin.otf in Resources */,
+				60C898A324C9ABE60032FBBB /* background.png in Resources */,
 				21678D7022DF2CED007BC74C /* SF-Pro-Text-ThinItalic.otf in Resources */,
 				21F89DCE231B173500540658 /* VideoPlayer.xib in Resources */,
 				FBB18FAC22F85019006886FD /* Gemara.storyboard in Resources */,
@@ -1850,6 +1853,7 @@
 				8342BA76237301D800C3239C /* ModalsContainerViewController.swift in Sources */,
 				83A7A0CD23E999300041BE28 /* DonationWalkThroughViewController.swift in Sources */,
 				836A883A238DB1CF00F68539 /* JTVideoPart.swift in Sources */,
+				60C8989F24C99B310032FBBB /* WelcomeTourViewController.swift in Sources */,
 				2131969822F38B1200B0AF5F /* ServerGenericResponse.swift in Sources */,
 				DD51CDF023F186AE0063167E /* UserRecorderCell.swift in Sources */,
 				4628E0E72322954800D963E6 /* Application.swift in Sources */,

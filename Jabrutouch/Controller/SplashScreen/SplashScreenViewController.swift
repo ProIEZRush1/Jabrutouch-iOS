@@ -74,11 +74,12 @@ class SplashScreenViewController: UIViewController {
             DispatchQueue.main.async {
                 switch result {
                 case .success:
+//                    self.navigateToWelcomeTour()
                     self.navigateToMain()
                 case .failure(let error):
                     print(error)
-                    self.navigateToMain()
-//                    self.navigateToSignIn()
+//                    self.navigateToMain()
+                    self.navigateToSignIn()
                 }
             }
         }
@@ -94,6 +95,16 @@ class SplashScreenViewController: UIViewController {
     private func navigateToWalkThrough() {
         let walkThroughViewController = Storyboards.WalkThrough.walkThroughViewController
         appDelegate.setRootViewController(viewController: walkThroughViewController, animated: true)
+    }
+    
+    private func navigateToWelcomeTour() {
+        let welcomeTourViewController = Storyboards.TourWalkThrough.welcomeTourViewController
+        appDelegate.setRootViewController(viewController: welcomeTourViewController, animated: true)
+    }
+    
+    private func navigateToTourWalkThrough() {
+        let tourWalkThroughViewController = Storyboards.TourWalkThrough.tourWalkThroughViewController
+        appDelegate.setRootViewController(viewController: tourWalkThroughViewController, animated: true)
     }
     
     private func navigateToMain() {

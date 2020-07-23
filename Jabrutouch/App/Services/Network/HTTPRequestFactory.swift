@@ -136,6 +136,16 @@ class HttpRequestsFactory {
         return request
     }
     
+    class func createSetUserTour(token: String, tourNum: Int, user: Int, viewed: Bool) -> URLRequest?{
+        guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
+        let link = baseUrl.appendingPathComponent("tour").absoluteString
+        guard let url = self.createUrl(fromLink: link, urlParams: nil) else { return nil }
+        let additionalHeaders: [String:String] = ["Authorization": "token \(token)"]
+        let body = ["tour_num": tourNum, "user": user, "viewed": viewed] as [String : Any]
+        let request = self.createRequest(url, method: .post, body: body, additionalHeaders: additionalHeaders)
+        return request
+    }
+    
     class func createGetPopup( token: String) -> URLRequest?{
         guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
         let link = baseUrl.appendingPathComponent("popups").absoluteString

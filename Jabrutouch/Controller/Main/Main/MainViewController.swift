@@ -460,6 +460,8 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.presentMenu()
     }
     
+    
+    
     @IBAction func todaysDafAudioPressed(_ sender: Any) {
         self.showActivityView()
         let todaysDaf = DafYomiRepository.shared.getTodaysDaf()
@@ -481,6 +483,10 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     }
     
     @IBAction func todaysDafVideoPressed(_ sender: Any) {
+        presentTodayDafLessonVideo()
+    }
+    
+    func presentTodayDafLessonVideo(){
         self.showActivityView()
         let todaysDaf = DafYomiRepository.shared.getTodaysDaf()
         guard let data = ContentRepository.shared.getMasechetByName(todaysDaf.masechet) else {
@@ -499,6 +505,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
             }
         }
     }
+    
     @IBAction func chatPressed(_ sender: Any) {
         self.presentMessages()
     }
