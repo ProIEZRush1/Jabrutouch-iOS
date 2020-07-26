@@ -182,6 +182,11 @@
 		609F80B524910144003D1E9A /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609F80B424910144003D1E9A /* PopUpViewController.swift */; };
 		60B6021E24C898AB00D960C9 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 60B6021D24C8984B00D960C9 /* Roboto-Light.ttf */; };
 		60B83D6D2455E0DA00E558C7 /* NotDonateAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B83D6C2455E0DA00E558C7 /* NotDonateAlert.swift */; };
+		60BCF3D424CD859A00B0C2A9 /* DonationWalkThrough.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60BCF3D324CD859A00B0C2A9 /* DonationWalkThrough.storyboard */; };
+		60BCF3D724CD86D300B0C2A9 /* DonationsWalkThroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BCF3D624CD86D300B0C2A9 /* DonationsWalkThroughViewController.swift */; };
+		60BCF3DA24CD880D00B0C2A9 /* DonationWalkThroughCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BCF3D924CD880D00B0C2A9 /* DonationWalkThroughCollectionViewCell.swift */; };
+		60BCF3DC24CD885D00B0C2A9 /* WelcomeDonationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BCF3DB24CD885D00B0C2A9 /* WelcomeDonationViewController.swift */; };
+		60BCF3DE24CDD4C800B0C2A9 /* JTDonationBarPageIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BCF3DD24CDD4C800B0C2A9 /* JTDonationBarPageIndicator.swift */; };
 		60C8989F24C99B310032FBBB /* WelcomeTourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C8989E24C99B310032FBBB /* WelcomeTourViewController.swift */; };
 		60C898A324C9ABE60032FBBB /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 60C898A224C9ABE50032FBBB /* background.png */; };
 		60DB15772415494C00BD470F /* ChangeSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DB15762415494C00BD470F /* ChangeSettingsViewController.swift */; };
@@ -497,6 +502,11 @@
 		609F80B424910144003D1E9A /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		60B6021D24C8984B00D960C9 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
 		60B83D6C2455E0DA00E558C7 /* NotDonateAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotDonateAlert.swift; sourceTree = "<group>"; };
+		60BCF3D324CD859A00B0C2A9 /* DonationWalkThrough.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DonationWalkThrough.storyboard; sourceTree = "<group>"; };
+		60BCF3D624CD86D300B0C2A9 /* DonationsWalkThroughViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonationsWalkThroughViewController.swift; sourceTree = "<group>"; };
+		60BCF3D924CD880D00B0C2A9 /* DonationWalkThroughCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonationWalkThroughCollectionViewCell.swift; sourceTree = "<group>"; };
+		60BCF3DB24CD885D00B0C2A9 /* WelcomeDonationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeDonationViewController.swift; sourceTree = "<group>"; };
+		60BCF3DD24CDD4C800B0C2A9 /* JTDonationBarPageIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTDonationBarPageIndicator.swift; sourceTree = "<group>"; };
 		60C8989E24C99B310032FBBB /* WelcomeTourViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeTourViewController.swift; sourceTree = "<group>"; };
 		60C898A224C9ABE50032FBBB /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		60DB15762415494C00BD470F /* ChangeSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeSettingsViewController.swift; sourceTree = "<group>"; };
@@ -959,6 +969,7 @@
 				213196AF22F38B9E00B0AF5F /* Supporting Views */,
 				219BFF2D22E5A10400ABBEE2 /* Custom Controlles */,
 				609F80B62491014B003D1E9A /* PopUp */,
+				60BCF3D824CD874800B0C2A9 /* DonationWalkThrough */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1044,7 +1055,7 @@
 				538691522379E9B100CC95B5 /* Profile.storyboard */,
 				2133C20022DB5B8500F910B9 /* LaunchScreen.storyboard */,
 				213196BA22F6E98700B0AF5F /* SplashScreen.storyboard */,
-				213196B822F6E8F100B0AF5F /* WalkThrough.storyboard */,
+				60BCF3D524CD85CF00B0C2A9 /* WalkThrough */,
 				2133C20D22DCA0BC00F910B9 /* SignIn.storyboard */,
 				FB67A5DE22E4723F009E4DF9 /* Download.storyboard */,
 				FBFB161522F0794600362012 /* Mishna.storyboard */,
@@ -1055,7 +1066,6 @@
 				833E621D23992C2500EC93C7 /* Messages.storyboard */,
 				83A936AA23D9D53A007BA207 /* Donations.storyboard */,
 				609F80B22490E7D9003D1E9A /* PopUps.storyboard */,
-				6087D86B24C5CC5900EF6902 /* TourWalkThrough.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -1131,6 +1141,7 @@
 				8395978A23F97745007B96EB /* JBProgressBarWithButton.swift */,
 				8395979F24029E26007B96EB /* HoursView.swift */,
 				6087D86824C5B96D00EF6902 /* JTTourBarPageInddicator.swift */,
+				60BCF3DD24CDD4C800B0C2A9 /* JTDonationBarPageIndicator.swift */,
 			);
 			path = "Custom Controlles";
 			sourceTree = "<group>";
@@ -1329,6 +1340,26 @@
 				606DAFFF2499063F00EA79E2 /* FifthChildVC.swift */,
 			);
 			path = PopUp;
+			sourceTree = "<group>";
+		};
+		60BCF3D524CD85CF00B0C2A9 /* WalkThrough */ = {
+			isa = PBXGroup;
+			children = (
+				213196B822F6E8F100B0AF5F /* WalkThrough.storyboard */,
+				6087D86B24C5CC5900EF6902 /* TourWalkThrough.storyboard */,
+				60BCF3D324CD859A00B0C2A9 /* DonationWalkThrough.storyboard */,
+			);
+			path = WalkThrough;
+			sourceTree = "<group>";
+		};
+		60BCF3D824CD874800B0C2A9 /* DonationWalkThrough */ = {
+			isa = PBXGroup;
+			children = (
+				60BCF3D624CD86D300B0C2A9 /* DonationsWalkThroughViewController.swift */,
+				60BCF3D924CD880D00B0C2A9 /* DonationWalkThroughCollectionViewCell.swift */,
+				60BCF3DB24CD885D00B0C2A9 /* WelcomeDonationViewController.swift */,
+			);
+			path = DonationWalkThrough;
 			sourceTree = "<group>";
 		};
 		833E621F23992DCB00EC93C7 /* Messages */ = {
@@ -1580,6 +1611,7 @@
 				21678D4622DF2CEC007BC74C /* SF-Pro-Display-Black.otf in Resources */,
 				21678D4722DF2CEC007BC74C /* SF-Pro-Display-BlackItalic.otf in Resources */,
 				21678D4822DF2CEC007BC74C /* SF-Pro-Display-Bold.otf in Resources */,
+				60BCF3D424CD859A00B0C2A9 /* DonationWalkThrough.storyboard in Resources */,
 				608CC713241129F9002136A8 /* animation.json in Resources */,
 				21678D4922DF2CEC007BC74C /* SF-Pro-Display-BoldItalic.otf in Resources */,
 				FB67A5DF22E4723F009E4DF9 /* Download.storyboard in Resources */,
@@ -1732,6 +1764,7 @@
 				83605BA82384361400B93603 /* JTDonor.swift in Sources */,
 				21999F3923185D39003DB1B4 /* PlaybackSpeed.swift in Sources */,
 				83137F0123F046CB003B9DA6 /* JTCrown.swift in Sources */,
+				60BCF3DE24CDD4C800B0C2A9 /* JTDonationBarPageIndicator.swift in Sources */,
 				219BFF4122E7173C00ABBEE2 /* MainMenuViewController.swift in Sources */,
 				839597A024029E26007B96EB /* HoursView.swift in Sources */,
 				213196A722F38B3E00B0AF5F /* SendCodeResponse.swift in Sources */,
@@ -1747,6 +1780,7 @@
 				8391EC66240BFDA3007B5F98 /* CreatePaymentResponse.swift in Sources */,
 				606DAFFE2499062300EA79E2 /* FourthChildVC.swift in Sources */,
 				604C28C82457038E00A19D87 /* ForgotPasswordViewController.swift in Sources */,
+				60BCF3DC24CD885D00B0C2A9 /* WelcomeDonationViewController.swift in Sources */,
 				836A883C238DB30D00F68539 /* JTGallery.swift in Sources */,
 				2126D6D623033CF800CB501D /* JTSeder.swift in Sources */,
 				46C652F823CF798700F6D0DD /* JTUserProfileParameter.swift in Sources */,
@@ -1760,6 +1794,7 @@
 				606DAFFC249905D800EA79E2 /* ThirdChildVC.swift in Sources */,
 				21ED3BDC23048970009D8E3D /* GetGemaraLessonsResponse.swift in Sources */,
 				2133C22122DCFEB500F910B9 /* WalkThroughCollectionViewCell.swift in Sources */,
+				60BCF3DA24CD880D00B0C2A9 /* DonationWalkThroughCollectionViewCell.swift in Sources */,
 				833E6227239FB72A00EC93C7 /* MessagesRepository.swift in Sources */,
 				2126D6DF2303EC5400CB501D /* NotificationsNames.swift in Sources */,
 				219BFF2C22E59F4500ABBEE2 /* Extensions.swift in Sources */,
@@ -1774,6 +1809,7 @@
 				538691492379E8B500CC95B5 /* CompletionProgressCell.swift in Sources */,
 				836A884B23951CA700F68539 /* JBView.swift in Sources */,
 				83137F0523F04C5F003B9DA6 /* DonationManager.swift in Sources */,
+				60BCF3D724CD86D300B0C2A9 /* DonationsWalkThroughViewController.swift in Sources */,
 				83B3556923E1C03000E2C485 /* DedicationViewController.swift in Sources */,
 				8342BA75237301D800C3239C /* MainViewController.swift in Sources */,
 				833E622123992DED00EC93C7 /* MessagesViewController.swift in Sources */,

@@ -101,7 +101,9 @@ class API {
             return
         }
         HttpServiceProvider.shared.excecuteRequest(request: request) { (data, response, error) in
-//            self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
+            print(request)
+        
+//            self.processResult(data: data, response: response, error: error, completionHandler: )
         }
     }
     

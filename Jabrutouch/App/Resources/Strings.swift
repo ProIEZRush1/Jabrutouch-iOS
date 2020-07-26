@@ -383,6 +383,30 @@ class Strings {
     class var tourwalkthrough4Text: String {
         return NSLocalizedString("tourwalkthrough4Text", comment: "")
     }
+    
+    class var donateTour0Title: String {
+        return NSLocalizedString("donationTourTitle-0", comment: "")
+    }
+    class var donateTour1Title: String {
+        return NSLocalizedString("donationTourTitle-1", comment: "")
+    }
+    class var donateTour2Title: String {
+        return NSLocalizedString("donationTourTitle-2", comment: "")
+    }
+
+    class var donateTour0: String {
+        return NSLocalizedString("donationTour-0", comment: "")
+    }
+    class var donateTour1: String {
+        return NSLocalizedString("donationTour-1", comment: "")
+    }
+    class var donateTour1Buttom: String {
+        return NSLocalizedString("donationTour-1-buttom", comment: "")
+    }
+    class var donateTour2: String {
+        return NSLocalizedString("donationTour-2", comment: "")
+    }
+   
     class var recentsGemara: String {
         return NSLocalizedString("recentsGemara", comment: "")
     }

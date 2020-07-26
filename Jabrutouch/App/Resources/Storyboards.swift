@@ -30,6 +30,17 @@ class Storyboards {
         }
     }
     
+    class DonationWalkThrough {
+        private class func donationsWalkThroughStoryboard() -> UIStoryboard { return UIStoryboard(name: "DonationWalkThrough", bundle: Bundle.main) }
+        
+        class var  welcomeDonationViewController: WelcomeDonationViewController {
+            return self.donationsWalkThroughStoryboard().instantiateViewController(withIdentifier: "welcomeDonationViewController") as! WelcomeDonationViewController
+        }
+        
+        class var  donationsWalkThroughViewController: DonationsWalkThroughViewController {
+            return self.donationsWalkThroughStoryboard().instantiateViewController(withIdentifier: "donationsWalkThroughViewController") as! DonationsWalkThroughViewController
+        }
+    }
     class SignIn {
         private class func signInStoryboard() -> UIStoryboard { return UIStoryboard(name: "SignIn", bundle: Bundle.main) }
         

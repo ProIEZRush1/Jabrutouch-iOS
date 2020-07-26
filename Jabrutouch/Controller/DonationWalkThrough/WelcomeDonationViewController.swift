@@ -1,14 +1,14 @@
 //
-//  WelcomTourViewController.swift
+//  WelcomeDonationViewController.swift
 //  Jabrutouch
 //
-//  Created by Avraham Deutsch on 23/07/2020.
+//  Created by Avraham Deutsch on 26/07/2020.
 //  Copyright © 2020 Ravtech. All rights reserved.
 //
 
 import UIKit
 
-class WelcomeTourViewController: UIViewController {
+class WelcomeDonationViewController: UIViewController {
     @IBOutlet weak var welcomeTitle: UILabel!
     @IBOutlet weak var goTourButton: UIButton!
     
@@ -20,7 +20,7 @@ class WelcomeTourViewController: UIViewController {
         var userName = ""
         if let name = UserDefaultsProvider.shared.currentUser?.firstName { userName = name
         }
-        welcomeTitle.text = "Bienvenido \(userName)"
+        welcomeTitle.text = "\(userName),"
         goTourButton.layer.cornerRadius = 12
     }
     
@@ -30,14 +30,20 @@ class WelcomeTourViewController: UIViewController {
     
     
     @IBAction func goTourButtonPressed(_ sender: Any) {
-        navigateToTourWalkThrough()
-        //        guard let token = UserDefaultsProvider.shared.currentUser?.token else { return }
-        //        guard let userId = UserDefaultsProvider.shared.currentUser?.id else { return }
-        //        API.setUserTour(authToken: token, tourNum: 1, user: userId, viewed: true, completionHandler: <#T##()#>)
+        navigateToDonationWalkThrough()
+        self.sendStatus(viewed: true)
     }
     
     @IBAction func skipButtonPressed(_ sender: Any) {
         navigateToMain()
+        self.sendStatus(viewed: false)
+    }
+    
+    func sendStatus(viewed: Bool){
+        guard let token = UserDefaultsProvider.shared.currentUser?.token else { return }
+        guard let userId = UserDefaultsProvider.shared.currentUser?.id else { return }
+        API.setUserTour(authToken: token, tourNum: 2, user: userId, viewed: viewed, completionHandler:())
+            
     }
     //============================================================
     // MARK: - Navigation
@@ -48,9 +54,10 @@ class WelcomeTourViewController: UIViewController {
         appDelegate.setRootViewController(viewController: mainViewController, animated: true)
     }
     
-    private func navigateToTourWalkThrough() {
-        let tourWalkThroughViewController = Storyboards.TourWalkThrough.tourWalkThroughViewController
-        appDelegate.setRootViewController(viewController: tourWalkThroughViewController, animated: true)
+    private func navigateToDonationWalkThrough() {
+        let donationsWalkThroughViewController = Storyboards.DonationWalkThrough.donationsWalkThroughViewController
+        appDelegate.setRootViewController(viewController: donationsWalkThroughViewController, animated: true)
     }
     
 }
+
