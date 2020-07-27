@@ -407,6 +407,43 @@ class Strings {
         return NSLocalizedString("donationTour-2", comment: "")
     }
    
+    class var donationPopUpTitle1: String {
+        return NSLocalizedString("donationPopUpTitle1", comment: "")
+    }
+    class var donationPopUpTitle2: String {
+        return NSLocalizedString("donationPopUpTitle2", comment: "")
+    }
+    class var donationPopUpTitle3: String {
+        return NSLocalizedString("donationPopUpTitle3", comment: "")
+    }
+    class var donationPopUpTitle4: String {
+        return NSLocalizedString("donationPopUpTitle4", comment: "")
+    }
+    class var donationPopUpBody1: String {
+        return NSLocalizedString("donationPopUpbody1", comment: "")
+    }
+    class var donationPopUpBody2: String {
+        return NSLocalizedString("donationPopUpbody2", comment: "")
+    }
+    class var donationPopUpBody3: String {
+        return NSLocalizedString("donationPopUpbody3", comment: "")
+    }
+    class var donationPopUpBody4: String {
+        return NSLocalizedString("donationPopUpbody4", comment: "")
+    }
+    class var donationPopUpButton1: String {
+        return NSLocalizedString("donationPopUpButton1", comment: "")
+    }
+    class var donationPopUpButton2: String {
+        return NSLocalizedString("donationPopUpButton2", comment: "")
+    }
+    class var donationPopUpButton3: String {
+        return NSLocalizedString("donationPopUpButton3", comment: "")
+    }
+    class var donationPopUpButton4: String {
+        return NSLocalizedString("donationPopUpButton4", comment: "")
+    }
+    
     class var recentsGemara: String {
         return NSLocalizedString("recentsGemara", comment: "")
     }

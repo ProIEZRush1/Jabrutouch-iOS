@@ -15,7 +15,7 @@ class DonationsWalkThroughViewController: UIViewController {
     @IBOutlet weak var buttonView: UIView!
     @IBOutlet weak var button: UIButton!
     @IBOutlet weak var ButtonText: UILabel!
-    @IBOutlet weak var link: UITextView!
+    @IBOutlet weak var close: UIButton!
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return [.portrait]
     }
@@ -28,11 +28,6 @@ class DonationsWalkThroughViewController: UIViewController {
     func setup(){
         buttonView.layer.cornerRadius = buttonView.bounds.height / 2
         setItems(index: index)
-        let attributedString = NSMutableAttributedString(string: "Quizás más tarde")
-        attributedString.addAttribute(.link, value: "https://www.jabrutouch.com/", range: NSRange(location: 0, length: attributedString.string.count))
-        
-        link.attributedText = attributedString
-        link.textAlignment = .right
     }
 
     //============================================================
@@ -44,7 +39,10 @@ class DonationsWalkThroughViewController: UIViewController {
             let indexPath = IndexPath(item: self.index + 1, section: 0)
             collectionView.scrollToItem(at: indexPath, at: .left, animated: true)
         } else {
-            self.performSegue(withIdentifier: "donations", sender: self)
+            let mainViewController = Storyboards.Main.mainViewController
+            mainViewController.modalPresentationStyle = .fullScreen
+            self.present(mainViewController, animated: false, completion: nil)
+            mainViewController.presentDonation()
         }
     
     }
@@ -52,22 +50,20 @@ class DonationsWalkThroughViewController: UIViewController {
         navigateToMain()
     }
     
+    @IBAction func closeButtonPressed(_ sender: Any) {
+        navigateToMain()
+    }
     //============================================================
     // MARK: - Navigation
     //============================================================
     
     
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "donations" {
-            let _ = segue.destination as? DonateViewController 
-        }
-    }
-    
     private func navigateToMain() {
         let mainViewController = Storyboards.Main.mainViewController
         appDelegate.setRootViewController(viewController: mainViewController, animated: true)
     }
+    
+    
 }
 
 extension DonationsWalkThroughViewController: UICollectionViewDataSource {
@@ -104,10 +100,10 @@ extension DonationsWalkThroughViewController: UICollectionViewDelegate {
         self.barPageIndicator.selectedIndex = index
         self.index = index
         if index == 2 {
-            self.link.alpha = 1
+            self.close.alpha = 1
             self.ButtonText.text = "Quiero regalar ketarim"
         } else {
-            self.link.alpha = 0
+            self.close.alpha = 0
             self.ButtonText.text = "Siguiente"
         }
     }

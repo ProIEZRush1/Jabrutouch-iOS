@@ -32,4 +32,10 @@ class Fonts {
     class func blackFont(size: CGFloat) -> UIFont {
         return UIFont(name: "SFProDisplay-Black", size: size)!
     }
+    
+    class func semiBold(size: CGFloat) -> UIFont {
+        return UIFont(name: "SFProDisplay-Semibold", size: size)!
+    }
+    
+    
 }

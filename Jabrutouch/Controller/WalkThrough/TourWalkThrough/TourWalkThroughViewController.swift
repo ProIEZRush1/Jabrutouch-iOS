@@ -111,11 +111,9 @@ extension TourWalkThroughViewController: UICollectionViewDelegate {
         self.index = index
         if index == 3 {
             self.link.alpha = 1
-//            self.exitButton.isHidden = false
             self.ButtonText.text = "Ir a una clase"
         } else {
             self.link.alpha = 0
-//            self.exitButton.isHidden = true
             self.ButtonText.text = "Siguiente"
         }
     }

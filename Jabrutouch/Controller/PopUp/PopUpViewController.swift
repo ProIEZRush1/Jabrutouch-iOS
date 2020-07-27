@@ -41,7 +41,7 @@ class PopUpViewController: UIViewController {
     
     
     func presentPopup(){
-        print(currentPopup?.type ?? "")
+//        print(currentPopup?.type ?? "")
         first.isHidden = true
         second.isHidden = true
         third.isHidden = true

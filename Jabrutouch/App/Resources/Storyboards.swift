@@ -41,6 +41,19 @@ class Storyboards {
             return self.donationsWalkThroughStoryboard().instantiateViewController(withIdentifier: "donationsWalkThroughViewController") as! DonationsWalkThroughViewController
         }
     }
+    
+    class DonationPopUp{
+        private class func donationsPopUpStoryboard() -> UIStoryboard { return UIStoryboard(name: "DonationPopUps", bundle: Bundle.main) }
+        
+        class var  donationPopUpViewController: DonationPopUpViewController {
+            return self.donationsPopUpStoryboard().instantiateViewController(withIdentifier: "donationPopUpViewController") as! DonationPopUpViewController
+        }
+        class var  lastPopUp: DonationLastPopUpViewController {
+            return self.donationsPopUpStoryboard().instantiateViewController(withIdentifier: "donationLastPopUpViewController") as! DonationLastPopUpViewController
+        }
+        
+    }
+    
     class SignIn {
         private class func signInStoryboard() -> UIStoryboard { return UIStoryboard(name: "SignIn", bundle: Bundle.main) }
         

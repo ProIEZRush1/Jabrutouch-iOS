@@ -301,30 +301,20 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6JT-e6-nAq">
                                         <rect key="frame" x="50" y="65.666666666666742" width="314" height="53.666666666666657"/>
                                         <subviews>
-                                            <textView multipleTouchEnabled="YES" contentMode="topRight" semanticContentAttribute="forceRightToLeft" directionalLockEnabled="YES" bounces="NO" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" pagingEnabled="YES" canCancelContentTouches="NO" keyboardDismissMode="interactive" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3xs-rX-krC">
-                                                <rect key="frame" x="114" y="0.0" width="200" height="53.666666666666664"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="200" id="6jF-LB-cZp"/>
-                                                </constraints>
-                                                <attributedString key="attributedText">
-                                                    <fragment content="&quot;¿Qué es el Talmud?">
-                                                        <attributes>
-                                                            <color key="NSColor" red="0.1764705882" green="0.16862745100000001" blue="0.66274509800000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <font key="NSFont" metaFont="system" size="17"/>
-                                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1" tighteningFactorForTruncation="0.0"/>
-                                                        </attributes>
-                                                    </fragment>
-                                                </attributedString>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
-                                            </textView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qrV-Te-zV4">
+                                                <rect key="frame" x="179" y="11.666666666666629" width="120" height="30"/>
+                                                <state key="normal" title="Quizás más tarde">
+                                                    <color key="titleColor" red="0.1764705882" green="0.16862745100000001" blue="0.66274509800000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="closeButtonPressed:" destination="cOA-vD-nPf" eventType="touchUpInside" id="92L-yB-MMP"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="3xs-rX-krC" secondAttribute="trailing" id="6MT-Nq-siI"/>
-                                            <constraint firstItem="3xs-rX-krC" firstAttribute="top" secondItem="6JT-e6-nAq" secondAttribute="top" id="Swo-XL-CXu"/>
-                                            <constraint firstAttribute="bottom" secondItem="3xs-rX-krC" secondAttribute="bottom" id="tuY-YD-rzg"/>
+                                            <constraint firstItem="qrV-Te-zV4" firstAttribute="centerY" secondItem="6JT-e6-nAq" secondAttribute="centerY" id="FuB-Aq-oQU"/>
+                                            <constraint firstAttribute="trailing" secondItem="qrV-Te-zV4" secondAttribute="trailing" constant="15" id="cOp-hn-Nby"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -359,24 +349,13 @@
                         <outlet property="barPageIndicator" destination="PIF-Aa-Vsx" id="kBc-Oc-WOj"/>
                         <outlet property="button" destination="UuL-5W-x6y" id="4AW-h1-Cfz"/>
                         <outlet property="buttonView" destination="Li5-KR-ehh" id="AYB-mv-owe"/>
+                        <outlet property="close" destination="qrV-Te-zV4" id="Wsw-S4-i9q"/>
                         <outlet property="collectionView" destination="cbT-D4-yZn" id="bdw-4M-ujV"/>
-                        <outlet property="link" destination="3xs-rX-krC" id="O9q-Jn-l1i"/>
-                        <segue destination="x9A-fJ-X8i" kind="show" identifier="donations" id="Z3c-ME-0Az"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5wo-VU-NNL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="848.79999999999995" y="72.413793103448285"/>
-        </scene>
-        <!--Donations-->
-        <scene sceneID="SVx-JK-hcp">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Donations" id="x9A-fJ-X8i" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="SgU-IQ-vng"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qfC-nO-Ys3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1615" y="73"/>
         </scene>
     </scenes>
     <resources>

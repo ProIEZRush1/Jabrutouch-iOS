@@ -9,7 +9,7 @@
 import UIKit
 
 class SplashScreenViewController: UIViewController {
-
+    
     //========================================
     // MARK: - @OBOutlets
     //========================================
@@ -74,22 +74,44 @@ class SplashScreenViewController: UIViewController {
             DispatchQueue.main.async {
                 switch result {
                 case .success:
-//                    self.navigateToWelcomeTour()
-                    self.navigateToMain()
+                    
+                    let showTour = UserDefaultsProvider.shared.currentUser?.showTour
+                    switch showTour {
+                    case 0:
+                        self.navigateToLastDonationPopUp()
+//                        self.navigateToDonationTourWalkThrough()
+//
+                        //                        self.navigateToDonationTourWalkThrough()
+                    //                        self.navigateToMain()
+                    case 1:
+                        self.navigateToWelcomeTour()
+                    case 2:
+                        self.navigateToDonationTourWalkThrough()
+                    case 3:
+                        self.navigateToLastDonationPopUp()
+                    default:
+                        self.navigateToMain()
+                    }
+                    
                 case .failure(let error):
                     print(error)
-//                    self.navigateToMain()
+                    //                    self.navigateToMain()
                     self.navigateToSignIn()
                 }
             }
         }
     }
+    
+    func userModeSelector(){
+        
+    }
+    
     // MARK: - Navigation
-
+    
     private func navigateToSignIn() {
         let signInViewController = Storyboards.SignIn.signInViewController
         appDelegate.setRootViewController(viewController: signInViewController, animated: true)
-
+        
     }
     
     private func navigateToWalkThrough() {
@@ -107,12 +129,30 @@ class SplashScreenViewController: UIViewController {
         appDelegate.setRootViewController(viewController: tourWalkThroughViewController, animated: true)
     }
     
+    private func navigateToDonationTourWalkThrough() {
+        let donationsWalkThroughViewController = Storyboards.DonationWalkThrough.welcomeDonationViewController
+        appDelegate.setRootViewController(viewController: donationsWalkThroughViewController, animated: true)
+    }
+    
+    private func navigateToDonationPopUp() {
+        let mainViewController = Storyboards.Main.mainViewController
+        mainViewController.modalPresentationStyle = .fullScreen
+        self.present(mainViewController, animated: false, completion: nil)
+        mainViewController.presentDonationPopUp()
+    }
+    private func navigateToLastDonationPopUp() {
+        let mainViewController = Storyboards.Main.mainViewController
+        mainViewController.modalPresentationStyle = .fullScreen
+        self.present(mainViewController, animated: true, completion: nil)
+        mainViewController.presentLastDonationPopUp()
+    }
+    
     private func navigateToMain() {
         let mainViewController = Storyboards.Main.mainViewController
         appDelegate.setRootViewController(viewController: mainViewController, animated: true)
-
+        
     }
-
+    
     //========================================
     // MARK: - Notification observations
     //========================================

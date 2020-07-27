@@ -737,6 +737,21 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
             presentInDevelopmentAlert()
         }
     }
+    func presentDonationPopUp(){
+        let donationPopUp = Storyboards.DonationPopUp.donationPopUpViewController
+        donationPopUp.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        donationPopUp.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+        self.present(donationPopUp, animated: true, completion: nil)
+        
+    }
+    
+    func presentLastDonationPopUp(){
+        let donationPopUp = Storyboards.DonationPopUp.lastPopUp
+        donationPopUp.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        donationPopUp.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+        self.present(donationPopUp, animated: true, completion: nil)
+        
+    }
     
     func presentAboutUs() {
         let aboutViewController = Storyboards.Main.aboutViewController
