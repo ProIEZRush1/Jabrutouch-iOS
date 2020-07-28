@@ -162,18 +162,6 @@
                                                         <constraint firstAttribute="trailing" secondItem="kTE-s0-ref" secondAttribute="trailing" constant="35" id="u8k-iy-27G"/>
                                                     </constraints>
                                                 </view>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="StE-4p-OIF">
-                                                    <rect key="frame" x="364" y="15" width="35" height="35"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="35" id="4uh-Wy-CWm"/>
-                                                        <constraint firstAttribute="width" constant="35" id="aCf-s1-8ln"/>
-                                                    </constraints>
-                                                    <state key="normal" image="multiply"/>
-                                                    <connections>
-                                                        <action selector="cancelPressed:" destination="q0Z-l3-D2j" eventType="touchUpInside" id="3We-DX-coP"/>
-                                                        <action selector="exitButtonPressed:" destination="cOA-vD-nPf" eventType="touchUpInside" id="Nv7-cv-jzN"/>
-                                                    </connections>
-                                                </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6oZ-kn-WwX">
                                                     <rect key="frame" x="33" y="91.666666666666671" width="353" height="23"/>
                                                     <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="19"/>
@@ -196,9 +184,7 @@
                                             <constraint firstAttribute="trailingMargin" secondItem="6oZ-kn-WwX" secondAttribute="trailing" constant="20" id="HmO-LB-e9a"/>
                                             <constraint firstItem="ISF-qf-TgP" firstAttribute="leading" secondItem="q0Z-l3-D2j" secondAttribute="leadingMargin" constant="25" id="LVO-8i-Jet"/>
                                             <constraint firstItem="pI2-DS-nt3" firstAttribute="leading" secondItem="q0Z-l3-D2j" secondAttribute="leadingMargin" constant="51" id="Oae-0e-83c"/>
-                                            <constraint firstAttribute="trailingMargin" secondItem="StE-4p-OIF" secondAttribute="trailing" constant="7" id="WzE-Py-Sy5"/>
                                             <constraint firstItem="nRk-7Q-dhh" firstAttribute="centerY" secondItem="q0Z-l3-D2j" secondAttribute="centerY" id="ZDG-US-v1y"/>
-                                            <constraint firstItem="StE-4p-OIF" firstAttribute="top" secondItem="q0Z-l3-D2j" secondAttribute="topMargin" constant="7" id="ZJ2-jQ-TfQ"/>
                                             <constraint firstItem="pI2-DS-nt3" firstAttribute="top" secondItem="nRk-7Q-dhh" secondAttribute="bottom" constant="30" id="e6h-Eb-7r9"/>
                                             <constraint firstItem="6oZ-kn-WwX" firstAttribute="top" secondItem="ISF-qf-TgP" secondAttribute="bottom" constant="15" id="fX2-zI-nai"/>
                                             <constraint firstItem="6oZ-kn-WwX" firstAttribute="leading" secondItem="q0Z-l3-D2j" secondAttribute="leadingMargin" constant="25" id="nhR-In-nzQ"/>
@@ -207,7 +193,6 @@
                                             <constraint firstItem="nRk-7Q-dhh" firstAttribute="leading" secondItem="q0Z-l3-D2j" secondAttribute="leading" id="v2s-qL-eB6"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="cancelButton" destination="StE-4p-OIF" id="J3C-1D-JwI"/>
                                             <outlet property="noteButtomLabel" destination="pI2-DS-nt3" id="nxc-Cj-9eA"/>
                                             <outlet property="noteLabel" destination="6oZ-kn-WwX" id="uPL-Y1-OZh"/>
                                             <outlet property="titleLabel" destination="ISF-qf-TgP" id="eNQ-LQ-oPh"/>
@@ -255,7 +240,7 @@
                                                 <rect key="frame" x="217.66666666666671" y="8" width="96.333333333333343" height="50"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="TXG-Je-bT2"/>
+                                                    <constraint firstAttribute="height" constant="50" id="TXG-Je-bT2"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="18"/>
                                                 <state key="normal">
@@ -326,7 +311,7 @@
                                     <constraint firstItem="6JT-e6-nAq" firstAttribute="leading" secondItem="Krd-t5-2Vz" secondAttribute="leading" constant="50" id="7tc-jt-9j5"/>
                                     <constraint firstItem="219-l6-jAu" firstAttribute="top" secondItem="Krd-t5-2Vz" secondAttribute="top" id="K4Q-Ct-bsh"/>
                                     <constraint firstAttribute="trailing" secondItem="6JT-e6-nAq" secondAttribute="trailing" constant="50" id="OMP-T1-2QZ"/>
-                                    <constraint firstItem="6JT-e6-nAq" firstAttribute="height" secondItem="Krd-t5-2Vz" secondAttribute="height" multiplier="0.45" id="naM-2M-AxU"/>
+                                    <constraint firstItem="6JT-e6-nAq" firstAttribute="top" secondItem="219-l6-jAu" secondAttribute="bottom" id="WkD-su-i5v"/>
                                     <constraint firstItem="219-l6-jAu" firstAttribute="leading" secondItem="Krd-t5-2Vz" secondAttribute="leading" constant="50" id="pWs-uJ-2oL"/>
                                 </constraints>
                             </view>
@@ -363,6 +348,5 @@
         <image name="DonationTour-0" width="414" height="457"/>
         <image name="DonationTour-1" width="259" height="365.33334350585938"/>
         <image name="DonationTour-2" width="339.33334350585938" height="369"/>
-        <image name="multiply" width="12.333333015441895" height="12.333333015441895"/>
     </resources>
 </document>

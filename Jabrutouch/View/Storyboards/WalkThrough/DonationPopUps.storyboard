@@ -11,6 +11,9 @@
         <array key="SF-Pro-Display-Heavy.otf">
             <string>SFProDisplay-Heavy</string>
         </array>
+        <array key="SF-Pro-Display-Medium.otf">
+            <string>SFProDisplay-Medium</string>
+        </array>
         <array key="SF-Pro-Display-Regular.otf">
             <string>SFProDisplay-Regular</string>
         </array>
@@ -38,7 +41,7 @@
                                         <rect key="frame" x="20" y="453" width="333" height="65"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Hi-l8-r57">
-                                                <rect key="frame" x="143.5" y="22" width="46.5" height="21"/>
+                                                <rect key="frame" x="144.5" y="22" width="44.5" height="21"/>
                                                 <fontDescription key="fontDescription" name="SFProDisplay-Heavy" family="SF Pro Display" pointSize="18"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -66,7 +69,7 @@
                                         <rect key="frame" x="20" y="423" width="333" height="65"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ocV-Qr-sJW">
-                                                <rect key="frame" x="143.5" y="22" width="46.5" height="21"/>
+                                                <rect key="frame" x="144.5" y="22" width="44.5" height="21"/>
                                                 <fontDescription key="fontDescription" name="SFProDisplay-Heavy" family="SF Pro Display" pointSize="18"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -226,10 +229,10 @@
                                         </constraints>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l2E-Qe-1sS">
-                                        <rect key="frame" x="20" y="433" width="333" height="65"/>
+                                        <rect key="frame" x="20" y="423" width="333" height="65"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="juk-j0-gi8">
-                                                <rect key="frame" x="144.5" y="22" width="44.5" height="21"/>
+                                                <rect key="frame" x="143.5" y="22" width="46.5" height="21"/>
                                                 <fontDescription key="fontDescription" name="SFProDisplay-Heavy" family="SF Pro Display" pointSize="18"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -237,6 +240,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2gH-P1-BaE">
                                                 <rect key="frame" x="0.0" y="0.0" width="333" height="65"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="TL2-rF-NQk" eventType="touchUpInside" id="spM-DT-RJz"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" red="1" green="0.37254901959999998" blue="0.31372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -251,19 +257,30 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7WB-et-o9D">
-                                        <rect key="frame" x="0.0" y="165" width="373" height="238"/>
+                                        <rect key="frame" x="0.0" y="165" width="373" height="228"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vMo-yp-RCx">
-                                                <rect key="frame" x="165.5" y="108.5" width="42" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vMo-yp-RCx">
+                                                <rect key="frame" x="50" y="81" width="273" height="24"/>
+                                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
                                                 <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gIi-8O-sKo">
+                                                <rect key="frame" x="50.5" y="105" width="272" height="25.5"/>
+                                                <fontDescription key="fontDescription" name="SFProDisplay-Medium" family="SF Pro Display" pointSize="21"/>
+                                                <color key="textColor" red="0.1764705882" green="0.16862745100000001" blue="0.66274509800000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="gIi-8O-sKo" secondAttribute="trailing" constant="50.5" id="0rZ-51-bUy"/>
+                                            <constraint firstItem="vMo-yp-RCx" firstAttribute="leading" secondItem="7WB-et-o9D" secondAttribute="leading" constant="50" id="28v-Vt-ZxV"/>
                                             <constraint firstItem="vMo-yp-RCx" firstAttribute="centerX" secondItem="7WB-et-o9D" secondAttribute="centerX" id="UPe-Q5-EwE"/>
-                                            <constraint firstItem="vMo-yp-RCx" firstAttribute="centerY" secondItem="7WB-et-o9D" secondAttribute="centerY" id="Ywo-Vv-moe"/>
+                                            <constraint firstItem="gIi-8O-sKo" firstAttribute="leading" secondItem="7WB-et-o9D" secondAttribute="leading" constant="50.5" id="Vko-6u-Uv2"/>
+                                            <constraint firstItem="vMo-yp-RCx" firstAttribute="centerY" secondItem="7WB-et-o9D" secondAttribute="centerY" constant="-21" id="Ywo-Vv-moe"/>
+                                            <constraint firstItem="gIi-8O-sKo" firstAttribute="top" secondItem="vMo-yp-RCx" secondAttribute="bottom" id="mTx-aU-FiK"/>
+                                            <constraint firstAttribute="trailing" secondItem="vMo-yp-RCx" secondAttribute="trailing" constant="50" id="rdS-78-ffj"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -290,6 +307,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
+                                    <action selector="cancelPressed:" destination="TL2-rF-NQk" eventType="touchUpInside" id="oSG-qt-ncE"/>
                                     <action selector="close:" destination="rLu-Dc-eoF" eventType="touchUpInside" id="hvO-kf-Meo"/>
                                 </connections>
                             </button>
@@ -303,7 +321,7 @@
                             <constraint firstItem="UbV-gG-b0e" firstAttribute="bottom" secondItem="dds-37-iL6" secondAttribute="bottom" constant="10" id="pAu-xz-daz"/>
                             <constraint firstItem="UbV-gG-b0e" firstAttribute="width" secondItem="H8C-wd-zSJ" secondAttribute="width" multiplier="0.9" id="xcM-Kc-kVm"/>
                             <constraint firstItem="UbV-gG-b0e" firstAttribute="centerX" secondItem="H8C-wd-zSJ" secondAttribute="centerX" id="yZe-k5-S1U"/>
-                            <constraint firstItem="l2E-Qe-1sS" firstAttribute="bottom" secondItem="dds-37-iL6" secondAttribute="top" constant="10" id="ydg-wj-grF"/>
+                            <constraint firstItem="l2E-Qe-1sS" firstAttribute="bottom" secondItem="dds-37-iL6" secondAttribute="top" id="ydg-wj-grF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1FI-bj-aMi"/>
                     </view>
@@ -312,8 +330,8 @@
                         <outlet property="bottunTitle" destination="juk-j0-gi8" id="XQm-zT-Gf0"/>
                         <outlet property="button" destination="2gH-P1-BaE" id="z1R-7m-R5X"/>
                         <outlet property="buttonBox" destination="l2E-Qe-1sS" id="7wN-jm-x3c"/>
-                        <outlet property="popUpView" destination="UbV-gG-b0e" id="NKA-tA-Tpv"/>
                         <outlet property="text" destination="vMo-yp-RCx" id="elj-e0-xMH"/>
+                        <outlet property="text2" destination="gIi-8O-sKo" id="YTx-HX-L2K"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nLO-sJ-fVV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

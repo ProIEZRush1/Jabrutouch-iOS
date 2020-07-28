@@ -21,7 +21,7 @@ class WelcomeTourViewController: UIViewController {
         if let name = UserDefaultsProvider.shared.currentUser?.firstName { userName = name
         }
         welcomeTitle.text = "Bienvenido \(userName)"
-        goTourButton.layer.cornerRadius = 12
+        goTourButton.layer.cornerRadius = 15
     }
     
     //============================================================
@@ -31,9 +31,6 @@ class WelcomeTourViewController: UIViewController {
     
     @IBAction func goTourButtonPressed(_ sender: Any) {
         navigateToTourWalkThrough()
-        //        guard let token = UserDefaultsProvider.shared.currentUser?.token else { return }
-        //        guard let userId = UserDefaultsProvider.shared.currentUser?.id else { return }
-        //        API.setUserTour(authToken: token, tourNum: 1, user: userId, viewed: true, completionHandler: <#T##()#>)
     }
     
     @IBAction func skipButtonPressed(_ sender: Any) {

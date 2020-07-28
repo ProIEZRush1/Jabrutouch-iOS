@@ -109,10 +109,18 @@ class DonationPopUpViewController: UIViewController {
      }
     
      @IBAction func redButtonPressed(_ sender: UIButton) {
-         
+         sendStatus(viewed: true)
      }
 
     @IBAction func close(_ sender: UIButton) {
+        sendStatus(viewed: false)
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    func sendStatus(viewed: Bool){
+        guard let token = UserDefaultsProvider.shared.currentUser?.token else { return }
+        guard let userId = UserDefaultsProvider.shared.currentUser?.id else { return }
+        API.setUserTour(authToken: token, tourNum: 2, user: userId, viewed: viewed, completionHandler:())
+        
     }
 }

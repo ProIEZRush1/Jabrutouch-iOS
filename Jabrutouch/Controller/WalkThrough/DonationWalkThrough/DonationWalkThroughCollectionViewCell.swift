@@ -14,7 +14,6 @@ class DonationWalkThroughCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var noteLabel: UILabel!
     @IBOutlet weak var noteButtomLabel: UILabel!
     @IBOutlet var imageViews: [UIImageView]!
-    @IBOutlet weak var cancelButton: UIButton!
     
 
     func setIndex(_ index: Int) {
@@ -28,23 +27,18 @@ class DonationWalkThroughCollectionViewCell: UICollectionViewCell {
                 self.titleLabel.text = Strings.donateTour0Title
                 self.noteLabel.text = Strings.donateTour0
                 self.noteButtomLabel.alpha = 0
-                self.cancelButton.isHidden = true
             case 1:
                 self.titleLabel.text = Strings.donateTour1Title
                 self.noteLabel.text = Strings.donateTour1
                 self.noteButtomLabel.text = Strings.donateTour1Buttom
                 self.noteButtomLabel.alpha = 1
-                self.cancelButton.isHidden = true
             case 2:
                 self.titleLabel.text = Strings.donateTour2Title
                 self.noteLabel.text = Strings.donateTour2
                 self.noteButtomLabel.alpha = 0
-                self.cancelButton.isHidden = true
             default:
                 break
             }
     }
-    @IBAction func cancelPressed(_ sender: Any) {
-        print("CANCEL PRESSED")
-    }
+   
 }

@@ -21,7 +21,7 @@ class WelcomeDonationViewController: UIViewController {
         if let name = UserDefaultsProvider.shared.currentUser?.firstName { userName = name
         }
         welcomeTitle.text = "\(userName),"
-        goTourButton.layer.cornerRadius = 12
+        goTourButton.layer.cornerRadius = 15
     }
     
     //============================================================
@@ -42,7 +42,7 @@ class WelcomeDonationViewController: UIViewController {
     func sendStatus(viewed: Bool){
         guard let token = UserDefaultsProvider.shared.currentUser?.token else { return }
         guard let userId = UserDefaultsProvider.shared.currentUser?.id else { return }
-        API.setUserTour(authToken: token, tourNum: 2, user: userId, viewed: viewed, completionHandler:())
+        API.setUserTour(authToken: token, tourNum: 1, user: userId, viewed: viewed, completionHandler:())
             
     }
     //============================================================

@@ -78,15 +78,11 @@ class SplashScreenViewController: UIViewController {
                     let showTour = UserDefaultsProvider.shared.currentUser?.showTour
                     switch showTour {
                     case 0:
-                        self.navigateToLastDonationPopUp()
-//                        self.navigateToDonationTourWalkThrough()
-//
-                        //                        self.navigateToDonationTourWalkThrough()
-                    //                        self.navigateToMain()
+                        self.navigateToMain()
                     case 1:
-                        self.navigateToWelcomeTour()
-                    case 2:
                         self.navigateToDonationTourWalkThrough()
+                    case 2:
+                        self.navigateToDonationPopUp()
                     case 3:
                         self.navigateToLastDonationPopUp()
                     default:
@@ -124,10 +120,7 @@ class SplashScreenViewController: UIViewController {
         appDelegate.setRootViewController(viewController: welcomeTourViewController, animated: true)
     }
     
-    private func navigateToTourWalkThrough() {
-        let tourWalkThroughViewController = Storyboards.TourWalkThrough.tourWalkThroughViewController
-        appDelegate.setRootViewController(viewController: tourWalkThroughViewController, animated: true)
-    }
+
     
     private func navigateToDonationTourWalkThrough() {
         let donationsWalkThroughViewController = Storyboards.DonationWalkThrough.welcomeDonationViewController
@@ -137,7 +130,7 @@ class SplashScreenViewController: UIViewController {
     private func navigateToDonationPopUp() {
         let mainViewController = Storyboards.Main.mainViewController
         mainViewController.modalPresentationStyle = .fullScreen
-        self.present(mainViewController, animated: false, completion: nil)
+        self.present(mainViewController, animated: true, completion: nil)
         mainViewController.presentDonationPopUp()
     }
     private func navigateToLastDonationPopUp() {

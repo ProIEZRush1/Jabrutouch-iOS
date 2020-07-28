@@ -431,6 +431,9 @@ class Strings {
     class var donationPopUpBody4: String {
         return NSLocalizedString("donationPopUpbody4", comment: "")
     }
+    class var donationPopUpbody4_1: String {
+        return NSLocalizedString("donationPopUpbody4.1", comment: "")
+    }
     class var donationPopUpButton1: String {
         return NSLocalizedString("donationPopUpButton1", comment: "")
     }
