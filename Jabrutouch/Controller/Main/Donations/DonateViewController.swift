@@ -131,7 +131,7 @@ class DonateViewController: UIViewController, UITextFieldDelegate, DonationDataD
         let string = String(format: Strings.donationEligeble, "\(numberOfKetarim)")
         self.descreptionLabel.text = string
         self.numberOfKtarimLabel.text = "\(numberOfKetarim)"
-        self.amountToDonateLabel.text = " \(amountToDonate)"
+        self.amountToDonateLabel.text = "\(amountToDonate)"
     }
     
     fileprivate func setButtonsColorAndFont() {
@@ -152,10 +152,10 @@ class DonateViewController: UIViewController, UITextFieldDelegate, DonationDataD
         self.crowns = DonationManager.shared.crowns
         for crown in self.crowns {
             if crown.paymentType == "regular" {
-                self.numberOfCrownsSingel = crown.dollarPerCrown
+                self.numberOfCrownsSingel = Int(crown.dollarPerCrown)
             }
             if crown.paymentType == "subscription" {
-                self.numberOfCrownsSubsciption = crown.dollarPerCrown
+                self.numberOfCrownsSubsciption = Int(crown.dollarPerCrown) 
             }
             self.paymentType = crown.id
         }

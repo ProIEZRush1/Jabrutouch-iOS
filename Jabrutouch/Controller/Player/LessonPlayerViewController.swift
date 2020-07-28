@@ -333,13 +333,11 @@ class LessonPlayerViewController: UIViewController {
                 lessonDonation.lessonId == self.lesson.id &&
                 lessonDonation.donatedBy.count > 0 {
                 self.donationAllertData = lessonDonation.copy().donatedBy[0]
-//                if self.shouldDisplayDonationPopUp {
                 self.shouldDisplayDonationPopUp = true
                 self.shouldStartPlay = false
                     DispatchQueue.main.async {
                         self.presentDonateAlert()
                     }
-//                }
             } else {
                 newArray.append(lessonDonation)
             }
@@ -362,6 +360,11 @@ class LessonPlayerViewController: UIViewController {
                     }
                     self.donationAllertData = response.donatedBy[0]
                     if self.shouldDisplayDonationPopUp {
+                        if (self.donationAllertData?.dedicationText == "" &&
+                            self.donationAllertData?.firstName == "" &&
+                            self.donationAllertData?.lastName == "") {
+                            return
+                        }
                         DispatchQueue.main.async {
                             self.presentDonateAlert()
                         }

@@ -12,7 +12,7 @@ struct JTCrown {
     
     var id: Int
     var paymentType: String
-    var dollarPerCrown : Int
+    var dollarPerCrown : Float
     
     init?(values: [String:Any]) {
         if let id = values["id"] as? Int {
@@ -23,8 +23,8 @@ struct JTCrown {
             self.paymentType = paymentType
         } else { return nil }
         
-        if let dollarPerCrown = values["price"] as? Int {
-            self.dollarPerCrown = dollarPerCrown
+        if let dollarPerCrown = values["price"] as? String {
+            self.dollarPerCrown = (dollarPerCrown as NSString).floatValue
         } else { return nil }
         
     }
