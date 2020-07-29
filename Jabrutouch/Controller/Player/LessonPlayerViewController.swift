@@ -360,21 +360,23 @@ class LessonPlayerViewController: UIViewController {
                     }
                     self.donationAllertData = response.donatedBy[0]
                     if self.shouldDisplayDonationPopUp {
-                        if (self.donationAllertData?.dedicationText == "" &&
+                        if !(self.donationAllertData?.dedicationText == "" &&
                             self.donationAllertData?.firstName == "" &&
                             self.donationAllertData?.lastName == "") {
-                            return
-                        }
-                        DispatchQueue.main.async {
-                            self.presentDonateAlert()
+                            DispatchQueue.main.async {
+                                self.presentDonateAlert()
+                            }
+                        } else {
+                            self.didDismiss(withDonation: true)
                         }
                     }
                 } else {
-                    if self.shouldDisplayDonationPopUp {
-                        DispatchQueue.main.async {
-                            self.presentNotDonateAlert()
-                        }
-                    }
+                    self.didDismiss(withDonation: true)
+//                    if self.shouldDisplayDonationPopUp {
+//                        DispatchQueue.main.async {
+//                            self.presentNotDonateAlert()
+//                        }
+//                    }
                 }
                 
             case .failure(let error):

@@ -161,6 +161,8 @@
 		538691502379E8E500CC95B5 /* JBProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5386914E2379E8E500CC95B5 /* JBProgressBar.swift */; };
 		538691512379E8E500CC95B5 /* LabelWithPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5386914F2379E8E500CC95B5 /* LabelWithPadding.swift */; };
 		538691532379E9B100CC95B5 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 538691522379E9B100CC95B5 /* Profile.storyboard */; };
+		604062FF24D1827F00267E63 /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 604062FE24D1827E00267E63 /* splash.png */; };
+		6040630124D1865E00267E63 /* lunchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 6040630024D1865D00267E63 /* lunchScreen.png */; };
 		604A891B24CEEC9000212B44 /* DonationPopUps.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 604A891A24CEEC9000212B44 /* DonationPopUps.storyboard */; };
 		604A891E24CEFA1B00212B44 /* DonationPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A891D24CEFA1B00212B44 /* DonationPopUpViewController.swift */; };
 		604A892B24CF0FF600212B44 /* FirstChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A892824CF0FF500212B44 /* FirstChildVC.swift */; };
@@ -191,7 +193,6 @@
 		60BCF3DC24CD885D00B0C2A9 /* WelcomeDonationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BCF3DB24CD885D00B0C2A9 /* WelcomeDonationViewController.swift */; };
 		60BCF3DE24CDD4C800B0C2A9 /* JTDonationBarPageIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BCF3DD24CDD4C800B0C2A9 /* JTDonationBarPageIndicator.swift */; };
 		60C8989F24C99B310032FBBB /* WelcomeTourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C8989E24C99B310032FBBB /* WelcomeTourViewController.swift */; };
-		60C898A324C9ABE60032FBBB /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 60C898A224C9ABE50032FBBB /* background.png */; };
 		60DB15772415494C00BD470F /* ChangeSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DB15762415494C00BD470F /* ChangeSettingsViewController.swift */; };
 		83137EFD23F04024003B9DA6 /* JTDonation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83137EFC23F04024003B9DA6 /* JTDonation.swift */; };
 		83137EFF23F040E5003B9DA6 /* DonationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83137EFE23F040E5003B9DA6 /* DonationResponse.swift */; };
@@ -465,6 +466,8 @@
 		5386914E2379E8E500CC95B5 /* JBProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JBProgressBar.swift; sourceTree = "<group>"; };
 		5386914F2379E8E500CC95B5 /* LabelWithPadding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelWithPadding.swift; sourceTree = "<group>"; };
 		538691522379E9B100CC95B5 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		604062FE24D1827E00267E63 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = splash.png; path = Jabrutouch/Assets.xcassets/Image.imageset/splash.png; sourceTree = SOURCE_ROOT; };
+		6040630024D1865D00267E63 /* lunchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lunchScreen.png; sourceTree = "<group>"; };
 		604A891A24CEEC9000212B44 /* DonationPopUps.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DonationPopUps.storyboard; sourceTree = "<group>"; };
 		604A891D24CEFA1B00212B44 /* DonationPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonationPopUpViewController.swift; sourceTree = "<group>"; };
 		604A892824CF0FF500212B44 /* FirstChildVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstChildVC.swift; sourceTree = "<group>"; };
@@ -514,7 +517,6 @@
 		60BCF3DB24CD885D00B0C2A9 /* WelcomeDonationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeDonationViewController.swift; sourceTree = "<group>"; };
 		60BCF3DD24CDD4C800B0C2A9 /* JTDonationBarPageIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTDonationBarPageIndicator.swift; sourceTree = "<group>"; };
 		60C8989E24C99B310032FBBB /* WelcomeTourViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeTourViewController.swift; sourceTree = "<group>"; };
-		60C898A224C9ABE50032FBBB /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		60DB15762415494C00BD470F /* ChangeSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeSettingsViewController.swift; sourceTree = "<group>"; };
 		715A51EC96A60C90B07F8038 /* Pods-Jabrutouch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jabrutouch.debug.xcconfig"; path = "Target Support Files/Pods-Jabrutouch/Pods-Jabrutouch.debug.xcconfig"; sourceTree = "<group>"; };
 		83137EFC23F04024003B9DA6 /* JTDonation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTDonation.swift; sourceTree = "<group>"; };
@@ -1026,7 +1028,8 @@
 			children = (
 				608CC712241129F8002136A8 /* animation.json */,
 				83408E14241EBE3100DD9229 /* GRACIAS_BAJA_2.mov */,
-				60C898A224C9ABE50032FBBB /* background.png */,
+				604062FE24D1827E00267E63 /* splash.png */,
+				6040630024D1865D00267E63 /* lunchScreen.png */,
 				DDCA933C23D0B34200388EC6 /* lunchScreenIcon.png */,
 				DDCA933A23D0B31700388EC6 /* Jabrutouch.png */,
 				21419CB1230D51F700145F1F /* Bridging Headers */,
@@ -1646,6 +1649,7 @@
 				21678D4B22DF2CEC007BC74C /* SF-Pro-Display-HeavyItalic.otf in Resources */,
 				21678D4C22DF2CEC007BC74C /* SF-Pro-Display-Light.otf in Resources */,
 				21678D4D22DF2CEC007BC74C /* SF-Pro-Display-LightItalic.otf in Resources */,
+				604062FF24D1827F00267E63 /* splash.png in Resources */,
 				836A884D23968C8E00F68539 /* ForgotPassword.storyboard in Resources */,
 				21678D4E22DF2CEC007BC74C /* SF-Pro-Display-Medium.otf in Resources */,
 				21678D4F22DF2CEC007BC74C /* SF-Pro-Display-MediumItalic.otf in Resources */,
@@ -1696,8 +1700,8 @@
 				21678D6D22DF2CED007BC74C /* SF-Pro-Text-Semibold.otf in Resources */,
 				21678D6E22DF2CED007BC74C /* SF-Pro-Text-SemiboldItalic.otf in Resources */,
 				21678D6F22DF2CED007BC74C /* SF-Pro-Text-Thin.otf in Resources */,
-				60C898A324C9ABE60032FBBB /* background.png in Resources */,
 				21678D7022DF2CED007BC74C /* SF-Pro-Text-ThinItalic.otf in Resources */,
+				6040630124D1865E00267E63 /* lunchScreen.png in Resources */,
 				21F89DCE231B173500540658 /* VideoPlayer.xib in Resources */,
 				604A891B24CEEC9000212B44 /* DonationPopUps.storyboard in Resources */,
 				FBB18FAC22F85019006886FD /* Gemara.storyboard in Resources */,
@@ -2155,9 +2159,9 @@
 				CODE_SIGN_ENTITLEMENTS = Jabrutouch/Jabrutouch.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = LT8NS64PFR;
+				DEVELOPMENT_TEAM = T57ASHU8T6;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Jabrutouch/Info.plist;
@@ -2186,8 +2190,8 @@
 				CODE_SIGN_ENTITLEMENTS = Jabrutouch/Jabrutouch.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = LT8NS64PFR;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = T57ASHU8T6;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Jabrutouch/Info.plist;
