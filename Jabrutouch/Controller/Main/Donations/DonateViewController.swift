@@ -40,6 +40,7 @@ class DonateViewController: UIViewController, UITextFieldDelegate, DonationDataD
     var numberOfCrownsSubsciption = 1
     var showVideo: Bool = UserDefaultsProvider.shared.videoWatched
     var paymentType: Int = 0
+    var fromDeepLink = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,12 +55,14 @@ class DonateViewController: UIViewController, UITextFieldDelegate, DonationDataD
         self.setShadows()
         self.setText()
         self.presentVideo()
+        self.fromDeepLink ? couponeCallToDedication() : nil
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.setButtonsColorAndFont()
         self.setState()
         DonationManager.shared.donationDataDelegate = self
+        
         
     }
     
@@ -183,6 +186,14 @@ class DonateViewController: UIViewController, UITextFieldDelegate, DonationDataD
     
     func donationsDataReceived() {
         self.getDonationData()
+    }
+    
+    
+    func couponeCallToDedication(){
+        self.amountToDonateLabel.text = "32"
+        self.createPostDedication()
+        self.performSegue(withIdentifier: "presentDedication", sender: self)
+
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {

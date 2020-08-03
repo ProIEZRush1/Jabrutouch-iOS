@@ -1133,7 +1133,7 @@
         <!--Dedication View Controller-->
         <scene sceneID="rTF-un-SDU">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="xro-Bq-7Yw" customClass="DedicationViewController" customModule="Jabrutouch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="dedicationViewController" modalPresentationStyle="fullScreen" id="xro-Bq-7Yw" customClass="DedicationViewController" customModule="Jabrutouch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="I16-Yc-oJU">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -19,6 +19,7 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
     private var activityView: ActivityView?
     var views: [DedicationCardView] = []
     var postDedication: JTPostDedication?
+    var postCoupone: JTCouponRedemption?
     var user: JTUser?
     var anonimus: Bool = false
     var name: String = ""
@@ -26,6 +27,8 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
     var isSubscription: Bool = false
     var dedication: [JTDedication] = []
     var delegate: DedicationViewControllerDelegate?
+    var fromDeepLink = false
+    var couponeValue: JTDeepLinkCoupone?
     
     //========================================
     // MARK: - @IBOutlets
@@ -165,7 +168,10 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
     }
 
     @IBAction func backButtonBack(_ sender: Any) {
+        if !self.fromDeepLink{
         self.navigationController?.popViewController(animated: true)
+        }else{self.dismiss(animated: true, completion: nil)}
+        
     }
     
     @IBAction func anonimusButtonPreesed(_ sender: Any) {
@@ -201,8 +207,13 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
         }
         self.postDedication?.dedicationTemplate = index + 1
         self.postDedication?.status = "pending"
-        
-        self.createPayment(postDedication: postDedication)
+        if !self.fromDeepLink {
+            self.createPayment(postDedication: postDedication)
+        } else {
+            guard let distributer = self.couponeValue?.couponDistributor else { return }
+            let couponRedemption = JTCouponRedemption(coupon: distributer, nameToRepresent: self.postDedication?.nameToRepresent ?? "", dedicationText: self.postDedication?.dedicationText ?? "", dedicationTemplate: self.postDedication?.dedicationTemplate ?? 0)
+                self.couponRedemption(postCoupone: couponRedemption)
+        }
         //        self.performSegue(withIdentifier: "presentPayment", sender: self)
     }
     
@@ -229,6 +240,30 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
         }
     }
     
+    func couponRedemption(postCoupone: JTCouponRedemption){
+        self.showActivityView()
+        DonationManager.shared.createCouponRedemption(postCoupone){ (result) in
+            switch result {
+            case .success(let success):
+                print(success)
+                UserDefaultsProvider.shared.donationPending = true
+                DispatchQueue.main.async {
+                    self.removeActivityView()
+                    let mainViewController = Storyboards.Main.mainViewController
+                    mainViewController.modalPresentationStyle = .fullScreen
+                    self.present(mainViewController, animated: false, completion: nil)
+                    mainViewController.presentDonationsNavigationViewController()
+                }
+                self.delegate?.createPayment()
+            case .failure(let error):
+                self.removeActivityView()
+                print(error)
+                let vc = Storyboards.Coupons.invalidCouponeViewController
+                self.present(vc, animated: true, completion: nil)
+                Utils.showAlertMessage("Failed to create Coupon redemption please try again", viewControler: self)
+            }
+        }
+    }
     //========================================
     // MARK: - iCarousel
     //========================================

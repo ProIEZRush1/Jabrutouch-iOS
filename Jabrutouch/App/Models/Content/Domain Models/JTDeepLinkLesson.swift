@@ -14,6 +14,7 @@ class JTDeepLinkLesson {
     //============================================
     // MARK: - Stored Properties
     //============================================
+    var type: String
     var seder : Int
     var masechet: Int
     var page: Int?
@@ -29,6 +30,10 @@ class JTDeepLinkLesson {
     //============================================
     
     init?(values: [String: String]) {
+        
+        if let type = values["type"] {
+            self.type = type
+        } else { return  nil }
         
         if let seder = values["seder"] {
             self.seder = Int(seder) ?? -1

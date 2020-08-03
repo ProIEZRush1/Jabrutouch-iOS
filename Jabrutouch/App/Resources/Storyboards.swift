@@ -54,6 +54,18 @@ class Storyboards {
         
     }
     
+    class Coupons{
+        private class func couponeStoryboard() -> UIStoryboard { return UIStoryboard(name: "Coupone", bundle: Bundle.main) }
+        
+        class var  couponeViewController: CouponsViewController {
+            return self.couponeStoryboard().instantiateViewController(withIdentifier: "validCoupone") as! CouponsViewController
+        }
+        class var  invalidCouponeViewController: InvalidCouponeViewController {
+            return self.couponeStoryboard().instantiateViewController(withIdentifier: "invalidCoupone") as! InvalidCouponeViewController
+        }
+        
+    }
+    
     class SignIn {
         private class func signInStoryboard() -> UIStoryboard { return UIStoryboard(name: "SignIn", bundle: Bundle.main) }
         
@@ -98,6 +110,13 @@ class Storyboards {
         
         class var  donateNavigationController: DonateNavigationController {
             return self.donationStoryboard().instantiateViewController(withIdentifier: "DonateNavigationController") as! DonateNavigationController
+        }
+        class var  donateViewController: DonateViewController {
+            return self.donationStoryboard().instantiateViewController(withIdentifier: "DonateViewController") as! DonateViewController
+        }
+        
+        class var  dedicationViewController: DedicationViewController {
+            return self.donationStoryboard().instantiateViewController(withIdentifier: "dedicationViewController") as! DedicationViewController
         }
     }
     

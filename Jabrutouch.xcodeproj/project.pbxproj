@@ -161,6 +161,10 @@
 		538691502379E8E500CC95B5 /* JBProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5386914E2379E8E500CC95B5 /* JBProgressBar.swift */; };
 		538691512379E8E500CC95B5 /* LabelWithPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5386914F2379E8E500CC95B5 /* LabelWithPadding.swift */; };
 		538691532379E9B100CC95B5 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 538691522379E9B100CC95B5 /* Profile.storyboard */; };
+		600399D224D6CC490038ED66 /* Coupone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 600399D124D6CC490038ED66 /* Coupone.storyboard */; };
+		600399D424D6D3900038ED66 /* CouponsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600399D324D6D3900038ED66 /* CouponsViewController.swift */; };
+		600399D724D6D6330038ED66 /* InvalidCouponeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600399D624D6D6330038ED66 /* InvalidCouponeViewController.swift */; };
+		600399D924D6E1550038ED66 /* JTDeepLinkCoupone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600399D824D6E1550038ED66 /* JTDeepLinkCoupone.swift */; };
 		604062FF24D1827F00267E63 /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 604062FE24D1827E00267E63 /* splash.png */; };
 		6040630124D1865E00267E63 /* lunchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 6040630024D1865D00267E63 /* lunchScreen.png */; };
 		604A891B24CEEC9000212B44 /* DonationPopUps.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 604A891A24CEEC9000212B44 /* DonationPopUps.storyboard */; };
@@ -174,6 +178,7 @@
 		604A893524CF537900212B44 /* DonationLastPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A893424CF537900212B44 /* DonationLastPopUpViewController.swift */; };
 		604BBDCF24A0CE6E000C5076 /* JTDeepLinkLesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604BBDCE24A0CE6E000C5076 /* JTDeepLinkLesson.swift */; };
 		604C28C82457038E00A19D87 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604C28C72457038E00A19D87 /* ForgotPasswordViewController.swift */; };
+		605630AA24D715A6001C2BFA /* JTCouponRedemption .swift in Sources */ = {isa = PBXBuildFile; fileRef = 605630A924D715A6001C2BFA /* JTCouponRedemption .swift */; };
 		60717D5C24AE19790099DB1D /* JTLessonAnalitics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60717D5B24AE19790099DB1D /* JTLessonAnalitics.swift */; };
 		608378EE249271D2005C60BE /* JTPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608378ED249271D2005C60BE /* JTPopup.swift */; };
 		6087D86524C5B74400EF6902 /* TourWalkThroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6087D86424C5B74400EF6902 /* TourWalkThroughViewController.swift */; };
@@ -466,6 +471,10 @@
 		5386914E2379E8E500CC95B5 /* JBProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JBProgressBar.swift; sourceTree = "<group>"; };
 		5386914F2379E8E500CC95B5 /* LabelWithPadding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelWithPadding.swift; sourceTree = "<group>"; };
 		538691522379E9B100CC95B5 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		600399D124D6CC490038ED66 /* Coupone.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Coupone.storyboard; sourceTree = "<group>"; };
+		600399D324D6D3900038ED66 /* CouponsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponsViewController.swift; sourceTree = "<group>"; };
+		600399D624D6D6330038ED66 /* InvalidCouponeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvalidCouponeViewController.swift; sourceTree = "<group>"; };
+		600399D824D6E1550038ED66 /* JTDeepLinkCoupone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTDeepLinkCoupone.swift; sourceTree = "<group>"; };
 		604062FE24D1827E00267E63 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = splash.png; path = Jabrutouch/Assets.xcassets/Image.imageset/splash.png; sourceTree = SOURCE_ROOT; };
 		6040630024D1865D00267E63 /* lunchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lunchScreen.png; sourceTree = "<group>"; };
 		604A891A24CEEC9000212B44 /* DonationPopUps.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DonationPopUps.storyboard; sourceTree = "<group>"; };
@@ -497,6 +506,7 @@
 		604C28C32456E1D900A19D87 /* GraphikSemiboldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GraphikSemiboldItalic.otf; sourceTree = "<group>"; };
 		604C28C42456E1DA00A19D87 /* GraphikBlackItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GraphikBlackItalic.otf; sourceTree = "<group>"; };
 		604C28C72457038E00A19D87 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		605630A924D715A6001C2BFA /* JTCouponRedemption .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JTCouponRedemption .swift"; sourceTree = "<group>"; };
 		60717D5B24AE19790099DB1D /* JTLessonAnalitics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTLessonAnalitics.swift; sourceTree = "<group>"; };
 		608378ED249271D2005C60BE /* JTPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTPopup.swift; sourceTree = "<group>"; };
 		608378EF24927B0F005C60BE /* GetPopupResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPopupResponse.swift; sourceTree = "<group>"; };
@@ -976,6 +986,7 @@
 				213196AF22F38B9E00B0AF5F /* Supporting Views */,
 				219BFF2D22E5A10400ABBEE2 /* Custom Controlles */,
 				609F80B62491014B003D1E9A /* PopUp */,
+				600399D524D6D39A0038ED66 /* Coupons */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1073,6 +1084,7 @@
 				833E621D23992C2500EC93C7 /* Messages.storyboard */,
 				83A936AA23D9D53A007BA207 /* Donations.storyboard */,
 				609F80B22490E7D9003D1E9A /* PopUps.storyboard */,
+				600399D124D6CC490038ED66 /* Coupone.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -1289,6 +1301,8 @@
 				8391EC63240BDCD1007B5F98 /* JTLessonDonated.swift */,
 				608378ED249271D2005C60BE /* JTPopup.swift */,
 				604BBDCE24A0CE6E000C5076 /* JTDeepLinkLesson.swift */,
+				600399D824D6E1550038ED66 /* JTDeepLinkCoupone.swift */,
+				605630A924D715A6001C2BFA /* JTCouponRedemption .swift */,
 			);
 			path = "Domain Models";
 			sourceTree = "<group>";
@@ -1316,6 +1330,15 @@
 				83CCB126237C8D6F00C86450 /* EditPasswordCell.swift */,
 			);
 			path = profileCells;
+			sourceTree = "<group>";
+		};
+		600399D524D6D39A0038ED66 /* Coupons */ = {
+			isa = PBXGroup;
+			children = (
+				600399D324D6D3900038ED66 /* CouponsViewController.swift */,
+				600399D624D6D6330038ED66 /* InvalidCouponeViewController.swift */,
+			);
+			path = Coupons;
 			sourceTree = "<group>";
 		};
 		604A891C24CEF98F00212B44 /* WalkThrough */ = {
@@ -1659,6 +1682,7 @@
 				21678D5322DF2CEC007BC74C /* SF-Pro-Display-SemiboldItalic.otf in Resources */,
 				21678D5422DF2CEC007BC74C /* SF-Pro-Display-Thin.otf in Resources */,
 				21678D5522DF2CEC007BC74C /* SF-Pro-Display-ThinItalic.otf in Resources */,
+				600399D224D6CC490038ED66 /* Coupone.storyboard in Resources */,
 				21678D5622DF2CEC007BC74C /* SF-Pro-Display-Ultralight.otf in Resources */,
 				8359193023A2636000F0B4D8 /* ChatControls.xib in Resources */,
 				21678D5722DF2CEC007BC74C /* SF-Pro-Display-UltralightItalic.otf in Resources */,
@@ -1828,6 +1852,7 @@
 				833E6227239FB72A00EC93C7 /* MessagesRepository.swift in Sources */,
 				2126D6DF2303EC5400CB501D /* NotificationsNames.swift in Sources */,
 				219BFF2C22E59F4500ABBEE2 /* Extensions.swift in Sources */,
+				600399D724D6D6330038ED66 /* InvalidCouponeViewController.swift in Sources */,
 				83605BAC23853BCC00B93603 /* JTLessonWatched.swift in Sources */,
 				6087D86724C5B7AF00EF6902 /* TourWalkThroughCollectionViewCell.swift in Sources */,
 				2120BE2122DF2787004854DB /* RequestVerificationCodeViewController.swift in Sources */,
@@ -1901,6 +1926,7 @@
 				FBAB071922E7579F00C8DCD7 /* JTDownload.swift in Sources */,
 				FBD9374F22F323AA00BC94DC /* MishnaLessonsViewController.swift in Sources */,
 				21419CB4230D894B00145F1F /* DownloadTask.swift in Sources */,
+				600399D924D6E1550038ED66 /* JTDeepLinkCoupone.swift in Sources */,
 				DD4E3A8024056BF400A889BE /* SingleDonationViewController.swift in Sources */,
 				219BFF2722E50A0A00ABBEE2 /* DownloadsNavigationController.swift in Sources */,
 				2131969C22F38B2E00B0AF5F /* UserDefaultsProvider.swift in Sources */,
@@ -1971,6 +1997,7 @@
 				213196A922F38B3E00B0AF5F /* ResendCodeResponse.swift in Sources */,
 				83A7A0CB23E84C3D0041BE28 /* ChangePasswordResponse.swift in Sources */,
 				83A936AD23D9E8D8007BA207 /* DonationsNavigationController.swift in Sources */,
+				605630AA24D715A6001C2BFA /* JTCouponRedemption .swift in Sources */,
 				213196A622F38B3E00B0AF5F /* ValidateCodeResponse.swift in Sources */,
 				8391EC62240BCBE5007B5F98 /* CreateLikeResponse.swift in Sources */,
 				DD51CDEC23F185D30063167E /* AudioMessagesManager.swift in Sources */,
@@ -1979,6 +2006,7 @@
 				2131969D22F38B2E00B0AF5F /* FilesManagementProvider.swift in Sources */,
 				21999F3B23185F1C003DB1B4 /* EndTimeDisplayMode.swift in Sources */,
 				216A0E7022EEFDA300F7FBC1 /* HTTPRequestFactory.swift in Sources */,
+				600399D424D6D3900038ED66 /* CouponsViewController.swift in Sources */,
 				213196B122F38B9E00B0AF5F /* ActivityView.swift in Sources */,
 				2133C1F822DB5B8200F910B9 /* AppDelegate.swift in Sources */,
 				FB51711F22F1AE0B003BCAFC /* JTLessonDownload.swift in Sources */,
@@ -2159,7 +2187,7 @@
 				CODE_SIGN_ENTITLEMENTS = Jabrutouch/Jabrutouch.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = T57ASHU8T6;
 				ENABLE_BITCODE = NO;
@@ -2171,7 +2199,7 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 1.3.7;
+				MARKETING_VERSION = 1.3.8;
 				PRODUCT_BUNDLE_IDENTIFIER = il.co.jabrutouch.Jabrutouch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2190,7 +2218,7 @@
 				CODE_SIGN_ENTITLEMENTS = Jabrutouch/Jabrutouch.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = T57ASHU8T6;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -2201,7 +2229,7 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 1.3.7;
+				MARKETING_VERSION = 1.3.8;
 				PRODUCT_BUNDLE_IDENTIFIER = il.co.jabrutouch.Jabrutouch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

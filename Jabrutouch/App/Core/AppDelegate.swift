@@ -58,21 +58,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return
         }
         guard let url1 = url.queryDictionary else { return }
-        
-        print("Your incoming link params \(url1)")
-        guard let values = JTDeepLinkLesson(values: url1) else { return }
-        if UserDefaultsProvider.shared.currentUser?.token != nil {
+         let type = url1["type"]
+        if type == "coupon"{
+            guard let values = JTDeepLinkCoupone(values: url1) else { return }
             let mainViewController = Storyboards.Main.mainViewController
             mainViewController.modalPresentationStyle = .fullScreen
             self.topmostViewController?.present(mainViewController, animated: false, completion: nil)
-            mainViewController.lessonFromDeepLink(values)
-        } else {
-            let singinViewController = Storyboards.SignIn.signInViewController
-            singinViewController.modalPresentationStyle = .fullScreen
-            self.topmostViewController?.present(singinViewController, animated: false, completion: nil)
+            mainViewController.couponeFromDeepLink(values: values)
+        }else{
+            guard let values = JTDeepLinkLesson(values: url1) else { return }
+             if UserDefaultsProvider.shared.currentUser?.token != nil {
+                 let mainViewController = Storyboards.Main.mainViewController
+                 mainViewController.modalPresentationStyle = .fullScreen
+                 self.topmostViewController?.present(mainViewController, animated: false, completion: nil)
+                 mainViewController.lessonFromDeepLink(values)
+             } else {
+                 let singinViewController = Storyboards.SignIn.signInViewController
+                 singinViewController.modalPresentationStyle = .fullScreen
+                 self.topmostViewController?.present(singinViewController, animated: false, completion: nil)
+             }
         }
-       
-
+        print("Your incoming link params \(url1)")
     }
    
     

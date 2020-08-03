@@ -742,7 +742,6 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
         donationPopUp.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
         donationPopUp.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
         self.present(donationPopUp, animated: true, completion: nil)
-        
     }
     
     func presentLastDonationPopUp(){
@@ -750,6 +749,15 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
         donationPopUp.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
         donationPopUp.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
         self.present(donationPopUp, animated: true, completion: nil)
+    }
+    
+    func presentCouponePopUp(values: JTDeepLinkCoupone){
+        let couponePopUp = Storyboards.Coupons.couponeViewController
+        couponePopUp.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        couponePopUp.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+        couponePopUp.values = values
+        couponePopUp.crowns = values.couponSum
+        self.present(couponePopUp, animated: true, completion: nil)
         
     }
     
@@ -814,6 +822,9 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
         self.showActivityView()
     }
     
+    func couponeFromDeepLink(values: JTDeepLinkCoupone){
+        presentCouponePopUp(values: values)
+    }
     
     func audioPressed(selectedRow: Int, isFirstCollection: Bool) {
         DispatchQueue.main.async {

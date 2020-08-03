@@ -253,6 +253,17 @@ class HttpRequestsFactory {
         return request
     }
     
+    class func createCouponRedemptionRequest(coupone: String, nameToRepresent: String, dedicationText: String, dedicationTemplate:Int, token: String) -> URLRequest?{
+        guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
+        let link = baseUrl.appendingPathComponent("coupon").absoluteString
+        let body: [String:Any] = ["coupon": coupone, "dedication_text": dedicationText,  "dedication_template": dedicationTemplate, "name_to_represent": nameToRepresent]
+        guard let url = self.createUrl(fromLink: link, urlParams: nil) else { return nil }
+        let additionalHeaders: [String:String] = ["Authorization": "token \(token)"]
+        
+        let request = self.createRequest(url, method: .post, body: body, additionalHeaders: additionalHeaders)
+        return request
+    }
+    
     class func createGetMessageListRequest(token: String) -> URLRequest?{
         guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
         let link = baseUrl.appendingPathComponent("messages").absoluteString
