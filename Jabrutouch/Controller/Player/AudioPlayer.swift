@@ -22,7 +22,7 @@ protocol AudioPlayerDelegate: class {
     func currentTimeDidChange(currentTime: TimeInterval, duration: TimeInterval)
     func didStartPlaying()
     func didFinishPlaying()
-    func sendLikeAfter30seconds()
+    func AudioSendLikeAfter30seconds()
 }
 
 
@@ -327,7 +327,7 @@ class AudioPlayer: UIView {
         self.slider.value = Float(percentage)
         self.delegate?.currentTimeDidChange(currentTime: player.currentTime, duration: player.duration)
         if (Int(player.currentTime().seconds) == 30) {
-            self.delegate?.sendLikeAfter30seconds()
+            self.delegate?.AudioSendLikeAfter30seconds()
         }
         setupNowPlaying()
         if let image = Utils.linearGradientImage(endXPoint: percentage, size: self.slider.frame.size, colors: [Colors.appBlue, Colors.appOrange]) {

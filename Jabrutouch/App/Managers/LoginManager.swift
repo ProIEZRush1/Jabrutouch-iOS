@@ -28,7 +28,7 @@ class LoginManager {
     //==========================================
     
     func signIn(phoneNumber: String?, email: String?, password: String, completion:@escaping (_ result: Result<JTUser,JTError>)->Void){
-        API.signIn(phoneNumber: phoneNumber, email: email, password: password, fcmToken: MessagesRepository.shared.fcmToken) { (result:APIResult<LoginResponse>) in
+        API.signIn(phoneNumber: phoneNumber, email: email, password: password, fcmToken: UserDefaultsProvider.shared.currentFcmToken ?? "") { (result:APIResult<LoginResponse>) in
             switch result {
             case .success(let response):
                 self.userDidSignIn(user: response.user, password: password)

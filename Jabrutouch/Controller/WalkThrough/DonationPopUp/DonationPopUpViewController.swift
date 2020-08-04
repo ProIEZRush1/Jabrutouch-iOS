@@ -110,6 +110,10 @@ class DonationPopUpViewController: UIViewController {
     
      @IBAction func redButtonPressed(_ sender: UIButton) {
          sendStatus(viewed: true)
+        let mainViewController = Storyboards.Main.mainViewController
+        mainViewController.modalPresentationStyle = .fullScreen
+        self.present(mainViewController, animated: false, completion: nil)
+        mainViewController.presentDonation()
      }
 
     @IBAction func close(_ sender: UIButton) {

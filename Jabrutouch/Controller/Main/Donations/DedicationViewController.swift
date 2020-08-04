@@ -258,8 +258,10 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
             case .failure(let error):
                 self.removeActivityView()
                 print(error)
+                 DispatchQueue.main.async {
                 let vc = Storyboards.Coupons.invalidCouponeViewController
                 self.present(vc, animated: true, completion: nil)
+                }
                 Utils.showAlertMessage("Failed to create Coupon redemption please try again", viewControler: self)
             }
         }

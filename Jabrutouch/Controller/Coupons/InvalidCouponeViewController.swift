@@ -28,12 +28,16 @@ setup()
     }
     
     @IBAction func blueButtonPressed(_ sender: Any) {
-        let donationVC = Storyboards.Donation.donateNavigationController
+//        let donationVC = Storyboards.Donation.donateNavigationController
+//        let mainViewController = Storyboards.Main.mainViewController
+//        mainViewController.modalPresentationStyle = .fullScreen
+//        self.present(mainViewController, animated: false, completion: nil)
+//        mainViewController.present(donationVC, animated: true)
+        
         let mainViewController = Storyboards.Main.mainViewController
         mainViewController.modalPresentationStyle = .fullScreen
         self.present(mainViewController, animated: false, completion: nil)
-        mainViewController.present(donationVC, animated: true)
-        
+        mainViewController.presentDonation()
     }
     
     @IBAction func whiteButtonPressed(_ sender: Any) {

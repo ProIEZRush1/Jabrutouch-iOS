@@ -35,8 +35,10 @@ class DonationLastPopUpViewController: UIViewController {
         sendStatus(viewed: true)
         let mainViewController = Storyboards.Main.mainViewController
         mainViewController.modalPresentationStyle = .fullScreen
+        mainViewController.singlePayment = true
         self.present(mainViewController, animated: false, completion: nil)
         mainViewController.presentDonation()
+
     }
     
     @IBAction func cancelPressed(_ sender: Any) {

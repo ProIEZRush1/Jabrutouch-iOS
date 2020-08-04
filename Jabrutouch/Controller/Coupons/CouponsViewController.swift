@@ -81,8 +81,10 @@ class CouponsViewController: UIViewController {
                 }
             case .failure(let error):
                 print(error)
+                DispatchQueue.main.async {
                 let vc = Storyboards.Coupons.invalidCouponeViewController
                 self.present(vc, animated: true, completion: nil)
+                }
                 Utils.showAlertMessage("Failed to create Coupon redemption please try again", viewControler: self)
             }
         }

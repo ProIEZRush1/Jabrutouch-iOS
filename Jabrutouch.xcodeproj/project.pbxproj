@@ -199,6 +199,8 @@
 		60BCF3DE24CDD4C800B0C2A9 /* JTDonationBarPageIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BCF3DD24CDD4C800B0C2A9 /* JTDonationBarPageIndicator.swift */; };
 		60C8989F24C99B310032FBBB /* WelcomeTourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C8989E24C99B310032FBBB /* WelcomeTourViewController.swift */; };
 		60DB15772415494C00BD470F /* ChangeSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DB15762415494C00BD470F /* ChangeSettingsViewController.swift */; };
+		60EDAC8324D98062004FB3E6 /* CouponResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EDAC8224D98062004FB3E6 /* CouponResponse.swift */; };
+		60EDAC8524D98E26004FB3E6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 60EDAC8424D98E23004FB3E6 /* GoogleService-Info.plist */; };
 		83137EFD23F04024003B9DA6 /* JTDonation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83137EFC23F04024003B9DA6 /* JTDonation.swift */; };
 		83137EFF23F040E5003B9DA6 /* DonationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83137EFE23F040E5003B9DA6 /* DonationResponse.swift */; };
 		83137F0123F046CB003B9DA6 /* JTCrown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83137F0023F046CB003B9DA6 /* JTCrown.swift */; };
@@ -280,7 +282,6 @@
 		DD51CDF423F186D70063167E /* AudioWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = DD51CDF323F186D70063167E /* AudioWrapper.m */; };
 		DD5AE5A223F2C747009CF8AC /* IncomingMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5AE5A123F2C747009CF8AC /* IncomingMessageCell.swift */; };
 		DD5CA3A82402AE6A00AF1FA4 /* Tzedaka.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD5CA3A72402AE6900AF1FA4 /* Tzedaka.storyboard */; };
-		DD5D1C1F23CCD4AF0087A6DB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD5D1C1E23CCD4AF0087A6DB /* GoogleService-Info.plist */; };
 		DD61996523FC189700C06356 /* MessagesNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD61996423FC189700C06356 /* MessagesNavigationController.swift */; };
 		DDCA933B23D0B31700388EC6 /* Jabrutouch.png in Resources */ = {isa = PBXBuildFile; fileRef = DDCA933A23D0B31700388EC6 /* Jabrutouch.png */; };
 		DDCA933D23D0B34200388EC6 /* lunchScreenIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = DDCA933C23D0B34200388EC6 /* lunchScreenIcon.png */; };
@@ -528,6 +529,8 @@
 		60BCF3DD24CDD4C800B0C2A9 /* JTDonationBarPageIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTDonationBarPageIndicator.swift; sourceTree = "<group>"; };
 		60C8989E24C99B310032FBBB /* WelcomeTourViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeTourViewController.swift; sourceTree = "<group>"; };
 		60DB15762415494C00BD470F /* ChangeSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeSettingsViewController.swift; sourceTree = "<group>"; };
+		60EDAC8224D98062004FB3E6 /* CouponResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponResponse.swift; sourceTree = "<group>"; };
+		60EDAC8424D98E23004FB3E6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		715A51EC96A60C90B07F8038 /* Pods-Jabrutouch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jabrutouch.debug.xcconfig"; path = "Target Support Files/Pods-Jabrutouch/Pods-Jabrutouch.debug.xcconfig"; sourceTree = "<group>"; };
 		83137EFC23F04024003B9DA6 /* JTDonation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTDonation.swift; sourceTree = "<group>"; };
 		83137EFE23F040E5003B9DA6 /* DonationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonationResponse.swift; sourceTree = "<group>"; };
@@ -615,7 +618,6 @@
 		DD51CDF323F186D70063167E /* AudioWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioWrapper.m; sourceTree = "<group>"; };
 		DD5AE5A123F2C747009CF8AC /* IncomingMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncomingMessageCell.swift; sourceTree = "<group>"; };
 		DD5CA3A72402AE6900AF1FA4 /* Tzedaka.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tzedaka.storyboard; sourceTree = "<group>"; };
-		DD5D1C1E23CCD4AF0087A6DB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DD61996423FC189700C06356 /* MessagesNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesNavigationController.swift; sourceTree = "<group>"; };
 		DD61996623FC278000C06356 /* DataModel_v3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel_v3.xcdatamodel; sourceTree = "<group>"; };
 		DD61996723FC392B00C06356 /* DataModel_v4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel_v4.xcdatamodel; sourceTree = "<group>"; };
@@ -877,6 +879,7 @@
 				8391EC61240BCBE5007B5F98 /* CreateLikeResponse.swift */,
 				8391EC65240BFDA3007B5F98 /* CreatePaymentResponse.swift */,
 				608378EF24927B0F005C60BE /* GetPopupResponse.swift */,
+				60EDAC8224D98062004FB3E6 /* CouponResponse.swift */,
 			);
 			path = "API Response models";
 			sourceTree = "<group>";
@@ -1048,7 +1051,7 @@
 				2120BE2522DF2C62004854DB /* Fonts */,
 				2126D6D32302D12F00CB501D /* Strings */,
 				2133C1FE22DB5B8500F910B9 /* Assets.xcassets */,
-				DD5D1C1E23CCD4AF0087A6DB /* GoogleService-Info.plist */,
+				60EDAC8424D98E23004FB3E6 /* GoogleService-Info.plist */,
 				2126D6D12302D0E400CB501D /* Info.plist */,
 			);
 			path = "Supporting Files";
@@ -1720,6 +1723,7 @@
 				21678D6922DF2CED007BC74C /* SF-Pro-Text-Medium.otf in Resources */,
 				21678D6A22DF2CED007BC74C /* SF-Pro-Text-MediumItalic.otf in Resources */,
 				21678D6B22DF2CED007BC74C /* SF-Pro-Text-Regular.otf in Resources */,
+				60EDAC8524D98E26004FB3E6 /* GoogleService-Info.plist in Resources */,
 				21678D6C22DF2CED007BC74C /* SF-Pro-Text-RegularItalic.otf in Resources */,
 				21678D6D22DF2CED007BC74C /* SF-Pro-Text-Semibold.otf in Resources */,
 				21678D6E22DF2CED007BC74C /* SF-Pro-Text-SemiboldItalic.otf in Resources */,
@@ -1741,7 +1745,6 @@
 				2133C20E22DCA0BC00F910B9 /* SignIn.storyboard in Resources */,
 				212ECEA8230F36BF005AEB36 /* LessonPlayerViewController.xib in Resources */,
 				2133C20222DB5B8500F910B9 /* LaunchScreen.storyboard in Resources */,
-				DD5D1C1F23CCD4AF0087A6DB /* GoogleService-Info.plist in Resources */,
 				2133C1FF22DB5B8500F910B9 /* Assets.xcassets in Resources */,
 				2133C1FD22DB5B8200F910B9 /* Main.storyboard in Resources */,
 				213196B922F6E8F100B0AF5F /* WalkThrough.storyboard in Resources */,
@@ -1825,6 +1828,7 @@
 				83137EFF23F040E5003B9DA6 /* DonationResponse.swift in Sources */,
 				FB51711622F19FD2003BCAFC /* JTMishnaMasechet.swift in Sources */,
 				833E622F23A13BE400EC93C7 /* GetCreateMessageResponse.swift in Sources */,
+				60EDAC8324D98062004FB3E6 /* CouponResponse.swift in Sources */,
 				604A892D24CF0FF600212B44 /* FifthChildVC.swift in Sources */,
 				836A88492390136000F68539 /* GalleryViewController.swift in Sources */,
 				FB51712122F1D374003BCAFC /* MishnaChapterViewController.swift in Sources */,
@@ -2199,7 +2203,7 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 1.3.8;
+				MARKETING_VERSION = 1.3.9;
 				PRODUCT_BUNDLE_IDENTIFIER = il.co.jabrutouch.Jabrutouch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2229,7 +2233,7 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 1.3.8;
+				MARKETING_VERSION = 1.3.9;
 				PRODUCT_BUNDLE_IDENTIFIER = il.co.jabrutouch.Jabrutouch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

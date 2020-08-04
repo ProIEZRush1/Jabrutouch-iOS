@@ -42,6 +42,7 @@ class DonateViewController: UIViewController, UITextFieldDelegate, DonationDataD
     var paymentType: Int = 0
     var fromDeepLink = false
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -190,7 +191,7 @@ class DonateViewController: UIViewController, UITextFieldDelegate, DonationDataD
     
     
     func couponeCallToDedication(){
-        self.amountToDonateLabel.text = "32"
+//        self.amountToDonateLabel.text = "32"
         self.createPostDedication()
         self.performSegue(withIdentifier: "presentDedication", sender: self)
 

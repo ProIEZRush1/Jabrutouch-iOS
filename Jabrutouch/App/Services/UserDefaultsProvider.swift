@@ -23,7 +23,9 @@ class UserDefaultsProvider {
         case donationPending = "DonationPending"
         case lessonAnalisticDuration = "LessonAnalisticDuration"
         case lessonAnalitics = "LessonAnalitics"
-        case lessonDonation = "LessonDonation"    }
+        case lessonDonation = "LessonDonation"
+        case currentFcmToken = "CurrentFcmToken"
+    }
     
     static private var provider: UserDefaultsProvider?
     
@@ -42,6 +44,16 @@ class UserDefaultsProvider {
             self.provider = UserDefaultsProvider()
         }
         return self.provider!
+    }
+    
+    var currentFcmToken: String? {
+        get {
+            return self.defaults.string(forKey: UserDefaultsKeys.currentFcmToken.rawValue)
+        }
+        set (fcmToken){
+            self.defaults.set(fcmToken, forKey: UserDefaultsKeys.currentFcmToken.rawValue)
+            self.defaults.synchronize()
+        }
     }
     
     var currentUsername: String? {

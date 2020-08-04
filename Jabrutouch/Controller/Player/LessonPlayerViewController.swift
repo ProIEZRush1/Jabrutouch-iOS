@@ -1004,6 +1004,16 @@ extension LessonPlayerViewController: PDFViewDelegate {
 
 extension LessonPlayerViewController: AudioPlayerDelegate, VideoPlayerDelegate {
     
+    
+    func AudioSendLikeAfter30seconds() {
+        self.sendLike()
+    }
+    
+    func videoSendLikeAfter30seconds() {
+        self.sendLike()
+    }
+    
+    
     func videoPlayerModeDidChange(newMode: VideoPlayerMode) {
         self.videoPlayerMode = newMode
         if UIScreen.main.bounds.height <  UIScreen.main.bounds.width {
@@ -1026,7 +1036,7 @@ extension LessonPlayerViewController: AudioPlayerDelegate, VideoPlayerDelegate {
     func didFinishPlaying() {
     }
     
-    func sendLikeAfter30seconds() {
+    func sendLike() {
         if self.withDonation {
             var isGemara = false
             if let _ = self.lesson as? JTGemaraLesson {
@@ -1041,9 +1051,9 @@ extension LessonPlayerViewController: AudioPlayerDelegate, VideoPlayerDelegate {
                 }
             }
         }
-        
+
     }
-    
+
 }
 
 extension LessonPlayerViewController: ContentRepositoryDownloadDelegate {

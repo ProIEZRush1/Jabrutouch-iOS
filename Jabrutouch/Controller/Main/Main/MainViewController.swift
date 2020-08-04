@@ -42,6 +42,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     private var activityView: ActivityView?
     var user : JTUser?
     var firstOnScreen = true
+    var singlePayment = false
     //========================================
     // MARK: - @IBOutlets
     //========================================
@@ -690,6 +691,10 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
             guard let currentPopup = sender as? JTPopup else { return }
             popupVC?.currentPopup = currentPopup
         }
+        else if segue.identifier == "presentFirstTimeDonation" {
+            let popupVC = segue.destination as? DonateViewController
+            popupVC?.isSingelPayment = self.singlePayment
+        }
         
     }
     
@@ -755,9 +760,9 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
         let couponePopUp = Storyboards.Coupons.couponeViewController
         couponePopUp.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
         couponePopUp.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+        self.present(couponePopUp, animated: true, completion: nil)
         couponePopUp.values = values
         couponePopUp.crowns = values.couponSum
-        self.present(couponePopUp, animated: true, completion: nil)
         
     }
     

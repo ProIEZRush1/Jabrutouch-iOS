@@ -115,7 +115,7 @@ class DonationManager: NSObject {
         guard let authToken = UserDefaultsProvider.shared.currentUser?.token else { return }
         API.createCouponRedemption(coupone: postCoupone.coupon, dedicationText: postCoupone.dedicationText ?? "", dedicationTemplate: postCoupone.dedicationTemplate ?? 0, nameToRepresent: postCoupone.nameToRepresent ?? "", authToken: authToken) { (result:
             
-            APIResult<CreatePaymentResponse>) in
+            APIResult<CouponResponse>) in
             switch result {
             case .success(let response):
                 completion(.success(response))

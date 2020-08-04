@@ -29,7 +29,7 @@ class MessagesRepository: NSObject, MessagingDelegate {
     }
     
     func getMessages() {
-        if self.isEmpty{
+        if !self.isEmpty{
             self.getAllMessages { (result: Result<[JTChatMessage], JTError>) in
                 switch result {
                 case .success(_):
@@ -64,6 +64,12 @@ class MessagesRepository: NSObject, MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
         print("fcmToken: \(fcmToken)")
         self.fcmToken = fcmToken
+        if fcmToken != UserDefaultsProvider.shared.currentFcmToken{
+            #warning("need to update the server with new fcm token")
+            // need to update the server with new fcm token
+            UserDefaultsProvider.shared.currentFcmToken = fcmToken
+        }
+         
     }
     
     func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
