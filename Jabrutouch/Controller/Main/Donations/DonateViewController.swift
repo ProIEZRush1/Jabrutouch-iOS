@@ -117,14 +117,19 @@ class DonateViewController: UIViewController, UITextFieldDelegate, DonationDataD
         guard let amountToDonate = self.amountToPayTF.text else { return }
         guard let amount = Int(amountToDonate) else { return }
         var numberOfKetarim = self.numberOfCrownsSubsciption
+//        guard let donation = self.donation else { return }
+//
+//        var numberOfKetarim = 0
         if self.isSingelPayment {
             numberOfKetarim = amount / self.numberOfCrownsSingel
+//            numberOfKetarim = donation.crownPrice(value: amount, type: "regular")
             self.monthlyLabel.text = Strings.singlePayment //"One Time Donation"
             self.descriptionTitleLabel.text = Strings.singlePayment
             self.donationValueLabel.isHidden = true
             self.cancelSubscriptionLabel.isHidden = true
         } else {
             numberOfKetarim = amount / self.numberOfCrownsSubsciption
+//            numberOfKetarim = donation.crownPrice(value: amount, type: "subscription")
             self.monthlyLabel.text = Strings.monthly //"Monthly"
             self.descriptionTitleLabel.text = Strings.paidMonthly
             self.cancelSubscriptionLabel.text = Strings.cancelSubscriptionLabel
@@ -171,6 +176,29 @@ class DonateViewController: UIViewController, UITextFieldDelegate, DonationDataD
         view.layer.borderWidth = 1
     }
   
+//    func sendDemoPushNotification(){
+//        let center = UNUserNotificationCenter.current()
+//
+//        let content = UNMutableNotificationContent()
+//        content.title = "Yehoshua Bensadon"
+//        content.body = "\(UserDefaultsProvider.shared.currentUser?.firstName ?? "Dear user"), ¡gracias por tu apoyo! ❤ Haz tu pago en www.jabrutouch.com, ya que la app aún no está habilitada para procesar pagos. Si necesitas ayuda, contáctanos por este medio."
+//        content.sound = .default
+//        content.userInfo = ["data": [
+//            "image": "a", "to_user": UserDefaultsProvider.shared.currentUser?.id, "read": false, "gemara": false, "message_id":0, "message_type": 1, "message" : content.body , "title": "a", "lesson_id": nil,  "link_to": 0, "chat_id":0, "from_user":169, "sent_at": Date(), "is_mine": false
+//            ]]
+//
+//        let fireDate = Calendar.current.dateComponents([.day, .month, .year, .hour, .minute, .second], from: Date().addingTimeInterval(1))
+//
+//        let trigger = UNCalendarNotificationTrigger(dateMatching: fireDate, repeats: false)
+//
+//        let request = UNNotificationRequest(identifier: "reminder", content: content, trigger: trigger)
+//        center.add(request){ (error) in
+//            if error != nil {
+//                print("Error: \(error?.localizedDescription ?? "error local notification")")
+//            }
+//        }
+//    }
+//
     func createPostDedication() {
         var sum = 0
          if let amountToPay = Int(self.amountToDonateLabel.text ?? "0") {
@@ -219,6 +247,7 @@ class DonateViewController: UIViewController, UITextFieldDelegate, DonationDataD
     }
     
     @IBAction func continueButtonPressed(_ sender: Any) {
+//        self.sendDemoPushNotification()
         self.createPostDedication()
         self.performSegue(withIdentifier: "presentDedication", sender: self)
     }

@@ -36,7 +36,6 @@ class CouponsViewController: UIViewController {
     
     func setDetails(){
         
-        
         if let name = userName {
             userNameLabel.text = name
         }
@@ -53,8 +52,8 @@ class CouponsViewController: UIViewController {
         donation.fromDeepLink = true
         donation.dedication = DonationManager.shared.dedication
         donation.couponeValue = value
-        donation.postDedication = JTPostDedication(sum: Int(self.crowns ?? "0") ?? 0, paymenType: 1, nameToRepresent: "", dedicationText:"", status: "", dedicationTemplate: 0)
-        appDelegate.topmostViewController?.present(donation, animated: true, completion: nil)
+        donation.postDedication = JTPostDedication(sum: Int(self.crowns ?? "0") ?? 0, paymenType: 1, nameToRepresent: "", dedicationText:"", status: "", dedicationTemplate: 1)
+        self.present(donation, animated: true, completion: nil)
         
     }
     
@@ -62,9 +61,6 @@ class CouponsViewController: UIViewController {
         guard let value = self.values else { return }
         let postCoupon = JTCouponRedemption(coupon: value.couponDistributor)
         couponRedemption(postCoupone: postCoupon)
-        //        let donation = Storyboards.Coupons.invalidCouponeViewController
-        //        self.present(donation, animated: true, completion: nil)
-//        self.performSegue(withIdentifier: "tzedaka", sender: self)
     }
     
     func couponRedemption(postCoupone: JTCouponRedemption){

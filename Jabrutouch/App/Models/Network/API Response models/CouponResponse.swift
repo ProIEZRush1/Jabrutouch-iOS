@@ -12,6 +12,7 @@ struct CouponResponse: APIResponseModel {
     
     var coupon: Int
     var dedicationTemplate: String
+    var commit: Bool = true
     
     
     init?(values: [String : Any]) {
@@ -22,5 +23,9 @@ struct CouponResponse: APIResponseModel {
         if let dedicationTemplate = values["dedication_template"] as? String {
             self.dedicationTemplate = dedicationTemplate
         } else { dedicationTemplate = "" }
+        
+        if let commit = values["commit"] as? Bool {
+            self.commit = commit
+        } else { commit = true }
     }
 }

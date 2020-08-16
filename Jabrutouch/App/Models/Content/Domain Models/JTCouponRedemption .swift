@@ -14,6 +14,7 @@ class JTCouponRedemption  {
     var nameToRepresent: String?
     var dedicationText: String?
     var dedicationTemplate: Int?
+    var commit: Bool = true
     
     init(coupon: String, nameToRepresent: String, dedicationText: String, dedicationTemplate: Int){
         self.coupon = coupon

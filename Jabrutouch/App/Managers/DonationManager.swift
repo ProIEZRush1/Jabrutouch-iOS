@@ -63,7 +63,6 @@ class DonationManager: NSObject {
             case .success(let data):
                 self.userDonation = data.userDonation
                 self.donationManagerDelegate?.userDonationDataReceived()
-                print(data)
             case .failure(let error):
                 print(error)
                 
@@ -113,7 +112,7 @@ class DonationManager: NSObject {
     
     func createCouponRedemption(_ postCoupone: JTCouponRedemption, completion:@escaping (_ result: Result<Any, JTError>)->Void) {
         guard let authToken = UserDefaultsProvider.shared.currentUser?.token else { return }
-        API.createCouponRedemption(coupone: postCoupone.coupon, dedicationText: postCoupone.dedicationText ?? "", dedicationTemplate: postCoupone.dedicationTemplate ?? 0, nameToRepresent: postCoupone.nameToRepresent ?? "", authToken: authToken) { (result:
+        API.createCouponRedemption(coupone: postCoupone.coupon, dedicationText: postCoupone.dedicationText ?? "", dedicationTemplate: postCoupone.dedicationTemplate ?? 1, nameToRepresent: postCoupone.nameToRepresent ?? "", commit: postCoupone.commit, authToken: authToken) { (result:
             
             APIResult<CouponResponse>) in
             switch result {

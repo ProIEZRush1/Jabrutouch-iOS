@@ -33,4 +33,20 @@ struct JTDonation {
         
         return values
     }
+    
+    func crownPrice(value: Int, type: String) -> Int {
+        var perCrown = 0
+        if type == "regular" {
+            let price =  crowns.filter{$0.paymentType == "regular" && value > $0.fromSumDonation && value < $0.toSumDonation}
+            if !price.isEmpty {
+                print(price.first?.dollarPerCrown)
+                perCrown = value / Int(price[0].dollarPerCrown)
+            }
+        }
+        else if type == "subscription" {
+            let price =  crowns.filter{$0.paymentType == "subscription" && value > $0.fromSumDonation && value < $0.toSumDonation}
+            perCrown = value / Int(price[0].dollarPerCrown)
+        }
+       return perCrown
+    }
 }

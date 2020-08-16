@@ -12,10 +12,10 @@ protocol DedicationViewControllerDelegate{
 }
 class DedicationViewController: UIViewController, iCarouselDataSource, iCarouselDelegate, UITextFieldDelegate, DonationDataDelegate{
     
-   //========================================
+    //========================================
     // MARK: - Properties
     //========================================
-   
+    
     private var activityView: ActivityView?
     var views: [DedicationCardView] = []
     var postDedication: JTPostDedication?
@@ -44,7 +44,7 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
     @IBOutlet weak var anonimusView: UIView!
     @IBOutlet weak var anonimusButton: UIButton!
     @IBOutlet weak var anonimusLabel: UILabel!
-
+    
     @IBOutlet weak var carouselView: iCarousel!
     @IBOutlet weak var leftArrowButton: UIButton!
     @IBOutlet weak var rightArrowButton: UIButton!
@@ -52,10 +52,12 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
     //========================================
     // MARK: - LifeCycle
     //========================================
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        if self.fromDeepLink {
+            self.barPageIndicator.count = 3
+        }
         if self.dedication.count > 0 {
             self.continuButton.isEnabled = true
             self.continuButton.backgroundColor = #colorLiteral(red: 0.1764705882, green: 0.168627451, blue: 0.662745098, alpha: 1)
@@ -145,11 +147,21 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
     }
     
     func setCurrentCards() {
-        for dedication in self.dedication {
-            if dedication.name == "" {
-                self.setCardView(dedication: "", hidden: true)
-            } else {
-                self.setCardView(dedication: dedication.name, hidden: false)
+        for (i, dedication) in self.dedication.enumerated() {
+            if self.fromDeepLink{
+                if i > 0 && i < self.dedication.count-1 {
+                    if dedication.name == "" {
+                        self.setCardView(dedication: "", hidden: true)
+                    } else {
+                        self.setCardView(dedication: dedication.name, hidden: false)
+                    }
+                }
+            }else{
+                if dedication.name == "" {
+                    self.setCardView(dedication: "", hidden: true)
+                } else {
+                    self.setCardView(dedication: dedication.name, hidden: false)
+                }
             }
         }
     }
@@ -166,10 +178,10 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
             self.postDedication?.nameToRepresent = textField.text ?? ""
         }
     }
-
+    
     @IBAction func backButtonBack(_ sender: Any) {
         if !self.fromDeepLink{
-        self.navigationController?.popViewController(animated: true)
+            self.navigationController?.popViewController(animated: true)
         }else{self.dismiss(animated: true, completion: nil)}
         
     }
@@ -211,8 +223,8 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
             self.createPayment(postDedication: postDedication)
         } else {
             guard let distributer = self.couponeValue?.couponDistributor else { return }
-            let couponRedemption = JTCouponRedemption(coupon: distributer, nameToRepresent: self.postDedication?.nameToRepresent ?? "", dedicationText: self.postDedication?.dedicationText ?? "", dedicationTemplate: self.postDedication?.dedicationTemplate ?? 0)
-                self.couponRedemption(postCoupone: couponRedemption)
+            let couponRedemption = JTCouponRedemption(coupon: distributer, nameToRepresent: self.postDedication?.nameToRepresent ?? "", dedicationText: self.postDedication?.dedicationText ?? "", dedicationTemplate: self.postDedication?.dedicationTemplate ?? 1)
+            self.couponRedemption(postCoupone: couponRedemption)
         }
         //        self.performSegue(withIdentifier: "presentPayment", sender: self)
     }
@@ -247,25 +259,30 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
             case .success(let success):
                 print(success)
                 UserDefaultsProvider.shared.donationPending = true
-                DispatchQueue.main.async {
-                    self.removeActivityView()
-                    let mainViewController = Storyboards.Main.mainViewController
-                    mainViewController.modalPresentationStyle = .fullScreen
-                    self.present(mainViewController, animated: false, completion: nil)
-                    mainViewController.presentDonationsNavigationViewController()
+                DispatchQueue.main.asyncAfter(deadline: .now()+3){
+                    DispatchQueue.main.async {
+                        self.removeActivityView()
+                        let mainViewController = Storyboards.Main.mainViewController
+                        mainViewController.modalPresentationStyle = .fullScreen
+                        self.present(mainViewController, animated: false, completion: nil)
+                        mainViewController.presentDonationsNavigationViewController()
+                    }
+                    self.delegate?.createPayment()
                 }
-                self.delegate?.createPayment()
+                
             case .failure(let error):
                 self.removeActivityView()
                 print(error)
-                 DispatchQueue.main.async {
-                let vc = Storyboards.Coupons.invalidCouponeViewController
-                self.present(vc, animated: true, completion: nil)
+                DispatchQueue.main.async {
+                    let vc = Storyboards.Coupons.invalidCouponeViewController
+                    self.present(vc, animated: true, completion: nil)
                 }
                 Utils.showAlertMessage("Failed to create Coupon redemption please try again", viewControler: self)
             }
         }
     }
+    
+    
     //========================================
     // MARK: - iCarousel
     //========================================
@@ -279,12 +296,13 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
     }
     
     
+    
     func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
-
+        
         let width = carousel.itemWidth
         let height = carousel.bounds.height
         let frame = CGRect(x: 0, y: 0, width: width, height: height)
-
+        
         let view = self.views[index]
         view.frame = frame
         
@@ -304,6 +322,7 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
         return value
     }
     
+    
     func carousel(_ carousel: iCarousel, itemTransformForOffset offset: CGFloat, baseTransform transform: CATransform3D) -> CATransform3D {
         let distance: CGFloat = 50.0
         //number of pixels to move the items away from camera
@@ -314,7 +333,7 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
         var offset = offset
         offset += clampedOffset * spacing
         return CATransform3DTranslate(transform, offset * carousel.itemWidth, 0.0, z)
-
+        
     }
     
     func carouselDidScroll(_ carousel: iCarousel) {
@@ -326,7 +345,7 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
         } else {
             self.leftArrowButton.isHidden = true
         }
-        if carousel.currentItemIndex < 3 {
+        if carousel.currentItemIndex < (self.fromDeepLink ? 2 : 3) {
             self.rightArrowButton.isHidden = false
         } else {
             self.rightArrowButton.isHidden = true
@@ -343,7 +362,7 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
             self.view.layoutIfNeeded()
         }
     }
-
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         UIView.animate(withDuration: 0.3) {
@@ -375,21 +394,21 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
     //============================================================
     // MARK: - ActivityView
     //============================================================
-       
-       private func showActivityView() {
-           DispatchQueue.main.async {
-               if self.activityView == nil {
-                   self.activityView = Utils.showActivityView(inView: self.view, withFrame: self.view.frame, text: nil)
-               }
-           }
-       }
-       private func removeActivityView() {
-           DispatchQueue.main.async {
-               if let view = self.activityView {
-                   Utils.removeActivityView(view)
-               }
-           }
-       }
+    
+    private func showActivityView() {
+        DispatchQueue.main.async {
+            if self.activityView == nil {
+                self.activityView = Utils.showActivityView(inView: self.view, withFrame: self.view.frame, text: nil)
+            }
+        }
+    }
+    private func removeActivityView() {
+        DispatchQueue.main.async {
+            if let view = self.activityView {
+                Utils.removeActivityView(view)
+            }
+        }
+    }
     
 }
 

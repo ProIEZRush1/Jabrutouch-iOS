@@ -15,7 +15,7 @@ class InvalidCouponeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-setup()
+        setup()
         setText()
     }
     
@@ -28,24 +28,11 @@ setup()
     }
     
     @IBAction func blueButtonPressed(_ sender: Any) {
-//        let donationVC = Storyboards.Donation.donateNavigationController
-//        let mainViewController = Storyboards.Main.mainViewController
-//        mainViewController.modalPresentationStyle = .fullScreen
-//        self.present(mainViewController, animated: false, completion: nil)
-//        mainViewController.present(donationVC, animated: true)
-        
-        let mainViewController = Storyboards.Main.mainViewController
-        mainViewController.modalPresentationStyle = .fullScreen
-        self.present(mainViewController, animated: false, completion: nil)
-        mainViewController.presentDonation()
+        self.performSegue(withIdentifier: "presentDonation", sender: self)
     }
     
     @IBAction func whiteButtonPressed(_ sender: Any) {
-       let mainViewController = Storyboards.Main.mainViewController
-       mainViewController.modalPresentationStyle = .fullScreen
-       self.present(mainViewController, animated: false, completion: nil)
-       mainViewController.presentDonationsNavigationViewController()
-    
+        self.dismiss(animated: true, completion: nil)
     }
     
 }

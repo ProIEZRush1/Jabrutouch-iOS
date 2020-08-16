@@ -13,6 +13,8 @@ struct JTCrown {
     var id: Int
     var paymentType: String
     var dollarPerCrown : Float
+    var fromSumDonation: Int
+    var toSumDonation:Int
     
     init?(values: [String:Any]) {
         if let id = values["id"] as? Int {
@@ -27,6 +29,13 @@ struct JTCrown {
             self.dollarPerCrown = (dollarPerCrown as NSString).floatValue
         } else { return nil }
         
+        if let fromSumDonation = values["from_sum_donation"] as? Int {
+            self.fromSumDonation = fromSumDonation
+        } else { return nil }
+        
+        if let toSumDonation = values["to_sum_donation"] as? Int {
+            self.toSumDonation = toSumDonation
+        } else { return nil }
     }
     
     
@@ -35,6 +44,8 @@ struct JTCrown {
         values["id"] = self.id
         values["payment_type"] = self.paymentType
         values["price"] = self.dollarPerCrown
+        values["from_sum_donation"] = self.fromSumDonation
+        values["to_sum_donation"] = self.toSumDonation
         
         return values
     }

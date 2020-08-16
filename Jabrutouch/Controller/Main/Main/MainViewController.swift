@@ -757,13 +757,35 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
     }
     
     func presentCouponePopUp(values: JTDeepLinkCoupone){
-        let couponePopUp = Storyboards.Coupons.couponeViewController
-        couponePopUp.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-        couponePopUp.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-        self.present(couponePopUp, animated: true, completion: nil)
-        couponePopUp.values = values
-        couponePopUp.crowns = values.couponSum
-        
+        self.isCupponAvailable(values: values)
+    }
+    
+    func isCupponAvailable(values: JTDeepLinkCoupone){
+        var isAvailable = JTCouponRedemption(coupon: values.couponDistributor)
+        isAvailable.commit = false
+        DonationManager.shared.createCouponRedemption(isAvailable){ (result) in
+            switch result {
+            case .success(let success):
+                print(success)
+                DispatchQueue.main.async {
+                    var couponePopUp = Storyboards.Coupons.couponeViewController
+                    couponePopUp.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+                    couponePopUp.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+                    couponePopUp.values = values
+                    couponePopUp.crowns = values.couponSum
+                    self.present(couponePopUp, animated: true, completion: nil)
+                }
+            case .failure(let error):
+                print(error)
+                DispatchQueue.main.async {
+                    let vc = Storyboards.Coupons.invalidCouponeViewController
+                    vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+                    vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+                    self.present(vc, animated: true, completion: nil)
+                }
+                Utils.showAlertMessage("Failed to create Coupon redemption please try again", viewControler: self)
+            }
+        }
     }
     
     func presentAboutUs() {

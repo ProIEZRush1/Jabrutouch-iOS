@@ -253,10 +253,10 @@ class HttpRequestsFactory {
         return request
     }
     
-    class func createCouponRedemptionRequest(coupone: String, nameToRepresent: String, dedicationText: String, dedicationTemplate:Int, token: String) -> URLRequest?{
+    class func createCouponRedemptionRequest(coupone: String, nameToRepresent: String, dedicationText: String, dedicationTemplate:Int, commit: Bool, token: String) -> URLRequest?{
         guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
         let link = baseUrl.appendingPathComponent("coupon").absoluteString
-        let body: [String:Any] = ["coupon": coupone, "dedication_text": dedicationText,  "dedication_template": dedicationTemplate, "name_to_represent": nameToRepresent]
+        let body: [String:Any] = ["coupon": coupone, "dedication_text": dedicationText,  "dedication_template": dedicationTemplate, "name_to_represent": nameToRepresent, "commit": commit]
         guard let url = self.createUrl(fromLink: link, urlParams: nil) else { return nil }
         let additionalHeaders: [String:String] = ["Authorization": "token \(token)"]
         

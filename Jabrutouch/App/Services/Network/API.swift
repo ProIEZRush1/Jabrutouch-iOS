@@ -245,8 +245,8 @@ class API {
         }
     }
     
-    class func createCouponRedemption(coupone: String, dedicationText: String, dedicationTemplate:Int, nameToRepresent: String, authToken: String, completionHandler:@escaping (_ response: APIResult<CouponResponse>)->Void) {
-        guard let request = HttpRequestsFactory.createCouponRedemptionRequest(coupone: coupone, nameToRepresent: nameToRepresent, dedicationText: dedicationText,  dedicationTemplate: dedicationTemplate, token: authToken) else {
+    class func createCouponRedemption(coupone: String, dedicationText: String, dedicationTemplate:Int, nameToRepresent: String, commit:Bool,  authToken: String, completionHandler:@escaping (_ response: APIResult<CouponResponse>)->Void) {
+        guard let request = HttpRequestsFactory.createCouponRedemptionRequest(coupone: coupone, nameToRepresent: nameToRepresent, dedicationText: dedicationText,  dedicationTemplate: dedicationTemplate, commit: commit, token: authToken) else {
             completionHandler(APIResult.failure(.unableToCreateRequest))
             return
         }
