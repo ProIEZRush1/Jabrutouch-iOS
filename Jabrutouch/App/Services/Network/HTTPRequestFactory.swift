@@ -264,6 +264,15 @@ class HttpRequestsFactory {
         return request
     }
     
+    class func createGetPushNotification(token: String) -> URLRequest?{
+        guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
+        let link = baseUrl.appendingPathComponent("send_donation_mail").absoluteString
+        guard let url = self.createUrl(fromLink: link, urlParams: nil) else { return nil }
+        let additionalHeaders: [String:String] = ["Authorization": "token \(token)"]
+        
+        let request = self.createRequest(url, method: .post, body: nil, additionalHeaders: additionalHeaders)
+        return request
+    }
     class func createGetMessageListRequest(token: String) -> URLRequest?{
         guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
         let link = baseUrl.appendingPathComponent("messages").absoluteString

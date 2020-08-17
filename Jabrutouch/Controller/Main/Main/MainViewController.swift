@@ -755,20 +755,27 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
         donationPopUp.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
         self.present(donationPopUp, animated: true, completion: nil)
     }
+    func presentNewVersionAlert(){
+        let storyboard = UIStoryboard(name: "CustomAlert", bundle: nil)
+        let newVersionAlert = storyboard.instantiateViewController(withIdentifier: "newVersionAlert")
+        newVersionAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        newVersionAlert.modalTransitionStyle = .crossDissolve
+        self.present(newVersionAlert, animated: true, completion: nil)
+    }
     
     func presentCouponePopUp(values: JTDeepLinkCoupone){
         self.isCupponAvailable(values: values)
     }
     
     func isCupponAvailable(values: JTDeepLinkCoupone){
-        var isAvailable = JTCouponRedemption(coupon: values.couponDistributor)
+        let isAvailable = JTCouponRedemption(coupon: values.couponDistributor)
         isAvailable.commit = false
         DonationManager.shared.createCouponRedemption(isAvailable){ (result) in
             switch result {
             case .success(let success):
                 print(success)
                 DispatchQueue.main.async {
-                    var couponePopUp = Storyboards.Coupons.couponeViewController
+                    let couponePopUp = Storyboards.Coupons.couponeViewController
                     couponePopUp.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
                     couponePopUp.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
                     couponePopUp.values = values

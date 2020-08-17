@@ -69,34 +69,75 @@ class SplashScreenViewController: UIViewController {
         else {
             self.navigateToSignIn()
         }
+        DispatchQueue.global().async{
         
-        LoginManager.shared.signIn(phoneNumber: phoneNumber, email: email, password: password) { (result) in
-            DispatchQueue.main.async {
-                switch result {
-                case .success:
-                    
-                    let showTour = UserDefaultsProvider.shared.currentUser?.showTour
-                    switch showTour {
-                    case 0:
-                        self.navigateToMain()
-                    case 1:
-                        self.navigateToDonationTourWalkThrough()
-                    case 2:
-                        self.navigateToDonationPopUp()
-                    case 3:
-                        self.navigateToLastDonationPopUp()
-                    default:
-                        self.navigateToMain()
-                    }
-                    
-                case .failure(let error):
-                    print(error)
-                    //                    self.navigateToMain()
-                    self.navigateToSignIn()
+        do {
+            let update = try self.isUpdateAvailable()
+            if update {
+                DispatchQueue.main.async {
+                    self.newVersionAlert()
                 }
+            } else {
+            
+                LoginManager.shared.signIn(phoneNumber: phoneNumber, email: email, password: password) { (result) in
+                        DispatchQueue.main.async {
+                            switch result {
+                            case .success:
+                
+                                let showTour = UserDefaultsProvider.shared.currentUser?.showTour
+                                switch showTour {
+                                case 0:
+                                    self.navigateToMain()
+                                case 1:
+                                    self.navigateToDonationTourWalkThrough()
+                                case 2:
+                                    self.navigateToDonationPopUp()
+                                case 3:
+                                    self.navigateToLastDonationPopUp()
+                                default:
+                                    self.navigateToMain()
+                                }
+                                
+                            case .failure(let error):
+                                print(error)
+                                //                    self.navigateToMain()
+                                self.navigateToSignIn()
+                            }
+                            
+                        }
+                    }
             }
+        } catch {
+            print(error)
         }
+        }
+        
+        
     }
+    
+    enum VersionError: Error {
+        case invalidResponse, invalidBundleInfo
+    }
+    
+    
+    
+    func isUpdateAvailable() throws -> Bool {
+        guard let info = Bundle.main.infoDictionary,
+            let currentVersion = info["CFBundleShortVersionString"] as? String,
+            let identifier = info["CFBundleIdentifier"] as? String,
+            let url = URL(string: "http://itunes.apple.com/lookup?bundleId=\(identifier)") else {
+            throw VersionError.invalidBundleInfo
+        }
+        let data = try Data(contentsOf: url)
+        guard let json = try JSONSerialization.jsonObject(with: data, options: [.allowFragments]) as? [String: Any] else {
+            throw VersionError.invalidResponse
+        }
+        if let result = (json["results"] as? [Any])?.first as? [String: Any], let version = result["version"] as? String {
+            return version != currentVersion
+        }
+        throw VersionError.invalidResponse
+    }
+    
     
     func userModeSelector(){
         
@@ -143,6 +184,14 @@ class SplashScreenViewController: UIViewController {
     private func navigateToMain() {
         let mainViewController = Storyboards.Main.mainViewController
         appDelegate.setRootViewController(viewController: mainViewController, animated: true)
+        
+    }
+    
+    private func newVersionAlert() {
+        let mainViewController = Storyboards.Main.mainViewController
+        mainViewController.modalPresentationStyle = .fullScreen
+        self.present(mainViewController, animated: true, completion: nil)
+        mainViewController.presentNewVersionAlert()
         
     }
     
