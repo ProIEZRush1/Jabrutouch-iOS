@@ -45,7 +45,6 @@ class DonateViewController: UIViewController, UITextFieldDelegate, DonationDataD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.getPushNotification()
         self.donationValueLabel.isHidden = true
         self.cancelSubscriptionLabel.isHidden = true
         self.amountToPayTF.delegate = self
@@ -56,7 +55,8 @@ class DonateViewController: UIViewController, UITextFieldDelegate, DonationDataD
         self.setShadows()
         self.setText()
         self.presentVideo()
-        self.fromDeepLink ? couponeCallToDedication() : nil
+        self.fromDeepLink ? couponeCallToDedication() : self.getPushNotification()
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -99,10 +99,10 @@ class DonateViewController: UIViewController, UITextFieldDelegate, DonationDataD
         self.donationValueLabel.text = Strings.x5Value
     }
     
-//    func getPushNotification(){
-//        guard let authToken = UserDefaultsProvider.shared.currentUser?.token else { return }
-//        HttpRequestsFactory.createGetPushNotification(token: authToken)
-//    }
+    func getPushNotification(){
+        guard let authToken = UserDefaultsProvider.shared.currentUser?.token else { return }
+        API.getPushNotification(authToken: authToken)
+    }
     
     func presentVideo() {
         if !self.showVideo {

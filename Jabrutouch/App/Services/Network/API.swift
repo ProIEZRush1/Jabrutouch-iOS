@@ -254,6 +254,17 @@ class API {
             self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
         }
     }
+    
+    class func getPushNotification(authToken: String) {
+        guard let request = HttpRequestsFactory.createGetPushNotification(token: authToken) else {
+            return
+        }
+        HttpServiceProvider.shared.excecuteRequest(request: request) { (data, response, error) in
+//            print(response)
+        }
+    }
+    
+    
     //========================================
     // MARK: - Messages
     //========================================
