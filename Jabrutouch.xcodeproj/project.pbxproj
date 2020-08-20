@@ -188,12 +188,23 @@
 		6087D86C24C5CC5900EF6902 /* TourWalkThrough.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6087D86B24C5CC5900EF6902 /* TourWalkThrough.storyboard */; };
 		608CC713241129F9002136A8 /* animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 608CC712241129F8002136A8 /* animation.json */; };
 		609259FE2455A64100930DD4 /* NotDonationAlert.xib in Resources */ = {isa = PBXBuildFile; fileRef = 609259FD2455A64100930DD4 /* NotDonationAlert.xib */; };
-		609C6B3224EAC04000AE78AE /* CustomAlert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 609C6B3124EAC04000AE78AE /* CustomAlert.storyboard */; };
+		609C6B3224EAC04000AE78AE /* AdditionalAlerts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 609C6B3124EAC04000AE78AE /* AdditionalAlerts.storyboard */; };
+		609C6B4524EBF6A800AE78AE /* sf-ui-display-black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 609C6B4024EBF63900AE78AE /* sf-ui-display-black.otf */; };
+		609C6B4624EBF6D200AE78AE /* sf-ui-display-heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 609C6B4124EBF63A00AE78AE /* sf-ui-display-heavy.otf */; };
+		609C6B4724EBF6D200AE78AE /* sf-ui-display-light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 609C6B3D24EBF63700AE78AE /* sf-ui-display-light.otf */; };
+		609C6B4824EBF6D200AE78AE /* sf-ui-display-medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 609C6B4224EBF63A00AE78AE /* sf-ui-display-medium.otf */; };
+		609C6B4924EBF6D200AE78AE /* sf-ui-display-semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 609C6B3E24EBF63800AE78AE /* sf-ui-display-semibold.otf */; };
+		609C6B4A24EBF6D200AE78AE /* sf-ui-display-thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 609C6B3C24EBF63600AE78AE /* sf-ui-display-thin.otf */; };
+		609C6B4B24EBF6D200AE78AE /* sf-ui-display-ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 609C6B3F24EBF63800AE78AE /* sf-ui-display-ultralight.otf */; };
+		609C6B4C24EBF6D200AE78AE /* sf-ui-display-regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 609C6B4424EBF64400AE78AE /* sf-ui-display-regular.otf */; };
 		609D498524A23C640008E4AA /* RemoveAccountAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609D498424A23C640008E4AA /* RemoveAccountAlertViewController.swift */; };
 		609F80B32490E7D9003D1E9A /* PopUps.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 609F80B22490E7D9003D1E9A /* PopUps.storyboard */; };
 		609F80B524910144003D1E9A /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609F80B424910144003D1E9A /* PopUpViewController.swift */; };
 		60B6021E24C898AB00D960C9 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 60B6021D24C8984B00D960C9 /* Roboto-Light.ttf */; };
 		60B83D6D2455E0DA00E558C7 /* NotDonateAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B83D6C2455E0DA00E558C7 /* NotDonateAlert.swift */; };
+		60B9115A24ED628A0061E112 /* CinzelDecorative-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 60B9115924ED62530061E112 /* CinzelDecorative-Bold.ttf */; };
+		60B9115C24ED77B50061E112 /* Cinzel-black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 60B9115B24ED778B0061E112 /* Cinzel-black.otf */; };
+		60B9115E24EE80510061E112 /* FiestaAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B9115D24EE80510061E112 /* FiestaAlertViewController.swift */; };
 		60BCF3D424CD859A00B0C2A9 /* DonationWalkThrough.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60BCF3D324CD859A00B0C2A9 /* DonationWalkThrough.storyboard */; };
 		60BCF3D724CD86D300B0C2A9 /* DonationsWalkThroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BCF3D624CD86D300B0C2A9 /* DonationsWalkThroughViewController.swift */; };
 		60BCF3DA24CD880D00B0C2A9 /* DonationWalkThroughCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BCF3D924CD880D00B0C2A9 /* DonationWalkThroughCollectionViewCell.swift */; };
@@ -520,12 +531,24 @@
 		6087D86B24C5CC5900EF6902 /* TourWalkThrough.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TourWalkThrough.storyboard; sourceTree = "<group>"; };
 		608CC712241129F8002136A8 /* animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = animation.json; sourceTree = "<group>"; };
 		609259FD2455A64100930DD4 /* NotDonationAlert.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotDonationAlert.xib; sourceTree = "<group>"; };
-		609C6B3124EAC04000AE78AE /* CustomAlert.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CustomAlert.storyboard; sourceTree = "<group>"; };
+		609C6B3124EAC04000AE78AE /* AdditionalAlerts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AdditionalAlerts.storyboard; sourceTree = "<group>"; };
+		609C6B3C24EBF63600AE78AE /* sf-ui-display-thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-ui-display-thin.otf"; sourceTree = "<group>"; };
+		609C6B3D24EBF63700AE78AE /* sf-ui-display-light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-ui-display-light.otf"; sourceTree = "<group>"; };
+		609C6B3E24EBF63800AE78AE /* sf-ui-display-semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-ui-display-semibold.otf"; sourceTree = "<group>"; };
+		609C6B3F24EBF63800AE78AE /* sf-ui-display-ultralight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-ui-display-ultralight.otf"; sourceTree = "<group>"; };
+		609C6B4024EBF63900AE78AE /* sf-ui-display-black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-ui-display-black.otf"; sourceTree = "<group>"; };
+		609C6B4124EBF63A00AE78AE /* sf-ui-display-heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-ui-display-heavy.otf"; sourceTree = "<group>"; };
+		609C6B4224EBF63A00AE78AE /* sf-ui-display-medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-ui-display-medium.otf"; sourceTree = "<group>"; };
+		609C6B4324EBF63B00AE78AE /* sf-ui-display-bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-ui-display-bold.otf"; sourceTree = "<group>"; };
+		609C6B4424EBF64400AE78AE /* sf-ui-display-regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-ui-display-regular.otf"; sourceTree = "<group>"; };
 		609D498424A23C640008E4AA /* RemoveAccountAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveAccountAlertViewController.swift; sourceTree = "<group>"; };
 		609F80B22490E7D9003D1E9A /* PopUps.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PopUps.storyboard; sourceTree = "<group>"; };
 		609F80B424910144003D1E9A /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		60B6021D24C8984B00D960C9 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
 		60B83D6C2455E0DA00E558C7 /* NotDonateAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotDonateAlert.swift; sourceTree = "<group>"; };
+		60B9115924ED62530061E112 /* CinzelDecorative-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CinzelDecorative-Bold.ttf"; sourceTree = "<group>"; };
+		60B9115B24ED778B0061E112 /* Cinzel-black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cinzel-black.otf"; sourceTree = "<group>"; };
+		60B9115D24EE80510061E112 /* FiestaAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiestaAlertViewController.swift; sourceTree = "<group>"; };
 		60BCF3D324CD859A00B0C2A9 /* DonationWalkThrough.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DonationWalkThrough.storyboard; sourceTree = "<group>"; };
 		60BCF3D624CD86D300B0C2A9 /* DonationsWalkThroughViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonationsWalkThroughViewController.swift; sourceTree = "<group>"; };
 		60BCF3D924CD880D00B0C2A9 /* DonationWalkThroughCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonationWalkThroughCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -705,6 +728,8 @@
 		2120BE2522DF2C62004854DB /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				60B9115B24ED778B0061E112 /* Cinzel-black.otf */,
+				60B9115924ED62530061E112 /* CinzelDecorative-Bold.ttf */,
 				60B6021D24C8984B00D960C9 /* Roboto-Light.ttf */,
 				21678D1A22DF2CB9007BC74C /* SF-Pro-Display-Black.otf */,
 				21678D3622DF2CC5007BC74C /* SF-Pro-Display-BlackItalic.otf */,
@@ -769,6 +794,15 @@
 				604C28B92456E1CF00A19D87 /* GraphikSuperItalic.otf */,
 				604C28BE2456E1D300A19D87 /* GraphikThin.otf */,
 				604C28BC2456E1D100A19D87 /* GraphikThinItalic.otf */,
+				609C6B4024EBF63900AE78AE /* sf-ui-display-black.otf */,
+				609C6B4324EBF63B00AE78AE /* sf-ui-display-bold.otf */,
+				609C6B4124EBF63A00AE78AE /* sf-ui-display-heavy.otf */,
+				609C6B3D24EBF63700AE78AE /* sf-ui-display-light.otf */,
+				609C6B4224EBF63A00AE78AE /* sf-ui-display-medium.otf */,
+				609C6B3E24EBF63800AE78AE /* sf-ui-display-semibold.otf */,
+				609C6B3C24EBF63600AE78AE /* sf-ui-display-thin.otf */,
+				609C6B3F24EBF63800AE78AE /* sf-ui-display-ultralight.otf */,
+				609C6B4424EBF64400AE78AE /* sf-ui-display-regular.otf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -994,7 +1028,7 @@
 				219BFF2D22E5A10400ABBEE2 /* Custom Controlles */,
 				609F80B62491014B003D1E9A /* PopUp */,
 				600399D524D6D39A0038ED66 /* Coupons */,
-				6016D65C24E9778D002DD9AF /* NewVersionAlertViewController.swift */,
+				609C6B3324EBE85400AE78AE /* AdditionalAlerts */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1092,7 +1126,7 @@
 				833E621D23992C2500EC93C7 /* Messages.storyboard */,
 				83A936AA23D9D53A007BA207 /* Donations.storyboard */,
 				609F80B22490E7D9003D1E9A /* PopUps.storyboard */,
-				609C6B3124EAC04000AE78AE /* CustomAlert.storyboard */,
+				609C6B3124EAC04000AE78AE /* AdditionalAlerts.storyboard */,
 				600399D124D6CC490038ED66 /* Coupone.storyboard */,
 			);
 			path = Storyboards;
@@ -1388,6 +1422,15 @@
 			path = TourWalkThrough;
 			sourceTree = "<group>";
 		};
+		609C6B3324EBE85400AE78AE /* AdditionalAlerts */ = {
+			isa = PBXGroup;
+			children = (
+				6016D65C24E9778D002DD9AF /* NewVersionAlertViewController.swift */,
+				60B9115D24EE80510061E112 /* FiestaAlertViewController.swift */,
+			);
+			path = AdditionalAlerts;
+			sourceTree = "<group>";
+		};
 		609F80B62491014B003D1E9A /* PopUp */ = {
 			isa = PBXGroup;
 			children = (
@@ -1667,7 +1710,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				609C6B3224EAC04000AE78AE /* CustomAlert.storyboard in Resources */,
+				60B9115C24ED77B50061E112 /* Cinzel-black.otf in Resources */,
+				60B9115A24ED628A0061E112 /* CinzelDecorative-Bold.ttf in Resources */,
+				609C6B4624EBF6D200AE78AE /* sf-ui-display-heavy.otf in Resources */,
+				609C6B4724EBF6D200AE78AE /* sf-ui-display-light.otf in Resources */,
+				609C6B4824EBF6D200AE78AE /* sf-ui-display-medium.otf in Resources */,
+				609C6B4924EBF6D200AE78AE /* sf-ui-display-semibold.otf in Resources */,
+				609C6B4A24EBF6D200AE78AE /* sf-ui-display-thin.otf in Resources */,
+				609C6B4B24EBF6D200AE78AE /* sf-ui-display-ultralight.otf in Resources */,
+				609C6B4C24EBF6D200AE78AE /* sf-ui-display-regular.otf in Resources */,
+				609C6B4524EBF6A800AE78AE /* sf-ui-display-black.otf in Resources */,
+				609C6B3224EAC04000AE78AE /* AdditionalAlerts.storyboard in Resources */,
 				60B6021E24C898AB00D960C9 /* Roboto-Light.ttf in Resources */,
 				21678D4622DF2CEC007BC74C /* SF-Pro-Display-Black.otf in Resources */,
 				21678D4722DF2CEC007BC74C /* SF-Pro-Display-BlackItalic.otf in Resources */,
@@ -1900,6 +1953,7 @@
 				212ECEA7230F36BF005AEB36 /* LessonPlayerViewController.swift in Sources */,
 				213196A822F38B3E00B0AF5F /* APIResponseModel.swift in Sources */,
 				83137EFD23F04024003B9DA6 /* JTDonation.swift in Sources */,
+				60B9115E24EE80510061E112 /* FiestaAlertViewController.swift in Sources */,
 				609D498524A23C640008E4AA /* RemoveAccountAlertViewController.swift in Sources */,
 				8395979C24028B8F007B96EB /* TzedakaViewController.swift in Sources */,
 				6087D86524C5B74400EF6902 /* TourWalkThroughViewController.swift in Sources */,

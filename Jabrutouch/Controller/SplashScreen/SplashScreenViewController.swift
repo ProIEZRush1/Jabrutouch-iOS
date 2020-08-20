@@ -181,11 +181,10 @@ class SplashScreenViewController: UIViewController {
         mainViewController.presentLastDonationPopUp()
     }
     
-    private func navigateToMain() {
-        let mainViewController = Storyboards.Main.mainViewController
-        appDelegate.setRootViewController(viewController: mainViewController, animated: true)
-        
-    }
+//    private func navigateToMain() {
+//        let mainViewController = Storyboards.Main.mainViewController
+//        appDelegate.setRootViewController(viewController: mainViewController, animated: true)
+//    }
     
     private func newVersionAlert() {
         let mainViewController = Storyboards.Main.mainViewController
@@ -193,6 +192,14 @@ class SplashScreenViewController: UIViewController {
         self.present(mainViewController, animated: true, completion: nil)
         mainViewController.presentNewVersionAlert()
         
+    }
+    
+    private func navigateToMain() {
+        let mainViewController = Storyboards.Main.mainViewController
+        mainViewController.modalPresentationStyle = .fullScreen
+        self.present(mainViewController, animated: true, completion: nil)
+        mainViewController.presentFiestaAlert()
+
     }
     
     //========================================

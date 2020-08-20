@@ -37,5 +37,32 @@ class Fonts {
         return UIFont(name: "SFProDisplay-Semibold", size: size)!
     }
     
+    class func regularUiDisplayFont(size: CGFloat) -> UIFont {
+        return UIFont(name: "SFUiDisplay-Regular", size: size)!
+    }
+    
+    class func mediumUiDisplayFont(size: CGFloat) -> UIFont {
+        return UIFont(name: "SFUiDisplay-Medium", size: size)!
+    }
+    
+//    class func mediumTextFont(size: CGFloat) -> UIFont {
+//        return UIFont(name: "SFProText-Medium", size: size)!
+//    }
+    
+    class func boldUiDisplayFont(size: CGFloat) -> UIFont {
+        return UIFont(name: "SFUiDisplay-Bold", size: size)!
+    }
+    
+    class func heavyUiDisplayFont(size: CGFloat) -> UIFont {
+        return UIFont(name: "SFUiDisplay-Heavy", size: size)!
+    }
+    
+    class func blackUiDisplayFont(size: CGFloat) -> UIFont {
+        return UIFont(name: "SFUiDisplay-Black", size: size)!
+    }
+    
+    class func semiUiDisplayBold(size: CGFloat) -> UIFont {
+        return UIFont(name: "SFUiDisplay-Semibold", size: size)!
+    }
     
 }

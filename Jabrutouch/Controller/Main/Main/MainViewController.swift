@@ -118,6 +118,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.setButtonsBackground()
         CoreDataManager.shared.delegate = self
         self.user = UserRepository.shared.getCurrentUser()
+        self.presentFiestaAlert()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -743,24 +744,27 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
         }
     }
     func presentDonationPopUp(){
-        let donationPopUp = Storyboards.DonationPopUp.donationPopUpViewController
-        donationPopUp.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-        donationPopUp.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-        self.present(donationPopUp, animated: true, completion: nil)
+        self.presentAlert(Storyboards.DonationPopUp.donationPopUpViewController)
     }
     
     func presentLastDonationPopUp(){
-        let donationPopUp = Storyboards.DonationPopUp.lastPopUp
-        donationPopUp.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-        donationPopUp.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-        self.present(donationPopUp, animated: true, completion: nil)
+        self.presentAlert(Storyboards.DonationPopUp.lastPopUp)
     }
+    
     func presentNewVersionAlert(){
-        let storyboard = UIStoryboard(name: "CustomAlert", bundle: nil)
-        let newVersionAlert = storyboard.instantiateViewController(withIdentifier: "newVersionAlert")
-        newVersionAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-        newVersionAlert.modalTransitionStyle = .crossDissolve
-        self.present(newVersionAlert, animated: true, completion: nil)
+        self.presentAlert(Storyboards.AdditionalAlerts.newVersionAlert)
+        }
+        
+    func presentFiestaAlert(){
+        let dateFormatte = DateFormatter()
+        dateFormatte.dateFormat = "yyyy-MM-dd"
+        let now = Date()
+        let soon = dateFormatte.date(from: "2020-08-18")!
+        let later = dateFormatte.date(from: "2020-09-13")!
+        
+        if now > soon && now < later {
+            self.presentAlert(Storyboards.AdditionalAlerts.fiestaAlert)
+        }
     }
     
     func presentCouponePopUp(values: JTDeepLinkCoupone){
@@ -785,14 +789,18 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
             case .failure(let error):
                 print(error)
                 DispatchQueue.main.async {
-                    let vc = Storyboards.Coupons.invalidCouponeViewController
-                    vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-                    vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-                    self.present(vc, animated: true, completion: nil)
+                    self.presentAlert(Storyboards.Coupons.invalidCouponeViewController)
                 }
                 Utils.showAlertMessage("Failed to create Coupon redemption please try again", viewControler: self)
             }
         }
+    }
+    
+    func presentAlert(_ vc: UIViewController){
+        let vc = vc
+        vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+        self.present(vc, animated: true, completion: nil)
     }
     
     func presentAboutUs() {

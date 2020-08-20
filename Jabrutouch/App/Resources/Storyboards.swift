@@ -66,6 +66,18 @@ class Storyboards {
         
     }
     
+    class AdditionalAlerts{
+        private class func additionalAlerts() -> UIStoryboard { return UIStoryboard(name: "AdditionalAlerts", bundle: Bundle.main) }
+        
+        class var  newVersionAlert: NewVersionAlertViewController {
+            return self.additionalAlerts().instantiateViewController(withIdentifier: "newVersionAlert") as! NewVersionAlertViewController
+        }
+        class var  fiestaAlert: FiestaAlertViewController {
+            return self.additionalAlerts().instantiateViewController(withIdentifier: "fiestaAlert") as! FiestaAlertViewController
+        }
+        
+    }
+    
     class SignIn {
         private class func signInStoryboard() -> UIStoryboard { return UIStoryboard(name: "SignIn", bundle: Bundle.main) }
         
