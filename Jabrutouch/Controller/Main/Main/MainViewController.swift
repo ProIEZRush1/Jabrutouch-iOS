@@ -121,9 +121,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         CoreDataManager.shared.delegate = self
         self.user = UserRepository.shared.getCurrentUser()
         self.presentFiestaAlert()
-        let nc = NotificationCenter.default
-        nc.addObserver(self, selector: #selector(internetConnect(_:)), name: NSNotification.Name(rawValue: "InternetConnect"), object: nil)
-        nc.addObserver(self, selector: #selector(internetNotConnect(_:)), name: NSNotification.Name(rawValue: "InternetNotConnect"), object: nil)
+        
         
     }
     
@@ -138,10 +136,13 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         //        self.setDefaulteIcons()
         setView()
         self.firstOnScreen ? self.getPopup() : nil
+        let nc = NotificationCenter.default
+        nc.addObserver(self, selector: #selector(internetConnect(_:)), name: NSNotification.Name(rawValue: "InternetConnect"), object: nil)
+        nc.addObserver(self, selector: #selector(internetNotConnect(_:)), name: NSNotification.Name(rawValue: "InternetNotConnect"), object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        //        NotificationCenter.default.removeObserver(self)
+                NotificationCenter.default.removeObserver(self)
     }
     
     @objc func internetConnect(_ notification:Notification) {
