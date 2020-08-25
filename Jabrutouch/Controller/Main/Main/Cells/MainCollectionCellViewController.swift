@@ -59,8 +59,11 @@ class MainCollectionCellViewController: UICollectionViewCell {
     }
     
     func setHiddenButtonsForLesson(_ lesson: JTLesson) {
-       self.audioButton.isHidden = (lesson.audioURL == nil)
-       self.videoButton.isHidden = (lesson.videoURL == nil)
+        
+            self.audioButton.isHidden = !lesson.isAudioDownloaded ? (lesson.audioURL == nil || !appDelegate.isInternetConenect) : (lesson.audioURL == nil)
+
+        
+            self.videoButton.isHidden = !lesson.isVideoDownloaded ? (lesson.videoURL == nil || !appDelegate.isInternetConenect) : (lesson.videoURL == nil)
     }
 }
 

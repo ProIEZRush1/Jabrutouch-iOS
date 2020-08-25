@@ -43,6 +43,8 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     var user : JTUser?
     var firstOnScreen = true
     var singlePayment = false
+    var pressEnable = appDelegate.isInternetConenect
+    
     //========================================
     // MARK: - @IBOutlets
     //========================================
@@ -119,6 +121,10 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         CoreDataManager.shared.delegate = self
         self.user = UserRepository.shared.getCurrentUser()
         self.presentFiestaAlert()
+        let nc = NotificationCenter.default
+        nc.addObserver(self, selector: #selector(internetConnect(_:)), name: NSNotification.Name(rawValue: "InternetConnect"), object: nil)
+        nc.addObserver(self, selector: #selector(internetNotConnect(_:)), name: NSNotification.Name(rawValue: "InternetNotConnect"), object: nil)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -134,6 +140,27 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.firstOnScreen ? self.getPopup() : nil
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        //        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func internetConnect(_ notification:Notification) {
+        self.pressEnable = appDelegate.isInternetConenect
+        DispatchQueue.main.async {
+            self.setButtonsBackground()
+            self.mishnaCollectionView.reloadData()
+            self.gemaraCollectionView.reloadData()
+        }
+    }
+    
+    @objc func internetNotConnect(_ notification:Notification) {
+        self.pressEnable = appDelegate.isInternetConenect
+        DispatchQueue.main.async {
+            self.setButtonsBackground()
+            self.mishnaCollectionView.reloadData()
+            self.gemaraCollectionView.reloadData()
+        }
+    }
     
     //========================================
     // MARK: - Setup
@@ -190,7 +217,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.mishnaLabel.text = Strings.mishna
         self.donationsLabel.text = Strings.donations
         //        self.titleLabel.text = Strings.jabrutouch
-        self.welcomeLabel.text = Strings.welcomeToNewJabrutouch        
+        self.welcomeLabel.text = Strings.welcomeToNewJabrutouch
     }
     
     private func roundCorners() {
@@ -243,12 +270,20 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     }
     
     func setButtonsBackground() {
-        self.todaysDafAudio.setImage(#imageLiteral(resourceName: "audio-nat"), for: .normal)
-        self.todaysDafAudio.setImage(#imageLiteral(resourceName: "audio-prs"), for: .highlighted)
-        
-        self.todaysDafVideo.setImage(#imageLiteral(resourceName: "video-nat"), for: .normal)
-        self.todaysDafVideo.setImage(#imageLiteral(resourceName: "video-prs"), for: .highlighted)
-        
+        if self.pressEnable {
+            self.todaysDafAudio.setImage(#imageLiteral(resourceName: "audio-nat"), for: .normal)
+            self.todaysDafAudio.setImage(#imageLiteral(resourceName: "audio-prs"), for: .highlighted)
+            
+            self.todaysDafVideo.setImage(#imageLiteral(resourceName: "video-nat"), for: .normal)
+            self.todaysDafVideo.setImage(#imageLiteral(resourceName: "video-prs"), for: .highlighted)
+            
+            self.todaysDafAudio.isHidden = false
+            self.todaysDafVideo.isHidden = false
+        } else {
+            self.todaysDafAudio.isHidden = true
+            self.todaysDafVideo.isHidden = true
+            
+        }
         
     }
     //========================================
@@ -374,7 +409,6 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
             self.presentDonationsViewController()
         }
         
-        
     }
     
     //========================================
@@ -405,17 +439,25 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     }
     
     @IBAction func gemaraButtonTouchedUp(_ sender: UIButton) {
-        UIView.animate(withDuration: 0.3) {
-            self.gemaraImageView.alpha = 1.0
-            self.gemaraLabel.alpha = 1.0
+        if self.pressEnable {
+            UIView.animate(withDuration: 0.3) {
+                self.gemaraImageView.alpha = 1.0
+                self.gemaraLabel.alpha = 1.0
+            }
+            self.presentGemaraViewController()
+        } else {
+            self.noInternetAlert()
         }
-        self.presentGemaraViewController()
     }
     
     @IBAction func gemaraButtonTouchedUpOutside(_ sender: UIButton) {
-        UIView.animate(withDuration: 0.3) {
-            self.gemaraImageView.alpha = 1.0
-            self.gemaraLabel.alpha = 1.0
+        if self.pressEnable {
+            UIView.animate(withDuration: 0.3) {
+                self.gemaraImageView.alpha = 1.0
+                self.gemaraLabel.alpha = 1.0
+            }
+        } else {
+            self.noInternetAlert()
         }
     }
     
@@ -424,17 +466,25 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     }
     
     @IBAction func mishnaButtonTouchedUp(_ sender: UIButton) {
-        UIView.animate(withDuration: 0.3) {
-            self.mishnaImageView.alpha = 1.0
-            self.mishnaLabel.alpha = 1.0
+        if self.pressEnable {
+            UIView.animate(withDuration: 0.3) {
+                self.mishnaImageView.alpha = 1.0
+                self.mishnaLabel.alpha = 1.0
+            }
+            self.presentMishnaViewController()
+        } else {
+            self.noInternetAlert()
         }
-        self.presentMishnaViewController()
     }
     
     @IBAction func mishnaButtonTouchedUpOutside(_ sender: UIButton) {
-        UIView.animate(withDuration: 0.3) {
-            self.mishnaImageView.alpha = 1.0
-            self.mishnaLabel.alpha = 1.0
+        if self.pressEnable {
+            UIView.animate(withDuration: 0.3) {
+                self.mishnaImageView.alpha = 1.0
+                self.mishnaLabel.alpha = 1.0
+            }
+        } else {
+            self.noInternetAlert()
         }
     }
     
@@ -444,17 +494,25 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     }
     
     @IBAction func donationsButtonTouchedUp(_ sender: UIButton) {
-        UIView.animate(withDuration: 0.3) {
-            self.donationsImageView.alpha = 1.0
-            self.donationsLabel.alpha = 1.0
+        if self.pressEnable {
+            UIView.animate(withDuration: 0.3) {
+                self.donationsImageView.alpha = 1.0
+                self.donationsLabel.alpha = 1.0
+            }
+            self.presentDonation()
+        } else {
+            self.noInternetAlert()
         }
-        self.presentDonation()
     }
     
     @IBAction func donationsButtonTouchedUpOutside(_ sender: UIButton) {
-        UIView.animate(withDuration: 0.3) {
-            self.donationsImageView.alpha = 1.0
-            self.donationsLabel.alpha = 1.0
+        if self.pressEnable {
+            UIView.animate(withDuration: 0.3) {
+                self.donationsImageView.alpha = 1.0
+                self.donationsLabel.alpha = 1.0
+            }
+        } else {
+            self.noInternetAlert()
         }
     }
     
@@ -465,27 +523,35 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     
     
     @IBAction func todaysDafAudioPressed(_ sender: Any) {
-        self.showActivityView()
-        let todaysDaf = DafYomiRepository.shared.getTodaysDaf()
-        guard let data = ContentRepository.shared.getMasechetByName(todaysDaf.masechet) else {
-            self.removeActivityView()
-            return
-        }
-        ContentRepository.shared.getGemaraLesson(masechetId: data.masechet.id, page: todaysDaf.daf) { (result: Result<JTGemaraLesson, JTError>) in
-            DispatchQueue.main.async {
+        if self.pressEnable {
+            self.showActivityView()
+            let todaysDaf = DafYomiRepository.shared.getTodaysDaf()
+            guard let data = ContentRepository.shared.getMasechetByName(todaysDaf.masechet) else {
                 self.removeActivityView()
-                switch result {
-                case .success(let lesson):
-                    self.playLesson(lesson, mediaType: .audio, sederId: "\(data.seder.id)", masechetId: "\(data.masechet.id)", chapter: nil, masechetName: todaysDaf.masechet)
-                case .failure:
-                    break
+                return
+            }
+            ContentRepository.shared.getGemaraLesson(masechetId: data.masechet.id, page: todaysDaf.daf) { (result: Result<JTGemaraLesson, JTError>) in
+                DispatchQueue.main.async {
+                    self.removeActivityView()
+                    switch result {
+                    case .success(let lesson):
+                        self.playLesson(lesson, mediaType: .audio, sederId: "\(data.seder.id)", masechetId: "\(data.masechet.id)", chapter: nil, masechetName: todaysDaf.masechet)
+                    case .failure:
+                        break
+                    }
                 }
             }
+        } else {
+            self.noInternetAlert()
         }
     }
     
     @IBAction func todaysDafVideoPressed(_ sender: Any) {
-        presentTodayDafLessonVideo()
+        if self.pressEnable {
+            presentTodayDafLessonVideo()
+        } else {
+            self.noInternetAlert()
+        }
     }
     
     func presentTodayDafLessonVideo(){
@@ -650,6 +716,11 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         
     }
     
+    private func noInternetAlert(){
+        let vc = appDelegate.topmostViewController!
+        Utils.showAlertMessage(Strings.internetDisconncet, viewControler: vc)
+    }
+    
     func dismissMainModal() {
         self.modalsPresentingVC.dismiss(animated: true) {
             self.view.bringSubviewToFront(self.mainContainer)
@@ -725,24 +796,25 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
     func optionSelected(option: MenuOption) {
         switch option {
         case .profile:
-            presentProfile()
+            self.pressEnable ? presentProfile() : self.noInternetAlert()
         //            presentOldProfile()
         case .signOut:
             presentLogoutAlert()
         case .mishna:
-            presentMishnaViewController()
+            self.pressEnable ? presentMishnaViewController() : self.noInternetAlert()
         case .gemara:
-            presentGemaraViewController()
+            self.pressEnable ? presentGemaraViewController() : self.noInternetAlert()
         case .about:
             presentAboutUs()
         case .messageCenter:
             presentMessages()
         case .donationsCenter:
-            self.presentDonation()
+            self.pressEnable ? self.presentDonation() : self.noInternetAlert()
         default:
             presentInDevelopmentAlert()
         }
     }
+    
     func presentDonationPopUp(){
         self.presentAlert(Storyboards.DonationPopUp.donationPopUpViewController)
     }
@@ -753,8 +825,8 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
     
     func presentNewVersionAlert(){
         self.presentAlert(Storyboards.AdditionalAlerts.newVersionAlert)
-        }
-        
+    }
+    
     func presentFiestaAlert(){
         let dateFormatte = DateFormatter()
         dateFormatte.dateFormat = "yyyy-MM-dd"

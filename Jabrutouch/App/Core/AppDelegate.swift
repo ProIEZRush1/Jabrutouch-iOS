@@ -12,14 +12,18 @@ import Crashlytics
 import AWSS3
 import Firebase
 import FirebaseMessaging
+import Network
 
 let appDelegate = UIApplication.shared.delegate as! AppDelegate
 let notificatioCenter = UNUserNotificationCenter.current()
+let monitor = NWPathMonitor()
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
+    var isInternetConenect: Bool = true
     
     var topmostViewController: UIViewController? {
         guard let window = self.window else { return nil }
@@ -49,6 +53,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         registerForPushNotifications(application: application)
         Messaging.messaging().delegate = MessagesRepository.shared
         
+        monitor.pathUpdateHandler = { path in
+            if path.status == .satisfied {
+                self.isInternetConenect = true
+                let nc = NotificationCenter.default
+                nc.post(name: Notification.Name("InternetConnect"), object: nil)
+            } else {
+                self.isInternetConenect = false
+                let nc = NotificationCenter.default
+                nc.post(name: Notification.Name("InternetNotConnect"), object: nil)
+
+            }
+        }
+        let queue = DispatchQueue(label: "Monitor")
+        monitor.start(queue: queue)
+       
         return true
     }
     
@@ -57,42 +76,49 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("My dynamic link obj has no url")
             return
         }
+        
+        if UserDefaultsProvider.shared.currentUser?.token == nil {
+            let singinViewController = Storyboards.SignIn.signInViewController
+            singinViewController.modalPresentationStyle = .fullScreen
+            self.topmostViewController?.present(singinViewController, animated: false, completion: nil)
+            return
+        }
+        
         guard let url1 = url.queryDictionary else { return }
          let type = url1["type"]
         if type == "coupon"{
+            
             guard let values = JTDeepLinkCoupone(values: url1) else { return }
             let mainViewController = Storyboards.Main.mainViewController
             mainViewController.modalPresentationStyle = .fullScreen
             self.topmostViewController?.present(mainViewController, animated: false, completion: nil)
             mainViewController.couponeFromDeepLink(values: values)
-        }else{
+       
+        } else {
+            
             guard let values = JTDeepLinkLesson(values: url1) else { return }
-             if UserDefaultsProvider.shared.currentUser?.token != nil {
                  let mainViewController = Storyboards.Main.mainViewController
                  mainViewController.modalPresentationStyle = .fullScreen
                  self.topmostViewController?.present(mainViewController, animated: false, completion: nil)
                  mainViewController.lessonFromDeepLink(values)
-             } else {
-                 let singinViewController = Storyboards.SignIn.signInViewController
-                 singinViewController.modalPresentationStyle = .fullScreen
-                 self.topmostViewController?.present(singinViewController, animated: false, completion: nil)
-             }
         }
-        print("Your incoming link params \(url1)")
     }
    
     
     func application(_ application: UIApplication, continue userActivity: NSUserActivity,
                      restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         if let incomingURL = userActivity.webpageURL{
-            print("Incoming URL is \(incomingURL)")
             let linkHandled = DynamicLinks.dynamicLinks().handleUniversalLink(incomingURL)
             { (dynamicLink, error)in
                 guard error == nil else{
                     print("Found an error! \(error!.localizedDescription)")
+                    let singinViewController = Storyboards.SignIn.signInViewController
+                    singinViewController.modalPresentationStyle = .fullScreen
+                    self.topmostViewController?.present(singinViewController, animated: false, completion: nil)
+                    singinViewController.noInternetConnect(message: error!.localizedDescription)
                     return
                 }
-                if let dynamicLink = dynamicLink{
+                if let dynamicLink = dynamicLink {
                     self.handleIncomingDynamicLink(dynamicLink)
                 }
             }

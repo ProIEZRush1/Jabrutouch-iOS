@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class SplashScreenViewController: UIViewController {
     
     //========================================
@@ -15,7 +16,6 @@ class SplashScreenViewController: UIViewController {
     //========================================
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
     
     //========================================
     // MARK: - LifeCycle
@@ -70,20 +70,21 @@ class SplashScreenViewController: UIViewController {
             self.navigateToSignIn()
         }
         DispatchQueue.global().async{
-        
-        do {
-            let update = try self.isUpdateAvailable()
-            if update {
-                DispatchQueue.main.async {
-                    self.newVersionAlert()
-                }
-            } else {
-            
-                LoginManager.shared.signIn(phoneNumber: phoneNumber, email: email, password: password) { (result) in
+            // if internet connection available
+            if appDelegate.isInternetConenect {
+            do {
+                let update = try self.isUpdateAvailable()
+                if update {
+                    DispatchQueue.main.async {
+                        self.newVersionAlert()
+                    }
+                } else {
+                    
+                    LoginManager.shared.signIn(phoneNumber: phoneNumber, email: email, password: password) { (result) in
                         DispatchQueue.main.async {
                             switch result {
                             case .success:
-                
+                                
                                 let showTour = UserDefaultsProvider.shared.currentUser?.showTour
                                 switch showTour {
                                 case 0:
@@ -103,16 +104,21 @@ class SplashScreenViewController: UIViewController {
                                 //                    self.navigateToMain()
                                 self.navigateToSignIn()
                             }
-                            
                         }
                     }
+                }
+            } catch {
+                
+                }
+            } else {
+                // if internet connection not available
+                if UserDefaultsProvider.shared.currentUser?.token != nil {
+                    self.navigateToMain()
+                }else {
+                    self.navigateToSignIn()
+                }
             }
-        } catch {
-            print(error)
         }
-        }
-        
-        
     }
     
     enum VersionError: Error {
@@ -126,7 +132,8 @@ class SplashScreenViewController: UIViewController {
             let currentVersion = info["CFBundleShortVersionString"] as? String,
             let identifier = info["CFBundleIdentifier"] as? String,
             let url = URL(string: "http://itunes.apple.com/lookup?bundleId=\(identifier)") else {
-            throw VersionError.invalidBundleInfo
+                
+                throw VersionError.invalidBundleInfo
         }
         let data = try Data(contentsOf: url)
         guard let json = try JSONSerialization.jsonObject(with: data, options: [.allowFragments]) as? [String: Any] else {
@@ -161,8 +168,6 @@ class SplashScreenViewController: UIViewController {
         appDelegate.setRootViewController(viewController: welcomeTourViewController, animated: true)
     }
     
-
-    
     private func navigateToDonationTourWalkThrough() {
         let donationsWalkThroughViewController = Storyboards.DonationWalkThrough.welcomeDonationViewController
         appDelegate.setRootViewController(viewController: donationsWalkThroughViewController, animated: true)
@@ -181,10 +186,10 @@ class SplashScreenViewController: UIViewController {
         mainViewController.presentLastDonationPopUp()
     }
     
-//    private func navigateToMain() {
-//        let mainViewController = Storyboards.Main.mainViewController
-//        appDelegate.setRootViewController(viewController: mainViewController, animated: true)
-//    }
+    private func navigateToMain() {
+        let mainViewController = Storyboards.Main.mainViewController
+        appDelegate.setRootViewController(viewController: mainViewController, animated: true)
+    }
     
     private func newVersionAlert() {
         let mainViewController = Storyboards.Main.mainViewController
@@ -194,13 +199,12 @@ class SplashScreenViewController: UIViewController {
         
     }
     
-    private func navigateToMain() {
-        let mainViewController = Storyboards.Main.mainViewController
-        mainViewController.modalPresentationStyle = .fullScreen
-        self.present(mainViewController, animated: true, completion: nil)
-        mainViewController.presentFiestaAlert()
-
-    }
+    //    private func navigateToMain() {
+    //        let mainViewController = Storyboards.Main.mainViewController
+    //        mainViewController.modalPresentationStyle = .fullScreen
+    //        self.present(mainViewController, animated: true, completion: nil)
+    //        mainViewController.presentFiestaAlert()
+    //    }
     
     //========================================
     // MARK: - Notification observations

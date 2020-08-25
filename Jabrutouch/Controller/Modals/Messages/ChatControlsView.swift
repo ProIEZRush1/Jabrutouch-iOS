@@ -34,7 +34,7 @@ class ChatControlsView: UIView, RecordViewDelegate {
     // MARK: - @IBOutlets
     //========================================
     
-//    @IBOutlet weak var inputTextViewHeightConstraint: NSLayoutConstraint!
+    //    @IBOutlet weak var inputTextViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var inputTextView:UITextView!
     @IBOutlet weak var plaseHolderLabel: UILabel!
     @IBOutlet weak var sendMessageButton: UIButton!
@@ -48,13 +48,12 @@ class ChatControlsView: UIView, RecordViewDelegate {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        if appDelegate.isInternetConenect {
         self.xibSetup()
         self.inputTextView.delegate = self
-        
-        recordView.delegate = self
-        
-        
+        self.recordView.delegate = self
         self.setRoundCorners()
+        }
     }
     
     override func awakeFromNib() {
@@ -63,7 +62,9 @@ class ChatControlsView: UIView, RecordViewDelegate {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.xibSetup()
+        if appDelegate.isInternetConenect {
+            self.xibSetup()
+        }
     }
     
     // Our custom view from the XIB file
@@ -81,12 +82,6 @@ class ChatControlsView: UIView, RecordViewDelegate {
         
         view.addSubview(recordView)
         
-//                recordMessageButton.widthAnchor.constraint(equalToConstant: 35).isActive = true
-//                recordMessageButton.heightAnchor.constraint(equalToConstant: 35).isActive = true
-//        
-//                recordMessageButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8).isActive = true
-//                recordMessageButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -16).isActive = true
-        
         
         recordView.trailingAnchor.constraint(equalTo: recordMessageButton.leadingAnchor, constant: -40).isActive = true
         recordView.leadingAnchor.constraint(equalTo: inputTextView.leadingAnchor, constant: 5).isActive = true
@@ -95,7 +90,7 @@ class ChatControlsView: UIView, RecordViewDelegate {
         recordView.offset = 20
         recordView.durationTimerColor = #colorLiteral(red: 0.1764705882, green: 0.168627451, blue: 0.662745098, alpha: 1)
         recordView.slideToCancelTextColor = #colorLiteral(red: 0.6039215686, green: 0.6039215686, blue: 0.6039215686, alpha: 1)
-//        recordView.slideToCancelArrowImage = #imageLiteral(resourceName: "leftGrayArrow")
+        //        recordView.slideToCancelArrowImage = #imageLiteral(resourceName: "leftGrayArrow")
         recordView.clipsToBounds = false
         
         recordMessageButton.recordView = recordView
@@ -142,7 +137,7 @@ class ChatControlsView: UIView, RecordViewDelegate {
             contentType: "audio/m4a",
             bucketName: AWSS3Provider.appS3BucketName,
             progressBlock: { (progress) in
-//                print(progress)
+                //                print(progress)
         }) { (result:Result<String, Error>) in
             switch result {
             case .success(_):
@@ -158,13 +153,17 @@ class ChatControlsView: UIView, RecordViewDelegate {
     //========================================
     
     @IBAction func sendMessageButtonPressed(_ sender: Any) {
-        self.delegate?.sendTextMessageButtonPressed()
-        self.inputTextView.isHidden = false
-        self.inputTextView.text = ""
-        self.plaseHolderLabel.isHidden = false
-        self.sendMessageButton.isHidden = true
-        self.recordMessageButton.isHidden = false
-        
+        if appDelegate.isInternetConenect {
+            self.delegate?.sendTextMessageButtonPressed()
+            self.inputTextView.isHidden = false
+            self.inputTextView.text = ""
+            self.plaseHolderLabel.isHidden = false
+            self.sendMessageButton.isHidden = true
+            self.recordMessageButton.isHidden = false
+        }else{
+            let vc = appDelegate.topmostViewController!
+            Utils.showAlertMessage(Strings.internetDisconncet, viewControler: vc)
+        }
     }
     
     func onStart() {
@@ -197,7 +196,7 @@ class ChatControlsView: UIView, RecordViewDelegate {
             self.saveRecordInS3(url: url, fileName: "users-record/\(file)" , completion:{ (result: Result<Void, Error>) in
                 switch result{
                 case .success(let data):
-//                    self.delegate?.recordSavedInS3(file)
+                    //                    self.delegate?.recordSavedInS3(file)
                     self.delegate?.recordSavedInS3("/users-record/\(file)")
                     print(data)
                 case .failure(let error):
@@ -220,7 +219,14 @@ class ChatControlsView: UIView, RecordViewDelegate {
 extension ChatControlsView: UITextViewDelegate {
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        return true
+        if appDelegate.isInternetConenect {
+            return true
+        }else{
+            let vc = appDelegate.topmostViewController!
+            Utils.showAlertMessage(Strings.internetDisconncet, viewControler: vc)
+            return false
+        }
+        //        return true
     }
     
     func textViewDidChange(_ textView: UITextView) {

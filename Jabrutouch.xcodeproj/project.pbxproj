@@ -166,8 +166,6 @@
 		600399D724D6D6330038ED66 /* InvalidCouponeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600399D624D6D6330038ED66 /* InvalidCouponeViewController.swift */; };
 		600399D924D6E1550038ED66 /* JTDeepLinkCoupone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600399D824D6E1550038ED66 /* JTDeepLinkCoupone.swift */; };
 		6016D65D24E9778D002DD9AF /* NewVersionAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6016D65C24E9778D002DD9AF /* NewVersionAlertViewController.swift */; };
-		604062FF24D1827F00267E63 /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 604062FE24D1827E00267E63 /* splash.png */; };
-		6040630124D1865E00267E63 /* lunchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 6040630024D1865D00267E63 /* lunchScreen.png */; };
 		604A891B24CEEC9000212B44 /* DonationPopUps.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 604A891A24CEEC9000212B44 /* DonationPopUps.storyboard */; };
 		604A891E24CEFA1B00212B44 /* DonationPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A891D24CEFA1B00212B44 /* DonationPopUpViewController.swift */; };
 		604A892B24CF0FF600212B44 /* FirstChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A892824CF0FF500212B44 /* FirstChildVC.swift */; };
@@ -296,8 +294,6 @@
 		DD5AE5A223F2C747009CF8AC /* IncomingMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5AE5A123F2C747009CF8AC /* IncomingMessageCell.swift */; };
 		DD5CA3A82402AE6A00AF1FA4 /* Tzedaka.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD5CA3A72402AE6900AF1FA4 /* Tzedaka.storyboard */; };
 		DD61996523FC189700C06356 /* MessagesNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD61996423FC189700C06356 /* MessagesNavigationController.swift */; };
-		DDCA933B23D0B31700388EC6 /* Jabrutouch.png in Resources */ = {isa = PBXBuildFile; fileRef = DDCA933A23D0B31700388EC6 /* Jabrutouch.png */; };
-		DDCA933D23D0B34200388EC6 /* lunchScreenIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = DDCA933C23D0B34200388EC6 /* lunchScreenIcon.png */; };
 		DDF1D227240445180080D564 /* NoDonationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF1D226240445180080D564 /* NoDonationViewController.swift */; };
 		F7AEA20A7CC7E87A1BEC48AF /* Pods_Jabrutouch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0F9377FF1E3DA5E9F901D68 /* Pods_Jabrutouch.framework */; };
 		FB51711422F19C3F003BCAFC /* MishnaMasechetCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB51711322F19C3F003BCAFC /* MishnaMasechetCellController.swift */; };
@@ -490,8 +486,6 @@
 		600399D624D6D6330038ED66 /* InvalidCouponeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvalidCouponeViewController.swift; sourceTree = "<group>"; };
 		600399D824D6E1550038ED66 /* JTDeepLinkCoupone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTDeepLinkCoupone.swift; sourceTree = "<group>"; };
 		6016D65C24E9778D002DD9AF /* NewVersionAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewVersionAlertViewController.swift; sourceTree = "<group>"; };
-		604062FE24D1827E00267E63 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = splash.png; path = Jabrutouch/Assets.xcassets/Image.imageset/splash.png; sourceTree = SOURCE_ROOT; };
-		6040630024D1865D00267E63 /* lunchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lunchScreen.png; sourceTree = "<group>"; };
 		604A891A24CEEC9000212B44 /* DonationPopUps.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DonationPopUps.storyboard; sourceTree = "<group>"; };
 		604A891D24CEFA1B00212B44 /* DonationPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonationPopUpViewController.swift; sourceTree = "<group>"; };
 		604A892824CF0FF500212B44 /* FirstChildVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstChildVC.swift; sourceTree = "<group>"; };
@@ -648,8 +642,6 @@
 		DD61996423FC189700C06356 /* MessagesNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesNavigationController.swift; sourceTree = "<group>"; };
 		DD61996623FC278000C06356 /* DataModel_v3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel_v3.xcdatamodel; sourceTree = "<group>"; };
 		DD61996723FC392B00C06356 /* DataModel_v4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel_v4.xcdatamodel; sourceTree = "<group>"; };
-		DDCA933A23D0B31700388EC6 /* Jabrutouch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Jabrutouch.png; path = "Jabrutouch/Assets.xcassets/JabrutouchTitle-1.imageset/Jabrutouch.png"; sourceTree = SOURCE_ROOT; };
-		DDCA933C23D0B34200388EC6 /* lunchScreenIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lunchScreenIcon.png; path = Jabrutouch/Assets.xcassets/splashIcon.imageset/lunchScreenIcon.png; sourceTree = SOURCE_ROOT; };
 		DDF1D226240445180080D564 /* NoDonationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDonationViewController.swift; sourceTree = "<group>"; };
 		F71C57777BA59A6B8E3F7474 /* Pods-Jabrutouch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jabrutouch.release.xcconfig"; path = "Target Support Files/Pods-Jabrutouch/Pods-Jabrutouch.release.xcconfig"; sourceTree = "<group>"; };
 		FB51711322F19C3F003BCAFC /* MishnaMasechetCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MishnaMasechetCellController.swift; sourceTree = "<group>"; };
@@ -1081,10 +1073,6 @@
 			children = (
 				608CC712241129F8002136A8 /* animation.json */,
 				83408E14241EBE3100DD9229 /* GRACIAS_BAJA_2.mov */,
-				604062FE24D1827E00267E63 /* splash.png */,
-				6040630024D1865D00267E63 /* lunchScreen.png */,
-				DDCA933C23D0B34200388EC6 /* lunchScreenIcon.png */,
-				DDCA933A23D0B31700388EC6 /* Jabrutouch.png */,
 				21419CB1230D51F700145F1F /* Bridging Headers */,
 				FB67A5E222E47E61009E4DF9 /* Documents */,
 				2120BE2522DF2C62004854DB /* Fonts */,
@@ -1735,7 +1723,6 @@
 				21678D4B22DF2CEC007BC74C /* SF-Pro-Display-HeavyItalic.otf in Resources */,
 				21678D4C22DF2CEC007BC74C /* SF-Pro-Display-Light.otf in Resources */,
 				21678D4D22DF2CEC007BC74C /* SF-Pro-Display-LightItalic.otf in Resources */,
-				604062FF24D1827F00267E63 /* splash.png in Resources */,
 				836A884D23968C8E00F68539 /* ForgotPassword.storyboard in Resources */,
 				21678D4E22DF2CEC007BC74C /* SF-Pro-Display-Medium.otf in Resources */,
 				21678D4F22DF2CEC007BC74C /* SF-Pro-Display-MediumItalic.otf in Resources */,
@@ -1754,7 +1741,6 @@
 				21678D5A22DF2CEC007BC74C /* SF-Pro-Rounded-Heavy.otf in Resources */,
 				8395979E24029C31007B96EB /* HoursView.xib in Resources */,
 				219BFF3122E5B67C00ABBEE2 /* countries.json in Resources */,
-				DDCA933D23D0B34200388EC6 /* lunchScreenIcon.png in Resources */,
 				21678D5B22DF2CED007BC74C /* SF-Pro-Rounded-Light.otf in Resources */,
 				21678D5C22DF2CED007BC74C /* SF-Pro-Rounded-Medium.otf in Resources */,
 				836A8845238FD00100F68539 /* Gallery.storyboard in Resources */,
@@ -1775,7 +1761,6 @@
 				213196B722F6DDB000B0AF5F /* ActivityView.xib in Resources */,
 				21678D6322DF2CED007BC74C /* SF-Pro-Text-Bold.otf in Resources */,
 				21678D6422DF2CED007BC74C /* SF-Pro-Text-BoldItalic.otf in Resources */,
-				DDCA933B23D0B31700388EC6 /* Jabrutouch.png in Resources */,
 				21678D6522DF2CED007BC74C /* SF-Pro-Text-Heavy.otf in Resources */,
 				21678D6622DF2CED007BC74C /* SF-Pro-Text-HeavyItalic.otf in Resources */,
 				21678D6722DF2CED007BC74C /* SF-Pro-Text-Light.otf in Resources */,
@@ -1789,7 +1774,6 @@
 				21678D6E22DF2CED007BC74C /* SF-Pro-Text-SemiboldItalic.otf in Resources */,
 				21678D6F22DF2CED007BC74C /* SF-Pro-Text-Thin.otf in Resources */,
 				21678D7022DF2CED007BC74C /* SF-Pro-Text-ThinItalic.otf in Resources */,
-				6040630124D1865E00267E63 /* lunchScreen.png in Resources */,
 				21F89DCE231B173500540658 /* VideoPlayer.xib in Resources */,
 				604A891B24CEEC9000212B44 /* DonationPopUps.storyboard in Resources */,
 				FBB18FAC22F85019006886FD /* Gemara.storyboard in Resources */,

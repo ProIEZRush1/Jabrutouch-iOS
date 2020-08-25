@@ -9,7 +9,7 @@
 import UIKit
 
 class DownloadsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, HeaderViewDelegate, DownloadsCellDelegate {
-   
+    
     
     
     //========================================
@@ -125,6 +125,7 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
             gemaraBooksImage.isHidden = isHidden
             gemaraNoDownloadedFilesMessage.isHidden = isHidden
             gemaraViewAllLessonsButton.isHidden = isHidden
+            
         } else {
             if !isGemaraSelected {
                 deleteButton.isHidden = !isHidden
@@ -167,7 +168,7 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         gemaraViewAllLessonsButton.translatesAutoresizingMaskIntoConstraints = false
         Utils.setViewShape(view: mishnaViewAllLessonsButton, viewBorderWidht: 0.57, viewBorderColor: UIColor(red: 0.18, green: 0.17, blue: 0.66, alpha: 1), viewCornerRadius: 10.32)
         mishnaViewAllLessonsButton.translatesAutoresizingMaskIntoConstraints = false
-
+        
     }
     
     fileprivate func setViewsShadow() {
@@ -215,6 +216,12 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         tableViewsMap[GEMARA] = gemaraTableView
         tableViewsMap[MISHNA] = mishnaTableView
     }
+    
+    private func noInternetAlert(){
+        let vc = appDelegate.topmostViewController!
+        Utils.showAlertMessage(Strings.internetDisconncet, viewControler: vc)
+    }
+    
     //=======================================================
     // MARK: - UITableView Data Source and Delegate section
     //=======================================================
@@ -351,7 +358,7 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
                 }
             }
         }
-
+        
         
         Utils.setViewShape(view: cell.cellView, viewCornerRadius: 18)
         Utils.setViewShape(view: cell.cellShadowView, viewCornerRadius: 18)
@@ -436,7 +443,7 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         alert.addAction(UIAlertAction(title: Strings.yes, style: UIAlertAction.Style.default, handler: { action in
             if cell.isFirstTable {
                 if let indexPath = self.gemaraTableView.indexPath(for: cell) {
-                   
+                    
                     // Remove from storage
                     let lessons = self.gemaraDownloads[indexPath.section].records.sorted { (download1, download2) in
                         if download1.masechetId != download2.masechetId {
@@ -451,20 +458,20 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
                     
                     // Refresh local data and view
                     self.setContent()
-//                    self.gemaraDownloads[indexPath.section].records.remove(at: indexPath.row)
-//                    if self.gemaraDownloads[indexPath.section].records.count == 0 {
-//                        self.gemaraDownloads.remove(at: indexPath.section)
-//                        self.gemaraTableView.reloadData()
-////                        self.gemaraTableView.deleteSections([indexPath.section], with: .bottom)
-////                        self.reloadRelevantSections(indexPath.section, self.gemaraDownloads, self.gemaraTableView)
-//                    } else {
-//                        self.gemaraTableView.deleteRows(at: [indexPath], with: .bottom)
-//                        self.gemaraTableView.reloadData()
-//                    }
+                    //                    self.gemaraDownloads[indexPath.section].records.remove(at: indexPath.row)
+                    //                    if self.gemaraDownloads[indexPath.section].records.count == 0 {
+                    //                        self.gemaraDownloads.remove(at: indexPath.section)
+                    //                        self.gemaraTableView.reloadData()
+                    ////                        self.gemaraTableView.deleteSections([indexPath.section], with: .bottom)
+                    ////                        self.reloadRelevantSections(indexPath.section, self.gemaraDownloads, self.gemaraTableView)
+                    //                    } else {
+                    //                        self.gemaraTableView.deleteRows(at: [indexPath], with: .bottom)
+                    //                        self.gemaraTableView.reloadData()
+                    //                    }
                 }
             } else {
                 if let indexPath = self.mishnaTableView.indexPath(for: cell) {
-                   // Remove from storage
+                    // Remove from storage
                     let lessons = self.mishnaDownloads[indexPath.section].records.sorted { (download1, download2) in
                         if download1.masechetId != download2.masechetId {
                             return download1.masechetId < download2.masechetId
@@ -475,18 +482,18 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
                     }
                     let downloadedLesson = lessons[indexPath.row] //self.mishnaDownloads[indexPath.section].records[indexPath.row]
                     ContentRepository.shared.removeLessonFromDownloaded(downloadedLesson.lesson, sederId: "\(self.mishnaDownloads[indexPath.section].sederId)", masechetId: downloadedLesson.masechetId, chapter: downloadedLesson.chapter)
-
+                    
                     // Refresh local data and view
                     self.setContent()
-//                    self.mishnaDownloads[indexPath.section].records.remove(at: indexPath.row)
-//                    if self.mishnaDownloads[indexPath.section].records.count == 0 {
-//                        self.mishnaDownloads.remove(at: indexPath.section)
-//                        self.mishnaTableView.reloadData()
-////                        self.mishnaTableView.deleteSections([indexPath.section], with: .bottom)
-////                        self.reloadRelevantSections(indexPath.section, self.mishnaDownloads, self.mishnaTableView)
-//                    } else {
-//                        self.mishnaTableView.deleteRows(at: [indexPath], with: .bottom)
-//                    }
+                    //                    self.mishnaDownloads[indexPath.section].records.remove(at: indexPath.row)
+                    //                    if self.mishnaDownloads[indexPath.section].records.count == 0 {
+                    //                        self.mishnaDownloads.remove(at: indexPath.section)
+                    //                        self.mishnaTableView.reloadData()
+                    ////                        self.mishnaTableView.deleteSections([indexPath.section], with: .bottom)
+                    ////                        self.reloadRelevantSections(indexPath.section, self.mishnaDownloads, self.mishnaTableView)
+                    //                    } else {
+                    //                        self.mishnaTableView.deleteRows(at: [indexPath], with: .bottom)
+                    //                    }
                 }
             }
         }))
@@ -558,7 +565,7 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
             masechetId = self.mishnaDownloads[indexPath.section].records[indexPath.row].masechetId
             chapter = self.mishnaDownloads[indexPath.section].records[indexPath.row].chapter
             sederId = self.mishnaDownloads[indexPath.section].records[indexPath.row].sederId
-
+            
         }
         
         DispatchQueue.main.async {
@@ -640,10 +647,18 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         self.delegate?.dismissMainModal()
     }
     @IBAction func gemaraAllSessonsPressed(_ sender: Any) {
-        self.delegate?.presentAllGemara()
+        if appDelegate.isInternetConenect {
+            self.delegate?.presentAllGemara()
+        } else {
+            self.noInternetAlert()
+        }
     }
+    
     @IBAction func mishnaAllLessonsPressed(_ sender: Any) {
-        self.delegate?.presentAllMishna()
+        if appDelegate.isInternetConenect {
+            self.delegate?.presentAllMishna()        } else {
+            self.noInternetAlert()
+        }
     }
     
     //======================================================
@@ -655,11 +670,11 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         playerVC.modalPresentationStyle = .fullScreen
         if let mishnaLesson = lesson as? JTMishnaLesson {
             playerVC.masechet = masechetName ?? ""
-                playerVC.daf = "\(mishnaLesson.mishna)"
+            playerVC.daf = "\(mishnaLesson.mishna)"
         }
         if let gemaraLesson = lesson as? JTGemaraLesson {
             playerVC.masechet = masechetName ?? ""
-                playerVC.daf = "\(gemaraLesson.page)"
+            playerVC.daf = "\(gemaraLesson.page)"
         }
         self.present(playerVC, animated: true) {
             
@@ -668,7 +683,7 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         if let mishnaLesson = lesson as? JTMishnaLesson, let masechetName = masechetName, let chapter = chapter  {
             ContentRepository.shared.lessonWatched(mishnaLesson, masechetName: masechetName, masechetId: "\(masechetId)", chapter: "\(chapter)", sederId: sederId)
         }
-        
+            
         else if let gemaraLesson = lesson as? JTGemaraLesson, let masechetName = masechetName  {
             ContentRepository.shared.lessonWatched(gemaraLesson, masechetName: masechetName, masechetId: "\(masechetId)", sederId: sederId)
         }

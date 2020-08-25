@@ -121,6 +121,10 @@ class SignInViewController: UIViewController, MFMailComposeViewControllerDelegat
       controller.dismiss(animated: true)
     }
     
+    func noInternetConnect(message: String){
+        Utils.showAlertMessage(message, title: title, viewControler: self)
+    }
+    
     //============================================================
     // MARK: - @IBActions
     //============================================================

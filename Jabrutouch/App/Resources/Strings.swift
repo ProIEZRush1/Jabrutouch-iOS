@@ -654,5 +654,8 @@ class Strings {
     class var startTheLesson: String {
         return NSLocalizedString("startTheLesson", comment: "")
     }
+    class var internetDisconncet: String {
+        return NSLocalizedString("internetDisconncet", comment: "")
+    }
 }
 
