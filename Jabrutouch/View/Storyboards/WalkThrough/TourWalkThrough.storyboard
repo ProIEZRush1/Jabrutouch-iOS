@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -27,7 +27,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tour-welcom" translatesAutoresizingMaskIntoConstraints="NO" id="L7I-Ys-xvx">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tour-welcom" translatesAutoresizingMaskIntoConstraints="NO" id="L7I-Ys-xvx">
                                 <rect key="frame" x="35.5" y="84" width="343" height="653"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9iD-P5-jbU">
@@ -140,13 +140,13 @@ Explora las opciones de Jabrutouch para comenzar tu estudio.</string>
                                                             <rect key="frame" x="6" y="-10" width="400" height="491"/>
                                                         </imageView>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tour-2" translatesAutoresizingMaskIntoConstraints="NO" id="exF-sz-Qdm">
-                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="409"/>
+                                                            <rect key="frame" x="20" y="0.0" width="374" height="409"/>
                                                         </imageView>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tour-3" translatesAutoresizingMaskIntoConstraints="NO" id="SQH-ug-siB">
-                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="409"/>
+                                                            <rect key="frame" x="20" y="0.0" width="374" height="409"/>
                                                         </imageView>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="3" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tour-4" translatesAutoresizingMaskIntoConstraints="NO" id="e9l-V8-kFU">
-                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="409"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="369"/>
                                                         </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -155,19 +155,18 @@ Explora las opciones de Jabrutouch para comenzar tu estudio.</string>
                                                         <constraint firstItem="e9l-V8-kFU" firstAttribute="centerX" secondItem="hKv-jh-lID" secondAttribute="centerX" id="5YN-YZ-h3x"/>
                                                         <constraint firstItem="M4Z-Of-j7U" firstAttribute="top" secondItem="hKv-jh-lID" secondAttribute="top" constant="-10" id="68e-0a-wcf"/>
                                                         <constraint firstItem="exF-sz-Qdm" firstAttribute="top" secondItem="hKv-jh-lID" secondAttribute="top" id="ATc-h3-QEq"/>
-                                                        <constraint firstItem="exF-sz-Qdm" firstAttribute="leading" secondItem="hKv-jh-lID" secondAttribute="leading" id="H5h-2q-Eda"/>
-                                                        <constraint firstAttribute="trailing" secondItem="SQH-ug-siB" secondAttribute="trailing" id="Okb-Fu-mzW"/>
-                                                        <constraint firstItem="e9l-V8-kFU" firstAttribute="centerY" secondItem="hKv-jh-lID" secondAttribute="centerY" id="R2F-7t-Nq9"/>
+                                                        <constraint firstItem="exF-sz-Qdm" firstAttribute="leading" secondItem="hKv-jh-lID" secondAttribute="leading" constant="20" id="H5h-2q-Eda"/>
+                                                        <constraint firstAttribute="trailing" secondItem="SQH-ug-siB" secondAttribute="trailing" constant="20" id="Okb-Fu-mzW"/>
+                                                        <constraint firstItem="e9l-V8-kFU" firstAttribute="centerY" secondItem="hKv-jh-lID" secondAttribute="centerY" constant="-20" id="R2F-7t-Nq9"/>
                                                         <constraint firstAttribute="trailing" secondItem="e9l-V8-kFU" secondAttribute="trailing" id="RTf-Aq-Z7q"/>
                                                         <constraint firstItem="M4Z-Of-j7U" firstAttribute="leading" secondItem="hKv-jh-lID" secondAttribute="leading" constant="6" id="Rr3-Vb-ie8"/>
                                                         <constraint firstItem="exF-sz-Qdm" firstAttribute="centerY" secondItem="hKv-jh-lID" secondAttribute="centerY" id="WmH-VK-1RT"/>
                                                         <constraint firstItem="SQH-ug-siB" firstAttribute="centerY" secondItem="hKv-jh-lID" secondAttribute="centerY" id="Wnj-eA-ddT"/>
                                                         <constraint firstItem="SQH-ug-siB" firstAttribute="top" secondItem="hKv-jh-lID" secondAttribute="top" id="gpp-PC-dbs"/>
                                                         <constraint firstItem="SQH-ug-siB" firstAttribute="centerX" secondItem="hKv-jh-lID" secondAttribute="centerX" id="h6U-XZ-f5h"/>
-                                                        <constraint firstItem="SQH-ug-siB" firstAttribute="leading" secondItem="hKv-jh-lID" secondAttribute="leading" id="ibI-wI-zjb"/>
+                                                        <constraint firstItem="SQH-ug-siB" firstAttribute="leading" secondItem="hKv-jh-lID" secondAttribute="leading" constant="20" id="ibI-wI-zjb"/>
                                                         <constraint firstAttribute="trailing" secondItem="M4Z-Of-j7U" secondAttribute="trailing" constant="8" id="iwh-JL-OaC"/>
-                                                        <constraint firstAttribute="trailing" secondItem="exF-sz-Qdm" secondAttribute="trailing" id="nbZ-zS-Mu1"/>
-                                                        <constraint firstItem="exF-sz-Qdm" firstAttribute="centerX" secondItem="hKv-jh-lID" secondAttribute="centerX" id="zAZ-Cs-msU"/>
+                                                        <constraint firstAttribute="trailing" secondItem="exF-sz-Qdm" secondAttribute="trailing" constant="20" id="nbZ-zS-Mu1"/>
                                                         <constraint firstItem="e9l-V8-kFU" firstAttribute="top" secondItem="hKv-jh-lID" secondAttribute="top" id="zgp-gi-UfH"/>
                                                     </constraints>
                                                 </view>

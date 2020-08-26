@@ -62,12 +62,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 self.isInternetConenect = false
                 let nc = NotificationCenter.default
                 nc.post(name: Notification.Name("InternetNotConnect"), object: nil)
-
+                
             }
         }
         let queue = DispatchQueue(label: "Monitor")
         monitor.start(queue: queue)
-       
+        
         return true
     }
     
@@ -85,7 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         guard let url1 = url.queryDictionary else { return }
-         let type = url1["type"]
+        let type = url1["type"]
         if type == "coupon"{
             
             guard let values = JTDeepLinkCoupone(values: url1) else { return }
@@ -93,17 +93,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             mainViewController.modalPresentationStyle = .fullScreen
             self.topmostViewController?.present(mainViewController, animated: false, completion: nil)
             mainViewController.couponeFromDeepLink(values: values)
-       
+            
         } else {
             
             guard let values = JTDeepLinkLesson(values: url1) else { return }
-                 let mainViewController = Storyboards.Main.mainViewController
-                 mainViewController.modalPresentationStyle = .fullScreen
-                 self.topmostViewController?.present(mainViewController, animated: false, completion: nil)
-                 mainViewController.lessonFromDeepLink(values)
+            let mainViewController = Storyboards.Main.mainViewController
+            mainViewController.modalPresentationStyle = .fullScreen
+            self.topmostViewController?.present(mainViewController, animated: false, completion: nil)
+            mainViewController.lessonFromDeepLink(values)
         }
     }
-   
+    
     
     func application(_ application: UIApplication, continue userActivity: NSUserActivity,
                      restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
@@ -112,10 +112,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             { (dynamicLink, error)in
                 guard error == nil else{
                     print("Found an error! \(error!.localizedDescription)")
-                    let singinViewController = Storyboards.SignIn.signInViewController
-                    singinViewController.modalPresentationStyle = .fullScreen
-                    self.topmostViewController?.present(singinViewController, animated: false, completion: nil)
-                    singinViewController.noInternetConnect(message: error!.localizedDescription)
+                    if UserDefaultsProvider.shared.currentUser?.token == nil{
+                        let singinViewController = Storyboards.SignIn.signInViewController
+                        singinViewController.modalPresentationStyle = .fullScreen
+                        self.topmostViewController?.present(singinViewController, animated: false, completion: nil)
+                        singinViewController.noInternetConnect(message: error!.localizedDescription)
+                    }else{
+                        let mainViewController = Storyboards.Main.mainViewController
+                        mainViewController.modalPresentationStyle = .fullScreen
+                        self.topmostViewController?.present(mainViewController, animated: false, completion: nil)
+                        mainViewController.noInternetActionAlert()
+                    }
+                    
                     return
                 }
                 if let dynamicLink = dynamicLink {
@@ -130,8 +138,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
-
-
+    
+    
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let token = deviceToken.map{ String(format: "%02.2hhx", $0) }.joined()
         print("Notifications token: " + token)
@@ -140,11 +148,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-       
+        
         if let host = url.host {
             let mainViewController = Storyboards.Main.mainViewController
             mainViewController.modalPresentationStyle = .fullScreen
-
+            
             if host == "crowns" {
                 self.topmostViewController?.present(mainViewController, animated: false, completion: nil)
                 mainViewController.presentDonation()
@@ -158,7 +166,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 self.topmostViewController?.present(mainViewController, animated: false, completion: nil)
                 mainViewController.presentAllMishna()
             }
-
+            
         }
         return true
     }
@@ -358,7 +366,7 @@ extension AppDelegate:UNUserNotificationCenterDelegate {
         completionHandler(.newData)
     }
     
-  
+    
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         let userInfo = notification.request.content.userInfo
@@ -393,7 +401,7 @@ extension AppDelegate:UNUserNotificationCenterDelegate {
                                 try
                                     FilesManagementProvider.shared.overwriteFile(
                                         path: FilesManagementProvider.shared.loadFile(link: recordUrl[recordUrl.count-1],
-                                        directory: FileDirectory.recorders),
+                                                                                      directory: FileDirectory.recorders),
                                         data: data)
                                 if !CoreDataManager.shared.messageIsExsist(messageId: message.messageId){
                                     if message.message.contains("/") {
@@ -434,17 +442,17 @@ extension AppDelegate:UNUserNotificationCenterDelegate {
 extension URL {
     var queryDictionary: [String: String]? {
         guard let query = self.query else { return nil}
-
+        
         var queryStrings = [String: String]()
         for pair in query.components(separatedBy: "&") {
-
+            
             let key = pair.components(separatedBy: "=")[0]
-
+            
             let value = pair
                 .components(separatedBy:"=")[1]
                 .replacingOccurrences(of: "+", with: " ")
                 .removingPercentEncoding ?? ""
-
+            
             queryStrings[key] = value
         }
         return queryStrings

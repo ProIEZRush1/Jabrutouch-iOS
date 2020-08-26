@@ -722,6 +722,17 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         Utils.showAlertMessage(Strings.internetDisconncet, viewControler: vc)
     }
     
+     func noInternetActionAlert(){
+        let vc = appDelegate.topmostViewController!
+        Utils.showAlertMessage(Strings.internetDisconncet, title: Strings.error, viewControler: vc) {(action) in
+            UIControl().sendAction(#selector(URLSessionTask.suspend), to: UIApplication.shared, for: nil)
+            //Comment if you want to minimise app
+            Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { (timer) in
+                exit(0)
+            }
+        }
+    }
+    
     func dismissMainModal() {
         self.modalsPresentingVC.dismiss(animated: true) {
             self.view.bringSubviewToFront(self.mainContainer)
