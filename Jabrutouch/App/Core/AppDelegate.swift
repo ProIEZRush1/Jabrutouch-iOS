@@ -344,22 +344,18 @@ extension AppDelegate:UNUserNotificationCenterDelegate {
         
         if application.applicationState == .background || application.applicationState == .inactive{
             saveNewNotificationInDB(userInfo) {(chatId) in
-                let navigationVC = Storyboards.Messages.messagesNavigationController
-                navigationVC.modalPresentationStyle = .fullScreen
-                self.topmostViewController?.present(navigationVC, animated: false, completion: nil)
-                if let messageVC = navigationVC.children.first as? MessagesViewController{
-                    messageVC.presentChat(chatId)
-                }
+                let mainViewController = Storyboards.Main.mainViewController
+                mainViewController.modalPresentationStyle = .fullScreen
+                self.topmostViewController?.present(mainViewController, animated: false, completion: nil)
+                mainViewController.presentChatNavigationViewController(chatId: chatId)
             }
         }else{
             if let key = userInfo["data"] as? String, let values = self.convertToJson(text: key){
                 if let message = JTMessage(values: values) {
-                    let navigationVC = Storyboards.Messages.messagesNavigationController
-                    navigationVC.modalPresentationStyle = .fullScreen
-                    self.topmostViewController?.present(navigationVC, animated: false, completion: nil)
-                    if let messageVC = navigationVC.children.first as? MessagesViewController{
-                        messageVC.presentChat(message.chatId)
-                    }
+                    let mainViewController = Storyboards.Main.mainViewController
+                    mainViewController.modalPresentationStyle = .fullScreen
+                    self.topmostViewController?.present(mainViewController, animated: false, completion: nil)
+                    mainViewController.presentChatNavigationViewController(chatId: message.chatId)
                 }
             }
         }

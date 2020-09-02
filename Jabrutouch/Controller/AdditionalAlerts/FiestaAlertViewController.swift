@@ -24,12 +24,14 @@ class FiestaAlertViewController: UIViewController {
     }
     
     @IBAction func cancel(_ sender: Any) {
+        UserDefaultsProvider.shared.fiestaPopUpDetail = JTFiestaPopup(currentDate:Date())
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func buttonPressed(_ sender: Any) {
-        button.titleLabel?.text = "I agreed to receive an email."
-        button.tintColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+        var fiestaPopUpDetail = JTFiestaPopup(currentDate:Date())
+        fiestaPopUpDetail?.agree = true
+        UserDefaultsProvider.shared.fiestaPopUpDetail = fiestaPopUpDetail
         
         DispatchQueue.main.asyncAfter(wallDeadline: .now() + 4, execute: {
             self.dismiss(animated: true, completion: nil)

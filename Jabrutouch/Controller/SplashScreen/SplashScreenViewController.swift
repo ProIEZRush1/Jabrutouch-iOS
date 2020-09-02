@@ -72,43 +72,43 @@ class SplashScreenViewController: UIViewController {
         DispatchQueue.global().async{
             // if internet connection available
             if appDelegate.isInternetConenect {
-            do {
-                let update = try self.isUpdateAvailable()
-                if update {
-                    DispatchQueue.main.async {
-                        self.newVersionAlert()
-                    }
-                } else {
-                    
-                    LoginManager.shared.signIn(phoneNumber: phoneNumber, email: email, password: password) { (result) in
+                do {
+                    let update = try self.isUpdateAvailable()
+                    if update {
                         DispatchQueue.main.async {
-                            switch result {
-                            case .success:
-                                
-                                let showTour = UserDefaultsProvider.shared.currentUser?.showTour
-                                switch showTour {
-                                case 0:
-                                    self.navigateToMain()
-                                case 1:
-                                    self.navigateToDonationTourWalkThrough()
-                                case 2:
-                                    self.navigateToDonationPopUp()
-                                case 3:
-                                    self.navigateToLastDonationPopUp()
-                                default:
-                                    self.navigateToMain()
+                            self.newVersionAlert()
+                        }
+                    } else {
+                        
+                        LoginManager.shared.signIn(phoneNumber: phoneNumber, email: email, password: password) { (result) in
+                            DispatchQueue.main.async {
+                                switch result {
+                                case .success:
+                                    
+                                    let showTour = UserDefaultsProvider.shared.currentUser?.showTour
+                                    switch showTour {
+                                    case 0:
+                                        self.navigateToMain()
+                                    case 1:
+                                        self.navigateToDonationTourWalkThrough()
+                                    case 2:
+                                        self.navigateToDonationPopUp()
+                                    case 3:
+                                        self.navigateToLastDonationPopUp()
+                                    default:
+                                        self.navigateToMain()
+                                    }
+                                    
+                                case .failure(let error):
+                                    print(error)
+                                    //                    self.navigateToMain()
+                                    self.navigateToSignIn()
                                 }
-                                
-                            case .failure(let error):
-                                print(error)
-                                //                    self.navigateToMain()
-                                self.navigateToSignIn()
                             }
                         }
                     }
-                }
-            } catch {
-                
+                } catch {
+                    
                 }
             } else {
                 // if internet connection not available
@@ -179,6 +179,7 @@ class SplashScreenViewController: UIViewController {
         self.present(mainViewController, animated: true, completion: nil)
         mainViewController.presentDonationPopUp()
     }
+    
     private func navigateToLastDonationPopUp() {
         let mainViewController = Storyboards.Main.mainViewController
         mainViewController.modalPresentationStyle = .fullScreen
@@ -196,15 +197,7 @@ class SplashScreenViewController: UIViewController {
         mainViewController.modalPresentationStyle = .fullScreen
         self.present(mainViewController, animated: true, completion: nil)
         mainViewController.presentNewVersionAlert()
-        
     }
-    
-    //    private func navigateToMain() {
-    //        let mainViewController = Storyboards.Main.mainViewController
-    //        mainViewController.modalPresentationStyle = .fullScreen
-    //        self.present(mainViewController, animated: true, completion: nil)
-    //        mainViewController.presentFiestaAlert()
-    //    }
     
     //========================================
     // MARK: - Notification observations

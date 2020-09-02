@@ -25,6 +25,7 @@ class UserDefaultsProvider {
         case lessonAnalitics = "LessonAnalitics"
         case lessonDonation = "LessonDonation"
         case currentFcmToken = "CurrentFcmToken"
+        case fiestaPopUpDetail = "FiestaPopUpDetail"
     }
     
     static private var provider: UserDefaultsProvider?
@@ -187,6 +188,17 @@ class UserDefaultsProvider {
         }
         set (value) {
             self.defaults.set(value, forKey: UserDefaultsKeys.donationPending.rawValue)
+            self.defaults.synchronize()
+        }
+    }
+    
+    var fiestaPopUpDetail: JTFiestaPopup? {
+        get {
+            guard let values = self.defaults.object(forKey: UserDefaultsKeys.fiestaPopUpDetail.rawValue) as? [String:Any] else { return nil }
+            return JTFiestaPopup(values: values)
+        }
+        set (detail) {
+            self.defaults.set(detail?.values, forKey: UserDefaultsKeys.fiestaPopUpDetail.rawValue)
             self.defaults.synchronize()
         }
     }

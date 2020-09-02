@@ -17,9 +17,6 @@
         <array key="sf-ui-display-heavy.otf">
             <string>SFUIDisplay-Heavy</string>
         </array>
-        <array key="sf-ui-display-regular.otf">
-            <string>SFUIDisplay-Regular</string>
-        </array>
     </customFonts>
     <scenes>
         <!--New Version Alert View Controller-->
@@ -67,25 +64,25 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Descarga la nueva versión de" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jcI-lE-VXv">
-                                <rect key="frame" x="69" y="436" width="276" height="24.5"/>
+                                <rect key="frame" x="79.5" y="435.5" width="255.5" height="25.5"/>
                                 <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jabrutouch en App Store." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DSJ-at-9qL">
-                                <rect key="frame" x="86" y="460.5" width="242" height="24.5"/>
+                                <rect key="frame" x="95.5" y="461" width="223" height="25.5"/>
                                 <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¡Más potente y mejor!" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nnv-wM-7Lb">
-                                <rect key="frame" x="105" y="485" width="204" height="24.5"/>
+                                <rect key="frame" x="112.5" y="486.5" width="189" height="25.5"/>
                                 <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h5b-RP-e4m">
-                                <rect key="frame" x="50" y="310.5" width="314" height="125.5"/>
+                                <rect key="frame" x="50" y="310.5" width="314" height="125"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nueva versión disponible" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U1d-rN-m9Q">
                                         <rect key="frame" x="50" y="32.5" width="214" height="60"/>
@@ -155,73 +152,13 @@
                                             <constraint firstAttribute="height" constant="65" id="2nk-tj-pPg"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="SFUIDisplay-Heavy" family="SF UI Display" pointSize="20"/>
-                                        <state key="normal" title="Sí, me interesa">
+                                        <state key="normal" title=" Quiero saber más">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
                                             <action selector="buttonPressed:" destination="aAU-EO-Gfk" eventType="touchUpInside" id="HDA-lN-nGc"/>
                                         </connections>
                                     </button>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PopUpCrownBackground" translatesAutoresizingMaskIntoConstraints="NO" id="2iC-4h-d9B">
-                                        <rect key="frame" x="0.0" y="106.5" width="373" height="270.5"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="2iC-4h-d9B" secondAttribute="height" multiplier="373:271" id="gFt-0B-NgR"/>
-                                        </constraints>
-                                    </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PopUpBackground" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YZa-Qh-lSc">
-                                        <rect key="frame" x="101" y="0.0" width="171" height="377"/>
-                                    </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PopUpGoldCrown" translatesAutoresizingMaskIntoConstraints="NO" id="hX1-ET-pW8">
-                                        <rect key="frame" x="127.5" y="0.0" width="118" height="122"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="hX1-ET-pW8" secondAttribute="height" multiplier="59:61" id="C7e-mC-Vdy"/>
-                                        </constraints>
-                                    </imageView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8wZ-xk-ch2">
-                                        <rect key="frame" x="20" y="265" width="333" height="107"/>
-                                        <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Iqv-UY-ssy">
-                                                <rect key="frame" x="61" y="17.5" width="211" height="72"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ZOOM: Domingo 13 Septiembre " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="imd-rj-EUX">
-                                                        <rect key="frame" x="0.0" y="0.0" width="211" height="18"/>
-                                                        <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="15"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="México: 20:00 h" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Rf-CU-npg">
-                                                        <rect key="frame" x="52.5" y="18" width="106" height="18"/>
-                                                        <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="15"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Argentina: 22:00 h." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fcW-Gc-cle">
-                                                        <rect key="frame" x="43.5" y="36" width="124.5" height="18"/>
-                                                        <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="15"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¿Quieres recibir más detalles? " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZjA-GZ-57K">
-                                                        <rect key="frame" x="7.5" y="54" width="196" height="18"/>
-                                                        <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="15"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                            </stackView>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstItem="Iqv-UY-ssy" firstAttribute="centerX" secondItem="8wZ-xk-ch2" secondAttribute="centerX" id="bLb-fs-Bi0"/>
-                                            <constraint firstItem="Iqv-UY-ssy" firstAttribute="centerY" secondItem="8wZ-xk-ch2" secondAttribute="centerY" id="rY5-S6-Ts9"/>
-                                        </constraints>
-                                    </view>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PopUpData" translatesAutoresizingMaskIntoConstraints="NO" id="hHQ-rN-v8F">
-                                        <rect key="frame" x="72.5" y="125" width="228" height="140"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="hHQ-rN-v8F" secondAttribute="height" multiplier="57:35" id="5jY-gH-wDT"/>
-                                        </constraints>
-                                    </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zyd-hb-Rbi">
                                         <rect key="frame" x="333" y="20" width="20" height="20"/>
                                         <constraints>
@@ -233,31 +170,23 @@
                                             <action selector="cancel:" destination="aAU-EO-Gfk" eventType="touchUpInside" id="MNA-Z3-w9V"/>
                                         </connections>
                                     </button>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fiestaPopUp" translatesAutoresizingMaskIntoConstraints="NO" id="3UE-qG-0ki">
+                                        <rect key="frame" x="76.5" y="0.0" width="220" height="343"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstItem="hHQ-rN-v8F" firstAttribute="centerX" secondItem="lpy-Z6-OE6" secondAttribute="centerX" id="280-s0-tTv"/>
-                                    <constraint firstAttribute="trailing" secondItem="2iC-4h-d9B" secondAttribute="trailing" id="3FH-Kq-4z9"/>
                                     <constraint firstAttribute="bottom" secondItem="EXc-is-i3P" secondAttribute="bottom" constant="15" id="7o2-MD-0VK"/>
-                                    <constraint firstItem="8wZ-xk-ch2" firstAttribute="top" secondItem="hHQ-rN-v8F" secondAttribute="bottom" id="7xC-23-JmV"/>
-                                    <constraint firstItem="2iC-4h-d9B" firstAttribute="leading" secondItem="lpy-Z6-OE6" secondAttribute="leading" id="9pw-Hq-wm0"/>
-                                    <constraint firstItem="EXc-is-i3P" firstAttribute="top" secondItem="8wZ-xk-ch2" secondAttribute="bottom" constant="5" id="Ayw-rZ-RJC"/>
-                                    <constraint firstAttribute="trailing" secondItem="8wZ-xk-ch2" secondAttribute="trailing" constant="20" id="DlN-aF-UH4"/>
-                                    <constraint firstItem="YZa-Qh-lSc" firstAttribute="width" secondItem="lpy-Z6-OE6" secondAttribute="width" multiplier="0.46" id="EWz-rK-lwt"/>
-                                    <constraint firstItem="YZa-Qh-lSc" firstAttribute="top" secondItem="lpy-Z6-OE6" secondAttribute="top" id="GqB-se-MiQ"/>
                                     <constraint firstAttribute="trailing" secondItem="zyd-hb-Rbi" secondAttribute="trailing" constant="20" id="HMB-uM-IwU"/>
-                                    <constraint firstItem="8wZ-xk-ch2" firstAttribute="leading" secondItem="lpy-Z6-OE6" secondAttribute="leading" constant="20" id="I94-Lx-qbe"/>
                                     <constraint firstItem="zyd-hb-Rbi" firstAttribute="top" secondItem="lpy-Z6-OE6" secondAttribute="top" constant="20" id="KFH-aB-Je2"/>
-                                    <constraint firstItem="hHQ-rN-v8F" firstAttribute="top" secondItem="hX1-ET-pW8" secondAttribute="bottom" constant="3" id="MbX-mm-hyQ"/>
-                                    <constraint firstItem="YZa-Qh-lSc" firstAttribute="centerX" secondItem="lpy-Z6-OE6" secondAttribute="centerX" id="NsH-F6-fdr"/>
                                     <constraint firstAttribute="trailing" secondItem="EXc-is-i3P" secondAttribute="trailing" constant="15" id="S9P-dX-azZ"/>
                                     <constraint firstAttribute="width" secondItem="lpy-Z6-OE6" secondAttribute="height" multiplier="383:470" id="UnV-7F-h3o"/>
+                                    <constraint firstItem="3UE-qG-0ki" firstAttribute="top" secondItem="lpy-Z6-OE6" secondAttribute="top" id="Yja-GQ-bAd"/>
+                                    <constraint firstItem="3UE-qG-0ki" firstAttribute="centerX" secondItem="lpy-Z6-OE6" secondAttribute="centerX" id="Ypg-Fy-GW3"/>
                                     <constraint firstItem="EXc-is-i3P" firstAttribute="leading" secondItem="lpy-Z6-OE6" secondAttribute="leading" constant="15" id="ZdQ-Nn-K17"/>
-                                    <constraint firstItem="EXc-is-i3P" firstAttribute="top" secondItem="YZa-Qh-lSc" secondAttribute="bottom" id="hFX-hs-tKW"/>
-                                    <constraint firstItem="hX1-ET-pW8" firstAttribute="width" secondItem="YZa-Qh-lSc" secondAttribute="width" multiplier="0.690058" id="hhd-fT-Mve"/>
-                                    <constraint firstItem="hX1-ET-pW8" firstAttribute="top" secondItem="lpy-Z6-OE6" secondAttribute="top" id="kba-pa-s6h"/>
-                                    <constraint firstItem="hX1-ET-pW8" firstAttribute="centerX" secondItem="lpy-Z6-OE6" secondAttribute="centerX" id="mrZ-UP-NYG"/>
-                                    <constraint firstItem="EXc-is-i3P" firstAttribute="top" secondItem="2iC-4h-d9B" secondAttribute="bottom" id="w2M-hO-cDR"/>
+                                    <constraint firstItem="3UE-qG-0ki" firstAttribute="height" secondItem="lpy-Z6-OE6" secondAttribute="height" multiplier="0.75" id="cJo-w6-Lq8"/>
+                                    <constraint firstItem="3UE-qG-0ki" firstAttribute="width" secondItem="lpy-Z6-OE6" secondAttribute="width" multiplier="0.59" id="eSc-xh-PXq"/>
+                                    <constraint firstItem="EXc-is-i3P" firstAttribute="top" relation="greaterThanOrEqual" secondItem="3UE-qG-0ki" secondAttribute="bottom" constant="20" id="jYl-vi-6uR"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -276,15 +205,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wpa-Ap-8Q1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="814" y="-88"/>
+            <point key="canvasLocation" x="861" y="-103"/>
         </scene>
     </scenes>
     <resources>
-        <image name="PopUpBackground" width="180" height="360.5"/>
-        <image name="PopUpCrownBackground" width="370" height="271"/>
-        <image name="PopUpData" width="228" height="140"/>
-        <image name="PopUpGoldCrown" width="127" height="132.5"/>
         <image name="aboutTop3" width="48.5" height="40"/>
+        <image name="fiestaPopUp" width="178" height="342"/>
         <image name="multiply" width="12.5" height="12"/>
     </resources>
 </document>

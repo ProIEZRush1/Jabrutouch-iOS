@@ -120,8 +120,6 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.setButtonsBackground()
         CoreDataManager.shared.delegate = self
         self.user = UserRepository.shared.getCurrentUser()
-        self.presentFiestaAlert()
-        
         
     }
     
@@ -135,14 +133,14 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.setUnReadedIcon(unReded)
         //        self.setDefaulteIcons()
         setView()
-        self.firstOnScreen ? self.getPopup() : nil
+        self.firstOnScreen ? self.getPopup() : self.presentFiestaAlert()
         let nc = NotificationCenter.default
         nc.addObserver(self, selector: #selector(internetConnect(_:)), name: NSNotification.Name(rawValue: "InternetConnect"), object: nil)
         nc.addObserver(self, selector: #selector(internetNotConnect(_:)), name: NSNotification.Name(rawValue: "InternetNotConnect"), object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-                NotificationCenter.default.removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
     @objc func internetConnect(_ notification:Notification) {
@@ -598,7 +596,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
                     self.presentPopup(values: response)
                 }
             case .failure( _):
-                return
+                self.presentFiestaAlert()
             }
         })
     }
@@ -706,6 +704,16 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.currentPresentedModal = .donations
         self.setIcons(string: "donations")
     }
+    func presentChatNavigationViewController(chatId: Int){
+        let navigationVC = Storyboards.Messages.messagesNavigationController
+        navigationVC.modalPresentationStyle = .fullScreen
+        if let messageVC = navigationVC.children.first as? MessagesViewController{
+            messageVC.presentChat(chatId)
+        }
+        self.present(navigationVC, animated: false, completion: nil)
+        //        appDelegate.setRootViewController(viewController: navigationVC, animated: false)
+    }
+    
     
     func presentDonationsViewController() {
         self.performSegue(withIdentifier: "presentFirstTimeDonation", sender: self)
@@ -722,7 +730,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         Utils.showAlertMessage(Strings.internetDisconncet, viewControler: vc)
     }
     
-     func noInternetActionAlert(){
+    func noInternetActionAlert(){
         let vc = appDelegate.topmostViewController!
         Utils.showAlertMessage(Strings.internetDisconncet, title: Strings.error, viewControler: vc) {(action) in
             UIControl().sendAction(#selector(URLSessionTask.suspend), to: UIApplication.shared, for: nil)
@@ -844,10 +852,22 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
         dateFormatte.dateFormat = "yyyy-MM-dd"
         let now = Date()
         let soon = dateFormatte.date(from: "2020-08-18")!
-        let later = dateFormatte.date(from: "2020-09-13")!
+        let later = dateFormatte.date(from: "2020-09-16")!
         
         if now > soon && now < later {
-            self.presentAlert(Storyboards.AdditionalAlerts.fiestaAlert)
+            guard let detail = UserDefaultsProvider.shared.fiestaPopUpDetail else {
+                return self.presentAlert(Storyboards.AdditionalAlerts.fiestaAlert)
+            }
+            if detail.agree {
+                return
+            } else {
+                let calander = Calendar(identifier: .gregorian)
+                if calander.isDateInToday(detail.currentDate) {
+                    self.presentAlert(Storyboards.AdditionalAlerts.fiestaAlert)
+                } else {
+                    return
+                }
+            }
         }
     }
     
