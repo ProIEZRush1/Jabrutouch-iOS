@@ -854,7 +854,7 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
         let soon = dateFormatte.date(from: "2020-08-18")!
         let later = dateFormatte.date(from: "2020-09-16")!
         
-        if now > soon && now < later {
+        if now > soon && now <= later {
             guard let detail = UserDefaultsProvider.shared.fiestaPopUpDetail else {
                 return self.presentAlert(Storyboards.AdditionalAlerts.fiestaAlert)
             }
@@ -863,9 +863,9 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
             } else {
                 let calander = Calendar(identifier: .gregorian)
                 if calander.isDateInToday(detail.currentDate) {
-                    self.presentAlert(Storyboards.AdditionalAlerts.fiestaAlert)
-                } else {
                     return
+                } else {
+                    self.presentAlert(Storyboards.AdditionalAlerts.fiestaAlert)
                 }
             }
         }

@@ -29,11 +29,22 @@ class FiestaAlertViewController: UIViewController {
     }
     
     @IBAction func buttonPressed(_ sender: Any) {
-        var fiestaPopUpDetail = JTFiestaPopup(currentDate:Date())
-        fiestaPopUpDetail?.agree = true
-        UserDefaultsProvider.shared.fiestaPopUpDetail = fiestaPopUpDetail
         
-        DispatchQueue.main.asyncAfter(wallDeadline: .now() + 4, execute: {
+        if let authToken = UserDefaultsProvider.shared.currentUser?.token{
+            API.postCampingMail(token: authToken){(response: APIResult<PostCampingMailResponse>) in
+                switch response {
+                case .success:
+                    print("SUCCESS")
+                    var fiestaPopUpDetail = JTFiestaPopup(currentDate:Date())
+                    fiestaPopUpDetail?.agree = true
+                    UserDefaultsProvider.shared.fiestaPopUpDetail = fiestaPopUpDetail
+                case .failure(let error):
+                    print("Error: ", error.message)
+                }
+            }
+        }
+        
+        DispatchQueue.main.asyncAfter(wallDeadline: .now() + 2, execute: {
             self.dismiss(animated: true, completion: nil)
         })
     }

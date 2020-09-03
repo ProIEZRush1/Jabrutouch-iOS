@@ -311,6 +311,16 @@ class HttpRequestsFactory {
         let request = self.createRequest(url, method: .post, body: body, additionalHeaders: additionalHeaders)
         return request
     }
+    
+    
+    class func createPostCampingMailRequest(token: String) -> URLRequest?{
+        guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
+        let link = baseUrl.appendingPathComponent("campaign_mail").absoluteString
+        guard let url = self.createUrl(fromLink: link, urlParams: nil) else { return nil }
+        let additionalHeaders: [String:String] = ["Authorization": "token \(token)"]
+        let request = self.createRequest(url, method: .post, body: nil, additionalHeaders: additionalHeaders)
+        return request
+    }
     //==========================================
     // MARK: - Utils & Helpers
     //==========================================

@@ -67,6 +67,10 @@ class DonateViewController: UIViewController, UITextFieldDelegate, DonationDataD
         
     }
     
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return [.portrait]
+    }
+    
     private func setRoundCorners() {
         self.shadowView.layer.cornerRadius = 10
         self.shadowView.clipsToBounds = true

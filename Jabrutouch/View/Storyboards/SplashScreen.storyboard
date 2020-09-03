@@ -7,11 +7,6 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="SF-Pro-Display-Black.otf">
-            <string>SFProDisplay-Black</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Splash Screen View Controller-->
         <scene sceneID="X2E-qG-2lL">
@@ -21,55 +16,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="SplashScreen" translatesAutoresizingMaskIntoConstraints="NO" id="bT4-j1-sLH">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="splash.png" translatesAutoresizingMaskIntoConstraints="NO" id="bT4-j1-sLH">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="906"/>
                             </imageView>
-                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="JabrutouchTitleGray" translatesAutoresizingMaskIntoConstraints="NO" id="O0I-fp-6AB">
-                                <rect key="frame" x="101.5" y="434" width="211" height="28"/>
-                            </imageView>
-                            <imageView hidden="YES" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lunchScreenIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="UU0-cY-DWD">
-                                <rect key="frame" x="130" y="143" width="154" height="127"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="127" id="CMg-0f-kww"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="127" id="XeU-Bp-f2W"/>
-                                </constraints>
-                            </imageView>
-                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" image="Jabrutouch.png" translatesAutoresizingMaskIntoConstraints="NO" id="T4D-HR-pmB">
-                                <rect key="frame" x="75" y="295" width="264" height="37"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="37" id="ITf-CB-Qu9"/>
-                                </constraints>
-                            </imageView>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="otra iniciativa de" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kTa-sc-BjL">
-                                <rect key="frame" x="126" y="692" width="162.5" height="23"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="23" id="PNE-Y6-qkz"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="SFProDisplay-Black" family="SF Pro Display" pointSize="20"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TASHEMA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WhE-Vc-Yce">
-                                <rect key="frame" x="99" y="735" width="216.5" height="48"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="Pot-Xt-6jD"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="SFProDisplay-Black" family="SF Pro Display" pointSize="44"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Otro Proyecto De" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZO0-ve-BAm">
-                                <rect key="frame" x="72" y="693.5" width="269.5" height="24"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <color key="textColor" red="0.98399999999999999" green="1" blue="0.98799999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Versión Beta" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8sU-1L-iSq">
-                                <rect key="frame" x="137" y="747.5" width="140" height="64.5"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="27"/>
-                                <color key="textColor" red="0.98431372549019602" green="1" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="vBZ-IG-GeV">
                                 <rect key="frame" x="188.5" y="434.5" width="37" height="37"/>
                                 <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -77,40 +26,14 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="T4D-HR-pmB" firstAttribute="centerX" secondItem="YAX-wK-hNL" secondAttribute="centerX" id="0Ee-ow-wys"/>
-                            <constraint firstItem="UU0-cY-DWD" firstAttribute="top" secondItem="joU-nI-APl" secondAttribute="top" constant="99" id="12X-Ef-pDi"/>
-                            <constraint firstItem="UU0-cY-DWD" firstAttribute="leading" secondItem="joU-nI-APl" secondAttribute="leading" constant="130" id="CV8-FO-v8W"/>
                             <constraint firstItem="bT4-j1-sLH" firstAttribute="leading" secondItem="YAX-wK-hNL" secondAttribute="leading" id="GZQ-6V-o4M"/>
-                            <constraint firstItem="8sU-1L-iSq" firstAttribute="leading" secondItem="joU-nI-APl" secondAttribute="leading" constant="137" id="KOj-u8-hKV"/>
                             <constraint firstItem="vBZ-IG-GeV" firstAttribute="centerX" secondItem="joU-nI-APl" secondAttribute="centerX" id="N18-Cx-yD1"/>
-                            <constraint firstItem="WhE-Vc-Yce" firstAttribute="top" secondItem="kTa-sc-BjL" secondAttribute="bottom" constant="20" id="Nlp-jO-Pjv"/>
                             <constraint firstItem="vBZ-IG-GeV" firstAttribute="centerY" secondItem="joU-nI-APl" secondAttribute="centerY" id="O9U-6o-CLL"/>
                             <constraint firstAttribute="bottom" secondItem="bT4-j1-sLH" secondAttribute="bottom" constant="-10" id="SxT-06-AAO"/>
-                            <constraint firstItem="UU0-cY-DWD" firstAttribute="centerX" secondItem="YAX-wK-hNL" secondAttribute="centerX" id="WwI-Of-ifR"/>
-                            <constraint firstItem="UU0-cY-DWD" firstAttribute="centerX" secondItem="YAX-wK-hNL" secondAttribute="centerX" id="awK-DP-AuM"/>
-                            <constraint firstItem="8sU-1L-iSq" firstAttribute="top" secondItem="ZO0-ve-BAm" secondAttribute="bottom" constant="30" id="bCu-wf-FBH"/>
-                            <constraint firstItem="joU-nI-APl" firstAttribute="bottom" secondItem="WhE-Vc-Yce" secondAttribute="bottom" constant="79" id="dHv-4v-7K5"/>
-                            <constraint firstItem="joU-nI-APl" firstAttribute="bottom" secondItem="8sU-1L-iSq" secondAttribute="bottom" constant="50" id="gvc-tX-b3f"/>
                             <constraint firstItem="bT4-j1-sLH" firstAttribute="top" secondItem="YAX-wK-hNL" secondAttribute="top" id="gzk-1b-CiQ"/>
-                            <constraint firstItem="T4D-HR-pmB" firstAttribute="top" secondItem="UU0-cY-DWD" secondAttribute="bottom" constant="25" id="jIA-hv-tMA"/>
                             <constraint firstAttribute="trailing" secondItem="bT4-j1-sLH" secondAttribute="trailing" id="luo-XV-lId"/>
-                            <constraint firstItem="joU-nI-APl" firstAttribute="trailing" secondItem="8sU-1L-iSq" secondAttribute="trailing" constant="137" id="mpG-uT-yZS"/>
-                            <constraint firstItem="kTa-sc-BjL" firstAttribute="centerX" secondItem="YAX-wK-hNL" secondAttribute="centerX" id="oCr-jB-hMm"/>
-                            <constraint firstItem="WhE-Vc-Yce" firstAttribute="centerX" secondItem="YAX-wK-hNL" secondAttribute="centerX" id="pwU-8c-YU8"/>
-                            <constraint firstItem="ZO0-ve-BAm" firstAttribute="leading" secondItem="joU-nI-APl" secondAttribute="leading" constant="72" id="uH0-7v-3P4"/>
-                            <constraint firstItem="O0I-fp-6AB" firstAttribute="centerX" secondItem="YAX-wK-hNL" secondAttribute="centerX" id="vUf-UA-jFS"/>
-                            <constraint firstItem="joU-nI-APl" firstAttribute="trailing" secondItem="UU0-cY-DWD" secondAttribute="trailing" constant="130" id="vcg-Le-ZSP"/>
-                            <constraint firstItem="O0I-fp-6AB" firstAttribute="centerY" secondItem="YAX-wK-hNL" secondAttribute="centerY" id="whH-8b-VFU"/>
-                            <constraint firstItem="joU-nI-APl" firstAttribute="trailing" secondItem="ZO0-ve-BAm" secondAttribute="trailing" constant="72.5" id="x3o-zJ-nRX"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="joU-nI-APl"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="O0I-fp-6AB"/>
-                                <exclude reference="ZO0-ve-BAm"/>
-                                <exclude reference="8sU-1L-iSq"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="vBZ-IG-GeV" id="IWL-Dc-wy7"/>
@@ -122,9 +45,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Jabrutouch.png" width="264" height="37"/>
-        <image name="JabrutouchTitleGray" width="211" height="28"/>
-        <image name="SplashScreen" width="414" height="736"/>
-        <image name="lunchScreenIcon.png" width="154" height="127"/>
+        <image name="splash.png" width="414" height="736"/>
     </resources>
 </document>

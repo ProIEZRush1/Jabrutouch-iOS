@@ -81,6 +81,10 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
         self.carouselView.reloadData()
         self.view.layoutIfNeeded()
     }
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return [.portrait]
+    }
+    
     
     func setText() {
         self.descriptionLabel.text = "Si lo deseas, también puedes dedicar la clase de Torá a una causa especial"
