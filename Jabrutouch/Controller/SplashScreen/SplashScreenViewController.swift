@@ -73,8 +73,8 @@ class SplashScreenViewController: UIViewController {
             // if internet connection available
             if appDelegate.isInternetConenect {
                 do {
-                    let update = try self.isUpdateAvailable()
-                    if update {
+                    let isLastVersion = try self.isUpdateAvailable()
+                    if !isLastVersion {
                         DispatchQueue.main.async {
                             self.newVersionAlert()
                         }
@@ -128,21 +128,31 @@ class SplashScreenViewController: UIViewController {
     
     
     func isUpdateAvailable() throws -> Bool {
+        var isLastVersion = true
+        let semaphore = DispatchSemaphore(value: 0)
+        
         guard let info = Bundle.main.infoDictionary,
-            let currentVersion = info["CFBundleShortVersionString"] as? String,
-            let identifier = info["CFBundleIdentifier"] as? String,
-            let url = URL(string: "http://itunes.apple.com/lookup?bundleId=\(identifier)") else {
-                
+            let currentVersion = info["CFBundleShortVersionString"] as? String else {
                 throw VersionError.invalidBundleInfo
         }
-        let data = try Data(contentsOf: url)
-        guard let json = try JSONSerialization.jsonObject(with: data, options: [.allowFragments]) as? [String: Any] else {
-            throw VersionError.invalidResponse
+        guard let authToken = UserDefaultsProvider.shared.currentUser?.token else {
+            throw JTError.authTokenMissing
         }
-        if let result = (json["results"] as? [Any])?.first as? [String: Any], let version = result["version"] as? String {
-            return version != currentVersion
-        }
-        throw VersionError.invalidResponse
+        
+        let version = currentVersion.split(separator: ".")
+        let versionInt = Int(version.joined(separator: ""))
+        
+        API.getLastAppVersion(authToken: authToken, currentAppVersion: versionInt ?? 0, completionHandler: {(result:APIResult<JTAppVersion>)in
+            switch result {
+            case .success(let result):
+                isLastVersion = result.lastVersion
+            case .failure(let error):
+                print("Error: ", error.message)
+            }
+            semaphore.signal()
+        })
+        _ = semaphore.wait(wallTimeout: .distantFuture)
+        return isLastVersion
     }
     
     

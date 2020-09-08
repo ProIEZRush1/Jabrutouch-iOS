@@ -215,6 +215,7 @@
 		60DB15772415494C00BD470F /* ChangeSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DB15762415494C00BD470F /* ChangeSettingsViewController.swift */; };
 		60EDAC8324D98062004FB3E6 /* CouponResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EDAC8224D98062004FB3E6 /* CouponResponse.swift */; };
 		60EDAC8524D98E26004FB3E6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 60EDAC8424D98E23004FB3E6 /* GoogleService-Info.plist */; };
+		60FF78B42507953B0099C72A /* JTAppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FF78B32507953B0099C72A /* JTAppVersion.swift */; };
 		83137EFD23F04024003B9DA6 /* JTDonation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83137EFC23F04024003B9DA6 /* JTDonation.swift */; };
 		83137EFF23F040E5003B9DA6 /* DonationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83137EFE23F040E5003B9DA6 /* DonationResponse.swift */; };
 		83137F0123F046CB003B9DA6 /* JTCrown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83137F0023F046CB003B9DA6 /* JTCrown.swift */; };
@@ -558,6 +559,7 @@
 		60DB15762415494C00BD470F /* ChangeSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeSettingsViewController.swift; sourceTree = "<group>"; };
 		60EDAC8224D98062004FB3E6 /* CouponResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponResponse.swift; sourceTree = "<group>"; };
 		60EDAC8424D98E23004FB3E6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		60FF78B32507953B0099C72A /* JTAppVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTAppVersion.swift; sourceTree = "<group>"; };
 		715A51EC96A60C90B07F8038 /* Pods-Jabrutouch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jabrutouch.debug.xcconfig"; path = "Target Support Files/Pods-Jabrutouch/Pods-Jabrutouch.debug.xcconfig"; sourceTree = "<group>"; };
 		83137EFC23F04024003B9DA6 /* JTDonation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTDonation.swift; sourceTree = "<group>"; };
 		83137EFE23F040E5003B9DA6 /* DonationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonationResponse.swift; sourceTree = "<group>"; };
@@ -1343,6 +1345,7 @@
 				600399D824D6E1550038ED66 /* JTDeepLinkCoupone.swift */,
 				605630A924D715A6001C2BFA /* JTCouponRedemption .swift */,
 				60B8076224FFACB9005CE86E /* JTFiestaPopup.swift */,
+				60FF78B32507953B0099C72A /* JTAppVersion.swift */,
 			);
 			path = "Domain Models";
 			sourceTree = "<group>";
@@ -1907,6 +1910,7 @@
 				21ED3BDC23048970009D8E3D /* GetGemaraLessonsResponse.swift in Sources */,
 				2133C22122DCFEB500F910B9 /* WalkThroughCollectionViewCell.swift in Sources */,
 				60BCF3DA24CD880D00B0C2A9 /* DonationWalkThroughCollectionViewCell.swift in Sources */,
+				60FF78B42507953B0099C72A /* JTAppVersion.swift in Sources */,
 				833E6227239FB72A00EC93C7 /* MessagesRepository.swift in Sources */,
 				2126D6DF2303EC5400CB501D /* NotificationsNames.swift in Sources */,
 				219BFF2C22E59F4500ABBEE2 /* Extensions.swift in Sources */,
@@ -2249,7 +2253,7 @@
 				CODE_SIGN_ENTITLEMENTS = Jabrutouch/Jabrutouch.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = T57ASHU8T6;
 				ENABLE_BITCODE = NO;
@@ -2261,7 +2265,7 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 1.4.2;
+				MARKETING_VERSION = 1.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = il.co.jabrutouch.Jabrutouch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2280,7 +2284,7 @@
 				CODE_SIGN_ENTITLEMENTS = Jabrutouch/Jabrutouch.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = T57ASHU8T6;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -2291,7 +2295,7 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 1.4.2;
+				MARKETING_VERSION = 1.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = il.co.jabrutouch.Jabrutouch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

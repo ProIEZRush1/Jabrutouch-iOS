@@ -632,9 +632,9 @@ class VideoPlayer: UIView {
         guard let player = self.player else { return }
         self.delegate?.currentTimeDidChange(currentTime: player.currentTime, duration: player.duration)
         self.updateSliderAndTimeLabels()
-        if (Int(player.currentTime().seconds) == 30) {
-            self.delegate?.videoSendLikeAfter30seconds()
-        }
+//        if (Int(player.currentTime().seconds) == 30) {
+//            self.delegate?.videoSendLikeAfter30seconds()
+//        }
     }
     
     @objc private func updateProgress() {

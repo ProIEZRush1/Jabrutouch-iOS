@@ -136,6 +136,16 @@ class API {
             self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
         }
     }
+    
+    class func getLastAppVersion(authToken: String, currentAppVersion: Int, completionHandler:@escaping (_ response: APIResult<JTAppVersion>)->Void) {
+        guard let request = HttpRequestsFactory.createGetLastVersion( token: authToken, currentAppVersion: currentAppVersion) else {
+            completionHandler(APIResult.failure(.unableToCreateRequest))
+            return
+        }
+        HttpServiceProvider.shared.excecuteRequest(request: request) { (data, response, error) in
+            self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
+        }
+    }
 
     //========================================
     // MARK: - Content

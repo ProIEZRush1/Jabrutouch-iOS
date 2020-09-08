@@ -855,17 +855,19 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
         let later = dateFormatte.date(from: "2020-09-16")!
         
         if now > soon && now <= later {
-            guard let detail = UserDefaultsProvider.shared.fiestaPopUpDetail else {
-                return self.presentAlert(Storyboards.AdditionalAlerts.fiestaAlert)
-            }
-            if detail.agree {
-                return
-            } else {
-                let calander = Calendar(identifier: .gregorian)
-                if calander.isDateInToday(detail.currentDate) {
+            DispatchQueue.main.async {
+                guard let detail = UserDefaultsProvider.shared.fiestaPopUpDetail else {
+                    return self.presentAlert(Storyboards.AdditionalAlerts.fiestaAlert)
+                }
+                if detail.agree {
                     return
                 } else {
-                    self.presentAlert(Storyboards.AdditionalAlerts.fiestaAlert)
+                    let calander = Calendar(identifier: .gregorian)
+                    if calander.isDateInToday(detail.currentDate) {
+                        return
+                    } else {
+                        self.presentAlert(Storyboards.AdditionalAlerts.fiestaAlert)
+                    }
                 }
             }
         }
@@ -901,10 +903,12 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
     }
     
     func presentAlert(_ vc: UIViewController){
-        let vc = vc
-        vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-        vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-        self.present(vc, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            let vc = vc
+            vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+            vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+            self.present(vc, animated: true, completion: nil)
+        }
     }
     
     func presentAboutUs() {

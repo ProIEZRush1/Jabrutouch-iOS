@@ -321,6 +321,16 @@ class HttpRequestsFactory {
         let request = self.createRequest(url, method: .post, body: nil, additionalHeaders: additionalHeaders)
         return request
     }
+    
+    class func createGetLastVersion(token: String, currentAppVersion: Int) -> URLRequest?{
+        guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
+        let link = baseUrl.appendingPathComponent("").absoluteString
+        guard let url = self.createUrl(fromLink: link, urlParams: ["device":"ios","app_version":"\(currentAppVersion)"]) else { return nil }
+        let additionalHeaders: [String:String] = ["Authorization": "token \(token)"]
+        let request = self.createRequest(url, method: .get, body: nil, additionalHeaders: additionalHeaders)
+        return request
+    }
+    
     //==========================================
     // MARK: - Utils & Helpers
     //==========================================
