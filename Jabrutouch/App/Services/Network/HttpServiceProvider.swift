@@ -150,10 +150,10 @@ extension HttpServiceProvider: URLSessionDataDelegate{
                     downloadTask.downloadedData[task.taskIdentifier]?.append(data)
                     downloadTask.delegate.fileDownloadProgress(link: link, bytesDownloaded: task.countOfBytesReceived, totalBytes: task.countOfBytesExpectedToReceive, downloadId: downloadTask.id)
                 }
+                downloadTask.progress = Float(received/total)
+                
+                downloadTask.delegate.downloadTotalProgress(progress: downloadTask.progress, downloadId: downloadTask.id)
             }
-            downloadTask.progress = Float(received/total)
-            
-            downloadTask.delegate.downloadTotalProgress(progress: downloadTask.progress, downloadId: downloadTask.id)
         }
     }
     
