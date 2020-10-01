@@ -259,7 +259,8 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
     
     private func playLesson(_ lesson: JTLesson, mediaType: JTLessonMediaType) {
         guard let sederId = self.sederId, let masechetId = self.masechetId else { return }
-        let playerVC = LessonPlayerViewController(lesson: lesson, mediaType: mediaType, sederId: sederId, masechetId: "\(masechetId)", chapter: nil)
+        let shouldDisplayDonationPopUp = mediaType == .audio ? !lesson.isAudioDownloaded : !lesson.isVideoDownloaded
+        let playerVC = LessonPlayerViewController(lesson: lesson, mediaType: mediaType, sederId: sederId, masechetId: "\(masechetId)", chapter: nil, shouldDisplayDonationPopUp: shouldDisplayDonationPopUp)
         playerVC.modalPresentationStyle = .fullScreen
         playerVC.masechet = self.masechetName ?? ""
         if let lesson = lesson as? JTGemaraLesson {

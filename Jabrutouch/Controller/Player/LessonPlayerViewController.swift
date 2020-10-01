@@ -158,7 +158,12 @@ class LessonPlayerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupWatchAnalistic()
-        !lesson.isAudioDownloaded && !lesson.isVideoDownloaded ? self.getDonorText() : self.getDonorDownloadText()
+        if mediaType == .audio {
+            lesson.isAudioDownloaded ? self.getDonorDownloadText() : self.getDonorText()
+        } else {
+            lesson.isVideoDownloaded ? self.getDonorDownloadText() : self.getDonorText()
+        }
+//        !lesson.isAudioDownloaded && !lesson.isVideoDownloaded ? self.getDonorText() : self.getDonorDownloadText()
         self.messageHeaderView.isHidden = true
         self.chatControlsView.delegate = self
         self.pdfView.delegate = self

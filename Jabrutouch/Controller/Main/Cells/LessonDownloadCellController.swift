@@ -53,7 +53,8 @@ class LessonDownloadCellController: UITableViewCell {
         if lesson.isAudioDownloaded {
             self.downloadAudioPBWB.setButtonImage(NormalImage: #imageLiteral(resourceName: "audio-downloaded"), highlightedImage: #imageLiteral(resourceName: "audio-downloaded"))
             self.cellAudioPBWB.setButtonImage(NormalImage: #imageLiteral(resourceName: "audio-downloaded"), highlightedImage: #imageLiteral(resourceName: "audio-downloaded"))
-            
+            self.cellAudioPBWB.button.addTarget(self, action: #selector(playAudio(_:)), for: .touchUpInside)
+            self.downloadAudioPBWB.button.addTarget(self, action: #selector(downloadAudio(_:)), for: .touchUpInside)
         } else {
             self.downloadAudioPBWB.setButtonImage(NormalImage: #imageLiteral(resourceName: "downloadAudio"), highlightedImage: #imageLiteral(resourceName: "downloadAudio"))
             self.cellAudioPBWB.setButtonImage(NormalImage: #imageLiteral(resourceName: "audio-nat"), highlightedImage: #imageLiteral(resourceName: "audio-prs"))
@@ -64,7 +65,8 @@ class LessonDownloadCellController: UITableViewCell {
         if lesson.isVideoDownloaded {
             self.downloadVideoPBWB.setButtonImage(NormalImage: #imageLiteral(resourceName: "video-downloaded"), highlightedImage: #imageLiteral(resourceName: "video-downloaded"))
             self.cellVideoPBWB.setButtonImage(NormalImage: #imageLiteral(resourceName: "video-downloaded"), highlightedImage: #imageLiteral(resourceName: "video-downloaded"))
-            
+            self.cellVideoPBWB.button.addTarget(self, action: #selector(playVideo(_:)), for: .touchUpInside)
+            self.downloadVideoPBWB.button.addTarget(self, action: #selector(downloadVideo(_:)), for: .touchUpInside)
         } else {
             self.downloadVideoPBWB.setButtonImage(NormalImage: #imageLiteral(resourceName: "downloadVideo"), highlightedImage: #imageLiteral(resourceName: "downloadVideo"))
             self.cellVideoPBWB.setButtonImage(NormalImage: #imageLiteral(resourceName: "video-nat"), highlightedImage: #imageLiteral(resourceName: "video-prs"))

@@ -1014,7 +1014,8 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
     //======================================================
     
     private func playLesson(_ lesson: JTLesson, mediaType: JTLessonMediaType, sederId: String, masechetId: String, chapter: String?, masechetName: String?) {
-        let playerVC = LessonPlayerViewController(lesson: lesson, mediaType: mediaType, sederId: sederId, masechetId:masechetId, chapter:chapter)
+//        let playerVC = LessonPlayerViewController(lesson: lesson, mediaType: mediaType, sederId: sederId, masechetId:masechetId, chapter:chapter)
+        let playerVC = LessonPlayerViewController(lesson: lesson, mediaType: mediaType, sederId: sederId, masechetId:masechetId, chapter:chapter, shouldDisplayDonationPopUp: lesson.isAudioDownloaded || lesson.isVideoDownloaded ? false : true)
         playerVC.modalPresentationStyle = .fullScreen
         playerVC.masechet = masechetName ?? ""
         if let lesson = lesson as? JTGemaraLesson {

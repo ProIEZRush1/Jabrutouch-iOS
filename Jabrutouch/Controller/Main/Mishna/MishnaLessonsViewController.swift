@@ -262,7 +262,8 @@ class MishnaLessonsViewController: UIViewController, UITableViewDelegate, UITabl
     
     private func playLesson(_ lesson: JTLesson, mediaType: JTLessonMediaType) {
         guard let sederId = self.sederId, let masechetId = self.masechetId, let chapter = self.chapter else { return }
-        let playerVC = LessonPlayerViewController(lesson: lesson, mediaType: mediaType, sederId: sederId, masechetId: "\(masechetId)", chapter: "\(chapter)")
+        let shouldDisplayDonationPopUp = mediaType == .audio ? !lesson.isAudioDownloaded : !lesson.isVideoDownloaded
+        let playerVC = LessonPlayerViewController(lesson: lesson, mediaType: mediaType, sederId: sederId, masechetId: "\(masechetId)", chapter: "\(chapter)", shouldDisplayDonationPopUp: shouldDisplayDonationPopUp)
         playerVC.modalPresentationStyle = .fullScreen
         playerVC.masechet = self.masechetName ?? ""
         playerVC.daf = "\(chapter)"

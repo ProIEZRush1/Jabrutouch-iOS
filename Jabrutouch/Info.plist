@@ -68,7 +68,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>This app wants to take pictures.</string>
+	<string>This app wants to take a picture for creating a user profile.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>This app wants to use microphone to record message </string>
 	<key>NSPhotoLibraryUsageDescription</key>
