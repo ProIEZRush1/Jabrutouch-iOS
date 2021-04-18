@@ -61,9 +61,9 @@ class MessagesRepository: NSObject, MessagingDelegate {
         }
     }
     
-    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
-        print("fcmToken: \(fcmToken)")
-        self.fcmToken = fcmToken
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        print("fcmToken: \(fcmToken ?? "")")
+        self.fcmToken = fcmToken ?? ""
         if fcmToken != UserDefaultsProvider.shared.currentFcmToken{
             #warning("need to update the server with new fcm token")
             // need to update the server with new fcm token
@@ -72,7 +72,7 @@ class MessagesRepository: NSObject, MessagingDelegate {
          
     }
     
-    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
+    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingDelegate) {
         print("Message ==> ")
         
         // pars message and save in DB

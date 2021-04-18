@@ -2785,212 +2785,8 @@
             "offset": 463
         },
         {
-            "seder": "moed",
-            "masechet": "Rosh Hashaná",
-            "offset": 464,
-            "daf": 2
-        },
-        {
-            "offset": 465,
-            "daf": 3,
-            "seder": "moed",
-            "masechet": "Rosh Hashaná"
-        },
-        {
-            "masechet": "Rosh Hashaná",
-            "daf": 4,
-            "seder": "moed",
-            "offset": 466
-        },
-        {
-            "masechet": "Rosh Hashaná",
-            "offset": 467,
-            "daf": 5,
-            "seder": "moed"
-        },
-        {
-            "offset": 468,
-            "masechet": "Rosh Hashaná",
-            "daf": 6,
-            "seder": "moed"
-        },
-        {
-            "seder": "moed",
-            "daf": 7,
-            "masechet": "Rosh Hashaná",
-            "offset": 469
-        },
-        {
-            "masechet": "Rosh Hashaná",
-            "seder": "moed",
-            "offset": 470,
-            "daf": 8
-        },
-        {
-            "masechet": "Rosh Hashaná",
-            "daf": 9,
-            "seder": "moed",
-            "offset": 471
-        },
-        {
-            "offset": 472,
-            "daf": 10,
-            "seder": "moed",
-            "masechet": "Rosh Hashaná"
-        },
-        {
-            "masechet": "Rosh Hashaná",
-            "offset": 473,
-            "daf": 11,
-            "seder": "moed"
-        },
-        {
-            "seder": "moed",
-            "masechet": "Rosh Hashaná",
-            "daf": 12,
-            "offset": 474
-        },
-        {
-            "offset": 475,
-            "seder": "moed",
-            "masechet": "Rosh Hashaná",
-            "daf": 13
-        },
-        {
-            "seder": "moed",
-            "offset": 476,
-            "masechet": "Rosh Hashaná",
-            "daf": 14
-        },
-        {
-            "masechet": "Rosh Hashaná",
-            "offset": 477,
-            "daf": 15,
-            "seder": "moed"
-        },
-        {
-            "daf": 16,
-            "seder": "moed",
-            "masechet": "Rosh Hashaná",
-            "offset": 478
-        },
-        {
-            "seder": "moed",
-            "offset": 479,
-            "masechet": "Rosh Hashaná",
-            "daf": 17
-        },
-        {
-            "offset": 480,
-            "masechet": "Rosh Hashaná",
-            "seder": "moed",
-            "daf": 18
-        },
-        {
-            "daf": 19,
-            "seder": "moed",
-            "offset": 481,
-            "masechet": "Rosh Hashaná"
-        },
-        {
-            "seder": "moed",
-            "masechet": "Rosh Hashaná",
-            "offset": 482,
-            "daf": 20
-        },
-        {
-            "masechet": "Rosh Hashaná",
-            "daf": 21,
-            "seder": "moed",
-            "offset": 483
-        },
-        {
-            "masechet": "Rosh Hashaná",
-            "offset": 484,
-            "seder": "moed",
-            "daf": 22
-        },
-        {
-            "masechet": "Rosh Hashaná",
-            "seder": "moed",
-            "offset": 485,
-            "daf": 23
-        },
-        {
-            "offset": 486,
-            "seder": "moed",
-            "daf": 24,
-            "masechet": "Rosh Hashaná"
-        },
-        {
-            "masechet": "Rosh Hashaná",
-            "seder": "moed",
-            "offset": 487,
-            "daf": 25
-        },
-        {
-            "masechet": "Rosh Hashaná",
-            "offset": 488,
-            "daf": 26,
-            "seder": "moed"
-        },
-        {
-            "seder": "moed",
-            "daf": 27,
-            "masechet": "Rosh Hashaná",
-            "offset": 489
-        },
-        {
-            "daf": 28,
-            "seder": "moed",
-            "offset": 490,
-            "masechet": "Rosh Hashaná"
-        },
-        {
-            "seder": "moed",
-            "daf": 29,
-            "offset": 491,
-            "masechet": "Rosh Hashaná"
-        },
-        {
-            "offset": 492,
-            "masechet": "Rosh Hashaná",
-            "daf": 30,
-            "seder": "moed"
-        },
-        {
-            "seder": "moed",
-            "masechet": "Rosh Hashaná",
-            "offset": 493,
-            "daf": 31
-        },
-        {
-            "seder": "moed",
-            "masechet": "Rosh Hashaná",
-            "offset": 494,
-            "daf": 32
-        },
-        {
-            "masechet": "Rosh Hashaná",
-            "daf": 33,
-            "seder": "moed",
-            "offset": 495
-        },
-        {
-            "masechet": "Rosh Hashaná",
-            "daf": 34,
-            "seder": "moed",
-            "offset": 496
-        },
-        {
-            "seder": "moed",
-            "daf": 35,
-            "offset": 497,
-            "masechet": "Rosh Hashaná"
-        },
-        {
             "masechet": "Yoma",
-            "offset": 498,
+            "offset": 464,
             "daf": 2,
             "seder": "moed"
         },
@@ -2998,23 +2794,23 @@
             "seder": "moed",
             "masechet": "Yoma",
             "daf": 3,
-            "offset": 499
+            "offset": 465
         },
         {
             "masechet": "Yoma",
             "daf": 4,
-            "offset": 500,
+            "offset": 466,
             "seder": "moed"
         },
         {
             "masechet": "Yoma",
-            "offset": 501,
+            "offset": 467,
             "daf": 5,
             "seder": "moed"
         },
         {
             "masechet": "Yoma",
-            "offset": 502,
+            "offset": 468,
             "daf": 6,
             "seder": "moed"
         },
@@ -3022,16 +2818,16 @@
             "daf": 7,
             "masechet": "Yoma",
             "seder": "moed",
-            "offset": 503
+            "offset": 469
         },
         {
             "daf": 8,
             "masechet": "Yoma",
             "seder": "moed",
-            "offset": 504
+            "offset": 470
         },
         {
-            "offset": 505,
+            "offset": 471,
             "daf": 9,
             "seder": "moed",
             "masechet": "Yoma"
@@ -3039,17 +2835,17 @@
         {
             "masechet": "Yoma",
             "daf": 10,
-            "offset": 506,
+            "offset": 472,
             "seder": "moed"
         },
         {
-            "offset": 507,
+            "offset": 473,
             "daf": 11,
             "masechet": "Yoma",
             "seder": "moed"
         },
         {
-            "offset": 508,
+            "offset": 474,
             "seder": "moed",
             "masechet": "Yoma",
             "daf": 12
@@ -3057,29 +2853,29 @@
         {
             "daf": 13,
             "masechet": "Yoma",
-            "offset": 509,
+            "offset": 475,
             "seder": "moed"
         },
         {
             "masechet": "Yoma",
             "daf": 14,
-            "offset": 510,
+            "offset": 476,
             "seder": "moed"
         },
         {
             "seder": "moed",
-            "offset": 511,
+            "offset": 477,
             "daf": 15,
             "masechet": "Yoma"
         },
         {
             "seder": "moed",
-            "offset": 512,
+            "offset": 478,
             "daf": 16,
             "masechet": "Yoma"
         },
         {
-            "offset": 513,
+            "offset": 479,
             "masechet": "Yoma",
             "daf": 17,
             "seder": "moed"
@@ -3087,11 +2883,11 @@
         {
             "masechet": "Yoma",
             "seder": "moed",
-            "offset": 514,
+            "offset": 480,
             "daf": 18
         },
         {
-            "offset": 515,
+            "offset": 481,
             "seder": "moed",
             "masechet": "Yoma",
             "daf": 19
@@ -3100,40 +2896,40 @@
             "masechet": "Yoma",
             "daf": 20,
             "seder": "moed",
-            "offset": 516
+            "offset": 482
         },
         {
             "seder": "moed",
             "daf": 21,
-            "offset": 517,
+            "offset": 483,
             "masechet": "Yoma"
         },
         {
             "seder": "moed",
             "daf": 22,
             "masechet": "Yoma",
-            "offset": 518
+            "offset": 484
         },
         {
             "masechet": "Yoma",
             "daf": 23,
-            "offset": 519,
+            "offset": 485,
             "seder": "moed"
         },
         {
             "masechet": "Yoma",
             "daf": 24,
-            "offset": 520,
+            "offset": 486,
             "seder": "moed"
         },
         {
             "daf": 25,
             "masechet": "Yoma",
             "seder": "moed",
-            "offset": 521
+            "offset": 487
         },
         {
-            "offset": 522,
+            "offset": 488,
             "seder": "moed",
             "daf": 26,
             "masechet": "Yoma"
@@ -3142,11 +2938,11 @@
             "seder": "moed",
             "masechet": "Yoma",
             "daf": 27,
-            "offset": 523
+            "offset": 489
         },
         {
             "daf": 28,
-            "offset": 524,
+            "offset": 490,
             "seder": "moed",
             "masechet": "Yoma"
         },
@@ -3154,52 +2950,52 @@
             "seder": "moed",
             "masechet": "Yoma",
             "daf": 29,
-            "offset": 525
+            "offset": 491
         },
         {
             "masechet": "Yoma",
             "seder": "moed",
             "daf": 30,
-            "offset": 526
+            "offset": 492
         },
         {
             "daf": 31,
             "seder": "moed",
             "masechet": "Yoma",
-            "offset": 527
+            "offset": 493
         },
         {
             "masechet": "Yoma",
             "seder": "moed",
-            "offset": 528,
+            "offset": 494,
             "daf": 32
         },
         {
             "masechet": "Yoma",
             "seder": "moed",
             "daf": 33,
-            "offset": 529
+            "offset": 495
         },
         {
             "masechet": "Yoma",
             "daf": 34,
             "seder": "moed",
-            "offset": 530
+            "offset": 496
         },
         {
-            "offset": 531,
+            "offset": 497,
             "seder": "moed",
             "masechet": "Yoma",
             "daf": 35
         },
         {
-            "offset": 532,
+            "offset": 498,
             "daf": 36,
             "seder": "moed",
             "masechet": "Yoma"
         },
         {
-            "offset": 533,
+            "offset": 499,
             "daf": 37,
             "masechet": "Yoma",
             "seder": "moed"
@@ -3207,11 +3003,11 @@
         {
             "daf": 38,
             "masechet": "Yoma",
-            "offset": 534,
+            "offset": 500,
             "seder": "moed"
         },
         {
-            "offset": 535,
+            "offset": 501,
             "daf": 39,
             "masechet": "Yoma",
             "seder": "moed"
@@ -3220,53 +3016,53 @@
             "masechet": "Yoma",
             "daf": 40,
             "seder": "moed",
-            "offset": 536
+            "offset": 502
         },
         {
             "masechet": "Yoma",
-            "offset": 537,
+            "offset": 503,
             "daf": 41,
             "seder": "moed"
         },
         {
             "daf": 42,
             "seder": "moed",
-            "offset": 538,
+            "offset": 504,
             "masechet": "Yoma"
         },
         {
             "seder": "moed",
-            "offset": 539,
+            "offset": 505,
             "masechet": "Yoma",
             "daf": 43
         },
         {
             "daf": 44,
             "seder": "moed",
-            "offset": 540,
+            "offset": 506,
             "masechet": "Yoma"
         },
         {
             "masechet": "Yoma",
-            "offset": 541,
+            "offset": 507,
             "seder": "moed",
             "daf": 45
         },
         {
             "seder": "moed",
             "masechet": "Yoma",
-            "offset": 542,
+            "offset": 508,
             "daf": 46
         },
         {
             "masechet": "Yoma",
             "daf": 47,
             "seder": "moed",
-            "offset": 543
+            "offset": 509
         },
         {
             "masechet": "Yoma",
-            "offset": 544,
+            "offset": 510,
             "daf": 48,
             "seder": "moed"
         },
@@ -3274,16 +3070,16 @@
             "daf": 49,
             "masechet": "Yoma",
             "seder": "moed",
-            "offset": 545
+            "offset": 511
         },
         {
-            "offset": 546,
+            "offset": 512,
             "seder": "moed",
             "masechet": "Yoma",
             "daf": 50
         },
         {
-            "offset": 547,
+            "offset": 513,
             "masechet": "Yoma",
             "daf": 51,
             "seder": "moed"
@@ -3292,16 +3088,16 @@
             "seder": "moed",
             "daf": 52,
             "masechet": "Yoma",
-            "offset": 548
+            "offset": 514
         },
         {
             "seder": "moed",
-            "offset": 549,
+            "offset": 515,
             "daf": 53,
             "masechet": "Yoma"
         },
         {
-            "offset": 550,
+            "offset": 516,
             "daf": 54,
             "seder": "moed",
             "masechet": "Yoma"
@@ -3310,22 +3106,22 @@
             "seder": "moed",
             "daf": 55,
             "masechet": "Yoma",
-            "offset": 551
+            "offset": 517
         },
         {
             "masechet": "Yoma",
             "daf": 56,
             "seder": "moed",
-            "offset": 552
+            "offset": 518
         },
         {
             "seder": "moed",
             "daf": 57,
             "masechet": "Yoma",
-            "offset": 553
+            "offset": 519
         },
         {
-            "offset": 554,
+            "offset": 520,
             "seder": "moed",
             "masechet": "Yoma",
             "daf": 58
@@ -3333,35 +3129,35 @@
         {
             "masechet": "Yoma",
             "seder": "moed",
-            "offset": 555,
+            "offset": 521,
             "daf": 59
         },
         {
-            "offset": 556,
+            "offset": 522,
             "daf": 60,
             "seder": "moed",
             "masechet": "Yoma"
         },
         {
             "seder": "moed",
-            "offset": 557,
+            "offset": 523,
             "masechet": "Yoma",
             "daf": 61
         },
         {
             "masechet": "Yoma",
             "daf": 62,
-            "offset": 558,
+            "offset": 524,
             "seder": "moed"
         },
         {
-            "offset": 559,
+            "offset": 525,
             "masechet": "Yoma",
             "daf": 63,
             "seder": "moed"
         },
         {
-            "offset": 560,
+            "offset": 526,
             "seder": "moed",
             "masechet": "Yoma",
             "daf": 64
@@ -3369,24 +3165,24 @@
         {
             "seder": "moed",
             "masechet": "Yoma",
-            "offset": 561,
+            "offset": 527,
             "daf": 65
         },
         {
-            "offset": 562,
+            "offset": 528,
             "daf": 66,
             "seder": "moed",
             "masechet": "Yoma"
         },
         {
-            "offset": 563,
+            "offset": 529,
             "masechet": "Yoma",
             "seder": "moed",
             "daf": 67
         },
         {
             "masechet": "Yoma",
-            "offset": 564,
+            "offset": 530,
             "seder": "moed",
             "daf": 68
         },
@@ -3394,28 +3190,28 @@
             "masechet": "Yoma",
             "seder": "moed",
             "daf": 69,
-            "offset": 565
+            "offset": 531
         },
         {
-            "offset": 566,
+            "offset": 532,
             "seder": "moed",
             "daf": 70,
             "masechet": "Yoma"
         },
         {
             "seder": "moed",
-            "offset": 567,
+            "offset": 533,
             "daf": 71,
             "masechet": "Yoma"
         },
         {
             "seder": "moed",
-            "offset": 568,
+            "offset": 534,
             "masechet": "Yoma",
             "daf": 72
         },
         {
-            "offset": 569,
+            "offset": 535,
             "seder": "moed",
             "daf": 73,
             "masechet": "Yoma"
@@ -3424,16 +3220,16 @@
             "seder": "moed",
             "masechet": "Yoma",
             "daf": 74,
-            "offset": 570
+            "offset": 536
         },
         {
             "masechet": "Yoma",
             "seder": "moed",
-            "offset": 571,
+            "offset": 537,
             "daf": 75
         },
         {
-            "offset": 572,
+            "offset": 538,
             "seder": "moed",
             "masechet": "Yoma",
             "daf": 76
@@ -3441,17 +3237,17 @@
         {
             "seder": "moed",
             "masechet": "Yoma",
-            "offset": 573,
+            "offset": 539,
             "daf": 77
         },
         {
             "seder": "moed",
-            "offset": 574,
+            "offset": 540,
             "masechet": "Yoma",
             "daf": 78
         },
         {
-            "offset": 575,
+            "offset": 541,
             "masechet": "Yoma",
             "seder": "moed",
             "daf": 79
@@ -3459,18 +3255,18 @@
         {
             "masechet": "Yoma",
             "seder": "moed",
-            "offset": 576,
+            "offset": 542,
             "daf": 80
         },
         {
             "seder": "moed",
-            "offset": 577,
+            "offset": 543,
             "masechet": "Yoma",
             "daf": 81
         },
         {
             "seder": "moed",
-            "offset": 578,
+            "offset": 544,
             "daf": 82,
             "masechet": "Yoma"
         },
@@ -3478,10 +3274,10 @@
             "daf": 83,
             "seder": "moed",
             "masechet": "Yoma",
-            "offset": 579
+            "offset": 545
         },
         {
-            "offset": 580,
+            "offset": 546,
             "seder": "moed",
             "masechet": "Yoma",
             "daf": 84
@@ -3490,16 +3286,16 @@
             "daf": 85,
             "seder": "moed",
             "masechet": "Yoma",
-            "offset": 581
+            "offset": 547
         },
         {
-            "offset": 582,
+            "offset": 548,
             "seder": "moed",
             "daf": 86,
             "masechet": "Yoma"
         },
         {
-            "offset": 583,
+            "offset": 549,
             "masechet": "Yoma",
             "daf": 87,
             "seder": "moed"
@@ -3508,35 +3304,35 @@
             "masechet": "Yoma",
             "daf": 88,
             "seder": "moed",
-            "offset": 584
+            "offset": 550
         },
         {
-            "offset": 585,
+            "offset": 551,
             "masechet": "Sucá",
             "seder": "moed",
             "daf": 2
         },
         {
-            "offset": 586,
+            "offset": 552,
             "seder": "moed",
             "masechet": "Sucá",
             "daf": 3
         },
         {
-            "offset": 587,
+            "offset": 553,
             "masechet": "Sucá",
             "seder": "moed",
             "daf": 4
         },
         {
             "masechet": "Sucá",
-            "offset": 588,
+            "offset": 554,
             "seder": "moed",
             "daf": 5
         },
         {
             "daf": 6,
-            "offset": 589,
+            "offset": 555,
             "seder": "moed",
             "masechet": "Sucá"
         },
@@ -3544,10 +3340,10 @@
             "seder": "moed",
             "daf": 7,
             "masechet": "Sucá",
-            "offset": 590
+            "offset": 556
         },
         {
-            "offset": 591,
+            "offset": 557,
             "masechet": "Sucá",
             "daf": 8,
             "seder": "moed"
@@ -3556,16 +3352,16 @@
             "daf": 9,
             "masechet": "Sucá",
             "seder": "moed",
-            "offset": 592
+            "offset": 558
         },
         {
             "seder": "moed",
-            "offset": 593,
+            "offset": 559,
             "daf": 10,
             "masechet": "Sucá"
         },
         {
-            "offset": 594,
+            "offset": 560,
             "seder": "moed",
             "masechet": "Sucá",
             "daf": 11
@@ -3573,17 +3369,17 @@
         {
             "seder": "moed",
             "daf": 12,
-            "offset": 595,
+            "offset": 561,
             "masechet": "Sucá"
         },
         {
             "seder": "moed",
             "daf": 13,
-            "offset": 596,
+            "offset": 562,
             "masechet": "Sucá"
         },
         {
-            "offset": 597,
+            "offset": 563,
             "daf": 14,
             "masechet": "Sucá",
             "seder": "moed"
@@ -3592,58 +3388,58 @@
             "masechet": "Sucá",
             "daf": 15,
             "seder": "moed",
-            "offset": 598
+            "offset": 564
         },
         {
             "seder": "moed",
-            "offset": 599,
+            "offset": 565,
             "daf": 16,
             "masechet": "Sucá"
         },
         {
             "masechet": "Sucá",
             "seder": "moed",
-            "offset": 600,
+            "offset": 566,
             "daf": 17
         },
         {
             "masechet": "Sucá",
-            "offset": 601,
+            "offset": 567,
             "seder": "moed",
             "daf": 18
         },
         {
             "daf": 19,
             "seder": "moed",
-            "offset": 602,
+            "offset": 568,
             "masechet": "Sucá"
         },
         {
             "masechet": "Sucá",
             "seder": "moed",
-            "offset": 603,
+            "offset": 569,
             "daf": 20
         },
         {
             "seder": "moed",
             "masechet": "Sucá",
-            "offset": 604,
+            "offset": 570,
             "daf": 21
         },
         {
             "seder": "moed",
             "masechet": "Sucá",
             "daf": 22,
-            "offset": 605
+            "offset": 571
         },
         {
-            "offset": 606,
+            "offset": 572,
             "masechet": "Sucá",
             "seder": "moed",
             "daf": 23
         },
         {
-            "offset": 607,
+            "offset": 573,
             "daf": 24,
             "masechet": "Sucá",
             "seder": "moed"
@@ -3651,42 +3447,42 @@
         {
             "daf": 25,
             "seder": "moed",
-            "offset": 608,
+            "offset": 574,
             "masechet": "Sucá"
         },
         {
-            "offset": 609,
+            "offset": 575,
             "daf": 26,
             "seder": "moed",
             "masechet": "Sucá"
         },
         {
             "masechet": "Sucá",
-            "offset": 610,
+            "offset": 576,
             "seder": "moed",
             "daf": 27
         },
         {
             "seder": "moed",
             "masechet": "Sucá",
-            "offset": 611,
+            "offset": 577,
             "daf": 28
         },
         {
             "daf": 29,
             "masechet": "Sucá",
             "seder": "moed",
-            "offset": 612
+            "offset": 578
         },
         {
-            "offset": 613,
+            "offset": 579,
             "masechet": "Sucá",
             "seder": "moed",
             "daf": 30
         },
         {
             "masechet": "Sucá",
-            "offset": 614,
+            "offset": 580,
             "seder": "moed",
             "daf": 31
         },
@@ -3694,16 +3490,16 @@
             "masechet": "Sucá",
             "daf": 32,
             "seder": "moed",
-            "offset": 615
+            "offset": 581
         },
         {
             "daf": 33,
             "seder": "moed",
             "masechet": "Sucá",
-            "offset": 616
+            "offset": 582
         },
         {
-            "offset": 617,
+            "offset": 583,
             "masechet": "Sucá",
             "daf": 34,
             "seder": "moed"
@@ -3711,48 +3507,48 @@
         {
             "seder": "moed",
             "masechet": "Sucá",
-            "offset": 618,
+            "offset": 584,
             "daf": 35
         },
         {
             "seder": "moed",
             "masechet": "Sucá",
             "daf": 36,
-            "offset": 619
+            "offset": 585
         },
         {
-            "offset": 620,
+            "offset": 586,
             "daf": 37,
             "masechet": "Sucá",
             "seder": "moed"
         },
         {
             "daf": 38,
-            "offset": 621,
+            "offset": 587,
             "seder": "moed",
             "masechet": "Sucá"
         },
         {
             "daf": 39,
             "seder": "moed",
-            "offset": 622,
+            "offset": 588,
             "masechet": "Sucá"
         },
         {
             "masechet": "Sucá",
             "daf": 40,
             "seder": "moed",
-            "offset": 623
+            "offset": 589
         },
         {
             "seder": "moed",
             "masechet": "Sucá",
-            "offset": 624,
+            "offset": 590,
             "daf": 41
         },
         {
             "seder": "moed",
-            "offset": 625,
+            "offset": 591,
             "masechet": "Sucá",
             "daf": 42
         },
@@ -3760,16 +3556,16 @@
             "daf": 43,
             "seder": "moed",
             "masechet": "Sucá",
-            "offset": 626
+            "offset": 592
         },
         {
-            "offset": 627,
+            "offset": 593,
             "seder": "moed",
             "daf": 44,
             "masechet": "Sucá"
         },
         {
-            "offset": 628,
+            "offset": 594,
             "daf": 45,
             "seder": "moed",
             "masechet": "Sucá"
@@ -3777,35 +3573,35 @@
         {
             "seder": "moed",
             "daf": 46,
-            "offset": 629,
+            "offset": 595,
             "masechet": "Sucá"
         },
         {
             "seder": "moed",
             "daf": 47,
-            "offset": 630,
+            "offset": 596,
             "masechet": "Sucá"
         },
         {
             "seder": "moed",
             "masechet": "Sucá",
             "daf": 48,
-            "offset": 631
+            "offset": 597
         },
         {
             "masechet": "Sucá",
             "seder": "moed",
             "daf": 49,
-            "offset": 632
+            "offset": 598
         },
         {
-            "offset": 633,
+            "offset": 599,
             "masechet": "Sucá",
             "seder": "moed",
             "daf": 50
         },
         {
-            "offset": 634,
+            "offset": 600,
             "masechet": "Sucá",
             "seder": "moed",
             "daf": 51
@@ -3813,35 +3609,35 @@
         {
             "seder": "moed",
             "masechet": "Sucá",
-            "offset": 635,
+            "offset": 601,
             "daf": 52
         },
         {
             "masechet": "Sucá",
-            "offset": 636,
+            "offset": 602,
             "seder": "moed",
             "daf": 53
         },
         {
             "seder": "moed",
             "daf": 54,
-            "offset": 637,
+            "offset": 603,
             "masechet": "Sucá"
         },
         {
             "masechet": "Sucá",
             "seder": "moed",
-            "offset": 638,
+            "offset": 604,
             "daf": 55
         },
         {
             "seder": "moed",
             "daf": 56,
             "masechet": "Sucá",
-            "offset": 639
+            "offset": 605
         },
         {
-            "offset": 640,
+            "offset": 606,
             "seder": "moed",
             "masechet": "Beitzá",
             "daf": 2
@@ -3849,23 +3645,23 @@
         {
             "masechet": "Beitzá",
             "seder": "moed",
-            "offset": 641,
+            "offset": 607,
             "daf": 3
         },
         {
             "daf": 4,
             "seder": "moed",
-            "offset": 642,
+            "offset": 608,
             "masechet": "Beitzá"
         },
         {
             "seder": "moed",
             "masechet": "Beitzá",
-            "offset": 643,
+            "offset": 609,
             "daf": 5
         },
         {
-            "offset": 644,
+            "offset": 610,
             "masechet": "Beitzá",
             "seder": "moed",
             "daf": 6
@@ -3873,41 +3669,41 @@
         {
             "seder": "moed",
             "masechet": "Beitzá",
-            "offset": 645,
+            "offset": 611,
             "daf": 7
         },
         {
             "seder": "moed",
             "daf": 8,
             "masechet": "Beitzá",
-            "offset": 646
+            "offset": 612
         },
         {
             "masechet": "Beitzá",
-            "offset": 647,
+            "offset": 613,
             "daf": 9,
             "seder": "moed"
         },
         {
             "seder": "moed",
             "daf": 10,
-            "offset": 648,
+            "offset": 614,
             "masechet": "Beitzá"
         },
         {
             "masechet": "Beitzá",
             "seder": "moed",
-            "offset": 649,
+            "offset": 615,
             "daf": 11
         },
         {
-            "offset": 650,
+            "offset": 616,
             "daf": 12,
             "seder": "moed",
             "masechet": "Beitzá"
         },
         {
-            "offset": 651,
+            "offset": 617,
             "masechet": "Beitzá",
             "daf": 13,
             "seder": "moed"
@@ -3915,11 +3711,11 @@
         {
             "masechet": "Beitzá",
             "daf": 14,
-            "offset": 652,
+            "offset": 618,
             "seder": "moed"
         },
         {
-            "offset": 653,
+            "offset": 619,
             "daf": 15,
             "seder": "moed",
             "masechet": "Beitzá"
@@ -3928,29 +3724,29 @@
             "daf": 16,
             "masechet": "Beitzá",
             "seder": "moed",
-            "offset": 654
+            "offset": 620
         },
         {
-            "offset": 655,
+            "offset": 621,
             "seder": "moed",
             "daf": 17,
             "masechet": "Beitzá"
         },
         {
             "daf": 18,
-            "offset": 656,
+            "offset": 622,
             "seder": "moed",
             "masechet": "Beitzá"
         },
         {
             "seder": "moed",
             "masechet": "Beitzá",
-            "offset": 657,
+            "offset": 623,
             "daf": 19
         },
         {
             "masechet": "Beitzá",
-            "offset": 658,
+            "offset": 624,
             "daf": 20,
             "seder": "moed"
         },
@@ -3958,10 +3754,10 @@
             "seder": "moed",
             "daf": 21,
             "masechet": "Beitzá",
-            "offset": 659
+            "offset": 625
         },
         {
-            "offset": 660,
+            "offset": 626,
             "seder": "moed",
             "masechet": "Beitzá",
             "daf": 22
@@ -3970,28 +3766,28 @@
             "masechet": "Beitzá",
             "seder": "moed",
             "daf": 23,
-            "offset": 661
+            "offset": 627
         },
         {
-            "offset": 662,
+            "offset": 628,
             "daf": 24,
             "masechet": "Beitzá",
             "seder": "moed"
         },
         {
             "seder": "moed",
-            "offset": 663,
+            "offset": 629,
             "masechet": "Beitzá",
             "daf": 25
         },
         {
             "masechet": "Beitzá",
             "seder": "moed",
-            "offset": 664,
+            "offset": 630,
             "daf": 26
         },
         {
-            "offset": 665,
+            "offset": 631,
             "masechet": "Beitzá",
             "daf": 27,
             "seder": "moed"
@@ -4000,23 +3796,23 @@
             "masechet": "Beitzá",
             "seder": "moed",
             "daf": 28,
-            "offset": 666
+            "offset": 632
         },
         {
             "daf": 29,
             "masechet": "Beitzá",
             "seder": "moed",
-            "offset": 667
+            "offset": 633
         },
         {
             "seder": "moed",
             "daf": 30,
             "masechet": "Beitzá",
-            "offset": 668
+            "offset": 634
         },
         {
             "daf": 31,
-            "offset": 669,
+            "offset": 635,
             "masechet": "Beitzá",
             "seder": "moed"
         },
@@ -4024,17 +3820,17 @@
             "daf": 32,
             "seder": "moed",
             "masechet": "Beitzá",
-            "offset": 670
+            "offset": 636
         },
         {
             "daf": 33,
             "masechet": "Beitzá",
             "seder": "moed",
-            "offset": 671
+            "offset": 637
         },
         {
             "masechet": "Beitzá",
-            "offset": 672,
+            "offset": 638,
             "seder": "moed",
             "daf": 34
         },
@@ -4042,37 +3838,241 @@
             "daf": 35,
             "seder": "moed",
             "masechet": "Beitzá",
-            "offset": 673
+            "offset": 639
         },
         {
             "seder": "moed",
             "masechet": "Beitzá",
             "daf": 36,
-            "offset": 674
+            "offset": 640
         },
         {
             "seder": "moed",
             "masechet": "Beitzá",
-            "offset": 675,
+            "offset": 641,
             "daf": 37
         },
         {
             "seder": "moed",
             "masechet": "Beitzá",
-            "offset": 676,
+            "offset": 642,
             "daf": 38
         },
         {
             "daf": 39,
             "masechet": "Beitzá",
-            "offset": 677,
+            "offset": 643,
             "seder": "moed"
         },
         {
             "masechet": "Beitzá",
             "seder": "moed",
-            "offset": 678,
+            "offset": 644,
             "daf": 40
+        },
+        {
+            "seder": "moed",
+            "masechet": "Rosh Hashaná",
+            "offset": 645,
+            "daf": 2
+        },
+        {
+            "offset": 646,
+            "daf": 3,
+            "seder": "moed",
+            "masechet": "Rosh Hashaná"
+        },
+        {
+            "masechet": "Rosh Hashaná",
+            "daf": 4,
+            "seder": "moed",
+            "offset": 647
+        },
+        {
+            "masechet": "Rosh Hashaná",
+            "offset": 648,
+            "daf": 5,
+            "seder": "moed"
+        },
+        {
+            "offset": 649,
+            "masechet": "Rosh Hashaná",
+            "daf": 6,
+            "seder": "moed"
+        },
+        {
+            "seder": "moed",
+            "daf": 7,
+            "masechet": "Rosh Hashaná",
+            "offset": 650
+        },
+        {
+            "masechet": "Rosh Hashaná",
+            "seder": "moed",
+            "offset": 651,
+            "daf": 8
+        },
+        {
+            "masechet": "Rosh Hashaná",
+            "daf": 9,
+            "seder": "moed",
+            "offset": 652
+        },
+        {
+            "offset": 653,
+            "daf": 10,
+            "seder": "moed",
+            "masechet": "Rosh Hashaná"
+        },
+        {
+            "masechet": "Rosh Hashaná",
+            "offset": 654,
+            "daf": 11,
+            "seder": "moed"
+        },
+        {
+            "seder": "moed",
+            "masechet": "Rosh Hashaná",
+            "daf": 12,
+            "offset": 655
+        },
+        {
+            "offset": 656,
+            "seder": "moed",
+            "masechet": "Rosh Hashaná",
+            "daf": 13
+        },
+        {
+            "seder": "moed",
+            "offset": 657,
+            "masechet": "Rosh Hashaná",
+            "daf": 14
+        },
+        {
+            "masechet": "Rosh Hashaná",
+            "offset": 658,
+            "daf": 15,
+            "seder": "moed"
+        },
+        {
+            "daf": 16,
+            "seder": "moed",
+            "masechet": "Rosh Hashaná",
+            "offset": 659
+        },
+        {
+            "seder": "moed",
+            "offset": 660,
+            "masechet": "Rosh Hashaná",
+            "daf": 17
+        },
+        {
+            "offset": 661,
+            "masechet": "Rosh Hashaná",
+            "seder": "moed",
+            "daf": 18
+        },
+        {
+            "daf": 19,
+            "seder": "moed",
+            "offset": 662,
+            "masechet": "Rosh Hashaná"
+        },
+        {
+            "seder": "moed",
+            "masechet": "Rosh Hashaná",
+            "offset": 663,
+            "daf": 20
+        },
+        {
+            "masechet": "Rosh Hashaná",
+            "daf": 21,
+            "seder": "moed",
+            "offset": 664
+        },
+        {
+            "masechet": "Rosh Hashaná",
+            "offset": 665,
+            "seder": "moed",
+            "daf": 22
+        },
+        {
+            "masechet": "Rosh Hashaná",
+            "seder": "moed",
+            "offset": 666,
+            "daf": 23
+        },
+        {
+            "offset": 667,
+            "seder": "moed",
+            "daf": 24,
+            "masechet": "Rosh Hashaná"
+        },
+        {
+            "masechet": "Rosh Hashaná",
+            "seder": "moed",
+            "offset": 668,
+            "daf": 25
+        },
+        {
+            "masechet": "Rosh Hashaná",
+            "offset": 669,
+            "daf": 26,
+            "seder": "moed"
+        },
+        {
+            "seder": "moed",
+            "daf": 27,
+            "masechet": "Rosh Hashaná",
+            "offset": 670
+        },
+        {
+            "daf": 28,
+            "seder": "moed",
+            "offset": 671,
+            "masechet": "Rosh Hashaná"
+        },
+        {
+            "seder": "moed",
+            "daf": 29,
+            "offset": 672,
+            "masechet": "Rosh Hashaná"
+        },
+        {
+            "offset": 673,
+            "masechet": "Rosh Hashaná",
+            "daf": 30,
+            "seder": "moed"
+        },
+        {
+            "seder": "moed",
+            "masechet": "Rosh Hashaná",
+            "offset": 674,
+            "daf": 31
+        },
+        {
+            "seder": "moed",
+            "masechet": "Rosh Hashaná",
+            "offset": 675,
+            "daf": 32
+        },
+        {
+            "masechet": "Rosh Hashaná",
+            "daf": 33,
+            "seder": "moed",
+            "offset": 676
+        },
+        {
+            "masechet": "Rosh Hashaná",
+            "daf": 34,
+            "seder": "moed",
+            "offset": 677
+        },
+        {
+            "seder": "moed",
+            "daf": 35,
+            "offset": 678,
+            "masechet": "Rosh Hashaná"
         },
         {
             "seder": "moed",

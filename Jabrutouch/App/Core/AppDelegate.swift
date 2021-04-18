@@ -8,7 +8,7 @@
 
 import UIKit
 import Fabric
-import Crashlytics
+import FirebaseCrashlytics
 import AWSS3
 import Firebase
 import FirebaseMessaging
@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        Fabric.with([Crashlytics.self])
+//        Fabric.with([Crashlytics.self])
         
         print(UserDefaultsProvider.shared.currentUser?.token ?? "")
         print((UserDefaults.standard.object(forKey: "AppleLanguages") as! [String]).first!)

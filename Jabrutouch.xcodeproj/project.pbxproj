@@ -639,6 +639,7 @@
 		83CCB124237C0F9E00C86450 /* JTDonor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTDonor.swift; sourceTree = "<group>"; };
 		83CCB126237C8D6F00C86450 /* EditPasswordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPasswordCell.swift; sourceTree = "<group>"; };
 		C0F9377FF1E3DA5E9F901D68 /* Pods_Jabrutouch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jabrutouch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6E97769262C3F5B001EDD17 /* AWSS3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSS3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD4E3A7F24056BF400A889BE /* SingleDonationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleDonationViewController.swift; sourceTree = "<group>"; };
 		DD51946624069F760085E2A8 /* SubscribeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeViewController.swift; sourceTree = "<group>"; };
 		DD51CDEB23F185D30063167E /* AudioMessagesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioMessagesManager.swift; sourceTree = "<group>"; };
@@ -695,6 +696,7 @@
 		1371B014ACF312EFC7849D49 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D6E97769262C3F5B001EDD17 /* AWSS3.framework */,
 				83A7A0C423E206A10041BE28 /* QuartzCore.framework */,
 				21F89DCB2319645500540658 /* PDFKit.framework */,
 				212ECEAD23126627005AEB36 /* WebKit.framework */,
@@ -965,6 +967,7 @@
 				1371B014ACF312EFC7849D49 /* Frameworks */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		2133C1F522DB5B8200F910B9 /* Products */ = {
 			isa = PBXGroup;
@@ -2248,7 +2251,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 715A51EC96A60C90B07F8038 /* Pods-Jabrutouch.debug.xcconfig */;
 			buildSettings = {
-				API_BASE_URL = "https://jabrutouch-dev.ravtech.co.il/api/";
+				API_BASE_URL = "https://jabrutouch.ravtech.co.il/api/";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Jabrutouch/Jabrutouch.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -2265,7 +2268,7 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 1.4.5;
+				MARKETING_VERSION = 1.4.6;
 				PRODUCT_BUNDLE_IDENTIFIER = il.co.jabrutouch.Jabrutouch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2295,7 +2298,7 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 1.4.5;
+				MARKETING_VERSION = 1.4.6;
 				PRODUCT_BUNDLE_IDENTIFIER = il.co.jabrutouch.Jabrutouch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
