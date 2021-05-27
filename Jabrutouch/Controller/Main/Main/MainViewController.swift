@@ -534,7 +534,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
                     self.removeActivityView()
                     switch result {
                     case .success(let lesson):
-                        self.playLesson(lesson, mediaType: .audio, sederId: "\(data.seder.id)", masechetId: "\(data.masechet.id)", chapter: nil, masechetName: todaysDaf.masechet)
+                        self.playLesson(lesson, mediaType: .audio, sederId: "\(data.seder.id)", masechetId: "\(data.masechet.id)", chapter: nil, masechetName: todaysDaf.masechet, deepLinkDuration: 0.0)
                     case .failure:
                         break
                     }
@@ -565,7 +565,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
                 self.removeActivityView()
                 switch result {
                 case .success(let lesson):
-                    self.playLesson(lesson, mediaType: .video, sederId: "\(data.seder.id)", masechetId: "\(data.masechet.id)", chapter: nil, masechetName: todaysDaf.masechet)
+                    self.playLesson(lesson, mediaType: .video, sederId: "\(data.seder.id)", masechetId: "\(data.masechet.id)", chapter: nil, masechetName: todaysDaf.masechet, deepLinkDuration: 0.0)
                 case .failure:
                     break
                 }
@@ -945,7 +945,7 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
                     switch result {
                     case .success(let lesson):
                         if values.video == 1 {
-                            self.playLesson(lesson, mediaType: values.video == 1 ? .video : .audio, sederId: "\(values.seder)", masechetId: "\(values.masechet)", chapter: nil, masechetName: values.masechetName)
+                            self.playLesson(lesson, mediaType: values.video == 1 ? .video : .audio, sederId: "\(values.seder)", masechetId: "\(values.masechet)", chapter: nil, masechetName: values.masechetName, deepLinkDuration: values.duration ?? 0.0)
                         }
                     case .failure:
                         break
@@ -961,7 +961,7 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
                         self.removeActivityView()
                         switch result {
                         case .success(let lesson):
-                            self.playLesson(lesson, mediaType: values.video == 1 ? .video : .audio , sederId: "\(values.seder)", masechetId: "\(values.masechet)", chapter: "\(chapter)", masechetName: values.masechetName)
+                            self.playLesson(lesson, mediaType: values.video == 1 ? .video : .audio , sederId: "\(values.seder)", masechetId: "\(values.masechet)", chapter: "\(chapter)", masechetName: values.masechetName, deepLinkDuration: values.duration ?? 0.0)
                         case .failure:
                             break
                         }
@@ -980,10 +980,10 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
         DispatchQueue.main.async {
             if isFirstCollection {
                 let record = self.gemaraHistory[selectedRow]
-                self.playLesson(record.lesson, mediaType: .audio, sederId: record.sederId, masechetId: record.masechetId, chapter: nil, masechetName: record.masechetName)
+                self.playLesson(record.lesson, mediaType: .audio, sederId: record.sederId, masechetId: record.masechetId, chapter: nil, masechetName: record.masechetName, deepLinkDuration: 0.0)
             } else {
                 let record = self.mishnaHistory[selectedRow]
-                self.playLesson(record.lesson, mediaType: .audio, sederId: record.sederId, masechetId: record.masechetId, chapter: record.chapter, masechetName: record.masechetName)
+                self.playLesson(record.lesson, mediaType: .audio, sederId: record.sederId, masechetId: record.masechetId, chapter: record.chapter, masechetName: record.masechetName, deepLinkDuration: 0.0)
             }
         }
     }
@@ -992,10 +992,10 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
         DispatchQueue.main.async {
             if isFirstCollection {
                 let record = self.gemaraHistory[selectedRow]
-                self.playLesson(record.lesson, mediaType: .video, sederId: record.sederId, masechetId: record.masechetId, chapter: nil, masechetName: record.masechetName)
+                self.playLesson(record.lesson, mediaType: .video, sederId: record.sederId, masechetId: record.masechetId, chapter: nil, masechetName: record.masechetName, deepLinkDuration: 0.0)
             } else {
                 let record = self.mishnaHistory[selectedRow]
-                self.playLesson(record.lesson, mediaType: .video, sederId: record.sederId, masechetId: record.masechetId, chapter: record.chapter, masechetName: record.masechetName)
+                self.playLesson(record.lesson, mediaType: .video, sederId: record.sederId, masechetId: record.masechetId, chapter: record.chapter, masechetName: record.masechetName, deepLinkDuration: 0.0)
             }
         }
     }
@@ -1013,11 +1013,12 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
     // MARK: - Player
     //======================================================
     
-    private func playLesson(_ lesson: JTLesson, mediaType: JTLessonMediaType, sederId: String, masechetId: String, chapter: String?, masechetName: String?) {
+    private func playLesson(_ lesson: JTLesson, mediaType: JTLessonMediaType, sederId: String, masechetId: String, chapter: String?, masechetName: String?, deepLinkDuration: Double) {
 //        let playerVC = LessonPlayerViewController(lesson: lesson, mediaType: mediaType, sederId: sederId, masechetId:masechetId, chapter:chapter)
         let playerVC = LessonPlayerViewController(lesson: lesson, mediaType: mediaType, sederId: sederId, masechetId:masechetId, chapter:chapter, shouldDisplayDonationPopUp: lesson.isAudioDownloaded || lesson.isVideoDownloaded ? false : true)
         playerVC.modalPresentationStyle = .fullScreen
         playerVC.masechet = masechetName ?? ""
+        playerVC.deepLinkDuration = deepLinkDuration
         if let lesson = lesson as? JTGemaraLesson {
             playerVC.daf = "\(lesson.page)"
         }

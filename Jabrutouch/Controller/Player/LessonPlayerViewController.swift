@@ -117,6 +117,8 @@ class LessonPlayerViewController: UIViewController {
     var crownId: Int?
     var withDonation = false
     
+    var deepLinkDuration = 0.0
+    
     private lazy var chatControlsView: ChatControlsView = {
         var view = ChatControlsView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 70))
         
@@ -859,12 +861,18 @@ class LessonPlayerViewController: UIViewController {
     }
     
     private func maHaytaHadeke(){
-        if self.lessonWatched.count > 0 {
+        var percentage = 0.0
+        if self.deepLinkDuration > 0.0 {
+            percentage = self.deepLinkDuration / Double(self.lesson.duration)
+            self.audioPlayer.seek(percentage: percentage)
+            self.videoPlayer.seek(percentage: percentage)
+        } else if self.lessonWatched.count > 0 {
             for _lesson in self.lessonWatched {
                 if _lesson.lessonId == self.lesson.id {
-                    let percentage = _lesson.duration / Double(self.lesson.duration)
+                    percentage = _lesson.duration / Double(self.lesson.duration)
                     self.audioPlayer.seek(percentage: percentage)
                     self.videoPlayer.seek(percentage: percentage)
+
                 }
             }
         }

@@ -23,7 +23,8 @@ class JTDeepLinkLesson {
     var gemara: Int
     var mishna: Int?
     var chapter: Int?
-    
+    ///  start lesson at this duration point.  recieved from deep link
+    var duration: Double?
     
     //============================================
     // MARK: - Initializer
@@ -50,6 +51,8 @@ class JTDeepLinkLesson {
         if let video = values["video"]  {
             self.video = Int(video) ?? -1
         } else { return nil }
+        
+        self.duration = Double(values["duration"] ?? "") ?? 0.0
         
         if let masechetName = values["masechet_name"]  {
             self.masechetName = masechetName
