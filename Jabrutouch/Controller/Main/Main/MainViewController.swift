@@ -944,9 +944,7 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
                     self.removeActivityView()
                     switch result {
                     case .success(let lesson):
-                        if values.video == 1 {
                             self.playLesson(lesson, mediaType: values.video == 1 ? .video : .audio, sederId: "\(values.seder)", masechetId: "\(values.masechet)", chapter: nil, masechetName: values.masechetName, deepLinkDuration: values.duration ?? 0.0)
-                        }
                     case .failure:
                         break
                     }
