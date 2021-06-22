@@ -503,7 +503,7 @@ class LessonPlayerViewController: UIViewController {
         } else {
             alertVC.nameText = "\(donationData.firstName) \(donationData.lastName)"
         }
-        alertVC.locationText = donationData.country
+        alertVC.locationText = LocalizationManager.shared.getCountry(regionCode: donationData.country)?.localizedName ?? ""
         alertVC.modalPresentationStyle = .overFullScreen
         self.present(alertVC, animated: true, completion: nil)
     }

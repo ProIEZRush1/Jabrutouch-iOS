@@ -125,7 +125,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             cell.nameLabel.text = "\(user.firstName) \(user.lastName)"
             cell.emailLabel.text = user.email
             if user.country != "" {
-                cell.country.text = user.country
+                if let countryName = LocalizationManager.shared.getCountry(regionCode: user.country )?.localizedName {
+                    cell.country.text = countryName
+                }
             } else {
                 cell.country.text = LocalizationManager.shared.getDefaultCountry()?.localizedName
             }

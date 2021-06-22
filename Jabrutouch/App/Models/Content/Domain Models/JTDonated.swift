@@ -51,7 +51,7 @@ struct JTDonated {
         values["name_to_represent"] = self.nameToRepresent
         values["first_name"] = self.firstName
         values["last_name"] = self.lastName
-        values["country"] = self.lastName
+        values["country"] = self.country
         
         return values
     }

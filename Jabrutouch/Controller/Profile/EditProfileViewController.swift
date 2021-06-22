@@ -353,7 +353,9 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
                 cell.setData(index: indexPath.row, editable: true, withPicker: true, withArrow: true, position: .top, .country)
                 cell.textField.placeholder = Strings.country
                 if !(user?.country ?? "").isEmpty {
-                    cell.textField.text = user?.country
+                    if let countryName = LocalizationManager.shared.getCountry(regionCode: user?.country ?? "")?.localizedName {
+                        cell.textField.text = countryName
+                    }
                 }
             case 2:
                 cell.setData(index: indexPath.row, editable: false, withPicker: false, withArrow: false, position: .bottom, .phoneNumber)
@@ -513,7 +515,7 @@ extension EditProfileViewController: EditGeneralInformationCellDelegate {
     func parametersChanged(parameter: EditUserParameter, selected: Int) {
         switch parameter {
         case .country:
-            self.user?.country = LocalizationManager.shared.getCountries()[selected].localizedName
+            self.user?.country = LocalizationManager.shared.getCountries()[selected].code
             self.currentCountry = LocalizationManager.shared.getCountries()[selected]
         case .community:
             guard let parameterObject = self.userEditParameters?.communities[selected] else { return }

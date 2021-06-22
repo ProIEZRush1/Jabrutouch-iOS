@@ -136,7 +136,10 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
         }
         view.titleLabel.text = Strings.lessonDonatedBy
         view.textField.placeholder = Strings.fullName
-        view.countryLabel.text = user?.country ?? ""
+        view.countryLabel.text = ""
+        if let countryName = LocalizationManager.shared.getCountry(regionCode: user?.country ?? "")?.localizedName {
+            view.countryLabel.text = countryName
+        }
         view.dedicationLabel.text = dedication
         view.dedicationLabel.isHidden = hidden
         view.textFieldView.isHidden = hidden
