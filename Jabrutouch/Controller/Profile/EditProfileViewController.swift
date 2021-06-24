@@ -352,10 +352,8 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
             case 1:
                 cell.setData(index: indexPath.row, editable: true, withPicker: true, withArrow: true, position: .top, .country)
                 cell.textField.placeholder = Strings.country
-                if !(user?.country ?? "").isEmpty {
-                    if let countryName = LocalizationManager.shared.getCountry(regionCode: user?.country ?? "")?.localizedName {
-                        cell.textField.text = countryName
-                    }
+                if let countryName = LocalizationManager.shared.getCountry(regionCode: user?.country ?? "")?.localizedName {
+                    cell.textField.text = countryName
                 }
             case 2:
                 cell.setData(index: indexPath.row, editable: false, withPicker: false, withArrow: false, position: .bottom, .phoneNumber)
