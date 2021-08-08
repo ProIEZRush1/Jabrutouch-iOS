@@ -114,7 +114,7 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
         self.validatePassowrd()
         if self.attemptToChangePassword {
             self.removeActivityView()
-            Utils.showAlertMessage("faild changing password", viewControler: self)
+            Utils.showAlertMessage("No se pudo cambiar la contraseña", viewControler: self)
             return
         }
         guard var user = self.user else { return }
@@ -145,7 +145,7 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
                                 }
                             case .failure(_):
                                 self.removeActivityView()
-                                Utils.showAlertMessage("faild saving image", viewControler: self)
+                                Utils.showAlertMessage("No se pudo guardar la imagen", viewControler: self)
                                 return
                             }
                         }
@@ -165,7 +165,7 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
                     }
                 case .failure(_):
                     self.removeActivityView()
-                    Utils.showAlertMessage("faild changing password", viewControler: self)
+                    Utils.showAlertMessage("No se pudo cambiar la contraseña", viewControler: self)
                     return
                 }
             }
@@ -189,13 +189,13 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
                                 }
                             case .failure(_):
                                 self.removeActivityView()
-                                Utils.showAlertMessage("faild updating profile", viewControler: self)
+                                Utils.showAlertMessage("No se pudo actualizar el perfil", viewControler: self)
                                 return
                             }
                         }
                     case .failure(_):
                         self.removeActivityView()
-                        Utils.showAlertMessage("faild saving image", viewControler: self)
+                        Utils.showAlertMessage("No se pudo guardar la imagen", viewControler: self)
                         return
                     }
                 }
@@ -210,7 +210,7 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
                         }
                     case .failure(_):
                         self.removeActivityView()
-                        Utils.showAlertMessage("faild updating profile", viewControler: self)
+                        Utils.showAlertMessage("No se pudo actualizar el perfil", viewControler: self)
                         return
                     }
                 }
@@ -231,13 +231,13 @@ class EditProfileViewController: UIViewController, UITableViewDelegate, UITableV
         }
         
         if oldPassword != UserDefaultsProvider.shared.currentPassword {
-            Utils.showAlertMessage("Incorrect password", viewControler: self)
+            Utils.showAlertMessage("Contraseña incorrecta", viewControler: self)
             self.attemptToChangePassword = true
             return
         }
         if let confirmNewPassword = cell?.confirmTextField.text {
             if newPassword != confirmNewPassword {
-                Utils.showAlertMessage("new password, and confirm password must be identical", viewControler: self)
+                Utils.showAlertMessage("La contraseña nueva y la contraseña de confirmación deben ser idénticas", viewControler: self)
                 self.attemptToChangePassword = true
                 return
             }

@@ -139,8 +139,8 @@ class ValidateVerificationCodeViewController: UIViewController, MFMailComposeVie
             self.present(mailComposer, animated: true, completion: nil)
         }
         else {
-            let title = "No mail account found"
-            let message = "Please set an email account"
+            let title = "No se encontró correo electrónico"
+            let message = "Ingrese una cuenta de correo electrónico"
             Utils.showAlertMessage(message, title: title, viewControler: self)
         }
     }

@@ -79,11 +79,11 @@
 "verificationCode" = "Código de verificación";
 "enterTheVerificationCodeSentTo" = "Introduce el código enviado al";
 "resendCode" = "¿No recibiste el código? Enviar otra vez";
-"sendAgain" = "Send again";
+"sendAgain" = "Enviar de nuevo";
 
 "firstName" = "Nombre";
 "surname" = "Apellido";
-"emailAddress" = "Email address";
+"emailAddress" = "Correo electrónico";
 "alreadyHaveAnAccountSignIn" = "¿Ya tienes una cuenta? Entrar";
 
 "signInTitle" = "Iniciar sesión";
@@ -101,24 +101,24 @@
 "donate" = "Regalar";
 "logout" = "Cerrar sesión";
 
-"passwordMissing" = "Password is missing";
-"usernameInvalid" = "Username must be a valid email or phone number";
-"usernameMissing" = "Username is missing.";
+"passwordMissing" = "Falta la contraseña";
+"usernameInvalid" = "El nombre de usuario debe ser un correo o número de teléfono válido";
+"usernameMissing" = "Falta el nombre de usuario";
 "ok" = "OK";
 "error" = "Error";
 "signOut" = "Cerrar sesión";
-"phoneNumberMissing" = "Phone number is missing";
-"phoneNumberInvalid" = "Phone Number is invalid";
-"pleaseSelectCountry" = "please select country";
-"firstNameMissing" = "First name is missing";
-"lastNameMissing" = "Last name is missing";
-"emailIsMissing" = "Email is misssing";
-"emailInvalid" = "Email is invalid";
-"missingField" = "Missing Field";
-"invalidField" = "Invalid Field";
+"phoneNumberMissing" = "Falta el número de teléfono";
+"phoneNumberInvalid" = "El número de teléfono no es válido";
+"pleaseSelectCountry" = "Por favor seleccione país";
+"firstNameMissing" = "Falta el nombre";
+"lastNameMissing" = "Falta el apellido";
+"emailIsMissing" = "Falta correo";
+"emailInvalid" = "Correo inválido";
+"missingField" = "Campo faltante";
+"invalidField" = "Campo inválido";
 "todaysDafYomi" = "DAF YOMI DE HOY";
-"page" = "Page";
-"pages" = "Pages";
+"page" = "Página";
+"pages" = "Paginas";
 "chapter" = "Capítulo";
 "chapters" = "Capítulos";
 "seder"  = "Seder";
@@ -135,10 +135,10 @@
 "aboutUs" = "Sobre nosotros";
 "aboutText" = "El término jabruta (lit: 'amistad'  o 'compañerismo') es el nombre con el que se conoce la técnica de estudio judía, dinámica e interactiva, mediante la cual, dos estudiantes o compañeros de estudio, analizan, comentan y debaten juntos un texto de Torá. La jabruta es el método de estudio del Talmud por excelencia.\n\nDebido a las características señaladas, hemos creído que \"Jabruta\" era el término idóneo y más apropiado para darle nombre a nuestra plataforma.\n\nLa meta principal de una jabruta es estudiar el Talmud eliminando el aura de oscuridad y confusión que para muchos esconde su estudio. Tenemos la plena convicción de que el Talmud se puede estudiar con claridad y convertirse en una experiencia inspiradora y entretenida. Para ello, hemos recurrido a los recursos tecnológicos más innovadores que nos ofrece el mundo actual.\n\nDesde que lanzamos hace once años nuestra revolucionaria iniciativa para enseñar Talmud en la red, la respuesta que hemos recibido ha sido, definitivamente, increíble.\n\nEn 2012, nuestro estimado amigo Eduardo Alfie de México, reunió a un grupo de personas que dedicaron en memoria de Alberto Saba Z\"L la primera versión de Jabrutouch iPad. Un año más tarde, y tras un éxito rotundo, conocimos a quien hoy es otro gran amigo, Jacobo Cojab, también de México. Él y su hermano apoyaron generosamente el desarrollo de la aplicación para teléfonos móviles facilitando el estudio del Talmud a miles de personas de todo el mundo desde cualquier dispositivo móvil. A todos ellos les estaremos eternamente agradecidos por habernos ayudado a convertir este gran proyecto en una realidad.\n\nHoy, con la experiencia adquirida y gracias a las nuevas posibilidades que nos ofrece la tecnología actual, damos la bienvenida a la nueva versión de Jabrutouch. Hemos creado una nueva plataforma de estudio, más potente y variada, que irá mejorando y actualizándose conforme a los deseos y peticiones de los usuarios.\n\nJabrutouch es un proyecto ambicioso y en constante desarrollo que, día a día, no deja de crecer y agregar más contenidos a su plataforma para ofrecer nuevas alternativas y llegar a más audiencias. Su alcance es tan grande, que se ha convertido en una herramienta de estudio popular en personas de toda condición que forman el mundo judío hispanoparlante.\n\nNo hay mejor recompensa que el agradecimiento por un trabajo bien hecho. Y la mejor prueba son las innumerables y sorprendentes muestras de agradecimiento que recibimos en todo tipo de lugares como sinagogas o incluso aeropuertos donde la gente se acerca para decirnos \"Hola, yo estudio con Jabrutouch\" o simplemente \"Gracias por haber hecho esto\". Historias como estas son el motor que nos impulsa a seguir trabajando.\n\n\nGracias,\n\nEl Equipo de Jabrutouch";
 
-"cancel" = "Cancel";
-"pleaseConfirm" = "Please Confirm";
-"deleteThisDownload" = "Delete this download(s)?";
-"yes" = "Yes";
+"cancel" = "Cancelar";
+"pleaseConfirm" = "Por favor confirmar";
+"deleteThisDownload" = "¿Eliminar esta descarga?";
+"yes" = "Sí";
 
 "areYouSure"="¿Estás seguro?";
 "done" = "Listo";

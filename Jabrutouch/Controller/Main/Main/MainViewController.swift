@@ -897,7 +897,7 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
                 DispatchQueue.main.async {
                     self.presentAlert(Storyboards.Coupons.invalidCouponeViewController)
                 }
-                Utils.showAlertMessage("Failed to create Coupon redemption please try again", viewControler: self)
+                Utils.showAlertMessage("No se pudo crear el canje del cupón, inténtelo de nuevo", viewControler: self)
             }
         }
     }

@@ -146,8 +146,8 @@ class MessagesRepository: NSObject, MessagingDelegate {
     }
     
     func logOut() {
-        let titel = "Invalid Token"
-        let message = "You must log in again"
+        let titel = "Token inválido"
+        let message = "Debes iniciar sesión de nuevo"
         let vc = appDelegate.topmostViewController
         DispatchQueue.main.async {
         Utils.showAlertMessage(message, title: titel, viewControler: vc!) { (action) in

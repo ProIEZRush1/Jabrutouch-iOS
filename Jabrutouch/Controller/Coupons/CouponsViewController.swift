@@ -81,7 +81,7 @@ class CouponsViewController: UIViewController {
                 let vc = Storyboards.Coupons.invalidCouponeViewController
                 self.present(vc, animated: true, completion: nil)
                 }
-                Utils.showAlertMessage("Failed to create Coupon redemption please try again", viewControler: self)
+                Utils.showAlertMessage("No se pudo crear el canje del cupón, inténtelo de nuevo", viewControler: self)
             }
         }
     }

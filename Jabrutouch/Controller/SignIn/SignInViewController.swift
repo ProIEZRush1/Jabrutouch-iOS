@@ -111,8 +111,8 @@ class SignInViewController: UIViewController, MFMailComposeViewControllerDelegat
             self.present(mailComposer, animated: true, completion: nil)
         }
         else {
-            let message = "Please set an email account"
-            let title = "No mail account found"
+            let message = "Ingrese una cuenta de correo electrónico"
+            let title = "No se encontró correo electrónico"
             Utils.showAlertMessage(message, title: title, viewControler: self)
         }
     }

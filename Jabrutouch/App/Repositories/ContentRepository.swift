@@ -945,7 +945,7 @@ extension ContentRepository: DownloadTaskDelegate {
                 self.getLessonDonation(lesson: lesson)
             } else {
                 let VC = appDelegate.topmostViewController
-                Utils.showAlertMessage("Faild Downloding Lesson", viewControler: VC!)
+                Utils.showAlertMessage("Error al descargar la lección", viewControler: VC!)
             }
         }
         
@@ -987,8 +987,8 @@ extension ContentRepository: DownloadTaskDelegate {
     }
     
     func logOut() {
-        let titel = "Invalid Token"
-        let message = "You must sign in again"
+        let titel = "Token inválido"
+        let message = "Debes iniciar sesión de nuevo"
         let vc = appDelegate.topmostViewController
         DispatchQueue.main.async {
             Utils.showAlertMessage(message, title: titel, viewControler: vc!) { (action) in

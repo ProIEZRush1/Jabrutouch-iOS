@@ -205,32 +205,36 @@ class GemaraLessonsViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func downloadAudioPressed(selectedRow: Int) {
+        ////  prevent double download if user  double taps before download starts
+        guard self.lessons[selectedRow].isDownloadingAudio == false else { return }
+        
         let lesson = self.lessons[selectedRow]
         if lesson.isAudioDownloaded {
             alreadyDownloadedMediaAlert()
         } else {
             self.lessons[selectedRow].isDownloadingAudio = true
-            self.toggleEditingMode()
             ContentRepository.shared.lessonStartedDownloading(lesson.id, mediaType: .audio)
             ContentRepository.shared.downloadLesson(lesson, mediaType: .audio, delegate: ContentRepository.shared)
         }
     }
     
     func downloadVideoPressed(selectedRow: Int) {
+        ////  prevent double download if user  double taps before download starts
+        guard self.lessons[selectedRow].isDownloadingVideo == false else { return }
+        
         let lesson = self.lessons[selectedRow]
         if lesson.isVideoDownloaded {
             alreadyDownloadedMediaAlert()
         } else {
             self.lessons[selectedRow].isDownloadingVideo = true
-            self.toggleEditingMode()
             ContentRepository.shared.lessonStartedDownloading(lesson.id, mediaType: .video)
             ContentRepository.shared.downloadLesson(lesson, mediaType: .video, delegate: ContentRepository.shared)
         }
     }
     
     fileprivate func alreadyDownloadedMediaAlert() {
-        let alert = UIAlertController(title: "", message: "The media already exists in the phone", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.cancel, handler: nil))
+        let alert = UIAlertController(title: "", message: "Esta lección ya está descargada", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
         
