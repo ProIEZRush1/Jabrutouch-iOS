@@ -191,6 +191,10 @@ class Strings {
     class var donate: String {
         return NSLocalizedString("donate", comment: "")
     }
+
+    class var newsFeed: String {
+        return NSLocalizedString("newsFeed", comment: "")
+    }
     
     class var logout: String {
         return NSLocalizedString("logout", comment: "")

@@ -20,6 +20,7 @@ enum MenuOption {
     case gemara
     case donationsCenter
     case donate
+    case newsFeed
     case signOut
 }
 
@@ -224,8 +225,10 @@ class MainMenuViewController: UIViewController, UITableViewDelegate, UITableView
             cell.label?.text = Strings.gemara
         case 5:
             cell.label?.text = Strings.donationsCenter
+//        case 6:
+//            cell.label?.text = Strings.donate
         case 6:
-            cell.label?.text = Strings.donate
+            cell.label?.text = Strings.newsFeed
         case 7:
             cell.label?.text = Strings.signOut
         default:
@@ -264,9 +267,13 @@ class MainMenuViewController: UIViewController, UITableViewDelegate, UITableView
             self.dismissMenu {
                 self.delegate?.optionSelected(option: .donationsCenter)
             }
+//        case 6:
+//            self.dismissMenu {
+//                self.delegate?.optionSelected(option: .donate)
+//            }
         case 6:
             self.dismissMenu {
-                self.delegate?.optionSelected(option: .donate)
+                self.delegate?.optionSelected(option: .newsFeed)
             }
         case 7:
             self.dismissMenu {

@@ -630,6 +630,10 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.performSegue(withIdentifier: "toMessages", sender: self)
     }
     
+    private func presentNewsFeed() {
+        self.performSegue(withIdentifier: "presentNewsFeed", sender: self)
+    }
+    
     //    func presentDonationWalkThrough() {
     //        self.performSegue(withIdentifier: "presentDonationWalkTrough", sender: self)
     //    }
@@ -787,6 +791,9 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
             let popupVC = segue.destination as? DonateViewController
             popupVC?.isSingelPayment = self.singlePayment
         }
+        else if segue.identifier == "presentNewsFeed" {
+            let popupVC = segue.destination as? NewsFeedViewController
+        }
         
     }
     
@@ -830,6 +837,10 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
             presentMessages()
         case .donationsCenter:
             self.pressEnable ? self.presentDonation() : self.noInternetAlert()
+        case .newsFeed:
+//            TODO: make segue for newsfeed
+            self.pressEnable ? self.presentNewsFeed() : self.noInternetAlert()
+            break
         default:
             presentInDevelopmentAlert()
         }
