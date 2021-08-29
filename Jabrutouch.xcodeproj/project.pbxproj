@@ -290,6 +290,7 @@
 		83CCB12123783F6100C86450 /* JTMasechetDownloadedGemaraLessons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB12023783F6100C86450 /* JTMasechetDownloadedGemaraLessons.swift */; };
 		83CCB1232379EEB700C86450 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB1222379EEB700C86450 /* EditProfileViewController.swift */; };
 		83CCB127237C8D6F00C86450 /* EditPasswordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB126237C8D6F00C86450 /* EditPasswordCell.swift */; };
+		D661DEFC26DBA0300041ABAE /* demo.png in Resources */ = {isa = PBXBuildFile; fileRef = D661DEFB26DBA02F0041ABAE /* demo.png */; };
 		D672138A26D7C036002C8DD2 /* NewsFeed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D672138926D7C035002C8DD2 /* NewsFeed.storyboard */; };
 		D672139326D7D76B002C8DD2 /* NewsFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D672139226D7D76B002C8DD2 /* NewsFeedViewController.swift */; };
 		D672139626D7DEDF002C8DD2 /* NewsItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D672139526D7DEDF002C8DD2 /* NewsItemCell.swift */; };
@@ -642,6 +643,7 @@
 		83CCB124237C0F9E00C86450 /* JTDonor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTDonor.swift; sourceTree = "<group>"; };
 		83CCB126237C8D6F00C86450 /* EditPasswordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPasswordCell.swift; sourceTree = "<group>"; };
 		C0F9377FF1E3DA5E9F901D68 /* Pods_Jabrutouch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jabrutouch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D661DEFB26DBA02F0041ABAE /* demo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = demo.png; path = ../../../../../../Downloads/demo.png; sourceTree = "<group>"; };
 		D672138926D7C035002C8DD2 /* NewsFeed.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewsFeed.storyboard; sourceTree = "<group>"; };
 		D672139226D7D76B002C8DD2 /* NewsFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedViewController.swift; sourceTree = "<group>"; };
 		D672139526D7DEDF002C8DD2 /* NewsItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsItemCell.swift; sourceTree = "<group>"; };
@@ -1091,6 +1093,7 @@
 			isa = PBXGroup;
 			children = (
 				60B807682500050A005CE86E /* splash.png */,
+				D661DEFB26DBA02F0041ABAE /* demo.png */,
 				608CC712241129F8002136A8 /* animation.json */,
 				83408E14241EBE3100DD9229 /* GRACIAS_BAJA_2.mov */,
 				21419CB1230D51F700145F1F /* Bridging Headers */,
@@ -1791,6 +1794,7 @@
 				21678D6222DF2CED007BC74C /* SF-Pro-Text-BlackItalic.otf in Resources */,
 				609F80B32490E7D9003D1E9A /* PopUps.storyboard in Resources */,
 				213196B722F6DDB000B0AF5F /* ActivityView.xib in Resources */,
+				D661DEFC26DBA0300041ABAE /* demo.png in Resources */,
 				21678D6322DF2CED007BC74C /* SF-Pro-Text-Bold.otf in Resources */,
 				21678D6422DF2CED007BC74C /* SF-Pro-Text-BoldItalic.otf in Resources */,
 				21678D6522DF2CED007BC74C /* SF-Pro-Text-Heavy.otf in Resources */,
