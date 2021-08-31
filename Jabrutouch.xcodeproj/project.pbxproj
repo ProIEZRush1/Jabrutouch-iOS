@@ -290,6 +290,9 @@
 		83CCB12123783F6100C86450 /* JTMasechetDownloadedGemaraLessons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB12023783F6100C86450 /* JTMasechetDownloadedGemaraLessons.swift */; };
 		83CCB1232379EEB700C86450 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB1222379EEB700C86450 /* EditProfileViewController.swift */; };
 		83CCB127237C8D6F00C86450 /* EditPasswordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB126237C8D6F00C86450 /* EditPasswordCell.swift */; };
+		D631F9C526DCDDBC00447B88 /* JTNewsFeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D631F9C426DCDDBC00447B88 /* JTNewsFeedItem.swift */; };
+		D631F9C826DCE0D100447B88 /* NewsFeedRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D631F9C726DCE0D100447B88 /* NewsFeedRepository.swift */; };
+		D631F9CB26DCFC2B00447B88 /* GetNewsFeedItemsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D631F9CA26DCFC2B00447B88 /* GetNewsFeedItemsResponse.swift */; };
 		D661DEFC26DBA0300041ABAE /* demo.png in Resources */ = {isa = PBXBuildFile; fileRef = D661DEFB26DBA02F0041ABAE /* demo.png */; };
 		D672138A26D7C036002C8DD2 /* NewsFeed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D672138926D7C035002C8DD2 /* NewsFeed.storyboard */; };
 		D672139326D7D76B002C8DD2 /* NewsFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D672139226D7D76B002C8DD2 /* NewsFeedViewController.swift */; };
@@ -643,6 +646,9 @@
 		83CCB124237C0F9E00C86450 /* JTDonor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTDonor.swift; sourceTree = "<group>"; };
 		83CCB126237C8D6F00C86450 /* EditPasswordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPasswordCell.swift; sourceTree = "<group>"; };
 		C0F9377FF1E3DA5E9F901D68 /* Pods_Jabrutouch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jabrutouch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D631F9C426DCDDBC00447B88 /* JTNewsFeedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTNewsFeedItem.swift; sourceTree = "<group>"; };
+		D631F9C726DCE0D100447B88 /* NewsFeedRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedRepository.swift; sourceTree = "<group>"; };
+		D631F9CA26DCFC2B00447B88 /* GetNewsFeedItemsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetNewsFeedItemsResponse.swift; sourceTree = "<group>"; };
 		D661DEFB26DBA02F0041ABAE /* demo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = demo.png; path = ../../../../../../Downloads/demo.png; sourceTree = "<group>"; };
 		D672138926D7C035002C8DD2 /* NewsFeed.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewsFeed.storyboard; sourceTree = "<group>"; };
 		D672139226D7D76B002C8DD2 /* NewsFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedViewController.swift; sourceTree = "<group>"; };
@@ -929,6 +935,7 @@
 				608378EF24927B0F005C60BE /* GetPopupResponse.swift */,
 				60EDAC8224D98062004FB3E6 /* CouponResponse.swift */,
 				60B8076A250119FE005CE86E /* PostCampingMailResponse.swift */,
+				D631F9CA26DCFC2B00447B88 /* GetNewsFeedItemsResponse.swift */,
 			);
 			path = "API Response models";
 			sourceTree = "<group>";
@@ -1299,6 +1306,7 @@
 				839E1E7B238588C100578C60 /* UserRepository.swift */,
 				833E6226239FB72A00EC93C7 /* MessagesRepository.swift */,
 				46C652F123CF6C5E00F6D0DD /* EditUserParametersRepository.swift */,
+				D631F9C726DCE0D100447B88 /* NewsFeedRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1360,6 +1368,7 @@
 				605630A924D715A6001C2BFA /* JTCouponRedemption .swift */,
 				60B8076224FFACB9005CE86E /* JTFiestaPopup.swift */,
 				60FF78B32507953B0099C72A /* JTAppVersion.swift */,
+				D631F9C426DCDDBC00447B88 /* JTNewsFeedItem.swift */,
 			);
 			path = "Domain Models";
 			sourceTree = "<group>";
@@ -2059,7 +2068,9 @@
 				5386914D2379E8B500CC95B5 /* GeneralInformationCell.swift in Sources */,
 				21678D7A22E085B1007BC74C /* MishnaViewController.swift in Sources */,
 				2126D6D823033D4D00CB501D /* JTMasechet.swift in Sources */,
+				D631F9C826DCE0D100447B88 /* NewsFeedRepository.swift in Sources */,
 				60717D5C24AE19790099DB1D /* JTLessonAnalitics.swift in Sources */,
+				D631F9CB26DCFC2B00447B88 /* GetNewsFeedItemsResponse.swift in Sources */,
 				83CCB12123783F6100C86450 /* JTMasechetDownloadedGemaraLessons.swift in Sources */,
 				833E6229239FB88C00EC93C7 /* GetMessagesResponse.swift in Sources */,
 				219B06FA230408F400A7EBBA /* ServerFieldError.swift in Sources */,
@@ -2117,6 +2128,7 @@
 				839597A824041901007B96EB /* JTDonated.swift in Sources */,
 				83605BA72382DCD200B93603 /* ImagePicker.swift in Sources */,
 				21419CB9230DD91100145F1F /* JTSederDownloadedMishnaLessons.swift in Sources */,
+				D631F9C526DCDDBC00447B88 /* JTNewsFeedItem.swift in Sources */,
 				46C652F423CF764F00F6D0DD /* JTUserProfileParameters.swift in Sources */,
 				FBB18FB222F8649A006886FD /* JTGemaraMasechetItem.swift in Sources */,
 			);
