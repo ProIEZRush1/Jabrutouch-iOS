@@ -22,30 +22,24 @@ struct GetNewsFeedItemsResponse: APIResponseModel {
         
         if let alldata = values["news_items"] as? [String:Any] {
             self.data = alldata
+//            print("news_items", self.data)
         } else {
             return nil
         }
         
-        if let allPostsCount = self.data["count"] as? Int {
-            self.allItemsCount = allPostsCount
-        } else {
-            return nil
-        }
+        self.allItemsCount = self.data["count"] as? Int
+//        print("count", self.allItemsCount!)
         
-        if let nextPage = self.data["next"] as? String {
-            self.nextPageLink = nextPage
-        } else {
-            return nil
-        }
+        self.nextPageLink = self.data["next"] as? String
+//        print("next", self.nextPageLink as Any)
         
-        if let previousPage = self.data["previous"] as? String {
-            self.previousPageLink = previousPage
-        } else {
-            return nil
-        }
+        self.previousPageLink = self.data["previous"] as? String
+//        print("previous", self.previousPageLink as Any)
         
         if let newsItems = self.data["results"] as? [[String:Any]]  {
+//            print("newsItems", newsItems)
             self.newsFeedItems = newsItems.compactMap{JTNewsFeedItem(values: $0)}
+//            print("newsFeedItems", self.newsFeedItems)
         } else {
             return nil
         }

@@ -7,32 +7,41 @@
 //
 
 import UIKit
+import AVFoundation
+import AVKit
 
 class NewsFeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    //============================================================
+    // MARK: - Properties
+    //============================================================
+    
+    var newsItemsList: [JTNewsFeedItem] = []
+    private var activityView: ActivityView?
+//    private var mediaPlayer: AVPlayer?
+//    private var mediaPlayerLayer: AVPlayerLayer?
+    
     //============================================================
     // MARK: - Outlets
     //============================================================
     
     @IBOutlet weak var backButton: UIButton!
-    
     @IBOutlet weak var tableView: UITableView!
-    
-    
     
     //============================================================
     // MARK: - LifeCycle
     //============================================================
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.showActivityView()
+        self.newsItemsList = NewsFeedRepository.shared.getAllNewsItems(offSet: nil)
+        self.removeActivityView()
+        
     }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return [.portrait]
     }
-    
 
     //============================================================
     // MARK: - Actions
@@ -41,27 +50,88 @@ class NewsFeedViewController: UIViewController, UITableViewDelegate, UITableView
         self.dismiss(animated: true, completion: nil)
     }
     
+    //========================================
+    // MARK: - Setup
+    //========================================
+    
+    private func setTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
     
     //============================================================
     // MARK: - TableView
     //============================================================
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        10
+        self.newsItemsList.count
+//        10
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) ->
     UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "newsItemCell", for: indexPath) as! NewsItemCell
-    
+
+        let post = self.newsItemsList[indexPath.row]
         
-//            NSLayoutConstraint.deactivate(cell.imageBox.constraints)
-        cell.imageBox.isHidden = [1,3,5].contains(indexPath.row)
-        cell.textContainer.isHidden = [4,6,8].contains(indexPath.row)
-      
+        cell.imageBox.isHidden = (post.mediaType != .image)
+        cell.audioView.isHidden = (post.mediaType != .audio)
+        cell.videoView.isHidden = (post.mediaType != .video)
+        
+        switch post.mediaType {
+        case .audio:
+            break
+        case .image:
+//            if let imageUrl:URL = URL(string: post.mediaLink!){
+//                // Start background thread so that image loading does not make app unresponsive
+//                  DispatchQueue.global().async {
+//
+//                    guard let imageData = try? Data(contentsOf: imageUrl) else {
+//                        cell.imageBox.isHidden = true
+//                        return
+//                    }
+//
+//                    // When from a background thread, UI needs to be updated on main_queue
+//                   DispatchQueue.main.async {
+//                        let image = UIImage(data: imageData)
+//                        cell.imageBox.image = image
+//                    cell.imageBox.isHidden = false
+//                    }
+//                }
+//            }
+            if let imageURL = URL(string: post.mediaLink ?? ""){
+                DispatchQueue.main.async {
+                    cell.imageBox.load(url: imageURL)
+                    cell.imageBox.isHidden = false
+                }
+                
+            } else {
+                cell.imageBox.isHidden = true
+            }
+            break
+        case .video:
+            if let videoURL = URL(string:post.mediaLink!){
+                cell.setVideo(videoURL: videoURL)
+            } else {
+                cell.videoView.isHidden = true
+            }
+            break
+        case .noMedia:
+            break
+        }
+        
+        if !(post.body?.isEmpty ?? true) {
+            cell.textBox.text = post.body
+            cell.textBox.isHidden = false
+        } else {
+            cell.textBox.isHidden = true
+        }
+        
         Utils.setViewShape(view: cell.newsItemView, viewCornerRadius: 18)
         let shadowOffset = CGSize(width: 0.0, height: 5)
         Utils.dropViewShadow(view: cell.newsItemView, shadowColor: Colors.shadowColor, shadowRadius: 15 , shadowOffset: shadowOffset)
         cell.newsItemView.layoutIfNeeded()
+        
+        
         
 
         return cell
@@ -72,6 +142,25 @@ class NewsFeedViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     
+    //============================================================
+    // MARK: - ActivityView
+    //============================================================
+    
+    private func showActivityView() {
+        DispatchQueue.main.async {
+            if self.activityView == nil {
+                self.activityView = Utils.showActivityView(inView: self.view, withFrame: self.view.frame, text: nil)
+            }
+        }
+    }
+    private func removeActivityView() {
+        DispatchQueue.main.async {
+            if let view = self.activityView {
+                Utils.removeActivityView(view)
+            }
+        }
+    }
+
     /*
     // MARK: - Navigation
 

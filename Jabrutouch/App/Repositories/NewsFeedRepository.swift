@@ -17,12 +17,12 @@ enum JTNewsFeedMediaType: String {
 
 class NewsFeedRepository{
     
-    static let numberOfItemsPerPage = 10
     //========================================
     // MARK: - Properties
     //========================================
     private var latestNewsItems: [JTNewsFeedItem] = []
-    private var newsItems: [[JTNewsFeedItem]] = []
+    private var newsItems: [JTNewsFeedItem] = []
+    private var totalItemsOnDatabase: Int = 0
     
     private static var repository: NewsFeedRepository?
     
@@ -39,27 +39,37 @@ class NewsFeedRepository{
     
     private init() {
         self.loadLatestNewsItems()
+        self.loadNewsItems(offSet: nil)
     }
     
-    func getNewsItems(page: Int = 0, completion: (Result<[JTNewsFeedItem], Error>)->Void){
-        if self.newsItems[page].count == NewsFeedRepository.numberOfItemsPerPage  { // This page is already loaded into memory and can be returned immediately.
-            completion(.success(self.newsItems[page]))
-            return
+    func getAllNewsItems(offSet: Int?)->[JTNewsFeedItem]{
+        if self.newsItems.isEmpty || offSet != nil {
+            // No pages saved yet, or need to get next page.
+            self.loadNewsItems(offSet: offSet)
+            return self.newsItems
         }
         else {
-            self.loadNewsItems(page: page, completion: completion)
+            // This page is already loaded into memory and can be returned immediately.
+            return self.newsItems
         }
     }
         
-    private func loadNewsItems(page: Int = 0, completion: (Result<[JTNewsFeedItem], Error>)->Void) {
+    private func loadNewsItems(offSet: Int?) {
 
         guard let authToken = UserDefaultsProvider.shared.currentUser?.token else {
             return
         }
         API.getNewsItemsAll(authToken: authToken) { (result) in
-            switch result{
+            switch result {
             case .success(let response):
-                self.latestNewsItems = response.newsFeedItems
+                self.newsItems += response.newsFeedItems
+                if let newCount = response.allItemsCount{
+                    if self.totalItemsOnDatabase != newCount {
+                        // MARK: Todo - refresh list since there are new posts.
+                    }
+                    self.totalItemsOnDatabase = newCount
+                }
+                print("loadNewsItems() success ", self.latestNewsItems)
             case .failure(let error):
                 print("news items error", error)
             }
@@ -76,13 +86,13 @@ class NewsFeedRepository{
             switch result{
             case .success(let response):
                 self.latestNewsItems = response.newsFeedItems
+                print("loadLatestNewsItems() latestNewsItems", self.latestNewsItems)
             case .failure(let error):
-                print("news items error", error)
+                print("loadLatestNewsItems() error", error)
             }
         }
 
     }
-        
 
     
     
