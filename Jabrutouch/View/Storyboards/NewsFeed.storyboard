@@ -66,31 +66,24 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="GUp-4L-DSb">
                                                             <rect key="frame" x="0.0" y="0.0" width="344" height="548"/>
                                                             <subviews>
-                                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0ou-Ib-OGA">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="344" height="193"/>
-                                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" secondItem="0ou-Ib-OGA" secondAttribute="height" multiplier="367:206" id="d2k-VG-Drg"/>
-                                                                    </constraints>
-                                                                </view>
-                                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ap2-zg-bML" userLabel="Video View">
-                                                                    <rect key="frame" x="0.0" y="193" width="344" height="193"/>
+                                                                <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ap2-zg-bML" userLabel="Media View">
+                                                                    <rect key="frame" x="0.0" y="-193" width="344" height="193"/>
                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" secondItem="ap2-zg-bML" secondAttribute="height" multiplier="367:206" id="ak8-A3-8Vo"/>
                                                                     </constraints>
                                                                 </view>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="demo.png" translatesAutoresizingMaskIntoConstraints="NO" id="qtl-LG-wT7">
-                                                                    <rect key="frame" x="0.0" y="386" width="344" height="162"/>
+                                                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qtl-LG-wT7">
+                                                                    <rect key="frame" x="0.0" y="-193" width="344" height="193"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" secondItem="qtl-LG-wT7" secondAttribute="height" multiplier="367:206" id="F9J-Lm-6cP"/>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ot-p1-0Ya">
-                                                                    <rect key="frame" x="0.0" y="548" width="344" height="0.0"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="344" height="505"/>
                                                                     <subviews>
                                                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LNw-YY-tc3">
-                                                                            <rect key="frame" x="15" y="15" width="314" height="0.0"/>
+                                                                            <rect key="frame" x="15" y="15" width="314" height="490"/>
                                                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                             <attributedString key="attributedText">
                                                                                 <fragment>
@@ -115,13 +108,13 @@
                                                                     </constraints>
                                                                 </view>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jRj-pm-7Zf" userLabel="footer view">
-                                                                    <rect key="frame" x="0.0" y="548" width="344" height="0.0"/>
+                                                                    <rect key="frame" x="0.0" y="505" width="344" height="43"/>
                                                                     <subviews>
                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="greyLogo" translatesAutoresizingMaskIntoConstraints="NO" id="D9H-3e-Kq0">
-                                                                            <rect key="frame" x="9" y="-12.5" width="31" height="25"/>
+                                                                            <rect key="frame" x="9" y="9" width="31" height="25"/>
                                                                         </imageView>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4 de JUNIO de 2021 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qrh-EQ-ocK">
-                                                                            <rect key="frame" x="93" y="-10" width="158.5" height="20.5"/>
+                                                                            <rect key="frame" x="93" y="11.5" width="158.5" height="20.5"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <color key="textColor" red="0.50980392156862742" green="0.50980392156862742" blue="0.50980392156862742" alpha="1" colorSpace="calibratedRGB"/>
                                                                             <nil key="highlightedColor"/>
@@ -168,12 +161,12 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                                         <connections>
-                                            <outlet property="audioView" destination="0ou-Ib-OGA" id="94V-qM-0ir"/>
                                             <outlet property="imageBox" destination="qtl-LG-wT7" id="TdP-ZB-4QL"/>
+                                            <outlet property="mediaView" destination="ap2-zg-bML" id="EzZ-Go-fkt"/>
                                             <outlet property="newsItemView" destination="wao-eT-EiY" id="rrc-NA-GEb"/>
+                                            <outlet property="publishDateLabel" destination="Qrh-EQ-ocK" id="Uyj-gh-0bl"/>
                                             <outlet property="textBox" destination="LNw-YY-tc3" id="XwS-Jj-bIg"/>
                                             <outlet property="textContainer" destination="8ot-p1-0Ya" id="HVu-EW-KkH"/>
-                                            <outlet property="videoView" destination="ap2-zg-bML" id="EzZ-Go-fkt"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -207,7 +200,6 @@
     </scenes>
     <resources>
         <image name="LeftArrow" width="27.5" height="19.5"/>
-        <image name="demo.png" width="367" height="206"/>
         <image name="greyLogo" width="31" height="25"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

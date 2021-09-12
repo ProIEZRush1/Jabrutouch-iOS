@@ -15,46 +15,40 @@ class NewsItemCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-    
+    var newsItem: JTNewsFeedItem?
     var mediaPlayer: AVPlayer?
     var playerController: AVPlayerViewController?
     
     @IBOutlet weak var newsItemView: UIView!
     
-    @IBOutlet weak var audioView: UIView!
-    @IBOutlet weak var videoView: UIView!
+    @IBOutlet weak var mediaView: UIView!
     @IBOutlet weak var imageBox: UIImageView!
     
     @IBOutlet weak var textContainer: UIView!
     @IBOutlet weak var textBox: UITextView!
+    @IBOutlet weak var publishDateLabel: UILabel!
     
 
-    func setVideo(videoURL: URL){
-            
-//                let mediaPlayer = AVPlayer(url: url)
-
-//                let mediaPlayerLayer = AVPlayerLayer(player: mediaPlayer)
+//    func setMediaPlayer(mediaURL: URL){
+//        self.playerController = AVPlayerViewController()
+//        self.mediaPlayer = AVPlayer(url: mediaURL)
+//        self.playerController?.player = self.mediaPlayer
+//        self.playerController?.showsPlaybackControls = true
+//        
+//        switch self.newsItem?.mediaType {
+//        case .audio:
+//            self.playerController?.view.frame = self.audioView.bounds
+//            self.audioView.addSubview(self.playerController!.view)
+//            Utils.setViewShape(view: self.audioView, viewCornerRadius: 18, maskedCorners: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
+//        case .video:
+//            self.playerController?.view.frame = self.mediaView.bounds
+//            self.mediaView.addSubview(self.playerController!.view)
+//            Utils.setViewShape(view: self.mediaView, viewCornerRadius: 18, maskedCorners: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
+//        default:
+//            break
+//        }
 //
-//                mediaPlayerLayer.frame = cell.videoView.bounds
-//                cell.videoView.layer.addSublayer(mediaPlayerLayer)
-//                mediaPlayer.play()
-        
-//        let playerViewController = AVPlayerViewController()
-//        playerViewController.player = player
-//        playerViewController.view.frame = cell.videoView.bounds
-//        self.addChild(playerViewController)
-
-        self.playerController = AVPlayerViewController()
-        self.mediaPlayer = AVPlayer(url: videoURL)
-        self.playerController?.player = self.mediaPlayer
-        self.playerController?.showsPlaybackControls = true
-        self.playerController?.view.frame = self.videoView.bounds
-        self.videoView.addSubview(self.playerController!.view)
-        
-
-        Utils.setViewShape(view: self.videoView, viewCornerRadius: 18, maskedCorners: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
-
-    }
+//    }
     
     override func prepareForReuse() {
         //this way once user scrolls player will pause

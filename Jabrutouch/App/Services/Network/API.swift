@@ -338,8 +338,8 @@ class API {
         }
     }
     
-    class func getNewsItemsAll(authToken: String, completionHandler:@escaping (_ response: APIResult<GetNewsFeedItemsResponse>)->Void) {
-        guard let request = HttpRequestsFactory.createGetNewsFeedAll(token: authToken) else {
+    class func getNewsItemsAll(authToken: String, offSet:String?, completionHandler:@escaping (_ response: APIResult<GetNewsFeedItemsResponse>)->Void) {
+        guard let request = HttpRequestsFactory.createGetNewsFeedAll(token: authToken, offSet: offSet) else {
             completionHandler(APIResult.failure(.unableToCreateRequest))
             return
         }
