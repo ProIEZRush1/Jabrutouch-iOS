@@ -29,6 +29,7 @@ class NewsFeedViewController: UIViewController, UITableViewDelegate, UITableView
     //============================================================
     // MARK: - LifeCycle
     //============================================================
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.showActivityView()
@@ -41,12 +42,7 @@ class NewsFeedViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
         
-        do {
-            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
-           }
-           catch {
-               print("Setting category to AVAudioSessionCategoryPlayback failed.")
-           }
+        self.setPlayback()
         
     }
     
@@ -58,6 +54,7 @@ class NewsFeedViewController: UIViewController, UITableViewDelegate, UITableView
     // MARK: - Actions
     //============================================================
     @IBAction func backButtonPressed(_ sender: Any) {
+        self.removeSavedImagesFromLoader()
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -69,6 +66,16 @@ class NewsFeedViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.delegate = self
         tableView.dataSource = self
     }
+    
+    private func setPlayback() {
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
+        }
+        catch {
+            print("Setting category to AVAudioSessionCategoryPlayback failed.")
+        }
+    }
+
     
     //============================================================
     // MARK: - TableView
@@ -98,14 +105,16 @@ class NewsFeedViewController: UIViewController, UITableViewDelegate, UITableView
         
         switch post.mediaType {
         case .image:
-
+            
+//            let imageActivity = Utils.showActivityView(inView: cell.imageBox, withFrame: cell.imageBox.frame, text: nil)
             if let imageURL = URL(string: post.mediaLink ?? ""){
-                DispatchQueue.main.async {
-                    let imageActivity = Utils.showActivityView(inView: cell.imageBox, withFrame: self.view.frame, text: nil)
-                    cell.imageBox.load(url: imageURL)
-                    cell.imageBox.isHidden = false
-                    Utils.removeActivityView(imageActivity)
-                }
+                cell.imageBox.loadImage(at: imageURL)
+//                DispatchQueue.main.async {
+//
+//                    cell.imageBox.load(url: imageURL)
+//                    cell.imageBox.isHidden = false
+//                    Utils.removeActivityView(imageActivity)
+//                }
                 
             } else {
                 cell.imageBox.isHidden = true
@@ -147,9 +156,7 @@ class NewsFeedViewController: UIViewController, UITableViewDelegate, UITableView
         let shadowOffset = CGSize(width: 0.0, height: 5)
         Utils.dropViewShadow(view: cell.newsItemView, shadowColor: Colors.shadowColor, shadowRadius: 15 , shadowOffset: shadowOffset)
         cell.newsItemView.layoutIfNeeded()
-        
-        
-        
+                
 
         return cell
     }
@@ -198,15 +205,17 @@ class NewsFeedViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+ 
+    //============================================================
+    // MARK: - Clean up time ;-)
+    //============================================================
+    
+    func removeSavedImagesFromLoader(){
+        for post in self.newsItemsList {
+            if post.mediaType == .image , let url = URL(string: post.mediaLink ?? ""){
+                UIImageLoader.loader.removeSavedImage(url: url)
+            }
+        }
     }
-    */
 
 }

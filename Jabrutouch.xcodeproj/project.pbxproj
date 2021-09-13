@@ -297,6 +297,7 @@
 		D672138A26D7C036002C8DD2 /* NewsFeed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D672138926D7C035002C8DD2 /* NewsFeed.storyboard */; };
 		D672139326D7D76B002C8DD2 /* NewsFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D672139226D7D76B002C8DD2 /* NewsFeedViewController.swift */; };
 		D672139626D7DEDF002C8DD2 /* NewsItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D672139526D7DEDF002C8DD2 /* NewsItemCell.swift */; };
+		D6E7A26426EF627E0057415E /* UIImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E7A26326EF627E0057415E /* UIImageLoader.swift */; };
 		DD4E3A8024056BF400A889BE /* SingleDonationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4E3A7F24056BF400A889BE /* SingleDonationViewController.swift */; };
 		DD51946724069F760085E2A8 /* SubscribeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD51946624069F760085E2A8 /* SubscribeViewController.swift */; };
 		DD51CDEC23F185D30063167E /* AudioMessagesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD51CDEB23F185D30063167E /* AudioMessagesManager.swift */; };
@@ -653,6 +654,7 @@
 		D672138926D7C035002C8DD2 /* NewsFeed.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewsFeed.storyboard; sourceTree = "<group>"; };
 		D672139226D7D76B002C8DD2 /* NewsFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedViewController.swift; sourceTree = "<group>"; };
 		D672139526D7DEDF002C8DD2 /* NewsItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsItemCell.swift; sourceTree = "<group>"; };
+		D6E7A26326EF627E0057415E /* UIImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageLoader.swift; sourceTree = "<group>"; };
 		D6E97769262C3F5B001EDD17 /* AWSS3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSS3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD4E3A7F24056BF400A889BE /* SingleDonationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleDonationViewController.swift; sourceTree = "<group>"; };
 		DD51946624069F760085E2A8 /* SubscribeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeViewController.swift; sourceTree = "<group>"; };
@@ -1259,6 +1261,7 @@
 				219BFF3722E5B72000ABBEE2 /* LocalizationManager.swift */,
 				213016B62321940F00B9DD2B /* AnalyticsManager.swift */,
 				83137F0423F04C5F003B9DA6 /* DonationManager.swift */,
+				D6E7A26326EF627E0057415E /* UIImageLoader.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -2079,6 +2082,7 @@
 				604A893024CF100A00212B44 /* SecondChildVC.swift in Sources */,
 				4628E0E923245BF600D963E6 /* AboutViewController.swift in Sources */,
 				83A7A0C323E205B40041BE28 /* iCarousel.m in Sources */,
+				D6E7A26426EF627E0057415E /* UIImageLoader.swift in Sources */,
 				8359193F23A795BD00F0B4D8 /* CoreDataManager.swift in Sources */,
 				21678D7622E08565007BC74C /* DownloadsViewController.swift in Sources */,
 				6087D86924C5B96D00EF6902 /* JTTourBarPageInddicator.swift in Sources */,

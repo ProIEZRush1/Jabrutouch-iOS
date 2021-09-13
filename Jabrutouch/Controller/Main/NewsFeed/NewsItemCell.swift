@@ -20,41 +20,22 @@ class NewsItemCell: UITableViewCell {
     var playerController: AVPlayerViewController?
     
     @IBOutlet weak var newsItemView: UIView!
-    
     @IBOutlet weak var mediaView: UIView!
     @IBOutlet weak var imageBox: UIImageView!
-    
     @IBOutlet weak var textContainer: UIView!
     @IBOutlet weak var textBox: UITextView!
     @IBOutlet weak var publishDateLabel: UILabel!
-    
 
-//    func setMediaPlayer(mediaURL: URL){
-//        self.playerController = AVPlayerViewController()
-//        self.mediaPlayer = AVPlayer(url: mediaURL)
-//        self.playerController?.player = self.mediaPlayer
-//        self.playerController?.showsPlaybackControls = true
-//        
-//        switch self.newsItem?.mediaType {
-//        case .audio:
-//            self.playerController?.view.frame = self.audioView.bounds
-//            self.audioView.addSubview(self.playerController!.view)
-//            Utils.setViewShape(view: self.audioView, viewCornerRadius: 18, maskedCorners: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
-//        case .video:
-//            self.playerController?.view.frame = self.mediaView.bounds
-//            self.mediaView.addSubview(self.playerController!.view)
-//            Utils.setViewShape(view: self.mediaView, viewCornerRadius: 18, maskedCorners: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
-//        default:
-//            break
-//        }
-//
-//    }
     
     override func prepareForReuse() {
         //this way once user scrolls player will pause
+        super.prepareForReuse()
         self.playerController?.player?.pause()
         self.mediaPlayer = nil
         self.playerController?.player = nil
+        self.imageBox.image = nil
+        self.imageBox.cancelImageLoad()
+
     }
 }
 
