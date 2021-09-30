@@ -63,27 +63,79 @@
                                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wao-eT-EiY" userLabel="News Item View">
                                                     <rect key="frame" x="35" y="26" width="344" height="548"/>
                                                     <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="GUp-4L-DSb">
+                                                        <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="GUp-4L-DSb">
                                                             <rect key="frame" x="0.0" y="0.0" width="344" height="548"/>
                                                             <subviews>
-                                                                <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ap2-zg-bML" userLabel="Media View">
-                                                                    <rect key="frame" x="0.0" y="-193" width="344" height="193"/>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tLs-Ig-Lps">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="344" height="50"/>
+                                                                    <subviews>
+                                                                        <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5da-QD-Wrl">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="344" height="50"/>
+                                                                            <subviews>
+                                                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mYC-x1-KP4" userLabel="spacer View">
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="20" height="50"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="width" constant="20" id="Dpc-bd-vs6"/>
+                                                                                    </constraints>
+                                                                                </view>
+                                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rOc-Rg-fKQ">
+                                                                                    <rect key="frame" x="20" y="0.0" width="40" height="50"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="width" constant="40" id="0Ey-Nt-xPe"/>
+                                                                                    </constraints>
+                                                                                    <state key="normal" image="play1"/>
+                                                                                    <connections>
+                                                                                        <action selector="playPausePressed:" destination="9LK-xW-K1c" eventType="touchUpInside" id="qDO-ws-vNN"/>
+                                                                                    </connections>
+                                                                                </button>
+                                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eXK-WR-02d" userLabel="spacer View">
+                                                                                    <rect key="frame" x="60" y="0.0" width="20" height="50"/>
+                                                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="width" constant="20" id="FQM-ph-dgF"/>
+                                                                                    </constraints>
+                                                                                </view>
+                                                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="f0s-gr-S6N">
+                                                                                    <rect key="frame" x="78" y="0.0" width="248" height="51"/>
+                                                                                </slider>
+                                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7gT-kg-7ve" userLabel="spacer View">
+                                                                                    <rect key="frame" x="324" y="0.0" width="20" height="50"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="width" constant="20" id="gFE-lG-RQv"/>
+                                                                                    </constraints>
+                                                                                </view>
+                                                                            </subviews>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="height" constant="50" id="iKn-QU-BPY"/>
+                                                                            </constraints>
+                                                                        </stackView>
+                                                                    </subviews>
+                                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                    <constraints>
+                                                                        <constraint firstItem="5da-QD-Wrl" firstAttribute="leading" secondItem="tLs-Ig-Lps" secondAttribute="leading" id="5uC-D0-C9w"/>
+                                                                        <constraint firstAttribute="bottom" secondItem="5da-QD-Wrl" secondAttribute="bottom" id="817-On-m8P"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="5da-QD-Wrl" secondAttribute="trailing" id="d1B-8x-Cbs"/>
+                                                                        <constraint firstItem="5da-QD-Wrl" firstAttribute="top" secondItem="tLs-Ig-Lps" secondAttribute="top" id="wAh-kf-7vX"/>
+                                                                    </constraints>
+                                                                </view>
+                                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ap2-zg-bML" userLabel="Media View">
+                                                                    <rect key="frame" x="0.0" y="50" width="344" height="193"/>
                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" secondItem="ap2-zg-bML" secondAttribute="height" multiplier="367:206" id="ak8-A3-8Vo"/>
                                                                     </constraints>
                                                                 </view>
                                                                 <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qtl-LG-wT7">
-                                                                    <rect key="frame" x="0.0" y="-193" width="344" height="193"/>
+                                                                    <rect key="frame" x="0.0" y="243" width="344" height="193"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" secondItem="qtl-LG-wT7" secondAttribute="height" multiplier="367:206" id="F9J-Lm-6cP"/>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ot-p1-0Ya">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="344" height="505"/>
+                                                                    <rect key="frame" x="0.0" y="243" width="344" height="262"/>
                                                                     <subviews>
                                                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LNw-YY-tc3">
-                                                                            <rect key="frame" x="15" y="15" width="314" height="490"/>
+                                                                            <rect key="frame" x="15" y="15" width="314" height="247"/>
                                                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                             <attributedString key="attributedText">
                                                                                 <fragment>
@@ -161,12 +213,15 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                                         <connections>
+                                            <outlet property="audioSlider" destination="f0s-gr-S6N" id="4AP-BF-rLb"/>
+                                            <outlet property="audioView" destination="tLs-Ig-Lps" id="dKK-H8-MlZ"/>
                                             <outlet property="imageBox" destination="qtl-LG-wT7" id="TdP-ZB-4QL"/>
-                                            <outlet property="mediaView" destination="ap2-zg-bML" id="EzZ-Go-fkt"/>
                                             <outlet property="newsItemView" destination="wao-eT-EiY" id="rrc-NA-GEb"/>
+                                            <outlet property="playPauseButton" destination="rOc-Rg-fKQ" id="kCg-Td-NNt"/>
                                             <outlet property="publishDateLabel" destination="Qrh-EQ-ocK" id="Uyj-gh-0bl"/>
                                             <outlet property="textBox" destination="LNw-YY-tc3" id="XwS-Jj-bIg"/>
                                             <outlet property="textContainer" destination="8ot-p1-0Ya" id="HVu-EW-KkH"/>
+                                            <outlet property="videoView" destination="ap2-zg-bML" id="EzZ-Go-fkt"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -201,6 +256,7 @@
     <resources>
         <image name="LeftArrow" width="27.5" height="19.5"/>
         <image name="greyLogo" width="31" height="25"/>
+        <image name="play1" width="18" height="20"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

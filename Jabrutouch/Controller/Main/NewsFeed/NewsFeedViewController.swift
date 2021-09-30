@@ -82,7 +82,6 @@ class NewsFeedViewController: UIViewController, UITableViewDelegate, UITableView
     //============================================================
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         self.newsItemsList.count
-//        10
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) ->
@@ -93,7 +92,8 @@ class NewsFeedViewController: UIViewController, UITableViewDelegate, UITableView
         cell.newsItem = post
         
         cell.imageBox.isHidden = (post.mediaType != .image)
-        cell.mediaView.isHidden = (post.mediaType != .video && post.mediaType != .audio)
+        cell.videoView.isHidden = (post.mediaType != .video)
+        cell.audioView.isHidden = (post.mediaType != .audio)
         
         if post.body?.isEmpty ?? true {
             cell.textBox.text = ""
@@ -120,23 +120,27 @@ class NewsFeedViewController: UIViewController, UITableViewDelegate, UITableView
                 cell.imageBox.isHidden = true
             }
             break
-        case .audio, .video:
-            let mediaActivity = Utils.showActivityView(inView: cell.mediaView, withFrame: cell.mediaView.frame, text: nil)
-            if let mediaURL = URL(string:post.mediaLink!){
+            
+        case .video:
+            let mediaActivity = Utils.showActivityView(inView: cell.videoView, withFrame: cell.videoView.frame, text: nil)
+            if let videoURL = URL(string:post.mediaLink!){
+
+                cell.videoPlayer = AVPlayer(url: videoURL)
                 cell.playerController = AVPlayerViewController()
-                cell.mediaPlayer = AVPlayer(url: mediaURL)
-                cell.playerController?.player = cell.mediaPlayer
+                cell.playerController?.player = cell.videoPlayer
                 cell.playerController?.showsPlaybackControls = true
+                cell.playerController?.view.frame = cell.videoView.bounds
+                cell.videoView.addSubview(cell.playerController!.view)
                 
-                cell.playerController?.view.frame = cell.mediaView.bounds
-                cell.mediaView.addSubview(cell.playerController!.view)
-                Utils.setViewShape(view: cell.mediaView, viewCornerRadius: 18, maskedCorners: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
-                
+                Utils.setViewShape(view: cell.videoView, viewCornerRadius: 18, maskedCorners: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
             } else {
-                cell.mediaView.isHidden = true
+                cell.videoView.isHidden = true
             }
             Utils.removeActivityView(mediaActivity)
             break
+            
+        case .audio:
+                Utils.setViewShape(view: cell.audioView, viewCornerRadius: 18, maskedCorners: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
         case .noMedia:
             break
         }
