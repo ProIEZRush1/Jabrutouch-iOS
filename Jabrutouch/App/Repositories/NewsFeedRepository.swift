@@ -22,7 +22,7 @@ class NewsFeedRepository{
     //========================================
     
     // TODO: save latest in main screen class.
-    private var latestNewsItems: [JTNewsFeedItem] = []
+//    private var latestNewsItems: [JTNewsFeedItem] = []
     private static var repository: NewsFeedRepository?
     
     var totalPostsInDataBase: Int = 0
@@ -39,7 +39,7 @@ class NewsFeedRepository{
     //========================================
     
     private init() {
-        self.loadLatestNewsItems()
+//        self.loadLatestNewsItems()
     }
          
     func getAllNewsItems(offSet: String?, completionHandler: @escaping(_ response: [JTNewsFeedItem])->Void ){
@@ -59,7 +59,23 @@ class NewsFeedRepository{
 
     }
     
-    private func loadLatestNewsItems() {
+//    private func loadLatestNewsItems() {
+//
+//        guard let authToken = UserDefaultsProvider.shared.currentUser?.token else {
+//            return
+//        }
+//        API.getNewsItemsLatest(authToken: authToken) { (result: APIResult<GetNewsFeedItemsResponse>) in
+//            switch result{
+//            case .success(let response):
+//                self.latestNewsItems = response.newsFeedItems
+//                print("loadLatestNewsItems() latestNewsItems", self.latestNewsItems)
+//            case .failure(let error):
+//                print("loadLatestNewsItems() error", error)
+//            }
+//        }
+//    }
+
+    func getLatestNewsItems(completionHandler: @escaping(_ response: [JTNewsFeedItem])->Void ){
 
         guard let authToken = UserDefaultsProvider.shared.currentUser?.token else {
             return
@@ -67,16 +83,14 @@ class NewsFeedRepository{
         API.getNewsItemsLatest(authToken: authToken) { (result: APIResult<GetNewsFeedItemsResponse>) in
             switch result{
             case .success(let response):
-                self.latestNewsItems = response.newsFeedItems
-                print("loadLatestNewsItems() latestNewsItems", self.latestNewsItems)
+                completionHandler(response.newsFeedItems)
+                print("getLatestNewsItems() latestNewsItems", response.newsFeedItems)
             case .failure(let error):
-                print("loadLatestNewsItems() error", error)
+                print("getLatestNewsItems() error", error)
             }
         }
 
     }
-
-    
     
     
     

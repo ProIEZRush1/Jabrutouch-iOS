@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AVFoundation
+import AVKit
 
 enum MainModal {
     case downloads
@@ -22,7 +24,7 @@ protocol MainModalDelegate : class {
     func presentAllMishna()
 }
 
-class MainViewController: UIViewController, MainModalDelegate, UICollectionViewDataSource {
+class MainViewController: UIViewController, MainModalDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource {
     
     //========================================
     // MARK: - Properties
@@ -33,7 +35,6 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     private var gemaraHistory: [JTGemaraLessonRecord] = []
     private var mishnaHistory: [JTMishnaLessonRecord] = []
     private var lessonWatched: [JTLessonWatched] = []
-    private var todaysDafToHeaderConstraint: NSLayoutConstraint?
     
     private var contentAvailable: Bool {
         return self.gemaraHistory.count > 0 || self.mishnaHistory.count > 0
@@ -44,6 +45,8 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     var firstOnScreen = true
     var singlePayment = false
     var pressEnable = appDelegate.isInternetConenect
+    
+    var latestNewsItemsList: [JTNewsFeedItem] = []
     
     //========================================
     // MARK: - @IBOutlets
@@ -64,21 +67,29 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var welcomeImage: UIImageView!
     
+    // Scroll View
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var scrollViewToWelcomeImageConstraint: NSLayoutConstraint!
+    @IBOutlet weak var scrollViewToHeaderConstraint: NSLayoutConstraint!
+    
     // Todays Daf Yomi
     @IBOutlet weak private var todaysDafProgressBar: JBProgressBar!
     @IBOutlet weak private var todaysDafOuterContainer: UIView!
-    @IBOutlet weak private var todaysDafContainer: UIView!
+    @IBOutlet weak private var todaysDafInnerContainer: UIView!
     @IBOutlet weak private var todaysDafTitleLabel: UILabel!
     @IBOutlet weak private var todaysDafLabel: UILabel!
     @IBOutlet weak private var todaysDateLabel: UILabel!
     @IBOutlet weak var todaysDafAudio: UIButton!
     @IBOutlet weak var todaysDafVideo: UIButton!
-    @IBOutlet weak var todaysDafToWelcomeConstraint: NSLayoutConstraint!
     @IBOutlet weak var shadaysDafShadowView: UIView!
     
     // Recents
     @IBOutlet weak var recentsGemara: UILabel!
     @IBOutlet weak var recentsMishna: UILabel!
+    
+    // TableView
+    @IBOutlet weak var latestNewsTableView: UITableView!
+    
     // Tab bar buttons
     @IBOutlet weak private var downloadsImageView: UIImageView!
     @IBOutlet weak private var downloadsLabel: UILabel!
@@ -115,11 +126,12 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.setStrings()
         self.roundCorners()
         self.setShadows()
-        self.setConstraints()
         UserDefaultsProvider.shared.notFirstTime = true
         self.setButtonsBackground()
         CoreDataManager.shared.delegate = self
         self.user = UserRepository.shared.getCurrentUser()
+        self.setNewsTableViewDelegate()
+        self.setAudioSession()
         
     }
     
@@ -137,10 +149,18 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         let nc = NotificationCenter.default
         nc.addObserver(self, selector: #selector(internetConnect(_:)), name: NSNotification.Name(rawValue: "InternetConnect"), object: nil)
         nc.addObserver(self, selector: #selector(internetNotConnect(_:)), name: NSNotification.Name(rawValue: "InternetNotConnect"), object: nil)
+        NewsFeedRepository.shared.getLatestNewsItems() { latestNewsItemsResponse in
+            self.latestNewsItemsList = latestNewsItemsResponse
+            DispatchQueue.main.async {
+                self.latestNewsTableView.reloadData()
+            }
+        }
+
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self)
+        // MARK: TODO - shut news audio when goes into background
     }
     
     @objc func internetConnect(_ notification:Notification) {
@@ -220,7 +240,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     }
     
     private func roundCorners() {
-        self.todaysDafContainer.layer.cornerRadius = 15
+        self.todaysDafInnerContainer.layer.cornerRadius = 15
         self.shadaysDafShadowView.layer.cornerRadius = 15
     }
     
@@ -234,22 +254,20 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         welcomeImage.isHidden = self.contentAvailable
         recentsGemara.isHidden = !self.contentAvailable
         recentsMishna.isHidden = !self.contentAvailable
-        
+                
         if !self.contentAvailable {
-            todaysDafToHeaderConstraint?.isActive = false
-            todaysDafToWelcomeConstraint?.isActive = true
+            scrollViewToWelcomeImageConstraint?.isActive = true
+            scrollViewToHeaderConstraint?.isActive = false
         } else {
-            todaysDafToWelcomeConstraint?.isActive = false
-            todaysDafToHeaderConstraint?.isActive = true
+
+            scrollViewToWelcomeImageConstraint?.isActive = false
+            scrollViewToHeaderConstraint?.isActive = true
+            
         }
         
         self.view.layoutIfNeeded()
     }
-    
-    private func setConstraints() {
-        todaysDafToHeaderConstraint = todaysDafContainer.topAnchor.constraint(equalTo: headerContainer.bottomAnchor, constant: 55)
-    }
-    
+        
     private func setContent() {
         self.gemaraHistory = ContentRepository.shared.lastWatchedGemaraLessons
         self.mishnaHistory = ContentRepository.shared.lastWatchedMishnaLessons
@@ -285,6 +303,21 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         }
         
     }
+    
+    func setNewsTableViewDelegate() {
+        self.latestNewsTableView.delegate = self
+        self.latestNewsTableView.dataSource = self
+    }
+    
+    private func setAudioSession() {
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
+        }
+        catch {
+            print("Setting category to AVAudioSessionCategoryPlayback failed.")
+        }
+    }
+    
     //========================================
     // MARK: - Collection Views
     //========================================
@@ -408,6 +441,89 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
             self.presentDonationsViewController()
         }
         
+    }
+    
+    //============================================================
+    // MARK: - TableView
+    //============================================================
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        self.latestNewsItemsList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) ->
+    UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "newsItemCell", for: indexPath) as! NewsItemCell
+
+        let post = self.latestNewsItemsList[indexPath.row]
+        cell.newsItem = post
+        
+        cell.imageBox.isHidden = (post.mediaType != .image)
+        cell.videoView.isHidden = (post.mediaType != .video)
+        cell.audioView.isHidden = (post.mediaType != .audio)
+        
+        if post.body?.isEmpty ?? true {
+            cell.textBox.text = ""
+            cell.textBox.isHidden = true
+        } else {
+            cell.textBox.text = post.body
+            cell.textBox.isHidden = false
+        }
+        
+        switch post.mediaType {
+        case .image:
+            if let imageURL = URL(string: post.mediaLink ?? ""){
+                cell.imageBox.loadImage(at: imageURL)
+            } else {
+                cell.imageBox.isHidden = true
+            }
+            break
+            
+        case .video:
+            let mediaActivity = Utils.showActivityView(inView: cell.videoView, withFrame: cell.videoView.frame, text: nil)
+            if let videoURL = URL(string:post.mediaLink!){
+
+                cell.videoPlayer = AVPlayer(url: videoURL)
+                cell.playerController = AVPlayerViewController()
+                cell.playerController?.player = cell.videoPlayer
+                cell.playerController?.showsPlaybackControls = true
+                cell.playerController?.view.frame = cell.videoView.bounds
+                cell.videoView.addSubview(cell.playerController!.view)
+                
+                Utils.setViewShape(view: cell.videoView, viewCornerRadius: 18, maskedCorners: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
+            } else {
+                cell.videoView.isHidden = true
+            }
+            Utils.removeActivityView(mediaActivity)
+            break
+            
+        case .audio:
+                Utils.setViewShape(view: cell.audioView, viewCornerRadius: 18, maskedCorners: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
+        case .noMedia:
+            break
+        }
+        
+        // set publish date
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "es_ES")
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        if let pubDate = dateFormatter.date(from: post.publishDate!){
+            dateFormatter.dateStyle = .long
+            cell.publishDateLabel.text = dateFormatter.string(from: pubDate)
+            
+        }
+        
+        // round cell view and shadows
+        Utils.setViewShape(view: cell.newsItemView, viewCornerRadius: 18)
+        let shadowOffset = CGSize(width: 0.0, height: 5)
+        Utils.dropViewShadow(view: cell.newsItemView, shadowColor: Colors.shadowColor, shadowRadius: 15 , shadowOffset: shadowOffset)
+        cell.newsItemView.layoutIfNeeded()
+                
+
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 500
     }
     
     //========================================

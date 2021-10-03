@@ -42,7 +42,7 @@ class NewsFeedViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
         
-        self.setPlayback()
+        self.setAudioSession()
         
     }
     
@@ -67,7 +67,7 @@ class NewsFeedViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.dataSource = self
     }
     
-    private func setPlayback() {
+    private func setAudioSession() {
         do {
             try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
         }
