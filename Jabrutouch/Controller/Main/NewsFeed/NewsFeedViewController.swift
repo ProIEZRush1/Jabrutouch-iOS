@@ -106,16 +106,9 @@ class NewsFeedViewController: UIViewController, UITableViewDelegate, UITableView
         switch post.mediaType {
         case .image:
             
-//            let imageActivity = Utils.showActivityView(inView: cell.imageBox, withFrame: cell.imageBox.frame, text: nil)
             if let imageURL = URL(string: post.mediaLink ?? ""){
                 cell.imageBox.loadImage(at: imageURL)
-//                DispatchQueue.main.async {
-//
-//                    cell.imageBox.load(url: imageURL)
-//                    cell.imageBox.isHidden = false
-//                    Utils.removeActivityView(imageActivity)
-//                }
-                
+                Utils.setViewShape(view: cell.imageBox, viewCornerRadius: 18, maskedCorners: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
             } else {
                 cell.imageBox.isHidden = true
             }

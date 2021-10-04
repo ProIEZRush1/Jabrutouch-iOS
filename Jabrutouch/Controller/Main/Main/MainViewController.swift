@@ -89,6 +89,10 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     
     // TableView
     @IBOutlet weak var latestNewsTableView: UITableView!
+    @IBOutlet weak var latestNewsTableViewHeightConstraint: NSLayoutConstraint!
+    
+    // More News Button
+    @IBOutlet weak var viewMoreNewsButton: UIButton!
     
     // Tab bar buttons
     @IBOutlet weak private var downloadsImageView: UIImageView!
@@ -121,6 +125,8 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         return [.portrait]
     }
     
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setStrings()
@@ -132,6 +138,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.user = UserRepository.shared.getCurrentUser()
         self.setNewsTableViewDelegate()
         self.setAudioSession()
+        self.getLatestNewsItems()
         
     }
     
@@ -149,12 +156,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         let nc = NotificationCenter.default
         nc.addObserver(self, selector: #selector(internetConnect(_:)), name: NSNotification.Name(rawValue: "InternetConnect"), object: nil)
         nc.addObserver(self, selector: #selector(internetNotConnect(_:)), name: NSNotification.Name(rawValue: "InternetNotConnect"), object: nil)
-        NewsFeedRepository.shared.getLatestNewsItems() { latestNewsItemsResponse in
-            self.latestNewsItemsList = latestNewsItemsResponse
-            DispatchQueue.main.async {
-                self.latestNewsTableView.reloadData()
-            }
-        }
+ 
 
     }
     
@@ -307,6 +309,19 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     func setNewsTableViewDelegate() {
         self.latestNewsTableView.delegate = self
         self.latestNewsTableView.dataSource = self
+    }
+    
+    fileprivate func getLatestNewsItems() {
+        NewsFeedRepository.shared.getLatestNewsItems() { latestNewsItemsResponse in
+            self.latestNewsItemsList = latestNewsItemsResponse
+            DispatchQueue.main.async {
+                ///since tableView is inside a scrollview, and we only want the scrollview to scroll, we set the tableview to be NOT scrollable, and after reloadData() set tableView height to contentSize height
+                self.latestNewsTableView.reloadData()
+                self.view.layoutIfNeeded()
+                self.latestNewsTableViewHeightConstraint.constant = self.latestNewsTableView.contentSize.height
+                self.view.layoutIfNeeded()
+            }
+        }
     }
     
     private func setAudioSession() {
@@ -473,6 +488,8 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         case .image:
             if let imageURL = URL(string: post.mediaLink ?? ""){
                 cell.imageBox.loadImage(at: imageURL)
+                Utils.setViewShape(view: cell.imageBox, viewCornerRadius: 18, maskedCorners: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
+
             } else {
                 cell.imageBox.isHidden = true
             }
