@@ -48,13 +48,13 @@ struct JTNewsFeedItem {
     var values: [String:Any] {
         var values: [String:Any] = [:]
         values["id"] = self.id
-        values["createdDate"] = self.createdDate
-        values["updatedDate"] = self.updatedDate
-        values["mediaType"] = self.mediaType.rawValue
-        values["mediaLink"] = self.mediaLink
+        values["created"] = self.createdDate
+        values["updated"] = self.updatedDate
+        values["media_type"] = self.mediaType.rawValue
+        values["media_link"] = self.mediaLink
         values["body"] = self.body
-        values["publishDate"] = self.publishDate
-        values["publisherId"] = self.publisherId
+        values["publish_date"] = self.publishDate
+        values["publisher"] = self.publisherId
         
         return values
     }

@@ -139,7 +139,6 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.setNewsTableViewDelegate()
         self.setAudioSession()
         self.getLatestNewsItems()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -156,9 +155,9 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         let nc = NotificationCenter.default
         nc.addObserver(self, selector: #selector(internetConnect(_:)), name: NSNotification.Name(rawValue: "InternetConnect"), object: nil)
         nc.addObserver(self, selector: #selector(internetNotConnect(_:)), name: NSNotification.Name(rawValue: "InternetNotConnect"), object: nil)
- 
-
     }
+    
+
     
     override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self)
@@ -320,6 +319,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
                 self.view.layoutIfNeeded()
                 self.latestNewsTableViewHeightConstraint.constant = self.latestNewsTableView.contentSize.height
                 self.view.layoutIfNeeded()
+                self.scrollView.reloadInputViews()
             }
         }
     }
@@ -539,10 +539,6 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         return cell
     }
     
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 500
-    }
-    
     //========================================
     // MARK: - @IBActions
     //========================================
@@ -714,6 +710,9 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.dismissMainModal()
     }
     
+    @IBAction func viewMoreNewsButtonPressed(_ sender: Any) {
+        self.optionSelected(option: .newsFeed)
+    }
     
     //========================================
     // MARK: - PopUps
@@ -884,6 +883,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
             self.currentPresentedModal = nil
             self.setDefaulteIcons()
             self.setContent()
+            self.getLatestNewsItems()
         }
     }
     
@@ -971,7 +971,6 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
         case .donationsCenter:
             self.pressEnable ? self.presentDonation() : self.noInternetAlert()
         case .newsFeed:
-//            TODO: make segue for newsfeed
             self.pressEnable ? self.presentNewsFeed() : self.noInternetAlert()
             break
         default:

@@ -26,6 +26,7 @@ class UserDefaultsProvider {
         case lessonDonation = "LessonDonation"
         case currentFcmToken = "CurrentFcmToken"
         case fiestaPopUpDetail = "FiestaPopUpDetail"
+        case latestNewsItems = "LatestNewsItems"
     }
     
     static private var provider: UserDefaultsProvider?
@@ -199,6 +200,17 @@ class UserDefaultsProvider {
         }
         set (detail) {
             self.defaults.set(detail?.values, forKey: UserDefaultsKeys.fiestaPopUpDetail.rawValue)
+            self.defaults.synchronize()
+        }
+    }
+        
+    var latestNewsItems: [JTNewsFeedItem]? {
+        get {
+            guard let values = self.defaults.object(forKey: UserDefaultsKeys.latestNewsItems.rawValue) as? [[String:Any]] else { return []}
+            return values.compactMap{JTNewsFeedItem(values: $0)}
+        }
+        set (latestNewsItems) {
+            self.defaults.set(latestNewsItems?.map{$0.values}, forKey: UserDefaultsKeys.latestNewsItems.rawValue)
             self.defaults.synchronize()
         }
     }

@@ -39,7 +39,6 @@ class NewsFeedRepository{
     //========================================
     
     private init() {
-//        self.loadLatestNewsItems()
     }
          
     func getAllNewsItems(offSet: String?, completionHandler: @escaping(_ response: [JTNewsFeedItem])->Void ){
@@ -59,21 +58,6 @@ class NewsFeedRepository{
 
     }
     
-//    private func loadLatestNewsItems() {
-//
-//        guard let authToken = UserDefaultsProvider.shared.currentUser?.token else {
-//            return
-//        }
-//        API.getNewsItemsLatest(authToken: authToken) { (result: APIResult<GetNewsFeedItemsResponse>) in
-//            switch result{
-//            case .success(let response):
-//                self.latestNewsItems = response.newsFeedItems
-//                print("loadLatestNewsItems() latestNewsItems", self.latestNewsItems)
-//            case .failure(let error):
-//                print("loadLatestNewsItems() error", error)
-//            }
-//        }
-//    }
 
     func getLatestNewsItems(completionHandler: @escaping(_ response: [JTNewsFeedItem])->Void ){
 
@@ -83,9 +67,15 @@ class NewsFeedRepository{
         API.getNewsItemsLatest(authToken: authToken) { (result: APIResult<GetNewsFeedItemsResponse>) in
             switch result{
             case .success(let response):
-                completionHandler(response.newsFeedItems)
+                if response.newsFeedItems.isEmpty {
+                    completionHandler(UserDefaultsProvider.shared.latestNewsItems ?? [])
+                } else {
+                    UserDefaultsProvider.shared.latestNewsItems = response.newsFeedItems
+                    completionHandler(UserDefaultsProvider.shared.latestNewsItems ?? [])
+                }
                 print("getLatestNewsItems() latestNewsItems", response.newsFeedItems)
             case .failure(let error):
+                completionHandler(UserDefaultsProvider.shared.latestNewsItems ?? [])
                 print("getLatestNewsItems() error", error)
             }
         }
