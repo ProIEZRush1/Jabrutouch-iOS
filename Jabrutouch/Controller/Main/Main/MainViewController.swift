@@ -34,6 +34,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     private var currentPresentedModal: MainModal?
     private var gemaraHistory: [JTGemaraLessonRecord] = []
     private var mishnaHistory: [JTMishnaLessonRecord] = []
+    private var gemaraMishnaHistory: [Any] = []
     private var lessonWatched: [JTLessonWatched] = []
     
     private var contentAvailable: Bool {
@@ -84,8 +85,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     @IBOutlet weak var shadaysDafShadowView: UIView!
     
     // Recents
-    @IBOutlet weak var recentsGemara: UILabel!
-    @IBOutlet weak var recentsMishna: UILabel!
+    @IBOutlet weak var recentsGemaraAndMishnaLabel: UILabel!
     
     // TableView
     @IBOutlet weak var latestNewsTableView: UITableView!
@@ -111,11 +111,8 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     @IBOutlet weak private var donationsLabel: UILabel!
     @IBOutlet weak private var donationsButton: UIButton!
     
-    // Other
-    @IBOutlet weak var gemaraCollectionViewTitle: UILabel!
-    @IBOutlet weak var gemaraCollectionView: UICollectionView!
-    @IBOutlet weak var mishnaCollectionViewTitle: UILabel!
-    @IBOutlet weak var mishnaCollectionView: UICollectionView!
+    // Recent Mishna & Gemara CollectionViews
+    @IBOutlet weak var recentsGemaraAndMishnaCollectionView: UICollectionView!
     
     //========================================
     // MARK: - LifeCycle
@@ -138,7 +135,6 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.user = UserRepository.shared.getCurrentUser()
         self.setNewsTableViewDelegate()
         self.setAudioSession()
-        self.getLatestNewsItems()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -155,21 +151,24 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         let nc = NotificationCenter.default
         nc.addObserver(self, selector: #selector(internetConnect(_:)), name: NSNotification.Name(rawValue: "InternetConnect"), object: nil)
         nc.addObserver(self, selector: #selector(internetNotConnect(_:)), name: NSNotification.Name(rawValue: "InternetNotConnect"), object: nil)
-    }
-    
+        /// refresh latestNews here so it refreshes on returning from other screens that aren't in the modal container.
+        self.getLatestNewsItems()
 
+    }
     
     override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self)
-        // MARK: TODO - shut news audio when goes into background
+        
+        // MARK: TODO - shut news audio when goes into background - refresh here is temporary hack.
+        self.latestNewsTableView.reloadData()
+
     }
     
     @objc func internetConnect(_ notification:Notification) {
         self.pressEnable = appDelegate.isInternetConenect
         DispatchQueue.main.async {
             self.setButtonsBackground()
-            self.mishnaCollectionView.reloadData()
-            self.gemaraCollectionView.reloadData()
+            self.recentsGemaraAndMishnaCollectionView.reloadData()
         }
     }
     
@@ -177,8 +176,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.pressEnable = appDelegate.isInternetConenect
         DispatchQueue.main.async {
             self.setButtonsBackground()
-            self.mishnaCollectionView.reloadData()
-            self.gemaraCollectionView.reloadData()
+            self.recentsGemaraAndMishnaCollectionView.reloadData()
         }
     }
     
@@ -228,8 +226,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         dateFormatter.calendar = calendar
         dateFormatter.dateStyle = .long
         self.todaysDateLabel.text = dateFormatter.string(from: Date())
-        self.recentsGemara.text = Strings.recentsGemara
-        self.recentsMishna.text = Strings.recentsMishna
+        self.recentsGemaraAndMishnaLabel.text = Strings.recentsGemaraAndMishna
         
         // Main tabs
         self.downloadsLabel.text = Strings.downloads
@@ -253,8 +250,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     private func setView() {
         welcomeLabel.isHidden = self.contentAvailable
         welcomeImage.isHidden = self.contentAvailable
-        recentsGemara.isHidden = !self.contentAvailable
-        recentsMishna.isHidden = !self.contentAvailable
+        recentsGemaraAndMishnaLabel.isHidden = !self.contentAvailable
                 
         if !self.contentAvailable {
             scrollViewToWelcomeImageConstraint?.isActive = true
@@ -272,8 +268,10 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     private func setContent() {
         self.gemaraHistory = ContentRepository.shared.lastWatchedGemaraLessons
         self.mishnaHistory = ContentRepository.shared.lastWatchedMishnaLessons
-        self.gemaraCollectionView.reloadData()
-        self.mishnaCollectionView.reloadData()
+        self.gemaraMishnaHistory.append(contentsOf: gemaraHistory)
+        self.gemaraMishnaHistory.append(contentsOf: mishnaHistory)
+        //MARK: TODO: sort history - problem is they don't have the study date
+        self.recentsGemaraAndMishnaCollectionView.reloadData()
     }
     
     private func setDefaulteIcons() {
@@ -338,21 +336,20 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     //========================================
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == gemaraCollectionView {
-            return gemaraHistory.count
-        } else {
-            return mishnaHistory.count
-        }
+            return gemaraMishnaHistory.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mainCollectionCell",
                                                             for: indexPath) as? MainCollectionCellViewController else { return UICollectionViewCell() }
-        if collectionView == gemaraCollectionView {
-            let lessonRecord = gemaraHistory[indexPath.row]
+            if let lessonRecord = gemaraMishnaHistory[indexPath.row] as? JTGemaraLessonRecord {
+                
             
+
             cell.masechetLabel.text = lessonRecord.masechetName
             cell.chapterLabel.text = nil
+            cell.mishnaOrGemaraLabel.text = Strings.gemaraCapitalized
+            cell.isGemara = true
             cell.numberLabel.text = "\(lessonRecord.lesson.page)"
             if lessonRecord.lesson.isAudioDownloaded {
                 cell.audioButton.setImage(#imageLiteral(resourceName: "audio-downloaded"), for: .normal)
@@ -376,14 +373,16 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
                     }
                 }
             }
-            
-            //            cell.audio.image = lessonRecord.lesson.isAudioDownloaded ? #imageLiteral(resourceName: "audio-downloaded") : #imageLiteral(resourceName: "audio-nat")
-            //            cell.video.image = lessonRecord.lesson.isVideoDownloaded ? #imageLiteral(resourceName: "video-downloaded") : #imageLiteral(resourceName: "video-nat")
         } else {
-            let lessonRecord = mishnaHistory[indexPath.row]
-            
+            guard let lessonRecord = gemaraMishnaHistory[indexPath.row] as? JTMishnaLessonRecord else {
+                return UICollectionViewCell()
+                
+            }
+
             cell.masechetLabel.text = lessonRecord.masechetName
             cell.chapterLabel.text = lessonRecord.chapter
+            cell.mishnaOrGemaraLabel.text = Strings.mishnaCapitalized
+            cell.isGemara = false
             cell.numberLabel.text = "\(lessonRecord.lesson.mishna)"
             if lessonRecord.lesson.isAudioDownloaded {
                 cell.audioButton.setImage(#imageLiteral(resourceName: "audio-downloaded"), for: .normal)
@@ -407,14 +406,11 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
                     }
                 }
             }
-            //            cell.audio.isHidden = !lessonRecord.lesson.isAudioDownloaded
-            //            cell.video.isHidden = !lessonRecord.lesson.isVideoDownloaded
         }
         
         
         cell.delegate = self
         cell.selectedRow = indexPath.row
-        cell.isFirstCollection = collectionView == gemaraCollectionView
         Utils.setViewShape(view: cell.cellView, viewCornerRadius: 18)
         Utils.setViewShape(view: cell.cellViewShadowView, viewCornerRadius: 18)
         let shadowOffset = CGSize(width: 0, height: 5)
@@ -783,6 +779,8 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.currentPresentedModal = .donations
         self.setIcons(string: "donations")
         
+        // MARK: TODO - shut news audio when goes into background - refresh here is temporary hack.
+        self.latestNewsTableView.reloadData()
     }
     
     func presentDownloadsViewController() {
@@ -797,6 +795,9 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         }
         self.currentPresentedModal = .downloads
         self.setIcons(string: "downloads")
+        
+        // MARK: TODO - shut news audio when goes into background - refresh here is temporary hack.
+        self.latestNewsTableView.reloadData()
     }
     
     func presentGemaraViewController() {
@@ -811,9 +812,14 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         }
         self.currentPresentedModal = .gemara
         self.setIcons(string: "gemara")
+        
+        // MARK: TODO - shut news audio when goes into background - refresh here is temporary hack.
+        self.latestNewsTableView.reloadData()
     }
     
     func presentMishnaViewController() {
+        self.latestNewsTableView.reloadData()
+        
         if self.currentPresentedModal != nil && self.currentPresentedModal != .mishna {
             self.modalsPresentingVC.dismiss(animated: true) {
                 self.modalsPresentingVC.performSegue(withIdentifier: "presentMishna", sender: nil)
@@ -825,6 +831,9 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         }
         self.currentPresentedModal = .mishna
         self.setIcons(string: "mishna")
+        
+        // MARK: TODO - shut news audio when goes into background - refresh here is temporary hack.
+        self.latestNewsTableView.reloadData()
     }
     
     func presentDonationsNavigationViewController() {
@@ -839,7 +848,11 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         }
         self.currentPresentedModal = .donations
         self.setIcons(string: "donations")
+        
+        // MARK: TODO - shut news audio when goes into background - refresh here is temporary hack.
+        self.latestNewsTableView.reloadData()
     }
+    
     func presentChatNavigationViewController(chatId: Int){
         let navigationVC = Storyboards.Messages.messagesNavigationController
         navigationVC.modalPresentationStyle = .fullScreen
@@ -927,6 +940,10 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         else if segue.identifier == "presentNewsFeed" {
             let popupVC = segue.destination as? NewsFeedViewController
         }
+        
+        
+        // MARK: TODO - shut news audio when goes into background - refresh here is temporary hack.
+        self.latestNewsTableView.reloadData()
         
     }
     
@@ -1069,9 +1086,9 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
     }
     
     // MainCollectionCellDelegate
-    func cellPressed(selectedRow: Int, isFirstCollection: Bool) {
+    func cellPressed(selectedRow: Int, isGemara: Bool) {
         print("Cell pressed")
-        if isFirstCollection {
+        if isGemara {
             
         } else {
             
@@ -1117,25 +1134,25 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
         presentCouponePopUp(values: values)
     }
     
-    func audioPressed(selectedRow: Int, isFirstCollection: Bool) {
+    func audioPressed(selectedRow: Int, isGemara: Bool) {
         DispatchQueue.main.async {
-            if isFirstCollection {
-                let record = self.gemaraHistory[selectedRow]
+            if isGemara {
+                guard let record = self.gemaraMishnaHistory[selectedRow] as? JTGemaraLessonRecord else { return }
                 self.playLesson(record.lesson, mediaType: .audio, sederId: record.sederId, masechetId: record.masechetId, chapter: nil, masechetName: record.masechetName, deepLinkDuration: 0.0)
             } else {
-                let record = self.mishnaHistory[selectedRow]
+                guard let record = self.gemaraMishnaHistory[selectedRow] as? JTMishnaLessonRecord else { return }
                 self.playLesson(record.lesson, mediaType: .audio, sederId: record.sederId, masechetId: record.masechetId, chapter: record.chapter, masechetName: record.masechetName, deepLinkDuration: 0.0)
             }
         }
     }
     
-    func videoPressed(selectedRow: Int, isFirstCollection: Bool) {
+    func videoPressed(selectedRow: Int, isGemara: Bool) {
         DispatchQueue.main.async {
-            if isFirstCollection {
-                let record = self.gemaraHistory[selectedRow]
+            if isGemara {
+                guard let record = self.gemaraMishnaHistory[selectedRow] as? JTGemaraLessonRecord else { return }
                 self.playLesson(record.lesson, mediaType: .video, sederId: record.sederId, masechetId: record.masechetId, chapter: nil, masechetName: record.masechetName, deepLinkDuration: 0.0)
             } else {
-                let record = self.mishnaHistory[selectedRow]
+                guard let record = self.gemaraMishnaHistory[selectedRow] as? JTMishnaLessonRecord else { return }
                 self.playLesson(record.lesson, mediaType: .video, sederId: record.sederId, masechetId: record.masechetId, chapter: record.chapter, masechetName: record.masechetName, deepLinkDuration: 0.0)
             }
         }
