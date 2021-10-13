@@ -70,8 +70,8 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     
     // Scroll View
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var scrollViewToWelcomeImageConstraint: NSLayoutConstraint!
-    @IBOutlet weak var scrollViewToHeaderConstraint: NSLayoutConstraint!
+    @IBOutlet weak var todaysDafToWelcomeImageTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var todaysDafToScrollviewContentTopConstraint: NSLayoutConstraint!
     
     // Todays Daf Yomi
     @IBOutlet weak private var todaysDafProgressBar: JBProgressBar!
@@ -253,13 +253,13 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         recentsGemaraAndMishnaLabel.isHidden = !self.contentAvailable
                 
         if !self.contentAvailable {
-            scrollViewToWelcomeImageConstraint?.isActive = true
-            scrollViewToHeaderConstraint?.isActive = false
+//            todaysDafToWelcomeImageTopConstraint?.isActive = true
+//            todaysDafToScrollviewContentTopConstraint?.isActive = false
+
         } else {
 
-            scrollViewToWelcomeImageConstraint?.isActive = false
-            scrollViewToHeaderConstraint?.isActive = true
-            
+            todaysDafToWelcomeImageTopConstraint?.isActive = false
+            todaysDafToScrollviewContentTopConstraint?.isActive = true
         }
         
         self.view.layoutIfNeeded()
