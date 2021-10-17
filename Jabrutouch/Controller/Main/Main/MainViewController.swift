@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AVFoundation
+import AVKit
 
 enum MainModal {
     case downloads
@@ -22,7 +24,7 @@ protocol MainModalDelegate : class {
     func presentAllMishna()
 }
 
-class MainViewController: UIViewController, MainModalDelegate, UICollectionViewDataSource {
+class MainViewController: UIViewController, MainModalDelegate, UICollectionViewDataSource, UITableViewDelegate, UITableViewDataSource {
     
     //========================================
     // MARK: - Properties
@@ -32,8 +34,8 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     private var currentPresentedModal: MainModal?
     private var gemaraHistory: [JTGemaraLessonRecord] = []
     private var mishnaHistory: [JTMishnaLessonRecord] = []
+    private var gemaraMishnaHistory: [Any] = []
     private var lessonWatched: [JTLessonWatched] = []
-    private var todaysDafToHeaderConstraint: NSLayoutConstraint?
     
     private var contentAvailable: Bool {
         return self.gemaraHistory.count > 0 || self.mishnaHistory.count > 0
@@ -44,6 +46,8 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     var firstOnScreen = true
     var singlePayment = false
     var pressEnable = appDelegate.isInternetConenect
+    
+    var latestNewsItemsList: [JTNewsFeedItem] = []
     
     //========================================
     // MARK: - @IBOutlets
@@ -64,21 +68,32 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var welcomeImage: UIImageView!
     
+    // Scroll View
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var todaysDafToWelcomeImageTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var todaysDafToScrollviewContentTopConstraint: NSLayoutConstraint!
+    
     // Todays Daf Yomi
     @IBOutlet weak private var todaysDafProgressBar: JBProgressBar!
     @IBOutlet weak private var todaysDafOuterContainer: UIView!
-    @IBOutlet weak private var todaysDafContainer: UIView!
+    @IBOutlet weak private var todaysDafInnerContainer: UIView!
     @IBOutlet weak private var todaysDafTitleLabel: UILabel!
     @IBOutlet weak private var todaysDafLabel: UILabel!
     @IBOutlet weak private var todaysDateLabel: UILabel!
     @IBOutlet weak var todaysDafAudio: UIButton!
     @IBOutlet weak var todaysDafVideo: UIButton!
-    @IBOutlet weak var todaysDafToWelcomeConstraint: NSLayoutConstraint!
     @IBOutlet weak var shadaysDafShadowView: UIView!
     
     // Recents
-    @IBOutlet weak var recentsGemara: UILabel!
-    @IBOutlet weak var recentsMishna: UILabel!
+    @IBOutlet weak var recentsGemaraAndMishnaLabel: UILabel!
+    
+    // TableView
+    @IBOutlet weak var latestNewsTableView: UITableView!
+    @IBOutlet weak var latestNewsTableViewHeightConstraint: NSLayoutConstraint!
+    
+    // More News Button
+    @IBOutlet weak var viewMoreNewsButton: UIButton!
+    
     // Tab bar buttons
     @IBOutlet weak private var downloadsImageView: UIImageView!
     @IBOutlet weak private var downloadsLabel: UILabel!
@@ -96,11 +111,8 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     @IBOutlet weak private var donationsLabel: UILabel!
     @IBOutlet weak private var donationsButton: UIButton!
     
-    // Other
-    @IBOutlet weak var gemaraCollectionViewTitle: UILabel!
-    @IBOutlet weak var gemaraCollectionView: UICollectionView!
-    @IBOutlet weak var mishnaCollectionViewTitle: UILabel!
-    @IBOutlet weak var mishnaCollectionView: UICollectionView!
+    // Recent Mishna & Gemara CollectionViews
+    @IBOutlet weak var recentsGemaraAndMishnaCollectionView: UICollectionView!
     
     //========================================
     // MARK: - LifeCycle
@@ -110,17 +122,19 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         return [.portrait]
     }
     
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setStrings()
         self.roundCorners()
         self.setShadows()
-        self.setConstraints()
         UserDefaultsProvider.shared.notFirstTime = true
         self.setButtonsBackground()
         CoreDataManager.shared.delegate = self
         self.user = UserRepository.shared.getCurrentUser()
-        
+        self.setNewsTableViewDelegate()
+        self.setAudioSession()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -137,18 +151,24 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         let nc = NotificationCenter.default
         nc.addObserver(self, selector: #selector(internetConnect(_:)), name: NSNotification.Name(rawValue: "InternetConnect"), object: nil)
         nc.addObserver(self, selector: #selector(internetNotConnect(_:)), name: NSNotification.Name(rawValue: "InternetNotConnect"), object: nil)
+        /// refresh latestNews here so it refreshes on returning from other screens that aren't in the modal container.
+        self.getLatestNewsItems()
+
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self)
+        
+        // MARK: TODO - shut news audio when goes into background - refresh here is temporary hack.
+        self.latestNewsTableView.reloadData()
+
     }
     
     @objc func internetConnect(_ notification:Notification) {
         self.pressEnable = appDelegate.isInternetConenect
         DispatchQueue.main.async {
             self.setButtonsBackground()
-            self.mishnaCollectionView.reloadData()
-            self.gemaraCollectionView.reloadData()
+            self.recentsGemaraAndMishnaCollectionView.reloadData()
         }
     }
     
@@ -156,8 +176,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.pressEnable = appDelegate.isInternetConenect
         DispatchQueue.main.async {
             self.setButtonsBackground()
-            self.mishnaCollectionView.reloadData()
-            self.gemaraCollectionView.reloadData()
+            self.recentsGemaraAndMishnaCollectionView.reloadData()
         }
     }
     
@@ -207,8 +226,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         dateFormatter.calendar = calendar
         dateFormatter.dateStyle = .long
         self.todaysDateLabel.text = dateFormatter.string(from: Date())
-        self.recentsGemara.text = Strings.recentsGemara
-        self.recentsMishna.text = Strings.recentsMishna
+        self.recentsGemaraAndMishnaLabel.text = Strings.recentsGemaraAndMishna
         
         // Main tabs
         self.downloadsLabel.text = Strings.downloads
@@ -220,7 +238,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     }
     
     private func roundCorners() {
-        self.todaysDafContainer.layer.cornerRadius = 15
+        self.todaysDafInnerContainer.layer.cornerRadius = 15
         self.shadaysDafShadowView.layer.cornerRadius = 15
     }
     
@@ -232,29 +250,28 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     private func setView() {
         welcomeLabel.isHidden = self.contentAvailable
         welcomeImage.isHidden = self.contentAvailable
-        recentsGemara.isHidden = !self.contentAvailable
-        recentsMishna.isHidden = !self.contentAvailable
-        
+        recentsGemaraAndMishnaLabel.isHidden = !self.contentAvailable
+                
         if !self.contentAvailable {
-            todaysDafToHeaderConstraint?.isActive = false
-            todaysDafToWelcomeConstraint?.isActive = true
+//            todaysDafToWelcomeImageTopConstraint?.isActive = true
+//            todaysDafToScrollviewContentTopConstraint?.isActive = false
+
         } else {
-            todaysDafToWelcomeConstraint?.isActive = false
-            todaysDafToHeaderConstraint?.isActive = true
+
+            todaysDafToWelcomeImageTopConstraint?.isActive = false
+            todaysDafToScrollviewContentTopConstraint?.isActive = true
         }
         
         self.view.layoutIfNeeded()
     }
-    
-    private func setConstraints() {
-        todaysDafToHeaderConstraint = todaysDafContainer.topAnchor.constraint(equalTo: headerContainer.bottomAnchor, constant: 55)
-    }
-    
+        
     private func setContent() {
         self.gemaraHistory = ContentRepository.shared.lastWatchedGemaraLessons
         self.mishnaHistory = ContentRepository.shared.lastWatchedMishnaLessons
-        self.gemaraCollectionView.reloadData()
-        self.mishnaCollectionView.reloadData()
+        self.gemaraMishnaHistory.append(contentsOf: gemaraHistory)
+        self.gemaraMishnaHistory.append(contentsOf: mishnaHistory)
+        //MARK: TODO: sort history - problem is they don't have the study date
+        self.recentsGemaraAndMishnaCollectionView.reloadData()
     }
     
     private func setDefaulteIcons() {
@@ -285,26 +302,54 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         }
         
     }
+    
+    func setNewsTableViewDelegate() {
+        self.latestNewsTableView.delegate = self
+        self.latestNewsTableView.dataSource = self
+    }
+    
+    fileprivate func getLatestNewsItems() {
+        NewsFeedRepository.shared.getLatestNewsItems() { latestNewsItemsResponse in
+            self.latestNewsItemsList = latestNewsItemsResponse
+            DispatchQueue.main.async {
+                ///since tableView is inside a scrollview, and we only want the scrollview to scroll, we set the tableview to be NOT scrollable, and after reloadData() set tableView height to contentSize height
+                self.latestNewsTableView.reloadData()
+                self.view.layoutIfNeeded()
+                self.latestNewsTableViewHeightConstraint.constant = self.latestNewsTableView.contentSize.height
+                self.view.layoutIfNeeded()
+                self.scrollView.reloadInputViews()
+            }
+        }
+    }
+    
+    private func setAudioSession() {
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
+        }
+        catch {
+            print("Setting category to AVAudioSessionCategoryPlayback failed.")
+        }
+    }
+    
     //========================================
     // MARK: - Collection Views
     //========================================
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == gemaraCollectionView {
-            return gemaraHistory.count
-        } else {
-            return mishnaHistory.count
-        }
+            return gemaraMishnaHistory.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mainCollectionCell",
                                                             for: indexPath) as? MainCollectionCellViewController else { return UICollectionViewCell() }
-        if collectionView == gemaraCollectionView {
-            let lessonRecord = gemaraHistory[indexPath.row]
+            if let lessonRecord = gemaraMishnaHistory[indexPath.row] as? JTGemaraLessonRecord {
+                
             
+
             cell.masechetLabel.text = lessonRecord.masechetName
             cell.chapterLabel.text = nil
+            cell.mishnaOrGemaraLabel.text = Strings.gemaraCapitalized
+            cell.isGemara = true
             cell.numberLabel.text = "\(lessonRecord.lesson.page)"
             if lessonRecord.lesson.isAudioDownloaded {
                 cell.audioButton.setImage(#imageLiteral(resourceName: "audio-downloaded"), for: .normal)
@@ -328,14 +373,16 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
                     }
                 }
             }
-            
-            //            cell.audio.image = lessonRecord.lesson.isAudioDownloaded ? #imageLiteral(resourceName: "audio-downloaded") : #imageLiteral(resourceName: "audio-nat")
-            //            cell.video.image = lessonRecord.lesson.isVideoDownloaded ? #imageLiteral(resourceName: "video-downloaded") : #imageLiteral(resourceName: "video-nat")
         } else {
-            let lessonRecord = mishnaHistory[indexPath.row]
-            
+            guard let lessonRecord = gemaraMishnaHistory[indexPath.row] as? JTMishnaLessonRecord else {
+                return UICollectionViewCell()
+                
+            }
+
             cell.masechetLabel.text = lessonRecord.masechetName
             cell.chapterLabel.text = lessonRecord.chapter
+            cell.mishnaOrGemaraLabel.text = Strings.mishnaCapitalized
+            cell.isGemara = false
             cell.numberLabel.text = "\(lessonRecord.lesson.mishna)"
             if lessonRecord.lesson.isAudioDownloaded {
                 cell.audioButton.setImage(#imageLiteral(resourceName: "audio-downloaded"), for: .normal)
@@ -359,14 +406,11 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
                     }
                 }
             }
-            //            cell.audio.isHidden = !lessonRecord.lesson.isAudioDownloaded
-            //            cell.video.isHidden = !lessonRecord.lesson.isVideoDownloaded
         }
         
         
         cell.delegate = self
         cell.selectedRow = indexPath.row
-        cell.isFirstCollection = collectionView == gemaraCollectionView
         Utils.setViewShape(view: cell.cellView, viewCornerRadius: 18)
         Utils.setViewShape(view: cell.cellViewShadowView, viewCornerRadius: 18)
         let shadowOffset = CGSize(width: 0, height: 5)
@@ -408,6 +452,115 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
             self.presentDonationsViewController()
         }
         
+    }
+    
+    //============================================================
+    // MARK: - TableView
+    //============================================================
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        self.latestNewsItemsList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) ->
+    UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "newsItemCell", for: indexPath) as! NewsItemCell
+
+        let post = self.latestNewsItemsList[indexPath.row]
+        cell.newsItem = post
+        
+        cell.imageBox.isHidden = (post.mediaType != .image)
+        cell.videoView.isHidden = (post.mediaType != .video)
+        cell.audioView.isHidden = (post.mediaType != .audio)
+        
+        if post.body?.isEmpty ?? true {
+            cell.textBox.text = ""
+            cell.textBox.isHidden = true
+        } else {
+            let attributedString = NSMutableAttributedString(string: post.body!)
+            // Detect all url's in post body
+            let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
+            let matches = detector.matches(in: attributedString.string, options: [], range: NSRange(location: 0, length: attributedString.string.count))
+            for match in matches {
+                guard let checkurl = match.url?.absoluteString else { continue }
+                // check range again, because length of attributedString changed after first url replaced.
+                let checkTheRange = attributedString.mutableString.range(of: checkurl)
+                guard let range = Range(checkTheRange, in: attributedString.string) else { continue }
+                let url = attributedString.string[range]
+                // create link for url
+                let attributedLink = NSMutableAttributedString(string: "Haz clic aquí")
+                attributedLink.addAttribute(.link, value: url, range: NSRange(location: 0, length: 13))
+                // Get range of text to replace
+                guard let range2 = attributedString.string.range(of: url) else { exit(0) }
+                let nsRange = NSRange(range2, in: attributedString.string)
+                // Replace url with attributed link
+                attributedString.replaceCharacters(in: nsRange, with: attributedLink)
+            }
+            // save font and color
+            let font = cell.textBox.font
+            let color = cell.textBox.textColor
+
+             // Set attributed string to textView
+            cell.textBox.attributedText = attributedString
+            // restore font and color
+            cell.textBox.font = font
+            cell.textBox.textColor = color
+            
+            cell.textBox.isHidden = false
+        }
+        
+        switch post.mediaType {
+        case .image:
+            if let imageURL = URL(string: post.mediaLink ?? ""){
+                cell.imageBox.loadImage(at: imageURL)
+                Utils.setViewShape(view: cell.imageBox, viewCornerRadius: 18, maskedCorners: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
+
+            } else {
+                cell.imageBox.isHidden = true
+            }
+            break
+            
+        case .video:
+            let mediaActivity = Utils.showActivityView(inView: cell.videoView, withFrame: cell.videoView.frame, text: nil)
+            if let videoURL = URL(string:post.mediaLink!){
+
+                cell.videoPlayer = AVPlayer(url: videoURL)
+                cell.playerController = AVPlayerViewController()
+                cell.playerController?.player = cell.videoPlayer
+                cell.playerController?.showsPlaybackControls = true
+                cell.playerController?.view.frame = cell.videoView.bounds
+                cell.videoView.addSubview(cell.playerController!.view)
+                
+                Utils.setViewShape(view: cell.videoView, viewCornerRadius: 18, maskedCorners: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
+            } else {
+                cell.videoView.isHidden = true
+            }
+            Utils.removeActivityView(mediaActivity)
+            break
+            
+        case .audio:
+                Utils.setViewShape(view: cell.audioView, viewCornerRadius: 18, maskedCorners: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
+        case .noMedia:
+            break
+        }
+        
+        // set publish date
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "es_ES")
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        if let pubDate = dateFormatter.date(from: post.publishDate!){
+            dateFormatter.dateStyle = .long
+            cell.publishDateLabel.text = dateFormatter.string(from: pubDate)
+            
+        }
+        
+        // round cell view and shadows
+        Utils.setViewShape(view: cell.newsItemView, viewCornerRadius: 18)
+        let shadowOffset = CGSize(width: 0.0, height: 5)
+        Utils.dropViewShadow(view: cell.newsItemView, shadowColor: Colors.shadowColor, shadowRadius: 15 , shadowOffset: shadowOffset)
+        cell.newsItemView.layoutIfNeeded()
+                
+
+        return cell
     }
     
     //========================================
@@ -581,6 +734,9 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.dismissMainModal()
     }
     
+    @IBAction func viewMoreNewsButtonPressed(_ sender: Any) {
+        self.optionSelected(option: .newsFeed)
+    }
     
     //========================================
     // MARK: - PopUps
@@ -630,6 +786,10 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.performSegue(withIdentifier: "toMessages", sender: self)
     }
     
+    private func presentNewsFeed() {
+        self.performSegue(withIdentifier: "presentNewsFeed", sender: self)
+    }
+    
     //    func presentDonationWalkThrough() {
     //        self.performSegue(withIdentifier: "presentDonationWalkTrough", sender: self)
     //    }
@@ -647,6 +807,8 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.currentPresentedModal = .donations
         self.setIcons(string: "donations")
         
+        // MARK: TODO - shut news audio when goes into background - refresh here is temporary hack.
+        self.latestNewsTableView.reloadData()
     }
     
     func presentDownloadsViewController() {
@@ -661,6 +823,9 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         }
         self.currentPresentedModal = .downloads
         self.setIcons(string: "downloads")
+        
+        // MARK: TODO - shut news audio when goes into background - refresh here is temporary hack.
+        self.latestNewsTableView.reloadData()
     }
     
     func presentGemaraViewController() {
@@ -675,9 +840,14 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         }
         self.currentPresentedModal = .gemara
         self.setIcons(string: "gemara")
+        
+        // MARK: TODO - shut news audio when goes into background - refresh here is temporary hack.
+        self.latestNewsTableView.reloadData()
     }
     
     func presentMishnaViewController() {
+        self.latestNewsTableView.reloadData()
+        
         if self.currentPresentedModal != nil && self.currentPresentedModal != .mishna {
             self.modalsPresentingVC.dismiss(animated: true) {
                 self.modalsPresentingVC.performSegue(withIdentifier: "presentMishna", sender: nil)
@@ -689,6 +859,9 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         }
         self.currentPresentedModal = .mishna
         self.setIcons(string: "mishna")
+        
+        // MARK: TODO - shut news audio when goes into background - refresh here is temporary hack.
+        self.latestNewsTableView.reloadData()
     }
     
     func presentDonationsNavigationViewController() {
@@ -703,7 +876,11 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         }
         self.currentPresentedModal = .donations
         self.setIcons(string: "donations")
+        
+        // MARK: TODO - shut news audio when goes into background - refresh here is temporary hack.
+        self.latestNewsTableView.reloadData()
     }
+    
     func presentChatNavigationViewController(chatId: Int){
         let navigationVC = Storyboards.Messages.messagesNavigationController
         navigationVC.modalPresentationStyle = .fullScreen
@@ -747,6 +924,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
             self.currentPresentedModal = nil
             self.setDefaulteIcons()
             self.setContent()
+            self.getLatestNewsItems()
         }
     }
     
@@ -787,6 +965,13 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
             let popupVC = segue.destination as? DonateViewController
             popupVC?.isSingelPayment = self.singlePayment
         }
+        else if segue.identifier == "presentNewsFeed" {
+            let newsFeedVC = segue.destination as? NewsFeedViewController
+        }
+        
+        
+        // MARK: TODO - shut news audio when goes into background - refresh here is temporary hack.
+        self.latestNewsTableView.reloadData()
         
     }
     
@@ -830,6 +1015,9 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
             presentMessages()
         case .donationsCenter:
             self.pressEnable ? self.presentDonation() : self.noInternetAlert()
+        case .newsFeed:
+            self.pressEnable ? self.presentNewsFeed() : self.noInternetAlert()
+            break
         default:
             presentInDevelopmentAlert()
         }
@@ -926,9 +1114,9 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
     }
     
     // MainCollectionCellDelegate
-    func cellPressed(selectedRow: Int, isFirstCollection: Bool) {
+    func cellPressed(selectedRow: Int, isGemara: Bool) {
         print("Cell pressed")
-        if isFirstCollection {
+        if isGemara {
             
         } else {
             
@@ -974,25 +1162,25 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
         presentCouponePopUp(values: values)
     }
     
-    func audioPressed(selectedRow: Int, isFirstCollection: Bool) {
+    func audioPressed(selectedRow: Int, isGemara: Bool) {
         DispatchQueue.main.async {
-            if isFirstCollection {
-                let record = self.gemaraHistory[selectedRow]
+            if isGemara {
+                guard let record = self.gemaraMishnaHistory[selectedRow] as? JTGemaraLessonRecord else { return }
                 self.playLesson(record.lesson, mediaType: .audio, sederId: record.sederId, masechetId: record.masechetId, chapter: nil, masechetName: record.masechetName, deepLinkDuration: 0.0)
             } else {
-                let record = self.mishnaHistory[selectedRow]
+                guard let record = self.gemaraMishnaHistory[selectedRow] as? JTMishnaLessonRecord else { return }
                 self.playLesson(record.lesson, mediaType: .audio, sederId: record.sederId, masechetId: record.masechetId, chapter: record.chapter, masechetName: record.masechetName, deepLinkDuration: 0.0)
             }
         }
     }
     
-    func videoPressed(selectedRow: Int, isFirstCollection: Bool) {
+    func videoPressed(selectedRow: Int, isGemara: Bool) {
         DispatchQueue.main.async {
-            if isFirstCollection {
-                let record = self.gemaraHistory[selectedRow]
+            if isGemara {
+                guard let record = self.gemaraMishnaHistory[selectedRow] as? JTGemaraLessonRecord else { return }
                 self.playLesson(record.lesson, mediaType: .video, sederId: record.sederId, masechetId: record.masechetId, chapter: nil, masechetName: record.masechetName, deepLinkDuration: 0.0)
             } else {
-                let record = self.mishnaHistory[selectedRow]
+                guard let record = self.gemaraMishnaHistory[selectedRow] as? JTMishnaLessonRecord else { return }
                 self.playLesson(record.lesson, mediaType: .video, sederId: record.sederId, masechetId: record.masechetId, chapter: record.chapter, masechetName: record.masechetName, deepLinkDuration: 0.0)
             }
         }

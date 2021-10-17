@@ -325,6 +325,30 @@ class API {
     }
     
     //========================================
+    // MARK: - News Feed
+    //========================================
+        
+    class func getNewsItemsLatest(authToken: String, completionHandler:@escaping (_ response: APIResult<GetNewsFeedItemsResponse>)->Void) {
+        guard let request = HttpRequestsFactory.createGetNewsFeedLatest(token: authToken) else {
+            completionHandler(APIResult.failure(.unableToCreateRequest))
+            return
+        }
+        HttpServiceProvider.shared.excecuteRequest(request: request) { (data, response, error) in
+            self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
+        }
+    }
+    
+    class func getNewsItemsAll(authToken: String, offSet:String?, completionHandler:@escaping (_ response: APIResult<GetNewsFeedItemsResponse>)->Void) {
+        guard let request = HttpRequestsFactory.createGetNewsFeedAll(token: authToken, offSet: offSet) else {
+            completionHandler(APIResult.failure(.unableToCreateRequest))
+            return
+        }
+        HttpServiceProvider.shared.excecuteRequest(request: request) { (data, response, error) in
+            self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
+        }
+    }
+    
+    //========================================
     // MARK: - Response Processing
     //========================================
     

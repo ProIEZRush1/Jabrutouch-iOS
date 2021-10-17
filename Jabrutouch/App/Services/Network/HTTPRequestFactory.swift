@@ -330,7 +330,25 @@ class HttpRequestsFactory {
         let request = self.createRequest(url, method: .get, body: nil, additionalHeaders: additionalHeaders)
         return request
     }
+
+    class func createGetNewsFeedLatest(token: String) -> URLRequest?{
+        guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
+        let link = baseUrl.appendingPathComponent("news_feed/latest/").absoluteString
+        guard let url = self.createUrl(fromLink: link, urlParams: nil) else { return nil }
+        let additionalHeaders: [String:String] = ["Authorization": "token \(token)"]
+        let request = self.createRequest(url, method: .get, body: nil, additionalHeaders: additionalHeaders)
+        return request
+    }
     
+    class func createGetNewsFeedAll(token: String, offSet: String?) -> URLRequest?{
+        guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
+        let link = baseUrl.appendingPathComponent("news_feed/").absoluteString
+        guard let url = self.createUrl(fromLink: link, urlParams: ["offset": offSet ?? "0"]) else { return nil }
+        let additionalHeaders: [String:String] = ["Authorization": "token \(token)"]
+        let request = self.createRequest(url, method: .get, body: nil, additionalHeaders: additionalHeaders)
+        return request
+    }
+
     //==========================================
     // MARK: - Utils & Helpers
     //==========================================

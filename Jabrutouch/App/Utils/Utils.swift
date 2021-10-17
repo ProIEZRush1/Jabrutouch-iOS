@@ -172,10 +172,11 @@ class Utils {
     
     // MARK: - UI
     
-    class func setViewShape(view: UIView, viewBorderWidht: CGFloat = 0, viewBorderColor: UIColor = .white, viewCornerRadius: CGFloat = 0) {
+    class func setViewShape(view: UIView, viewBorderWidht: CGFloat = 0, viewBorderColor: UIColor = .white, viewCornerRadius: CGFloat = 0, maskedCorners: CACornerMask = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner]) {
         view.layer.cornerRadius = viewCornerRadius
         view.layer.borderWidth = viewBorderWidht
         view.layer.borderColor = viewBorderColor.cgColor
+        view.layer.maskedCorners = maskedCorners
     }
     
     class func dropViewShadow(view: UIView, shadowColor: UIColor, shadowRadius: CGFloat, shadowOffset: CGSize) {

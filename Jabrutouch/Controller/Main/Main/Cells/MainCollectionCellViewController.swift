@@ -20,8 +20,9 @@ class MainCollectionCellViewController: UICollectionViewCell {
     @IBOutlet weak var audioButton: UIButton!
     @IBOutlet weak var videoButton: UIButton!
     @IBOutlet weak var cellViewShadowView: UIView!
-    
-    var isFirstCollection: Bool = true // When two collections are used in single screen
+    @IBOutlet weak var mishnaOrGemaraLabel: UILabel!
+    /// One collectionView used for gemara & mishna history, Set true if lesson is gemara.
+    var isGemara: Bool = true
     var selectedRow: Int = 0
     weak var delegate: MainCollectionCellDelegate?
 
@@ -47,15 +48,15 @@ class MainCollectionCellViewController: UICollectionViewCell {
     }
     
     @objc private func cellPressed() {
-        delegate?.cellPressed(selectedRow: selectedRow, isFirstCollection: isFirstCollection)
+        delegate?.cellPressed(selectedRow: selectedRow, isGemara: isGemara)
     }
     
     @objc private func audioPressed() {
-        delegate?.audioPressed(selectedRow: selectedRow, isFirstCollection: isFirstCollection)
+        delegate?.audioPressed(selectedRow: selectedRow, isGemara: isGemara)
     }
     
     @objc private func videoPressed() {
-        delegate?.videoPressed(selectedRow: selectedRow, isFirstCollection: isFirstCollection)
+        delegate?.videoPressed(selectedRow: selectedRow, isGemara: isGemara)
     }
     
     func setHiddenButtonsForLesson(_ lesson: JTLesson) {
@@ -68,7 +69,7 @@ class MainCollectionCellViewController: UICollectionViewCell {
 }
 
 protocol MainCollectionCellDelegate: class {
-    func cellPressed(selectedRow: Int, isFirstCollection: Bool)
-    func audioPressed(selectedRow: Int, isFirstCollection: Bool)
-    func videoPressed(selectedRow: Int, isFirstCollection: Bool)
+    func cellPressed(selectedRow: Int, isGemara: Bool)
+    func audioPressed(selectedRow: Int, isGemara: Bool)
+    func videoPressed(selectedRow: Int, isGemara: Bool)
 }

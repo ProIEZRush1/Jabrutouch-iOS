@@ -290,6 +290,14 @@
 		83CCB12123783F6100C86450 /* JTMasechetDownloadedGemaraLessons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB12023783F6100C86450 /* JTMasechetDownloadedGemaraLessons.swift */; };
 		83CCB1232379EEB700C86450 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB1222379EEB700C86450 /* EditProfileViewController.swift */; };
 		83CCB127237C8D6F00C86450 /* EditPasswordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB126237C8D6F00C86450 /* EditPasswordCell.swift */; };
+		D631F9C526DCDDBC00447B88 /* JTNewsFeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D631F9C426DCDDBC00447B88 /* JTNewsFeedItem.swift */; };
+		D631F9C826DCE0D100447B88 /* NewsFeedRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D631F9C726DCE0D100447B88 /* NewsFeedRepository.swift */; };
+		D631F9CB26DCFC2B00447B88 /* GetNewsFeedItemsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D631F9CA26DCFC2B00447B88 /* GetNewsFeedItemsResponse.swift */; };
+		D661DEFC26DBA0300041ABAE /* demo.png in Resources */ = {isa = PBXBuildFile; fileRef = D661DEFB26DBA02F0041ABAE /* demo.png */; };
+		D672138A26D7C036002C8DD2 /* NewsFeed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D672138926D7C035002C8DD2 /* NewsFeed.storyboard */; };
+		D672139326D7D76B002C8DD2 /* NewsFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D672139226D7D76B002C8DD2 /* NewsFeedViewController.swift */; };
+		D672139626D7DEDF002C8DD2 /* NewsItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D672139526D7DEDF002C8DD2 /* NewsItemCell.swift */; };
+		D6E7A26426EF627E0057415E /* UIImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E7A26326EF627E0057415E /* UIImageLoader.swift */; };
 		DD4E3A8024056BF400A889BE /* SingleDonationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4E3A7F24056BF400A889BE /* SingleDonationViewController.swift */; };
 		DD51946724069F760085E2A8 /* SubscribeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD51946624069F760085E2A8 /* SubscribeViewController.swift */; };
 		DD51CDEC23F185D30063167E /* AudioMessagesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD51CDEB23F185D30063167E /* AudioMessagesManager.swift */; };
@@ -639,6 +647,14 @@
 		83CCB124237C0F9E00C86450 /* JTDonor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTDonor.swift; sourceTree = "<group>"; };
 		83CCB126237C8D6F00C86450 /* EditPasswordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPasswordCell.swift; sourceTree = "<group>"; };
 		C0F9377FF1E3DA5E9F901D68 /* Pods_Jabrutouch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jabrutouch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D631F9C426DCDDBC00447B88 /* JTNewsFeedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTNewsFeedItem.swift; sourceTree = "<group>"; };
+		D631F9C726DCE0D100447B88 /* NewsFeedRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedRepository.swift; sourceTree = "<group>"; };
+		D631F9CA26DCFC2B00447B88 /* GetNewsFeedItemsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetNewsFeedItemsResponse.swift; sourceTree = "<group>"; };
+		D661DEFB26DBA02F0041ABAE /* demo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = demo.png; path = ../../../../../../Downloads/demo.png; sourceTree = "<group>"; };
+		D672138926D7C035002C8DD2 /* NewsFeed.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewsFeed.storyboard; sourceTree = "<group>"; };
+		D672139226D7D76B002C8DD2 /* NewsFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedViewController.swift; sourceTree = "<group>"; };
+		D672139526D7DEDF002C8DD2 /* NewsItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsItemCell.swift; sourceTree = "<group>"; };
+		D6E7A26326EF627E0057415E /* UIImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageLoader.swift; sourceTree = "<group>"; };
 		D6E97769262C3F5B001EDD17 /* AWSS3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSS3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD4E3A7F24056BF400A889BE /* SingleDonationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleDonationViewController.swift; sourceTree = "<group>"; };
 		DD51946624069F760085E2A8 /* SubscribeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeViewController.swift; sourceTree = "<group>"; };
@@ -921,6 +937,7 @@
 				608378EF24927B0F005C60BE /* GetPopupResponse.swift */,
 				60EDAC8224D98062004FB3E6 /* CouponResponse.swift */,
 				60B8076A250119FE005CE86E /* PostCampingMailResponse.swift */,
+				D631F9CA26DCFC2B00447B88 /* GetNewsFeedItemsResponse.swift */,
 			);
 			path = "API Response models";
 			sourceTree = "<group>";
@@ -1061,6 +1078,7 @@
 		2133C21022DCA0D900F910B9 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				D672138F26D7C12E002C8DD2 /* NewsFeed */,
 				8342BA6F237301D700C3239C /* Main */,
 				FBB18FAA22F84CA2006886FD /* Gemara */,
 				FB51711222F19C07003BCAFC /* Mishna */,
@@ -1084,6 +1102,7 @@
 			isa = PBXGroup;
 			children = (
 				60B807682500050A005CE86E /* splash.png */,
+				D661DEFB26DBA02F0041ABAE /* demo.png */,
 				608CC712241129F8002136A8 /* animation.json */,
 				83408E14241EBE3100DD9229 /* GRACIAS_BAJA_2.mov */,
 				21419CB1230D51F700145F1F /* Bridging Headers */,
@@ -1129,6 +1148,7 @@
 				609F80B22490E7D9003D1E9A /* PopUps.storyboard */,
 				609C6B3124EAC04000AE78AE /* AdditionalAlerts.storyboard */,
 				600399D124D6CC490038ED66 /* Coupone.storyboard */,
+				D672138926D7C035002C8DD2 /* NewsFeed.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -1241,6 +1261,7 @@
 				219BFF3722E5B72000ABBEE2 /* LocalizationManager.swift */,
 				213016B62321940F00B9DD2B /* AnalyticsManager.swift */,
 				83137F0423F04C5F003B9DA6 /* DonationManager.swift */,
+				D6E7A26326EF627E0057415E /* UIImageLoader.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -1288,6 +1309,7 @@
 				839E1E7B238588C100578C60 /* UserRepository.swift */,
 				833E6226239FB72A00EC93C7 /* MessagesRepository.swift */,
 				46C652F123CF6C5E00F6D0DD /* EditUserParametersRepository.swift */,
+				D631F9C726DCE0D100447B88 /* NewsFeedRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1349,6 +1371,7 @@
 				605630A924D715A6001C2BFA /* JTCouponRedemption .swift */,
 				60B8076224FFACB9005CE86E /* JTFiestaPopup.swift */,
 				60FF78B32507953B0099C72A /* JTAppVersion.swift */,
+				D631F9C426DCDDBC00447B88 /* JTNewsFeedItem.swift */,
 			);
 			path = "Domain Models";
 			sourceTree = "<group>";
@@ -1587,6 +1610,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		D672138F26D7C12E002C8DD2 /* NewsFeed */ = {
+			isa = PBXGroup;
+			children = (
+				D672139226D7D76B002C8DD2 /* NewsFeedViewController.swift */,
+				D672139526D7DEDF002C8DD2 /* NewsItemCell.swift */,
+			);
+			path = NewsFeed;
+			sourceTree = "<group>";
+		};
 		DD51CDF123F186D70063167E /* ConvertToMP3 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1774,6 +1806,7 @@
 				21678D6222DF2CED007BC74C /* SF-Pro-Text-BlackItalic.otf in Resources */,
 				609F80B32490E7D9003D1E9A /* PopUps.storyboard in Resources */,
 				213196B722F6DDB000B0AF5F /* ActivityView.xib in Resources */,
+				D661DEFC26DBA0300041ABAE /* demo.png in Resources */,
 				21678D6322DF2CED007BC74C /* SF-Pro-Text-Bold.otf in Resources */,
 				21678D6422DF2CED007BC74C /* SF-Pro-Text-BoldItalic.otf in Resources */,
 				21678D6522DF2CED007BC74C /* SF-Pro-Text-Heavy.otf in Resources */,
@@ -1804,6 +1837,7 @@
 				2133C21522DCA5D200F910B9 /* Localizable.strings in Resources */,
 				2133C20E22DCA0BC00F910B9 /* SignIn.storyboard in Resources */,
 				212ECEA8230F36BF005AEB36 /* LessonPlayerViewController.xib in Resources */,
+				D672138A26D7C036002C8DD2 /* NewsFeed.storyboard in Resources */,
 				2133C20222DB5B8500F910B9 /* LaunchScreen.storyboard in Resources */,
 				2133C1FF22DB5B8500F910B9 /* Assets.xcassets in Resources */,
 				2133C1FD22DB5B8200F910B9 /* Main.storyboard in Resources */,
@@ -2037,7 +2071,9 @@
 				5386914D2379E8B500CC95B5 /* GeneralInformationCell.swift in Sources */,
 				21678D7A22E085B1007BC74C /* MishnaViewController.swift in Sources */,
 				2126D6D823033D4D00CB501D /* JTMasechet.swift in Sources */,
+				D631F9C826DCE0D100447B88 /* NewsFeedRepository.swift in Sources */,
 				60717D5C24AE19790099DB1D /* JTLessonAnalitics.swift in Sources */,
+				D631F9CB26DCFC2B00447B88 /* GetNewsFeedItemsResponse.swift in Sources */,
 				83CCB12123783F6100C86450 /* JTMasechetDownloadedGemaraLessons.swift in Sources */,
 				833E6229239FB88C00EC93C7 /* GetMessagesResponse.swift in Sources */,
 				219B06FA230408F400A7EBBA /* ServerFieldError.swift in Sources */,
@@ -2046,6 +2082,7 @@
 				604A893024CF100A00212B44 /* SecondChildVC.swift in Sources */,
 				4628E0E923245BF600D963E6 /* AboutViewController.swift in Sources */,
 				83A7A0C323E205B40041BE28 /* iCarousel.m in Sources */,
+				D6E7A26426EF627E0057415E /* UIImageLoader.swift in Sources */,
 				8359193F23A795BD00F0B4D8 /* CoreDataManager.swift in Sources */,
 				21678D7622E08565007BC74C /* DownloadsViewController.swift in Sources */,
 				6087D86924C5B96D00EF6902 /* JTTourBarPageInddicator.swift in Sources */,
@@ -2077,6 +2114,7 @@
 				216A0E7022EEFDA300F7FBC1 /* HTTPRequestFactory.swift in Sources */,
 				600399D424D6D3900038ED66 /* CouponsViewController.swift in Sources */,
 				213196B122F38B9E00B0AF5F /* ActivityView.swift in Sources */,
+				D672139326D7D76B002C8DD2 /* NewsFeedViewController.swift in Sources */,
 				2133C1F822DB5B8200F910B9 /* AppDelegate.swift in Sources */,
 				FB51711F22F1AE0B003BCAFC /* JTLessonDownload.swift in Sources */,
 				DD51CDF423F186D70063167E /* AudioWrapper.m in Sources */,
@@ -2085,6 +2123,7 @@
 				2126D6DC2303EA8600CB501D /* ContentRepository.swift in Sources */,
 				83408E1324168C3900DD9229 /* PendingViewController.swift in Sources */,
 				219BFF4422E7186D00ABBEE2 /* MenuTableViewCell.swift in Sources */,
+				D672139626D7DEDF002C8DD2 /* NewsItemCell.swift in Sources */,
 				2131969722F38B1200B0AF5F /* APIResult.swift in Sources */,
 				538691472379E8B500CC95B5 /* EditPersonalDetailsCell.swift in Sources */,
 				833E622B239FC33300EC93C7 /* ChatViewController.swift in Sources */,
@@ -2093,6 +2132,7 @@
 				839597A824041901007B96EB /* JTDonated.swift in Sources */,
 				83605BA72382DCD200B93603 /* ImagePicker.swift in Sources */,
 				21419CB9230DD91100145F1F /* JTSederDownloadedMishnaLessons.swift in Sources */,
+				D631F9C526DCDDBC00447B88 /* JTNewsFeedItem.swift in Sources */,
 				46C652F423CF764F00F6D0DD /* JTUserProfileParameters.swift in Sources */,
 				FBB18FB222F8649A006886FD /* JTGemaraMasechetItem.swift in Sources */,
 			);
@@ -2251,7 +2291,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 715A51EC96A60C90B07F8038 /* Pods-Jabrutouch.debug.xcconfig */;
 			buildSettings = {
-				API_BASE_URL = "https://jabrutouch.ravtech.co.il/api/";
+				API_BASE_URL = "https://jabrutouch-dev.ravtech.co.il/api/";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Jabrutouch/Jabrutouch.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";

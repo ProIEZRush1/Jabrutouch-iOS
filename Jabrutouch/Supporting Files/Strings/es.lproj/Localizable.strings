@@ -67,9 +67,12 @@
 "downloads" = "Descargas";
 "gemara" = "Guemará";
 "mishna" = "Mishná";
+"gemaraCapitalized" = "GUEMARÁ";
+"mishnaCapitalized" = "MISHNÁ";
 "donations" = "Ketarim";
 "recentsGemara" = "ÚLTIMAS PÁGINAS DE GUEMARÁ";
 "recentsMishna" = "ÚLTIMAS PÁGINAS DE MISHNÁ";
+"recentsGemaraAndMishna" = "ÚLTIMAS PÁGINAS DE GUEMARÁ y MISHNÁ";
 "viewAllTheLessons" = "Ver todas las clases";
 "noDownloadedFilesYet" = "No hay descargas todavía";
 "verification" = "Verificación";
@@ -101,6 +104,7 @@
 "messages" = "Mensajes";
 "donationsCenter" = "Centro de regalos";
 "donate" = "Regalar";
+"newsFeed" = "Descubre";
 "logout" = "Cerrar sesión";
 "stayWithUs" = "STAY WITH US";
 

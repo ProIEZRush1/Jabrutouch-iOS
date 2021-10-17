@@ -97,6 +97,14 @@ class Strings {
         return NSLocalizedString("mishna", comment: "")
     }
     
+    class var gemaraCapitalized: String {
+        return NSLocalizedString("gemaraCapitalized", comment: "")
+    }
+    
+    class var mishnaCapitalized: String {
+        return NSLocalizedString("mishnaCapitalized", comment: "")
+    }
+    
     class var donations: String {
         return NSLocalizedString("donations", comment: "")
     }
@@ -190,6 +198,10 @@ class Strings {
     
     class var donate: String {
         return NSLocalizedString("donate", comment: "")
+    }
+
+    class var newsFeed: String {
+        return NSLocalizedString("newsFeed", comment: "")
     }
     
     class var logout: String {
@@ -453,6 +465,9 @@ class Strings {
     
     class var recentsMishna: String {
         return NSLocalizedString("recentsMishna", comment: "")
+    }
+    class var recentsGemaraAndMishna: String {
+        return NSLocalizedString("recentsGemaraAndMishna", comment: "")
     }
     
     class var welcomeToNewJabrutouch: String {
