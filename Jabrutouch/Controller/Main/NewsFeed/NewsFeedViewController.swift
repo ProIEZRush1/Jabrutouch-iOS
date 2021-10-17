@@ -99,7 +99,36 @@ class NewsFeedViewController: UIViewController, UITableViewDelegate, UITableView
             cell.textBox.text = ""
             cell.textBox.isHidden = true
         } else {
-            cell.textBox.text = post.body
+                        
+            let attributedString = NSMutableAttributedString(string: post.body!)
+            // Detect all url's in post body
+            let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
+            let matches = detector.matches(in: attributedString.string, options: [], range: NSRange(location: 0, length: attributedString.string.count))
+            for match in matches {
+                guard let checkurl = match.url?.absoluteString else { continue }
+                // check range again, because length of attributedString changed after first url replaced.
+                let checkTheRange = attributedString.mutableString.range(of: checkurl)
+                guard let range = Range(checkTheRange, in: attributedString.string) else { continue }
+                let url = attributedString.string[range]
+                // create link for url
+                let attributedLink = NSMutableAttributedString(string: "Haz clic aquí")
+                attributedLink.addAttribute(.link, value: url, range: NSRange(location: 0, length: 13))
+                // Get range of text to replace
+                guard let range2 = attributedString.string.range(of: url) else { exit(0) }
+                let nsRange = NSRange(range2, in: attributedString.string)
+                // Replace url with attributed link
+                attributedString.replaceCharacters(in: nsRange, with: attributedLink)
+            }
+            // save font and color
+            let font = cell.textBox.font
+            let color = cell.textBox.textColor
+
+             // Set attributed string to textView
+            cell.textBox.attributedText = attributedString
+            // restore font and color
+            cell.textBox.font = font
+            cell.textBox.textColor = color
+            
             cell.textBox.isHidden = false
         }
         
