@@ -966,7 +966,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
             popupVC?.isSingelPayment = self.singlePayment
         }
         else if segue.identifier == "presentNewsFeed" {
-            let popupVC = segue.destination as? NewsFeedViewController
+            let newsFeedVC = segue.destination as? NewsFeedViewController
         }
         
         
