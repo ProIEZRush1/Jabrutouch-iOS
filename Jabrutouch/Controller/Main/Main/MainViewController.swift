@@ -936,6 +936,10 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.presentMishnaViewController()
     }
     
+    func presentSurveyVC() {
+        self.performSegue(withIdentifier: "survey", sender: nil)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "embedModalsVC" {
             self.modalsPresentingVC = segue.destination as? ModalsContainerViewController
@@ -968,7 +972,9 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         else if segue.identifier == "presentNewsFeed" {
             let newsFeedVC = segue.destination as? NewsFeedViewController
         }
-        
+        else if segue.identifier == "survey" {
+            let surveyVC = segue.destination as? SurveyViewController
+        }
         
         // MARK: TODO - shut news audio when goes into background - refresh here is temporary hack.
         self.latestNewsTableView.reloadData()
@@ -1016,7 +1022,8 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
         case .donationsCenter:
             self.pressEnable ? self.presentDonation() : self.noInternetAlert()
         case .newsFeed:
-            self.pressEnable ? self.presentNewsFeed() : self.noInternetAlert()
+            presentSurveyVC()
+//            self.pressEnable ? self.presentNewsFeed() : self.noInternetAlert()
             break
         default:
             presentInDevelopmentAlert()

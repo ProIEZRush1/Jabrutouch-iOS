@@ -9,33 +9,32 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Survey View Controller-->
         <scene sceneID="8SX-ku-LLa">
             <objects>
-                <viewController id="PLj-5F-oco" sceneMemberID="viewController">
-                    <view key="view" opaque="NO" contentMode="scaleToFill" id="OCG-mA-YKe">
+                <viewController id="PLj-5F-oco" customClass="SurveyViewController" customModule="Jabrutouch" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OCG-mA-YKe">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RH2-uX-3M7">
                                 <rect key="frame" x="43" y="158" width="328" height="580"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t3b-vb-wyi">
-                                        <rect key="frame" x="146.5" y="80" width="35" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Survey Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t3b-vb-wyi">
+                                        <rect key="frame" x="116.5" y="30" width="95" height="21"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ujU-4f-ImX">
-                                        <rect key="frame" x="15" y="121" width="298" height="56.5"/>
-                                        <string key="text">Introduction text goes here  in Introduction text goes here in  Introduction text goes here Introduction text goes here Introduction text goes here</string>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Introduction: In order to help us serve you better please answer these short questions." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ujU-4f-ImX">
+                                        <rect key="frame" x="15" y="71" width="298" height="55"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="What year were you born?" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DTv-bi-V6K">
-                                        <rect key="frame" x="15" y="216" width="298" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Sample question text goes right here it can be three lines long? How long can it be? Three lines that is ok?" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DTv-bi-V6K">
+                                        <rect key="frame" x="15" y="164.5" width="298" height="72"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -55,8 +54,11 @@
                                         <state key="normal" title="Next Question">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="nextButtonPressed:" destination="PLj-5F-oco" eventType="touchUpInside" id="cna-Tt-CDx"/>
+                                        </connections>
                                     </button>
-                                    <pickerView contentMode="scaleToFill" verticalCompressionResistancePriority="753" translatesAutoresizingMaskIntoConstraints="NO" id="ZUk-RV-Xki">
+                                    <pickerView contentMode="scaleToFill" verticalCompressionResistancePriority="753" restorationIdentifier="survey" translatesAutoresizingMaskIntoConstraints="NO" id="ZUk-RV-Xki">
                                         <rect key="frame" x="8" y="294" width="312" height="216"/>
                                     </pickerView>
                                 </subviews>
@@ -79,19 +81,28 @@
                                     <constraint firstItem="ujU-4f-ImX" firstAttribute="top" secondItem="t3b-vb-wyi" secondAttribute="bottom" constant="20" id="iFV-NZ-EyA"/>
                                     <constraint firstAttribute="bottom" secondItem="6d6-bN-I2a" secondAttribute="bottom" constant="15" id="nvv-Vn-Xsm"/>
                                     <constraint firstItem="6d6-bN-I2a" firstAttribute="leading" secondItem="RH2-uX-3M7" secondAttribute="leading" constant="30" id="oXr-Mk-dkB"/>
-                                    <constraint firstItem="t3b-vb-wyi" firstAttribute="top" secondItem="RH2-uX-3M7" secondAttribute="top" constant="80" id="qkM-mB-qBm"/>
+                                    <constraint firstItem="t3b-vb-wyi" firstAttribute="top" secondItem="RH2-uX-3M7" secondAttribute="top" constant="30" id="qkM-mB-qBm"/>
                                     <constraint firstItem="DTv-bi-V6K" firstAttribute="leading" secondItem="RH2-uX-3M7" secondAttribute="leading" constant="15" id="uir-ai-eGF"/>
                                     <constraint firstAttribute="width" constant="328" id="xlm-Jz-VPp"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="qsm-0m-pOI"/>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.28627450980392155" green="0.28627450980392155" blue="0.28627450980392155" alpha="0.77000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="RH2-uX-3M7" firstAttribute="centerY" secondItem="OCG-mA-YKe" secondAttribute="centerY" id="sJL-i2-4J4"/>
                             <constraint firstItem="RH2-uX-3M7" firstAttribute="centerX" secondItem="OCG-mA-YKe" secondAttribute="centerX" id="x4z-J2-Qep"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="cardView" destination="RH2-uX-3M7" id="Rp1-uQ-EgM"/>
+                        <outlet property="nextButton" destination="6d6-bN-I2a" id="gyz-0A-gOV"/>
+                        <outlet property="picker" destination="ZUk-RV-Xki" id="0nR-jU-4lT"/>
+                        <outlet property="questionLabel" destination="DTv-bi-V6K" id="t7x-GN-3mW"/>
+                        <outlet property="questionNumberLabel" destination="NFv-cw-FtU" id="odd-qw-Wwr"/>
+                        <outlet property="subtitleIntroLabel" destination="ujU-4f-ImX" id="YQC-8V-97Y"/>
+                        <outlet property="surveyTitleLabel" destination="t3b-vb-wyi" id="rus-ru-QEC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CrA-Lf-SgB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
