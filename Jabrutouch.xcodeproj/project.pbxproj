@@ -295,6 +295,7 @@
 		D631F9CB26DCFC2B00447B88 /* GetNewsFeedItemsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D631F9CA26DCFC2B00447B88 /* GetNewsFeedItemsResponse.swift */; };
 		D65711A8271C5B1800C3CEBA /* Survey.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D65711A7271C5B1800C3CEBA /* Survey.storyboard */; };
 		D65711FA271D8DAA00C3CEBA /* SurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65711F9271D8DAA00C3CEBA /* SurveyViewController.swift */; };
+		D6571247271F0B0A00C3CEBA /* CheckBoxListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6571246271F0B0900C3CEBA /* CheckBoxListView.swift */; };
 		D672138A26D7C036002C8DD2 /* NewsFeed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D672138926D7C035002C8DD2 /* NewsFeed.storyboard */; };
 		D672139326D7D76B002C8DD2 /* NewsFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D672139226D7D76B002C8DD2 /* NewsFeedViewController.swift */; };
 		D672139626D7DEDF002C8DD2 /* NewsItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D672139526D7DEDF002C8DD2 /* NewsItemCell.swift */; };
@@ -653,6 +654,7 @@
 		D631F9CA26DCFC2B00447B88 /* GetNewsFeedItemsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetNewsFeedItemsResponse.swift; sourceTree = "<group>"; };
 		D65711A7271C5B1800C3CEBA /* Survey.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Survey.storyboard; sourceTree = "<group>"; };
 		D65711F9271D8DAA00C3CEBA /* SurveyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyViewController.swift; sourceTree = "<group>"; };
+		D6571246271F0B0900C3CEBA /* CheckBoxListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxListView.swift; sourceTree = "<group>"; };
 		D672138926D7C035002C8DD2 /* NewsFeed.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewsFeed.storyboard; sourceTree = "<group>"; };
 		D672139226D7D76B002C8DD2 /* NewsFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedViewController.swift; sourceTree = "<group>"; };
 		D672139526D7DEDF002C8DD2 /* NewsItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsItemCell.swift; sourceTree = "<group>"; };
@@ -965,6 +967,7 @@
 				8395978C23F98CEF007B96EB /* ProgressBarWithButton.xib */,
 				8395979D24029C30007B96EB /* HoursView.xib */,
 				609259FD2455A64100930DD4 /* NotDonationAlert.xib */,
+				D6571246271F0B0900C3CEBA /* CheckBoxListView.swift */,
 			);
 			path = "Single Views";
 			sourceTree = "<group>";
@@ -2135,6 +2138,7 @@
 				2126D6DC2303EA8600CB501D /* ContentRepository.swift in Sources */,
 				83408E1324168C3900DD9229 /* PendingViewController.swift in Sources */,
 				219BFF4422E7186D00ABBEE2 /* MenuTableViewCell.swift in Sources */,
+				D6571247271F0B0A00C3CEBA /* CheckBoxListView.swift in Sources */,
 				D672139626D7DEDF002C8DD2 /* NewsItemCell.swift in Sources */,
 				2131969722F38B1200B0AF5F /* APIResult.swift in Sources */,
 				538691472379E8B500CC95B5 /* EditPersonalDetailsCell.swift in Sources */,
