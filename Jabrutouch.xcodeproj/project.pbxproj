@@ -290,12 +290,13 @@
 		83CCB12123783F6100C86450 /* JTMasechetDownloadedGemaraLessons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB12023783F6100C86450 /* JTMasechetDownloadedGemaraLessons.swift */; };
 		83CCB1232379EEB700C86450 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB1222379EEB700C86450 /* EditProfileViewController.swift */; };
 		83CCB127237C8D6F00C86450 /* EditPasswordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB126237C8D6F00C86450 /* EditPasswordCell.swift */; };
+		D6196E762720530C00E1F478 /* SurveyCustomAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6196E752720530C00E1F478 /* SurveyCustomAnswerCell.swift */; };
 		D631F9C526DCDDBC00447B88 /* JTNewsFeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D631F9C426DCDDBC00447B88 /* JTNewsFeedItem.swift */; };
 		D631F9C826DCE0D100447B88 /* NewsFeedRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D631F9C726DCE0D100447B88 /* NewsFeedRepository.swift */; };
 		D631F9CB26DCFC2B00447B88 /* GetNewsFeedItemsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D631F9CA26DCFC2B00447B88 /* GetNewsFeedItemsResponse.swift */; };
 		D65711A8271C5B1800C3CEBA /* Survey.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D65711A7271C5B1800C3CEBA /* Survey.storyboard */; };
 		D65711FA271D8DAA00C3CEBA /* SurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65711F9271D8DAA00C3CEBA /* SurveyViewController.swift */; };
-		D6571247271F0B0A00C3CEBA /* CheckBoxListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6571246271F0B0900C3CEBA /* CheckBoxListView.swift */; };
+		D657124B272017E200C3CEBA /* SurveyChecklistTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D657124A272017E200C3CEBA /* SurveyChecklistTVCell.swift */; };
 		D672138A26D7C036002C8DD2 /* NewsFeed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D672138926D7C035002C8DD2 /* NewsFeed.storyboard */; };
 		D672139326D7D76B002C8DD2 /* NewsFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D672139226D7D76B002C8DD2 /* NewsFeedViewController.swift */; };
 		D672139626D7DEDF002C8DD2 /* NewsItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D672139526D7DEDF002C8DD2 /* NewsItemCell.swift */; };
@@ -649,12 +650,13 @@
 		83CCB124237C0F9E00C86450 /* JTDonor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTDonor.swift; sourceTree = "<group>"; };
 		83CCB126237C8D6F00C86450 /* EditPasswordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPasswordCell.swift; sourceTree = "<group>"; };
 		C0F9377FF1E3DA5E9F901D68 /* Pods_Jabrutouch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jabrutouch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6196E752720530C00E1F478 /* SurveyCustomAnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyCustomAnswerCell.swift; sourceTree = "<group>"; };
 		D631F9C426DCDDBC00447B88 /* JTNewsFeedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTNewsFeedItem.swift; sourceTree = "<group>"; };
 		D631F9C726DCE0D100447B88 /* NewsFeedRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedRepository.swift; sourceTree = "<group>"; };
 		D631F9CA26DCFC2B00447B88 /* GetNewsFeedItemsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetNewsFeedItemsResponse.swift; sourceTree = "<group>"; };
 		D65711A7271C5B1800C3CEBA /* Survey.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Survey.storyboard; sourceTree = "<group>"; };
 		D65711F9271D8DAA00C3CEBA /* SurveyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyViewController.swift; sourceTree = "<group>"; };
-		D6571246271F0B0900C3CEBA /* CheckBoxListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxListView.swift; sourceTree = "<group>"; };
+		D657124A272017E200C3CEBA /* SurveyChecklistTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyChecklistTVCell.swift; sourceTree = "<group>"; };
 		D672138926D7C035002C8DD2 /* NewsFeed.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewsFeed.storyboard; sourceTree = "<group>"; };
 		D672139226D7D76B002C8DD2 /* NewsFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedViewController.swift; sourceTree = "<group>"; };
 		D672139526D7DEDF002C8DD2 /* NewsItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsItemCell.swift; sourceTree = "<group>"; };
@@ -967,7 +969,6 @@
 				8395978C23F98CEF007B96EB /* ProgressBarWithButton.xib */,
 				8395979D24029C30007B96EB /* HoursView.xib */,
 				609259FD2455A64100930DD4 /* NotDonationAlert.xib */,
-				D6571246271F0B0900C3CEBA /* CheckBoxListView.swift */,
 			);
 			path = "Single Views";
 			sourceTree = "<group>";
@@ -1620,6 +1621,8 @@
 			isa = PBXGroup;
 			children = (
 				D65711F9271D8DAA00C3CEBA /* SurveyViewController.swift */,
+				D657124A272017E200C3CEBA /* SurveyChecklistTVCell.swift */,
+				D6196E752720530C00E1F478 /* SurveyCustomAnswerCell.swift */,
 			);
 			path = Survey;
 			sourceTree = "<group>";
@@ -2044,6 +2047,7 @@
 				600399D924D6E1550038ED66 /* JTDeepLinkCoupone.swift in Sources */,
 				DD4E3A8024056BF400A889BE /* SingleDonationViewController.swift in Sources */,
 				219BFF2722E50A0A00ABBEE2 /* DownloadsNavigationController.swift in Sources */,
+				D657124B272017E200C3CEBA /* SurveyChecklistTVCell.swift in Sources */,
 				2131969C22F38B2E00B0AF5F /* UserDefaultsProvider.swift in Sources */,
 				6016D65D24E9778D002DD9AF /* NewVersionAlertViewController.swift in Sources */,
 				213016B9232198E800B9DD2B /* PostAnalyticsEventResponse.swift in Sources */,
@@ -2085,6 +2089,7 @@
 				5386914D2379E8B500CC95B5 /* GeneralInformationCell.swift in Sources */,
 				21678D7A22E085B1007BC74C /* MishnaViewController.swift in Sources */,
 				2126D6D823033D4D00CB501D /* JTMasechet.swift in Sources */,
+				D6196E762720530C00E1F478 /* SurveyCustomAnswerCell.swift in Sources */,
 				D631F9C826DCE0D100447B88 /* NewsFeedRepository.swift in Sources */,
 				60717D5C24AE19790099DB1D /* JTLessonAnalitics.swift in Sources */,
 				D631F9CB26DCFC2B00447B88 /* GetNewsFeedItemsResponse.swift in Sources */,
@@ -2138,7 +2143,6 @@
 				2126D6DC2303EA8600CB501D /* ContentRepository.swift in Sources */,
 				83408E1324168C3900DD9229 /* PendingViewController.swift in Sources */,
 				219BFF4422E7186D00ABBEE2 /* MenuTableViewCell.swift in Sources */,
-				D6571247271F0B0A00C3CEBA /* CheckBoxListView.swift in Sources */,
 				D672139626D7DEDF002C8DD2 /* NewsItemCell.swift in Sources */,
 				2131969722F38B1200B0AF5F /* APIResult.swift in Sources */,
 				538691472379E8B500CC95B5 /* EditPersonalDetailsCell.swift in Sources */,

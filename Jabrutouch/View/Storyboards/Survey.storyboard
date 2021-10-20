@@ -76,10 +76,69 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NDu-bh-crw">
-                                        <rect key="frame" x="30" y="287.5" width="268" height="217.5"/>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FTR-VN-0gr">
+                                        <rect key="frame" x="30" y="297.5" width="268" height="207.5"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    </view>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="surveyChecklistTVCell" id="U2o-TN-1iL" customClass="SurveyChecklistTVCell" customModule="Jabrutouch" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="268" height="43.5"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="U2o-TN-1iL" id="Rfx-Yg-EaT">
+                                                    <rect key="frame" x="0.0" y="0.0" width="268" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ome-AP-xIN">
+                                                            <rect key="frame" x="16" y="11.5" width="206" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="ome-AP-xIN" secondAttribute="trailing" constant="30" id="3ge-Kn-DMz"/>
+                                                        <constraint firstItem="ome-AP-xIN" firstAttribute="leading" secondItem="Rfx-Yg-EaT" secondAttribute="leadingMargin" id="85m-9Y-Ww3"/>
+                                                        <constraint firstItem="ome-AP-xIN" firstAttribute="centerY" secondItem="Rfx-Yg-EaT" secondAttribute="centerY" id="qow-Tb-RLu"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="titleLabel" destination="ome-AP-xIN" id="afh-nV-add"/>
+                                                </connections>
+                                            </tableViewCell>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="surveyCustomAnswerCell" id="4hZ-BC-Rz9" customClass="SurveyCustomAnswerCell" customModule="Jabrutouch" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="71.5" width="268" height="43.5"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4hZ-BC-Rz9" id="wGo-0M-AsF">
+                                                    <rect key="frame" x="0.0" y="0.0" width="268" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n9R-7a-X8j">
+                                                            <rect key="frame" x="16" y="11.5" width="206" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YK7-Xq-eu3">
+                                                            <rect key="frame" x="10" y="43" width="248" height="34"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits"/>
+                                                        </textField>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="YK7-Xq-eu3" firstAttribute="top" secondItem="n9R-7a-X8j" secondAttribute="bottom" constant="10.25" id="6ew-52-szC"/>
+                                                        <constraint firstAttribute="trailing" secondItem="YK7-Xq-eu3" secondAttribute="trailing" constant="10" id="7ga-PT-MvM"/>
+                                                        <constraint firstItem="YK7-Xq-eu3" firstAttribute="leading" secondItem="wGo-0M-AsF" secondAttribute="leading" constant="10" id="Pkt-P1-SlQ"/>
+                                                        <constraint firstItem="n9R-7a-X8j" firstAttribute="leading" secondItem="wGo-0M-AsF" secondAttribute="leadingMargin" id="V87-1k-Y9N"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="n9R-7a-X8j" secondAttribute="trailing" constant="30" id="fAY-Tu-Xfj"/>
+                                                        <constraint firstItem="n9R-7a-X8j" firstAttribute="top" secondItem="wGo-0M-AsF" secondAttribute="top" constant="11.5" id="tdp-Fe-eCe"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="customAnswerTextField" destination="YK7-Xq-eu3" id="new-re-kXi"/>
+                                                    <outlet property="titleLabel" destination="n9R-7a-X8j" id="8gF-Yt-G5m"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -88,16 +147,14 @@
                                     <constraint firstItem="NFv-cw-FtU" firstAttribute="top" secondItem="DTv-bi-V6K" secondAttribute="bottom" constant="10" id="2Be-bS-68G"/>
                                     <constraint firstItem="t3b-vb-wyi" firstAttribute="centerX" secondItem="RH2-uX-3M7" secondAttribute="centerX" id="BDR-Ph-Rcj"/>
                                     <constraint firstItem="ZUk-RV-Xki" firstAttribute="top" secondItem="NFv-cw-FtU" secondAttribute="bottom" constant="26.5" id="EnC-Zo-rm8"/>
+                                    <constraint firstItem="FTR-VN-0gr" firstAttribute="top" secondItem="NFv-cw-FtU" secondAttribute="bottom" constant="30" id="Gbp-z9-bLr"/>
                                     <constraint firstItem="mpL-4v-Mv7" firstAttribute="leading" secondItem="RH2-uX-3M7" secondAttribute="leading" constant="30" id="Hn3-BN-5xf"/>
-                                    <constraint firstItem="NDu-bh-crw" firstAttribute="leading" secondItem="RH2-uX-3M7" secondAttribute="leading" constant="30" id="JBc-1S-8YT"/>
                                     <constraint firstAttribute="trailing" secondItem="ZUk-RV-Xki" secondAttribute="trailing" constant="8" id="KLd-7d-GdO"/>
-                                    <constraint firstAttribute="trailing" secondItem="NDu-bh-crw" secondAttribute="trailing" constant="30" id="L56-u0-sbC"/>
                                     <constraint firstAttribute="trailing" secondItem="ujU-4f-ImX" secondAttribute="trailing" constant="15" id="O88-T2-UC1"/>
                                     <constraint firstAttribute="height" constant="580" id="PZ5-e5-kCi"/>
                                     <constraint firstAttribute="trailing" secondItem="6d6-bN-I2a" secondAttribute="trailing" constant="30" id="RNv-aW-G8z"/>
                                     <constraint firstItem="mpL-4v-Mv7" firstAttribute="top" secondItem="NFv-cw-FtU" secondAttribute="bottom" constant="120" id="RVo-rB-4lI"/>
                                     <constraint firstItem="t3b-vb-wyi" firstAttribute="centerX" secondItem="RH2-uX-3M7" secondAttribute="centerX" id="TYE-xE-am5"/>
-                                    <constraint firstItem="6d6-bN-I2a" firstAttribute="top" secondItem="NDu-bh-crw" secondAttribute="bottom" constant="15" id="Vvw-OI-Z4O"/>
                                     <constraint firstItem="ujU-4f-ImX" firstAttribute="leading" secondItem="RH2-uX-3M7" secondAttribute="leading" constant="15" id="Zsk-6x-eBN"/>
                                     <constraint firstItem="ZUk-RV-Xki" firstAttribute="leading" secondItem="RH2-uX-3M7" secondAttribute="leading" constant="8" id="aGA-ML-3qj"/>
                                     <constraint firstItem="6d6-bN-I2a" firstAttribute="top" secondItem="ZUk-RV-Xki" secondAttribute="bottom" constant="10" id="cFX-Kd-7qU"/>
@@ -105,11 +162,13 @@
                                     <constraint firstItem="aOs-9a-wMe" firstAttribute="centerX" secondItem="RH2-uX-3M7" secondAttribute="centerX" id="e5q-cc-zGH"/>
                                     <constraint firstAttribute="trailing" secondItem="DTv-bi-V6K" secondAttribute="trailing" constant="15" id="grI-m1-n7V"/>
                                     <constraint firstAttribute="trailing" secondItem="mpL-4v-Mv7" secondAttribute="trailing" constant="30" id="guk-aa-fBn"/>
-                                    <constraint firstItem="NDu-bh-crw" firstAttribute="top" secondItem="NFv-cw-FtU" secondAttribute="bottom" constant="20" id="hKd-X6-U0y"/>
+                                    <constraint firstAttribute="trailing" secondItem="FTR-VN-0gr" secondAttribute="trailing" constant="30" id="hQq-BY-knN"/>
+                                    <constraint firstItem="6d6-bN-I2a" firstAttribute="top" secondItem="FTR-VN-0gr" secondAttribute="bottom" constant="15" id="hrz-cS-MWd"/>
                                     <constraint firstItem="ujU-4f-ImX" firstAttribute="top" secondItem="t3b-vb-wyi" secondAttribute="bottom" constant="20" id="iFV-NZ-EyA"/>
                                     <constraint firstAttribute="bottom" secondItem="6d6-bN-I2a" secondAttribute="bottom" constant="15" id="nvv-Vn-Xsm"/>
                                     <constraint firstItem="6d6-bN-I2a" firstAttribute="leading" secondItem="RH2-uX-3M7" secondAttribute="leading" constant="30" id="oXr-Mk-dkB"/>
                                     <constraint firstItem="t3b-vb-wyi" firstAttribute="top" secondItem="RH2-uX-3M7" secondAttribute="top" constant="30" id="qkM-mB-qBm"/>
+                                    <constraint firstItem="FTR-VN-0gr" firstAttribute="leading" secondItem="RH2-uX-3M7" secondAttribute="leading" constant="30" id="rmj-7g-0sb"/>
                                     <constraint firstItem="DTv-bi-V6K" firstAttribute="leading" secondItem="RH2-uX-3M7" secondAttribute="leading" constant="15" id="uir-ai-eGF"/>
                                     <constraint firstAttribute="width" constant="328" id="xlm-Jz-VPp"/>
                                 </constraints>
@@ -124,7 +183,7 @@
                     </view>
                     <connections>
                         <outlet property="cardView" destination="RH2-uX-3M7" id="Rp1-uQ-EgM"/>
-                        <outlet property="checkListView" destination="NDu-bh-crw" id="ljG-xk-fzy"/>
+                        <outlet property="checklistTableView" destination="FTR-VN-0gr" id="uqY-rr-gIa"/>
                         <outlet property="nextButton" destination="6d6-bN-I2a" id="gyz-0A-gOV"/>
                         <outlet property="picker" destination="ZUk-RV-Xki" id="0nR-jU-4lT"/>
                         <outlet property="questionLabel" destination="DTv-bi-V6K" id="t7x-GN-3mW"/>
