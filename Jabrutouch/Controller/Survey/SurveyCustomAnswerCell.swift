@@ -8,20 +8,33 @@
 
 import UIKit
 
-class SurveyCustomAnswerCell: UITableViewCell {
+protocol SurveyCustomAnswerCellDelegate {
+    func saveCustomAnswer(answerText:String)
+}
+
+class SurveyCustomAnswerCell: UITableViewCell, UITextFieldDelegate {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var customAnswerTextField: UITextField!
+    var delegate: SurveyCustomAnswerCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.customAnswerTextField.delegate = self
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    }
+    
+    // UITextFieldDelegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if let answer = textField.text , !answer.isEmpty {
+            self.delegate?.saveCustomAnswer(answerText: answer)
+        }
+        textField.resignFirstResponder()
+        return true
     }
 
 }

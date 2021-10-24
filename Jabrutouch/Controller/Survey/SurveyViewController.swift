@@ -8,7 +8,35 @@
 
 import UIKit
 
-class SurveyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDelegate, UITableViewDataSource{
+
+class JTSurvey {
+    var id: Int = 0
+    var title: String = "Survey 1"
+    var subtitleIntro:String = "Please answer these short questions so we can serve you better."
+    var questions:[JTSurveyQuestionWithAnswerOptions] = []
+}
+
+class JTSurveyQuestionWithAnswerOptions {
+    var id:Int
+    var question: String
+    var answerType:JTSurveyAnswerType
+    var answerOptions: [String]?
+    
+    init(id:Int, question:String, answerType:JTSurveyAnswerType, answerOptions: [String]?) {
+        self.id = id
+        self.question = question
+        self.answerType = answerType
+        self.answerOptions = answerOptions
+    }
+}
+enum JTSurveyAnswerType {
+    case picker
+    case multipleSelectionCheckbox
+    case ratingBar
+    case singleSelectionCheckboxWithOther
+}
+
+class SurveyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDelegate, UITableViewDataSource {
 
     
     
@@ -25,6 +53,9 @@ class SurveyViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     var pickerData: [String] = []
     var checklistData: [String] = []
     var checkedAnswers: [String] = []
+    var customAnswer: String?
+    var pickerAnswer: String?
+    var sliderAnswer: String?
     
     
     
@@ -138,9 +169,69 @@ class SurveyViewController: UIViewController, UIPickerViewDelegate, UIPickerView
       
     }
     
-    //==========================================
-    // MARK: Picker Delegate Functions
-    //==========================================
+    
+    
+    
+    //===============================
+    // MARK: Actions
+    //===============================
+    @IBAction func nextButtonPressed(_ sender: Any) {
+        if !self.didAnswerTheQuestion() {
+            Utils.showAlertMessage("Please answer the question", viewControler: self)
+            return
+        }
+        /// Is last question
+        if self.currentQuestionIndex == self.questionCount - 1 {
+            self.dismiss(animated: true, completion: nil)
+            
+        }
+        /// Go to next question
+        else {
+            self.currentQuestionIndex += 1
+            DispatchQueue.main.async {
+                self.setCardViewWithQuestion(question: self.survey.questions[self.currentQuestionIndex], questionIndex: self.currentQuestionIndex)
+                UIView.transition(with: self.cardView, duration: 0.5, options: .transitionFlipFromRight, animations: nil, completion: nil)
+            }
+        }
+    }
+    
+    @IBAction func sliderValueChanged(_ sender: UISlider) {
+        self.sliderValueLabel.text = String(Int(sender.value))
+        self.sliderAnswer = String(Int(sender.value))
+    }
+    
+    
+    func didAnswerTheQuestion() -> Bool {
+        switch self.currentAnswerType {
+        case .multipleSelectionCheckbox:
+            if !self.checkedAnswers.isEmpty {
+                return true
+            }
+        case .picker:
+            if self.pickerAnswer != nil {
+                return true
+            }
+        case .ratingBar:
+            if self.sliderAnswer != nil {
+                return true
+            }
+        case .singleSelectionCheckboxWithOther:
+            if (!self.checkedAnswers.isEmpty) || (self.customAnswer != nil) {
+                return true
+            }
+        default:
+            break
+        }
+        return false
+    }
+
+}
+
+
+//==========================================
+// MARK: Picker Delegate Functions
+//==========================================
+extension SurveyViewController {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -155,12 +246,28 @@ class SurveyViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.pickerAnswer = pickerData[row]
         print(pickerData[row])
     }
-    
-    //=====================================================
-    // MARK: Checklist Tableview Delegate Functions
-    //=====================================================
+}
+
+
+//==========================================
+// MARK: SurveyCustomAnswerCellDelegate
+//==========================================
+extension SurveyViewController: SurveyCustomAnswerCellDelegate {
+    func saveCustomAnswer(answerText: String) {
+        self.customAnswer = answerText
+        self.checkedAnswers = []
+        self.checklistTableView.reloadData()
+    }
+}
+
+
+//=====================================================
+// MARK: Checklist Tableview Delegate Functions
+//=====================================================
+extension SurveyViewController {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch self.currentAnswerType {
@@ -175,22 +282,33 @@ class SurveyViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "surveyChecklistTVCell", for: indexPath) as! SurveyChecklistTVCell
-        
-        // ie: [index 0, index 1, index 2] , if indexPath.row == 3, then it's "other" option.
+        /// ie: [index 0, index 1, index 2] , if indexPath.row == 3, then it's "other" option.
+        /// Custom SurveyCustomAnswerCell
         if indexPath.row == self.checklistData.count {
             let cell = tableView.dequeueReusableCell(withIdentifier: "surveyCustomAnswerCell", for: indexPath) as! SurveyCustomAnswerCell
+            cell.delegate = self
             cell.titleLabel.text = "Other - write an answer"
-            cell.accessoryType = .disclosureIndicator
-            cell.customAnswerTextField.isHidden = true
+            if let _ = self.customAnswer {
+                cell.accessoryType = .checkmark
+                cell.customAnswerTextField.text = self.customAnswer
+            } else {
+                cell.accessoryType = .none
+                cell.customAnswerTextField.text = ""
+            }
             return cell
-
         }
         else {
+            /// Regular SurveyChecklistTVCell
             let cell = tableView.dequeueReusableCell(withIdentifier: "surveyChecklistTVCell", for: indexPath) as! SurveyChecklistTVCell
             cell.titleLabel.text = self.checklistData[indexPath.row]
-            cell.accessoryType = .none
+           
+            if self.checkedAnswers.contains(self.checklistData[indexPath.row]) {
+                cell.accessoryType = .checkmark
+            }
+            else {
+                cell.accessoryType = .none
+            }
+            
             return cell
 
         }
@@ -199,16 +317,17 @@ class SurveyViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         tableView.deselectRow(at: indexPath, animated: false)
-
-        guard let cell = tableView.cellForRow(at: indexPath) else { return }
         
-        var answer = ""
         if indexPath.row == self.checklistData.count {
-            // is custom "Other" option, not in self.checklistData
-            answer = "other"
-        } else {
-            answer = self.checklistData[indexPath.row]
+            /// is custom "Other" option, not in self.checklistData
+            /// is saved only if customAnswer entered into textField
+            /// handled by SurveyCustomAnswerCellDelegate
+            
+            /// MUST RETURN HERE SO WE DON'T GET AN OUT OF BOUNDS INDEX WHEN LOOKING FOR ANSWER IN  self.checklistData[indexPath.row]
+            return
         }
+        let answer = self.checklistData[indexPath.row]
+
 
         switch self.currentAnswerType {
             case .multipleSelectionCheckbox:
@@ -216,111 +335,23 @@ class SurveyViewController: UIViewController, UIPickerViewDelegate, UIPickerView
                 if self.checkedAnswers.contains(answer) {
                     guard let index = self.checkedAnswers.firstIndex(of: answer) else { return }
                     self.checkedAnswers.remove(at: index)
-                    cell.accessoryType = .none
                 }
                 else {
                     self.checkedAnswers.append(answer)
-                    cell.accessoryType = .checkmark
                 }
             case .singleSelectionCheckboxWithOther:
-                //is already selected, do nothing
-                if self.checkedAnswers.contains(answer){
-                    return
-                }
-                // if not selected, check if has previously checked answer and clear it
-                if let previousAnswer = self.checkedAnswers.first {
-                    if let index = self.checklistData.firstIndex(of: previousAnswer){
-                        if let previousCell = tableView.cellForRow(at: IndexPath(row: index, section: indexPath.section)){
-                            previousCell.accessoryType = .none
-                        }
-                    } else {
-                        if previousAnswer == "other" {
-                            if let previousCell = tableView.cellForRow(at: IndexPath(row: self.checklistData.count, section: indexPath.section)){
-                                previousCell.accessoryType = .none
-                            }
-                        }
-                    }
-                }
-                
-                // if is the "Other" option.
-                if indexPath.row == self.checklistData.count {
-                    //MARK: TODO: pop open text input
-                    if let custCell = cell as? SurveyCustomAnswerCell {
-                        custCell.customAnswerTextField.isHidden = false
-                        
-                    }
-                }
-                
-
-                // now clear selected previously answer and add new answer
                 self.checkedAnswers = []
+                self.customAnswer = nil
                 self.checkedAnswers.append(answer)
-                cell.accessoryType = .checkmark
-
-                
+                /// saving OTHER custom answer is handled by SurveyCustomAnswerCellDelegate which is called inside textFieldShouldReturn inside SurveyCustomAnswerCell.
             default:
                 break
         }
-
-
-        print(self.checkedAnswers, indexPath.row)
-
-    }
-    
-    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath){
         
+        tableView.reloadData()
+        print(self.checkedAnswers, indexPath.row)
     }
 
-    
-    //===============================
-    // MARK: Actions
-    //===============================
-    @IBAction func nextButtonPressed(_ sender: Any) {
-        if self.currentQuestionIndex == self.questionCount - 1 {
-            self.dismiss(animated: true, completion: nil)
-            
-        } else {
-            self.currentQuestionIndex += 1
-                        DispatchQueue.main.async {
-                            self.setCardViewWithQuestion(question: self.survey.questions[self.currentQuestionIndex], questionIndex: self.currentQuestionIndex)
-                            UIView.transition(with: self.cardView, duration: 0.5, options: .transitionFlipFromRight, animations: nil, completion: nil)
-                        }
-        }
-    }
-    
-    @IBAction func sliderValueChanged(_ sender: UISlider) {
-        self.sliderValueLabel.text = String(Int(sender.value))
-    }
-    
-    
-    
 
-}
-
-class JTSurvey {
-    var id: Int = 0
-    var title: String = "Survey 1"
-    var subtitleIntro:String = "Please answer these short questions so we can serve you better."
-    var questions:[JTSurveyQuestionWithAnswerOptions] = []
-}
-
-class JTSurveyQuestionWithAnswerOptions {
-    var id:Int
-    var question: String
-    var answerType:JTSurveyAnswerType
-    var answerOptions: [String]?
-    
-    init(id:Int, question:String, answerType:JTSurveyAnswerType, answerOptions: [String]?) {
-        self.id = id
-        self.question = question
-        self.answerType = answerType
-        self.answerOptions = answerOptions
-    }
-}
-enum JTSurveyAnswerType {
-    case picker
-    case multipleSelectionCheckbox
-    case ratingBar
-    case singleSelectionCheckboxWithOther
 }
 
