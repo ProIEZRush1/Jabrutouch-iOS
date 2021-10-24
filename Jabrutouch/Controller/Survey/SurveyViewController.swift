@@ -84,14 +84,22 @@ class SurveyViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     //===============================
     // MARK: Lifecycle
     //===============================
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupPicker()
-        setupTableview()
-        roundCorners()
-        setupSurvey()
+        self.setupPicker()
+        self.setupTableview()
+        self.roundCorners()
+        self.setupSurvey()
+        self.observeKeyboard()
     }
-    
+
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name:  UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name:  UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
     //===============================
     // MARK: Setup
     //===============================
@@ -131,6 +139,11 @@ class SurveyViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         
     }
     
+    fileprivate func observeKeyboard() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
     func setCardViewWithQuestion(question:JTSurveyQuestionWithAnswerOptions, questionIndex: Int){
         DispatchQueue.main.async {
             self.currentQuestionIndex = questionIndex
@@ -223,6 +236,25 @@ class SurveyViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             break
         }
         return false
+    }
+
+    @objc func keyboardWillShow(notification: NSNotification) {
+        self.view.window?.frame.origin.y = -1 * self.getKeyboardHeight(notification: notification)
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.view.window?.frame.origin.y != 0 {
+            self.view.window?.frame.origin.y += self.getKeyboardHeight(notification: notification)
+        }
+    }
+    
+    func getKeyboardHeight(notification: NSNotification) -> CGFloat{
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+            return keyboardHeight
+        }
+        return 0
     }
 
 }
