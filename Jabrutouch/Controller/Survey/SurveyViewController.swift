@@ -95,7 +95,7 @@ class SurveyViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         self.observeKeyboard()
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self, name:  UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name:  UIResponder.keyboardWillHideNotification, object: nil)
     }
@@ -124,7 +124,7 @@ class SurveyViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         let q2 = JTSurveyQuestionWithAnswerOptions(id: 1, question: "Rate our app please!", answerType: .ratingBar, answerOptions: nil)
         let q3 = JTSurveyQuestionWithAnswerOptions(id: 2, question: "When was your grandfather born?", answerType: .multipleSelectionCheckbox, answerOptions: ["1800","1801","1802","1803"])
 
-        let q4 = JTSurveyQuestionWithAnswerOptions(id: 2, question: "Which masejtot have you already studied?", answerType: .singleSelectionCheckboxWithOther, answerOptions: ["Brajot","Erubin","Shabbat","Rosh Hashana", "Yoma", "Suca"])
+        let q4 = JTSurveyQuestionWithAnswerOptions(id: 3, question: "Which masejtot have you already studied?", answerType: .singleSelectionCheckboxWithOther, answerOptions: ["Brajot","Erubin","Shabbat","Rosh Hashana", "Yoma", "Suca"])
 
         self.survey.questions.append(q1)
         self.survey.questions.append(q2)
@@ -145,6 +145,7 @@ class SurveyViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     }
 
     func setCardViewWithQuestion(question:JTSurveyQuestionWithAnswerOptions, questionIndex: Int){
+        self.clearPreviousAnswers()
         DispatchQueue.main.async {
             self.currentQuestionIndex = questionIndex
             self.currentAnswerType = question.answerType
@@ -195,11 +196,14 @@ class SurveyViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         }
         /// Is last question
         if self.currentQuestionIndex == self.questionCount - 1 {
-            self.dismiss(animated: true, completion: nil)
+            Utils.showAlertMessage("THANKS FOR ANSWERING!!", title: "", viewControler: self){ _ in
+                self.dismiss(animated: true, completion: nil)
+            }
             
         }
         /// Go to next question
         else {
+            
             self.currentQuestionIndex += 1
             DispatchQueue.main.async {
                 self.setCardViewWithQuestion(question: self.survey.questions[self.currentQuestionIndex], questionIndex: self.currentQuestionIndex)
@@ -211,6 +215,13 @@ class SurveyViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     @IBAction func sliderValueChanged(_ sender: UISlider) {
         self.sliderValueLabel.text = String(Int(sender.value))
         self.sliderAnswer = String(Int(sender.value))
+    }
+    
+    func clearPreviousAnswers() {
+        self.pickerAnswer = nil
+        self.sliderAnswer = nil
+        self.checkedAnswers = []
+        self.customAnswer = nil
     }
     
     
