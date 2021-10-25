@@ -672,5 +672,13 @@ class Strings {
     class var internetDisconncet: String {
         return NSLocalizedString("internetDisconncet", comment: "")
     }
+    class var pleaseAnswerTheQuestion: String {
+        return NSLocalizedString("pleaseAnswerTheQuestion", comment: "")
+    }
+    class var thankYouVeryMuch: String {
+        return NSLocalizedString("thankYouVeryMuch!", comment: "")
+    }
+    
+    
 }
 

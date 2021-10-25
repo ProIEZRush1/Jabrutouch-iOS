@@ -176,7 +176,7 @@ class SurveyViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             
             if self.currentQuestionIndex == self.questionCount - 1{
                 //last question
-                self.nextButton.setTitle("Finish!", for: .normal)
+                self.nextButton.setTitle(Strings.send.uppercased(), for: .normal)
                 self.nextButton.backgroundColor = #colorLiteral(red: 0.9372549057, green: 0.3647058904, blue: 0.6705882549, alpha: 1)
             }
         }
@@ -191,12 +191,12 @@ class SurveyViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     //===============================
     @IBAction func nextButtonPressed(_ sender: Any) {
         if !self.didAnswerTheQuestion() {
-            Utils.showAlertMessage("Please answer the question", viewControler: self)
+            Utils.showAlertMessage(Strings.pleaseAnswerTheQuestion, viewControler: self)
             return
         }
         /// Is last question
         if self.currentQuestionIndex == self.questionCount - 1 {
-            Utils.showAlertMessage("THANKS FOR ANSWERING!!", title: "", viewControler: self){ _ in
+            Utils.showAlertMessage(Strings.thankYouVeryMuch.uppercased(), title: "", viewControler: self){ _ in
                 self.dismiss(animated: true, completion: nil)
             }
             
