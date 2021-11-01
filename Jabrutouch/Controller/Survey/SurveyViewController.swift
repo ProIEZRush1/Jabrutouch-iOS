@@ -9,33 +9,6 @@
 import UIKit
 
 
-class JTSurvey {
-    var id: Int = 0
-    var title: String = "Survey 1"
-    var subtitleIntro:String = "Please answer these short questions so we can serve you better."
-    var questions:[JTSurveyQuestionWithAnswerOptions] = []
-}
-
-class JTSurveyQuestionWithAnswerOptions {
-    var id:Int
-    var question: String
-    var answerType:JTSurveyAnswerType
-    var answerOptions: [String]?
-    
-    init(id:Int, question:String, answerType:JTSurveyAnswerType, answerOptions: [String]?) {
-        self.id = id
-        self.question = question
-        self.answerType = answerType
-        self.answerOptions = answerOptions
-    }
-}
-enum JTSurveyAnswerType {
-    case picker
-    case multipleSelectionCheckbox
-    case ratingBar
-    case singleSelectionCheckboxWithOther
-}
-
 class SurveyViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDelegate, UITableViewDataSource {
 
     
@@ -44,18 +17,27 @@ class SurveyViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     // MARK: Properties
     //===============================
     
-    var survey:JTSurvey = JTSurvey()
+    var surveyUserStatusResponse: GetSurveyUserStatusResponse?
     var currentQuestionIndex: Int = 0
+    var currentQuestion: JTSurveyQuestionWithAnswerOptions? {
+        if let currentQ = self.surveyUserStatusResponse?.questions?[self.currentQuestionIndex] {
+            return currentQ
+        } else { return nil }
+    }
     var currentAnswerType: JTSurveyAnswerType?
     var questionCount:Int {
-        return self.survey.questions.count
+        return self.surveyUserStatusResponse?.questions?.count ?? 0
     }
-    var pickerData: [String] = []
-    var checklistData: [String] = []
-    var checkedAnswers: [String] = []
+    
+    var pickerData: [JTSurveyAnswer] = []
+    var checklistData: [JTSurveyAnswer] = []
+    
+    var checkedAnswers: [JTSurveyAnswer] = []
     var customAnswer: String?
-    var pickerAnswer: String?
+    var pickerAnswer: JTSurveyAnswer?
     var sliderAnswer: String?
+    
+    var userAnswers: [JTSurveyUserAnswer] = []
     
     
     
@@ -120,19 +102,17 @@ class SurveyViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     }
  
     func setupSurvey(){
-        let q1 = JTSurveyQuestionWithAnswerOptions(id: 0, question: "In what year were you born?", answerType: .picker, answerOptions: ["2000","2001","2002","2003","2004","2005"])
-        let q2 = JTSurveyQuestionWithAnswerOptions(id: 1, question: "Rate our app please!", answerType: .ratingBar, answerOptions: nil)
-        let q3 = JTSurveyQuestionWithAnswerOptions(id: 2, question: "When was your grandfather born?", answerType: .multipleSelectionCheckbox, answerOptions: ["1800","1801","1802","1803"])
-
-        let q4 = JTSurveyQuestionWithAnswerOptions(id: 3, question: "Which masejtot have you already studied?", answerType: .singleSelectionCheckboxWithOther, answerOptions: ["Brajot","Erubin","Shabbat","Rosh Hashana", "Yoma", "Suca"])
-
-        self.survey.questions.append(q1)
-        self.survey.questions.append(q2)
-        self.survey.questions.append(q3)
-        self.survey.questions.append(q4)
+        if let title = self.surveyUserStatusResponse?.survey_title {
+            self.surveyTitleLabel.text = title
+        }
+        if let subtitle = self.surveyUserStatusResponse?.stage_description {
+            self.subtitleIntroLabel.text = subtitle
+        }
+        
+        guard let firstQuestion = self.surveyUserStatusResponse?.questions?[self.currentQuestionIndex] else { return }
 
         DispatchQueue.main.async {
-            self.setCardViewWithQuestion(question: self.survey.questions[self.currentQuestionIndex], questionIndex: self.currentQuestionIndex)
+            self.setCardViewWithQuestion(question: firstQuestion, questionIndex: self.currentQuestionIndex)
         }
 
         
@@ -148,28 +128,28 @@ class SurveyViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         self.clearPreviousAnswers()
         DispatchQueue.main.async {
             self.currentQuestionIndex = questionIndex
-            self.currentAnswerType = question.answerType
+            self.currentAnswerType = question.answer_type
             self.questionLabel.text = question.question
             self.questionNumberLabel.text = "\(questionIndex + 1)/\(self.questionCount)"
             
-            self.picker.isHidden = question.answerType != .picker
-            self.slider.isHidden = question.answerType != .ratingBar
-            self.sliderValueLabel.isHidden = question.answerType != .ratingBar
-            self.checklistTableView.isHidden = question.answerType != .multipleSelectionCheckbox && question.answerType != .singleSelectionCheckboxWithOther
+            self.picker.isHidden = question.answer_type != .picker
+            self.slider.isHidden = question.answer_type != .ratingBar
+            self.sliderValueLabel.isHidden = question.answer_type != .ratingBar
+            self.checklistTableView.isHidden = question.answer_type != .multipleSelectionCheckbox && question.answer_type != .singleSelectionCheckboxWithOther
             
-            switch question.answerType {
+            switch question.answer_type {
             case .picker:
-                self.pickerData = question.answerOptions ?? []
+                self.pickerData = question.answer_options
                 self.picker.reloadAllComponents()
             case .ratingBar:
                 self.slider.value = 5.5
                 self.sliderValueLabel.text = "5"
             case .multipleSelectionCheckbox:
-                self.checklistData = question.answerOptions ?? []
+                self.checklistData = question.answer_options
                 self.checklistTableView.reloadData()
                 break
             case .singleSelectionCheckboxWithOther:
-                self.checklistData = question.answerOptions ?? []
+                self.checklistData = question.answer_options
                 self.checklistTableView.reloadData()
                 break
             }
@@ -194,22 +174,66 @@ class SurveyViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             Utils.showAlertMessage(Strings.pleaseAnswerTheQuestion, viewControler: self)
             return
         }
+        
+        self.saveUserAnswer()
         /// Is last question
         if self.currentQuestionIndex == self.questionCount - 1 {
+            self.sendUsersAnswers()
             Utils.showAlertMessage(Strings.thankYouVeryMuch.uppercased(), title: "", viewControler: self){ _ in
                 self.dismiss(animated: true, completion: nil)
             }
-            
         }
         /// Go to next question
         else {
             
             self.currentQuestionIndex += 1
             DispatchQueue.main.async {
-                self.setCardViewWithQuestion(question: self.survey.questions[self.currentQuestionIndex], questionIndex: self.currentQuestionIndex)
+                self.setCardViewWithQuestion(question: self.surveyUserStatusResponse!.questions![self.currentQuestionIndex], questionIndex: self.currentQuestionIndex)
                 UIView.transition(with: self.cardView, duration: 0.5, options: .transitionFlipFromRight, animations: nil, completion: nil)
             }
         }
+    }
+    
+    func saveUserAnswer(){
+        guard let userID = self.surveyUserStatusResponse?.user else { return }
+        guard let question = self.currentQuestion else { return }
+        
+        switch question.answer_type {
+        case .multipleSelectionCheckbox:
+            let allAnswers = self.checkedAnswers.compactMap{
+                JTSurveyUserAnswer(question: $0.question, survey_answer: $0.id, user_answer_value: nil, user: userID, survey: question.survey, stage: question.stage)
+            }
+            self.userAnswers.append(contentsOf: allAnswers)
+            break
+        case .picker:
+            if let pickAnsw = self.pickerAnswer {
+                let answer = JTSurveyUserAnswer(question: pickAnsw.question, survey_answer: pickAnsw.id, user_answer_value: nil, user: userID, survey: question.survey, stage: question.stage)
+                self.userAnswers.append(answer)
+            }
+            break
+        case .ratingBar:
+            if let rateAnswer = self.sliderAnswer {
+                let answer = JTSurveyUserAnswer(question: question.id, survey_answer: nil, user_answer_value: rateAnswer, user: userID, survey: question.survey, stage: question.stage)
+                self.userAnswers.append(answer)
+            }
+            break
+        case .singleSelectionCheckboxWithOther:
+            if self.customAnswer != nil {
+                let answer = JTSurveyUserAnswer(question: question.id, survey_answer: nil, user_answer_value: self.customAnswer, user: userID, survey: question.survey, stage: question.stage)
+                self.userAnswers.append(answer)
+            }
+            if let selectedAnswer = self.checkedAnswers.first {
+                let answer = JTSurveyUserAnswer(question: question.id, survey_answer: selectedAnswer.id, user_answer_value: nil, user: userID, survey: question.survey, stage: question.stage)
+                self.userAnswers.append(answer)
+            }
+            break
+        }
+        print("self.userAnswers", self.userAnswers)
+    }
+
+    func sendUsersAnswers() {
+        let answerDataToSend = self.userAnswers.map{$0.values}
+        print("answerDataToSend", answerDataToSend)
     }
     
     @IBAction func sliderValueChanged(_ sender: UISlider) {
@@ -285,7 +309,7 @@ extension SurveyViewController {
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerData[row]
+        return pickerData[row].answer
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -343,9 +367,9 @@ extension SurveyViewController {
         else {
             /// Regular SurveyChecklistTVCell
             let cell = tableView.dequeueReusableCell(withIdentifier: "surveyChecklistTVCell", for: indexPath) as! SurveyChecklistTVCell
-            cell.titleLabel.text = self.checklistData[indexPath.row]
+            cell.titleLabel.text = self.checklistData[indexPath.row].answer
            
-            if self.checkedAnswers.contains(self.checklistData[indexPath.row]) {
+            if self.checkedAnswers.contains(where: { $0.id == self.checklistData[indexPath.row].id}) {
                 cell.accessoryType = .checkmark
             }
             else {
@@ -375,8 +399,8 @@ extension SurveyViewController {
         switch self.currentAnswerType {
             case .multipleSelectionCheckbox:
 
-                if self.checkedAnswers.contains(answer) {
-                    guard let index = self.checkedAnswers.firstIndex(of: answer) else { return }
+                if self.checkedAnswers.contains(where: { $0.id == answer.id}) {
+                    guard let index = self.checkedAnswers.firstIndex(where: { $0.id == answer.id}) else { return }
                     self.checkedAnswers.remove(at: index)
                 }
                 else {

@@ -153,6 +153,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         nc.addObserver(self, selector: #selector(internetNotConnect(_:)), name: NSNotification.Name(rawValue: "InternetNotConnect"), object: nil)
         /// refresh latestNews here so it refreshes on returning from other screens that aren't in the modal container.
         self.getLatestNewsItems()
+        self.checkForSurvey()
 
     }
     
@@ -331,6 +332,16 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         }
     }
     
+    fileprivate func checkForSurvey() {
+        SurveyRepository.shared.getSurveyUserStatus{ surveyResponse in
+            DispatchQueue.main.async {
+                if !(surveyResponse.questions?.isEmpty ?? false) {
+                                self.presentSurveyVC(surveyStage: surveyResponse)
+                            }
+            }
+            
+        }
+    }
     //========================================
     // MARK: - Collection Views
     //========================================
@@ -936,8 +947,8 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.presentMishnaViewController()
     }
     
-    func presentSurveyVC() {
-        self.performSegue(withIdentifier: "survey", sender: nil)
+    func presentSurveyVC(surveyStage: GetSurveyUserStatusResponse) {
+        self.performSegue(withIdentifier: "survey", sender: surveyStage)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -974,6 +985,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         }
         else if segue.identifier == "survey" {
             let surveyVC = segue.destination as? SurveyViewController
+            surveyVC?.surveyUserStatusResponse = sender as? GetSurveyUserStatusResponse
         }
         
         // MARK: TODO - shut news audio when goes into background - refresh here is temporary hack.
@@ -1022,8 +1034,7 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
         case .donationsCenter:
             self.pressEnable ? self.presentDonation() : self.noInternetAlert()
         case .newsFeed:
-            presentSurveyVC()
-//            self.pressEnable ? self.presentNewsFeed() : self.noInternetAlert()
+            self.pressEnable ? self.presentNewsFeed() : self.noInternetAlert()
             break
         default:
             presentInDevelopmentAlert()

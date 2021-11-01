@@ -348,6 +348,21 @@ class API {
         }
     }
     
+    
+    //========================================
+    // MARK: - Survey
+    //========================================
+        
+    class func getSurveyUserStatus(userID: Int, authToken: String, completionHandler:@escaping (_ response: APIResult<GetSurveyUserStatusResponse>)->Void) {
+        guard let request = HttpRequestsFactory.createGetSurveyUserStatus(userID: userID, token: authToken) else {
+            completionHandler(APIResult.failure(.unableToCreateRequest))
+            return
+        }
+        HttpServiceProvider.shared.excecuteRequest(request: request) { (data, response, error) in
+            self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
+        }
+    }
+    
     //========================================
     // MARK: - Response Processing
     //========================================

@@ -21,8 +21,7 @@ class NewsFeedRepository{
     // MARK: - Properties
     //========================================
     
-    // TODO: save latest in main screen class.
-//    private var latestNewsItems: [JTNewsFeedItem] = []
+
     private static var repository: NewsFeedRepository?
     
     var totalPostsInDataBase: Int = 0
