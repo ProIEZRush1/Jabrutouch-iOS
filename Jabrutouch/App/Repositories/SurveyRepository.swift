@@ -48,5 +48,23 @@ class SurveyRepository{
         }
 
     }
+    
+//    postSurveyUserAnswers
 
+    func postSurveyUserAnswers(answers: [[String:Any?]] ,completionHandler: @escaping(_ response: PostSurveyUserAnswersResponse )->Void ){
+
+        guard let authToken = UserDefaultsProvider.shared.currentUser?.token else { return }
+        
+        API.postSurveyUserAnswers(authToken: authToken, body: answers) { (result) in
+            print("*********  postSurveyUserAnswers() result", result)
+            
+            switch result {
+            case .success(let response):
+                completionHandler(response)
+            case .failure(let error):
+                print("******** postSurveyUserAnswers() error", error)
+            }
+        }
+
+    }
 }

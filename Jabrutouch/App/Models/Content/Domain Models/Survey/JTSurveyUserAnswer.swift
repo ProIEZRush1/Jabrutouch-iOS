@@ -11,20 +11,20 @@ import Foundation
 struct JTSurveyUserAnswer {
     var question: Int
     var survey_answer: Int?
-    var user_answer_value: String?
+    var user_answer_value: String
     var user: Int
     var survey: Int
     var stage: Int
     
     
-    var values: [String:Any] {
-        var values: [String:Any] = [:]
-        values["question"] = self.question
-        values["survey_answer"] = self.survey_answer
-        values["user_answer_value"] = self.user_answer_value
-        values["user"] = self.user
-        values["survey"] = self.survey
-        values["stage"] = self.stage
+    var values: [String:Any?] {
+        var values: [String:Any?] = [:]
+        values.updateValue(self.question, forKey: "question")
+        values.updateValue(self.survey_answer, forKey: "survey_answer")
+        values.updateValue(self.user_answer_value, forKey: "user_answer_value")
+        values.updateValue(self.user, forKey: "user")
+        values.updateValue(self.survey, forKey: "survey")
+        values.updateValue(self.stage, forKey: "stage")
         return values
     }
 

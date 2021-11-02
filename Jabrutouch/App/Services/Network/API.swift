@@ -363,6 +363,17 @@ class API {
         }
     }
     
+    class func postSurveyUserAnswers(authToken: String, body: [[String : Any?]],  completionHandler:@escaping (_ response: APIResult<PostSurveyUserAnswersResponse>)->Void) {
+        guard let request = HttpRequestsFactory.createPostSurveyUserAnswers(token: authToken, body: body) else {
+            completionHandler(APIResult.failure(.unableToCreateRequest))
+            return
+        }
+        HttpServiceProvider.shared.excecuteRequest(request: request) { (data, response, error) in
+            self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
+        }
+    }
+
+    
     //========================================
     // MARK: - Response Processing
     //========================================

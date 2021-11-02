@@ -170,6 +170,7 @@ class SurveyViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     // MARK: Actions
     //===============================
     @IBAction func nextButtonPressed(_ sender: Any) {
+        /// did NOT answer the question
         if !self.didAnswerTheQuestion() {
             Utils.showAlertMessage(Strings.pleaseAnswerTheQuestion, viewControler: self)
             return
@@ -201,13 +202,13 @@ class SurveyViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         switch question.answer_type {
         case .multipleSelectionCheckbox:
             let allAnswers = self.checkedAnswers.compactMap{
-                JTSurveyUserAnswer(question: $0.question, survey_answer: $0.id, user_answer_value: nil, user: userID, survey: question.survey, stage: question.stage)
+                JTSurveyUserAnswer(question: $0.question, survey_answer: $0.id, user_answer_value: "", user: userID, survey: question.survey, stage: question.stage)
             }
             self.userAnswers.append(contentsOf: allAnswers)
             break
         case .picker:
             if let pickAnsw = self.pickerAnswer {
-                let answer = JTSurveyUserAnswer(question: pickAnsw.question, survey_answer: pickAnsw.id, user_answer_value: nil, user: userID, survey: question.survey, stage: question.stage)
+                let answer = JTSurveyUserAnswer(question: pickAnsw.question, survey_answer: pickAnsw.id, user_answer_value: "", user: userID, survey: question.survey, stage: question.stage)
                 self.userAnswers.append(answer)
             }
             break
@@ -218,12 +219,12 @@ class SurveyViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             }
             break
         case .singleSelectionCheckboxWithOther:
-            if self.customAnswer != nil {
-                let answer = JTSurveyUserAnswer(question: question.id, survey_answer: nil, user_answer_value: self.customAnswer, user: userID, survey: question.survey, stage: question.stage)
+            if let customText = self.customAnswer {
+                let answer = JTSurveyUserAnswer(question: question.id, survey_answer: nil, user_answer_value: customText , user: userID, survey: question.survey, stage: question.stage)
                 self.userAnswers.append(answer)
             }
             if let selectedAnswer = self.checkedAnswers.first {
-                let answer = JTSurveyUserAnswer(question: question.id, survey_answer: selectedAnswer.id, user_answer_value: nil, user: userID, survey: question.survey, stage: question.stage)
+                let answer = JTSurveyUserAnswer(question: question.id, survey_answer: selectedAnswer.id, user_answer_value: "", user: userID, survey: question.survey, stage: question.stage)
                 self.userAnswers.append(answer)
             }
             break
@@ -232,13 +233,21 @@ class SurveyViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     }
 
     func sendUsersAnswers() {
+        
         let answerDataToSend = self.userAnswers.map{$0.values}
-        print("answerDataToSend", answerDataToSend)
+        print("answerDataToSend", String(data: try! JSONSerialization.data(withJSONObject: answerDataToSend, options: .prettyPrinted), encoding: .utf8 )!)
+
+        SurveyRepository.shared.postSurveyUserAnswers(answers: answerDataToSend) { result in
+            print("***** postSurveyUserAnswers - successful", result)
+        }
+    
     }
     
     @IBAction func sliderValueChanged(_ sender: UISlider) {
-        self.sliderValueLabel.text = String(Int(sender.value))
-        self.sliderAnswer = String(Int(sender.value))
+        let newValue = String(Int(sender.value))
+        self.sliderValueLabel.text = newValue
+        self.sliderAnswer = newValue
+            
     }
     
     func clearPreviousAnswers() {
