@@ -43,7 +43,7 @@ class NewsFeedViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
         self.setAudioSession()
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidEnterBackground), name: UIApplication.willResignActiveNotification, object: nil)
     }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
@@ -56,6 +56,8 @@ class NewsFeedViewController: UIViewController, UITableViewDelegate, UITableView
     @IBAction func backButtonPressed(_ sender: Any) {
         self.removeSavedImagesFromLoader()
         self.dismiss(animated: true, completion: nil)
+        /// reloadData to shut any audio players
+        self.tableView.reloadData()
     }
     
     //========================================
@@ -68,12 +70,13 @@ class NewsFeedViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     private func setAudioSession() {
-        do {
-            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
-        }
-        catch {
-            print("Setting category to AVAudioSessionCategoryPlayback failed.")
-        }
+            do {
+                try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
+                try AVAudioSession.sharedInstance().setActive(true)
+            }
+            catch {
+                print("Setting category to AVAudioSessionCategoryPlayback failed.")
+            }
     }
 
     
@@ -151,6 +154,8 @@ class NewsFeedViewController: UIViewController, UITableViewDelegate, UITableView
                 cell.playerController = AVPlayerViewController()
                 cell.playerController?.player = cell.videoPlayer
                 cell.playerController?.showsPlaybackControls = true
+                /// disconnect from nowPlaying control center so it won't interfere with player widget.
+                cell.playerController?.updatesNowPlayingInfoCenter = false
                 cell.playerController?.view.frame = cell.videoView.bounds
                 cell.videoView.addSubview(cell.playerController!.view)
                 
@@ -242,6 +247,10 @@ class NewsFeedViewController: UIViewController, UITableViewDelegate, UITableView
                 UIImageLoader.loader.removeSavedImage(url: url)
             }
         }
+    }
+    
+    @objc func applicationDidEnterBackground() {
+        self.tableView.reloadData()
     }
 
 }

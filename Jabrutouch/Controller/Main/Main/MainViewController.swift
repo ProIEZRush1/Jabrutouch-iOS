@@ -134,7 +134,8 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         CoreDataManager.shared.delegate = self
         self.user = UserRepository.shared.getCurrentUser()
         self.setNewsTableViewDelegate()
-        self.setAudioSession()
+
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidEnterBackground), name: UIApplication.willResignActiveNotification, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -162,6 +163,10 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         // MARK: TODO - shut news audio when goes into background - refresh here is temporary hack.
         self.latestNewsTableView.reloadData()
 
+    }
+    
+    @objc func applicationDidEnterBackground() {
+        self.latestNewsTableView.reloadData()
     }
     
     @objc func internetConnect(_ notification:Notification) {
@@ -325,6 +330,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     private func setAudioSession() {
         do {
             try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
+            try AVAudioSession.sharedInstance().setActive(true)
         }
         catch {
             print("Setting category to AVAudioSessionCategoryPlayback failed.")
@@ -522,11 +528,13 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         case .video:
             let mediaActivity = Utils.showActivityView(inView: cell.videoView, withFrame: cell.videoView.frame, text: nil)
             if let videoURL = URL(string:post.mediaLink!){
-
+                self.setAudioSession()
                 cell.videoPlayer = AVPlayer(url: videoURL)
                 cell.playerController = AVPlayerViewController()
                 cell.playerController?.player = cell.videoPlayer
                 cell.playerController?.showsPlaybackControls = true
+                /// disconnect from nowPlaying control center so it won't interfere with player widget.
+                cell.playerController?.updatesNowPlayingInfoCenter = false
                 cell.playerController?.view.frame = cell.videoView.bounds
                 cell.videoView.addSubview(cell.playerController!.view)
                 
@@ -538,7 +546,8 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
             break
             
         case .audio:
-                Utils.setViewShape(view: cell.audioView, viewCornerRadius: 18, maskedCorners: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
+            self.setAudioSession()
+            Utils.setViewShape(view: cell.audioView, viewCornerRadius: 18, maskedCorners: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
         case .noMedia:
             break
         }
