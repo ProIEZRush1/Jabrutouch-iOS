@@ -229,7 +229,8 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         let calendar = Calendar(identifier: .hebrew)
         let dateFormatter = DateFormatter()
         dateFormatter.calendar = calendar
-        dateFormatter.dateStyle = .long
+        dateFormatter.locale = Locale(identifier: "es_ES")
+        dateFormatter.setLocalizedDateFormatFromTemplate("d MMMM YYYY")
         self.todaysDateLabel.text = dateFormatter.string(from: Date())
         self.recentsGemaraAndMishnaLabel.text = Strings.recentsGemaraAndMishna
         
