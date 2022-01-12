@@ -37,7 +37,6 @@ class SurveyRepository{
         guard let user_id = UserDefaultsProvider.shared.currentUser?.id else { return }
         
         API.getSurveyUserStatus(userID: user_id, authToken: authToken) { (result) in
-            print("*********  getSurveyUserStatus() result", result)
             
             switch result {
             case .success(let response):
@@ -49,14 +48,12 @@ class SurveyRepository{
 
     }
     
-//    postSurveyUserAnswers
 
     func postSurveyUserAnswers(answers: [[String:Any?]] ,completionHandler: @escaping(_ response: PostSurveyUserAnswersResponse )->Void ){
 
         guard let authToken = UserDefaultsProvider.shared.currentUser?.token else { return }
         
         API.postSurveyUserAnswers(authToken: authToken, body: answers) { (result) in
-            print("*********  postSurveyUserAnswers() result", result)
             
             switch result {
             case .success(let response):

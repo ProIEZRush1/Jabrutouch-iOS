@@ -313,7 +313,7 @@ class HttpRequestsFactory {
     }
     
     
-    class func createPostCampingMailRequest(token: String) -> URLRequest?{
+    class func createPostCampaignMailRequest(token: String) -> URLRequest?{
         guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
         let link = baseUrl.appendingPathComponent("campaign_mail").absoluteString
         guard let url = self.createUrl(fromLink: link, urlParams: nil) else { return nil }

@@ -51,7 +51,7 @@
                                             <constraint firstAttribute="height" constant="45" id="rdf-bB-b80"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                        <state key="normal" title="Next Question">
+                                        <state key="normal" title="SIGUIENTE PREGUNTA">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>

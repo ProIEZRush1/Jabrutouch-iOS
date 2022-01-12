@@ -314,8 +314,8 @@ class API {
         }
     }
     
-    class func postCampingMail(token: String, completionHandler:@escaping (_ response: APIResult<PostCampingMailResponse>)->Void) {
-        guard let request = HttpRequestsFactory.createPostCampingMailRequest(token: token) else {
+    class func postCampaignMail(token: String, completionHandler:@escaping (_ response: APIResult<PostCampingMailResponse>)->Void) {
+        guard let request = HttpRequestsFactory.createPostCampaignMailRequest(token: token) else {
             completionHandler(APIResult.failure(.unableToCreateRequest))
             return
         }

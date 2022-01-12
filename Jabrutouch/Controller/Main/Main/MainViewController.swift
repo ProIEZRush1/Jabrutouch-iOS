@@ -1056,11 +1056,11 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
     func presentFiestaAlert(){
         let dateFormatte = DateFormatter()
         dateFormatte.dateFormat = "yyyy-MM-dd"
-        let now = Date()
-        let soon = dateFormatte.date(from: "2020-08-18")!
-        let later = dateFormatte.date(from: "2020-09-16")!
+        let today = Date()
+        let campaignStartDate = dateFormatte.date(from: "2022-01-12")!
+        let campaignEndDate = dateFormatte.date(from: "2022-02-28")!
         
-        if now > soon && now <= later {
+        if today >= campaignStartDate && today <= campaignEndDate {
             DispatchQueue.main.async {
                 guard let detail = UserDefaultsProvider.shared.fiestaPopUpDetail else {
                     return self.presentAlert(Storyboards.AdditionalAlerts.fiestaAlert)
