@@ -153,7 +153,8 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         nc.addObserver(self, selector: #selector(internetNotConnect(_:)), name: NSNotification.Name(rawValue: "InternetNotConnect"), object: nil)
         /// refresh latestNews here so it refreshes on returning from other screens that aren't in the modal container.
         self.getLatestNewsItems()
-        self.checkForSurvey()
+        //MARK: TODO: Uncomment when survey is ready!!!
+//        self.checkForSurvey()
 
     }
     

@@ -201,7 +201,7 @@
 		60B6021E24C898AB00D960C9 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 60B6021D24C8984B00D960C9 /* Roboto-Light.ttf */; };
 		60B8076324FFACB9005CE86E /* JTFiestaPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B8076224FFACB9005CE86E /* JTFiestaPopup.swift */; };
 		60B807692500050B005CE86E /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 60B807682500050A005CE86E /* splash.png */; };
-		60B8076B250119FF005CE86E /* PostCampingMailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B8076A250119FE005CE86E /* PostCampingMailResponse.swift */; };
+		60B8076B250119FF005CE86E /* PostCampaignMailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B8076A250119FE005CE86E /* PostCampaignMailResponse.swift */; };
 		60B83D6D2455E0DA00E558C7 /* NotDonateAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B83D6C2455E0DA00E558C7 /* NotDonateAlert.swift */; };
 		60B9115A24ED628A0061E112 /* CinzelDecorative-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 60B9115924ED62530061E112 /* CinzelDecorative-Bold.ttf */; };
 		60B9115C24ED77B50061E112 /* Cinzel-black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 60B9115B24ED778B0061E112 /* Cinzel-black.otf */; };
@@ -564,7 +564,7 @@
 		60B6021D24C8984B00D960C9 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
 		60B8076224FFACB9005CE86E /* JTFiestaPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTFiestaPopup.swift; sourceTree = "<group>"; };
 		60B807682500050A005CE86E /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
-		60B8076A250119FE005CE86E /* PostCampingMailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCampingMailResponse.swift; sourceTree = "<group>"; };
+		60B8076A250119FE005CE86E /* PostCampaignMailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCampaignMailResponse.swift; sourceTree = "<group>"; };
 		60B83D6C2455E0DA00E558C7 /* NotDonateAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotDonateAlert.swift; sourceTree = "<group>"; };
 		60B9115924ED62530061E112 /* CinzelDecorative-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CinzelDecorative-Bold.ttf"; sourceTree = "<group>"; };
 		60B9115B24ED778B0061E112 /* Cinzel-black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cinzel-black.otf"; sourceTree = "<group>"; };
@@ -958,7 +958,7 @@
 				8391EC65240BFDA3007B5F98 /* CreatePaymentResponse.swift */,
 				608378EF24927B0F005C60BE /* GetPopupResponse.swift */,
 				60EDAC8224D98062004FB3E6 /* CouponResponse.swift */,
-				60B8076A250119FE005CE86E /* PostCampingMailResponse.swift */,
+				60B8076A250119FE005CE86E /* PostCampaignMailResponse.swift */,
 				D631F9CA26DCFC2B00447B88 /* GetNewsFeedItemsResponse.swift */,
 				D65FE852272E9D63002BA0DC /* GetSurveyUserStatusResponse.swift */,
 				D65FE86C273174BC002BA0DC /* PostSurveyUserAnswersResponse.swift */,
@@ -2112,7 +2112,7 @@
 				DD51CDF023F186AE0063167E /* UserRecorderCell.swift in Sources */,
 				4628E0E72322954800D963E6 /* Application.swift in Sources */,
 				538691452379E8B500CC95B5 /* PersonalDetailsCell.swift in Sources */,
-				60B8076B250119FF005CE86E /* PostCampingMailResponse.swift in Sources */,
+				60B8076B250119FF005CE86E /* PostCampaignMailResponse.swift in Sources */,
 				2131969622F38B1200B0AF5F /* JTError.swift in Sources */,
 				538691512379E8E500CC95B5 /* LabelWithPadding.swift in Sources */,
 				839E1E7C238588C100578C60 /* UserRepository.swift in Sources */,

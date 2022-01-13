@@ -34,7 +34,7 @@ class FiestaAlertViewController: UIViewController {
     @IBAction func buttonPressed(_ sender: Any) {
         
         if let authToken = UserDefaultsProvider.shared.currentUser?.token{
-            API.postCampaignMail(token: authToken){(response: APIResult<PostCampingMailResponse>) in
+            API.postCampaignMail(token: authToken){(response: APIResult<PostCampaignMailResponse>) in
                 switch response {
                 case .success:
                     print("SUCCESS")
