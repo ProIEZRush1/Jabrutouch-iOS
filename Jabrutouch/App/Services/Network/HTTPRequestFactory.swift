@@ -313,7 +313,7 @@ class HttpRequestsFactory {
     }
     
     
-    class func createPostCampingMailRequest(token: String) -> URLRequest?{
+    class func createPostCampaignMailRequest(token: String) -> URLRequest?{
         guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
         let link = baseUrl.appendingPathComponent("campaign_mail").absoluteString
         guard let url = self.createUrl(fromLink: link, urlParams: nil) else { return nil }
@@ -349,6 +349,31 @@ class HttpRequestsFactory {
         return request
     }
 
+    
+    class func createGetSurveyUserStatus(userID: Int, token: String) -> URLRequest?{
+        guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
+        let link = baseUrl.appendingPathComponent("survey_user_status/\(userID)/").absoluteString
+        guard let url = self.createUrl(fromLink: link, urlParams: nil) else { return nil }
+        let additionalHeaders: [String:String] = ["Authorization": "token \(token)"]
+        let request = self.createRequest(url, method: .get, body: nil, additionalHeaders: additionalHeaders)
+        return request
+    }
+    
+    class func createPostSurveyUserAnswers(token: String, body: [[String:Any?]]) -> URLRequest?{
+        guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
+        let link = baseUrl.appendingPathComponent("survey/user_answer/").absoluteString
+        guard let url = self.createUrl(fromLink: link, urlParams: nil) else { return nil }
+        var answersBody: [String:Any]
+        if body.count == 1 {
+            answersBody = ["items": body.first ]
+        } else {
+            answersBody = ["items": body ]
+        }
+        let additionalHeaders: [String:String] = ["Authorization": "token \(token)"]
+        let request = self.createRequest(url, method: .post, body: answersBody, additionalHeaders: additionalHeaders)
+        return request
+    }
+    
     //==========================================
     // MARK: - Utils & Helpers
     //==========================================

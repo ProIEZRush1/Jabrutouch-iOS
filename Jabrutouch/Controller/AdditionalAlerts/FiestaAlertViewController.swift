@@ -12,6 +12,7 @@ class FiestaAlertViewController: UIViewController {
     
     @IBOutlet weak var alertView: UIView!
     @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +21,9 @@ class FiestaAlertViewController: UIViewController {
     
     func setup(){
         alertView.layer.cornerRadius = 15
+        alertView.clipsToBounds = true
         button.layer.cornerRadius = 15
+        cancelButton.layer.cornerRadius = 4
     }
     
     @IBAction func cancel(_ sender: Any) {
@@ -31,7 +34,7 @@ class FiestaAlertViewController: UIViewController {
     @IBAction func buttonPressed(_ sender: Any) {
         
         if let authToken = UserDefaultsProvider.shared.currentUser?.token{
-            API.postCampingMail(token: authToken){(response: APIResult<PostCampingMailResponse>) in
+            API.postCampaignMail(token: authToken){(response: APIResult<PostCampaignMailResponse>) in
                 switch response {
                 case .success:
                     print("SUCCESS")

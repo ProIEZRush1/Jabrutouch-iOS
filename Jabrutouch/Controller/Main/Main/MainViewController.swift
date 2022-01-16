@@ -154,6 +154,8 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         nc.addObserver(self, selector: #selector(internetNotConnect(_:)), name: NSNotification.Name(rawValue: "InternetNotConnect"), object: nil)
         /// refresh latestNews here so it refreshes on returning from other screens that aren't in the modal container.
         self.getLatestNewsItems()
+        //MARK: TODO: Uncomment when survey is ready!!!
+//        self.checkForSurvey()
 
     }
     
@@ -338,6 +340,16 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         }
     }
     
+    fileprivate func checkForSurvey() {
+        SurveyRepository.shared.getSurveyUserStatus{ surveyResponse in
+            DispatchQueue.main.async {
+                if !(surveyResponse.questions?.isEmpty ?? false) {
+                                self.presentSurveyVC(surveyStage: surveyResponse)
+                            }
+            }
+            
+        }
+    }
     //========================================
     // MARK: - Collection Views
     //========================================
@@ -946,6 +958,10 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         self.presentMishnaViewController()
     }
     
+    func presentSurveyVC(surveyStage: GetSurveyUserStatusResponse) {
+        self.performSegue(withIdentifier: "survey", sender: surveyStage)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "embedModalsVC" {
             self.modalsPresentingVC = segue.destination as? ModalsContainerViewController
@@ -978,7 +994,10 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         else if segue.identifier == "presentNewsFeed" {
             let newsFeedVC = segue.destination as? NewsFeedViewController
         }
-        
+        else if segue.identifier == "survey" {
+            let surveyVC = segue.destination as? SurveyViewController
+            surveyVC?.surveyUserStatusResponse = sender as? GetSurveyUserStatusResponse
+        }
         
         // MARK: TODO - shut news audio when goes into background - refresh here is temporary hack.
         self.latestNewsTableView.reloadData()
@@ -1048,11 +1067,11 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
     func presentFiestaAlert(){
         let dateFormatte = DateFormatter()
         dateFormatte.dateFormat = "yyyy-MM-dd"
-        let now = Date()
-        let soon = dateFormatte.date(from: "2020-08-18")!
-        let later = dateFormatte.date(from: "2020-09-16")!
+        let today = Date()
+        let campaignStartDate = dateFormatte.date(from: "2022-01-12")!
+        let campaignEndDate = dateFormatte.date(from: "2022-02-28")!
         
-        if now > soon && now <= later {
+        if today >= campaignStartDate && today <= campaignEndDate {
             DispatchQueue.main.async {
                 guard let detail = UserDefaultsProvider.shared.fiestaPopUpDetail else {
                     return self.presentAlert(Storyboards.AdditionalAlerts.fiestaAlert)

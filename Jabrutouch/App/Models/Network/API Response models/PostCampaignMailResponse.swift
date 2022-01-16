@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct PostCampingMailResponse: APIResponseModel {
+struct PostCampaignMailResponse: APIResponseModel {
     init?(values: [String : Any]) {
         
     }

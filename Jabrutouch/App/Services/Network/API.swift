@@ -314,8 +314,8 @@ class API {
         }
     }
     
-    class func postCampingMail(token: String, completionHandler:@escaping (_ response: APIResult<PostCampingMailResponse>)->Void) {
-        guard let request = HttpRequestsFactory.createPostCampingMailRequest(token: token) else {
+    class func postCampaignMail(token: String, completionHandler:@escaping (_ response: APIResult<PostCampaignMailResponse>)->Void) {
+        guard let request = HttpRequestsFactory.createPostCampaignMailRequest(token: token) else {
             completionHandler(APIResult.failure(.unableToCreateRequest))
             return
         }
@@ -347,6 +347,32 @@ class API {
             self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
         }
     }
+    
+    
+    //========================================
+    // MARK: - Survey
+    //========================================
+        
+    class func getSurveyUserStatus(userID: Int, authToken: String, completionHandler:@escaping (_ response: APIResult<GetSurveyUserStatusResponse>)->Void) {
+        guard let request = HttpRequestsFactory.createGetSurveyUserStatus(userID: userID, token: authToken) else {
+            completionHandler(APIResult.failure(.unableToCreateRequest))
+            return
+        }
+        HttpServiceProvider.shared.excecuteRequest(request: request) { (data, response, error) in
+            self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
+        }
+    }
+    
+    class func postSurveyUserAnswers(authToken: String, body: [[String : Any?]],  completionHandler:@escaping (_ response: APIResult<PostSurveyUserAnswersResponse>)->Void) {
+        guard let request = HttpRequestsFactory.createPostSurveyUserAnswers(token: authToken, body: body) else {
+            completionHandler(APIResult.failure(.unableToCreateRequest))
+            return
+        }
+        HttpServiceProvider.shared.excecuteRequest(request: request) { (data, response, error) in
+            self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
+        }
+    }
+
     
     //========================================
     // MARK: - Response Processing
