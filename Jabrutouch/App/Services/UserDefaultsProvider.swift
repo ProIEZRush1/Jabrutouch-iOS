@@ -25,7 +25,7 @@ class UserDefaultsProvider {
         case lessonAnalitics = "LessonAnalitics"
         case lessonDonation = "LessonDonation"
         case currentFcmToken = "CurrentFcmToken"
-        case fiestaPopUpDetail = "FiestaPopUpDetail"
+        case campaignPopUpDetails = "CampaignPopUpDetails"
         case latestNewsItems = "LatestNewsItems"
     }
     
@@ -193,13 +193,13 @@ class UserDefaultsProvider {
         }
     }
     
-    var fiestaPopUpDetail: JTFiestaPopup? {
+    var campaignPopUpDetails: JTCampaignPopup? {
         get {
-            guard let values = self.defaults.object(forKey: UserDefaultsKeys.fiestaPopUpDetail.rawValue) as? [String:Any] else { return nil }
-            return JTFiestaPopup(values: values)
+            guard let values = self.defaults.object(forKey: UserDefaultsKeys.campaignPopUpDetails.rawValue) as? [String:Any] else { return nil }
+            return JTCampaignPopup(values: values)
         }
         set (detail) {
-            self.defaults.set(detail?.values, forKey: UserDefaultsKeys.fiestaPopUpDetail.rawValue)
+            self.defaults.set(detail?.values, forKey: UserDefaultsKeys.campaignPopUpDetails.rawValue)
             self.defaults.synchronize()
         }
     }

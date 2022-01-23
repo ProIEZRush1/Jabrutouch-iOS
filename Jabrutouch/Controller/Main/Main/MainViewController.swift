@@ -1073,7 +1073,7 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
         
         if today >= campaignStartDate && today <= campaignEndDate {
             DispatchQueue.main.async {
-                guard let detail = UserDefaultsProvider.shared.fiestaPopUpDetail else {
+                guard let detail = UserDefaultsProvider.shared.campaignPopUpDetails else {
                     return self.presentAlert(Storyboards.AdditionalAlerts.fiestaAlert)
                 }
                 if detail.agree {

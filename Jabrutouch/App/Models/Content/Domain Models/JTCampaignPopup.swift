@@ -1,14 +1,15 @@
 //
-//  JTFiestePopup.swift
+//  JTCampaignPopup.swift
 //  Jabrutouch
 //
 //  Created by Avraham Deutsch on 02/09/2020.
+//  Edited by Avraham Kirsch on 23/01/2022.
 //  Copyright © 2020 Ravtech. All rights reserved.
 //
 
 import Foundation
 
-struct JTFiestaPopup {
+struct JTCampaignPopup {
     var currentDate: Date
     var agree: Bool = false
     

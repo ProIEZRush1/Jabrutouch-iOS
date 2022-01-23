@@ -24,23 +24,24 @@ class FiestaAlertViewController: UIViewController {
         alertView.clipsToBounds = true
         button.layer.cornerRadius = 15
         cancelButton.layer.cornerRadius = 4
+        self.button.isEnabled = true
     }
     
     @IBAction func cancel(_ sender: Any) {
-        UserDefaultsProvider.shared.fiestaPopUpDetail = JTFiestaPopup(currentDate:Date())
+        UserDefaultsProvider.shared.campaignPopUpDetails = JTCampaignPopup(currentDate:Date())
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func buttonPressed(_ sender: Any) {
-        
+        self.button.isEnabled = false
         if let authToken = UserDefaultsProvider.shared.currentUser?.token{
             API.postCampaignMail(token: authToken){(response: APIResult<PostCampaignMailResponse>) in
                 switch response {
                 case .success:
                     print("SUCCESS")
-                    var fiestaPopUpDetail = JTFiestaPopup(currentDate:Date())
-                    fiestaPopUpDetail?.agree = true
-                    UserDefaultsProvider.shared.fiestaPopUpDetail = fiestaPopUpDetail
+                    var campaignPopUpDetails = JTCampaignPopup(currentDate:Date())
+                    campaignPopUpDetails?.agree = true
+                    UserDefaultsProvider.shared.campaignPopUpDetails = campaignPopUpDetails
                 case .failure(let error):
                     print("Error: ", error.message)
                 }

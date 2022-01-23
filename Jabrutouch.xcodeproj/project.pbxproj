@@ -199,7 +199,7 @@
 		609F80B32490E7D9003D1E9A /* PopUps.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 609F80B22490E7D9003D1E9A /* PopUps.storyboard */; };
 		609F80B524910144003D1E9A /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609F80B424910144003D1E9A /* PopUpViewController.swift */; };
 		60B6021E24C898AB00D960C9 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 60B6021D24C8984B00D960C9 /* Roboto-Light.ttf */; };
-		60B8076324FFACB9005CE86E /* JTFiestaPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B8076224FFACB9005CE86E /* JTFiestaPopup.swift */; };
+		60B8076324FFACB9005CE86E /* JTCampaignPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B8076224FFACB9005CE86E /* JTCampaignPopup.swift */; };
 		60B807692500050B005CE86E /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 60B807682500050A005CE86E /* splash.png */; };
 		60B8076B250119FF005CE86E /* PostCampaignMailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B8076A250119FE005CE86E /* PostCampaignMailResponse.swift */; };
 		60B83D6D2455E0DA00E558C7 /* NotDonateAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B83D6C2455E0DA00E558C7 /* NotDonateAlert.swift */; };
@@ -562,7 +562,7 @@
 		609F80B22490E7D9003D1E9A /* PopUps.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PopUps.storyboard; sourceTree = "<group>"; };
 		609F80B424910144003D1E9A /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		60B6021D24C8984B00D960C9 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
-		60B8076224FFACB9005CE86E /* JTFiestaPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTFiestaPopup.swift; sourceTree = "<group>"; };
+		60B8076224FFACB9005CE86E /* JTCampaignPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTCampaignPopup.swift; sourceTree = "<group>"; };
 		60B807682500050A005CE86E /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
 		60B8076A250119FE005CE86E /* PostCampaignMailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCampaignMailResponse.swift; sourceTree = "<group>"; };
 		60B83D6C2455E0DA00E558C7 /* NotDonateAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotDonateAlert.swift; sourceTree = "<group>"; };
@@ -1396,7 +1396,7 @@
 				604BBDCE24A0CE6E000C5076 /* JTDeepLinkLesson.swift */,
 				600399D824D6E1550038ED66 /* JTDeepLinkCoupone.swift */,
 				605630A924D715A6001C2BFA /* JTCouponRedemption .swift */,
-				60B8076224FFACB9005CE86E /* JTFiestaPopup.swift */,
+				60B8076224FFACB9005CE86E /* JTCampaignPopup.swift */,
 				60FF78B32507953B0099C72A /* JTAppVersion.swift */,
 				D631F9C426DCDDBC00447B88 /* JTNewsFeedItem.swift */,
 			);
@@ -2024,7 +2024,7 @@
 				213196AA22F38B3E00B0AF5F /* LoginResponse.swift in Sources */,
 				D65FE853272E9D63002BA0DC /* GetSurveyUserStatusResponse.swift in Sources */,
 				212ECEAC2312585A005AEB36 /* JTLessonType.swift in Sources */,
-				60B8076324FFACB9005CE86E /* JTFiestaPopup.swift in Sources */,
+				60B8076324FFACB9005CE86E /* JTCampaignPopup.swift in Sources */,
 				83605BAA23846E3700B93603 /* OldProfileViewController.swift in Sources */,
 				FB6877C222FC49AE0096465D /* AlertViewController.swift in Sources */,
 				83137F0723F07050003B9DA6 /* JTPostDedication.swift in Sources */,
@@ -2368,7 +2368,7 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 1.5.3;
+				MARKETING_VERSION = 1.5.4;
 				PRODUCT_BUNDLE_IDENTIFIER = il.co.jabrutouch.Jabrutouch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2398,7 +2398,7 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 1.5.3;
+				MARKETING_VERSION = 1.5.4;
 				PRODUCT_BUNDLE_IDENTIFIER = il.co.jabrutouch.Jabrutouch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
