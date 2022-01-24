@@ -363,7 +363,7 @@ extension SurveyViewController {
         if indexPath.row == self.checklistData.count {
             let cell = tableView.dequeueReusableCell(withIdentifier: "surveyCustomAnswerCell", for: indexPath) as! SurveyCustomAnswerCell
             cell.delegate = self
-            cell.titleLabel.text = "Other - write an answer"
+            cell.titleLabel.text = Strings.otherAnswer
             if let _ = self.customAnswer {
                 cell.accessoryType = .checkmark
                 cell.customAnswerTextField.text = self.customAnswer

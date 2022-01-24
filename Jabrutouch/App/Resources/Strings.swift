@@ -678,6 +678,9 @@ class Strings {
     class var thankYouVeryMuch: String {
         return NSLocalizedString("thankYouVeryMuch!", comment: "")
     }
+    class var otherAnswer: String {
+        return NSLocalizedString("otherAnswer", comment: "")
+    }
     
     
 }

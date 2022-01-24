@@ -155,7 +155,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         /// refresh latestNews here so it refreshes on returning from other screens that aren't in the modal container.
         self.getLatestNewsItems()
         //MARK: TODO: Uncomment when survey is ready!!!
-//        self.checkForSurvey()
+        self.checkForSurvey()
 
     }
     
