@@ -297,6 +297,7 @@
 		D65711A8271C5B1800C3CEBA /* Survey.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D65711A7271C5B1800C3CEBA /* Survey.storyboard */; };
 		D65711FA271D8DAA00C3CEBA /* SurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65711F9271D8DAA00C3CEBA /* SurveyViewController.swift */; };
 		D657124B272017E200C3CEBA /* SurveyChecklistTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D657124A272017E200C3CEBA /* SurveyChecklistTVCell.swift */; };
+		D65E1C44279EE06000E95FA7 /* JTSurveyCheckedInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65E1C43279EE06000E95FA7 /* JTSurveyCheckedInfo.swift */; };
 		D65FE853272E9D63002BA0DC /* GetSurveyUserStatusResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65FE852272E9D63002BA0DC /* GetSurveyUserStatusResponse.swift */; };
 		D65FE857272EA32F002BA0DC /* JTSurveyStage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65FE856272EA32F002BA0DC /* JTSurveyStage.swift */; };
 		D65FE85A272EA35C002BA0DC /* JTSurveyQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65FE859272EA35C002BA0DC /* JTSurveyQuestion.swift */; };
@@ -665,6 +666,7 @@
 		D65711A7271C5B1800C3CEBA /* Survey.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Survey.storyboard; sourceTree = "<group>"; };
 		D65711F9271D8DAA00C3CEBA /* SurveyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyViewController.swift; sourceTree = "<group>"; };
 		D657124A272017E200C3CEBA /* SurveyChecklistTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyChecklistTVCell.swift; sourceTree = "<group>"; };
+		D65E1C43279EE06000E95FA7 /* JTSurveyCheckedInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTSurveyCheckedInfo.swift; sourceTree = "<group>"; };
 		D65FE852272E9D63002BA0DC /* GetSurveyUserStatusResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSurveyUserStatusResponse.swift; sourceTree = "<group>"; };
 		D65FE856272EA32F002BA0DC /* JTSurveyStage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTSurveyStage.swift; sourceTree = "<group>"; };
 		D65FE859272EA35C002BA0DC /* JTSurveyQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTSurveyQuestion.swift; sourceTree = "<group>"; };
@@ -1399,6 +1401,7 @@
 				60B8076224FFACB9005CE86E /* JTCampaignPopup.swift */,
 				60FF78B32507953B0099C72A /* JTAppVersion.swift */,
 				D631F9C426DCDDBC00447B88 /* JTNewsFeedItem.swift */,
+				D65E1C43279EE06000E95FA7 /* JTSurveyCheckedInfo.swift */,
 			);
 			path = "Domain Models";
 			sourceTree = "<group>";
@@ -1974,6 +1977,7 @@
 				60EDAC8324D98062004FB3E6 /* CouponResponse.swift in Sources */,
 				604A892D24CF0FF600212B44 /* FifthChildVC.swift in Sources */,
 				836A88492390136000F68539 /* GalleryViewController.swift in Sources */,
+				D65E1C44279EE06000E95FA7 /* JTSurveyCheckedInfo.swift in Sources */,
 				FB51712122F1D374003BCAFC /* MishnaChapterViewController.swift in Sources */,
 				21ED3BD12304847A009D8E3D /* JTLessonPresenter.swift in Sources */,
 				8359193323A2724400F0B4D8 /* ChatControlsView.swift in Sources */,

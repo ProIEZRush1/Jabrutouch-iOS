@@ -27,6 +27,7 @@ class UserDefaultsProvider {
         case currentFcmToken = "CurrentFcmToken"
         case campaignPopUpDetails = "CampaignPopUpDetails"
         case latestNewsItems = "LatestNewsItems"
+        case surveyLastCheckedInfo = "SurveyLastCheckedInfo"
     }
     
     static private var provider: UserDefaultsProvider?
@@ -211,6 +212,17 @@ class UserDefaultsProvider {
         }
         set (latestNewsItems) {
             self.defaults.set(latestNewsItems?.map{$0.values}, forKey: UserDefaultsKeys.latestNewsItems.rawValue)
+            self.defaults.synchronize()
+        }
+    }
+    
+    var surveyLastCheckedInfo: JTSurveyCheckedInfo? {
+        get {
+            guard let values = self.defaults.object(forKey: UserDefaultsKeys.surveyLastCheckedInfo.rawValue) as? [String:Any] else { return nil }
+            return JTSurveyCheckedInfo(values: values)
+        }
+        set (info) {
+            self.defaults.set(info?.values, forKey: UserDefaultsKeys.surveyLastCheckedInfo.rawValue)
             self.defaults.synchronize()
         }
     }

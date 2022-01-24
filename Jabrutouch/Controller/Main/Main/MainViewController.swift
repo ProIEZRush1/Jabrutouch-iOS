@@ -341,15 +341,22 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     }
     
     fileprivate func checkForSurvey() {
-        SurveyRepository.shared.getSurveyUserStatus{ surveyResponse in
-            DispatchQueue.main.async {
-                if !(surveyResponse.questions?.isEmpty ?? false) {
-                                self.presentSurveyVC(surveyStage: surveyResponse)
-                            }
-            }
+        if SurveyRepository.shared.didCheckForSurveyToday() {
+            return
+        } else {
+            SurveyRepository.shared.setCheckedForSurveyTodayInfo()
             
+            SurveyRepository.shared.getSurveyUserStatus{ surveyResponse in
+                DispatchQueue.main.async {
+                    if !(surveyResponse.questions?.isEmpty ?? false) {
+                        self.presentSurveyVC(surveyStage: surveyResponse)
+                    }
+                }
+            }
         }
     }
+    
+    
     //========================================
     // MARK: - Collection Views
     //========================================

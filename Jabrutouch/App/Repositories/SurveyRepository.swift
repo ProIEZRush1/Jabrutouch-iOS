@@ -64,4 +64,19 @@ class SurveyRepository{
         }
 
     }
+    
+    func didCheckForSurveyToday() -> Bool {
+        if let surveyCheckedInfo = UserDefaultsProvider.shared.surveyLastCheckedInfo {
+            let calendar = Calendar(identifier: .gregorian)
+            let checked = calendar.isDateInToday(surveyCheckedInfo.lastCheckedDate)
+            return checked
+        } else {
+            return false
+        }
+    }
+    
+    func setCheckedForSurveyTodayInfo() -> Void {
+            let surveyCheckedInfo = JTSurveyCheckedInfo(lastCheckedDate: Date())
+            UserDefaultsProvider.shared.surveyLastCheckedInfo = surveyCheckedInfo
+    }
 }
