@@ -27,7 +27,11 @@ class MishnaChapterViewController: UIViewController, UITableViewDelegate, UITabl
     //========================================
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return [.portrait]
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            return [.portrait, .landscapeLeft, .landscapeRight]
+        } else {
+            return [.portrait]
+        }
     }
     
     override func viewDidLoad() {

@@ -82,7 +82,11 @@ class DedicationViewController: UIViewController, iCarouselDataSource, iCarousel
         self.view.layoutIfNeeded()
     }
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return [.portrait]
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            return [.portrait, .landscapeLeft, .landscapeRight]
+        } else {
+            return [.portrait]
+        }
     }
     
     

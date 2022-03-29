@@ -119,7 +119,11 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     //========================================
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return [.portrait]
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            return [.portrait, .landscapeLeft, .landscapeRight]
+        } else {
+            return [.portrait]
+        }
     }
     
 
@@ -155,7 +159,7 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
         /// refresh latestNews here so it refreshes on returning from other screens that aren't in the modal container.
         self.getLatestNewsItems()
         //MARK: TODO: Uncomment when survey is ready!!!
-        self.checkForSurvey()
+//        self.checkForSurvey()
 
     }
     
@@ -1076,7 +1080,7 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
         dateFormatte.dateFormat = "yyyy-MM-dd"
         let today = Date()
         let campaignStartDate = dateFormatte.date(from: "2022-01-12")!
-        let campaignEndDate = dateFormatte.date(from: "2022-02-28")!
+        let campaignEndDate = dateFormatte.date(from: "2023-02-28")!
         
         if today >= campaignStartDate && today <= campaignEndDate {
             DispatchQueue.main.async {

@@ -65,7 +65,11 @@ class PopUpViewController: UIViewController {
     }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .portrait
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            return [.portrait, .landscapeLeft, .landscapeRight]
+        } else {
+            return [.portrait]
+        }
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {

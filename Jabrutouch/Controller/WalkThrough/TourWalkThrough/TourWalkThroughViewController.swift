@@ -18,7 +18,11 @@ class TourWalkThroughViewController: UIViewController {
     @IBOutlet weak var link: UITextView!
     @IBOutlet weak var exitButton: UIButton!
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return [.portrait]
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            return [.portrait, .landscapeLeft, .landscapeRight]
+        } else {
+            return [.portrait]
+        }
     }
     var index = 0
     override func viewDidLoad() {

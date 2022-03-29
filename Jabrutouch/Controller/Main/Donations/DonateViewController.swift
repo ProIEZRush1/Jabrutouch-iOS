@@ -68,7 +68,11 @@ class DonateViewController: UIViewController, UITextFieldDelegate, DonationDataD
     }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return [.portrait]
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            return [.portrait, .landscapeLeft, .landscapeRight]
+        } else {
+            return [.portrait]
+        }
     }
     
     private func setRoundCorners() {

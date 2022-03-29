@@ -57,7 +57,11 @@ class DonationsViewController: UIViewController, UITableViewDelegate, UITableVie
     //========================================
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return [.portrait]
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            return [.portrait, .landscapeLeft, .landscapeRight]
+        } else {
+            return [.portrait]
+        }
     }
     
     override func viewDidLoad() {

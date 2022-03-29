@@ -191,7 +191,14 @@ class LessonPlayerViewController: UIViewController {
         self.setPortraitHeader()
         
         self.setPortraitHeaderViewHeight()
+        
+        ///need to first call setPortraitMode() then can switch to landscape, otherwise player controls not set correctly.
         self.setPortraitMode()
+        if self.isLandscape {
+            /// for when entering this screen while in landscape, ie. iPad.
+            self.setLandscapeMode()
+        }
+        
         self.setUpGallery()
         self.pdfView.isOpaque = false
         self.pdfView.backgroundColor = UIColor.clear
@@ -564,8 +571,7 @@ class LessonPlayerViewController: UIViewController {
         case .regular:
             self.videoPlayer.snp.makeConstraints { (maker: ConstraintMaker) in
                 maker.top.equalTo(self.portraitHeaderView.snp.bottom)
-                maker.leading.equalTo(self.view.snp.leading)
-                maker.trailing.equalTo(self.view.snp.trailing)
+                maker.width.equalTo(UIScreen.main.bounds.width)
                 maker.height.equalTo(self.videoPlayer.snp.width).multipliedBy(self.videoAspectRatio).offset(24.0)
             }
             self.videoPlayer.layer.cornerRadius = 0.0

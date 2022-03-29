@@ -31,8 +31,12 @@ class DonationPopUpViewController: UIViewController {
     }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-           return .portrait
-       }
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            return [.portrait, .landscapeLeft, .landscapeRight]
+        } else {
+            return [.portrait]
+        }
+    }
     
     func setup(){
         self.popUpView.layer.cornerRadius = 15

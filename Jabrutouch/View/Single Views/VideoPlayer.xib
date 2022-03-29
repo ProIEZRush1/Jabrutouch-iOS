@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -58,7 +59,7 @@
                 <stackView contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="uh7-i3-IvM">
                     <rect key="frame" x="152" y="0.0" width="223" height="244"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eTp-hO-2bh">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eTp-hO-2bh">
                             <rect key="frame" x="0.0" y="0.0" width="56" height="244"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <fontDescription key="fontDescription" name="SFProDisplay-Medium" family="SF Pro Display" pointSize="24"/>
@@ -69,7 +70,7 @@
                                 <action selector="playbackSpeedButtonPressed:" destination="-1" eventType="touchUpInside" id="STc-5m-TYE"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U8M-Eb-G7z">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U8M-Eb-G7z">
                             <rect key="frame" x="56" y="0.0" width="55.5" height="244"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="tintColor" red="0.16862745100000001" green="0.1764705882" blue="0.66274509800000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -78,7 +79,7 @@
                                 <action selector="rewindButtonPressed:" destination="-1" eventType="touchUpInside" id="zwX-WB-mNo"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Je2-8e-vZd">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Je2-8e-vZd">
                             <rect key="frame" x="111.5" y="0.0" width="56" height="244"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="tintColor" red="0.16862745100000001" green="0.1764705882" blue="0.66274509800000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -87,7 +88,7 @@
                                 <action selector="playPauseButtonPressed:" destination="-1" eventType="touchUpInside" id="vTK-Ox-LPR"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BDz-GM-WjT">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BDz-GM-WjT">
                             <rect key="frame" x="167.5" y="0.0" width="55.5" height="244"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="tintColor" red="0.16862745100000001" green="0.1764705882" blue="0.66274509800000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -135,15 +136,15 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HtV-XW-UfD" userLabel="rewind">
-                                    <rect key="frame" x="122" y="4" width="1" height="22"/>
+                                    <rect key="frame" x="64.5" y="-2.5" width="34" height="35"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="3" maxX="0.0" maxY="0.0"/>
                                     <state key="normal" image="rewind10_large"/>
                                     <connections>
                                         <action selector="rewindButtonPressed:" destination="-1" eventType="touchUpInside" id="QMh-NB-oHT"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e8x-bQ-dUL" userLabel="play">
-                                    <rect key="frame" x="158" y="6" width="1" height="18"/>
+                                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e8x-bQ-dUL" userLabel="play">
+                                    <rect key="frame" x="133.5" y="-11" width="50" height="52"/>
                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <state key="normal" image="play_large">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -153,7 +154,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yku-Wj-tPq" userLabel="forward">
-                                    <rect key="frame" x="194" y="4" width="1" height="22"/>
+                                    <rect key="frame" x="218.5" y="-2.5" width="34" height="35"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="3" maxX="0.0" maxY="0.0"/>
                                     <state key="normal" image="forward10_large"/>
                                     <connections>
@@ -231,7 +232,7 @@
                             </items>
                             <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </toolbar>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HZF-U0-KFb">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HZF-U0-KFb">
                             <rect key="frame" x="12" y="12" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="40" id="q44-Rc-HIx"/>
@@ -279,7 +280,7 @@
                                 <action selector="sliderValueChanged:" destination="-1" eventType="valueChanged" id="mRg-oF-MZV"/>
                             </connections>
                         </slider>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TdK-mw-Ild">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TdK-mw-Ild">
                             <rect key="frame" x="329" y="183.5" width="30" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="30" id="I5r-eJ-xQu"/>
@@ -323,7 +324,7 @@
                 </view>
                 <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KR7-ci-2U1" customClass="JBProgressBar" customModule="Jabrutouch" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="240" width="375" height="4"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="4" id="0rU-pf-7yJ"/>
                     </constraints>
@@ -344,7 +345,7 @@
                 <constraint firstAttribute="bottom" secondItem="KR7-ci-2U1" secondAttribute="bottom" id="n8Q-WN-mPi"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="139" y="143"/>
+            <point key="canvasLocation" x="138.40579710144928" y="141.96428571428569"/>
         </view>
     </objects>
     <resources>
@@ -360,5 +361,8 @@
         <image name="previous_large" width="19.5" height="22.5"/>
         <image name="rewind10" width="34" height="35.5"/>
         <image name="rewind10_large" width="34" height="35"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

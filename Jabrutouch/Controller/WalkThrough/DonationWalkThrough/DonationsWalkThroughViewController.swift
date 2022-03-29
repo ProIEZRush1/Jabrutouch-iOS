@@ -17,7 +17,11 @@ class DonationsWalkThroughViewController: UIViewController {
     @IBOutlet weak var ButtonText: UILabel!
     @IBOutlet weak var close: UIButton!
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return [.portrait]
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            return [.portrait, .landscapeLeft, .landscapeRight]
+        } else {
+            return [.portrait]
+        }
     }
     var index = 0
     override func viewDidLoad() {

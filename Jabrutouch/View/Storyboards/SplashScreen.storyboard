@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GDy-cJ-b4M">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GDy-cJ-b4M">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,6 +24,7 @@
                                 <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="joU-nI-APl"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="bT4-j1-sLH" firstAttribute="leading" secondItem="YAX-wK-hNL" secondAttribute="leading" id="GZQ-6V-o4M"/>
@@ -33,7 +34,6 @@
                             <constraint firstItem="bT4-j1-sLH" firstAttribute="top" secondItem="YAX-wK-hNL" secondAttribute="top" id="gzk-1b-CiQ"/>
                             <constraint firstAttribute="trailing" secondItem="bT4-j1-sLH" secondAttribute="trailing" id="luo-XV-lId"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="joU-nI-APl"/>
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="vBZ-IG-GeV" id="IWL-Dc-wy7"/>

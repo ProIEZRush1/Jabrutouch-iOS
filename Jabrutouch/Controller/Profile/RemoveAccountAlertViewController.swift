@@ -15,6 +15,7 @@ class RemoveAccountAlertViewController: UIViewController {
         
         @IBOutlet weak var titleLabel: UILabel!
         @IBOutlet weak var contentView: UIView!
+        @IBOutlet weak var warningMsgLabel: UILabel!
         @IBOutlet weak var logoutButton: UIButton!
         @IBOutlet weak var cancelButton: UIButton!
         // TODO Add Outlets to custom alert with different texts
@@ -28,6 +29,7 @@ class RemoveAccountAlertViewController: UIViewController {
         override func viewDidLoad() {
             super.viewDidLoad()
             self.titleLabel.text = Strings.areYouSure
+            self.warningMsgLabel.text = Strings.removeAccountWarningMsg
             self.logoutButton.setTitle(Strings.removeAccount.uppercased(), for: .normal)
             self.cancelButton.setTitle(Strings.stayWithUs.uppercased(), for: .normal)
 

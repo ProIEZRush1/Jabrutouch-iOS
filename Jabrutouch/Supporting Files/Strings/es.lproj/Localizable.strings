@@ -106,7 +106,7 @@
 "donate" = "Regalar";
 "newsFeed" = "Descubre";
 "logout" = "Cerrar sesión";
-"stayWithUs" = "STAY WITH US";
+"stayWithUs" = "SIGO EN JABRUTOUCH";
 
 "passwordMissing" = "Falta la contraseña";
 "usernameInvalid" = "El nombre de usuario debe ser un correo o número de teléfono válido";
@@ -163,7 +163,8 @@
 "secondEmail" = "Email adicional";
 "topicOfInterest" = "Temas de interés";
 "changePassword" = "Cambiar contraseña";
-"removeAccount" = "Eliminar cuenta";
+"removeAccount" = "ELIMINAR CUENTA";
+"removeAccountWarningMsg" = "Si te vas, no podrás recuperar esta cuenta en el futuro.";
 "editProfile" = "Editar Perfil";
 "addPhoto" = "Subir foto";
 "oldPassowrd" = "Contraseña antigua";

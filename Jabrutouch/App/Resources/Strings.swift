@@ -236,6 +236,10 @@ class Strings {
         return NSLocalizedString("removeAccount", comment: "")
     }
     
+    class var removeAccountWarningMsg: String {
+        return NSLocalizedString("removeAccountWarningMsg", comment: "")
+    }
+    
     class var stayWithUs: String {
         return NSLocalizedString("stayWithUs", comment: "")
     }
