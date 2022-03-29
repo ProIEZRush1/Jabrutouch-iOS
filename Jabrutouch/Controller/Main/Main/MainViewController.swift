@@ -1080,7 +1080,7 @@ extension MainViewController: MenuDelegate, MainCollectionCellDelegate, AlertVie
         dateFormatte.dateFormat = "yyyy-MM-dd"
         let today = Date()
         let campaignStartDate = dateFormatte.date(from: "2022-01-12")!
-        let campaignEndDate = dateFormatte.date(from: "2023-02-28")!
+        let campaignEndDate = dateFormatte.date(from: "2022-02-28")!
         
         if today >= campaignStartDate && today <= campaignEndDate {
             DispatchQueue.main.async {
