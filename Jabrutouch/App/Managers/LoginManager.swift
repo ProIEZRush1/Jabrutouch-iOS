@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 
 class LoginManager {
     
@@ -171,10 +172,13 @@ class LoginManager {
     
     private func userDidSignUp(user: JTUser, password: String) {
         UserRepository.shared.setCurrentUser(user, password: password)
+        Crashlytics.crashlytics().setUserID(String(user.id))
     }
     
     private func userDidSignIn(user: JTUser, password: String) {
         UserRepository.shared.setCurrentUser(user, password: password)
+        Crashlytics.crashlytics().setUserID(String(user.id))
+                                            
         let _ = DonationManager.shared
         self.getProfileImage(fileName: user.imageLink) { (result: Result<UIImage, Error>) in
             switch result {
