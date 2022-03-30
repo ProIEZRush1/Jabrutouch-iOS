@@ -1,12 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "Jabrutouch.png",
+      "filename" : "Jabrutouch@2x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Jabrutouch@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
