@@ -474,13 +474,13 @@ class MainViewController: UIViewController, MainModalDelegate, UICollectionViewD
     }
     
     func presentDonation (){
-        guard let user = self.user else{ return }
-        
-        if user.lessonDonated?.donated ?? false || UserDefaultsProvider.shared.donationPending {
-            self.presentDonationsNavigationViewController()
-        }else {
+//        per Chaim on 15-05-2022 - just show regular donations page, regardless of donated or pending.
+//        guard let user = self.user else{ return }
+//        if user.lessonDonated?.donated ?? false || UserDefaultsProvider.shared.donationPending {
+//            self.presentDonationsNavigationViewController()
+//        }else {
             self.presentDonationsViewController()
-        }
+//        }
         
     }
     

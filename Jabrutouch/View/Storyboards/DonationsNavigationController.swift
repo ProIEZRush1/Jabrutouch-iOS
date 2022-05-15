@@ -20,5 +20,13 @@ class DonationsNavigationController: UINavigationController {
         }
     }
     
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            return [.portrait, .landscapeLeft, .landscapeRight]
+        } else {
+            return [.portrait]
+        }
+    }
+    
 
 }

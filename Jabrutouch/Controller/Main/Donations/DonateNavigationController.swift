@@ -16,6 +16,13 @@ class DonateNavigationController: UINavigationController {
         // Do any additional setup after loading the view.
     }
     
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            return [.portrait, .landscapeLeft, .landscapeRight]
+        } else {
+            return [.portrait]
+        }
+    }
 
     /*
     // MARK: - Navigation
