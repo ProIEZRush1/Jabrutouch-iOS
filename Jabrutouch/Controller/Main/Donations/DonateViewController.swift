@@ -55,8 +55,9 @@ class DonateViewController: UIViewController, UITextFieldDelegate, DonationDataD
         self.setShadows()
         self.setText()
         self.presentVideo()
-        self.fromDeepLink ? couponeCallToDedication() : self.getPushNotification()
-
+        if self.fromDeepLink{
+            self.couponeCallToDedication()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -107,10 +108,6 @@ class DonateViewController: UIViewController, UITextFieldDelegate, DonationDataD
         self.donationValueLabel.text = Strings.x5Value
     }
     
-    func getPushNotification(){
-        guard let authToken = UserDefaultsProvider.shared.currentUser?.token else { return }
-        API.getPushNotification(authToken: authToken)
-    }
     
     func presentVideo() {
         if !self.showVideo {
