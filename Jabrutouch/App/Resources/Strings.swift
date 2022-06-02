@@ -685,7 +685,9 @@ class Strings {
     class var otherAnswer: String {
         return NSLocalizedString("otherAnswer", comment: "")
     }
-    
-    
+    class var askTheRabbi: String {
+        return NSLocalizedString("askTheRabbi", comment: "")
+    }
+
 }
 
