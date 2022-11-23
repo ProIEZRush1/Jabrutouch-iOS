@@ -117,3 +117,11 @@ extension Bool {
         return self ? 1 : 0
     }
 }
+
+// Use to control orientation for ViewControllers which are inside NavigationControllers
+extension UINavigationController {
+    override open var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return topViewController?.supportedInterfaceOrientations ?? .allButUpsideDown
+    
+    }
+}
