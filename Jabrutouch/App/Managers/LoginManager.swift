@@ -47,7 +47,7 @@ class LoginManager {
         completion()
     }
     
-    func requestVerificationCode(phoneNumber: String, completion:@escaping (_ result: Result<Any, JTError>)->Void){
+    func requestVerificationCode(phoneNumber: String, completion:@escaping (_ result: Result<SendCodeResponse, JTError>)->Void){
         API.requestVerificationCode(phoneNumber: phoneNumber) { (result:APIResult<SendCodeResponse>) in
             switch result {
             case .success(let response):

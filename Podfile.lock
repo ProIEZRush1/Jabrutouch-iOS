@@ -366,6 +366,9 @@ PODS:
   - SnapKit (5.0.1)
   - Starscream (4.0.4)
   - SwiftWebSocket (2.7.0)
+  - SwiftyRSA (1.7.0):
+    - SwiftyRSA/ObjC (= 1.7.0)
+  - SwiftyRSA/ObjC (1.7.0)
   - UICircularProgressRing (8.0.0)
 
 DEPENDENCIES:
@@ -383,6 +386,7 @@ DEPENDENCIES:
   - SnapKit (~> 5.0.0)
   - Starscream (~> 4.0.0)
   - SwiftWebSocket
+  - SwiftyRSA
   - UICircularProgressRing
 
 SPEC REPOS:
@@ -418,6 +422,7 @@ SPEC REPOS:
     - SnapKit
     - Starscream
     - SwiftWebSocket
+    - SwiftyRSA
     - UICircularProgressRing
 
 SPEC CHECKSUMS:
@@ -452,8 +457,9 @@ SPEC CHECKSUMS:
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   Starscream: 5178aed56b316f13fa3bc55694e583d35dd414d9
   SwiftWebSocket: 612c9729fd503cb6b0b8b45390c788686dac306f
+  SwiftyRSA: 8c6dd1ea7db1b8dc4fb517a202f88bb1354bc2c6
   UICircularProgressRing: 19927375b2b21b5fa5fd9582f15ccdef9659da16
 
-PODFILE CHECKSUM: f39e00d94167f9a8ca8d935784c68f6d8e2e99b0
+PODFILE CHECKSUM: 867b36531e48c224e3eb8866bb98416fe855fc7e
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.11.2

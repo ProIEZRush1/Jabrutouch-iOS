@@ -34,6 +34,7 @@ class RequestVerificationCodeViewController: UIViewController {
     @IBOutlet weak private var sendButton: UIButton!
     @IBOutlet weak private var countryView: UIView!
     @IBOutlet weak private var phoneNumberView: UIView!
+    @IBOutlet weak var otpStatusMessageLabel: UILabel!
     
     //============================================================
     // MARK: - LifeCycle
@@ -55,6 +56,7 @@ class RequestVerificationCodeViewController: UIViewController {
         self.addBorders()
         self.initCountriesPicker()
         self.setInputViews()
+        self.checkOTPRequestorStatus()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -183,14 +185,79 @@ class RequestVerificationCodeViewController: UIViewController {
         LoginManager.shared.requestVerificationCode(phoneNumber: phoneNumber) { (result) in
             self.removeActivityView()
             switch result {
-            case .success:
-                self.navigateToVerificatonCodeViewController(phoneNumber: phoneNumber)
+            case .success(let status):
+                // Save new received status to UserDefaults for next time user enters this screen.
+                UserDefaultsProvider.shared.otpStatus = status.otpRequestorStatus
+                
+                switch status.otpRequestorStatus.status {
+                case .suspended:
+                    self.suspendedScreen()
+                case .open, .wait, .hold:
+                    self.toggleWaitStatusScreen(otpStatus: status.otpRequestorStatus)
+                    self.navigateToVerificatonCodeViewController(phoneNumber: phoneNumber)
+                }
             case .failure(let error):
                 let title = Strings.error
                 let message = error.message
                 Utils.showAlertMessage(message, title: title, viewControler: self)
             }
         }
+    }
+    
+    //============================================================
+    // MARK: - OTPRequestorStatus handling
+    //============================================================
+    private func checkOTPRequestorStatus() {
+        guard let currentStatus = UserDefaultsProvider.shared.otpStatus else { return }
+        
+        switch currentStatus.status {
+        case .suspended:
+            self.suspendedScreen()
+        case .hold, .wait:
+            self.toggleWaitStatusScreen(otpStatus: currentStatus)
+        case  .open:
+            //all good continue
+            break
+        }
+    }
+    
+    private func suspendedScreen() {
+        self.otpStatusMessageLabel.text = Strings.contactAdmin
+        self.toggleEnableFields(enable: false)
+    }
+    
+    private func toggleEnableFields(enable: Bool) {
+        self.countryTF.isEnabled = enable
+        self.phoneNumberTF.isEnabled = enable
+        self.sendButton.isEnabled = enable
+        self.sendButton.backgroundColor = enable ? #colorLiteral(red: 1, green: 0.4658099413, blue: 0.384850353, alpha: 1) : .gray
+        self.sendButton.isEnabled = enable
+        self.otpStatusMessageLabel.isHidden = enable
+    }
+    
+    private func toggleWaitStatusScreen(otpStatus: JTOTPRequestorStatus) {
+        let date = NSDate()
+        let currentUnixTime = date.timeIntervalSince1970
+        let isAllowed = currentUnixTime > otpStatus.nextRequestAllowedTime
+        if !isAllowed {
+            self.setOtpMessage(otpStatus: otpStatus)
+        }
+        self.toggleEnableFields(enable: isAllowed)
+    }
+    
+    private func setOtpMessage(otpStatus: JTOTPRequestorStatus){
+            let releaseTime = Date(timeIntervalSince1970:otpStatus.nextRequestAllowedTime)
+            Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (timer) in
+                let now = Date(timeIntervalSince1970: Date().timeIntervalSince1970)
+                let difference = Calendar.current.dateComponents([.second, .minute, .hour], from: now, to: releaseTime)
+                let timeString = "\(difference.hour!):\(difference.minute!):\(difference.second!)"
+                self.otpStatusMessageLabel.text = Strings.tryAgainIn + timeString
+                
+                if now.timeIntervalSince1970 > otpStatus.nextRequestAllowedTime {
+                    timer.invalidate()
+                    self.toggleEnableFields(enable: true)
+                }
+            }
     }
     
     //============================================================

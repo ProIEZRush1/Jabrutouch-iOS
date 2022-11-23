@@ -238,6 +238,10 @@ class Utils {
         return nil
     }
     
+    // MARK: Encryption & Decryption
+    
+//    class func encryptMsg(stringMsg:String)
+    
    
     
 }

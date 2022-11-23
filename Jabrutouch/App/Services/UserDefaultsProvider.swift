@@ -28,6 +28,7 @@ class UserDefaultsProvider {
         case campaignPopUpDetails = "CampaignPopUpDetails"
         case latestNewsItems = "LatestNewsItems"
         case surveyLastCheckedInfo = "SurveyLastCheckedInfo"
+        case otpRequestorStatus = "OTPRequestorStatus"
     }
     
     static private var provider: UserDefaultsProvider?
@@ -37,7 +38,8 @@ class UserDefaultsProvider {
     private init() {
         self.defaults.register(defaults: [
             UserDefaultsKeys.seenWalkThrough.rawValue: false,
-            UserDefaultsKeys.appLanguages.rawValue: ["es"]
+            UserDefaultsKeys.appLanguages.rawValue: ["es"],
+            UserDefaultsKeys.otpRequestorStatus.rawValue : ["wait_seconds":0, "status":0, "status_name":"Open", "message": "default msg"]
             ]
         )
     }
@@ -223,6 +225,18 @@ class UserDefaultsProvider {
         }
         set (info) {
             self.defaults.set(info?.values, forKey: UserDefaultsKeys.surveyLastCheckedInfo.rawValue)
+            self.defaults.synchronize()
+        }
+    }
+    
+    
+    var otpStatus: JTOTPRequestorStatus? {
+        get {
+            guard let values = self.defaults.object(forKey: UserDefaultsKeys.otpRequestorStatus.rawValue) as? [String:Any] else { return nil }
+            return JTOTPRequestorStatus(values: values)
+        }
+        set (status) {
+            self.defaults.set(status?.values, forKey: UserDefaultsKeys.otpRequestorStatus.rawValue)
             self.defaults.synchronize()
         }
     }

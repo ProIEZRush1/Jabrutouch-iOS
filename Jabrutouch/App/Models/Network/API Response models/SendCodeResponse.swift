@@ -9,7 +9,16 @@
 import Foundation
 
 struct SendCodeResponse: APIResponseModel {
-    init?(values: [String : Any]) {
-        
-    }    
+//    init?(values: [String : Any]) {
+//
+//    }
+    
+    var otpRequestorStatus: JTOTPRequestorStatus
+    
+    init?(values: [String:Any]) {
+        if let sendCodeStatus = JTOTPRequestorStatus(values: values) {
+            self.otpRequestorStatus = sendCodeStatus
+        } else { return nil }
+
+    }
 }

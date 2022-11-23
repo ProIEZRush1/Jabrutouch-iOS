@@ -18,9 +18,16 @@ class HttpRequestsFactory {
     //==========================================
     
     class func createSendCodeRequest(phoneNumber: String) -> URLRequest?{
+//      MARK:  TODO: encrypt phone number (and imei if possible) wrapped in {msg:encryptedMsg}
+        guard let secretMsg = OTPSecurityManager.encryptMsg(phone: phoneNumber) else {
+            print("secretMsg is null!!!!!")
+            return nil
+        }
+        
         guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
         let link = baseUrl.appendingPathComponent("send_code/").absoluteString
-        let body: [String:String] = ["phone": phoneNumber]
+//        let body: [String:String] = ["phone": phoneNumber]
+        let body: [String:String] = ["msg": secretMsg]
         guard let url = self.createUrl(fromLink: link, urlParams: nil) else { return nil }
         let request = self.createRequest(url, method: .post, body: body, additionalHeaders: nil)
         return request

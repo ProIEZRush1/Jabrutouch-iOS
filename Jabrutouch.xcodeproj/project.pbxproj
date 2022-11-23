@@ -290,6 +290,9 @@
 		83CCB12123783F6100C86450 /* JTMasechetDownloadedGemaraLessons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB12023783F6100C86450 /* JTMasechetDownloadedGemaraLessons.swift */; };
 		83CCB1232379EEB700C86450 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB1222379EEB700C86450 /* EditProfileViewController.swift */; };
 		83CCB127237C8D6F00C86450 /* EditPasswordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CCB126237C8D6F00C86450 /* EditPasswordCell.swift */; };
+		C53D680A2923B077009B9B60 /* OTPSecurityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53D68092923B077009B9B60 /* OTPSecurityManager.swift */; };
+		C53D680C2923D0CB009B9B60 /* otp_encrypt_public.pem in Resources */ = {isa = PBXBuildFile; fileRef = C53D680B2923D0CB009B9B60 /* otp_encrypt_public.pem */; };
+		C53D680E292552CE009B9B60 /* JTOTPRequestorStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53D680D292552CE009B9B60 /* JTOTPRequestorStatus.swift */; };
 		D6196E762720530C00E1F478 /* SurveyCustomAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6196E752720530C00E1F478 /* SurveyCustomAnswerCell.swift */; };
 		D631F9C526DCDDBC00447B88 /* JTNewsFeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D631F9C426DCDDBC00447B88 /* JTNewsFeedItem.swift */; };
 		D631F9C826DCE0D100447B88 /* NewsFeedRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D631F9C726DCE0D100447B88 /* NewsFeedRepository.swift */; };
@@ -659,6 +662,9 @@
 		83CCB124237C0F9E00C86450 /* JTDonor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTDonor.swift; sourceTree = "<group>"; };
 		83CCB126237C8D6F00C86450 /* EditPasswordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPasswordCell.swift; sourceTree = "<group>"; };
 		C0F9377FF1E3DA5E9F901D68 /* Pods_Jabrutouch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jabrutouch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C53D68092923B077009B9B60 /* OTPSecurityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPSecurityManager.swift; sourceTree = "<group>"; };
+		C53D680B2923D0CB009B9B60 /* otp_encrypt_public.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = otp_encrypt_public.pem; sourceTree = "<group>"; };
+		C53D680D292552CE009B9B60 /* JTOTPRequestorStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTOTPRequestorStatus.swift; sourceTree = "<group>"; };
 		D6196E752720530C00E1F478 /* SurveyCustomAnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyCustomAnswerCell.swift; sourceTree = "<group>"; };
 		D631F9C426DCDDBC00447B88 /* JTNewsFeedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTNewsFeedItem.swift; sourceTree = "<group>"; };
 		D631F9C726DCE0D100447B88 /* NewsFeedRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedRepository.swift; sourceTree = "<group>"; };
@@ -1283,6 +1289,7 @@
 		219BFF3622E5B6FD00ABBEE2 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				C53D68082923B035009B9B60 /* OTPSecurity */,
 				DD51CDEB23F185D30063167E /* AudioMessagesManager.swift */,
 				213196B222F6DAC600B0AF5F /* LoginManager.swift */,
 				219BFF3722E5B72000ABBEE2 /* LocalizationManager.swift */,
@@ -1402,6 +1409,7 @@
 				60FF78B32507953B0099C72A /* JTAppVersion.swift */,
 				D631F9C426DCDDBC00447B88 /* JTNewsFeedItem.swift */,
 				D65E1C43279EE06000E95FA7 /* JTSurveyCheckedInfo.swift */,
+				C53D680D292552CE009B9B60 /* JTOTPRequestorStatus.swift */,
 			);
 			path = "Domain Models";
 			sourceTree = "<group>";
@@ -1640,6 +1648,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		C53D68082923B035009B9B60 /* OTPSecurity */ = {
+			isa = PBXGroup;
+			children = (
+				C53D680B2923D0CB009B9B60 /* otp_encrypt_public.pem */,
+				C53D68092923B077009B9B60 /* OTPSecurityManager.swift */,
+			);
+			path = OTPSecurity;
+			sourceTree = "<group>";
+		};
 		D65711F8271D8D8200C3CEBA /* Survey */ = {
 			isa = PBXGroup;
 			children = (
@@ -1864,6 +1881,7 @@
 				21678D6522DF2CED007BC74C /* SF-Pro-Text-Heavy.otf in Resources */,
 				21678D6622DF2CED007BC74C /* SF-Pro-Text-HeavyItalic.otf in Resources */,
 				21678D6722DF2CED007BC74C /* SF-Pro-Text-Light.otf in Resources */,
+				C53D680C2923D0CB009B9B60 /* otp_encrypt_public.pem in Resources */,
 				21678D6822DF2CED007BC74C /* SF-Pro-Text-LightItalic.otf in Resources */,
 				21678D6922DF2CED007BC74C /* SF-Pro-Text-Medium.otf in Resources */,
 				21678D6A22DF2CED007BC74C /* SF-Pro-Text-MediumItalic.otf in Resources */,
@@ -2012,6 +2030,7 @@
 				6087D86724C5B7AF00EF6902 /* TourWalkThroughCollectionViewCell.swift in Sources */,
 				2120BE2122DF2787004854DB /* RequestVerificationCodeViewController.swift in Sources */,
 				604A893324CF16CB00212B44 /* JBBarPageIndicator.swift in Sources */,
+				C53D680E292552CE009B9B60 /* JTOTPRequestorStatus.swift in Sources */,
 				8391EC64240BDCD1007B5F98 /* JTLessonDonated.swift in Sources */,
 				21ED3BDA230488E3009D8E3D /* JTGemaraLesson.swift in Sources */,
 				21407C8922F72632002F9690 /* TextFieldWithDeleteDelegate.swift in Sources */,
@@ -2077,6 +2096,7 @@
 				FBB18FB022F863AF006886FD /* JTGemaraSeder.swift in Sources */,
 				83137F0323F04769003B9DA6 /* JTDedication.swift in Sources */,
 				83B3556723E06A8400E2C485 /* DonateViewController.swift in Sources */,
+				C53D680A2923B077009B9B60 /* OTPSecurityManager.swift in Sources */,
 				839CB4CB2381C91B0086554B /* SelectInterestViewController.swift in Sources */,
 				FB51711D22F1A275003BCAFC /* JTMishnaSeder.swift in Sources */,
 				8342BA74237301D800C3239C /* MainCollectionCellViewController.swift in Sources */,

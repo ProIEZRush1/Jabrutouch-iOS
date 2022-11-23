@@ -688,6 +688,11 @@ class Strings {
     class var askTheRabbi: String {
         return NSLocalizedString("askTheRabbi", comment: "")
     }
-
+    class var tryAgainIn: String {
+        return NSLocalizedString("tryAgainIn", comment: "")
+    }
+    class var contactAdmin: String {
+        return NSLocalizedString("contactAdmin", comment: "")
+    }
 }
 

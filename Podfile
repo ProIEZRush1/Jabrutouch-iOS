@@ -22,6 +22,7 @@ target 'Jabrutouch' do
   pod 'Starscream', '~> 4.0.0'
   pod 'SwiftWebSocket'
   pod 'lottie-ios'
+  pod 'SwiftyRSA'
 
 
 end
