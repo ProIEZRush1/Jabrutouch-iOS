@@ -248,7 +248,7 @@ class RequestVerificationCodeViewController: UIViewController {
     private func setOtpMessage(otpStatus: JTOTPRequestorStatus){
             let releaseTime = Date(timeIntervalSince1970:otpStatus.nextRequestAllowedTime)
             Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (timer) in
-                let now = Date(timeIntervalSince1970: Date().timeIntervalSince1970)
+                let now = Date()
                 let difference = Calendar.current.dateComponents([.second, .minute, .hour], from: now, to: releaseTime)
                 let timeString = "\(difference.hour!):\(difference.minute!):\(difference.second!)"
                 self.otpStatusMessageLabel.text = Strings.tryAgainIn + timeString

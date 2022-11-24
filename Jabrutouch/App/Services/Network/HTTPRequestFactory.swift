@@ -18,7 +18,7 @@ class HttpRequestsFactory {
     //==========================================
     
     class func createSendCodeRequest(phoneNumber: String) -> URLRequest?{
-//      MARK:  TODO: encrypt phone number (and imei if possible) wrapped in {msg:encryptedMsg}
+        // encrypt phone number (and imei if possible) wrapped in {msg:encryptedMsg}
         guard let secretMsg = OTPSecurityManager.encryptMsg(phone: phoneNumber) else {
             print("secretMsg is null!!!!!")
             return nil
