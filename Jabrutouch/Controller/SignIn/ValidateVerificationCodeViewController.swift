@@ -9,7 +9,7 @@
 import UIKit
 import MessageUI
 
-class ValidateVerificationCodeViewController: UIViewController, MFMailComposeViewControllerDelegate {
+class ValidateVerificationCodeViewController: UIViewController, MFMailComposeViewControllerDelegate, UINavigationControllerDelegate {
     
     //============================================================
     // MARK: - Properties
@@ -137,6 +137,7 @@ class ValidateVerificationCodeViewController: UIViewController, MFMailComposeVie
         if( MFMailComposeViewController.canSendMail() ) {
             let mailComposer = MFMailComposeViewController()
             mailComposer.mailComposeDelegate = self
+            mailComposer.delegate = self
             mailComposer.setToRecipients(["info@tashema.es"])
             mailComposer.setSubject("No he podido registrarme con el SMS.")
             mailComposer.setMessageBody("Hola\n No he podido registrarme con el SMS. \n Mi nombre es: [Escribe aquí tu nombre]\n Mi apellido es: [tu apellido]\n Y mi teléfono es: [tu teléfono móvil con prefijo]\n\n Muchas gracia ", isHTML: false)
@@ -147,6 +148,14 @@ class ValidateVerificationCodeViewController: UIViewController, MFMailComposeVie
             let message = "Ingrese una cuenta de correo electrónico"
             Utils.showAlertMessage(message, title: title, viewControler: self)
         }
+    }
+
+    // closes MFMailComposeViewController on send or cancel, then closes
+    // RequestVerificationCodeViewController (the previous screen) to return
+    // to login page
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        dismiss(animated: true)
+        self.dismiss(animated: true)
     }
 
     //============================================================
