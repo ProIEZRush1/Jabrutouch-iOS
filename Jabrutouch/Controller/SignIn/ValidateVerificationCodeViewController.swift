@@ -19,6 +19,7 @@ class ValidateVerificationCodeViewController: UIViewController, MFMailComposeVie
     var phoneNumber: String?
     var code = ""
     let codeLength = 4
+    var timer: Timer?
     //============================================================
     // MARK: - Outlets
     //============================================================
@@ -82,20 +83,28 @@ class ValidateVerificationCodeViewController: UIViewController, MFMailComposeVie
             [NSAttributedString.Key.underlineStyle:NSNumber(value: 1)],
             range: range)
         self.resendButton.setAttributedTitle(resendButtonTitle, for: .normal)
-        self.timerLabel.text = "Por favor espera 30 segundos para recibir el código"
+        self.setTimerLabelDefaultText()
         self.codeTF.text = "••••"
         
         
     }
     
+    private func setTimerLabelDefaultText() {
+        self.timerLabel.text = "Por favor espera 30 segundos para recibir el código"
+    }
+    
     private func setWaitForCodeTimer() {
+        self.setTimerLabelDefaultText()
         self.toggleHideSendButtons(hide: true)
         var counter = 29
-        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (timer) in
+        self.timer?.invalidate()
+        self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (timer) in
             self.timerLabel.text = "Por favor espera \(counter) segundos para recibir el código"
             counter -= 1
             if counter < 0 {
-                timer.invalidate()
+                self.timer?.invalidate()
+                /// after waiting 30 seconds for sms to arrive.
+                /// wait additional time per current otp status, then show send again buttons.
                 self.checkOtpStatus()
             }
         }
@@ -108,11 +117,12 @@ class ValidateVerificationCodeViewController: UIViewController, MFMailComposeVie
         self.timerLabel.isHidden = !hide
     }
     
-    //// only let resend code if otp status is okay
+    /// only let resend code if otp status is okay
     private func checkOtpStatus() {
         guard let currentStatus = UserDefaultsProvider.shared.otpStatus else { return }
-        // I don't think it's ever possible to get here if suspended, but check anyways.
+        /// I don't think it's ever possible to get here if suspended, but check anyways.
         guard currentStatus.status != .suspended else {
+            /// leave this screen
             self.dismiss(animated: true)
             return
         }
@@ -120,13 +130,14 @@ class ValidateVerificationCodeViewController: UIViewController, MFMailComposeVie
         if Date().timeIntervalSince1970 < currentStatus.nextRequestAllowedTime {
             let releaseTime = Date(timeIntervalSince1970:currentStatus.nextRequestAllowedTime)
             
-            Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (timer) in
+            self.timer?.invalidate()
+            self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (timer) in
                 let now = Date()
                 let difference = Calendar.current.dateComponents([.second, .minute, .hour], from: now, to: releaseTime)
                 let timeString = "\(difference.hour!):\(difference.minute!):\(difference.second!)"
                 self.timerLabel.text = Strings.tryAgainIn + timeString
                 if now.timeIntervalSince1970 > currentStatus.nextRequestAllowedTime {
-                    timer.invalidate()
+                    self.timer?.invalidate()
                     self.toggleHideSendButtons(hide: false)
                 }
             }
@@ -180,9 +191,9 @@ class ValidateVerificationCodeViewController: UIViewController, MFMailComposeVie
         }
     }
 
-    // closes MFMailComposeViewController on send or cancel, then closes
-    // RequestVerificationCodeViewController (the previous screen) to return
-    // to login page
+    /// closes MFMailComposeViewController on send or cancel, then closes
+    /// RequestVerificationCodeViewController (the previous screen) to return
+    /// to login page
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         dismiss(animated: true)
         self.dismiss(animated: true)
@@ -205,37 +216,30 @@ class ValidateVerificationCodeViewController: UIViewController, MFMailComposeVie
         return displayCode
     }
     
+    /// handle requesting a code the second time
     private func resendCode() {
         guard let phoneNumber = self.phoneNumber else { return }
         self.showActivityView()
         LoginManager.shared.requestVerificationCode(phoneNumber: phoneNumber) { (result) in
             self.removeActivityView()
             switch result {
-            case .success:
-                break
+            case .success(let status):
+                /// Save new received status to UserDefaults for next time user enters this screen.
+                UserDefaultsProvider.shared.otpStatus = status.otpRequestorStatus
+
+                switch status.otpRequestorStatus.status {
+                case .suspended:
+                    /// leave validation screen.
+                    self.dismiss(animated: true)
+                case .open, .wait, .hold:
+                    /// show wait for sms message timer.
+                    self.setWaitForCodeTimer()
+                }
             case .failure(let error):
                 let title = Strings.error
-                let message = error.localizedDescription
+                let message = error.message
                 Utils.showAlertMessage(message, title: title, viewControler: self)
             }
-//            MARK: TODO: handle requesting a code the second time
-//            switch result {
-//            case .success(let status):
-//                // Save new received status to UserDefaults for next time user enters this screen.
-//                UserDefaultsProvider.shared.otpStatus = status.otpRequestorStatus
-//
-//                switch status.otpRequestorStatus.status {
-//                case .suspended:
-//                    self.dismiss(animated: true)
-//                case .open, .wait, .hold:
-//                    self.toggleWaitStatusScreen(otpStatus: status.otpRequestorStatus)
-//                    self.navigateToVerificatonCodeViewController(phoneNumber: phoneNumber)
-//                }
-//            case .failure(let error):
-//                let title = Strings.error
-//                let message = error.message
-//                Utils.showAlertMessage(message, title: title, viewControler: self)
-//            }
         }
     }
     

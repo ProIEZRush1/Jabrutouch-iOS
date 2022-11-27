@@ -56,6 +56,9 @@ class RequestVerificationCodeViewController: UIViewController {
         self.addBorders()
         self.initCountriesPicker()
         self.setInputViews()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         self.checkOTPRequestorStatus()
     }
     
