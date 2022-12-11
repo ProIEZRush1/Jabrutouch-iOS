@@ -232,10 +232,11 @@ class RequestVerificationCodeViewController: UIViewController {
     private func toggleEnableFields(enable: Bool) {
         self.countryTF.isEnabled = enable
         self.phoneNumberTF.isEnabled = enable
-        self.sendButton.isEnabled = enable
         self.sendButton.backgroundColor = enable ? #colorLiteral(red: 1, green: 0.4658099413, blue: 0.384850353, alpha: 1) : .gray
         self.sendButton.isEnabled = enable
         self.otpStatusMessageLabel.isHidden = enable
+        if enable { otpStatusMessageLabel.text = "" }
+        
     }
     
     private func toggleWaitStatusScreen(otpStatus: JTOTPRequestorStatus) {

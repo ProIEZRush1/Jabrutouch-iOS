@@ -694,5 +694,8 @@ class Strings {
     class var contactAdmin: String {
         return NSLocalizedString("contactAdmin", comment: "")
     }
+    class var didntReceiveCodeTryAgainIn: String {
+        return NSLocalizedString("didntReceiveCodeTryAgainIn", comment: "")
+    }
 }
 

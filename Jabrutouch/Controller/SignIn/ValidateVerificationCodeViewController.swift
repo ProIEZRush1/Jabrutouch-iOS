@@ -54,7 +54,7 @@ class ValidateVerificationCodeViewController: UIViewController, MFMailComposeVie
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.setWaitForCodeTimer()
+        self.checkOtpStatus()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -83,38 +83,17 @@ class ValidateVerificationCodeViewController: UIViewController, MFMailComposeVie
             [NSAttributedString.Key.underlineStyle:NSNumber(value: 1)],
             range: range)
         self.resendButton.setAttributedTitle(resendButtonTitle, for: .normal)
-        self.setTimerLabelDefaultText()
         self.codeTF.text = "••••"
         
         
     }
-    
-    private func setTimerLabelDefaultText() {
-        self.timerLabel.text = "Por favor espera 30 segundos para recibir el código"
-    }
-    
-    private func setWaitForCodeTimer() {
-        self.setTimerLabelDefaultText()
-        self.toggleHideSendButtons(hide: true)
-        var counter = 29
-        self.timer?.invalidate()
-        self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (timer) in
-            self.timerLabel.text = "Por favor espera \(counter) segundos para recibir el código"
-            counter -= 1
-            if counter < 0 {
-                self.timer?.invalidate()
-                /// after waiting 30 seconds for sms to arrive.
-                /// wait additional time per current otp status, then show send again buttons.
-                self.checkOtpStatus()
-            }
-        }
 
-    }
     
-    private func toggleHideSendButtons(hide: Bool) {
-        self.resendButton.isHidden = hide
-        self.sendEmailButton.isHidden = hide
-        self.timerLabel.isHidden = !hide
+    private func toggleHideSendButtonsShowTimer(hideBtnsShowTimer: Bool) {
+        self.resendButton.isHidden = hideBtnsShowTimer
+        self.sendEmailButton.isHidden = hideBtnsShowTimer
+        self.timerLabel.isHidden = !hideBtnsShowTimer
+        if !hideBtnsShowTimer { self.timerLabel.text = "" }
     }
     
     /// only let resend code if otp status is okay
@@ -128,6 +107,7 @@ class ValidateVerificationCodeViewController: UIViewController, MFMailComposeVie
         }
         
         if Date().timeIntervalSince1970 < currentStatus.nextRequestAllowedTime {
+            self.toggleHideSendButtonsShowTimer(hideBtnsShowTimer: true)
             let releaseTime = Date(timeIntervalSince1970:currentStatus.nextRequestAllowedTime)
             
             self.timer?.invalidate()
@@ -135,14 +115,14 @@ class ValidateVerificationCodeViewController: UIViewController, MFMailComposeVie
                 let now = Date()
                 let difference = Calendar.current.dateComponents([.second, .minute, .hour], from: now, to: releaseTime)
                 let timeString = "\(difference.hour!):\(difference.minute!):\(difference.second!)"
-                self.timerLabel.text = Strings.tryAgainIn + timeString
+                self.timerLabel.text = Strings.didntReceiveCodeTryAgainIn + timeString
                 if now.timeIntervalSince1970 > currentStatus.nextRequestAllowedTime {
                     self.timer?.invalidate()
-                    self.toggleHideSendButtons(hide: false)
+                    self.toggleHideSendButtonsShowTimer(hideBtnsShowTimer: false)
                 }
             }
         } else {
-            self.toggleHideSendButtons(hide: false)
+            self.toggleHideSendButtonsShowTimer(hideBtnsShowTimer: false)
         }
     }
     
@@ -160,7 +140,6 @@ class ValidateVerificationCodeViewController: UIViewController, MFMailComposeVie
     }
     
     @IBAction func resendCodeButtonPressed(_ sender: UIButton) {
-        self.setWaitForCodeTimer()
         self.code = ""
         self.codeTF.text = self.displayCode(fromCode: "")
         let resendButtonTitle = NSMutableAttributedString(string: Strings.resendCode, attributes: [NSAttributedString.Key.foregroundColor: Colors.textMediumBlue])
@@ -233,7 +212,7 @@ class ValidateVerificationCodeViewController: UIViewController, MFMailComposeVie
                     self.dismiss(animated: true)
                 case .open, .wait, .hold:
                     /// show wait for sms message timer.
-                    self.setWaitForCodeTimer()
+                    self.checkOtpStatus()
                 }
             case .failure(let error):
                 let title = Strings.error
