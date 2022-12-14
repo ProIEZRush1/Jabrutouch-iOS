@@ -113,9 +113,13 @@ class ValidateVerificationCodeViewController: UIViewController, MFMailComposeVie
             self.timer?.invalidate()
             self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (timer) in
                 let now = Date()
-                let difference = Calendar.current.dateComponents([.second, .minute, .hour], from: now, to: releaseTime)
-                let timeString = "\(difference.hour!):\(difference.minute!):\(difference.second!)"
-                self.timerLabel.text = Strings.didntReceiveCodeTryAgainIn + timeString
+
+                ///display seconds only countdown
+                let seconds = String(Int(releaseTime.timeIntervalSince1970 - now.timeIntervalSince1970))
+                let text = String(format: Strings.didntReceiveCodeTryAgainIn, arguments: [seconds])
+                self.timerLabel.text = text
+                
+                /// stop timer when finished
                 if now.timeIntervalSince1970 > currentStatus.nextRequestAllowedTime {
                     self.timer?.invalidate()
                     self.toggleHideSendButtonsShowTimer(hideBtnsShowTimer: false)

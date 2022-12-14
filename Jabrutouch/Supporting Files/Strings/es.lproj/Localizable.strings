@@ -204,6 +204,6 @@
 "thankYouVeryMuch!" = "¡Muchas gracias!";
 "otherAnswer" = "Otra respuensa...";
 "askTheRabbi" = "Pregunta al rab";
-"tryAgainIn" = "Inténtalo de nuevo en: ";
+"tryAgainIn" = "Inténtalo de nuevo en: %@ SEGUNDOS";
 "contactAdmin" = "Contacta al administrador";
-"didntReceiveCodeTryAgainIn" = "¿No recibiste el código? \nInténtalo de nuevo en: ";
+"didntReceiveCodeTryAgainIn" = "¿No recibiste el código? \nInténtalo de nuevo en: %@ SEGUNDOS";

@@ -132,7 +132,8 @@ class RequestVerificationCodeViewController: UIViewController {
     }
     
     @IBAction func sendButtonPressed(_ sender: UIButton) {
-        self.validateForm()
+        let validated = self.validateForm()
+        if !validated { toggleEnableFields(enable: true)}
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
@@ -143,22 +144,23 @@ class RequestVerificationCodeViewController: UIViewController {
     // MARK: - Logic
     //============================================================
     
-    private func validateForm() {
+    private func validateForm() -> Bool{
         self.showActivityView()
+        toggleEnableFields(enable: false)
         
         guard var phoneNumber = self.phoneNumberTF.text else {
             let message = Strings.phoneNumberMissing
             let title = Strings.missingField
             Utils.showAlertMessage(message, title: title, viewControler: self)
             self.removeActivityView()
-            return
+            return false
         }
         if phoneNumber.isEmpty {
             let message = Strings.phoneNumberMissing
             let title = Strings.missingField
             Utils.showAlertMessage(message, title: title, viewControler: self)
             self.removeActivityView()
-            return
+            return false
         }
         
         if Utils.validatePhoneNumber(phoneNumber) == false {
@@ -166,7 +168,7 @@ class RequestVerificationCodeViewController: UIViewController {
             let title = Strings.invalidField
             Utils.showAlertMessage(message, title: title, viewControler: self)
             self.removeActivityView()
-            return
+            return false
         }
         
         if phoneNumber.first == "0"{
@@ -177,11 +179,12 @@ class RequestVerificationCodeViewController: UIViewController {
             let message = Strings.pleaseSelectCountry
             Utils.showAlertMessage(message, title: nil, viewControler: self)
             self.removeActivityView()
-            return
+            return false
         }
         
         let fullPhoneNumber = country.dialCode + phoneNumber
         self.requestCode(phoneNumber: fullPhoneNumber)
+        return true
     }
     
     private func requestCode(phoneNumber: String) {
@@ -253,10 +256,13 @@ class RequestVerificationCodeViewController: UIViewController {
             let releaseTime = Date(timeIntervalSince1970:otpStatus.nextRequestAllowedTime)
             Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (timer) in
                 let now = Date()
-                let difference = Calendar.current.dateComponents([.second, .minute, .hour], from: now, to: releaseTime)
-                let timeString = "\(difference.hour!):\(difference.minute!):\(difference.second!)"
-                self.otpStatusMessageLabel.text = Strings.tryAgainIn + timeString
                 
+                ///display seconds only countdown
+                let seconds = String(Int(releaseTime.timeIntervalSince1970 - now.timeIntervalSince1970))
+                let text = String(format: Strings.tryAgainIn, arguments:  [seconds])
+                self.otpStatusMessageLabel.text = text
+                
+                ///stop timer when finished
                 if now.timeIntervalSince1970 > otpStatus.nextRequestAllowedTime {
                     timer.invalidate()
                     self.toggleEnableFields(enable: true)
