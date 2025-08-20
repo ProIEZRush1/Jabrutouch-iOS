@@ -43,6 +43,11 @@ typedef NS_ENUM(NSInteger, AWSS3BucketAccelerateStatus) {
     AWSS3BucketAccelerateStatusSuspended,
 };
 
+typedef NS_ENUM(NSInteger, AWSS3BucketAccessStyle) {
+    AWSS3BucketAccessStyleVirtualHosted,
+    AWSS3BucketAccessStylePath
+};
+
 typedef NS_ENUM(NSInteger, AWSS3BucketCannedACL) {
     AWSS3BucketCannedACLUnknown,
     AWSS3BucketCannedACLPrivate,
@@ -60,18 +65,28 @@ typedef NS_ENUM(NSInteger, AWSS3BucketLocationConstraint) {
     AWSS3BucketLocationConstraintAPNortheast2,
     AWSS3BucketLocationConstraintAPNortheast3,
     AWSS3BucketLocationConstraintAPSouth1,
+    AWSS3BucketLocationConstraintAPSouth2,
     AWSS3BucketLocationConstraintAPSoutheast1,
     AWSS3BucketLocationConstraintAPSoutheast2,
+    AWSS3BucketLocationConstraintAPSoutheast3,
+    AWSS3BucketLocationConstraintAPSoutheast4,
+    AWSS3BucketLocationConstraintAPSoutheast5,
+    AWSS3BucketLocationConstraintAPSoutheast7,
     AWSS3BucketLocationConstraintCACentral1,
+    AWSS3BucketLocationConstraintCAWest1,
     AWSS3BucketLocationConstraintCNNorth1,
     AWSS3BucketLocationConstraintCNNorthwest1,
     AWSS3BucketLocationConstraintEU,
     AWSS3BucketLocationConstraintEUCentral1,
+    AWSS3BucketLocationConstraintEUCentral2,
     AWSS3BucketLocationConstraintEUNorth1,
     AWSS3BucketLocationConstraintEUSouth1,
+    AWSS3BucketLocationConstraintEUSouth2,
     AWSS3BucketLocationConstraintEUWest1,
     AWSS3BucketLocationConstraintEUWest2,
     AWSS3BucketLocationConstraintEUWest3,
+    AWSS3BucketLocationConstraintILCentral1,
+    AWSS3BucketLocationConstraintMECentral1,
     AWSS3BucketLocationConstraintMESouth1,
     AWSS3BucketLocationConstraintSAEast1,
     AWSS3BucketLocationConstraintUSEast2,
@@ -79,6 +94,7 @@ typedef NS_ENUM(NSInteger, AWSS3BucketLocationConstraint) {
     AWSS3BucketLocationConstraintUSGovWest1,
     AWSS3BucketLocationConstraintUSWest1,
     AWSS3BucketLocationConstraintUSWest2,
+    AWSS3BucketLocationConstraintMXCentral1,
 };
 
 typedef NS_ENUM(NSInteger, AWSS3BucketLogsPermission) {

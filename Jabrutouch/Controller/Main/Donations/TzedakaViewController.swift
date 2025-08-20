@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import SwiftWebSocket
+import Starscream
 
 enum donationDisplay {
     case noDonation
@@ -17,8 +17,8 @@ enum donationDisplay {
     case donatePending
     
 }
-class TzedakaViewController: UIViewController, DedicationViewControllerDelegate, DonationManagerDelegate{
-   
+class TzedakaViewController: UIViewController, DedicationViewControllerDelegate, DonationManagerDelegate, WebSocketDelegate {
+    
     //========================================
     // MARK: - Properties
     //========================================
@@ -59,7 +59,7 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate,
     @IBOutlet weak var fourthView: HoursView!
     @IBOutlet weak var fifthView: HoursView!
     @IBOutlet weak var sixthView: HoursView!
-
+    
     //========================================
     // MARK: - LifeCycle
     //========================================
@@ -76,29 +76,24 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate,
         DonationManager.shared.donationManagerDelegate = self
         let nc = NotificationCenter.default
         nc.addObserver(self, selector: #selector(subscribePressed), name: NSNotification.Name(rawValue: "subscribePressed"), object: nil)
-
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        self.watchCount = DonationManager.shared.userDonation?.watchCount
-        self.user = UserRepository.shared.getCurrentUser()
-        self.setContainerView()
-//        self.present(donationDisplay.noDonation)
-//        self.present(donationDisplay.singleDonation)
-//        self.present(donationDisplay.subscription)
-//        self.present(donationDisplay.thankYou)
-//        self.present(donationDisplay.donatePending)
-
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        self.initSwiftWebSocket()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.watchCount = DonationManager.shared.userDonation?.watchCount
-        guard let counter = self.watchCount else {return}
+        self.user = UserRepository.shared.getCurrentUser()
+        self.setContainerView()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.initWebSocket()
+        self.watchCount = DonationManager.shared.userDonation?.watchCount
+        guard let counter = self.watchCount else { return }
         self.changeValue(counter)
     }
-   
+    
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         if UIDevice.current.userInterfaceIdiom == .pad {
             return [.portrait, .landscapeLeft, .landscapeRight]
@@ -143,7 +138,7 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate,
     //========================================
     // MARK: - Container View
     //========================================
-
+    
     func setContainerView(){
         guard let userDonation = self.userDonation else {
             self.showActivityView()
@@ -220,9 +215,9 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate,
     
     func createPayment() {
         self.setContainerView()
-//        self.present(donationDisplay.thankYou)
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 10){
-//        }
+        //        self.present(donationDisplay.thankYou)
+        //        DispatchQueue.main.asyncAfter(deadline: .now() + 10){
+        //        }
     }
     
     //========================================
@@ -245,7 +240,7 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate,
     }
     
     @IBAction func donateButtonPressed(_ sender: Any) {
-//        UserDefaultsProvider.shared.videoWatched = true
+        //        UserDefaultsProvider.shared.videoWatched = true
         self.performSegue(withIdentifier: "presentDonation", sender: self)
     }
     
@@ -268,33 +263,41 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate,
         self.setNumberView(view: self.sixthView)
     }
     
-    func initSwiftWebSocket() {
-        let webSocket = SwiftWebSocket.WebSocket("wss://jabrutouch-dev.ravtech.co.il/ws/lesson_watch_count")
-        
-        webSocket.event.open = {
-            print("SwiftWebSocket opened")
-        }
-        
-        webSocket.event.error = { (error) in
-            print("SwiftWebSocket error: \(error)")
-        }
-        
-        webSocket.event.message = self.webSocket(didReceive:)
-
-        webSocket.open()
+    var socket: WebSocket?
+    func initWebSocket() {
+        var request = URLRequest(url: URL(string: "wss://jabrutouch.bluemango.com.mx/ws/lesson_watch_count")!)
+        request.timeoutInterval = 5
+        socket = WebSocket(request: request)
+        self.socket?.delegate = self
+        self.socket?.connect()
     }
     
-    func webSocket(didReceive message: Any) {
-        let contentString = message as! String
-        guard let content = Utils.convertStringToDictionary(contentString) as? [String:Any] else { return }
-
+    func didReceive(event: Starscream.WebSocketEvent, client: any Starscream.WebSocketClient) {
+        switch event {
+        case .connected(_):
+            print("Starscream WebSocket connected")
+        case .disconnected(let reason, let code):
+            print("WebSocket disconnected: \(reason) (code: \(code))")
+        case .text(let text):
+            handleWebSocketMessage(text)
+        case .error(let error):
+            if let error = error {
+                print("WebSocket error: \(error.localizedDescription)")
+            }
+        default:
+            break
+        }
+    }
+    
+    func handleWebSocketMessage(_ message: String) {
+        guard let content = Utils.convertStringToDictionary(message) as? [String: Any] else { return }
         if let watchCount = content["watch_count"] as? Int {
             self.changeValue(watchCount)
         }
     }
-
+    
     func changeValue(_ counter: Int) {
-
+        
         var digits = "\(counter)".compactMap{ $0.wholeNumberValue }
         while digits.count < 6 {
             digits.insert(0, at: 0)

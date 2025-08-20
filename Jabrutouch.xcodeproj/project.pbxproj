@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -161,6 +161,8 @@
 		538691502379E8E500CC95B5 /* JBProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5386914E2379E8E500CC95B5 /* JBProgressBar.swift */; };
 		538691512379E8E500CC95B5 /* LabelWithPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5386914F2379E8E500CC95B5 /* LabelWithPadding.swift */; };
 		538691532379E9B100CC95B5 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 538691522379E9B100CC95B5 /* Profile.storyboard */; };
+		587585492D6D1DA600E114A4 /* RecaptchaVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587585482D6D1DA600E114A4 /* RecaptchaVerifier.swift */; };
+		58E7C4552D7F81380081449F /* RecaptchaValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E7C4542D7F81320081449F /* RecaptchaValidator.swift */; };
 		600399D224D6CC490038ED66 /* Coupone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 600399D124D6CC490038ED66 /* Coupone.storyboard */; };
 		600399D424D6D3900038ED66 /* CouponsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600399D324D6D3900038ED66 /* CouponsViewController.swift */; };
 		600399D724D6D6330038ED66 /* InvalidCouponeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600399D624D6D6330038ED66 /* InvalidCouponeViewController.swift */; };
@@ -508,6 +510,8 @@
 		5386914E2379E8E500CC95B5 /* JBProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JBProgressBar.swift; sourceTree = "<group>"; };
 		5386914F2379E8E500CC95B5 /* LabelWithPadding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelWithPadding.swift; sourceTree = "<group>"; };
 		538691522379E9B100CC95B5 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		587585482D6D1DA600E114A4 /* RecaptchaVerifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecaptchaVerifier.swift; sourceTree = "<group>"; };
+		58E7C4542D7F81320081449F /* RecaptchaValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecaptchaValidator.swift; sourceTree = "<group>"; };
 		600399D124D6CC490038ED66 /* Coupone.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Coupone.storyboard; sourceTree = "<group>"; };
 		600399D324D6D3900038ED66 /* CouponsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponsViewController.swift; sourceTree = "<group>"; };
 		600399D624D6D6330038ED66 /* InvalidCouponeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvalidCouponeViewController.swift; sourceTree = "<group>"; };
@@ -1100,6 +1104,7 @@
 		2133C20F22DCA0CD00F910B9 /* SignIn */ = {
 			isa = PBXGroup;
 			children = (
+				58E7C4542D7F81320081449F /* RecaptchaValidator.swift */,
 				2120BE1C22DF273F004854DB /* SignInViewController.swift */,
 				2120BE2022DF2787004854DB /* RequestVerificationCodeViewController.swift */,
 				2120BE2222DF279D004854DB /* ValidateVerificationCodeViewController.swift */,
@@ -1217,6 +1222,7 @@
 		216A0E6C22EEFCF100F7FBC1 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				587585482D6D1DA600E114A4 /* RecaptchaVerifier.swift */,
 				216A0E6D22EEFD1400F7FBC1 /* HttpServiceProvider.swift */,
 				216A0E6F22EEFDA300F7FBC1 /* HTTPRequestFactory.swift */,
 				2145858E22EF7D980062F830 /* API.swift */,
@@ -1760,6 +1766,7 @@
 				2133C1F222DB5B8200F910B9 /* Resources */,
 				6E56CD5A8C3BF47E7ECFCD1D /* [CP] Embed Pods Frameworks */,
 				4628E0EB2328FFED00D963E6 /* ShellScript */,
+				BB6752FEC7AF7BF6DAF284B9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1956,7 +1963,8 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" ce8fab510409ace0362be27ba4efaeecd8f369b8 7181cde7d3b51b431a656645e07087b3380b9397af4cbc44b0830626b133531c\n";
+			shellScript = "
+";
 		};
 		6E56CD5A8C3BF47E7ECFCD1D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1973,6 +1981,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Jabrutouch/Pods-Jabrutouch-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BB6752FEC7AF7BF6DAF284B9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Jabrutouch/Pods-Jabrutouch-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Jabrutouch/Pods-Jabrutouch-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Jabrutouch/Pods-Jabrutouch-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -2015,6 +2040,7 @@
 				21999F36231823FF003DB1B4 /* CustomTrackHeightSlider.swift in Sources */,
 				212ECEB42317C790005AEB36 /* VideoPlayer.swift in Sources */,
 				FBB434FE22FB2CA4008EE211 /* ProfileViewController.swift in Sources */,
+				587585492D6D1DA600E114A4 /* RecaptchaVerifier.swift in Sources */,
 				21ED3BD42304858C009D8E3D /* JTMishnaLesson.swift in Sources */,
 				21ED3BDC23048970009D8E3D /* GetGemaraLessonsResponse.swift in Sources */,
 				2133C22122DCFEB500F910B9 /* WalkThroughCollectionViewCell.swift in Sources */,
@@ -2197,6 +2223,7 @@
 				216A0E7022EEFDA300F7FBC1 /* HTTPRequestFactory.swift in Sources */,
 				600399D424D6D3900038ED66 /* CouponsViewController.swift in Sources */,
 				213196B122F38B9E00B0AF5F /* ActivityView.swift in Sources */,
+				58E7C4552D7F81380081449F /* RecaptchaValidator.swift in Sources */,
 				D672139326D7D76B002C8DD2 /* NewsFeedViewController.swift in Sources */,
 				D65FE86D273174BC002BA0DC /* PostSurveyUserAnswersResponse.swift in Sources */,
 				2133C1F822DB5B8200F910B9 /* AppDelegate.swift in Sources */,
@@ -2375,24 +2402,26 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 715A51EC96A60C90B07F8038 /* Pods-Jabrutouch.debug.xcconfig */;
 			buildSettings = {
-				API_BASE_URL = "https://jabrutouch-dev.ravtech.co.il/api/";
+				API_BASE_URL = "https://jabrutouchback.overcloud.us/api/";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Jabrutouch/Jabrutouch.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 79;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = T57ASHU8T6;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Jabrutouch/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				INFOPLIST_KEY_CFBundleDisplayName = Jabrutouch;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 1.5.9;
+				MARKETING_VERSION = 7.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = il.co.jabrutouch.Jabrutouch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2406,23 +2435,25 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F71C57777BA59A6B8E3F7474 /* Pods-Jabrutouch.release.xcconfig */;
 			buildSettings = {
-				API_BASE_URL = "https://jabrutouch.ravtech.co.il/api/";
+				API_BASE_URL = "https://jabrutouchback.overcloud.us/api/";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Jabrutouch/Jabrutouch.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 79;
 				DEVELOPMENT_TEAM = T57ASHU8T6;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Jabrutouch/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				INFOPLIST_KEY_CFBundleDisplayName = Jabrutouch;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 1.5.9;
+				MARKETING_VERSION = 7.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = il.co.jabrutouch.Jabrutouch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -1,5 +1,5 @@
 //
-// Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+// Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License").
 // You may not use this file except in compliance with the License.
@@ -30,9 +30,11 @@ NSString *const AWSSTSErrorDomain = @"com.amazonaws.AWSSTSErrorDomain";
              @"externalId" : @"ExternalId",
              @"policy" : @"Policy",
              @"policyArns" : @"PolicyArns",
+             @"providedContexts" : @"ProvidedContexts",
              @"roleArn" : @"RoleArn",
              @"roleSessionName" : @"RoleSessionName",
              @"serialNumber" : @"SerialNumber",
+             @"sourceIdentity" : @"SourceIdentity",
              @"tags" : @"Tags",
              @"tokenCode" : @"TokenCode",
              @"transitiveTagKeys" : @"TransitiveTagKeys",
@@ -41,6 +43,10 @@ NSString *const AWSSTSErrorDomain = @"com.amazonaws.AWSSTSErrorDomain";
 
 + (NSValueTransformer *)policyArnsJSONTransformer {
     return [NSValueTransformer awsmtl_JSONArrayTransformerWithModelClass:[AWSSTSPolicyDescriptorType class]];
+}
+
++ (NSValueTransformer *)providedContextsJSONTransformer {
+    return [NSValueTransformer awsmtl_JSONArrayTransformerWithModelClass:[AWSSTSProvidedContext class]];
 }
 
 + (NSValueTransformer *)tagsJSONTransformer {
@@ -60,6 +66,7 @@ NSString *const AWSSTSErrorDomain = @"com.amazonaws.AWSSTSErrorDomain";
              @"assumedRoleUser" : @"AssumedRoleUser",
              @"credentials" : @"Credentials",
              @"packedPolicySize" : @"PackedPolicySize",
+             @"sourceIdentity" : @"SourceIdentity",
              };
 }
 
@@ -110,6 +117,7 @@ NSString *const AWSSTSErrorDomain = @"com.amazonaws.AWSSTSErrorDomain";
              @"issuer" : @"Issuer",
              @"nameQualifier" : @"NameQualifier",
              @"packedPolicySize" : @"PackedPolicySize",
+             @"sourceIdentity" : @"SourceIdentity",
              @"subject" : @"Subject",
              @"subjectType" : @"SubjectType",
              };
@@ -162,6 +170,7 @@ NSString *const AWSSTSErrorDomain = @"com.amazonaws.AWSSTSErrorDomain";
              @"credentials" : @"Credentials",
              @"packedPolicySize" : @"PackedPolicySize",
              @"provider" : @"Provider",
+             @"sourceIdentity" : @"SourceIdentity",
              @"subjectFromWebIdentityToken" : @"SubjectFromWebIdentityToken",
              };
 }
@@ -404,6 +413,21 @@ return [date aws_stringValue:AWSDateISO8601DateFormat1];
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
              @"arn" : @"arn",
+             };
+}
+
+@end
+
+@implementation AWSSTSProvidedContext
+
++ (BOOL)supportsSecureCoding {
+    return YES;
+}
+
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+	return @{
+             @"contextAssertion" : @"ContextAssertion",
+             @"providerArn" : @"ProviderArn",
              };
 }
 

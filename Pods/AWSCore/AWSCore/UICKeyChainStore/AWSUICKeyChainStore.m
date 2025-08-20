@@ -116,7 +116,7 @@ static NSString *_defaultService;
 
 - (void)commonInit
 {
-    _accessibility = AWSUICKeyChainStoreAccessibilityAfterFirstUnlock;
+    _accessibility = AWSUICKeyChainStoreAccessibilityAfterFirstUnlockThisDeviceOnly;
 }
 
 #pragma mark -
@@ -935,6 +935,26 @@ static NSString *_defaultService;
 
 #pragma mark -
 
+- (void)migrateToCurrentAccessibility {
+    NSArray *items = [self allItems];
+    for (NSDictionary *item in items) {
+        CFComparisonResult result = CFStringCompare((CFStringRef)item[@"accessibility"],
+                                                    [self accessibilityObject], 0);
+        if (result == kCFCompareEqualTo) {
+            continue;
+        }
+        NSString *key = item[@"key"];
+        NSObject *value = item[@"value"];
+        if ([value isKindOfClass: [NSString class]]) {
+            [self setString: (NSString *)value forKey:key];
+        } else if ([value isKindOfClass: [NSData class]]) {
+            [self setData: (NSData *)value forKey:key];
+        }
+    }
+}
+
+#pragma mark -
+
 - (void)setSynchronizable:(BOOL)synchronizable
 {
     _synchronizable = synchronizable;
@@ -1317,6 +1337,11 @@ static NSString *_defaultService;
     }
 }
 
+// The following keys are deprecated, but they still need to be supported:
+// - AWSUICKeyChainStoreAccessibilityAlways, kSecAttrAccessibleAlways,
+// - AWSUICKeyChainStoreAccessibilityAlwaysThisDeviceOnly, kSecAttrAccessibleAlwaysThisDeviceOnly
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 - (CFTypeRef)accessibilityObject
 {
     switch (_accessibility) {
@@ -1338,6 +1363,7 @@ static NSString *_defaultService;
             return nil;
     }
 }
+#pragma clang diagnostic pop
 
 + (NSError *)argumentError:(NSString *)message
 {

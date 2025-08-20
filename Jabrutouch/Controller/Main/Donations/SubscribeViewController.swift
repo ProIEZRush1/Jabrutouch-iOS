@@ -84,9 +84,7 @@ class SubscribeViewController: UIViewController, DonationManagerDelegate {
     }
     
     func setAnimation() {
-        let animationView = AnimationView()
-        let animation = Animation.named("animation", bundle: Bundle.main)
-        animationView.animation = animation
+        let animationView = LottieAnimationView(name: "animation")
         animationView.loopMode = .loop
         animationView.frame = self.progressAnimation.frame
         animationView.layer.cornerRadius = animationView.bounds.height / 2

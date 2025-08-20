@@ -46,6 +46,10 @@ class SignInViewController: UIViewController, MFMailComposeViewControllerDelegat
         
         self.setStrings()
         self.addBorders()
+        
+        // ✅ Asignar delegates
+        self.usernameTF.delegate = self
+        self.passwordTF.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -135,7 +139,9 @@ class SignInViewController: UIViewController, MFMailComposeViewControllerDelegat
     
     @IBAction func signInButtonPressed(_ sender: UIButton) {
         self.signInButton.backgroundColor = #colorLiteral(red: 0.18, green: 0.17, blue: 0.66, alpha: 1)
-        self.validateForm()
+        DispatchQueue.main.async {
+            self.validateForm()
+        }
     }
     
     @IBAction func signUpButtonPressed(_ sender: UIButton) {

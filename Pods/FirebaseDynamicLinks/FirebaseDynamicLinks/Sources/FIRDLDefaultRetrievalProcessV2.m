@@ -139,7 +139,8 @@ NS_ASSUME_NONNULL_BEGIN
   // Disable deprecated warning for internal methods.
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-  // If there is not a unique match, we will send an additional request for fingerprinting.
+  // If there is not a unique match, we will send an additional request for device heuristics based
+  // matching.
   [_networkingService
       retrievePendingDynamicLinkWithIOSVersion:[UIDevice currentDevice].systemVersion
                               resolutionHeight:resolutionHeight
@@ -175,6 +176,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSURL *)uniqueMatchLinkToCheck {
   _clipboardContentAtMatchProcessStart = nil;
   NSString *pasteboardContents = [self retrievePasteboardContents];
+  if (!pasteboardContents) {
+    return nil;
+  }
   NSInteger linkStringMinimumLength =
       expectedCopiedLinkStringSuffix.length + /* ? or & */ 1 + /* http:// */ 7;
   if ((pasteboardContents.length >= linkStringMinimumLength) &&
@@ -200,21 +204,17 @@ NS_ASSUME_NONNULL_BEGIN
   return nil;
 }
 
-- (NSString *)retrievePasteboardContents {
+- (nullable NSString *)retrievePasteboardContents {
   if (![self isPasteboardRetrievalEnabled]) {
     // Pasteboard check for dynamic link is disabled by user.
-    return @"";
+    return nil;
   }
 
-  NSString *pasteboardContents = @"";
-  if (@available(iOS 10.0, *)) {
-    if ([[UIPasteboard generalPasteboard] hasURLs]) {
-      pasteboardContents = [UIPasteboard generalPasteboard].string;
-    }
+  if ([[UIPasteboard generalPasteboard] hasURLs]) {
+    return [UIPasteboard generalPasteboard].string;
   } else {
-    pasteboardContents = [UIPasteboard generalPasteboard].string;
+    return nil;
   }
-  return pasteboardContents;
 }
 
 /**
@@ -245,10 +245,7 @@ NS_ASSUME_NONNULL_BEGIN
   if (_jsExecutor) {
     return;
   }
-  NSString *jsString = @"window.generateFingerprint=function(){try{var "
-                       @"languageCode=navigator.languages?navigator.languages[0]:navigator."
-                       @"language;return languageCode;}catch(b){return"
-                        "}};";
+  NSString *jsString = @"window.generateDeviceHeuristics=()=>navigator.language||''";
   _jsExecutor = [[FIRDLJavaScriptExecutor alloc] initWithDelegate:self script:jsString];
 }
 

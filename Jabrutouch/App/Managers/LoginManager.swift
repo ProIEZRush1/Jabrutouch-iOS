@@ -28,8 +28,15 @@ class LoginManager {
     // MARK: - Public methods
     //==========================================
     
-    func signIn(phoneNumber: String?, email: String?, password: String, completion:@escaping (_ result: Result<JTUser,JTError>)->Void){
-        API.signIn(phoneNumber: phoneNumber, email: email, password: password, fcmToken: UserDefaultsProvider.shared.currentFcmToken ?? "") { (result:APIResult<LoginResponse>) in
+    func signIn(phoneNumber: String?, email: String?, password: String, completion:@escaping (_ result: Result<JTUser,JTError>) -> Void) {
+        
+        /*guard let fcmToken = UserDefaultsProvider.shared.currentFcmToken else {
+            completion(.failure(.custom("We are preparing your device for login. Please wait a few moments and try again.")))
+            return
+        }*/
+        
+        let fcmToken = UserDefaultsProvider.shared.currentFcmToken ?? "NOTOKEN"
+        API.signIn(phoneNumber: phoneNumber, email: email, password: password, fcmToken: fcmToken) { (result: APIResult<LoginResponse>) in
             switch result {
             case .success(let response):
                 self.userDidSignIn(user: response.user, password: password)

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RecaptchaEnterprise
 
 class RequestVerificationCodeViewController: UIViewController {
     
@@ -48,8 +49,18 @@ class RequestVerificationCodeViewController: UIViewController {
         }
     }
     
+    var recaptchaClient: RecaptchaClient?
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Inicializar reCAPTCHA Enterprise
+        Recaptcha.fetchClient(withSiteKey: "6LdYRt0qAAAAALp2b0giTFgiHTCCBSGHWhMP5LWo") { client, error in
+            guard let client = client else {
+                print("Error creando RecaptchaClient: \(error?.localizedDescription ?? "Desconocido")")
+                return
+            }
+            self.recaptchaClient = client
+        }
         
         self.setStrings()
         self.roundCorners()
@@ -132,8 +143,32 @@ class RequestVerificationCodeViewController: UIViewController {
     }
     
     @IBAction func sendButtonPressed(_ sender: UIButton) {
-        let validated = self.validateForm()
-        if !validated { toggleEnableFields(enable: true)}
+        guard let recaptchaClient = recaptchaClient else {
+            print("Error: reCAPTCHA no está inicializado.")
+            return
+        }
+
+        // Ejecutar reCAPTCHA para obtener el token
+        recaptchaClient.execute(withAction: RecaptchaAction.signup) { token, error in
+            guard let token = token else {
+                print("Error ejecutando reCAPTCHA: \(error?.localizedDescription ?? "Desconocido")")
+                Utils.showAlertMessage("No se pudo verificar el captcha", title: "Error", viewControler: self)
+                return
+            }
+
+            print("reCAPTCHA Token: \(token)")
+
+            // Validar token con el backend
+            RecaptchaValidator.verifyRecaptchaToken(token: token) { isValid in
+                DispatchQueue.main.async {
+                    if isValid {
+                        self.validateForm()
+                    } else {
+                        Utils.showAlertMessage("Captcha fallido", title: "Error", viewControler: self)
+                    }
+                }
+            }
+        }
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {

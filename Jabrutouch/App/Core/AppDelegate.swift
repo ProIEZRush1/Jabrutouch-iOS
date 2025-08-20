@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Fabric
 import FirebaseCrashlytics
 import AWSS3
 import Firebase
@@ -47,7 +46,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Initialize
         _ = ContentRepository.shared
         //        _ = MessagesRepository.shared
+        
         FirebaseApp.configure()
+        
         registerForPushNotifications(application: application)
         Messaging.messaging().delegate = MessagesRepository.shared
         
@@ -136,13 +137,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
-    
-    
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let token = deviceToken.map{ String(format: "%02.2hhx", $0) }.joined()
         print("Notifications token: " + token)
         //        fcmToken = token
         
+        // 🔑 Esta línea es la clave para que Firebase pueda generar el FCM token
+        Messaging.messaging().apnsToken = deviceToken
     }
     
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
@@ -209,14 +210,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
     }
     
-    func registerForPushNotifications(application:UIApplication) {
-        
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
-            (granted, error) in
-            print("Permission granted: \(granted)")
+    func registerForPushNotifications(application: UIApplication) {
+        UNUserNotificationCenter.current().delegate = self
+
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+            print("🔔 Permission granted: \(granted)")
+            guard granted else {
+                print("⛔️ Usuario denegó permisos de notificación")
+                return
+            }
+
+            DispatchQueue.main.async {
+                print("📡 Llamando a registerForRemoteNotifications")
+                application.registerForRemoteNotifications()
+            }
         }
-        notificatioCenter.delegate = self
-        self.registerForRemoteNotifications(application: application)
+
         centerNotificationManager()
     }
     
