@@ -15,12 +15,12 @@ enum AWSAuthenticationType {
 class AWSS3Provider {
 
     static let appAWSRegion: AWSRegionType = .USWest2
-    // AWS credentials should be stored securely in environment variables or keychain
-    // Never commit credentials to source control
-    static let appAccessKey: String = ProcessInfo.processInfo.environment["AWS_ACCESS_KEY_ID"] ?? ""
-    static let appSecretKey: String = ProcessInfo.processInfo.environment["AWS_SECRET_ACCESS_KEY"] ?? ""
-    static let appS3BaseUrl = "https://jabrutouch-cms-media.s3-us-west-2.amazonaws.com/";
-    static let appS3BucketName = "jabrutouch-cms-media";
+    // AWS credentials are loaded from AWSConfig.swift
+    // The actual config file should not be committed to git
+    static let appAccessKey: String = AWSConfig.accessKeyId
+    static let appSecretKey: String = AWSConfig.secretAccessKey
+    static let appS3BaseUrl = AWSConfig.s3BaseUrl
+    static let appS3BucketName = AWSConfig.s3BucketName
 
     /**
         The singleton instance holder
