@@ -265,7 +265,7 @@ class TzedakaViewController: UIViewController, DedicationViewControllerDelegate,
     
     var socket: WebSocket?
     func initWebSocket() {
-        var request = URLRequest(url: URL(string: "wss://jabrutouch.bluemango.com.mx/ws/lesson_watch_count")!)
+        var request = URLRequest(url: URL(string: "wss://jabrutouch.overcloud.us/ws/lesson_watch_count")!)
         request.timeoutInterval = 5
         socket = WebSocket(request: request)
         self.socket?.delegate = self
