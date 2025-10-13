@@ -23,7 +23,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     var isInternetConenect: Bool = true
-    
+
+    // Pending deep link for password reset (processed after splash screen)
+    var pendingPasswordResetDeepLink: (token: String, email: String?)? = nil
+
     var topmostViewController: UIViewController? {
         guard let window = self.window else { return nil }
         guard var viewController = window.rootViewController else { return nil }
@@ -85,13 +88,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print("⚠️  Password reset link missing token parameter")
                 return
             }
-            print("🔐 Password reset deep link received with token")
+            print("🔐 Password reset deep link received - storing for after launch")
 
-            let resetPasswordViewController = Storyboards.ResetPassword.resetPasswordViewController
-            resetPasswordViewController.resetToken = token
-            resetPasswordViewController.userEmail = url1["email"]
-            resetPasswordViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-            self.topmostViewController?.present(resetPasswordViewController, animated: true, completion: nil)
+            // Store the deep link parameters to process after app finishes launching
+            self.pendingPasswordResetDeepLink = (token: token, email: url1["email"])
             return
         }
 
@@ -164,28 +164,84 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Messaging.messaging().apnsToken = deviceToken
     }
     
-    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        
-        if let host = url.host {
-            let mainViewController = Storyboards.Main.mainViewController
-            mainViewController.modalPresentationStyle = .fullScreen
-            
-            if host == "crowns" {
-                self.topmostViewController?.present(mainViewController, animated: false, completion: nil)
-                mainViewController.presentDonation()
-            } else if host == "download" {
-                self.topmostViewController?.present(mainViewController, animated: false, completion: nil)
-                mainViewController.presentDownloadsViewController()
-            } else if host == "gemara" {
-                self.topmostViewController?.present(mainViewController, animated: false, completion: nil)
-                mainViewController.presentAllGemara()
-            } else if host == "mishna" {
-                self.topmostViewController?.present(mainViewController, animated: false, completion: nil)
-                mainViewController.presentAllMishna()
-            }
-            
+    // MARK: - Modern URL Scheme Handler (iOS 9.0+)
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        print("📱 Custom URL scheme received: \(url.absoluteString)")
+
+        // Check if this is a Firebase Dynamic Link
+        if let dynamicLink = DynamicLinks.dynamicLinks().dynamicLink(fromCustomSchemeURL: url) {
+            print("🔗 Processing as Firebase Dynamic Link")
+            handleIncomingDynamicLink(dynamicLink)
+            return true
         }
-        return true
+
+        // Handle direct custom URL schemes (Jabrutouch://...)
+        guard let components = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
+            print("⚠️  Failed to parse URL components")
+            return false
+        }
+
+        // Parse query parameters
+        var queryDict: [String: String] = [:]
+        if let queryItems = components.queryItems {
+            for item in queryItems {
+                queryDict[item.name] = item.value ?? ""
+            }
+        }
+
+        // Get the host or path as the action type
+        let action = components.host ?? components.path.replacingOccurrences(of: "/", with: "")
+        print("🎯 Deep link action: \(action)")
+        print("📝 Query parameters: \(queryDict)")
+
+        // Handle password reset deep link
+        if action == "reset_password" || queryDict["type"] == "reset_password" {
+            guard let token = queryDict["token"], !token.isEmpty else {
+                print("⚠️  Password reset link missing token parameter")
+                return false
+            }
+            print("🔐 Password reset deep link received - storing for after launch")
+
+            // Store the deep link parameters to process after app finishes launching
+            self.pendingPasswordResetDeepLink = (token: token, email: queryDict["email"])
+            return true
+        }
+
+        // Handle other custom URL scheme hosts
+        let mainViewController = Storyboards.Main.mainViewController
+        mainViewController.modalPresentationStyle = .fullScreen
+
+        switch action {
+        case "crowns":
+            self.topmostViewController?.present(mainViewController, animated: false, completion: nil)
+            mainViewController.presentDonation()
+            return true
+
+        case "download":
+            self.topmostViewController?.present(mainViewController, animated: false, completion: nil)
+            mainViewController.presentDownloadsViewController()
+            return true
+
+        case "gemara":
+            self.topmostViewController?.present(mainViewController, animated: false, completion: nil)
+            mainViewController.presentAllGemara()
+            return true
+
+        case "mishna":
+            self.topmostViewController?.present(mainViewController, animated: false, completion: nil)
+            mainViewController.presentAllMishna()
+            return true
+
+        default:
+            print("⚠️  Unhandled deep link action: \(action)")
+            return false
+        }
+    }
+
+    // MARK: - Legacy URL Handler (Deprecated)
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        // Delegate to modern handler
+        return self.application(application, open: url, options: [:])
     }
     
     
@@ -258,13 +314,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     window.rootViewController = viewController
                 }) { (Bool) in
                     window.makeKeyAndVisible()
+                    // Process any pending password reset deep link after root VC is set
+                    self.processPendingPasswordResetDeepLink()
                 }
             }
             else {
                 window.rootViewController = viewController
                 window.makeKeyAndVisible()
+                // Process any pending password reset deep link after root VC is set
+                self.processPendingPasswordResetDeepLink()
             }
-        }        
+        }
+    }
+
+    // MARK: - Process Pending Deep Links
+
+    func processPendingPasswordResetDeepLink() {
+        guard let deepLink = pendingPasswordResetDeepLink else { return }
+
+        print("🔐 Processing pending password reset deep link")
+
+        // Small delay to ensure the root view controller is fully loaded
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+            guard let self = self else { return }
+
+            let resetPasswordViewController = Storyboards.ResetPassword.resetPasswordViewController
+            resetPasswordViewController.resetToken = deepLink.token
+            resetPasswordViewController.userEmail = deepLink.email
+            resetPasswordViewController.modalPresentationStyle = .fullScreen
+
+            self.topmostViewController?.present(resetPasswordViewController, animated: true) {
+                print("✅ ResetPasswordViewController presented successfully")
+                self.pendingPasswordResetDeepLink = nil
+            }
+        }
     }
     
     //=====================================================
