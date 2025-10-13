@@ -24,9 +24,16 @@ struct ForgotPasswordResponse: APIResponseModel {
             self.message = message
         } else { return nil }
 
-        if let status = values["user_exist_status"] as? Bool {
+        // Support both new and old API response formats
+        if let status = values["success"] as? Bool {
+            // New secure password reset API format
             self.status = status
-        } else { return nil }
+        } else if let status = values["user_exist_status"] as? Bool {
+            // Legacy API format (old reset_password endpoint)
+            self.status = status
+        } else {
+            return nil
+        }
 
         // Optional new fields (won't break if missing)
         self.resetMethod = values["reset_method"] as? String
