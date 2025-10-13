@@ -158,10 +158,17 @@ class Storyboards {
     
     class Messages {
         private class func messagesStoryboard() -> UIStoryboard { return UIStoryboard(name: "Messages", bundle: Bundle.main) }
-        
+
         class var  messagesNavigationController: MessagesNavigationController {
             return self.messagesStoryboard().instantiateViewController(withIdentifier: "MessagesNavigationController") as! MessagesNavigationController
         }
     }
-    
+
+    class ResetPassword {
+        // Programmatic UI - No storyboard required
+        class var resetPasswordViewController: ResetPasswordViewController {
+            return ResetPasswordViewController()
+        }
+    }
+
 }

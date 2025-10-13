@@ -141,6 +141,7 @@
 		21ED3BDC23048970009D8E3D /* GetGemaraLessonsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21ED3BDB23048970009D8E3D /* GetGemaraLessonsResponse.swift */; };
 		21F89DCC2319645600540658 /* PDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F89DCB2319645500540658 /* PDFKit.framework */; };
 		21F89DCE231B173500540658 /* VideoPlayer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21F89DCD231B173500540658 /* VideoPlayer.xib */; };
+		26330548FF8364799DD61FEB /* AWSConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58338295BBDB6243F76E512 /* AWSConfig.swift */; };
 		4628E0E223215DEC00D963E6 /* DonatedAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4628E0E123215DEC00D963E6 /* DonatedAlert.swift */; };
 		4628E0E423215E1200D963E6 /* DonatedAlert.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4628E0E323215E1200D963E6 /* DonatedAlert.xib */; };
 		4628E0E72322954800D963E6 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4628E0E62322953300D963E6 /* Application.swift */; };
@@ -161,6 +162,9 @@
 		538691502379E8E500CC95B5 /* JBProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5386914E2379E8E500CC95B5 /* JBProgressBar.swift */; };
 		538691512379E8E500CC95B5 /* LabelWithPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5386914F2379E8E500CC95B5 /* LabelWithPadding.swift */; };
 		538691532379E9B100CC95B5 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 538691522379E9B100CC95B5 /* Profile.storyboard */; };
+		5835C7462E9CA7C4003515C9 /* ResetPasswordResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5835C7452E9CA7C4003515C9 /* ResetPasswordResponse.swift */; };
+		5835C7492E9CA9EA003515C9 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5835C7472E9CA9EA003515C9 /* ForgotPasswordViewController.swift */; };
+		5835C74C2E9CAA0A003515C9 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5835C74A2E9CAA0A003515C9 /* ResetPasswordViewController.swift */; };
 		587585492D6D1DA600E114A4 /* RecaptchaVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587585482D6D1DA600E114A4 /* RecaptchaVerifier.swift */; };
 		58E7C4552D7F81380081449F /* RecaptchaValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E7C4542D7F81320081449F /* RecaptchaValidator.swift */; };
 		600399D224D6CC490038ED66 /* Coupone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 600399D124D6CC490038ED66 /* Coupone.storyboard */; };
@@ -178,7 +182,6 @@
 		604A893324CF16CB00212B44 /* JBBarPageIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A893224CF16CB00212B44 /* JBBarPageIndicator.swift */; };
 		604A893524CF537900212B44 /* DonationLastPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A893424CF537900212B44 /* DonationLastPopUpViewController.swift */; };
 		604BBDCF24A0CE6E000C5076 /* JTDeepLinkLesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604BBDCE24A0CE6E000C5076 /* JTDeepLinkLesson.swift */; };
-		604C28C82457038E00A19D87 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604C28C72457038E00A19D87 /* ForgotPasswordViewController.swift */; };
 		605630AA24D715A6001C2BFA /* JTCouponRedemption .swift in Sources */ = {isa = PBXBuildFile; fileRef = 605630A924D715A6001C2BFA /* JTCouponRedemption .swift */; };
 		60717D5C24AE19790099DB1D /* JTLessonAnalitics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60717D5B24AE19790099DB1D /* JTLessonAnalitics.swift */; };
 		608378EE249271D2005C60BE /* JTPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608378ED249271D2005C60BE /* JTPopup.swift */; };
@@ -510,6 +513,9 @@
 		5386914E2379E8E500CC95B5 /* JBProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JBProgressBar.swift; sourceTree = "<group>"; };
 		5386914F2379E8E500CC95B5 /* LabelWithPadding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelWithPadding.swift; sourceTree = "<group>"; };
 		538691522379E9B100CC95B5 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		5835C7452E9CA7C4003515C9 /* ResetPasswordResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordResponse.swift; sourceTree = "<group>"; };
+		5835C7472E9CA9EA003515C9 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		5835C74A2E9CAA0A003515C9 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		587585482D6D1DA600E114A4 /* RecaptchaVerifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecaptchaVerifier.swift; sourceTree = "<group>"; };
 		58E7C4542D7F81320081449F /* RecaptchaValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecaptchaValidator.swift; sourceTree = "<group>"; };
 		600399D124D6CC490038ED66 /* Coupone.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Coupone.storyboard; sourceTree = "<group>"; };
@@ -545,7 +551,6 @@
 		604C28C22456E1D800A19D87 /* GraphikMedium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GraphikMedium.otf; sourceTree = "<group>"; };
 		604C28C32456E1D900A19D87 /* GraphikSemiboldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GraphikSemiboldItalic.otf; sourceTree = "<group>"; };
 		604C28C42456E1DA00A19D87 /* GraphikBlackItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GraphikBlackItalic.otf; sourceTree = "<group>"; };
-		604C28C72457038E00A19D87 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		605630A924D715A6001C2BFA /* JTCouponRedemption .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JTCouponRedemption .swift"; sourceTree = "<group>"; };
 		60717D5B24AE19790099DB1D /* JTLessonAnalitics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTLessonAnalitics.swift; sourceTree = "<group>"; };
 		608378ED249271D2005C60BE /* JTPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTPopup.swift; sourceTree = "<group>"; };
@@ -669,6 +674,7 @@
 		C53D68092923B077009B9B60 /* OTPSecurityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPSecurityManager.swift; sourceTree = "<group>"; };
 		C53D680B2923D0CB009B9B60 /* otp_encrypt_public.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = otp_encrypt_public.pem; sourceTree = "<group>"; };
 		C53D680D292552CE009B9B60 /* JTOTPRequestorStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTOTPRequestorStatus.swift; sourceTree = "<group>"; };
+		C58338295BBDB6243F76E512 /* AWSConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AWSConfig.swift; sourceTree = "<group>"; };
 		D6196E752720530C00E1F478 /* SurveyCustomAnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyCustomAnswerCell.swift; sourceTree = "<group>"; };
 		D631F9C426DCDDBC00447B88 /* JTNewsFeedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTNewsFeedItem.swift; sourceTree = "<group>"; };
 		D631F9C726DCE0D100447B88 /* NewsFeedRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedRepository.swift; sourceTree = "<group>"; };
@@ -763,6 +769,7 @@
 				2131969B22F38B2D00B0AF5F /* FilesManagementProvider.swift */,
 				21419CAF230D50CA00145F1F /* AWSS3Provider.swift */,
 				2131969A22F38B2D00B0AF5F /* UserDefaultsProvider.swift */,
+				C58338295BBDB6243F76E512 /* AWSConfig.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -974,6 +981,7 @@
 				D631F9CA26DCFC2B00447B88 /* GetNewsFeedItemsResponse.swift */,
 				D65FE852272E9D63002BA0DC /* GetSurveyUserStatusResponse.swift */,
 				D65FE86C273174BC002BA0DC /* PostSurveyUserAnswersResponse.swift */,
+				5835C7452E9CA7C4003515C9 /* ResetPasswordResponse.swift */,
 			);
 			path = "API Response models";
 			sourceTree = "<group>";
@@ -1071,8 +1079,9 @@
 		2133C20B22DCA07000F910B9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				5835C74B2E9CAA0A003515C9 /* ResetPassword */,
+				5835C7482E9CA9EA003515C9 /* ForgotPassword */,
 				D65711F8271D8D8200C3CEBA /* Survey */,
-				604C28C9245703B200A19D87 /* ForgetPassword */,
 				836A883D238F05F600F68539 /* Gallery */,
 				213196BC22F6EA3E00B0AF5F /* SplashScreen */,
 				604A891C24CEF98F00212B44 /* WalkThrough */,
@@ -1445,6 +1454,22 @@
 			path = profileCells;
 			sourceTree = "<group>";
 		};
+		5835C7482E9CA9EA003515C9 /* ForgotPassword */ = {
+			isa = PBXGroup;
+			children = (
+				5835C7472E9CA9EA003515C9 /* ForgotPasswordViewController.swift */,
+			);
+			path = ForgotPassword;
+			sourceTree = "<group>";
+		};
+		5835C74B2E9CAA0A003515C9 /* ResetPassword */ = {
+			isa = PBXGroup;
+			children = (
+				5835C74A2E9CAA0A003515C9 /* ResetPasswordViewController.swift */,
+			);
+			path = ResetPassword;
+			sourceTree = "<group>";
+		};
 		600399D524D6D39A0038ED66 /* Coupons */ = {
 			isa = PBXGroup;
 			children = (
@@ -1472,14 +1497,6 @@
 				604A893424CF537900212B44 /* DonationLastPopUpViewController.swift */,
 			);
 			path = DonationPopUp;
-			sourceTree = "<group>";
-		};
-		604C28C9245703B200A19D87 /* ForgetPassword */ = {
-			isa = PBXGroup;
-			children = (
-				604C28C72457038E00A19D87 /* ForgotPasswordViewController.swift */,
-			);
-			path = ForgetPassword;
 			sourceTree = "<group>";
 		};
 		6087D86A24C5C71200EF6902 /* TourWalkThrough */ = {
@@ -1974,9 +1991,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Jabrutouch/Pods-Jabrutouch-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Jabrutouch/Pods-Jabrutouch-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1991,9 +2012,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Jabrutouch/Pods-Jabrutouch-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Jabrutouch/Pods-Jabrutouch-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2028,7 +2053,6 @@
 				83A7A0CF23E9A3440041BE28 /* DonateNavigationController.swift in Sources */,
 				219BFF2F22E5A11900ABBEE2 /* TextFieldWithPadding.swift in Sources */,
 				8391EC66240BFDA3007B5F98 /* CreatePaymentResponse.swift in Sources */,
-				604C28C82457038E00A19D87 /* ForgotPasswordViewController.swift in Sources */,
 				60BCF3DC24CD885D00B0C2A9 /* WelcomeDonationViewController.swift in Sources */,
 				836A883C238DB30D00F68539 /* JTGallery.swift in Sources */,
 				D65FE860272EA388002BA0DC /* JTSurveyUserAnswer.swift in Sources */,
@@ -2058,6 +2082,7 @@
 				604A893324CF16CB00212B44 /* JBBarPageIndicator.swift in Sources */,
 				C53D680E292552CE009B9B60 /* JTOTPRequestorStatus.swift in Sources */,
 				8391EC64240BDCD1007B5F98 /* JTLessonDonated.swift in Sources */,
+				5835C7492E9CA9EA003515C9 /* ForgotPasswordViewController.swift in Sources */,
 				21ED3BDA230488E3009D8E3D /* JTGemaraLesson.swift in Sources */,
 				21407C8922F72632002F9690 /* TextFieldWithDeleteDelegate.swift in Sources */,
 				212ECEAA2312548D005AEB36 /* JTLesson.swift in Sources */,
@@ -2076,6 +2101,7 @@
 				60B8076324FFACB9005CE86E /* JTCampaignPopup.swift in Sources */,
 				83605BAA23846E3700B93603 /* OldProfileViewController.swift in Sources */,
 				FB6877C222FC49AE0096465D /* AlertViewController.swift in Sources */,
+				5835C74C2E9CAA0A003515C9 /* ResetPasswordViewController.swift in Sources */,
 				83137F0723F07050003B9DA6 /* JTPostDedication.swift in Sources */,
 				833E62232399591400EC93C7 /* ChatCell.swift in Sources */,
 				FBB18FB422F866C8006886FD /* GemaraLessonsViewController.swift in Sources */,
@@ -2179,6 +2205,7 @@
 				21678D7A22E085B1007BC74C /* MishnaViewController.swift in Sources */,
 				2126D6D823033D4D00CB501D /* JTMasechet.swift in Sources */,
 				D6196E762720530C00E1F478 /* SurveyCustomAnswerCell.swift in Sources */,
+				5835C7462E9CA7C4003515C9 /* ResetPasswordResponse.swift in Sources */,
 				D631F9C826DCE0D100447B88 /* NewsFeedRepository.swift in Sources */,
 				60717D5C24AE19790099DB1D /* JTLessonAnalitics.swift in Sources */,
 				D631F9CB26DCFC2B00447B88 /* GetNewsFeedItemsResponse.swift in Sources */,
@@ -2246,6 +2273,7 @@
 				D631F9C526DCDDBC00447B88 /* JTNewsFeedItem.swift in Sources */,
 				46C652F423CF764F00F6D0DD /* JTUserProfileParameters.swift in Sources */,
 				FBB18FB222F8649A006886FD /* JTGemaraMasechetItem.swift in Sources */,
+				26330548FF8364799DD61FEB /* AWSConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2407,7 +2435,7 @@
 				CODE_SIGN_ENTITLEMENTS = Jabrutouch/Jabrutouch.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 79;
+				CURRENT_PROJECT_VERSION = 82;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = T57ASHU8T6;
 				ENABLE_BITCODE = NO;
@@ -2421,7 +2449,7 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 7.1.2;
+				MARKETING_VERSION = 7.1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = il.co.jabrutouch.Jabrutouch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2440,7 +2468,7 @@
 				CODE_SIGN_ENTITLEMENTS = Jabrutouch/Jabrutouch.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 79;
+				CURRENT_PROJECT_VERSION = 82;
 				DEVELOPMENT_TEAM = T57ASHU8T6;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -2453,7 +2481,7 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 7.1.2;
+				MARKETING_VERSION = 7.1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = il.co.jabrutouch.Jabrutouch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

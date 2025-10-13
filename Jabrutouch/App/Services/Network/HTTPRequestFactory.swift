@@ -79,6 +79,15 @@ class HttpRequestsFactory {
         let request = self.createRequest(url, method: .post, body: body, additionalHeaders: nil)
         return request
     }
+
+    class func confirmResetPasswordRequest(token: String, newPassword: String) -> URLRequest?{
+        guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
+        let link = baseUrl.appendingPathComponent("confirm_reset_password/").absoluteString
+        let body: [String:Any] = [ "token": token, "new_password": newPassword]
+        guard let url = self.createUrl(fromLink: link, urlParams: nil) else { return nil }
+        let request = self.createRequest(url, method: .post, body: body, additionalHeaders: nil)
+        return request
+    }
     
     class func changePasswordRequest(userId: Int, oldPassword: String?, newPassword: String?, token: String) -> URLRequest?{
         guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
@@ -421,6 +430,11 @@ class HttpRequestsFactory {
         }
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
+
+        // Add app version header for API versioning (backward compatibility)
+        if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
+            request.addValue(version, forHTTPHeaderField: "X-App-Version")
+        }
         return request as URLRequest
     }
 }

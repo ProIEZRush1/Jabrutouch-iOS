@@ -74,7 +74,17 @@ class API {
             self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
         }
     }
-    
+
+    class func confirmResetPassword(token: String, newPassword: String, completionHandler:@escaping (_ response: APIResult<ResetPasswordResponse>)->Void) {
+        guard let request = HttpRequestsFactory.confirmResetPasswordRequest(token: token, newPassword: newPassword) else {
+            completionHandler(APIResult.failure(.unableToCreateRequest))
+            return
+        }
+        HttpServiceProvider.shared.excecuteRequest(request: request) { (data, response, error) in
+            self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
+        }
+    }
+
     class func changePassword(userId: Int, oldPassword: String?, newPassword: String?, token: String, completionHandler:@escaping (_ response: APIResult<ChangePasswordResponse>)->Void) {
         guard let request = HttpRequestsFactory.changePasswordRequest(userId: userId, oldPassword: oldPassword, newPassword: newPassword, token: token) else {
             completionHandler(APIResult.failure(.unableToCreateRequest))

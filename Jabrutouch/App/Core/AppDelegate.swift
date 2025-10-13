@@ -75,26 +75,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("My dynamic link obj has no url")
             return
         }
-        
+
+        guard let url1 = url.queryDictionary else { return }
+        let type = url1["type"]
+
+        // Handle password reset deep link (doesn't require authentication)
+        if type == "reset_password" {
+            guard let token = url1["token"] else {
+                print("⚠️  Password reset link missing token parameter")
+                return
+            }
+            print("🔐 Password reset deep link received with token")
+
+            let resetPasswordViewController = Storyboards.ResetPassword.resetPasswordViewController
+            resetPasswordViewController.resetToken = token
+            resetPasswordViewController.userEmail = url1["email"]
+            resetPasswordViewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+            self.topmostViewController?.present(resetPasswordViewController, animated: true, completion: nil)
+            return
+        }
+
+        // Existing deep link handlers require authentication
         if UserDefaultsProvider.shared.currentUser?.token == nil {
             let singinViewController = Storyboards.SignIn.signInViewController
             singinViewController.modalPresentationStyle = .fullScreen
             self.topmostViewController?.present(singinViewController, animated: false, completion: nil)
             return
         }
-        
-        guard let url1 = url.queryDictionary else { return }
-        let type = url1["type"]
+
         if type == "coupon"{
-            
+
             guard let values = JTDeepLinkCoupone(values: url1) else { return }
             let mainViewController = Storyboards.Main.mainViewController
             mainViewController.modalPresentationStyle = .fullScreen
             self.topmostViewController?.present(mainViewController, animated: false, completion: nil)
             mainViewController.couponeFromDeepLink(values: values)
-            
+
         } else {
-            
+
             guard let values = JTDeepLinkLesson(values: url1) else { return }
             let mainViewController = Storyboards.Main.mainViewController
             mainViewController.modalPresentationStyle = .fullScreen

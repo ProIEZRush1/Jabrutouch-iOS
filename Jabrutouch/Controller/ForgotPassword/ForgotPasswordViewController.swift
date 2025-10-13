@@ -9,12 +9,16 @@
 import UIKit
 
 class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
-    
+
     private var activityView: ActivityView?
     var emailAddress: String = ""
-    var isRegisterd: Bool = false
+    var isRegistered: Bool = false
     var signInViewController: SignInViewController?
-    var userExsistsMessage: String = ""
+
+    // Rate limiting properties
+    private var lastRequestTime: Date?
+    private let requestCooldown: TimeInterval = 60 // 60 seconds
+    private var cooldownTimer: Timer?
     
     // forgot password contaner
     @IBOutlet weak var containerView: UIView!
@@ -42,11 +46,12 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.textField.delegate = self
-        
+
         self.setShadow()
         self.roundCornors()
         self.setBorders()
         self.setStrings()
+        self.configureTextField()
     }
     
     func setStrings() {
@@ -56,10 +61,17 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
         self.secondTitleLabel.text = Strings.forgotPasswordSuccessTitle
     }
     
-    func setSucssesStrings(){
+    func setSuccessStrings(){
         self.sentEmailLeibel.text = Strings.forgotPasswordSuccessMessage//"We sent an email to"
         self.emailAddressLabel.text = self.emailAddress
 //        self.checkMailboxLabel.text = "Please check your mailbox for further instructions"
+    }
+
+    func configureTextField() {
+        self.textField.keyboardType = .emailAddress
+        self.textField.textContentType = .emailAddress
+        self.textField.autocapitalizationType = .none
+        self.textField.autocorrectionType = .no
     }
     
     func roundCornors() {
@@ -88,29 +100,43 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
     func setSecondContainer(message: String, status: Bool) {
         self.containerView.isHidden = true
         self.emailSentCcontainerView.isHidden = false
-        
-        if status {
-            self.isRegisterd = true
-            self.userExistsView.isHidden = false
-            self.secondSubTitleLabel.isHidden = true
-            self.okButton.setTitle("OK", for: .normal)
-            self.setSucssesStrings()
-        } else {
-            self.isRegisterd = false
-            self.secondTitleLabel.text = ""
-            self.secondSubTitleLabel.text = Strings.forgotPasswordErrorMessage
-            self.okButton.setTitle(Strings.registerButtonTitle, for: .normal)
-            self.userExistsView.isHidden = true
-        }
-        
+
+        // Security fix: Always show success message to prevent user enumeration
+        self.isRegistered = true
+        self.userExistsView.isHidden = false
+        self.secondSubTitleLabel.isHidden = true
+        self.okButton.setTitle("OK", for: .normal)
+        self.setSuccessStrings()
     }
     
     @IBAction func sendButtonPressed(_ sender: Any) {
-        if let email = self.textField.text {
-            self.emailAddress = email
-            self.showActivityView()
-            self.forgotPassword(email)
+        // Validate email is not empty
+        guard let email = self.textField.text, !email.isEmpty else {
+            Utils.showAlertMessage("Please enter your email address", title: "Email Required", viewControler: self)
+            return
         }
+
+        // Validate email format
+        guard isValidEmail(email) else {
+            Utils.showAlertMessage("Please enter a valid email address", title: "Invalid Email", viewControler: self)
+            return
+        }
+
+        // Check rate limiting
+        if let lastRequest = lastRequestTime {
+            let timeSinceLastRequest = Date().timeIntervalSince(lastRequest)
+            if timeSinceLastRequest < requestCooldown {
+                let remainingTime = Int(requestCooldown - timeSinceLastRequest)
+                Utils.showAlertMessage("Please wait \(remainingTime) seconds before requesting again", title: "Too Many Requests", viewControler: self)
+                return
+            }
+        }
+
+        self.emailAddress = email
+        self.lastRequestTime = Date()
+        self.showActivityView()
+        self.startCooldownTimer()
+        self.forgotPassword(email)
     }
     
     @IBAction func exitButtonPressed(_ sender: Any) {
@@ -122,7 +148,7 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func okButtonPressed(_ sender: Any) {
-        if self.isRegisterd {
+        if self.isRegistered {
             self.dismiss(animated: true, completion: nil)
         } else {
             self.dismiss(animated: true, completion: {
@@ -183,5 +209,43 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
         self.textField.resignFirstResponder()
         return true
     }
-    
+
+    //============================================================
+    // MARK: - Email Validation
+    //============================================================
+
+    private func isValidEmail(_ email: String) -> Bool {
+        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailRegex)
+        return emailPredicate.evaluate(with: email)
+    }
+
+    //============================================================
+    // MARK: - Rate Limiting
+    //============================================================
+
+    private func startCooldownTimer() {
+        var remainingSeconds = Int(requestCooldown)
+        let originalTitle = self.sendButton.title(for: .normal)
+
+        self.sendButton.isEnabled = false
+
+        cooldownTimer?.invalidate()
+        cooldownTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] timer in
+            remainingSeconds -= 1
+
+            if remainingSeconds <= 0 {
+                timer.invalidate()
+                self?.sendButton.isEnabled = true
+                self?.sendButton.setTitle(originalTitle, for: .normal)
+            } else {
+                self?.sendButton.setTitle("Wait \(remainingSeconds)s", for: .normal)
+            }
+        }
+    }
+
+    deinit {
+        cooldownTimer?.invalidate()
+    }
+
 }

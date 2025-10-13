@@ -111,11 +111,34 @@ class LoginManager {
         API.forgotPassword(email: email) { (result:APIResult<ForgotPasswordResponse>) in
             switch result {
             case .success(let response):
-                
+                print("📧 Password reset email requested for: \(email)")
+                print("   Reset method: \(response.resetMethod ?? "legacy")")
+                if let linkSent = response.resetLinkSent {
+                    print("   Reset link sent: \(linkSent)")
+                }
                 DispatchQueue.main.async {
                     completion(.success(response))
                 }
             case .failure(let error):
+                print("❌ Password reset request failed: \(error.localizedDescription)")
+                completion(.failure(error))
+            }
+        }
+    }
+
+    func confirmResetPassword(token: String, newPassword: String, completion:@escaping (_ result: Result<ResetPasswordResponse,JTError>)->Void){
+        API.confirmResetPassword(token: token, newPassword: newPassword) { (result:APIResult<ResetPasswordResponse>) in
+            switch result {
+            case .success(let response):
+                print("✅ Password reset confirmed successfully")
+                if let email = response.userEmail {
+                    print("   User email: \(email)")
+                }
+                DispatchQueue.main.async {
+                    completion(.success(response))
+                }
+            case .failure(let error):
+                print("❌ Password reset confirmation failed: \(error.localizedDescription)")
                 completion(.failure(error))
             }
         }
