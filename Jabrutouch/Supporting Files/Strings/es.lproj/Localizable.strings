@@ -61,6 +61,8 @@
 "forgotPasswordSuccessMessage" = "Acabamos de enviarte un enlace para restablecer tu contraseña al siguiente e-mail:";
 "forgotPasswordSuccessTitle" = "E-mail enviado";
 "registerButtonTitle" = "Registrarme";
+"rateLimitTitle" = "Demasiados intentos";
+"rateLimitMessage" = "Has intentado restablecer tu contraseña demasiadas veces. Por favor, espera 1 hora antes de intentarlo nuevamente.";
 
 
 "main" = "Main";

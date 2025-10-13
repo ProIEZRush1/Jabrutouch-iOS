@@ -68,7 +68,15 @@ class Strings {
     class var forgotPasswordSuccessTitle: String {
         return NSLocalizedString("forgotPasswordSuccessTitle", comment: "")
     }
-    
+
+    class var rateLimitTitle: String {
+        return NSLocalizedString("rateLimitTitle", comment: "")
+    }
+
+    class var rateLimitMessage: String {
+        return NSLocalizedString("rateLimitMessage", comment: "")
+    }
+
     class var dontHaveAccount: String {
         return NSLocalizedString("dontHaveAccount", comment: "")
     }

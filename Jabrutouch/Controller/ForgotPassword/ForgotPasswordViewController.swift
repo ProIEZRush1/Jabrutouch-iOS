@@ -164,11 +164,34 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
             self.removeActivityView()
             switch result {
             case .success(let result):
-                self.setSecondContainer(message: result.message, status: result.status)
+                // Check if the response indicates rate limiting (success=false with rate limit message)
+                if !result.status && (result.message.lowercased().contains("too many") ||
+                                      result.message.lowercased().contains("demasiadas") ||
+                                      result.message.lowercased().contains("muchas solicitudes")) {
+                    // Show rate limit specific error
+                    let title = Strings.rateLimitTitle
+                    let message = Strings.rateLimitMessage
+                    Utils.showAlertMessage(message, title: title, viewControler: self)
+                } else {
+                    // Normal success flow
+                    self.setSecondContainer(message: result.message, status: result.status)
+                }
             case .failure(let error):
-                let title = Strings.error
-                let message = error.localizedDescription
-                Utils.showAlertMessage(message, title: title, viewControler: self)
+                // Check if error message contains rate limit keywords
+                let errorMessage = error.localizedDescription
+                if errorMessage.lowercased().contains("too many") ||
+                   errorMessage.lowercased().contains("demasiadas") ||
+                   errorMessage.lowercased().contains("muchas solicitudes") {
+                    // Show rate limit specific error
+                    let title = Strings.rateLimitTitle
+                    let message = Strings.rateLimitMessage
+                    Utils.showAlertMessage(message, title: title, viewControler: self)
+                } else {
+                    // Show generic error
+                    let title = Strings.error
+                    let message = errorMessage
+                    Utils.showAlertMessage(message, title: title, viewControler: self)
+                }
             }
         }
     }
