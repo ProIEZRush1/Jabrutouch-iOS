@@ -97,11 +97,11 @@ EOM
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_resource "${PODS_CONFIGURATION_BUILD_DIR}/RecaptchaEnterprise/RecaptchaEnterpriseResources.bundle"
+  install_resource "${PODS_CONFIGURATION_BUILD_DIR}/RecaptchaEnterpriseSDK/RecaptchaEnterpriseSDKResources.bundle"
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/lame/apple_privacy.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_resource "${PODS_CONFIGURATION_BUILD_DIR}/RecaptchaEnterprise/RecaptchaEnterpriseResources.bundle"
+  install_resource "${PODS_CONFIGURATION_BUILD_DIR}/RecaptchaEnterpriseSDK/RecaptchaEnterpriseSDKResources.bundle"
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/lame/apple_privacy.bundle"
 fi
 

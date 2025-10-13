@@ -21,8 +21,10 @@ class DownloadTask {
     var filesFailedDownloading = 0
     var mediaType: JTLessonMediaType
     var filesToSave: [(filename:String, data:Data)] = []
+    var maxRetries = 3
+    var fileRetryCount: [String: Int] = [:]
     weak var delegate: DownloadTaskDelegate?
-    
+
     init(id: Int, delegate: DownloadTaskDelegate?, mediaType: JTLessonMediaType) {
         self.id = id
         self.filesToDownload = []
@@ -35,30 +37,65 @@ class DownloadTask {
             var linksForHttpDownload: [String] = []
             switch file.source {
             case .s3:
-                AWSS3Provider.shared.handleFileDownload(fileName: file.fileName, bucketName: AWSS3Provider.appS3BucketName, progressBlock: { (_ fileName: String, _ progress: Progress) in
-                    self.filesDownloadProgress[fileName] = (progress.completedUnitCount, progress.totalUnitCount)
-                    if self.filesDownloadProgress.keys.count == self.filesToDownload.count {
-                        self.updateProgress()
-                    }
-                }) { (result: Result<Data, Error>) in
-                    switch result {
-                    case .success(let data):
-                        self.filesToSave.append((file.localFileName,data))
-                        self.filesDownloadedSuccessfully += 1
-                    case .failure(let error):
-                        print(error)
-                        self.filesFailedDownloading += 1
-                    }
-                    if self.filesDownloadedSuccessfully + self.filesFailedDownloading == self.filesToDownload.count {
-                        self.downloadComplete()
-                    }
-                }
+                self.downloadFileFromS3(file: file)
             case .vimeo:
                 linksForHttpDownload.append(file.fileName)
             }
-            
+
             if linksForHttpDownload.count > 0 {
                 HttpServiceProvider.shared.downloadFiles(downloadId: self.id, links: linksForHttpDownload, delegate: self)
+            }
+        }
+    }
+
+    private func downloadFileFromS3(file: (fileName: String, source: ContentFileSource, localFileName: String)) {
+        // Use Documents directory instead of Caches for persistent storage
+        guard let documentsURL = FileDirectory.documents.url else {
+            self.filesFailedDownloading += 1
+            if self.filesDownloadedSuccessfully + self.filesFailedDownloading == self.filesToDownload.count {
+                self.downloadComplete()
+            }
+            return
+        }
+
+        let destinationURL = documentsURL.appendingPathComponent(file.localFileName)
+
+        AWSS3Provider.shared.handleFileDownloadToURL(
+            fileName: file.fileName,
+            bucketName: AWSS3Provider.appS3BucketName,
+            destinationURL: destinationURL,
+            progressBlock: { (_ fileName: String, _ progress: Progress) in
+                self.filesDownloadProgress[fileName] = (progress.completedUnitCount, progress.totalUnitCount)
+                if self.filesDownloadProgress.keys.count == self.filesToDownload.count {
+                    self.updateProgress()
+                }
+            }
+        ) { (result: Result<URL, Error>) in
+            switch result {
+            case .success(let url):
+                // File successfully downloaded and saved to Documents
+                print("✅ Download success: \(url.path)")
+                self.filesDownloadedSuccessfully += 1
+            case .failure(let error):
+                print("❌ Download failed: \(error.localizedDescription)")
+                // Implement retry logic
+                let retryCount = self.fileRetryCount[file.fileName] ?? 0
+                if retryCount < self.maxRetries {
+                    self.fileRetryCount[file.fileName] = retryCount + 1
+                    print("🔄 Retrying download (\(retryCount + 1)/\(self.maxRetries)): \(file.fileName)")
+                    // Retry after a delay
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                        self.downloadFileFromS3(file: file)
+                    }
+                    return
+                } else {
+                    print("⛔ Max retries reached for: \(file.fileName)")
+                    self.filesFailedDownloading += 1
+                }
+            }
+
+            if self.filesDownloadedSuccessfully + self.filesFailedDownloading == self.filesToDownload.count {
+                self.downloadComplete()
             }
         }
     }
@@ -78,19 +115,31 @@ class DownloadTask {
     
     func downloadComplete() {
         let success = (self.filesFailedDownloading == 0)
-        if success {
+
+        // Note: Files are already saved to Documents directory via streaming download
+        // No need to write data again (unlike the old cache-based approach)
+
+        if !success {
+            print("⚠️ Download completed with \(self.filesFailedDownloading) failed file(s)")
+        } else {
+            print("✅ All downloads completed successfully")
+        }
+
+        // Legacy data-based save for Vimeo/HTTP downloads
+        if success && self.filesToSave.count > 0 {
             for file in self.filesToSave {
-                if let url = FileDirectory.cache.url?.appendingPathComponent(file.filename) {
+                // Changed from cache to documents directory
+                if let url = FileDirectory.documents.url?.appendingPathComponent(file.filename) {
                     do {
                         try FilesManagementProvider.shared.overwriteFile(path: url, data: file.data)
                     }
                     catch let error {
-                        print(error)
+                        print("❌ Error saving file \(file.filename): \(error)")
                     }
                 }
             }
         }
-        
+
         DispatchQueue.main.async {
             self.delegate?.downloadCompleted(downloadId: self.id, mediaType: self.mediaType, success: success )
         }

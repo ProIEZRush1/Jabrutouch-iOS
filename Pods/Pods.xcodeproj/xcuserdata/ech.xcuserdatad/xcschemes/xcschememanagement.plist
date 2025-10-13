@@ -24,11 +24,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>BoringSSL-GRPC-openssl_grpc.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>BoringSSL-GRPC.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -44,22 +39,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>FirebaseAppCheckInterop.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>FirebaseAuth-FirebaseAuth_Privacy.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>FirebaseAuth.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>FirebaseCore-FirebaseCore_Privacy.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -89,17 +69,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>FirebaseCrashlytics-FirebaseCrashlytics_Privacy.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>FirebaseCrashlytics.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>FirebaseDynamicLinks-FirebaseDynamicLinks_Privacy.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -109,22 +79,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>FirebaseFirestore-FirebaseFirestore_Privacy.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>FirebaseFirestore.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>FirebaseFirestoreInternal-FirebaseFirestoreInternal_Privacy.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>FirebaseFirestoreInternal.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -139,27 +94,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>FirebaseMessaging-FirebaseMessaging_Privacy.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>FirebaseMessaging.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>FirebaseRemoteConfigInterop.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>FirebaseSessions.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>FirebaseSharedSwift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -199,6 +139,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Libuv-gRPC.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Jabrutouch.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -224,12 +169,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>RecaptchaEnterprise-RecaptchaEnterpriseResources.xcscheme</key>
+		<key>RecaptchaEnterprise.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>RecaptchaEnterprise.xcscheme</key>
+		<key>RecaptchaEnterpriseSDK-RecaptchaEnterpriseSDKResources.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>RecaptchaEnterpriseSDK.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -264,11 +214,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>abseil-xcprivacy.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>abseil.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -279,17 +224,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>gRPC-C++-grpcpp.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>gRPC-C++.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>gRPC-Core-grpc.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -335,11 +270,6 @@
 			<false/>
 		</dict>
 		<key>lottie-ios.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>nanopb-nanopb_Privacy.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

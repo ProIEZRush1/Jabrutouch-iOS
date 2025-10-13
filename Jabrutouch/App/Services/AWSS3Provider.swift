@@ -96,7 +96,7 @@ class AWSS3Provider {
     }
 
     /**
-        Handles file download from S3.
+        Handles file download from S3 (legacy method - loads into memory).
      - parameter fileName: The name of the file.
      - parameter bucketName: The name of the bucket in which the file is stored.
      - parameter progressBlock: A callback excecuted periodacally during the download. Can be used to display progress to the user. Holding data regarding progress of the download.
@@ -106,7 +106,7 @@ class AWSS3Provider {
     func handleFileDownload(fileName:String,bucketName:String, progressBlock:((_ fileName: String, _ progress: Progress)->Void)?, completion: @escaping (_ result:
         Result<Data,Error>)->Void ){
 
-        
+
 //        let _fileName = self.extractFilenameFromLinkIfNeeded(filename: fileName)
         let progressBlock: AWSS3TransferUtilityProgressBlock = { (task: AWSS3TransferUtilityTask, progress: Progress) in
             progressBlock?(fileName,progress)
@@ -118,7 +118,7 @@ class AWSS3Provider {
             if let _error = error {
                 completion(.failure(_error))
             }
-                
+
             else if let _data = data{
                 completion(.success(_data))
             }
@@ -126,9 +126,43 @@ class AWSS3Provider {
                 completion(.failure(JTError.unknown))
             }
         }
-        
+
         let task = self.transferUtility.downloadData(fromBucket: bucketName, key: fileName, expression: expression, completionHandler: completionHandler).result
         self.pendingDownloadTasks[fileName] = (task,progressBlock,completionHandler)
+    }
+
+    /**
+        Handles file download from S3 using streaming (more memory-efficient).
+     - parameter fileName: The name of the file.
+     - parameter bucketName: The name of the bucket in which the file is stored.
+     - parameter destinationURL: The local file URL where the file should be saved.
+     - parameter progressBlock: A callback executed periodically during the download. Can be used to display progress to the user.
+     - parameter completion: A callback executed after download completes (success or failure).
+     */
+    func handleFileDownloadToURL(fileName: String, bucketName: String, destinationURL: URL, progressBlock:((_ fileName: String, _ progress: Progress)->Void)?, completion: @escaping (_ result: Result<URL, Error>)->Void) {
+
+        let progressBlock: AWSS3TransferUtilityProgressBlock = { (task: AWSS3TransferUtilityTask, progress: Progress) in
+            progressBlock?(fileName, progress)
+        }
+
+        let expression = AWSS3TransferUtilityDownloadExpression()
+        expression.progressBlock = progressBlock
+
+        let completionHandler = { (task: AWSS3TransferUtilityDownloadTask, url: URL?, data: Data?, error: Error?) in
+            self.pendingDownloadTasks.removeValue(forKey: fileName)
+
+            if let _error = error {
+                completion(.failure(_error))
+            } else if let _url = url {
+                completion(.success(_url))
+            } else {
+                completion(.failure(JTError.unknown))
+            }
+        }
+
+        // Use downloadToURL instead of downloadData for streaming
+        let task = self.transferUtility.download(to: destinationURL, bucket: bucketName, key: fileName, expression: expression, completionHandler: completionHandler).result
+        self.pendingDownloadTasks[fileName] = (task, progressBlock, completionHandler)
     }
 
     /**

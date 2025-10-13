@@ -13,7 +13,6 @@
 // limitations under the License.
 
 #include "Crashlytics/Shared/FIRCLSMachO/FIRCLSMachO.h"
-#include "Crashlytics/Crashlytics/Helpers/FIRCLSDefines.h"
 
 #include <Foundation/Foundation.h>
 
@@ -21,7 +20,6 @@
 #include <mach-o/fat.h>
 #include <mach-o/getsect.h>
 #include <mach-o/ldsyms.h>
-#include <mach-o/utils.h>
 
 #include <sys/mman.h>
 #include <sys/stat.h>
@@ -42,6 +40,8 @@ static void FIRCLSMachOHeaderValues(FIRCLSMachOSliceRef slice,
 static bool FIRCLSMachOSliceIsValid(FIRCLSMachOSliceRef slice);
 
 bool FIRCLSMachOFileInitWithPath(FIRCLSMachOFileRef file, const char* path) {
+  struct stat statBuffer;
+
   if (!file || !path) {
     return false;
   }
@@ -56,23 +56,16 @@ bool FIRCLSMachOFileInitWithPath(FIRCLSMachOFileRef file, const char* path) {
     return false;
   }
 
-  NSError* attributesError;
-  NSString* objCPath = [NSString stringWithCString:path encoding:NSUTF8StringEncoding];
-  NSDictionary* fileAttributes =
-      [[NSFileManager defaultManager] attributesOfItemAtPath:objCPath error:&attributesError];
-  if (attributesError != nil) {
+  if (fstat(file->fd, &statBuffer) == -1) {
     close(file->fd);
     return false;
   }
-  NSNumber* fileSizeNumber = [fileAttributes objectForKey:NSFileSize];
-  long long currentFileSize = [fileSizeNumber longLongValue];
-  NSFileAttributeType fileType = [fileAttributes objectForKey:NSFileType];
 
   // We need some minimum size for this to even be a possible mach-o file.  I believe
   // its probably quite a bit bigger than this, but this at least covers something.
   // We also need it to be a regular file.
-  file->mappedSize = (size_t)currentFileSize;
-  if (currentFileSize < 16 || ![fileType isEqualToString:NSFileTypeRegular]) {
+  file->mappedSize = (size_t)statBuffer.st_size;
+  if (statBuffer.st_size < 16 || !(statBuffer.st_mode & S_IFREG)) {
     close(file->fd);
     return false;
   }
@@ -226,25 +219,6 @@ static bool FIRCLSMachOSliceIsValid(FIRCLSMachOSliceRef slice) {
   return true;
 }
 
-void FIRCLSMachOSliceEnumerateLoadCommands_f(FIRCLSMachOSliceRef slice,
-                                             void* context,
-                                             FIRCLSMachOLoadCommandIteratorFunc function) {
-  const struct load_command* cmd;
-  uint32_t cmdCount;
-
-  if (!FIRCLSMachOSliceIsValid(slice)) {
-    return;
-  }
-
-  FIRCLSMachOHeaderValues(slice, &cmd, &cmdCount);
-
-  for (uint32_t i = 0; cmd != NULL && i < cmdCount; ++i) {
-    function(cmd->cmd, cmd->cmdsize, cmd, context);
-
-    cmd = (struct load_command*)((uintptr_t)cmd + cmd->cmdsize);
-  }
-}
-
 void FIRCLSMachOSliceEnumerateLoadCommands(FIRCLSMachOSliceRef slice,
                                            FIRCLSMachOLoadCommandIterator block) {
   const struct load_command* cmd;
@@ -268,28 +242,16 @@ void FIRCLSMachOSliceEnumerateLoadCommands(FIRCLSMachOSliceRef slice,
 }
 
 struct FIRCLSMachOSlice FIRCLSMachOSliceGetCurrent(void) {
+  const NXArchInfo* archInfo;
   struct FIRCLSMachOSlice slice;
   void* executableSymbol;
   Dl_info dlinfo;
 
-#if !CLS_TARGET_OS_VISION
-  const NXArchInfo* archInfo;
   archInfo = NXGetLocalArchInfo();
-
   if (archInfo) {
     slice.cputype = archInfo->cputype;
     slice.cpusubtype = archInfo->cpusubtype;
   }
-#else
-  cpu_type_t cputype;
-  cpu_subtype_t cpusubtype;
-  const char* archname = macho_arch_name_for_mach_header(NULL);
-  bool hasArchInfo = macho_cpu_type_for_arch_name(archname, &cputype, &cpusubtype);
-  if (hasArchInfo) {
-    slice.cputype = cputype;
-    slice.cpusubtype = cpusubtype;
-  }
-#endif
 
   slice.startAddress = NULL;
 
@@ -330,6 +292,8 @@ const char* FIRCLSMachOSliceGetExecutablePath(FIRCLSMachOSliceRef slice) {
 }
 
 const char* FIRCLSMachOSliceGetArchitectureName(FIRCLSMachOSliceRef slice) {
+  const NXArchInfo* archInfo;
+
   // there are some special cases here for types not handled by earlier OSes
   if (slice->cputype == CPU_TYPE_ARM && slice->cpusubtype == CPU_SUBTYPE_ARM_V7S) {
     return "armv7s";
@@ -347,23 +311,12 @@ const char* FIRCLSMachOSliceGetArchitectureName(FIRCLSMachOSliceRef slice) {
     return "armv7k";
   }
 
-#if !CLS_TARGET_OS_VISION
-  const NXArchInfo* archInfo;
-
   archInfo = NXGetArchInfoFromCpuType(slice->cputype, slice->cpusubtype);
   if (!archInfo) {
     return "unknown";
   }
 
   return archInfo->name;
-#else
-  const char* archname = macho_arch_name_for_mach_header(slice->startAddress);
-
-  if (!archname) {
-    return "unknown";
-  }
-  return archname;
-#endif
 }
 
 bool FIRCLSMachOSliceIs64Bit(FIRCLSMachOSliceRef slice) {
@@ -371,7 +324,6 @@ bool FIRCLSMachOSliceIs64Bit(FIRCLSMachOSliceRef slice) {
   return (slice->cputype & CPU_ARCH_ABI64) == CPU_ARCH_ABI64;
 }
 
-// deprecated
 bool FIRCLSMachOSliceGetSectionByName(FIRCLSMachOSliceRef slice,
                                       const char* segName,
                                       const char* sectionName,
@@ -410,9 +362,6 @@ bool FIRCLSMachOSliceInitSectionByName(FIRCLSMachOSliceRef slice,
 
   memset(section, 0, sizeof(FIRCLSMachOSection));
 
-// Deprecated code for vision OS, entire function is not used anywhere
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
   if (FIRCLSMachOSliceIs64Bit(slice)) {
     const struct section_64* sect =
         getsectbynamefromheader_64(slice->startAddress, segName, sectionName);
@@ -433,7 +382,7 @@ bool FIRCLSMachOSliceInitSectionByName(FIRCLSMachOSliceRef slice,
     section->size = sect->size;
     section->offset = sect->offset;
   }
-#pragma clang diagnostic pop
+
   return true;
 }
 

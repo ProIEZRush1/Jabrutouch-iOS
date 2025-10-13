@@ -29,6 +29,7 @@ class UserDefaultsProvider {
         case latestNewsItems = "LatestNewsItems"
         case surveyLastCheckedInfo = "SurveyLastCheckedInfo"
         case otpRequestorStatus = "OTPRequestorStatus"
+        case downloadsCacheToDocumentsMigration = "DownloadsCacheToDocumentsMigration_v1"
     }
     
     static private var provider: UserDefaultsProvider?
@@ -237,6 +238,16 @@ class UserDefaultsProvider {
         }
         set (status) {
             self.defaults.set(status?.values, forKey: UserDefaultsKeys.otpRequestorStatus.rawValue)
+            self.defaults.synchronize()
+        }
+    }
+
+    var hasCompletedDownloadsCacheToDocumentsMigration: Bool {
+        get {
+            return self.defaults.bool(forKey: UserDefaultsKeys.downloadsCacheToDocumentsMigration.rawValue)
+        }
+        set (value) {
+            self.defaults.set(value, forKey: UserDefaultsKeys.downloadsCacheToDocumentsMigration.rawValue)
             self.defaults.synchronize()
         }
     }

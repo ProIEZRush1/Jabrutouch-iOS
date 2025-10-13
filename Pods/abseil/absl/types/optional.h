@@ -61,7 +61,6 @@ ABSL_NAMESPACE_END
 #include <utility>
 
 #include "absl/base/attributes.h"
-#include "absl/base/nullability.h"
 #include "absl/base/internal/inline_variable.h"
 #include "absl/meta/type_traits.h"
 #include "absl/types/bad_optional_access.h"
@@ -131,7 +130,7 @@ class optional : private optional_internal::optional_data<T>,
 
   // Constructs an `optional` holding an empty value, NOT a default constructed
   // `T`.
-  constexpr optional() noexcept = default;
+  constexpr optional() noexcept {}
 
   // Constructs an `optional` initialized with `nullopt` to hold an empty value.
   constexpr optional(nullopt_t) noexcept {}  // NOLINT(runtime/explicit)
@@ -283,16 +282,15 @@ class optional : private optional_internal::optional_data<T>,
   optional& operator=(optional&& src) = default;
 
   // Value assignment operators
-  template <typename U = T,
-            int&...,  // Workaround an internal compiler error in GCC 5 to 10.
-            typename = typename std::enable_if<absl::conjunction<
-                absl::negation<
-                    std::is_same<optional<T>, typename std::decay<U>::type> >,
-                absl::negation<absl::conjunction<
-                    std::is_scalar<T>,
-                    std::is_same<T, typename std::decay<U>::type> > >,
-                std::is_constructible<T, U>,
-                std::is_assignable<T&, U> >::value>::type>
+  template <
+      typename U = T,
+      typename = typename std::enable_if<absl::conjunction<
+          absl::negation<
+              std::is_same<optional<T>, typename std::decay<U>::type>>,
+          absl::negation<
+              absl::conjunction<std::is_scalar<T>,
+                                std::is_same<T, typename std::decay<U>::type>>>,
+          std::is_constructible<T, U>, std::is_assignable<T&, U>>::value>::type>
   optional& operator=(U&& v) {
     this->assign(std::forward<U>(v));
     return *this;
@@ -300,14 +298,13 @@ class optional : private optional_internal::optional_data<T>,
 
   template <
       typename U,
-      int&...,  // Workaround an internal compiler error in GCC 5 to 10.
       typename = typename std::enable_if<absl::conjunction<
-          absl::negation<std::is_same<T, U> >,
+          absl::negation<std::is_same<T, U>>,
           std::is_constructible<T, const U&>, std::is_assignable<T&, const U&>,
           absl::negation<
               optional_internal::
                   is_constructible_convertible_assignable_from_optional<
-                      T, U> > >::value>::type>
+                      T, U>>>::value>::type>
   optional& operator=(const optional<U>& rhs) {
     if (rhs) {
       this->assign(*rhs);
@@ -318,14 +315,13 @@ class optional : private optional_internal::optional_data<T>,
   }
 
   template <typename U,
-            int&...,  // Workaround an internal compiler error in GCC 5 to 10.
             typename = typename std::enable_if<absl::conjunction<
-                absl::negation<std::is_same<T, U> >,
-                std::is_constructible<T, U>, std::is_assignable<T&, U>,
+                absl::negation<std::is_same<T, U>>, std::is_constructible<T, U>,
+                std::is_assignable<T&, U>,
                 absl::negation<
                     optional_internal::
                         is_constructible_convertible_assignable_from_optional<
-                            T, U> > >::value>::type>
+                            T, U>>>::value>::type>
   optional& operator=(optional<U>&& rhs) {
     if (rhs) {
       this->assign(std::move(*rhs));
@@ -358,7 +354,7 @@ class optional : private optional_internal::optional_data<T>,
   template <typename... Args,
             typename = typename std::enable_if<
                 std::is_constructible<T, Args&&...>::value>::type>
-  T& emplace(Args&&... args) ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  T& emplace(Args&&... args) {
     this->destruct();
     this->construct(std::forward<Args>(args)...);
     return reference();
@@ -378,8 +374,7 @@ class optional : private optional_internal::optional_data<T>,
   template <typename U, typename... Args,
             typename = typename std::enable_if<std::is_constructible<
                 T, std::initializer_list<U>&, Args&&...>::value>::type>
-  T& emplace(std::initializer_list<U> il,
-             Args&&... args) ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  T& emplace(std::initializer_list<U> il, Args&&... args) {
     this->destruct();
     this->construct(il, std::forward<Args>(args)...);
     return reference();
@@ -416,11 +411,11 @@ class optional : private optional_internal::optional_data<T>,
   // `optional` is empty, behavior is undefined.
   //
   // If you need myOpt->foo in constexpr, use (*myOpt).foo instead.
-  absl::Nonnull<const T*> operator->() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  const T* operator->() const {
     ABSL_HARDENING_ASSERT(this->engaged_);
     return std::addressof(this->data_);
   }
-  absl::Nonnull<T*> operator->() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  T* operator->() {
     ABSL_HARDENING_ASSERT(this->engaged_);
     return std::addressof(this->data_);
   }
@@ -429,17 +424,17 @@ class optional : private optional_internal::optional_data<T>,
   //
   // Accesses the underlying `T` value of an `optional`. If the `optional` is
   // empty, behavior is undefined.
-  constexpr const T& operator*() const& ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  constexpr const T& operator*() const& {
     return ABSL_HARDENING_ASSERT(this->engaged_), reference();
   }
-  T& operator*() & ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  T& operator*() & {
     ABSL_HARDENING_ASSERT(this->engaged_);
     return reference();
   }
-  constexpr const T&& operator*() const&& ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  constexpr const T&& operator*() const && {
     return ABSL_HARDENING_ASSERT(this->engaged_), absl::move(reference());
   }
-  T&& operator*() && ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  T&& operator*() && {
     ABSL_HARDENING_ASSERT(this->engaged_);
     return std::move(reference());
   }
@@ -474,24 +469,23 @@ class optional : private optional_internal::optional_data<T>,
   // and lvalue/rvalue-ness of the `optional` is preserved to the view of
   // the `T` sub-object. Throws `absl::bad_optional_access` when the `optional`
   // is empty.
-  constexpr const T& value() const& ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  constexpr const T& value() const & {
     return static_cast<bool>(*this)
                ? reference()
                : (optional_internal::throw_bad_optional_access(), reference());
   }
-  T& value() & ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  T& value() & {
     return static_cast<bool>(*this)
                ? reference()
                : (optional_internal::throw_bad_optional_access(), reference());
   }
-  T&& value() && ABSL_ATTRIBUTE_LIFETIME_BOUND {  // NOLINT(build/c++11)
+  T&& value() && {  // NOLINT(build/c++11)
     return std::move(
         static_cast<bool>(*this)
             ? reference()
             : (optional_internal::throw_bad_optional_access(), reference()));
   }
-  constexpr const T&& value()
-      const&& ABSL_ATTRIBUTE_LIFETIME_BOUND {  // NOLINT(build/c++11)
+  constexpr const T&& value() const && {  // NOLINT(build/c++11)
     return absl::move(
         static_cast<bool>(*this)
             ? reference()

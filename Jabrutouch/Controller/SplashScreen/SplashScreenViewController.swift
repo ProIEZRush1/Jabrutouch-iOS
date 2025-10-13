@@ -32,6 +32,10 @@ class SplashScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.activityIndicator.isHidden = true
+        // Migrate old downloads from Caches to Documents (one-time migration)
+        ContentRepository.shared.migrateDownloadsFromCachesToDocuments()
+        // Reload downloads from storage to refresh in-memory state after migration
+        ContentRepository.shared.reloadDownloadsFromStorage()
         ContentRepository.shared.removeOldDownloadedFiles()
     }
     

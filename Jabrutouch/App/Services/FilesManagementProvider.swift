@@ -109,7 +109,10 @@ class FilesManagementProvider {
     }
     
     func isFileExist(atUrl url: URL) -> Bool {
-        return FileManager.default.fileExists(atPath: url.absoluteString)
+        // Fixed: Use url.path instead of url.absoluteString
+        // url.path returns "/path/to/file" while url.absoluteString returns "file:///path/to/file"
+        // FileManager.fileExists(atPath:) expects a path without the "file://" scheme
+        return FileManager.default.fileExists(atPath: url.path)
     }
     
     func isFileExist(atString url: String) -> Bool {
@@ -134,17 +137,11 @@ class FilesManagementProvider {
     }
     
     func overwriteFile(path:URL, data: Data) throws {
-        if self.isFileExist(atUrl: path) {
-            do {
-                try self.removeFile(atPath: path)
-            }
-            catch let error {
-                throw error
-            }
-        }
-        
+        // Use atomic write option to ensure data is properly flushed to disk
+        // This prevents data loss if the process terminates during the write
+        // The .atomic option writes to a temp file first, then atomically renames it
         do {
-            try data.write(to: path)
+            try data.write(to: path, options: [.atomic])
         }
         catch let error {
             throw error
@@ -152,18 +149,11 @@ class FilesManagementProvider {
     }
     
     func overwriteFile(path:URL, data: Data,  completion: @escaping(Result<Void,Error>)->Void) throws {
-        if self.isFileExist(atUrl: path) {
-            do {
-                try self.removeFile(atPath: path)
-            }
-            catch let error {
-                throw error
-            }
-        }
-        
+        // Use atomic write option to ensure data is properly flushed to disk
+        // This prevents data loss if the process terminates during the write
+        // The .atomic option writes to a temp file first, then atomically renames it
         do {
-            try data.write(to: path)
-            
+            try data.write(to: path, options: [.atomic])
         }
         catch let error {
             throw error

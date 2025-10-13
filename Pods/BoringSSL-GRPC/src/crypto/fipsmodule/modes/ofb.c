@@ -46,13 +46,16 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  * ==================================================================== */
 
+#include <openssl_grpc/type_check.h>
+
 #include <assert.h>
 #include <string.h>
 
 #include "internal.h"
 
 
-static_assert(16 % sizeof(size_t) == 0, "block cannot be divided into size_t");
+OPENSSL_STATIC_ASSERT(16 % sizeof(size_t) == 0,
+                      "block cannot be divided into size_t");
 
 void CRYPTO_ofb128_encrypt(const uint8_t *in, uint8_t *out, size_t len,
                            const AES_KEY *key, uint8_t ivec[16], unsigned *num,
@@ -70,7 +73,14 @@ void CRYPTO_ofb128_encrypt(const uint8_t *in, uint8_t *out, size_t len,
 
   while (len >= 16) {
     (*block)(ivec, ivec, key);
-    CRYPTO_xor16(out, in, ivec);
+    for (; n < 16; n += sizeof(size_t)) {
+      size_t a, b;
+      OPENSSL_memcpy(&a, in + n, sizeof(size_t));
+      OPENSSL_memcpy(&b, ivec + n, sizeof(size_t));
+
+      const size_t c = a ^ b;
+      OPENSSL_memcpy(out + n, &c, sizeof(size_t));
+    }
     len -= 16;
     out += 16;
     in += 16;

@@ -57,7 +57,6 @@
 #include <openssl_grpc/cipher.h>
 #include <openssl_grpc/nid.h>
 
-#include "../fipsmodule/cipher/internal.h"
 #include "../internal.h"
 
 

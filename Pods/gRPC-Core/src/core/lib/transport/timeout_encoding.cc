@@ -1,42 +1,43 @@
-//
-//
-// Copyright 2015 gRPC authors.
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-//
-//
+/*
+ *
+ * Copyright 2015 gRPC authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 
 #include <grpc/support/port_platform.h>
 
 #include "src/core/lib/transport/timeout_encoding.h"
 
-#include <limits>
-
-#include "absl/base/attributes.h"
+#include <stdio.h>
+#include <string.h>
 
 #include <grpc/support/log.h>
-#include <grpc/support/time.h>
+
+#include "src/core/lib/gpr/string.h"
 
 namespace grpc_core {
 
 namespace {
 
 int64_t DivideRoundingUp(int64_t dividend, int64_t divisor) {
-  return (dividend - 1 + divisor) / divisor;
+  return (dividend + divisor - 1) / divisor;
 }
 
 constexpr int64_t kSecondsPerMinute = 60;
 constexpr int64_t kMinutesPerHour = 60;
+constexpr int64_t kSecondsPerHour = kSecondsPerMinute * kMinutesPerHour;
 constexpr int64_t kMaxHours = 27000;
 
 bool IsAllSpace(const uint8_t* p, const uint8_t* end) {
@@ -46,13 +47,13 @@ bool IsAllSpace(const uint8_t* p, const uint8_t* end) {
 
 }  // namespace
 
-Timeout Timeout::FromDuration(Duration duration) {
-  return Timeout::FromMillis(duration.millis());
+Timeout Timeout::FromDuration(grpc_millis duration) {
+  return Timeout::FromMillis(duration);
 }
 
 double Timeout::RatioVersus(Timeout other) const {
-  double a = AsDuration().millis();
-  double b = other.AsDuration().millis();
+  double a = AsDuration();
+  double b = other.AsDuration();
   if (b == 0) {
     if (a > 0) return 100;
     if (a < 0) return -100;
@@ -61,33 +62,33 @@ double Timeout::RatioVersus(Timeout other) const {
   return 100 * (a / b - 1);
 }
 
-Duration Timeout::AsDuration() const {
-  int64_t value = value_;
+grpc_millis Timeout::AsDuration() const {
+  grpc_millis value = value_;
   switch (unit_) {
     case Unit::kNanoseconds:
-      return Duration::Zero();
+      return 0;
     case Unit::kMilliseconds:
-      return Duration::Milliseconds(value);
+      return value;
     case Unit::kTenMilliseconds:
-      return Duration::Milliseconds(value * 10);
+      return value * 10;
     case Unit::kHundredMilliseconds:
-      return Duration::Milliseconds(value * 100);
+      return value * 100;
     case Unit::kSeconds:
-      return Duration::Seconds(value);
+      return value * 1000;
     case Unit::kTenSeconds:
-      return Duration::Seconds(value * 10);
+      return value * 10000;
     case Unit::kHundredSeconds:
-      return Duration::Seconds(value * 100);
+      return value * 100000;
     case Unit::kMinutes:
-      return Duration::Minutes(value);
+      return value * 1000 * kSecondsPerMinute;
     case Unit::kTenMinutes:
-      return Duration::Minutes(value * 10);
+      return value * 10000 * kSecondsPerMinute;
     case Unit::kHundredMinutes:
-      return Duration::Minutes(value * 100);
+      return value * 100000 * kSecondsPerMinute;
     case Unit::kHours:
-      return Duration::Hours(value);
+      return value * 1000 * kSecondsPerHour;
   }
-  GPR_UNREACHABLE_CODE(return Duration::NegativeInfinity());
+  GPR_UNREACHABLE_CODE(return -1);
 }
 
 Slice Timeout::Encode() const {
@@ -175,9 +176,6 @@ Timeout Timeout::FromMillis(int64_t millis) {
   } else if (millis < 100000) {
     int64_t value = DivideRoundingUp(millis, 100);
     if (value % 10 != 0) return Timeout(value, Unit::kHundredMilliseconds);
-  } else if (millis > std::numeric_limits<int64_t>::max() - 999) {
-    // prevent signed integer overflow.
-    return Timeout(kMaxHours, Unit::kHours);
   }
   return Timeout::FromSeconds(DivideRoundingUp(millis, 1000));
 }
@@ -230,53 +228,51 @@ Timeout Timeout::FromHours(int64_t hours) {
   return Timeout(kMaxHours, Unit::kHours);
 }
 
-absl::optional<Duration> ParseTimeout(const Slice& text) {
-  int32_t x = 0;
+absl::optional<grpc_millis> ParseTimeout(const Slice& text) {
+  grpc_millis x = 0;
   const uint8_t* p = text.begin();
   const uint8_t* end = text.end();
   int have_digit = 0;
-  // skip whitespace
+  /* skip whitespace */
   for (; p != end && *p == ' '; p++) {
   }
-  // decode numeric part
+  /* decode numeric part */
   for (; p != end && *p >= '0' && *p <= '9'; p++) {
     int32_t digit = static_cast<int32_t>(*p - static_cast<uint8_t>('0'));
     have_digit = 1;
-    // spec allows max. 8 digits, but we allow values up to 1,000,000,000
+    /* spec allows max. 8 digits, but we allow values up to 1,000,000,000 */
     if (x >= (100 * 1000 * 1000)) {
       if (x != (100 * 1000 * 1000) || digit != 0) {
-        return Duration::Infinity();
+        return GRPC_MILLIS_INF_FUTURE;
       }
     }
     x = x * 10 + digit;
   }
   if (!have_digit) return absl::nullopt;
-  // skip whitespace
+  /* skip whitespace */
   for (; p != end && *p == ' '; p++) {
   }
   if (p == end) return absl::nullopt;
-  // decode unit specifier
-  Duration timeout;
+  /* decode unit specifier */
+  int64_t timeout;
   switch (*p) {
     case 'n':
-      timeout =
-          Duration::Milliseconds(x / GPR_NS_PER_MS + (x % GPR_NS_PER_MS != 0));
+      timeout = x / GPR_NS_PER_MS + (x % GPR_NS_PER_MS != 0);
       break;
     case 'u':
-      timeout =
-          Duration::Milliseconds(x / GPR_US_PER_MS + (x % GPR_US_PER_MS != 0));
+      timeout = x / GPR_US_PER_MS + (x % GPR_US_PER_MS != 0);
       break;
     case 'm':
-      timeout = Duration::Milliseconds(x);
+      timeout = x;
       break;
     case 'S':
-      timeout = Duration::Seconds(x);
+      timeout = x * GPR_MS_PER_SEC;
       break;
     case 'M':
-      timeout = Duration::Minutes(x);
+      timeout = x * 60 * GPR_MS_PER_SEC;
       break;
     case 'H':
-      timeout = Duration::Hours(x);
+      timeout = x * 60 * 60 * GPR_MS_PER_SEC;
       break;
     default:
       return absl::nullopt;

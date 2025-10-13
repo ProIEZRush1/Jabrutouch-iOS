@@ -42,7 +42,7 @@ void FIRCLSHandler(FIRCLSFile* file, thread_t crashedThread, void* uapVoid) {
   FIRCLSHostWriteDiskUsage(file);
 
   // This is the first common point where various crash handlers call into
-  // Store a crash file marker to indicate that a crash has occurred
+  // Store a crash file marker to indicate that a crash has occured
   FIRCLSCreateCrashedMarkerFile();
 
   FIRCLSProcessResumeAllOtherThreads(&process);

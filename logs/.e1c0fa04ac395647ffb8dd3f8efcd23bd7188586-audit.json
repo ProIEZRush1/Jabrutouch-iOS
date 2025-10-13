@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "/Users/ech/Documents/Programacion/jabrutouch/jabrutouch_ios/logs/.e1c0fa04ac395647ffb8dd3f8efcd23bd7188586-audit.json",
+    "files": [
+        {
+            "date": 1759156027794,
+            "name": "/Users/ech/Documents/Programacion/jabrutouch/jabrutouch_ios/logs/mcp-puppeteer-2025-09-29.log",
+            "hash": "a5f93357aebf5aa6e8c948b2d4b6d80c333a747a1151ed73eecaf3f7117c3d6e"
+        }
+    ],
+    "hashType": "sha256"
+}

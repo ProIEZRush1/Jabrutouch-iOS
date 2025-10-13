@@ -162,7 +162,7 @@ BOOL FIRDLOSVersionSupported(NSString *_Nullable systemVersion, NSString *minSup
   return [systemVersion compare:minSupportedVersion options:NSNumericSearch] != NSOrderedAscending;
 }
 
-NSDate *_Nullable FIRDLAppInstallationDate(void) {
+NSDate *_Nullable FIRDLAppInstallationDate() {
   NSURL *documentsDirectoryURL =
       [[[NSFileManager defaultManager] URLsForDirectory:NSApplicationSupportDirectory
                                               inDomains:NSUserDomainMask] firstObject];
@@ -178,7 +178,7 @@ NSDate *_Nullable FIRDLAppInstallationDate(void) {
   return nil;
 }
 
-NSString *FIRDLDeviceModelName(void) {
+NSString *FIRDLDeviceModelName() {
   // this method will return string like iPad3,3
   // for Simulator this will be x86_64
   static NSString *machineString = @"";
@@ -199,17 +199,17 @@ NSString *FIRDLDeviceModelName(void) {
   return machineString;
 }
 
-NSString *FIRDLDeviceLocale(void) {
+NSString *FIRDLDeviceLocale() {
   // expected return value from this method looks like: @"en-US"
   return [[[NSLocale currentLocale] localeIdentifier] stringByReplacingOccurrencesOfString:@"_"
                                                                                 withString:@"-"];
 }
 
-NSString *FIRDLDeviceLocaleRaw(void) {
+NSString *FIRDLDeviceLocaleRaw() {
   return [[NSLocale currentLocale] localeIdentifier];
 }
 
-NSString *FIRDLDeviceTimezone(void) {
+NSString *FIRDLDeviceTimezone() {
   NSString *timeZoneName = [[NSTimeZone localTimeZone] name];
   return timeZoneName;
 }

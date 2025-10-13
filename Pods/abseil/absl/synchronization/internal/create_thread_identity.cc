@@ -13,12 +13,10 @@
 // limitations under the License.
 
 #include <stdint.h>
-
 #include <new>
 
 // This file is a no-op if the required LowLevelAlloc support is missing.
 #include "absl/base/internal/low_level_alloc.h"
-#include "absl/synchronization/internal/waiter.h"
 #ifndef ABSL_LOW_LEVEL_ALLOC_MISSING
 
 #include <string.h>
@@ -40,7 +38,7 @@ ABSL_CONST_INIT static base_internal::ThreadIdentity* thread_identity_freelist;
 
 // A per-thread destructor for reclaiming associated ThreadIdentity objects.
 // Since we must preserve their storage we cache them for re-use.
-static void ReclaimThreadIdentity(void* v) {
+void ReclaimThreadIdentity(void* v) {
   base_internal::ThreadIdentity* identity =
       static_cast<base_internal::ThreadIdentity*>(v);
 
@@ -49,6 +47,8 @@ static void ReclaimThreadIdentity(void* v) {
   if (identity->per_thread_synch.all_locks != nullptr) {
     base_internal::LowLevelAlloc::Free(identity->per_thread_synch.all_locks);
   }
+
+  PerThreadSem::Destroy(identity);
 
   // We must explicitly clear the current thread's identity:
   // (a) Subsequent (unrelated) per-thread destructors may require an identity.
@@ -71,15 +71,7 @@ static intptr_t RoundUp(intptr_t addr, intptr_t align) {
   return (addr + align - 1) & ~(align - 1);
 }
 
-void OneTimeInitThreadIdentity(base_internal::ThreadIdentity* identity) {
-  PerThreadSem::Init(identity);
-  identity->ticker.store(0, std::memory_order_relaxed);
-  identity->wait_start.store(0, std::memory_order_relaxed);
-  identity->is_idle.store(false, std::memory_order_relaxed);
-}
-
-static void ResetThreadIdentityBetweenReuse(
-    base_internal::ThreadIdentity* identity) {
+static void ResetThreadIdentity(base_internal::ThreadIdentity* identity) {
   base_internal::PerThreadSynch* pts = &identity->per_thread_synch;
   pts->next = nullptr;
   pts->skip = nullptr;
@@ -124,9 +116,8 @@ static base_internal::ThreadIdentity* NewThreadIdentity() {
     identity = reinterpret_cast<base_internal::ThreadIdentity*>(
         RoundUp(reinterpret_cast<intptr_t>(allocation),
                 base_internal::PerThreadSynch::kAlignment));
-    OneTimeInitThreadIdentity(identity);
   }
-  ResetThreadIdentityBetweenReuse(identity);
+  ResetThreadIdentity(identity);
 
   return identity;
 }
@@ -136,6 +127,7 @@ static base_internal::ThreadIdentity* NewThreadIdentity() {
 // REQUIRES: CurrentThreadIdentity(false) == nullptr
 base_internal::ThreadIdentity* CreateThreadIdentity() {
   base_internal::ThreadIdentity* identity = NewThreadIdentity();
+  PerThreadSem::Init(identity);
   // Associate the value with the current thread, and attach our destructor.
   base_internal::SetCurrentThreadIdentity(identity, ReclaimThreadIdentity);
   return identity;

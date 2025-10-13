@@ -207,3 +207,10 @@
 "tryAgainIn" = "Inténtalo de nuevo en: %@ SEGUNDOS";
 "contactAdmin" = "Contacta al administrador";
 "didntReceiveCodeTryAgainIn" = "¿No recibiste el código? \nInténtalo de nuevo en: %@ SEGUNDOS";
+
+/* Downloads Migration */
+"refreshDownloadsTitle" = "Actualizar Descargas";
+"refreshDownloadsMessage" = "Esto eliminará las clases de tu lista de descargas si faltan sus archivos. Puede solucionar problemas donde las clases aparecen descargadas pero no se pueden reproducir.";
+"refresh" = "Actualizar";
+"refreshingDownloads" = "Actualizando descargas...";
+"refreshDownloadsComplete" = "Lista de descargas actualizada exitosamente.";

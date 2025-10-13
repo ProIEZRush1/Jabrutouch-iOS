@@ -697,5 +697,22 @@ class Strings {
     class var didntReceiveCodeTryAgainIn: String {
         return NSLocalizedString("didntReceiveCodeTryAgainIn", comment: "")
     }
+
+    // Downloads Migration Strings
+    class var refreshDownloadsTitle: String {
+        return NSLocalizedString("refreshDownloadsTitle", comment: "")
+    }
+    class var refreshDownloadsMessage: String {
+        return NSLocalizedString("refreshDownloadsMessage", comment: "")
+    }
+    class var refresh: String {
+        return NSLocalizedString("refresh", comment: "")
+    }
+    class var refreshingDownloads: String {
+        return NSLocalizedString("refreshingDownloads", comment: "")
+    }
+    class var refreshDownloadsComplete: String {
+        return NSLocalizedString("refreshDownloadsComplete", comment: "")
+    }
 }
 

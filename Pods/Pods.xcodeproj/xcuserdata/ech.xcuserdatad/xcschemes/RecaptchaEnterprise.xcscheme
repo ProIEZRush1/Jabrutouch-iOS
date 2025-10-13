@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C1007D4572E61617808DD08890A13BC3"
-               BuildableName = "RecaptchaEnterprise"
+               BuildableName = "RecaptchaEnterprise.framework"
                BlueprintName = "RecaptchaEnterprise"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>

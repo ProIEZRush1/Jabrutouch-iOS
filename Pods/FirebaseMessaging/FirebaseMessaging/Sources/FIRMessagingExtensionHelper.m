@@ -111,13 +111,13 @@ pb_bytes_array_t *FIRMessagingEncodeString(NSString *string) {
   self.bestAttemptContent = content;
 
   // The `userInfo` property isn't available on newer versions of tvOS.
-#if !TARGET_OS_TV
-  NSObject *currentImageURL = content.userInfo[kPayloadOptionsName][kPayloadOptionsImageURLName];
-  if (!currentImageURL || currentImageURL == [NSNull null]) {
+#if TARGET_OS_IOS || TARGET_OS_OSX || TARGET_OS_WATCH
+  NSString *currentImageURL = content.userInfo[kPayloadOptionsName][kPayloadOptionsImageURLName];
+  if (!currentImageURL) {
     [self deliverNotification];
     return;
   }
-  NSURL *attachmentURL = [NSURL URLWithString:(NSString *)currentImageURL];
+  NSURL *attachmentURL = [NSURL URLWithString:currentImageURL];
   if (attachmentURL) {
     [self loadAttachmentForURL:attachmentURL
              completionHandler:^(UNNotificationAttachment *attachment) {
@@ -131,12 +131,12 @@ pb_bytes_array_t *FIRMessagingEncodeString(NSString *string) {
                             @"The Image URL provided is invalid %@.", currentImageURL);
     [self deliverNotification];
   }
-#else   // !TARGET_OS_TV
+#else
   [self deliverNotification];
-#endif  // !TARGET_OS_TV
+#endif
 }
 
-#if !TARGET_OS_TV
+#if TARGET_OS_IOS || TARGET_OS_OSX || TARGET_OS_WATCH
 - (NSString *)fileExtensionForResponse:(NSURLResponse *)response {
   NSString *suggestedPathExtension = [response.suggestedFilename pathExtension];
   if (suggestedPathExtension.length > 0) {
@@ -194,7 +194,7 @@ pb_bytes_array_t *FIRMessagingEncodeString(NSString *string) {
           completionHandler(attachment);
         }] resume];
 }
-#endif  // !TARGET_OS_TV
+#endif
 
 - (void)deliverNotification {
   if (self.contentHandler) {
@@ -205,7 +205,7 @@ pb_bytes_array_t *FIRMessagingEncodeString(NSString *string) {
 - (void)exportDeliveryMetricsToBigQueryWithMessageInfo:(NSDictionary *)info {
   GDTCORTransport *transport = [[GDTCORTransport alloc] initWithMappingID:@"1249"
                                                              transformers:nil
-                                                                   target:kGDTCORTargetCCT];
+                                                                   target:kGDTCORTargetFLL];
 
   fm_MessagingClientEventExtension eventExtension = fm_MessagingClientEventExtension_init_default;
 
@@ -266,14 +266,7 @@ pb_bytes_array_t *FIRMessagingEncodeString(NSString *string) {
   FIRMessagingMetricsLog *log =
       [[FIRMessagingMetricsLog alloc] initWithEventExtension:eventExtension];
 
-  GDTCOREvent *event;
-  if (info[kFIRMessagingProductID]) {
-    int32_t productID = [info[kFIRMessagingProductID] intValue];
-    GDTCORProductData *productData = [[GDTCORProductData alloc] initWithProductID:productID];
-    event = [transport eventForTransportWithProductData:productData];
-  } else {
-    event = [transport eventForTransport];
-  }
+  GDTCOREvent *event = [transport eventForTransport];
   event.dataObject = log;
   event.qosTier = GDTCOREventQoSFast;
 

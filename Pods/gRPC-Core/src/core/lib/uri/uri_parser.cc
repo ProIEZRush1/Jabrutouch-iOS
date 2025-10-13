@@ -18,26 +18,18 @@
 
 #include "src/core/lib/uri/uri_parser.h"
 
-#include <ctype.h>
-#include <stddef.h>
+#include <string.h>
 
-#include <algorithm>
-#include <functional>
 #include <map>
 #include <string>
-#include <utility>
 
-#include "absl/status/status.h"
-#include "absl/strings/ascii.h"
 #include "absl/strings/escaping.h"
-#include "absl/strings/match.h"
-#include "absl/strings/str_cat.h"
 #include "absl/strings/str_format.h"
-#include "absl/strings/str_join.h"
 #include "absl/strings/str_split.h"
-#include "absl/strings/strip.h"
 
 #include <grpc/support/log.h>
+
+#include "src/core/lib/gpr/string.h"
 
 namespace grpc_core {
 
@@ -174,10 +166,6 @@ absl::Status MakeInvalidURIStatus(absl::string_view part_name,
 
 }  // namespace
 
-std::string URI::PercentEncodeAuthority(absl::string_view str) {
-  return PercentEncode(str, IsAuthorityChar);
-}
-
 std::string URI::PercentEncodePath(absl::string_view str) {
   return PercentEncode(str, IsPathChar);
 }
@@ -207,6 +195,7 @@ std::string URI::PercentDecode(absl::string_view str) {
 }
 
 absl::StatusOr<URI> URI::Parse(absl::string_view uri_text) {
+  absl::StatusOr<std::string> decoded;
   absl::string_view remaining = uri_text;
   // parse scheme
   size_t offset = remaining.find(':');

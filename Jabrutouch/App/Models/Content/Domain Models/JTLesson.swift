@@ -87,17 +87,20 @@ class JTLesson: Hashable  {
     }
     
     var isAudioDownloaded: Bool {
-        guard let filesNames = FilesManagementProvider.shared.filesList(.cache) else { return false }
+        // Changed from .cache to .documents to match new download location
+        guard let filesNames = FilesManagementProvider.shared.filesList(.documents) else { return false }
         return filesNames.contains(self.audioLocalFileName)
     }
-    
+
     var isVideoDownloaded: Bool {
-        guard let filesNames = FilesManagementProvider.shared.filesList(.cache) else { return false }
+        // Changed from .cache to .documents to match new download location
+        guard let filesNames = FilesManagementProvider.shared.filesList(.documents) else { return false }
         return filesNames.contains(self.videoLocalFileName)
     }
-    
+
     var isTextFileDownloaded: Bool {
-        guard let filesNames = FilesManagementProvider.shared.filesList(.cache) else { return false }
+        // Changed from .cache to .documents to match new download location
+        guard let filesNames = FilesManagementProvider.shared.filesList(.documents) else { return false }
         for fileName in filesNames {
             if fileName == self.textLocalFileName {
                 return true
@@ -128,15 +131,18 @@ class JTLesson: Hashable  {
     }
     
     private var audioLocalURL: URL? {
-        return FileDirectory.cache.url?.appendingPathComponent(self.audioLocalFileName)
+        // Changed from .cache to .documents to match new download location
+        return FileDirectory.documents.url?.appendingPathComponent(self.audioLocalFileName)
     }
-    
+
     private var videoLocalURL: URL? {
-        return FileDirectory.cache.url?.appendingPathComponent(self.videoLocalFileName)
+        // Changed from .cache to .documents to match new download location
+        return FileDirectory.documents.url?.appendingPathComponent(self.videoLocalFileName)
     }
-    
+
     private var textLocalURL: URL? {
-        return FileDirectory.cache.url?.appendingPathComponent(self.textLocalFileName)
+        // Changed from .cache to .documents to match new download location
+        return FileDirectory.documents.url?.appendingPathComponent(self.textLocalFileName)
     }
     
     var audioLocalFileName: String {

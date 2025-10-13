@@ -10,12 +10,12 @@ target 'Jabrutouch' do
   pod 'AWSS3'
   pod 'SnapKit', '~> 5.0.0'
   pod 'UICircularProgressRing'
-  pod 'FirebaseCrashlytics'  # Fabric eliminado
-  pod 'Firebase/Auth'
-  pod 'Firebase/Firestore'
-  pod 'Firebase/Messaging'
-  pod 'Firebase/Analytics'
-  pod 'Firebase/DynamicLinks'
+  pod 'FirebaseCrashlytics', '~> 10.7.0'
+  pod 'Firebase/Auth', '~> 10.7.0'
+  pod 'Firebase/Firestore', '~> 10.7.0'
+  pod 'Firebase/Messaging', '~> 10.7.0'
+  pod 'Firebase/Analytics', '~> 10.7.0'
+  pod 'Firebase/DynamicLinks', '~> 10.7.0'
 
   # Alternativa a mp3lame-for-ios
   pod 'lame'
@@ -33,6 +33,21 @@ post_install do |installer|
     # Ajustar el Deployment Target a iOS 12.0
     target.build_configurations.each do |config|
       config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
+      # Disable bitcode for all pods
+      config.build_settings['ENABLE_BITCODE'] = 'NO'
+      # Fix for Xcode 15 and newer
+      config.build_settings['BUILD_LIBRARY_FOR_DISTRIBUTION'] = 'YES'
+      # Fix C++ language version for gRPC
+      config.build_settings['CLANG_CXX_LANGUAGE_STANDARD'] = 'gnu++17'
+    end
+
+    # Fix gRPC-Core template issues
+    if target.name == 'gRPC-Core' || target.name == 'gRPC-C++'
+      target.build_configurations.each do |config|
+        config.build_settings['CLANG_CXX_LANGUAGE_STANDARD'] = 'gnu++17'
+        config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= ['$(inherited)']
+        config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] << 'GRPC_ARES=0'
+      end
     end
 
     # Corregir compilación de BoringSSL-GRPC
@@ -45,6 +60,11 @@ post_install do |installer|
         end
       end
     end
+  end
+
+  # Fix for GoogleDataTransport
+  installer.pods_project.build_configurations.each do |config|
+    config.build_settings['CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES'] = 'YES'
   end
 end
 

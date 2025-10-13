@@ -68,10 +68,69 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         initialGrayUpArrowXCentererdToGemara.isActive = false
         grayUpArrowXCentererdToGemara = grayUpArrow.centerXAnchor.constraint(equalTo: gemaraButton.centerXAnchor)
         grayUpArrowXCentererdToMishna = grayUpArrow.centerXAnchor.constraint(equalTo: mishnaButton.centerXAnchor)
-        
+
         setTableViews()
         setViews()
         setStrings()
+        setupRefreshGesture()
+    }
+
+    //========================================
+    // MARK: - Refresh Downloads (Hidden Feature)
+    //========================================
+
+    fileprivate func setupRefreshGesture() {
+        // Add long press gesture on title to refresh downloads list
+        // This removes orphaned download entries (lessons with no files)
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(titleLongPressed(_:)))
+        longPress.minimumPressDuration = 2.0
+        titleLabel.isUserInteractionEnabled = true
+        titleLabel.addGestureRecognizer(longPress)
+    }
+
+    @objc func titleLongPressed(_ gesture: UILongPressGestureRecognizer) {
+        guard gesture.state == .began else { return }
+
+        let alert = UIAlertController(
+            title: Strings.refreshDownloadsTitle,
+            message: Strings.refreshDownloadsMessage,
+            preferredStyle: .alert
+        )
+
+        alert.addAction(UIAlertAction(title: Strings.refresh, style: .default) { _ in
+            // Show activity indicator
+            let activityAlert = UIAlertController(title: nil, message: Strings.refreshingDownloads, preferredStyle: .alert)
+            let activityIndicator = UIActivityIndicatorView(style: .gray)
+            activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+            activityAlert.view.addSubview(activityIndicator)
+            activityIndicator.centerXAnchor.constraint(equalTo: activityAlert.view.centerXAnchor).isActive = true
+            activityIndicator.centerYAnchor.constraint(equalTo: activityAlert.view.centerYAnchor, constant: 10).isActive = true
+            activityIndicator.startAnimating()
+            self.present(activityAlert, animated: true)
+
+            // Perform refresh on background thread
+            DispatchQueue.global(qos: .userInitiated).async {
+                ContentRepository.shared.refreshDownloadsList()
+
+                DispatchQueue.main.async {
+                    activityAlert.dismiss(animated: true) {
+                        // Reload downloads list
+                        self.setContent(openSections: false)
+
+                        // Show completion message
+                        Utils.showAlertMessage(
+                            Strings.refreshDownloadsComplete,
+                            title: Strings.done,
+                            viewControler: self
+                        )
+                    }
+                }
+            }
+        })
+
+        alert.addAction(UIAlertAction(title: Strings.cancel, style: .cancel))
+
+        present(alert, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -80,6 +139,41 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         setSelectedPage()
         ContentRepository.shared.addDelegate(self)
         self.lessonWatched = UserDefaultsProvider.shared.lessonWatched
+
+        // Automatically validate downloads in the background to keep UI synced
+        // This removes orphaned entries (lessons where files were deleted)
+        validateDownloadsInBackground()
+    }
+
+    /// Validates that all downloaded lessons have their files present
+    /// Runs in background and updates UI if orphaned entries are found
+    private func validateDownloadsInBackground() {
+        DispatchQueue.global(qos: .utility).async {
+            let repository = ContentRepository.shared
+
+            // Get current downloads count before validation
+            let gemaraCountBefore = repository.getDownloadedGemaraLessons().flatMap { $0.records }.count
+            let mishnaCountBefore = repository.getDownloadedMishnaLessons().flatMap { $0.records }.count
+            let totalBefore = gemaraCountBefore + mishnaCountBefore
+
+            // Validate and remove orphaned entries
+            repository.refreshDownloadsList()
+
+            // Get count after validation
+            let gemaraCountAfter = repository.getDownloadedGemaraLessons().flatMap { $0.records }.count
+            let mishnaCountAfter = repository.getDownloadedMishnaLessons().flatMap { $0.records }.count
+            let totalAfter = gemaraCountAfter + mishnaCountAfter
+
+            // If orphaned entries were removed, refresh UI
+            if totalAfter < totalBefore {
+                let removedCount = totalBefore - totalAfter
+                print("📱 Downloads UI: Removed \(removedCount) orphaned entries, refreshing display")
+
+                DispatchQueue.main.async {
+                    self.setContent(openSections: false)
+                }
+            }
+        }
     }
     
     
@@ -276,20 +370,32 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         let background = UIView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: headerCell.bounds.size))
         background.backgroundColor = .clear
         headerCell.backgroundView = background
-        
+
         return headerCell
     }
-    
+
     fileprivate func initHeaderCell(_ headerCell: HeaderCellController, _ tableView: UITableView, _ section: Int, _ sectionName: inout String) {
         var isExpanded: Bool
         var sectionRowsCount: Int
-        
+
         if tableView == gemaraTableView {
+            // Safety check: ensure section index is valid
+            guard section < gemaraDownloads.count else {
+                headerCell.isFirstTable = true
+                sectionName = ""
+                return
+            }
             headerCell.isFirstTable = true
             isExpanded = gemaraOpenSections.contains(section)
             sectionName = self.gemaraDownloads[section].sederName
             sectionRowsCount = self.gemaraDownloads[section].records.count
         } else {
+            // Safety check: ensure section index is valid
+            guard section < mishnaDownloads.count else {
+                headerCell.isFirstTable = false
+                sectionName = ""
+                return
+            }
             headerCell.isFirstTable = false
             isExpanded = mishnaOpenSections.contains(section)
             sectionName = self.mishnaDownloads[section].sederName
@@ -310,6 +416,10 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
         let cell = tableView.dequeueReusableCell(withIdentifier: "downloadsCell", for: indexPath) as! DownloadsCellController
         cell.indexPath = indexPath
         if tableView == gemaraTableView {
+            // Safety check: ensure section index is valid
+            guard indexPath.section < gemaraDownloads.count else {
+                return cell
+            }
             cell.isFirstTable = true
             let lessons = self.gemaraDownloads[indexPath.section].records.sorted { (download1, download2) in
                 if download1.masechetId != download2.masechetId {
@@ -336,6 +446,10 @@ class DownloadsViewController: UIViewController, UITableViewDelegate, UITableVie
                 }
             }
         } else {
+            // Safety check: ensure section index is valid
+            guard indexPath.section < mishnaDownloads.count else {
+                return cell
+            }
             cell.isFirstTable = false
             let lessons = self.mishnaDownloads[indexPath.section].records.sorted { (download1, download2) in
                 if download1.masechetId != download2.masechetId {

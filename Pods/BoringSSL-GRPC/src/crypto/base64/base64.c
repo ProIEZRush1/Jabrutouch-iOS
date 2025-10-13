@@ -60,6 +60,8 @@
 #include <limits.h>
 #include <string.h>
 
+#include <openssl_grpc/type_check.h>
+
 #include "../internal.h"
 
 
@@ -96,8 +98,8 @@ static uint8_t conv_bin2ascii(uint8_t a) {
   return ret;
 }
 
-static_assert(sizeof(((EVP_ENCODE_CTX *)(NULL))->data) % 3 == 0,
-              "data length must be a multiple of base64 chunk size");
+OPENSSL_STATIC_ASSERT(sizeof(((EVP_ENCODE_CTX *)(NULL))->data) % 3 == 0,
+                      "data length must be a multiple of base64 chunk size");
 
 int EVP_EncodedLength(size_t *out_len, size_t len) {
   if (len + 2 < len) {
@@ -121,7 +123,12 @@ int EVP_EncodedLength(size_t *out_len, size_t len) {
 }
 
 EVP_ENCODE_CTX *EVP_ENCODE_CTX_new(void) {
-  return OPENSSL_zalloc(sizeof(EVP_ENCODE_CTX));
+  EVP_ENCODE_CTX *ret = OPENSSL_malloc(sizeof(EVP_ENCODE_CTX));
+  if (ret == NULL) {
+    return NULL;
+  }
+  OPENSSL_memset(ret, 0, sizeof(EVP_ENCODE_CTX));
+  return ret;
 }
 
 void EVP_ENCODE_CTX_free(EVP_ENCODE_CTX *ctx) {

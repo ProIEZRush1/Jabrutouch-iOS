@@ -22,7 +22,6 @@
 
 #include "absl/base/config.h"
 #include "absl/meta/type_traits.h"
-#include "absl/random/internal/traits.h"
 
 namespace absl {
 ABSL_NAMESPACE_BEGIN
@@ -57,10 +56,9 @@ constexpr UIntType IntegerLog2(UIntType n) {
 // `PowerOfTwoVariate(urbg)`.
 template <typename URBG>
 constexpr size_t NumBits() {
-  return static_cast<size_t>(
-      RangeSize<URBG>() == 0
-          ? std::numeric_limits<typename URBG::result_type>::digits
-          : IntegerLog2(RangeSize<URBG>()));
+  return RangeSize<URBG>() == 0
+             ? std::numeric_limits<typename URBG::result_type>::digits
+             : IntegerLog2(RangeSize<URBG>());
 }
 
 // Given a shift value `n`, constructs a mask with exactly the low `n` bits set.
@@ -100,7 +98,7 @@ class FastUniformBits {
   result_type operator()(URBG& g);  // NOLINT(runtime/references)
 
  private:
-  static_assert(IsUnsigned<UIntType>::value,
+  static_assert(std::is_unsigned<UIntType>::value,
                 "Class-template FastUniformBits<> must be parameterized using "
                 "an unsigned type.");
 
@@ -152,8 +150,7 @@ FastUniformBits<UIntType>::Generate(URBG& g,  // NOLINT(runtime/references)
 
   result_type r = static_cast<result_type>(g() - kMin);
   for (size_t n = 1; n < kIters; ++n) {
-    r = static_cast<result_type>(r << kShift) +
-        static_cast<result_type>(g() - kMin);
+    r = (r << kShift) + static_cast<result_type>(g() - kMin);
   }
   return r;
 }

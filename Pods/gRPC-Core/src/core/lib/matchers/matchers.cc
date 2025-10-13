@@ -16,14 +16,11 @@
 
 #include "src/core/lib/matchers/matchers.h"
 
-#include <utility>
-
-#include "absl/status/status.h"
-#include "absl/strings/ascii.h"
-#include "absl/strings/match.h"
-#include "absl/strings/numbers.h"
+#include "absl/memory/memory.h"
 #include "absl/strings/str_cat.h"
 #include "absl/strings/str_format.h"
+#include "absl/strings/str_join.h"
+#include "absl/strings/str_split.h"
 
 namespace grpc_core {
 
@@ -35,11 +32,10 @@ absl::StatusOr<StringMatcher> StringMatcher::Create(Type type,
                                                     absl::string_view matcher,
                                                     bool case_sensitive) {
   if (type == Type::kSafeRegex) {
-    auto regex_matcher = std::make_unique<RE2>(std::string(matcher));
+    auto regex_matcher = absl::make_unique<RE2>(std::string(matcher));
     if (!regex_matcher->ok()) {
       return absl::InvalidArgumentError(
-          absl::StrCat("Invalid regex string specified in matcher: ",
-                       regex_matcher->error()));
+          "Invalid regex string specified in matcher.");
     }
     return StringMatcher(std::move(regex_matcher));
   } else {
@@ -57,7 +53,7 @@ StringMatcher::StringMatcher(std::unique_ptr<RE2> regex_matcher)
 StringMatcher::StringMatcher(const StringMatcher& other)
     : type_(other.type_), case_sensitive_(other.case_sensitive_) {
   if (type_ == Type::kSafeRegex) {
-    regex_matcher_ = std::make_unique<RE2>(other.regex_matcher_->pattern());
+    regex_matcher_ = absl::make_unique<RE2>(other.regex_matcher_->pattern());
   } else {
     string_matcher_ = other.string_matcher_;
   }
@@ -66,7 +62,7 @@ StringMatcher::StringMatcher(const StringMatcher& other)
 StringMatcher& StringMatcher::operator=(const StringMatcher& other) {
   type_ = other.type_;
   if (type_ == Type::kSafeRegex) {
-    regex_matcher_ = std::make_unique<RE2>(other.regex_matcher_->pattern());
+    regex_matcher_ = absl::make_unique<RE2>(other.regex_matcher_->pattern());
   } else {
     string_matcher_ = other.string_matcher_;
   }
@@ -158,11 +154,12 @@ std::string StringMatcher::ToString() const {
 absl::StatusOr<HeaderMatcher> HeaderMatcher::Create(
     absl::string_view name, Type type, absl::string_view matcher,
     int64_t range_start, int64_t range_end, bool present_match,
-    bool invert_match, bool case_sensitive) {
+    bool invert_match) {
   if (static_cast<int>(type) < 5) {
     // Only for EXACT, PREFIX, SUFFIX, SAFE_REGEX and CONTAINS.
-    absl::StatusOr<StringMatcher> string_matcher = StringMatcher::Create(
-        static_cast<StringMatcher::Type>(type), matcher, case_sensitive);
+    absl::StatusOr<StringMatcher> string_matcher =
+        StringMatcher::Create(static_cast<StringMatcher::Type>(type), matcher,
+                              /*case_sensitive=*/true);
     if (!string_matcher.ok()) {
       return string_matcher.status();
     }

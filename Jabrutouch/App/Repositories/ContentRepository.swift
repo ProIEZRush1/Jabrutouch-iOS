@@ -73,7 +73,9 @@ class ContentRepository {
     }
     
     var downloadedLessonsStorageUrl: URL? {
-        guard let directoryUrl = FileDirectory.cache.url else { return nil }
+        // Changed from .cache to .documents for persistent storage
+        // Registry file must be in Documents alongside the actual media files
+        guard let directoryUrl = FileDirectory.documents.url else { return nil }
         let filename = "downloadedLessons.json"
         let url = directoryUrl.appendingPathComponent(filename)
         return url
@@ -516,13 +518,14 @@ class ContentRepository {
     func removedOldFiles(gemara: JTGemaraLesson?, mishna: JTMishnaLesson? , sederId: String, masechetId: String, chapter: String?){
         var lessonId = 0
         gemara?.id != nil ? lessonId = gemara!.id : mishna?.id != nil ? lessonId = mishna!.id : nil
-        
+
         let fileManager = FileManager.default
         let files = ["\(lessonId)_aud.mp3", "\(lessonId)_vid.mp4", "\(lessonId)_text.pdf"]
         var isRemovedAll = [false, false]
-        
+
         for (i, file) in files.enumerated() {
-            guard let currentFile = FileDirectory.cache.url?.appendingPathComponent(file) else { return }
+            // FIXED: Changed from .cache to .documents - files are now in Documents directory!
+            guard let currentFile = FileDirectory.documents.url?.appendingPathComponent(file) else { return }
             do{
                 if i == files.count-1 {
                     if !isRemovedAll.allSatisfy({$0}) {
@@ -530,13 +533,13 @@ class ContentRepository {
                     }
                 }
                 let attributes = try fileManager.attributesOfItem(atPath: currentFile.path)
-                
+
                 if let creationDate = attributes[FileAttributeKey.creationDate] as? Date {
-                    
+
                     if Date().timeIntervalSince(creationDate) >= 60*60*24*30 {
-                        
+
                         FilesManagementProvider.shared.removeFiles(currentFile) { (url, result) in
-                           
+
                             switch result {
                             case .success:
                                 i < files.count-1 ? isRemovedAll[i] = true :
@@ -550,7 +553,7 @@ class ContentRepository {
                 i < files.count-1 ? isRemovedAll[i] = true : nil
             }
         }
-        
+
         if isRemovedAll.allSatisfy({$0}) {
             if mishna != nil && chapter != nil {
                 self.removeMishnaLessonFromArray(mishna!, sederId: sederId, masechetId: masechetId, chapter: chapter!)
@@ -693,34 +696,130 @@ class ContentRepository {
     }
     
     private func loadDownloadedLessonsFromStorage() {
-        guard let url = self.downloadedLessonsStorageUrl else { return }
+        guard let url = self.downloadedLessonsStorageUrl else {
+            print("❌ Cannot load registry: Invalid storage URL")
+            return
+        }
+
+        let fileManager = FileManager.default
+        let fileExists = fileManager.fileExists(atPath: url.path)
+
+        print("📖 Loading downloads registry from: \(url.path)")
+        print("   File exists: \(fileExists)")
+
+        if !fileExists {
+            print("ℹ️  Registry file does not exist - no downloads to load")
+            return
+        }
+
         do {
             let contentString = try String(contentsOf: url)
-            guard let content = Utils.convertStringToDictionary(contentString) as? [String:Any] else { return }
+            print("   File size: \(contentString.count) characters")
+
+            guard let content = Utils.convertStringToDictionary(contentString) as? [String:Any] else {
+                print("❌ Failed to parse registry JSON")
+                print("   First 200 chars: \(String(contentString.prefix(200)))")
+                return
+            }
+
+            print("   JSON parsed successfully")
+            print("   Keys found: \(content.keys.joined(separator: ", "))")
+
             if let gemaraLessonsValues = content["gemara"] as? [SederId:[MasechetId:[[String:Any]]]]{
+                let lessonsArray = gemaraLessonsValues.flatMap { $0.value.flatMap { $0.value } }
+                let allLessons: [[String:Any]] = lessonsArray.flatMap { $0 }
+                let initializedLessons: [JTGemaraLesson] = allLessons.compactMap{ JTGemaraLesson(values:$0) }
+                let initializedCount = initializedLessons.count
+                let failedCount = allLessons.count - initializedCount
+
                 self.downloadedGemaraLessons = gemaraLessonsValues.mapValues{$0.mapValues{Set($0.compactMap{JTGemaraLesson(values:$0)})}}
+                print("   ✅ Loaded \(initializedCount) Gemara lessons")
+                if failedCount > 0 {
+                    print("   ⚠️  \(failedCount) Gemara lessons failed to initialize")
+                }
+            } else {
+                print("   ⚠️  'gemara' key not found or wrong type")
+                if let gemaraData = content["gemara"] {
+                    print("      Actual type: \(type(of: gemaraData))")
+                }
             }
+
             if let mishnaLessonsValues = content["mishna"] as? [SederId:[MasechetId:[Chapter : [[String:Any]]]]]{
+                let lessonsArray = mishnaLessonsValues.flatMap { $0.value.flatMap { $0.value.flatMap { $0.value } } }
+                let allLessons: [[String:Any]] = lessonsArray.flatMap { $0 }
+                let initializedLessons: [JTMishnaLesson] = allLessons.compactMap{ JTMishnaLesson(values:$0) }
+                let initializedCount = initializedLessons.count
+                let failedCount = allLessons.count - initializedCount
+
                 self.downloadedMishnaLessons = mishnaLessonsValues.mapValues{$0.mapValues{$0.mapValues{Set($0.compactMap{JTMishnaLesson(values: $0)})}}}
+                print("   ✅ Loaded \(initializedCount) Mishna lessons")
+                if failedCount > 0 {
+                    print("   ⚠️  \(failedCount) Mishna lessons failed to initialize")
+                }
+            } else {
+                print("   ⚠️  'mishna' key not found or wrong type")
+                if let mishnaData = content["mishna"] {
+                    print("      Actual type: \(type(of: mishnaData))")
+                }
             }
+
+            let totalGemara = downloadedGemaraLessons.flatMap { $0.value.flatMap { $0.value } }.count
+            let totalMishna = downloadedMishnaLessons.flatMap { $0.value.flatMap { $0.value.flatMap { $0.value } } }.count
+            print("📖 Loaded downloads registry: \(totalGemara) Gemara + \(totalMishna) Mishna lessons")
         }
         catch {
-            
+            print("❌ ERROR loading downloads registry: \(error)")
+            print("   File path: \(url.path)")
+            print("   Error details: \(error.localizedDescription)")
         }
     }
     
     private func updateDownloadedLessonsStorage() {
-        guard let url = self.downloadedLessonsStorageUrl else { return }
+        guard let url = self.downloadedLessonsStorageUrl else {
+            print("❌ Cannot save registry: Invalid storage URL")
+            return
+        }
+
+        let gemaraCount = downloadedGemaraLessons.flatMap { $0.value.flatMap { $0.value } }.count
+        let mishnaCount = downloadedMishnaLessons.flatMap { $0.value.flatMap { $0.value.flatMap { $0.value } } }.count
+        print("💾 Saving downloads registry: \(gemaraCount) Gemara + \(mishnaCount) Mishna lessons to \(url.path)")
+        print("   Gemara structure: \(downloadedGemaraLessons.keys.count) seders")
+        for (sederId, masechtot) in downloadedGemaraLessons {
+            print("     Seder \(sederId): \(masechtot.keys.count) masechtot, \(masechtot.flatMap{$0.value}.count) lessons")
+        }
+        print("   Mishna structure: \(downloadedMishnaLessons.keys.count) seders")
+        for (sederId, masechtot) in downloadedMishnaLessons {
+            let lessonCount = masechtot.flatMap { $0.value.flatMap { $0.value } }.count
+            print("     Seder \(sederId): \(masechtot.keys.count) masechtot, \(lessonCount) lessons")
+        }
+
         let mappedGemaraLessons = self.downloadedGemaraLessons.mapValues{$0.mapValues{$0.map{$0.values}}}
         let mappedMishnaLessons = self.downloadedMishnaLessons.mapValues{$0.mapValues{$0.mapValues{$0.map{$0.values}}}}
+
+        print("   📦 After mapping Gemara: \(mappedGemaraLessons.keys.count) seders")
+        for (sederId, masechtot) in mappedGemaraLessons {
+            let totalArrays = masechtot.values.reduce(0) { $0 + $1.count }
+            print("     Seder \(sederId): \(masechtot.keys.count) masechtot, \(totalArrays) lesson dictionaries")
+        }
+
         let content: [String : Any] = ["gemara": mappedGemaraLessons, "mishna": mappedMishnaLessons]
+
+        // Log the content being serialized
+        if let jsonData = try? JSONSerialization.data(withJSONObject: content, options: []),
+           let jsonString = String(data: jsonData, encoding: .utf8) {
+            print("   📄 JSON content size: \(jsonString.count) characters")
+            print("   📄 JSON preview (first 500 chars): \(String(jsonString.prefix(500)))")
+        }
+
         do {
             try self.saveContentToFile(content: content, url: url)
+            print("✅ Downloads registry saved successfully")
         }
         catch {
-            
+            print("❌ CRITICAL ERROR saving downloads registry: \(error)")
+            print("   This means downloads will NOT persist after app restart!")
         }
-        
+
     }
     
     private func updateLastWatchedLessonsStorage() {
@@ -998,5 +1097,478 @@ extension ContentRepository: DownloadTaskDelegate {
                 }
             }
         }
+    }
+
+    //========================================
+    // MARK: - Storage Migration
+    //========================================
+
+    /**
+     Migrates the downloads registry file from Caches to Documents
+     This is critical because the registry file must be in the same persistent storage as the media files
+     */
+    private func migrateRegistryFile() {
+        let fileManager = FileManager.default
+
+        guard let cacheURL = FileDirectory.cache.url,
+              let documentsURL = FileDirectory.documents.url else {
+            print("❌ Registry migration failed: Could not access directories")
+            return
+        }
+
+        let oldRegistryPath = cacheURL.appendingPathComponent("downloadedLessons.json")
+        let newRegistryPath = documentsURL.appendingPathComponent("downloadedLessons.json")
+
+        // Check if old registry exists in Caches
+        if fileManager.fileExists(atPath: oldRegistryPath.path) {
+            // Check if new registry already exists in Documents
+            if fileManager.fileExists(atPath: newRegistryPath.path) {
+                print("📋 Registry already exists in Documents, removing old cache version")
+                try? fileManager.removeItem(at: oldRegistryPath)
+            } else {
+                // Move registry from Caches to Documents
+                do {
+                    try fileManager.moveItem(at: oldRegistryPath, to: newRegistryPath)
+                    print("✅ Migrated registry file from Caches to Documents")
+                } catch {
+                    print("❌ Error migrating registry file: \(error)")
+                    // If move fails, try copying
+                    do {
+                        try fileManager.copyItem(at: oldRegistryPath, to: newRegistryPath)
+                        try? fileManager.removeItem(at: oldRegistryPath)
+                        print("✅ Copied registry file from Caches to Documents")
+                    } catch {
+                        print("❌ Error copying registry file: \(error)")
+                    }
+                }
+            }
+        } else {
+            print("ℹ️  No registry file found in Caches (may already be in Documents or no downloads exist)")
+        }
+    }
+
+    /**
+     Migrates downloaded lesson files from ~/Library/Caches/ to ~/Library/Documents/
+     This is a one-time migration needed because:
+     - Old downloads were saved to Caches (can be deleted by iOS)
+     - New code expects files in Documents (persistent storage)
+     - Without migration, lessons show as downloaded but files are not found
+
+     Strategy:
+     1. Check if migration already completed (UserDefaults flag)
+     2. Migrate registry file from Caches to Documents if needed
+     3. Get list of all downloaded lessons from registry
+     4. For each lesson, check if files exist in Caches but not in Documents
+     5. Move files from Caches to Documents
+     6. Clean up orphaned registry entries (lessons with no files in either location)
+     7. Set migration completed flag
+     */
+    func migrateDownloadsFromCachesToDocuments() {
+        // Check if migration already completed
+        if UserDefaultsProvider.shared.hasCompletedDownloadsCacheToDocumentsMigration {
+            print("✅ Downloads migration already completed, skipping")
+            return
+        }
+
+        print("🔄 Starting downloads migration from Caches to Documents...")
+
+        // STEP 1: Migrate the registry file itself from Caches to Documents
+        migrateRegistryFile()
+
+        guard let cacheURL = FileDirectory.cache.url,
+              let documentsURL = FileDirectory.documents.url else {
+            print("❌ Migration failed: Could not access directories")
+            return
+        }
+
+        var migratedCount = 0
+        var deletedCount = 0
+        var errorCount = 0
+        var orphanedLessons: [(lesson: JTLesson, sederId: String, masechetId: String, chapter: String?)] = []
+
+        // Process Gemara downloads
+        for (sederId, masechtotDict) in downloadedGemaraLessons {
+            for (masechetId, lessons) in masechtotDict {
+                for lesson in lessons {
+                    let result = migrateLessonFiles(lesson, cacheURL: cacheURL, documentsURL: documentsURL)
+
+                    switch result {
+                    case .migrated:
+                        migratedCount += 1
+                    case .alreadyInDocuments:
+                        break // Already migrated, no action needed
+                    case .deleted:
+                        deletedCount += 1
+                    case .orphaned:
+                        orphanedLessons.append((lesson, sederId, masechetId, nil))
+                    case .error:
+                        errorCount += 1
+                    }
+                }
+            }
+        }
+
+        // Process Mishna downloads
+        for (sederId, masechtotDict) in downloadedMishnaLessons {
+            for (masechetId, chaptersDict) in masechtotDict {
+                for (chapter, lessons) in chaptersDict {
+                    for lesson in lessons {
+                        let result = migrateLessonFiles(lesson, cacheURL: cacheURL, documentsURL: documentsURL)
+
+                        switch result {
+                        case .migrated:
+                            migratedCount += 1
+                        case .alreadyInDocuments:
+                            break
+                        case .deleted:
+                            deletedCount += 1
+                        case .orphaned:
+                            orphanedLessons.append((lesson, sederId, masechetId, chapter))
+                        case .error:
+                            errorCount += 1
+                        }
+                    }
+                }
+            }
+        }
+
+        // Clean up orphaned registry entries (lessons with no files anywhere)
+        if !orphanedLessons.isEmpty {
+            print("🧹 Cleaning up \(orphanedLessons.count) orphaned download entries...")
+            for item in orphanedLessons {
+                if let gemaraLesson = item.lesson as? JTGemaraLesson {
+                    removeGemaraLessonFromArray(gemaraLesson, sederId: item.sederId, masechetId: item.masechetId)
+                } else if let mishnaLesson = item.lesson as? JTMishnaLesson, let chapter = item.chapter {
+                    removeMishnaLessonFromArray(mishnaLesson, sederId: item.sederId, masechetId: item.masechetId, chapter: chapter)
+                }
+            }
+            updateDownloadedLessonsStorage()
+        }
+
+        // Mark migration as completed
+        UserDefaultsProvider.shared.hasCompletedDownloadsCacheToDocumentsMigration = true
+
+        print("✅ Migration completed:")
+        print("   📦 Migrated: \(migratedCount) lessons")
+        print("   🗑️  Deleted duplicates: \(deletedCount) lessons")
+        print("   🧹 Cleaned orphans: \(orphanedLessons.count) entries")
+        if errorCount > 0 {
+            print("   ⚠️  Errors: \(errorCount) lessons")
+        }
+    }
+
+    private enum MigrationResult {
+        case migrated           // Moved from Caches to Documents
+        case alreadyInDocuments // File already in Documents, deleted from Caches
+        case deleted            // Duplicate found, deleted from Caches
+        case orphaned           // No files found in either location
+        case error              // Error during migration
+    }
+
+    private func migrateLessonFiles(_ lesson: JTLesson, cacheURL: URL, documentsURL: URL) -> MigrationResult {
+        let fileManager = FileManager.default
+        var hasAnyFile = false
+        var migrationOccurred = false
+
+        // Check audio file
+        if lesson.audioLink != nil {
+            let cacheAudioPath = cacheURL.appendingPathComponent(lesson.audioLocalFileName).path
+            let documentsAudioPath = documentsURL.appendingPathComponent(lesson.audioLocalFileName).path
+
+            if fileManager.fileExists(atPath: documentsAudioPath) {
+                // File already in Documents - delete from Caches if exists
+                hasAnyFile = true
+                if fileManager.fileExists(atPath: cacheAudioPath) {
+                    try? fileManager.removeItem(atPath: cacheAudioPath)
+                    print("🗑️  Deleted duplicate audio from Caches: \(lesson.audioLocalFileName)")
+                }
+            } else if fileManager.fileExists(atPath: cacheAudioPath) {
+                // Move from Caches to Documents
+                do {
+                    try fileManager.moveItem(atPath: cacheAudioPath, toPath: documentsAudioPath)
+                    hasAnyFile = true
+                    migrationOccurred = true
+                    print("📦 Migrated audio: \(lesson.audioLocalFileName)")
+                } catch {
+                    print("❌ Error migrating audio \(lesson.audioLocalFileName): \(error)")
+                    return .error
+                }
+            }
+        }
+
+        // Check video file
+        if lesson.videoLink != nil {
+            let cacheVideoPath = cacheURL.appendingPathComponent(lesson.videoLocalFileName).path
+            let documentsVideoPath = documentsURL.appendingPathComponent(lesson.videoLocalFileName).path
+
+            if fileManager.fileExists(atPath: documentsVideoPath) {
+                hasAnyFile = true
+                if fileManager.fileExists(atPath: cacheVideoPath) {
+                    try? fileManager.removeItem(atPath: cacheVideoPath)
+                    print("🗑️  Deleted duplicate video from Caches: \(lesson.videoLocalFileName)")
+                }
+            } else if fileManager.fileExists(atPath: cacheVideoPath) {
+                do {
+                    try fileManager.moveItem(atPath: cacheVideoPath, toPath: documentsVideoPath)
+                    hasAnyFile = true
+                    migrationOccurred = true
+                    print("📦 Migrated video: \(lesson.videoLocalFileName)")
+                } catch {
+                    print("❌ Error migrating video \(lesson.videoLocalFileName): \(error)")
+                    return .error
+                }
+            }
+        }
+
+        // Check PDF/text file
+        if lesson.textLink != nil {
+            let cacheTextPath = cacheURL.appendingPathComponent(lesson.textLocalFileName).path
+            let documentsTextPath = documentsURL.appendingPathComponent(lesson.textLocalFileName).path
+
+            if fileManager.fileExists(atPath: documentsTextPath) {
+                hasAnyFile = true
+                if fileManager.fileExists(atPath: cacheTextPath) {
+                    try? fileManager.removeItem(atPath: cacheTextPath)
+                    print("🗑️  Deleted duplicate PDF from Caches: \(lesson.textLocalFileName)")
+                }
+            } else if fileManager.fileExists(atPath: cacheTextPath) {
+                do {
+                    try fileManager.moveItem(atPath: cacheTextPath, toPath: documentsTextPath)
+                    hasAnyFile = true
+                    migrationOccurred = true
+                    print("📦 Migrated PDF: \(lesson.textLocalFileName)")
+                } catch {
+                    print("❌ Error migrating PDF \(lesson.textLocalFileName): \(error)")
+                    return .error
+                }
+            }
+        }
+
+        // Determine result
+        if !hasAnyFile {
+            return .orphaned
+        } else if migrationOccurred {
+            return .migrated
+        } else {
+            return .alreadyInDocuments
+        }
+    }
+
+    /**
+     Reloads the downloads list from storage
+     This is useful after migration to refresh the in-memory state
+     */
+    func reloadDownloadsFromStorage() {
+        print("🔄 Reloading downloads from storage...")
+        loadDownloadedLessonsFromStorage()
+        print("✅ Downloads reloaded from storage")
+    }
+
+    /**
+     Manually refresh the downloads list by removing orphaned entries
+     This is a user-triggered cleanup that removes download registry entries
+     for lessons where the actual files don't exist in the Documents directory
+
+     Useful as a manual fix if migration didn't work correctly or if users
+     manually deleted files outside the app
+     */
+    func refreshDownloadsList() {
+        print("🔄 Refreshing downloads list...")
+
+        guard let documentsURL = FileDirectory.documents.url else {
+            print("❌ Could not access Documents directory")
+            return
+        }
+
+        let fileManager = FileManager.default
+        var orphanedGemara: [(lesson: JTGemaraLesson, sederId: String, masechetId: String)] = []
+        var orphanedMishna: [(lesson: JTMishnaLesson, sederId: String, masechetId: String, chapter: String)] = []
+
+        // Check Gemara downloads
+        for (sederId, masechtotDict) in downloadedGemaraLessons {
+            for (masechetId, lessons) in masechtotDict {
+                for lesson in lessons {
+                    var hasAnyFile = false
+
+                    // Check if ANY of the lesson's files exist
+                    if lesson.audioLink != nil {
+                        let audioPath = documentsURL.appendingPathComponent(lesson.audioLocalFileName).path
+                        if fileManager.fileExists(atPath: audioPath) {
+                            hasAnyFile = true
+                        }
+                    }
+
+                    if lesson.videoLink != nil {
+                        let videoPath = documentsURL.appendingPathComponent(lesson.videoLocalFileName).path
+                        if fileManager.fileExists(atPath: videoPath) {
+                            hasAnyFile = true
+                        }
+                    }
+
+                    if lesson.textLink != nil {
+                        let textPath = documentsURL.appendingPathComponent(lesson.textLocalFileName).path
+                        if fileManager.fileExists(atPath: textPath) {
+                            hasAnyFile = true
+                        }
+                    }
+
+                    if !hasAnyFile {
+                        orphanedGemara.append((lesson, sederId, masechetId))
+                        print("🧹 Found orphaned Gemara lesson: \(lesson.id)")
+                    }
+                }
+            }
+        }
+
+        // Check Mishna downloads
+        for (sederId, masechtotDict) in downloadedMishnaLessons {
+            for (masechetId, chaptersDict) in masechtotDict {
+                for (chapter, lessons) in chaptersDict {
+                    for lesson in lessons {
+                        var hasAnyFile = false
+
+                        if lesson.audioLink != nil {
+                            let audioPath = documentsURL.appendingPathComponent(lesson.audioLocalFileName).path
+                            if fileManager.fileExists(atPath: audioPath) {
+                                hasAnyFile = true
+                            }
+                        }
+
+                        if lesson.videoLink != nil {
+                            let videoPath = documentsURL.appendingPathComponent(lesson.videoLocalFileName).path
+                            if fileManager.fileExists(atPath: videoPath) {
+                                hasAnyFile = true
+                            }
+                        }
+
+                        if lesson.textLink != nil {
+                            let textPath = documentsURL.appendingPathComponent(lesson.textLocalFileName).path
+                            if fileManager.fileExists(atPath: textPath) {
+                                hasAnyFile = true
+                            }
+                        }
+
+                        if !hasAnyFile {
+                            orphanedMishna.append((lesson, sederId, masechetId, chapter))
+                            print("🧹 Found orphaned Mishna lesson: \(lesson.id)")
+                        }
+                    }
+                }
+            }
+        }
+
+        // Remove orphaned entries
+        for item in orphanedGemara {
+            removeGemaraLessonFromArray(item.lesson, sederId: item.sederId, masechetId: item.masechetId)
+        }
+
+        for item in orphanedMishna {
+            removeMishnaLessonFromArray(item.lesson, sederId: item.sederId, masechetId: item.masechetId, chapter: item.chapter)
+        }
+
+        if !orphanedGemara.isEmpty || !orphanedMishna.isEmpty {
+            updateDownloadedLessonsStorage()
+            print("✅ Removed \(orphanedGemara.count + orphanedMishna.count) orphaned download entries")
+        } else {
+            print("✅ No orphaned downloads found")
+        }
+
+        // PHASE 2: Discover unregistered files and add them to registry
+        let discoveredCount = discoverAndRegisterUnregisteredFiles()
+        if discoveredCount > 0 {
+            print("✅ Added \(discoveredCount) discovered files to registry")
+        }
+    }
+
+    /**
+     Discovers downloaded files that exist in Documents but aren't in the registry
+     Attempts to look up full lesson data from cached storage and add to registry
+     This fixes the issue where download icons show but lessons don't appear in Downloads screen
+     */
+    private func discoverAndRegisterUnregisteredFiles() -> Int {
+        print("🔍 Scanning for unregistered downloaded files...")
+
+        guard let documentsURL = FileDirectory.documents.url else {
+            print("❌ Could not access Documents directory")
+            return 0
+        }
+
+        let fileManager = FileManager.default
+        guard let files = try? fileManager.contentsOfDirectory(atPath: documentsURL.path) else {
+            print("❌ Could not list files in Documents directory")
+            return 0
+        }
+
+        // Find audio/video files (excluding PDFs as they're supplementary)
+        let lessonFiles = files.filter { $0.hasSuffix("_aud.mp3") || $0.hasSuffix("_vid.mp4") }
+
+        var addedCount = 0
+        for filename in lessonFiles {
+            // Extract lesson ID from filename (format: {lessonId}_aud.mp3 or {lessonId}_vid.mp4)
+            let components = filename.components(separatedBy: "_")
+            guard let lessonIdString = components.first,
+                  let lessonId = Int(lessonIdString) else {
+                print("⚠️  Could not extract lesson ID from filename: \(filename)")
+                continue
+            }
+
+            // Check if already in registry
+            if isLessonInRegistry(lessonId) {
+                continue // Already registered, skip
+            }
+
+            // Try to get full lesson data from cached storage (gemaraLessons or mishnaLessons)
+            if let (lesson, sederId, masechetId, chapter) = getLessonFromLocalStorage(withId: lessonId) {
+                // Verify the file actually exists before adding to registry
+                let fileURL = documentsURL.appendingPathComponent(filename)
+                guard fileManager.fileExists(atPath: fileURL.path) else {
+                    continue
+                }
+
+                // Add to registry with full metadata
+                if let gemaraLesson = lesson as? JTGemaraLesson {
+                    addLessonToDownloaded(gemaraLesson, sederId: sederId, masechetId: masechetId)
+                    addedCount += 1
+                    print("📥 Discovered unregistered Gemara file: \(filename) (Lesson ID: \(lessonId))")
+                } else if let mishnaLesson = lesson as? JTMishnaLesson, let chapterValue = chapter {
+                    addLessonToDownloaded(mishnaLesson, sederId: sederId, masechetId: masechetId, chapter: chapterValue)
+                    addedCount += 1
+                    print("📥 Discovered unregistered Mishna file: \(filename) (Lesson ID: \(lessonId))")
+                }
+            } else {
+                print("⚠️  Found file without cached lesson metadata: \(filename) (Lesson ID: \(lessonId))")
+                print("    This lesson may need to be re-downloaded or the lesson cache needs to be refreshed")
+            }
+        }
+
+        return addedCount
+    }
+
+    /**
+     Checks if a lesson with the given ID is already in the downloads registry
+     Returns true if found in either Gemara or Mishna registry
+     */
+    private func isLessonInRegistry(_ lessonId: Int) -> Bool {
+        // Check Gemara registry
+        for (_, masechtotDict) in downloadedGemaraLessons {
+            for (_, lessons) in masechtotDict {
+                if lessons.contains(where: { $0.id == lessonId }) {
+                    return true
+                }
+            }
+        }
+
+        // Check Mishna registry
+        for (_, masechtotDict) in downloadedMishnaLessons {
+            for (_, chaptersDict) in masechtotDict {
+                for (_, lessons) in chaptersDict {
+                    if lessons.contains(where: { $0.id == lessonId }) {
+                        return true
+                    }
+                }
+            }
+        }
+
+        return false
     }
 }

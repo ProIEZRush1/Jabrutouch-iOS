@@ -16,11 +16,8 @@
 
 #include "src/core/lib/security/authorization/rbac_policy.h"
 
-#include <utility>
-
 #include "absl/strings/str_format.h"
 #include "absl/strings/str_join.h"
-#include "absl/strings/string_view.h"
 
 namespace grpc_core {
 
@@ -28,56 +25,25 @@ namespace grpc_core {
 // Rbac
 //
 
-Rbac::Rbac(std::string name, Rbac::Action action,
-           std::map<std::string, Policy> policies)
-    : name(std::move(name)),
-      action(action),
-      policies(std::move(policies)),
-      audit_condition(Rbac::AuditCondition::kNone) {}
+Rbac::Rbac(Rbac::Action action, std::map<std::string, Policy> policies)
+    : action(action), policies(std::move(policies)) {}
 
 Rbac::Rbac(Rbac&& other) noexcept
-    : name(std::move(other.name)),
-      action(other.action),
-      policies(std::move(other.policies)),
-      audit_condition(other.audit_condition),
-      logger_configs(std::move(other.logger_configs)) {}
+    : action(other.action), policies(std::move(other.policies)) {}
 
 Rbac& Rbac::operator=(Rbac&& other) noexcept {
-  name = std::move(other.name);
   action = other.action;
   policies = std::move(other.policies);
-  audit_condition = other.audit_condition;
-  logger_configs = std::move(other.logger_configs);
   return *this;
 }
 
 std::string Rbac::ToString() const {
   std::vector<std::string> contents;
-  absl::string_view condition_str;
-  switch (audit_condition) {
-    case Rbac::AuditCondition::kNone:
-      condition_str = "None";
-      break;
-    case AuditCondition::kOnDeny:
-      condition_str = "OnDeny";
-      break;
-    case AuditCondition::kOnAllow:
-      condition_str = "OnAllow";
-      break;
-    case AuditCondition::kOnDenyAndAllow:
-      condition_str = "OnDenyAndAllow";
-      break;
-  }
   contents.push_back(absl::StrFormat(
-      "Rbac name=%s action=%s audit_condition=%s{", name,
-      action == Rbac::Action::kAllow ? "Allow" : "Deny", condition_str));
+      "Rbac action=%s{", action == Rbac::Action::kAllow ? "Allow" : "Deny"));
   for (const auto& p : policies) {
     contents.push_back(absl::StrFormat("{\n  policy_name=%s\n%s\n}", p.first,
                                        p.second.ToString()));
-  }
-  for (const auto& config : logger_configs) {
-    contents.push_back(absl::StrFormat("{\n  audit_logger=%s\n%s\n}",
-                                       config->name(), config->ToString()));
   }
   contents.push_back("}");
   return absl::StrJoin(contents, "\n");
@@ -129,7 +95,7 @@ Rbac::Permission Rbac::Permission::MakeNotPermission(Permission permission) {
   Permission not_permission;
   not_permission.type = Permission::RuleType::kNot;
   not_permission.permissions.push_back(
-      std::make_unique<Rbac::Permission>(std::move(permission)));
+      absl::make_unique<Rbac::Permission>(std::move(permission)));
   return not_permission;
 }
 
@@ -301,7 +267,7 @@ Rbac::Principal Rbac::Principal::MakeNotPrincipal(Principal principal) {
   Principal not_principal;
   not_principal.type = Principal::RuleType::kNot;
   not_principal.principals.push_back(
-      std::make_unique<Rbac::Principal>(std::move(principal)));
+      absl::make_unique<Rbac::Principal>(std::move(principal)));
   return not_principal;
 }
 
@@ -312,7 +278,7 @@ Rbac::Principal Rbac::Principal::MakeAnyPrincipal() {
 }
 
 Rbac::Principal Rbac::Principal::MakeAuthenticatedPrincipal(
-    absl::optional<StringMatcher> string_matcher) {
+    StringMatcher string_matcher) {
   Principal principal;
   principal.type = Principal::RuleType::kPrincipalName;
   principal.string_matcher = std::move(string_matcher);
@@ -432,7 +398,7 @@ std::string Rbac::Principal::ToString() const {
     case RuleType::kAny:
       return "any";
     case RuleType::kPrincipalName:
-      return absl::StrFormat("principal_name=%s", string_matcher->ToString());
+      return absl::StrFormat("principal_name=%s", string_matcher.ToString());
     case RuleType::kSourceIp:
       return absl::StrFormat("source_ip=%s", ip.ToString());
     case RuleType::kDirectRemoteIp:
@@ -442,7 +408,7 @@ std::string Rbac::Principal::ToString() const {
     case RuleType::kHeader:
       return absl::StrFormat("header=%s", header_matcher.ToString());
     case RuleType::kPath:
-      return absl::StrFormat("path=%s", string_matcher->ToString());
+      return absl::StrFormat("path=%s", string_matcher.ToString());
     case RuleType::kMetadata:
       return absl::StrFormat("%smetadata", invert ? "invert " : "");
     default:

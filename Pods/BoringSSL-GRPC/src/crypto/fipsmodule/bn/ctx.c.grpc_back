@@ -108,6 +108,7 @@ struct bignum_ctx {
 BN_CTX *BN_CTX_new(void) {
   BN_CTX *ret = OPENSSL_malloc(sizeof(BN_CTX));
   if (!ret) {
+    OPENSSL_PUT_ERROR(BN, ERR_R_MALLOC_FAILURE);
     return NULL;
   }
 
@@ -161,6 +162,7 @@ BIGNUM *BN_CTX_get(BN_CTX *ctx) {
   if (ctx->bignums == NULL) {
     ctx->bignums = sk_BIGNUM_new_null();
     if (ctx->bignums == NULL) {
+      OPENSSL_PUT_ERROR(BN, ERR_R_MALLOC_FAILURE);
       ctx->error = 1;
       return NULL;
     }
@@ -210,7 +212,7 @@ static int BN_STACK_push(BN_STACK *st, size_t idx) {
     // This function intentionally does not push to the error queue on error.
     // Error-reporting is deferred to |BN_CTX_get|.
     size_t new_size = st->size != 0 ? st->size * 3 / 2 : BN_CTX_START_FRAMES;
-    if (new_size <= st->size || new_size > SIZE_MAX / sizeof(size_t)) {
+    if (new_size <= st->size || new_size > ((size_t)-1) / sizeof(size_t)) {
       return 0;
     }
     size_t *new_indexes =

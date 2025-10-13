@@ -68,124 +68,153 @@
 #include "conf_def.h"
 #include "internal.h"
 #include "../internal.h"
+#include "../lhash/internal.h"
 
 
-struct conf_section_st {
-  char *name;
-  // values contains non-owning pointers to the values in the section.
-  STACK_OF(CONF_VALUE) *values;
+DEFINE_LHASH_OF(CONF_VALUE)
+
+struct conf_st {
+  LHASH_OF(CONF_VALUE) *data;
 };
 
 static const char kDefaultSectionName[] = "default";
 
-static uint32_t conf_section_hash(const CONF_SECTION *s) {
-  return OPENSSL_strhash(s->name);
-}
-
-static int conf_section_cmp(const CONF_SECTION *a, const CONF_SECTION *b) {
-  return strcmp(a->name, b->name);
-}
+// The maximum length we can grow a value to after variable expansion. 64k
+// should be more than enough for all reasonable uses.
+#define MAX_CONF_VALUE_LENGTH 65536
 
 static uint32_t conf_value_hash(const CONF_VALUE *v) {
-  const uint32_t section_hash = OPENSSL_strhash(v->section);
-  const uint32_t name_hash = OPENSSL_strhash(v->name);
+  const uint32_t section_hash = v->section ? OPENSSL_strhash(v->section) : 0;
+  const uint32_t name_hash = v->name ? OPENSSL_strhash(v->name) : 0;
   return (section_hash << 2) ^ name_hash;
 }
 
 static int conf_value_cmp(const CONF_VALUE *a, const CONF_VALUE *b) {
-  int cmp = strcmp(a->section, b->section);
-  if (cmp != 0) {
-    return cmp;
+  int i;
+
+  if (a->section != b->section) {
+    i = strcmp(a->section, b->section);
+    if (i) {
+      return i;
+    }
   }
 
-  return strcmp(a->name, b->name);
+  if (a->name != NULL && b->name != NULL) {
+    return strcmp(a->name, b->name);
+  } else if (a->name == b->name) {
+    return 0;
+  } else {
+    return (a->name == NULL) ? -1 : 1;
+  }
 }
 
 CONF *NCONF_new(void *method) {
+  CONF *conf;
+
   if (method != NULL) {
     return NULL;
   }
 
-  CONF *conf = OPENSSL_malloc(sizeof(CONF));
+  conf = OPENSSL_malloc(sizeof(CONF));
   if (conf == NULL) {
     return NULL;
   }
 
-  conf->sections = lh_CONF_SECTION_new(conf_section_hash, conf_section_cmp);
-  conf->values = lh_CONF_VALUE_new(conf_value_hash, conf_value_cmp);
-  if (conf->sections == NULL || conf->values == NULL) {
-    NCONF_free(conf);
+  conf->data = lh_CONF_VALUE_new(conf_value_hash, conf_value_cmp);
+  if (conf->data == NULL) {
+    OPENSSL_free(conf);
     return NULL;
   }
 
   return conf;
 }
 
-CONF_VALUE *CONF_VALUE_new(void) { return OPENSSL_zalloc(sizeof(CONF_VALUE)); }
-
-static void value_free(CONF_VALUE *value) {
-  if (value == NULL) {
-    return;
+CONF_VALUE *CONF_VALUE_new(void) {
+  CONF_VALUE *v = OPENSSL_malloc(sizeof(CONF_VALUE));
+  if (!v) {
+    OPENSSL_PUT_ERROR(CONF, ERR_R_MALLOC_FAILURE);
+    return NULL;
   }
-  OPENSSL_free(value->section);
-  OPENSSL_free(value->name);
-  OPENSSL_free(value->value);
-  OPENSSL_free(value);
+  OPENSSL_memset(v, 0, sizeof(CONF_VALUE));
+  return v;
 }
 
-static void section_free(CONF_SECTION *section) {
-  if (section == NULL) {
-    return;
+static void value_free_contents(CONF_VALUE *value) {
+  if (value->section) {
+    OPENSSL_free(value->section);
   }
-  OPENSSL_free(section->name);
-  sk_CONF_VALUE_free(section->values);
-  OPENSSL_free(section);
+  if (value->name) {
+    OPENSSL_free(value->name);
+    if (value->value) {
+      OPENSSL_free(value->value);
+    }
+  } else {
+    if (value->value) {
+      sk_CONF_VALUE_free((STACK_OF(CONF_VALUE)*)value->value);
+    }
+  }
+}
+
+static void value_free(CONF_VALUE *value) {
+  value_free_contents(value);
+  OPENSSL_free(value);
 }
 
 static void value_free_arg(CONF_VALUE *value, void *arg) { value_free(value); }
 
-static void section_free_arg(CONF_SECTION *section, void *arg) {
-  section_free(section);
-}
-
 void NCONF_free(CONF *conf) {
-  if (conf == NULL) {
+  if (conf == NULL || conf->data == NULL) {
     return;
   }
 
-  lh_CONF_SECTION_doall_arg(conf->sections, section_free_arg, NULL);
-  lh_CONF_SECTION_free(conf->sections);
-  lh_CONF_VALUE_doall_arg(conf->values, value_free_arg, NULL);
-  lh_CONF_VALUE_free(conf->values);
+  lh_CONF_VALUE_doall_arg(conf->data, value_free_arg, NULL);
+  lh_CONF_VALUE_free(conf->data);
   OPENSSL_free(conf);
 }
 
-static CONF_SECTION *NCONF_new_section(const CONF *conf, const char *section) {
-  CONF_SECTION *s = OPENSSL_malloc(sizeof(CONF_SECTION));
-  if (!s) {
-    return NULL;
+static CONF_VALUE *NCONF_new_section(const CONF *conf, const char *section) {
+  STACK_OF(CONF_VALUE) *sk = NULL;
+  int ok = 0;
+  CONF_VALUE *v = NULL, *old_value;
+
+  sk = sk_CONF_VALUE_new_null();
+  v = CONF_VALUE_new();
+  if (sk == NULL || v == NULL) {
+    goto err;
   }
-  s->name = OPENSSL_strdup(section);
-  s->values = sk_CONF_VALUE_new_null();
-  if (s->name == NULL || s->values == NULL) {
+  v->section = OPENSSL_strdup(section);
+  if (v->section == NULL) {
     goto err;
   }
 
-  CONF_SECTION *old_section;
-  if (!lh_CONF_SECTION_insert(conf->sections, &old_section, s)) {
+  v->name = NULL;
+  v->value = (char *)sk;
+
+  if (!lh_CONF_VALUE_insert(conf->data, &old_value, v)) {
     goto err;
   }
-  section_free(old_section);
-  return s;
+  if (old_value) {
+    value_free(old_value);
+  }
+  ok = 1;
 
 err:
-  section_free(s);
-  return NULL;
+  if (!ok) {
+    if (sk != NULL) {
+      sk_CONF_VALUE_free(sk);
+    }
+    if (v != NULL) {
+      OPENSSL_free(v);
+    }
+    v = NULL;
+  }
+  return v;
 }
 
 static int str_copy(CONF *conf, char *section, char **pto, char *from) {
-  int q, to = 0, len = 0;
-  char v;
+  int q, r, rr = 0, to = 0, len = 0;
+  char *s, *e, *rp, *rrp, *np, *cp, v;
+  const char *p;
   BUF_MEM *buf;
 
   buf = BUF_MEM_new();
@@ -214,6 +243,22 @@ static int str_copy(CONF *conf, char *section, char **pto, char *from) {
       if (*from == q) {
         from++;
       }
+    } else if (IS_DQUOTE(conf, *from)) {
+      q = *from;
+      from++;
+      while (!IS_EOF(conf, *from)) {
+        if (*from == q) {
+          if (*(from + 1) == q) {
+            from++;
+          } else {
+            break;
+          }
+        }
+        buf->data[to++] = *(from++);
+      }
+      if (*from == q) {
+        from++;
+      }
     } else if (IS_ESC(conf, *from)) {
       from++;
       v = *(from++);
@@ -232,40 +277,120 @@ static int str_copy(CONF *conf, char *section, char **pto, char *from) {
     } else if (IS_EOF(conf, *from)) {
       break;
     } else if (*from == '$') {
-      // Historically, $foo would expand to a previously-parsed value. This
-      // feature has been removed as it was unused and is a DoS vector.
-      OPENSSL_PUT_ERROR(CONF, CONF_R_VARIABLE_EXPANSION_NOT_SUPPORTED);
-      goto err;
+      // try to expand it
+      rrp = NULL;
+      s = &(from[1]);
+      if (*s == '{') {
+        q = '}';
+      } else if (*s == '(') {
+        q = ')';
+      } else {
+        q = 0;
+      }
+
+      if (q) {
+        s++;
+      }
+      cp = section;
+      e = np = s;
+      while (IS_ALPHA_NUMERIC(conf, *e)) {
+        e++;
+      }
+      if (e[0] == ':' && e[1] == ':') {
+        cp = np;
+        rrp = e;
+        rr = *e;
+        *rrp = '\0';
+        e += 2;
+        np = e;
+        while (IS_ALPHA_NUMERIC(conf, *e)) {
+          e++;
+        }
+      }
+      r = *e;
+      *e = '\0';
+      rp = e;
+      if (q) {
+        if (r != q) {
+          OPENSSL_PUT_ERROR(CONF, CONF_R_NO_CLOSE_BRACE);
+          goto err;
+        }
+        e++;
+      }
+      // So at this point we have
+      // np which is the start of the name string which is
+      //   '\0' terminated.
+      // cp which is the start of the section string which is
+      //   '\0' terminated.
+      // e is the 'next point after'.
+      // r and rr are the chars replaced by the '\0'
+      // rp and rrp is where 'r' and 'rr' came from.
+      p = NCONF_get_string(conf, cp, np);
+      if (rrp != NULL) {
+        *rrp = rr;
+      }
+      *rp = r;
+      if (p == NULL) {
+        OPENSSL_PUT_ERROR(CONF, CONF_R_VARIABLE_HAS_NO_VALUE);
+        goto err;
+      }
+      size_t newsize = strlen(p) + buf->length - (e - from);
+      if (newsize > MAX_CONF_VALUE_LENGTH) {
+        OPENSSL_PUT_ERROR(CONF, CONF_R_VARIABLE_EXPANSION_TOO_LONG);
+        goto err;
+      }
+      if (!BUF_MEM_grow_clean(buf, newsize)) {
+        OPENSSL_PUT_ERROR(CONF, ERR_R_MALLOC_FAILURE);
+        goto err;
+      }
+      while (*p) {
+        buf->data[to++] = *(p++);
+      }
+
+      /* Since we change the pointer 'from', we also have
+         to change the perceived length of the string it
+         points at.  /RL */
+      len -= e - from;
+      from = e;
+
+      /* In case there were no braces or parenthesis around
+         the variable reference, we have to put back the
+         character that was replaced with a '\0'.  /RL */
+      *rp = r;
     } else {
       buf->data[to++] = *(from++);
     }
   }
 
   buf->data[to] = '\0';
-  OPENSSL_free(*pto);
+  if (*pto != NULL) {
+    OPENSSL_free(*pto);
+  }
   *pto = buf->data;
   OPENSSL_free(buf);
   return 1;
 
 err:
-  BUF_MEM_free(buf);
+  if (buf != NULL) {
+    BUF_MEM_free(buf);
+  }
   return 0;
 }
 
-static CONF_SECTION *get_section(const CONF *conf, const char *section) {
-  CONF_SECTION template;
+static CONF_VALUE *get_section(const CONF *conf, const char *section) {
+  CONF_VALUE template;
+
   OPENSSL_memset(&template, 0, sizeof(template));
-  template.name = (char *) section;
-  return lh_CONF_SECTION_retrieve(conf->sections, &template);
+  template.section = (char *) section;
+  return lh_CONF_VALUE_retrieve(conf->data, &template);
 }
 
-const STACK_OF(CONF_VALUE) *NCONF_get_section(const CONF *conf,
-                                              const char *section) {
-  const CONF_SECTION *section_obj = get_section(conf, section);
-  if (section_obj == NULL) {
+STACK_OF(CONF_VALUE) *NCONF_get_section(const CONF *conf, const char *section) {
+  CONF_VALUE *section_value = get_section(conf, section);
+  if (section_value == NULL) {
     return NULL;
   }
-  return section_obj->values;
+  return (STACK_OF(CONF_VALUE)*) section_value->value;
 }
 
 const char *NCONF_get_string(const CONF *conf, const char *section,
@@ -277,35 +402,30 @@ const char *NCONF_get_string(const CONF *conf, const char *section,
   }
 
   OPENSSL_memset(&template, 0, sizeof(template));
-  template.section = (char *)section;
-  template.name = (char *)name;
-  value = lh_CONF_VALUE_retrieve(conf->values, &template);
+  template.section = (char *) section;
+  template.name = (char *) name;
+  value = lh_CONF_VALUE_retrieve(conf->data, &template);
   if (value == NULL) {
     return NULL;
   }
   return value->value;
 }
 
-static int add_string(const CONF *conf, CONF_SECTION *section,
+static int add_string(const CONF *conf, CONF_VALUE *section,
                       CONF_VALUE *value) {
-  value->section = OPENSSL_strdup(section->name);
-  if (value->section == NULL) {
-    return 0;
-  }
-
-  if (!sk_CONF_VALUE_push(section->values, value)) {
-    return 0;
-  }
-
+  STACK_OF(CONF_VALUE) *section_stack = (STACK_OF(CONF_VALUE)*) section->value;
   CONF_VALUE *old_value;
-  if (!lh_CONF_VALUE_insert(conf->values, &old_value, value)) {
-    // Remove |value| from |section->values|, so we do not leave a dangling
-    // pointer.
-    sk_CONF_VALUE_pop(section->values);
+
+  value->section = OPENSSL_strdup(section->section);
+  if (!sk_CONF_VALUE_push(section_stack, value)) {
+    return 0;
+  }
+
+  if (!lh_CONF_VALUE_insert(conf->data, &old_value, value)) {
     return 0;
   }
   if (old_value != NULL) {
-    (void)sk_CONF_VALUE_delete_ptr(section->values, old_value);
+    (void)sk_CONF_VALUE_delete_ptr(section_stack, old_value);
     value_free(old_value);
   }
 
@@ -353,8 +473,33 @@ static char *scan_quote(CONF *conf, char *p) {
   return p;
 }
 
+
+static char *scan_dquote(CONF *conf, char *p) {
+  int q = *p;
+
+  p++;
+  while (!(IS_EOF(conf, *p))) {
+    if (*p == q) {
+      if (*(p + 1) == q) {
+        p++;
+      } else {
+        break;
+      }
+    }
+    p++;
+  }
+  if (*p == q) {
+    p++;
+  }
+  return p;
+}
+
 static void clear_comments(CONF *conf, char *p) {
   for (;;) {
+    if (IS_FCOMMENT(conf, *p)) {
+      *p = '\0';
+      return;
+    }
     if (!IS_WS(conf, *p)) {
       break;
     }
@@ -365,6 +510,10 @@ static void clear_comments(CONF *conf, char *p) {
     if (IS_COMMENT(conf, *p)) {
       *p = '\0';
       return;
+    }
+    if (IS_DQUOTE(conf, *p)) {
+      p = scan_dquote(conf, p);
+      continue;
     }
     if (IS_QUOTE(conf, *p)) {
       p = scan_quote(conf, p);
@@ -382,7 +531,7 @@ static void clear_comments(CONF *conf, char *p) {
   }
 }
 
-int NCONF_load_bio(CONF *conf, BIO *in, long *out_error_line) {
+static int def_load_bio(CONF *conf, BIO *in, long *out_error_line) {
   static const size_t CONFBUFSIZE = 512;
   int bufnum = 0, i, ii;
   BUF_MEM *buff = NULL;
@@ -390,8 +539,8 @@ int NCONF_load_bio(CONF *conf, BIO *in, long *out_error_line) {
   int again;
   long eline = 0;
   char btmp[DECIMAL_SIZE(eline) + 1];
-  CONF_VALUE *v = NULL;
-  CONF_SECTION *sv = NULL;
+  CONF_VALUE *v = NULL, *tv;
+  CONF_VALUE *sv = NULL;
   char *section = NULL, *buf;
   char *start, *psection, *pname;
 
@@ -402,6 +551,7 @@ int NCONF_load_bio(CONF *conf, BIO *in, long *out_error_line) {
 
   section = OPENSSL_strdup(kDefaultSectionName);
   if (section == NULL) {
+    OPENSSL_PUT_ERROR(CONF, ERR_R_MALLOC_FAILURE);
     goto err;
   }
 
@@ -536,13 +686,13 @@ int NCONF_load_bio(CONF *conf, BIO *in, long *out_error_line) {
       }
       v->name = OPENSSL_strdup(pname);
       if (v->name == NULL) {
+        OPENSSL_PUT_ERROR(CONF, ERR_R_MALLOC_FAILURE);
         goto err;
       }
       if (!str_copy(conf, psection, &(v->value), start)) {
         goto err;
       }
 
-      CONF_SECTION *tv;
       if (strcmp(psection, section) != 0) {
         if ((tv = get_section(conf, psection)) == NULL) {
           tv = NCONF_new_section(conf, psection);
@@ -555,24 +705,44 @@ int NCONF_load_bio(CONF *conf, BIO *in, long *out_error_line) {
         tv = sv;
       }
       if (add_string(conf, tv, v) == 0) {
+        OPENSSL_PUT_ERROR(CONF, ERR_R_MALLOC_FAILURE);
         goto err;
       }
       v = NULL;
     }
   }
-  BUF_MEM_free(buff);
-  OPENSSL_free(section);
+  if (buff != NULL) {
+    BUF_MEM_free(buff);
+  }
+  if (section != NULL) {
+    OPENSSL_free(section);
+  }
   return 1;
 
 err:
-  BUF_MEM_free(buff);
-  OPENSSL_free(section);
+  if (buff != NULL) {
+    BUF_MEM_free(buff);
+  }
+  if (section != NULL) {
+    OPENSSL_free(section);
+  }
   if (out_error_line != NULL) {
     *out_error_line = eline;
   }
-  snprintf(btmp, sizeof btmp, "%ld", eline);
+  BIO_snprintf(btmp, sizeof btmp, "%ld", eline);
   ERR_add_error_data(2, "line ", btmp);
-  value_free(v);
+
+  if (v != NULL) {
+    if (v->name != NULL) {
+      OPENSSL_free(v->name);
+    }
+    if (v->value != NULL) {
+      OPENSSL_free(v->value);
+    }
+    if (v != NULL) {
+      OPENSSL_free(v);
+    }
+  }
   return 0;
 }
 
@@ -585,14 +755,18 @@ int NCONF_load(CONF *conf, const char *filename, long *out_error_line) {
     return 0;
   }
 
-  ret = NCONF_load_bio(conf, in, out_error_line);
+  ret = def_load_bio(conf, in, out_error_line);
   BIO_free(in);
 
   return ret;
 }
 
+int NCONF_load_bio(CONF *conf, BIO *bio, long *out_error_line) {
+  return def_load_bio(conf, bio, out_error_line);
+}
+
 int CONF_parse_list(const char *list, char sep, int remove_whitespace,
-                    int (*list_cb)(const char *elem, size_t len, void *usr),
+                    int (*list_cb)(const char *elem, int len, void *usr),
                     void *arg) {
   int ret;
   const char *lstart, *tmpend, *p;
@@ -605,7 +779,7 @@ int CONF_parse_list(const char *list, char sep, int remove_whitespace,
   lstart = list;
   for (;;) {
     if (remove_whitespace) {
-      while (*lstart && OPENSSL_isspace((unsigned char)*lstart)) {
+      while (*lstart && isspace((unsigned char)*lstart)) {
         lstart++;
       }
     }
@@ -619,7 +793,7 @@ int CONF_parse_list(const char *list, char sep, int remove_whitespace,
         tmpend = lstart + strlen(lstart) - 1;
       }
       if (remove_whitespace) {
-        while (OPENSSL_isspace((unsigned char)*tmpend)) {
+        while (isspace((unsigned char)*tmpend)) {
           tmpend--;
         }
       }

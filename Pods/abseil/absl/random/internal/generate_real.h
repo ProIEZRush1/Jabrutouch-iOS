@@ -50,10 +50,10 @@ struct GenerateSignedTag {};
 // inputs, otherwise it never returns 0.
 //
 // When a value in U(0,1) is required, use:
-//   GenerateRealFromBits<double, PositiveValueT, true>;
+//   Uniform64ToReal<double, PositiveValueT, true>;
 //
 // When a value in U(-1,1) is required, use:
-//   GenerateRealFromBits<double, SignedValueT, false>;
+//   Uniform64ToReal<double, SignedValueT, false>;
 //
 //   This generates more distinct values than the mathematical equivalent
 //   `U(0, 1) * 2.0 - 1.0`.
@@ -78,7 +78,7 @@ inline RealType GenerateRealFromBits(uint64_t bits, int exp_bias = 0) {
       "GenerateRealFromBits must be parameterized by either float or double.");
 
   static_assert(sizeof(uint_type) == sizeof(real_type),
-                "Mismatched unsigned and real types.");
+                "Mismatched unsinged and real types.");
 
   static_assert((std::numeric_limits<real_type>::is_iec559 &&
                  std::numeric_limits<real_type>::radix == 2),

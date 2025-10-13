@@ -200,3 +200,10 @@
 "tryAgainIn" = "Inténtalo de nuevo en: %@ SEGUNDOS";
 "contactAdmin" = "Contacta al administrador";
 "didntReceiveCodeTryAgainIn" = "¿No recibiste el código? \nInténtalo de nuevo en: %@ SEGUNDOS";
+
+/* Downloads Migration */
+"refreshDownloadsTitle" = "Refresh Downloads";
+"refreshDownloadsMessage" = "This will remove lessons from your downloads list if their files are missing. This can fix issues where lessons appear downloaded but can't be played.";
+"refresh" = "Refresh";
+"refreshingDownloads" = "Refreshing downloads...";
+"refreshDownloadsComplete" = "Downloads list refreshed successfully.";

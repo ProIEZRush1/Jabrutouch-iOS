@@ -49,8 +49,13 @@
 static NSString *const kFIRMessagingMessageViaAPNSRootKey = @"aps";
 static NSString *const kFIRMessagingReachabilityHostname = @"www.google.com";
 
+#if defined(__IPHONE_10_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
 const NSNotificationName FIRMessagingRegistrationTokenRefreshedNotification =
     @"com.firebase.messaging.notif.fcm-token-refreshed";
+#else
+NSString *const FIRMessagingRegistrationTokenRefreshedNotification =
+    @"com.firebase.messaging.notif.fcm-token-refreshed";
+#endif  // defined(__IPHONE_10_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
 
 NSString *const kFIRMessagingUserDefaultsKeyAutoInitEnabled =
     @"com.firebase.messaging.auto-init.enabled";  // Auto Init Enabled key stored in NSUserDefaults
@@ -221,11 +226,11 @@ BOOL FIRMessagingIsContextManagerMessage(NSDictionary *message) {
   // This is not needed for app extension except for watch.
 #if TARGET_OS_WATCH
   [self didCompleteConfigure];
-#else   // TARGET_OS_WATCH
+#else
   if (![GULAppEnvironmentUtil isAppExtension]) {
     [self didCompleteConfigure];
   }
-#endif  // TARGET_OS_WATCH
+#endif
 }
 
 - (void)didCompleteConfigure {
@@ -393,7 +398,7 @@ BOOL FIRMessagingIsContextManagerMessage(NSDictionary *message) {
 }
 
 - (void)handleIncomingLinkIfNeededFromMessage:(NSDictionary *)message {
-#if TARGET_OS_IOS || TARGET_OS_TV || TARGET_OS_VISION
+#if TARGET_OS_IOS || TARGET_OS_TV
   NSURL *url = [self linkURLFromMessage:message];
   if (url == nil) {
     return;
@@ -417,7 +422,7 @@ BOOL FIRMessagingIsContextManagerMessage(NSDictionary *message) {
                                                            openURL:sourceApplication:annotation:);
 #if TARGET_OS_IOS
   SEL handleOpenURLSelector = @selector(application:handleOpenURL:);
-#endif  // TARGET_OS_IOS
+#endif
   // Due to FIRAAppDelegateProxy swizzling, this selector will most likely get chosen, whether or
   // not the actual application has implemented
   // |application:continueUserActivity:restorationHandler:|. A warning will be displayed to the user
@@ -434,7 +439,10 @@ BOOL FIRMessagingIsContextManagerMessage(NSDictionary *message) {
           }];
 
   } else if ([appDelegate respondsToSelector:openURLWithOptionsSelector]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunguarded-availability"
     [appDelegate application:application openURL:url options:@{}];
+#pragma clang diagnostic pop
     // Similarly, |application:openURL:sourceApplication:annotation:| will also always be called,
     // due to the default swizzling done by FIRAAppDelegateProxy in Firebase Analytics
   } else if ([appDelegate respondsToSelector:openURLWithSourceApplicationSelector]) {
@@ -451,9 +459,9 @@ BOOL FIRMessagingIsContextManagerMessage(NSDictionary *message) {
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [appDelegate application:application handleOpenURL:url];
 #pragma clang diagnostic pop
-#endif  // TARGET_OS_IOS
+#endif
   }
-#endif  // TARGET_OS_IOS || TARGET_OS_TV || TARGET_OS_VISION
+#endif
 }
 
 - (NSURL *)linkURLFromMessage:(NSDictionary *)message {

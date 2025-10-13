@@ -25,10 +25,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-static NSString *const kJSMethodName = @"generateDeviceHeuristics";
+static NSString *const kJSMethodName = @"generateFingerprint";
 
 /** Creates and returns the FDL JS method name. */
-NSString *FIRDLTypeofDeviceHeuristicsJSMethodNameString(void) {
+NSString *FIRDLTypeofFingerprintJSMethodNameString(void) {
   static NSString *methodName;
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
@@ -38,7 +38,7 @@ NSString *FIRDLTypeofDeviceHeuristicsJSMethodNameString(void) {
 }
 
 /** Creates and returns the FDL JS method definition. */
-NSString *GINDeviceHeuristicsJSMethodString(void) {
+NSString *GINFingerprintJSMethodString(void) {
   static NSString *methodString;
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
@@ -121,7 +121,7 @@ NSString *GINDeviceHeuristicsJSMethodString(void) {
   __weak __typeof__(self) weakSelf = self;
 
   // Make sure that the javascript was loaded successfully before calling the method.
-  [webView evaluateJavaScript:FIRDLTypeofDeviceHeuristicsJSMethodNameString()
+  [webView evaluateJavaScript:FIRDLTypeofFingerprintJSMethodNameString()
             completionHandler:^(id _Nullable typeofResult, NSError *_Nullable typeError) {
               if (typeError) {
                 [weakSelf handleExecutionError:typeError];
@@ -129,7 +129,7 @@ NSString *GINDeviceHeuristicsJSMethodString(void) {
               }
               if ([typeofResult isEqual:@"function"]) {
                 [webView
-                    evaluateJavaScript:GINDeviceHeuristicsJSMethodString()
+                    evaluateJavaScript:GINFingerprintJSMethodString()
                      completionHandler:^(id _Nullable result, NSError *_Nullable functionError) {
                        __typeof__(self) strongSelf = weakSelf;
                        if ([result isKindOfClass:[NSString class]]) {
@@ -156,7 +156,7 @@ NSString *GINDeviceHeuristicsJSMethodString(void) {
 // From:
 // https://developer.apple.com/documentation/apple-silicon/about-the-rosetta-translation-environment
 #if TARGET_OS_SIMULATOR
-static int processIsTranslated(void) {
+static int processIsTranslated() {
   int ret = 0;
   size_t size = sizeof(ret);
   if (sysctlbyname("sysctl.proc_translated", &ret, &size, NULL, 0) == -1) {

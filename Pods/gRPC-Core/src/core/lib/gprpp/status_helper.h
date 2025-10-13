@@ -16,18 +16,14 @@
 //
 //
 
-#ifndef GRPC_SRC_CORE_LIB_GPRPP_STATUS_HELPER_H
-#define GRPC_SRC_CORE_LIB_GPRPP_STATUS_HELPER_H
+#ifndef GRPC_CORE_LIB_GPRPP_STATUS_HELPER_H
+#define GRPC_CORE_LIB_GPRPP_STATUS_HELPER_H
 
 #include <grpc/support/port_platform.h>
 
-#include <stdint.h>
-
-#include <string>
 #include <vector>
 
 #include "absl/status/status.h"
-#include "absl/strings/string_view.h"
 #include "absl/time/time.h"
 #include "absl/types/optional.h"
 
@@ -35,14 +31,8 @@
 
 extern "C" {
 struct google_rpc_Status;
-struct upb_Arena;
+struct upb_arena;
 }
-
-#define GRPC_RETURN_IF_ERROR(expr)      \
-  do {                                  \
-    const absl::Status status = (expr); \
-    if (!status.ok()) return status;    \
-  } while (0)
 
 namespace grpc_core {
 
@@ -81,6 +71,8 @@ enum class StatusIntProperty {
   ChannelConnectivityState,
   /// LB policy drop
   kLbPolicyDrop,
+  /// stream network state
+  kStreamNetworkState,
 };
 
 /// This enum should have the same value of grpc_error_strs
@@ -116,58 +108,57 @@ enum class StatusTimeProperty {
 };
 
 /// Creates a status with given additional information
-absl::Status StatusCreate(absl::StatusCode code, absl::string_view msg,
-                          const DebugLocation& location,
-                          std::vector<absl::Status> children);
+absl::Status StatusCreate(
+    absl::StatusCode code, absl::string_view msg, const DebugLocation& location,
+    std::vector<absl::Status> children) GRPC_MUST_USE_RESULT;
 
 /// Sets the int property to the status
 void StatusSetInt(absl::Status* status, StatusIntProperty key, intptr_t value);
 
 /// Gets the int property from the status
-GRPC_MUST_USE_RESULT
-absl::optional<intptr_t> StatusGetInt(const absl::Status& status,
-                                      StatusIntProperty key);
+absl::optional<intptr_t> StatusGetInt(
+    const absl::Status& status, StatusIntProperty key) GRPC_MUST_USE_RESULT;
 
 /// Sets the str property to the status
 void StatusSetStr(absl::Status* status, StatusStrProperty key,
                   absl::string_view value);
 
 /// Gets the str property from the status
-GRPC_MUST_USE_RESULT absl::optional<std::string> StatusGetStr(
-    const absl::Status& status, StatusStrProperty key);
+absl::optional<std::string> StatusGetStr(
+    const absl::Status& status, StatusStrProperty key) GRPC_MUST_USE_RESULT;
 
 /// Sets the time property to the status
 void StatusSetTime(absl::Status* status, StatusTimeProperty key,
                    absl::Time time);
 
 /// Gets the time property from the status
-GRPC_MUST_USE_RESULT absl::optional<absl::Time> StatusGetTime(
-    const absl::Status& status, StatusTimeProperty key);
+absl::optional<absl::Time> StatusGetTime(
+    const absl::Status& status, StatusTimeProperty key) GRPC_MUST_USE_RESULT;
 
 /// Adds a child status to status
 void StatusAddChild(absl::Status* status, absl::Status child);
 
 /// Returns all children status from a status
-GRPC_MUST_USE_RESULT std::vector<absl::Status> StatusGetChildren(
-    absl::Status status);
+std::vector<absl::Status> StatusGetChildren(absl::Status status)
+    GRPC_MUST_USE_RESULT;
 
 /// Returns a string representation from status
 /// Error status will be like
 ///   STATUS[:MESSAGE] [{PAYLOADS[, children:[CHILDREN-STATUS-LISTS]]}]
 /// e.g.
 ///   CANCELLATION:SampleMessage {errno:'2021', line:'54', children:[ABORTED]}
-GRPC_MUST_USE_RESULT std::string StatusToString(const absl::Status& status);
+std::string StatusToString(const absl::Status& status) GRPC_MUST_USE_RESULT;
 
 namespace internal {
 
 /// Builds a upb message, google_rpc_Status from a status
 /// This is for internal implementation & test only
-GRPC_MUST_USE_RESULT google_rpc_Status* StatusToProto(
-    const absl::Status& status, upb_Arena* arena);
+google_rpc_Status* StatusToProto(const absl::Status& status,
+                                 upb_arena* arena) GRPC_MUST_USE_RESULT;
 
 /// Builds a status from a upb message, google_rpc_Status
 /// This is for internal implementation & test only
-absl::Status StatusFromProto(google_rpc_Status* msg);
+absl::Status StatusFromProto(google_rpc_Status* msg) GRPC_MUST_USE_RESULT;
 
 /// Returns ptr that is allocated in the heap memory and the given status is
 /// copied into. This ptr can be used to get Status later and should be
@@ -187,4 +178,4 @@ absl::Status StatusMoveFromHeapPtr(uintptr_t ptr);
 
 }  // namespace grpc_core
 
-#endif  // GRPC_SRC_CORE_LIB_GPRPP_STATUS_HELPER_H
+#endif  // GRPC_CORE_LIB_GPRPP_STATUS_HELPER_H

@@ -139,8 +139,7 @@ NS_ASSUME_NONNULL_BEGIN
   // Disable deprecated warning for internal methods.
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-  // If there is not a unique match, we will send an additional request for device heuristics based
-  // matching.
+  // If there is not a unique match, we will send an additional request for fingerprinting.
   [_networkingService
       retrievePendingDynamicLinkWithIOSVersion:[UIDevice currentDevice].systemVersion
                               resolutionHeight:resolutionHeight
@@ -176,9 +175,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSURL *)uniqueMatchLinkToCheck {
   _clipboardContentAtMatchProcessStart = nil;
   NSString *pasteboardContents = [self retrievePasteboardContents];
-  if (!pasteboardContents) {
-    return nil;
-  }
   NSInteger linkStringMinimumLength =
       expectedCopiedLinkStringSuffix.length + /* ? or & */ 1 + /* http:// */ 7;
   if ((pasteboardContents.length >= linkStringMinimumLength) &&
@@ -204,17 +200,21 @@ NS_ASSUME_NONNULL_BEGIN
   return nil;
 }
 
-- (nullable NSString *)retrievePasteboardContents {
+- (NSString *)retrievePasteboardContents {
   if (![self isPasteboardRetrievalEnabled]) {
     // Pasteboard check for dynamic link is disabled by user.
-    return nil;
+    return @"";
   }
 
-  if ([[UIPasteboard generalPasteboard] hasURLs]) {
-    return [UIPasteboard generalPasteboard].string;
+  NSString *pasteboardContents = @"";
+  if (@available(iOS 10.0, *)) {
+    if ([[UIPasteboard generalPasteboard] hasURLs]) {
+      pasteboardContents = [UIPasteboard generalPasteboard].string;
+    }
   } else {
-    return nil;
+    pasteboardContents = [UIPasteboard generalPasteboard].string;
   }
+  return pasteboardContents;
 }
 
 /**
@@ -245,7 +245,7 @@ NS_ASSUME_NONNULL_BEGIN
   if (_jsExecutor) {
     return;
   }
-  NSString *jsString = @"window.generateDeviceHeuristics=()=>navigator.language||''";
+  NSString *jsString = @"window.generateFingerprint=()=>navigator.language||''";
   _jsExecutor = [[FIRDLJavaScriptExecutor alloc] initWithDelegate:self script:jsString];
 }
 

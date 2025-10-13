@@ -12,21 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef GRPC_SRC_CORE_LIB_SECURITY_AUTHORIZATION_EVALUATE_ARGS_H
-#define GRPC_SRC_CORE_LIB_SECURITY_AUTHORIZATION_EVALUATE_ARGS_H
+#ifndef GRPC_CORE_LIB_SECURITY_AUTHORIZATION_EVALUATE_ARGS_H
+#define GRPC_CORE_LIB_SECURITY_AUTHORIZATION_EVALUATE_ARGS_H
 
 #include <grpc/support/port_platform.h>
 
-#include <string>
-#include <vector>
+#include <map>
 
-#include "absl/strings/string_view.h"
 #include "absl/types/optional.h"
 
-#include <grpc/grpc_security.h>
-
 #include "src/core/lib/iomgr/endpoint.h"
-#include "src/core/lib/iomgr/resolved_address.h"
+#include "src/core/lib/iomgr/resolve_address.h"
+#include "src/core/lib/security/context/security_context.h"
 #include "src/core/lib/transport/metadata_batch.h"
 
 namespace grpc_core {
@@ -60,6 +57,7 @@ class EvaluateArgs {
       : metadata_(metadata), channel_args_(channel_args) {}
 
   absl::string_view GetPath() const;
+  absl::string_view GetHost() const;
   absl::string_view GetAuthority() const;
   absl::string_view GetMethod() const;
   // Returns metadata value(s) for the specified key.
@@ -92,4 +90,4 @@ class EvaluateArgs {
 
 }  // namespace grpc_core
 
-#endif  // GRPC_SRC_CORE_LIB_SECURITY_AUTHORIZATION_EVALUATE_ARGS_H
+#endif  // GRPC_CORE_LIB_SECURITY_AUTHORIZATION_EVALUATE_ARGS_H
