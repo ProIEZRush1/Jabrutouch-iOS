@@ -16,7 +16,7 @@ class EmailSignUpViewController: UIViewController {
 
     private var activityView: ActivityView?
     var email: String?
-    var userId: Int?
+    // userId not needed for email registration - server creates user during signup
 
     private var countriesPicker: UIPickerView?
     private var currentCountry = LocalizationManager.shared.getDefaultCountry() {
@@ -25,13 +25,6 @@ class EmailSignUpViewController: UIViewController {
         }
     }
 
-    // Phone input views (created programmatically)
-    private var phoneContainerView: UIView!
-    private var countryView: UIView!
-    private var countryTF: UITextField!
-    private var phoneNumberView: UIView!
-    private var phoneNumberTF: UITextField!
-
     //============================================================
     // MARK: - Outlets
     //============================================================
@@ -39,7 +32,8 @@ class EmailSignUpViewController: UIViewController {
     @IBOutlet weak private var titleLabel: UILabel!
     @IBOutlet weak private var firstNameTF: UITextField!
     @IBOutlet weak private var lastNameTF: UITextField!
-    @IBOutlet weak private var emailDisplayLabel: UILabel!
+    @IBOutlet weak private var countryTF: UITextField!
+    @IBOutlet weak private var phoneNumberTF: UITextField!
     @IBOutlet weak private var passwordTF: UITextField!
     @IBOutlet weak private var signUpButton: UIButton!
     @IBOutlet weak private var signInButton: UIButton!
@@ -47,6 +41,8 @@ class EmailSignUpViewController: UIViewController {
     @IBOutlet weak var passwordView: UIView!
     @IBOutlet weak var lastNameView: UIView!
     @IBOutlet weak var firstNameView: UIView!
+    @IBOutlet weak var countryView: UIView!
+    @IBOutlet weak var phoneNumberView: UIView!
 
     //============================================================
     // MARK: - LifeCycle
@@ -65,16 +61,15 @@ class EmailSignUpViewController: UIViewController {
 
         self.setStrings()
         self.addBorders()
-        self.setupPhoneInput()
         self.initCountriesPicker()
         self.setInputViews()
+        self.countryTF?.text = self.currentCountry?.fullDisplayName
     }
 
     override func viewWillAppear(_ animated: Bool) {
         self.view.updateConstraints()
         self.view.layoutIfNeeded()
         self.roundCorners()
-        self.addPhoneBorders()
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -89,8 +84,7 @@ class EmailSignUpViewController: UIViewController {
         self.titleLabel.text = Strings.signUpPC
         self.firstNameTF.placeholder = Strings.firstName
         self.lastNameTF.placeholder = Strings.surname
-        // Hide email display label - we're replacing it with phone input
-        self.emailDisplayLabel.isHidden = true
+        self.phoneNumberTF?.placeholder = Strings.phoneNumber
         self.passwordTF.placeholder = Strings.password
         self.signUpButton.setTitle(Strings.signUpPC, for: .normal)
 
@@ -98,82 +92,6 @@ class EmailSignUpViewController: UIViewController {
         let range = (Strings.alreadyHaveAnAccountSignIn as NSString).range(of: Strings.signInPC)
         signInButtonTitle.addAttributes([NSAttributedString.Key.font: Fonts.boldFont(size: 18)], range: range)
         self.signInButton.setAttributedTitle(signInButtonTitle, for: .normal)
-    }
-
-    private func setupPhoneInput() {
-        // Create container view for country picker and phone number
-        phoneContainerView = UIView()
-        phoneContainerView.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(phoneContainerView)
-
-        // Position the container where the email label was
-        NSLayoutConstraint.activate([
-            phoneContainerView.leadingAnchor.constraint(equalTo: self.lastNameTF.leadingAnchor),
-            phoneContainerView.trailingAnchor.constraint(equalTo: self.lastNameTF.trailingAnchor),
-            phoneContainerView.topAnchor.constraint(equalTo: self.lastNameView.bottomAnchor, constant: 15),
-            phoneContainerView.heightAnchor.constraint(equalToConstant: 52)
-        ])
-
-        // Create country view (background)
-        countryView = UIView()
-        countryView.translatesAutoresizingMaskIntoConstraints = false
-        countryView.backgroundColor = Colors.offwhiteLight
-        phoneContainerView.addSubview(countryView)
-
-        // Create country text field
-        countryTF = UITextField()
-        countryTF.translatesAutoresizingMaskIntoConstraints = false
-        countryTF.text = self.currentCountry?.fullDisplayName
-        countryTF.font = UIFont.systemFont(ofSize: 14)
-        countryTF.textColor = Colors.textMediumBlue
-        countryTF.backgroundColor = .white
-        countryTF.textAlignment = .left
-        countryTF.delegate = self
-        phoneContainerView.addSubview(countryTF)
-
-        // Create phone number view (background)
-        phoneNumberView = UIView()
-        phoneNumberView.translatesAutoresizingMaskIntoConstraints = false
-        phoneNumberView.backgroundColor = Colors.offwhiteLight
-        phoneContainerView.addSubview(phoneNumberView)
-
-        // Create phone number text field
-        phoneNumberTF = UITextField()
-        phoneNumberTF.translatesAutoresizingMaskIntoConstraints = false
-        phoneNumberTF.placeholder = Strings.phoneNumber
-        phoneNumberTF.font = UIFont.systemFont(ofSize: 18)
-        phoneNumberTF.textColor = Colors.textMediumBlue
-        phoneNumberTF.backgroundColor = .white
-        phoneNumberTF.keyboardType = .phonePad
-        phoneNumberTF.delegate = self
-        phoneContainerView.addSubview(phoneNumberTF)
-
-        // Layout constraints
-        NSLayoutConstraint.activate([
-            // Country view (35% width)
-            countryView.leadingAnchor.constraint(equalTo: phoneContainerView.leadingAnchor),
-            countryView.topAnchor.constraint(equalTo: phoneContainerView.topAnchor),
-            countryView.bottomAnchor.constraint(equalTo: phoneContainerView.bottomAnchor),
-            countryView.widthAnchor.constraint(equalTo: phoneContainerView.widthAnchor, multiplier: 0.35),
-
-            // Country text field inside country view
-            countryTF.leadingAnchor.constraint(equalTo: countryView.leadingAnchor, constant: 2),
-            countryTF.trailingAnchor.constraint(equalTo: countryView.trailingAnchor, constant: -2),
-            countryTF.topAnchor.constraint(equalTo: countryView.topAnchor, constant: 5),
-            countryTF.bottomAnchor.constraint(equalTo: countryView.bottomAnchor, constant: -2),
-
-            // Phone number view (65% width minus spacing)
-            phoneNumberView.trailingAnchor.constraint(equalTo: phoneContainerView.trailingAnchor),
-            phoneNumberView.topAnchor.constraint(equalTo: phoneContainerView.topAnchor),
-            phoneNumberView.bottomAnchor.constraint(equalTo: phoneContainerView.bottomAnchor),
-            phoneNumberView.leadingAnchor.constraint(equalTo: countryView.trailingAnchor, constant: 7),
-
-            // Phone number text field inside phone number view
-            phoneNumberTF.leadingAnchor.constraint(equalTo: phoneNumberView.leadingAnchor, constant: 20),
-            phoneNumberTF.trailingAnchor.constraint(equalTo: phoneNumberView.trailingAnchor, constant: -2),
-            phoneNumberTF.topAnchor.constraint(equalTo: phoneNumberView.topAnchor, constant: 5),
-            phoneNumberTF.bottomAnchor.constraint(equalTo: phoneNumberView.bottomAnchor, constant: -2)
-        ])
     }
 
     private func initCountriesPicker() {
@@ -216,10 +134,10 @@ class EmailSignUpViewController: UIViewController {
         self.signInButton.layer.cornerRadius = self.signUpButton.bounds.height/2
 
         // Round phone input views
-        self.countryView?.layer.cornerRadius = (self.countryView?.bounds.height ?? 0)/2
-        self.countryTF?.layer.cornerRadius = (self.countryTF?.bounds.height ?? 0)/2
-        self.phoneNumberView?.layer.cornerRadius = (self.phoneNumberView?.bounds.height ?? 0)/2
-        self.phoneNumberTF?.layer.cornerRadius = (self.phoneNumberTF?.bounds.height ?? 0)/2
+        self.countryView.layer.cornerRadius = self.countryView.bounds.height/2
+        self.countryTF.layer.cornerRadius = self.countryTF.bounds.height/2
+        self.phoneNumberView.layer.cornerRadius = self.phoneNumberView.bounds.height/2
+        self.phoneNumberTF.layer.cornerRadius = self.phoneNumberTF.bounds.height/2
     }
 
     private func addBorders() {
@@ -234,14 +152,12 @@ class EmailSignUpViewController: UIViewController {
 
         self.signInButton.layer.borderColor = Colors.appBlue.cgColor
         self.signInButton.layer.borderWidth = 2.0
-    }
 
-    private func addPhoneBorders() {
-        self.countryView?.layer.borderColor = Colors.borderGray.cgColor
-        self.countryView?.layer.borderWidth = 1.0
+        self.countryView.layer.borderColor = Colors.borderGray.cgColor
+        self.countryView.layer.borderWidth = 1.0
 
-        self.phoneNumberView?.layer.borderColor = Colors.borderGray.cgColor
-        self.phoneNumberView?.layer.borderWidth = 1.0
+        self.phoneNumberView.layer.borderColor = Colors.borderGray.cgColor
+        self.phoneNumberView.layer.borderWidth = 1.0
     }
 
     //============================================================
@@ -311,7 +227,7 @@ class EmailSignUpViewController: UIViewController {
             return
         }
 
-        guard let userId = self.userId, let email = self.email else {
+        guard let email = self.email else {
             self.removeActivityView()
             return
         }
@@ -329,18 +245,18 @@ class EmailSignUpViewController: UIViewController {
             return
         }
 
-        // Format phone number with country code
+        // Format phone number with country dial code
         var cleanPhone = phoneNumber
         if cleanPhone.hasPrefix("0") {
             cleanPhone = String(cleanPhone.dropFirst())
         }
-        let fullPhoneNumber = "+\(country.code)\(cleanPhone)"
+        let fullPhoneNumber = "\(country.dialCode)\(cleanPhone)"
 
-        self.attemptSignUp(userId: userId, firstName: firstName, lastName: lastName, email: email, phoneNumber: fullPhoneNumber, password: password)
+        self.attemptSignUp(firstName: firstName, lastName: lastName, email: email, phoneNumber: fullPhoneNumber, password: password)
     }
 
-    private func attemptSignUp(userId: Int, firstName: String, lastName: String, email: String, phoneNumber: String, password: String) {
-        LoginManager.shared.emailSignUp(userId: userId, firstName: firstName, lastName: lastName, email: email, phoneNumber: phoneNumber, password: password) { (result) in
+    private func attemptSignUp(firstName: String, lastName: String, email: String, phoneNumber: String, password: String) {
+        LoginManager.shared.emailSignUp(firstName: firstName, lastName: lastName, email: email, phoneNumber: phoneNumber, password: password) { (result) in
             self.removeActivityView()
             switch result {
             case .success:

@@ -124,7 +124,6 @@
                                 </state>
                                 <connections>
                                     <action selector="signUpButtonPressed:" destination="1bu-tt-Nqu" eventType="touchUpInside" id="If6-VX-GZe"/>
-                                    <segue destination="tg4-dy-NvP" kind="presentation" id="upP-T1-tbJ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xP2-zt-sRm">
@@ -169,7 +168,8 @@
                         <outlet property="titleLabel" destination="Ja3-jh-CEE" id="541-8v-SnV"/>
                         <outlet property="usernameTF" destination="Jtn-FF-X5v" id="SHn-S0-Jc2"/>
                         <outlet property="usernameView" destination="Nt8-0t-jyw" id="2hq-kz-oDU"/>
-                        <segue destination="tg4-dy-NvP" kind="presentation" identifier="toSignUp" id="MPA-RC-bJt"/>
+                        <segue destination="email-nav-controller" kind="presentation" identifier="toEmailSignUp" id="email-signup-segue-main"/>
+                        <segue destination="tg4-dy-NvP" kind="presentation" identifier="toPhoneSignUp" id="phone-signup-segue-main"/>
                         <segue destination="NWD-8o-1p5" kind="presentation" identifier="toForgotPassword" modalPresentationStyle="overFullScreen" id="q1d-f7-GzE"/>
                     </connections>
                 </viewController>
@@ -690,9 +690,484 @@
             </objects>
             <point key="canvasLocation" x="1625" y="-632"/>
         </scene>
+        <!--Email Navigation Controller-->
+        <scene sceneID="email-nav-scene">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="email-nav-controller" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="email-nav-bar">
+                        <rect key="frame" x="0.0" y="-54" width="0.0" height="0.0"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="request-email-vc" kind="relationship" relationship="rootViewController" id="email-nav-root"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="email-nav-first" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1625" y="500"/>
+        </scene>
+        <!--Request Email Verification Code View Controller-->
+        <scene sceneID="request-email-scene">
+            <objects>
+                <viewController id="request-email-vc" customClass="RequestEmailVerificationCodeViewController" customModule="Jabrutouch" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="request-email-view">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email Verification" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="email-title-label">
+                                <rect key="frame" x="8" y="40" width="398" height="36"/>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We will send you a verification code to your email" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="email-subtitle-label">
+                                <rect key="frame" x="25" y="96" width="364" height="38.5"/>
+                                <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EMAIL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="email-field-label">
+                                <rect key="frame" x="48" y="165.5" width="75" height="19"/>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Medium" family="SF Pro Display" pointSize="16"/>
+                                <color key="textColor" red="0.1764705882" green="0.16862745100000001" blue="0.66274509800000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="email-input-view">
+                                <rect key="frame" x="48" y="194.5" width="318" height="50"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="email-text-field" customClass="TextFieldWithPadding" customModule="Jabrutouch" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="318" height="45"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="leadingPadding">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="trailingPadding">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="delegate" destination="request-email-vc" id="email-tf-delegate"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="email-text-field" secondAttribute="bottom" constant="5" id="email-view-bottom"/>
+                                    <constraint firstItem="email-text-field" firstAttribute="leading" secondItem="email-input-view" secondAttribute="leading" id="email-tf-leading"/>
+                                    <constraint firstAttribute="height" constant="50" id="email-view-height"/>
+                                    <constraint firstItem="email-text-field" firstAttribute="top" secondItem="email-input-view" secondAttribute="top" id="email-tf-top"/>
+                                    <constraint firstAttribute="trailing" secondItem="email-text-field" secondAttribute="trailing" id="email-tf-trailing"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="email-send-button">
+                                <rect key="frame" x="114" y="274.5" width="186" height="50"/>
+                                <color key="backgroundColor" red="1" green="0.37254901959999998" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="email-send-button" secondAttribute="height" multiplier="93:25" id="email-btn-ratio"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="18"/>
+                                <state key="normal" title="Send">
+                                    <color key="titleColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="sendButtonPressed:" destination="request-email-vc" eventType="touchUpInside" id="email-send-action"/>
+                                </connections>
+                            </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="email-otp-status-label">
+                                <rect key="frame" x="15" y="364.5" width="384" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
+                                <color key="textColor" systemColor="systemRedColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="email-back-button">
+                                <rect key="frame" x="20" y="47" width="27.5" height="22"/>
+                                <state key="normal" image="LeftArrow"/>
+                                <connections>
+                                    <action selector="backButtonPressed:" destination="request-email-vc" eventType="touchUpInside" id="email-back-action"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="email-safe-area"/>
+                        <color key="backgroundColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="email-send-button" firstAttribute="width" secondItem="request-email-view" secondAttribute="width" multiplier="186:414" id="c1"/>
+                            <constraint firstItem="email-send-button" firstAttribute="centerX" secondItem="request-email-view" secondAttribute="centerX" id="c2"/>
+                            <constraint firstItem="email-send-button" firstAttribute="top" secondItem="email-input-view" secondAttribute="bottom" constant="30" id="c3"/>
+                            <constraint firstItem="email-subtitle-label" firstAttribute="centerX" secondItem="email-safe-area" secondAttribute="centerX" id="c4"/>
+                            <constraint firstItem="email-field-label" firstAttribute="leading" secondItem="email-safe-area" secondAttribute="leading" constant="48" id="c5"/>
+                            <constraint firstItem="email-safe-area" firstAttribute="trailing" secondItem="email-otp-status-label" secondAttribute="trailing" constant="15" id="c6"/>
+                            <constraint firstItem="email-title-label" firstAttribute="leading" secondItem="email-safe-area" secondAttribute="leading" constant="8" id="c7"/>
+                            <constraint firstItem="email-otp-status-label" firstAttribute="top" secondItem="email-send-button" secondAttribute="bottom" constant="40" id="c8"/>
+                            <constraint firstItem="email-title-label" firstAttribute="top" secondItem="email-safe-area" secondAttribute="top" constant="40" id="c9"/>
+                            <constraint firstItem="email-back-button" firstAttribute="centerY" secondItem="email-title-label" secondAttribute="centerY" id="c10"/>
+                            <constraint firstItem="email-back-button" firstAttribute="leading" secondItem="email-safe-area" secondAttribute="leading" constant="20" id="c11"/>
+                            <constraint firstItem="email-field-label" firstAttribute="top" secondItem="email-subtitle-label" secondAttribute="bottom" constant="31" id="c12"/>
+                            <constraint firstItem="email-otp-status-label" firstAttribute="leading" secondItem="email-safe-area" secondAttribute="leading" constant="15" id="c13"/>
+                            <constraint firstItem="email-input-view" firstAttribute="leading" secondItem="email-safe-area" secondAttribute="leading" constant="48" id="c14"/>
+                            <constraint firstItem="email-subtitle-label" firstAttribute="top" secondItem="email-title-label" secondAttribute="bottom" constant="20" id="c15"/>
+                            <constraint firstItem="email-subtitle-label" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="email-safe-area" secondAttribute="leading" constant="20" id="c16"/>
+                            <constraint firstItem="email-safe-area" firstAttribute="trailing" secondItem="email-title-label" secondAttribute="trailing" constant="8" id="c17"/>
+                            <constraint firstItem="email-safe-area" firstAttribute="trailing" secondItem="email-input-view" secondAttribute="trailing" constant="48" id="c18"/>
+                            <constraint firstItem="email-safe-area" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="email-subtitle-label" secondAttribute="trailing" constant="20" id="c19"/>
+                            <constraint firstItem="email-input-view" firstAttribute="top" secondItem="email-field-label" secondAttribute="bottom" constant="10" id="c20"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="email-nav-item"/>
+                    <connections>
+                        <outlet property="titleLabel" destination="email-title-label" id="email-outlet-1"/>
+                        <outlet property="subtitleLabel" destination="email-subtitle-label" id="email-outlet-2"/>
+                        <outlet property="emailLabel" destination="email-field-label" id="email-outlet-3"/>
+                        <outlet property="emailTF" destination="email-text-field" id="email-outlet-4"/>
+                        <outlet property="sendButton" destination="email-send-button" id="email-outlet-5"/>
+                        <outlet property="emailView" destination="email-input-view" id="email-outlet-6"/>
+                        <outlet property="otpStatusMessageLabel" destination="email-otp-status-label" id="email-outlet-7"/>
+                        <segue destination="validate-email-vc" kind="show" identifier="showEmailVerificationCode" id="email-segue-1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="request-email-first" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2397" y="500"/>
+        </scene>
+        <!--Validate Email Verification Code View Controller-->
+        <scene sceneID="validate-email-scene">
+            <objects>
+                <viewController id="validate-email-vc" customClass="ValidateEmailVerificationCodeViewController" customModule="Jabrutouch" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="validate-email-view">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verification Code" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="validate-email-title">
+                                <rect key="frame" x="55" y="40" width="304" height="30"/>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter the 6-digit code sent to" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="validate-email-subtitle">
+                                <rect key="frame" x="76" y="90" width="262" height="19.5"/>
+                                <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="user@email.com" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="validate-email-address">
+                                <rect key="frame" x="143.5" y="137" width="127.5" height="21.5"/>
+                                <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="18"/>
+                                <color key="textColor" red="1" green="0.37254901960784315" blue="0.31372549019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="validate-email-back">
+                                <rect key="frame" x="20" y="44" width="30" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="validate-back-width"/>
+                                </constraints>
+                                <state key="normal" image="LeftArrow"/>
+                                <connections>
+                                    <action selector="backButtonPressed:" destination="validate-email-vc" eventType="touchUpInside" id="validate-back-action"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="••••••" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="validate-email-code-tf" customClass="TextFieldWithDeleteDelegate" customModule="Jabrutouch" customModuleProvider="target">
+                                <rect key="frame" x="20" y="198.5" width="374" height="86"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="86" id="validate-code-height"/>
+                                </constraints>
+                                <color key="textColor" red="1" green="0.37254901959999998" blue="0.31372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="60"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="one-time-code"/>
+                                <connections>
+                                    <outlet property="delegate" destination="validate-email-vc" id="validate-code-delegate"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="validate-email-resend">
+                                <rect key="frame" x="68" y="379.5" width="278" height="34"/>
+                                <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="18"/>
+                                <state key="normal" title="Didn't get the code? Send again">
+                                    <color key="titleColor" red="0.1764705882" green="0.16862745100000001" blue="0.66274509800000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="resendCodeButtonPressed:" destination="validate-email-vc" eventType="touchUpInside" id="validate-resend-action"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="validate-email-timer">
+                                <rect key="frame" x="50" y="379.5" width="314" height="0.0"/>
+                                <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="18"/>
+                                <color key="textColor" red="0.98399999999999999" green="0.36899999999999999" blue="0.318" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="validate-email-safe"/>
+                        <color key="backgroundColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="validate-email-code-tf" firstAttribute="top" secondItem="validate-email-address" secondAttribute="bottom" constant="40" id="vc1"/>
+                            <constraint firstItem="validate-email-safe" firstAttribute="trailing" secondItem="validate-email-timer" secondAttribute="trailing" constant="50" id="vc2"/>
+                            <constraint firstItem="validate-email-timer" firstAttribute="leading" secondItem="validate-email-view" secondAttribute="leading" constant="50" id="vc3"/>
+                            <constraint firstItem="validate-email-back" firstAttribute="leading" secondItem="validate-email-safe" secondAttribute="leading" constant="20" id="vc4"/>
+                            <constraint firstItem="validate-email-resend" firstAttribute="top" secondItem="validate-email-code-tf" secondAttribute="bottom" constant="95" id="vc5"/>
+                            <constraint firstItem="validate-email-timer" firstAttribute="top" secondItem="validate-email-resend" secondAttribute="top" id="vc6"/>
+                            <constraint firstItem="validate-email-subtitle" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="validate-email-safe" secondAttribute="leading" constant="20" id="vc7"/>
+                            <constraint firstItem="validate-email-code-tf" firstAttribute="centerX" secondItem="validate-email-safe" secondAttribute="centerX" id="vc8"/>
+                            <constraint firstItem="validate-email-code-tf" firstAttribute="leading" secondItem="validate-email-safe" secondAttribute="leading" constant="20" id="vc9"/>
+                            <constraint firstItem="validate-email-title" firstAttribute="top" secondItem="validate-email-safe" secondAttribute="top" constant="40" id="vc10"/>
+                            <constraint firstItem="validate-email-back" firstAttribute="centerY" secondItem="validate-email-title" secondAttribute="centerY" id="vc11"/>
+                            <constraint firstItem="validate-email-safe" firstAttribute="trailing" secondItem="validate-email-code-tf" secondAttribute="trailing" constant="20" id="vc12"/>
+                            <constraint firstItem="validate-email-subtitle" firstAttribute="centerX" secondItem="validate-email-safe" secondAttribute="centerX" id="vc13"/>
+                            <constraint firstItem="validate-email-title" firstAttribute="centerX" secondItem="validate-email-view" secondAttribute="centerX" id="vc14"/>
+                            <constraint firstItem="validate-email-safe" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="validate-email-subtitle" secondAttribute="trailing" constant="20" id="vc15"/>
+                            <constraint firstItem="validate-email-address" firstAttribute="centerX" secondItem="validate-email-subtitle" secondAttribute="centerX" id="vc16"/>
+                            <constraint firstItem="validate-email-timer" firstAttribute="centerX" secondItem="validate-email-view" secondAttribute="centerX" id="vc17"/>
+                            <constraint firstItem="validate-email-title" firstAttribute="leading" secondItem="validate-email-back" secondAttribute="trailing" constant="5" id="vc18"/>
+                            <constraint firstItem="validate-email-resend" firstAttribute="centerX" secondItem="validate-email-safe" secondAttribute="centerX" id="vc19"/>
+                            <constraint firstItem="validate-email-address" firstAttribute="top" secondItem="validate-email-subtitle" secondAttribute="bottom" constant="27.5" id="vc20"/>
+                            <constraint firstItem="validate-email-subtitle" firstAttribute="top" secondItem="validate-email-title" secondAttribute="bottom" constant="20" id="vc21"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="validate-email-nav-item"/>
+                    <connections>
+                        <outlet property="titleLabel" destination="validate-email-title" id="ve-outlet-1"/>
+                        <outlet property="subtitleLabel" destination="validate-email-subtitle" id="ve-outlet-2"/>
+                        <outlet property="emailLabel" destination="validate-email-address" id="ve-outlet-3"/>
+                        <outlet property="codeTF" destination="validate-email-code-tf" id="ve-outlet-4"/>
+                        <outlet property="backButton" destination="validate-email-back" id="ve-outlet-5"/>
+                        <outlet property="resendButton" destination="validate-email-resend" id="ve-outlet-6"/>
+                        <outlet property="timerLabel" destination="validate-email-timer" id="ve-outlet-7"/>
+                        <segue destination="email-signup-vc" kind="show" identifier="showEmailSignUp" id="validate-email-segue"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="validate-email-first" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3205" y="500"/>
+        </scene>
+        <!--Email Sign Up View Controller-->
+        <scene sceneID="email-signup-scene">
+            <objects>
+                <viewController id="email-signup-vc" customClass="EmailSignUpViewController" customModule="Jabrutouch" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="email-signup-view">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="email-signup-title">
+                                <rect key="frame" x="8" y="40" width="398" height="36"/>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="email-signup-firstname-view">
+                                <rect key="frame" x="46" y="101" width="322" height="52"/>
+                                <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
+                            </view>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="email-signup-firstname-tf" customClass="TextFieldWithPadding" customModule="Jabrutouch" customModuleProvider="target">
+                                <rect key="frame" x="48" y="106" width="318" height="45"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="email-signup-firstname-tf" secondAttribute="height" multiplier="318:45" id="es-fn-ratio"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" textContentType="given-name"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="leadingPadding">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="trailingPadding">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="delegate" destination="email-signup-vc" id="es-fn-delegate"/>
+                                </connections>
+                            </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="email-signup-lastname-view">
+                                <rect key="frame" x="46" y="161" width="322" height="52"/>
+                                <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
+                            </view>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Surname" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="email-signup-lastname-tf" customClass="TextFieldWithPadding" customModule="Jabrutouch" customModuleProvider="target">
+                                <rect key="frame" x="48" y="166" width="318" height="45"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" textContentType="family-name"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="leadingPadding">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="trailingPadding">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="delegate" destination="email-signup-vc" id="es-ln-delegate"/>
+                                </connections>
+                            </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="email-signup-country-view">
+                                <rect key="frame" x="46" y="226" width="110" height="52"/>
+                                <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
+                            </view>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Country" textAlignment="natural" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="email-signup-country-tf" customClass="TextFieldWithPadding" customModule="Jabrutouch" customModuleProvider="target">
+                                <rect key="frame" x="48" y="231" width="106" height="45"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="leadingPadding">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="trailingPadding">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="delegate" destination="email-signup-vc" id="es-country-delegate"/>
+                                </connections>
+                            </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="email-signup-phone-view">
+                                <rect key="frame" x="163" y="226" width="203" height="52"/>
+                                <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
+                            </view>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="email-signup-phone-tf" customClass="TextFieldWithPadding" customModule="Jabrutouch" customModuleProvider="target">
+                                <rect key="frame" x="165" y="231" width="199" height="45"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="leadingPadding">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="trailingPadding">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="delegate" destination="email-signup-vc" id="es-phone-delegate"/>
+                                </connections>
+                            </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="email-signup-password-view">
+                                <rect key="frame" x="46" y="293" width="322" height="52"/>
+                                <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
+                            </view>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="email-signup-password-tf" customClass="TextFieldWithPadding" customModule="Jabrutouch" customModuleProvider="target">
+                                <rect key="frame" x="48" y="298" width="318" height="45"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="newPassword"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="leadingPadding">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="trailingPadding">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="delegate" destination="email-signup-vc" id="es-pw-delegate"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="email-signup-button">
+                                <rect key="frame" x="114" y="340" width="186" height="50"/>
+                                <color key="backgroundColor" red="1" green="0.37254901959999998" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="email-signup-button" secondAttribute="height" multiplier="93:25" id="es-btn-ratio"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="18"/>
+                                <state key="normal" title="Sign Up">
+                                    <color key="titleColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="signUpButtonPressed:" destination="email-signup-vc" eventType="touchUpInside" id="es-signup-action"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="email-signin-button">
+                                <rect key="frame" x="48.5" y="410" width="317" height="43"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="43" id="es-signin-height"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="18"/>
+                                <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
+                                <state key="normal" title="Already have an account? Sign in">
+                                    <color key="titleColor" red="0.1764705882" green="0.16862745100000001" blue="0.66274509800000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="signInButtonPressed:" destination="email-signup-vc" eventType="touchUpInside" id="es-signin-action"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="email-signup-safe"/>
+                        <color key="backgroundColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="email-signup-firstname-view" firstAttribute="leading" secondItem="email-signup-firstname-tf" secondAttribute="leading" constant="-2" id="es1"/>
+                            <constraint firstItem="email-signup-lastname-tf" firstAttribute="centerX" secondItem="email-signup-firstname-tf" secondAttribute="centerX" id="es2"/>
+                            <constraint firstItem="email-signup-password-view" firstAttribute="trailing" secondItem="email-signup-password-tf" secondAttribute="trailing" constant="2" id="es3"/>
+                            <constraint firstItem="email-signup-country-tf" firstAttribute="top" secondItem="email-signup-lastname-tf" secondAttribute="bottom" constant="15" id="es4"/>
+                            <constraint firstItem="email-signin-button" firstAttribute="top" secondItem="email-signup-button" secondAttribute="bottom" constant="20" id="es5"/>
+                            <constraint firstItem="email-signup-lastname-view" firstAttribute="top" secondItem="email-signup-lastname-tf" secondAttribute="top" constant="-5" id="es6"/>
+                            <constraint firstItem="email-signup-button" firstAttribute="centerX" secondItem="email-signup-password-tf" secondAttribute="centerX" id="es7"/>
+                            <constraint firstItem="email-signup-firstname-tf" firstAttribute="top" secondItem="email-signup-title" secondAttribute="bottom" constant="30" id="es8"/>
+                            <constraint firstItem="email-signup-title" firstAttribute="top" secondItem="email-signup-safe" secondAttribute="top" constant="40" id="es9"/>
+                            <constraint firstItem="email-signup-password-view" firstAttribute="top" secondItem="email-signup-password-tf" secondAttribute="top" constant="-5" id="es10"/>
+                            <constraint firstItem="email-signup-lastname-view" firstAttribute="trailing" secondItem="email-signup-lastname-tf" secondAttribute="trailing" constant="2" id="es11"/>
+                            <constraint firstItem="email-signup-password-tf" firstAttribute="height" secondItem="email-signup-firstname-tf" secondAttribute="height" id="es12"/>
+                            <constraint firstItem="email-signup-password-view" firstAttribute="leading" secondItem="email-signup-password-tf" secondAttribute="leading" constant="-2" id="es13"/>
+                            <constraint firstItem="email-signup-firstname-view" firstAttribute="top" secondItem="email-signup-firstname-tf" secondAttribute="top" constant="-5" id="es14"/>
+                            <constraint firstItem="email-signup-firstname-tf" firstAttribute="width" secondItem="email-signup-view" secondAttribute="width" multiplier="318:414" id="es15"/>
+                            <constraint firstItem="email-signin-button" firstAttribute="centerX" secondItem="email-signup-button" secondAttribute="centerX" id="es16"/>
+                            <constraint firstItem="email-signup-firstname-view" firstAttribute="trailing" secondItem="email-signup-firstname-tf" secondAttribute="trailing" constant="2" id="es17"/>
+                            <constraint firstItem="email-signup-lastname-view" firstAttribute="bottom" secondItem="email-signup-lastname-tf" secondAttribute="bottom" constant="2" id="es18"/>
+                            <constraint firstItem="email-signup-safe" firstAttribute="trailing" secondItem="email-signup-title" secondAttribute="trailing" constant="8" id="es19"/>
+                            <constraint firstItem="email-signup-button" firstAttribute="width" secondItem="email-signup-view" secondAttribute="width" multiplier="186:414" id="es20"/>
+                            <constraint firstItem="email-signup-password-tf" firstAttribute="width" secondItem="email-signup-firstname-tf" secondAttribute="width" id="es21"/>
+                            <constraint firstItem="email-signup-button" firstAttribute="top" secondItem="email-signup-password-tf" secondAttribute="bottom" constant="29" id="es22"/>
+                            <constraint firstItem="email-signup-password-view" firstAttribute="bottom" secondItem="email-signup-password-tf" secondAttribute="bottom" constant="2" id="es23"/>
+                            <constraint firstItem="email-signup-password-tf" firstAttribute="centerX" secondItem="email-signup-firstname-tf" secondAttribute="centerX" id="es24"/>
+                            <constraint firstItem="email-signup-lastname-tf" firstAttribute="width" secondItem="email-signup-firstname-tf" secondAttribute="width" id="es25"/>
+                            <constraint firstItem="email-signup-lastname-tf" firstAttribute="height" secondItem="email-signup-firstname-tf" secondAttribute="height" id="es26"/>
+                            <constraint firstItem="email-signup-lastname-view" firstAttribute="leading" secondItem="email-signup-lastname-tf" secondAttribute="leading" constant="-2" id="es27"/>
+                            <constraint firstItem="email-signup-country-tf" firstAttribute="leading" secondItem="email-signup-lastname-tf" secondAttribute="leading" id="es28"/>
+                            <constraint firstItem="email-signup-lastname-tf" firstAttribute="top" secondItem="email-signup-firstname-tf" secondAttribute="bottom" constant="15" id="es29"/>
+                            <constraint firstItem="email-signup-title" firstAttribute="leading" secondItem="email-signup-safe" secondAttribute="leading" constant="8" id="es30"/>
+                            <constraint firstItem="email-signup-firstname-view" firstAttribute="bottom" secondItem="email-signup-firstname-tf" secondAttribute="bottom" constant="2" id="es31"/>
+                            <constraint firstItem="email-signup-firstname-tf" firstAttribute="centerX" secondItem="email-signup-safe" secondAttribute="centerX" id="es32"/>
+                            <constraint firstItem="email-signup-password-tf" firstAttribute="top" secondItem="email-signup-country-tf" secondAttribute="bottom" constant="15" id="es33"/>
+                            <constraint firstItem="email-signup-country-view" firstAttribute="leading" secondItem="email-signup-country-tf" secondAttribute="leading" constant="-2" id="es34"/>
+                            <constraint firstItem="email-signup-country-view" firstAttribute="trailing" secondItem="email-signup-country-tf" secondAttribute="trailing" constant="2" id="es35"/>
+                            <constraint firstItem="email-signup-country-view" firstAttribute="top" secondItem="email-signup-country-tf" secondAttribute="top" constant="-5" id="es36"/>
+                            <constraint firstItem="email-signup-country-view" firstAttribute="bottom" secondItem="email-signup-country-tf" secondAttribute="bottom" constant="2" id="es37"/>
+                            <constraint firstItem="email-signup-country-tf" firstAttribute="height" secondItem="email-signup-firstname-tf" secondAttribute="height" id="es38"/>
+                            <constraint firstItem="email-signup-country-tf" firstAttribute="width" constant="106" id="es39"/>
+                            <constraint firstItem="email-signup-phone-tf" firstAttribute="leading" secondItem="email-signup-country-tf" secondAttribute="trailing" constant="7" id="es40"/>
+                            <constraint firstItem="email-signup-phone-tf" firstAttribute="trailing" secondItem="email-signup-lastname-tf" secondAttribute="trailing" id="es41"/>
+                            <constraint firstItem="email-signup-phone-tf" firstAttribute="top" secondItem="email-signup-country-tf" secondAttribute="top" id="es42"/>
+                            <constraint firstItem="email-signup-phone-tf" firstAttribute="height" secondItem="email-signup-country-tf" secondAttribute="height" id="es43"/>
+                            <constraint firstItem="email-signup-phone-view" firstAttribute="leading" secondItem="email-signup-phone-tf" secondAttribute="leading" constant="-2" id="es44"/>
+                            <constraint firstItem="email-signup-phone-view" firstAttribute="trailing" secondItem="email-signup-phone-tf" secondAttribute="trailing" constant="2" id="es45"/>
+                            <constraint firstItem="email-signup-phone-view" firstAttribute="top" secondItem="email-signup-phone-tf" secondAttribute="top" constant="-5" id="es46"/>
+                            <constraint firstItem="email-signup-phone-view" firstAttribute="bottom" secondItem="email-signup-phone-tf" secondAttribute="bottom" constant="2" id="es47"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="email-signup-nav-item"/>
+                    <connections>
+                        <outlet property="titleLabel" destination="email-signup-title" id="es-outlet-1"/>
+                        <outlet property="firstNameTF" destination="email-signup-firstname-tf" id="es-outlet-2"/>
+                        <outlet property="lastNameTF" destination="email-signup-lastname-tf" id="es-outlet-3"/>
+                        <outlet property="countryTF" destination="email-signup-country-tf" id="es-outlet-4"/>
+                        <outlet property="passwordTF" destination="email-signup-password-tf" id="es-outlet-5"/>
+                        <outlet property="signUpButton" destination="email-signup-button" id="es-outlet-6"/>
+                        <outlet property="signInButton" destination="email-signin-button" id="es-outlet-7"/>
+                        <outlet property="passwordView" destination="email-signup-password-view" id="es-outlet-8"/>
+                        <outlet property="lastNameView" destination="email-signup-lastname-view" id="es-outlet-9"/>
+                        <outlet property="firstNameView" destination="email-signup-firstname-view" id="es-outlet-10"/>
+                        <outlet property="countryView" destination="email-signup-country-view" id="es-outlet-11"/>
+                        <outlet property="phoneNumberTF" destination="email-signup-phone-tf" id="es-outlet-12"/>
+                        <outlet property="phoneNumberView" destination="email-signup-phone-view" id="es-outlet-13"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="email-signup-first" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4117" y="500"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="MPA-RC-bJt"/>
+        <segue reference="email-signup-segue-main"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="LeftArrow" width="27.5" height="19.5"/>
