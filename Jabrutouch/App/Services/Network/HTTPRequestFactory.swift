@@ -86,18 +86,26 @@ class HttpRequestsFactory {
     }
 
     class func createEmailSignUpRequest(userId: Int, firstName: String, lastName: String, email: String, phoneNumber: String, fcmToken: String, password: String) -> URLRequest? {
+        // Use hybrid encryption (AES + RSA) for signup data
+        // This is required because RSA-2048 with OAEP can only encrypt ~190 bytes,
+        // but signup data with FCM token exceeds this limit
+        guard let secretMsg = OTPSecurityManager.encryptSignUpData(
+            email: email,
+            password: password,
+            firstName: firstName,
+            lastName: lastName,
+            phone: phoneNumber,
+            country: "",  // Country is optional
+            deviceType: "ios",
+            fcmToken: fcmToken
+        ) else {
+            print("secretMsg for email signup is null!")
+            return nil
+        }
+
         guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
         let link = baseUrl.appendingPathComponent("email_signup/").absoluteString
-        let body: [String:Any] = [
-            "user_id": userId,
-            "first_name": firstName,
-            "last_name": lastName,
-            "email": email,
-            "phone": phoneNumber,
-            "password": password,
-            "device_type": "ios",
-            "fcm_token": fcmToken
-        ]
+        let body: [String:String] = ["msg": secretMsg]
         guard let url = self.createUrl(fromLink: link, urlParams: nil) else { return nil }
         let request = self.createRequest(url, method: .post, body: body, additionalHeaders: nil)
         return request
