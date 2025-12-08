@@ -64,7 +64,41 @@ class API {
             self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
         }
     }
-    
+
+    //========================================
+    // MARK: - Email Verification Flow
+    //========================================
+
+    class func requestEmailVerificationCode(email: String, completionHandler:@escaping (_ response: APIResult<SendCodeResponse>)->Void) {
+        guard let request = HttpRequestsFactory.createSendEmailCodeRequest(email: email) else {
+            completionHandler(APIResult.failure(.unableToCreateRequest))
+            return
+        }
+        HttpServiceProvider.shared.excecuteRequest(request: request) { (data, response, error) in
+            self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
+        }
+    }
+
+    class func validateEmailCode(email: String, code: String, completionHandler:@escaping (_ response: APIResult<ValidateEmailCodeResponse>)->Void) {
+        guard let request = HttpRequestsFactory.createValidateEmailCodeRequest(email: email, code: code) else {
+            completionHandler(APIResult.failure(.unableToCreateRequest))
+            return
+        }
+        HttpServiceProvider.shared.excecuteRequest(request: request) { (data, response, error) in
+            self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
+        }
+    }
+
+    class func emailSignUp(userId: Int, firstName: String, lastName: String, email: String, phoneNumber: String, password: String, fcmToken: String, completionHandler:@escaping (_ response: APIResult<SignUpResponse>)->Void) {
+        guard let request = HttpRequestsFactory.createEmailSignUpRequest(userId: userId, firstName: firstName, lastName: lastName, email: email, phoneNumber: phoneNumber, fcmToken: fcmToken, password: password) else {
+            completionHandler(APIResult.failure(.unableToCreateRequest))
+            return
+        }
+        HttpServiceProvider.shared.excecuteRequest(request: request) { (data, response, error) in
+            self.processResult(data: data, response: response, error: error, completionHandler: completionHandler)
+        }
+    }
+
     class func forgotPassword(email: String?, completionHandler:@escaping (_ response: APIResult<ForgotPasswordResponse>)->Void) {
         guard let request = HttpRequestsFactory.forgotPasswordRequest(email: email) else {
             completionHandler(APIResult.failure(.unableToCreateRequest))

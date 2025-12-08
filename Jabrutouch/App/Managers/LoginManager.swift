@@ -106,7 +106,51 @@ class LoginManager {
             }
         }
     }
-    
+
+    //==========================================
+    // MARK: - Email Verification Flow
+    //==========================================
+
+    func requestEmailVerificationCode(email: String, completion:@escaping (_ result: Result<SendCodeResponse, JTError>)->Void){
+        API.requestEmailVerificationCode(email: email) { (result:APIResult<SendCodeResponse>) in
+            switch result {
+            case .success(let response):
+                DispatchQueue.main.async {
+                    completion(.success(response))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    func validateEmailCode(email: String, code: String, completion:@escaping (_ result: Result<Int, Error>)->Void){
+        API.validateEmailCode(email: email, code: code) { (result:APIResult<ValidateEmailCodeResponse>) in
+            switch result {
+            case .success(let response):
+                DispatchQueue.main.async {
+                    completion(.success(response.id))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    func emailSignUp(userId: Int, firstName: String, lastName: String, email: String, phoneNumber: String, password: String, completion:@escaping (_ result: Result<JTUser,Error>)->Void){
+        API.emailSignUp(userId: userId, firstName: firstName, lastName: lastName, email: email, phoneNumber: phoneNumber, password: password, fcmToken: MessagesRepository.shared.fcmToken) { (result:APIResult<SignUpResponse>) in
+            switch result {
+            case .success(let response):
+                self.userDidSignIn(user: response.user, password: password)
+                DispatchQueue.main.async {
+                    completion(.success(response.user))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
     func forgotPassword(email: String, completion:@escaping (_ result: Result<ForgotPasswordResponse,Error>)->Void){
         API.forgotPassword(email: email) { (result:APIResult<ForgotPasswordResponse>) in
             switch result {

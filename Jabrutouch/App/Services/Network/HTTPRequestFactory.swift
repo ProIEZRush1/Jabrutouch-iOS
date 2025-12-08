@@ -85,7 +85,7 @@ class HttpRequestsFactory {
         return request
     }
 
-    class func createEmailSignUpRequest(userId: Int, firstName: String, lastName: String, email: String, fcmToken: String, password: String) -> URLRequest? {
+    class func createEmailSignUpRequest(userId: Int, firstName: String, lastName: String, email: String, phoneNumber: String, fcmToken: String, password: String) -> URLRequest? {
         guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
         let link = baseUrl.appendingPathComponent("email_signup/").absoluteString
         let body: [String:Any] = [
@@ -93,6 +93,7 @@ class HttpRequestsFactory {
             "first_name": firstName,
             "last_name": lastName,
             "email": email,
+            "phone": phoneNumber,
             "password": password,
             "device_type": "ios",
             "fcm_token": fcmToken
