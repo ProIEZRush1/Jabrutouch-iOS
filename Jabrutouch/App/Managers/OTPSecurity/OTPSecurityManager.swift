@@ -16,43 +16,10 @@ class OTPSecurityManager {
 
     private init() {}
 
-    /// Get unique device identifier for security and rate limiting
-    /// Uses Apple's recommended identifierForVendor
-    private class func getDeviceIdentifier() -> String? {
-        // Use identifierForVendor (recommended by Apple)
-        // This is unique per app vendor and persists across app installs
-        if let uuid = UIDevice.current.identifierForVendor?.uuidString {
-            return uuid
-        }
-
-        // Fallback: generate a persistent identifier
-        let defaults = UserDefaults.standard
-        let key = "JabrutouchDeviceIdentifier"
-
-        if let existingId = defaults.string(forKey: key) {
-            return existingId
-        }
-
-        // Generate new UUID and persist it
-        let newId = UUID().uuidString
-        defaults.set(newId, forKey: key)
-        defaults.synchronize()
-
-        return newId
-    }
-
     class func encryptMsg(phone:String) -> String? {
         do {
-            // Create dictionary with phone and device ID
-            var payload: [String: String] = ["phone": phone]
-
-            // Add device identifier for enhanced security and rate limiting
-            if let deviceId = getDeviceIdentifier() {
-                payload["imei"] = deviceId
-                print("OTPSecurityManager: Including device ID in encrypted payload")
-            } else {
-                print("OTPSecurityManager: Warning - Device ID not available")
-            }
+            // Create dictionary with phone
+            let payload: [String: String] = ["phone": phone]
 
             guard let jsonString = Utils.convertDictionaryToString(payload) else { return nil }
             let publicKey = try PublicKey(pemNamed: "otp_encrypt_public")
@@ -61,10 +28,52 @@ class OTPSecurityManager {
             let encrypted = try clear.encrypted(with: publicKey, padding: SecPadding.OAEP)
 
             let secretBytesHex = encrypted.data.map { String(format: "%02hhx", $0) }.joined()
-            
+
             return secretBytesHex
         } catch {
             print("encryption error: ", error)
+            return nil
+        }
+    }
+
+    /// Encrypt email message for email verification (similar to phone encryption)
+    class func encryptEmail(email: String) -> String? {
+        do {
+            // Create dictionary with email
+            let payload: [String: String] = ["email": email]
+
+            guard let jsonString = Utils.convertDictionaryToString(payload) else { return nil }
+            let publicKey = try PublicKey(pemNamed: "otp_encrypt_public")
+
+            let clear = try ClearMessage(string: jsonString, using: .utf8)
+            let encrypted = try clear.encrypted(with: publicKey, padding: SecPadding.OAEP)
+
+            let secretBytesHex = encrypted.data.map { String(format: "%02hhx", $0) }.joined()
+
+            return secretBytesHex
+        } catch {
+            print("email encryption error: ", error)
+            return nil
+        }
+    }
+
+    /// Encrypt email and verification code for validate_email_code API
+    class func encryptEmailCode(email: String, code: String) -> String? {
+        do {
+            // Create dictionary with email and code
+            let payload: [String: String] = ["email": email, "code": code]
+
+            guard let jsonString = Utils.convertDictionaryToString(payload) else { return nil }
+            let publicKey = try PublicKey(pemNamed: "otp_encrypt_public")
+
+            let clear = try ClearMessage(string: jsonString, using: .utf8)
+            let encrypted = try clear.encrypted(with: publicKey, padding: SecPadding.OAEP)
+
+            let secretBytesHex = encrypted.data.map { String(format: "%02hhx", $0) }.joined()
+
+            return secretBytesHex
+        } catch {
+            print("email code encryption error: ", error)
             return nil
         }
     }

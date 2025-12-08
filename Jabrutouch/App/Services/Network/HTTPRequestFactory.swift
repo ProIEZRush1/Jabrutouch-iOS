@@ -18,7 +18,7 @@ class HttpRequestsFactory {
     //==========================================
     
     class func createSendCodeRequest(phoneNumber: String) -> URLRequest?{
-        // encrypt phone number (and imei if possible) wrapped in {msg:encryptedMsg}
+        // encrypt phone number wrapped in {msg:encryptedMsg}
         guard let secretMsg = OTPSecurityManager.encryptMsg(phone: phoneNumber) else {
             print("secretMsg is null!!!!!")
             return nil
@@ -50,7 +50,58 @@ class HttpRequestsFactory {
         let request = self.createRequest(url, method: .post, body: body, additionalHeaders: nil)
         return request
     }
-    
+
+    //==========================================
+    // MARK: - Email Verification Flow
+    //==========================================
+
+    class func createSendEmailCodeRequest(email: String) -> URLRequest? {
+        // Encrypt email wrapped in {msg:encryptedMsg}
+        guard let secretMsg = OTPSecurityManager.encryptEmail(email: email) else {
+            print("secretMsg for email is null!")
+            return nil
+        }
+
+        guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
+        let link = baseUrl.appendingPathComponent("send_email_code/").absoluteString
+        let body: [String:String] = ["msg": secretMsg]
+        guard let url = self.createUrl(fromLink: link, urlParams: nil) else { return nil }
+        let request = self.createRequest(url, method: .post, body: body, additionalHeaders: nil)
+        return request
+    }
+
+    class func createValidateEmailCodeRequest(email: String, code: String) -> URLRequest? {
+        // Encrypt email and code wrapped in {msg:encryptedMsg}
+        guard let secretMsg = OTPSecurityManager.encryptEmailCode(email: email, code: code) else {
+            print("secretMsg for email code validation is null!")
+            return nil
+        }
+
+        guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
+        let link = baseUrl.appendingPathComponent("validate_email_code/").absoluteString
+        let body: [String:String] = ["msg": secretMsg]
+        guard let url = self.createUrl(fromLink: link, urlParams: nil) else { return nil }
+        let request = self.createRequest(url, method: .post, body: body, additionalHeaders: nil)
+        return request
+    }
+
+    class func createEmailSignUpRequest(userId: Int, firstName: String, lastName: String, email: String, fcmToken: String, password: String) -> URLRequest? {
+        guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
+        let link = baseUrl.appendingPathComponent("email_signup/").absoluteString
+        let body: [String:Any] = [
+            "user_id": userId,
+            "first_name": firstName,
+            "last_name": lastName,
+            "email": email,
+            "password": password,
+            "device_type": "ios",
+            "fcm_token": fcmToken
+        ]
+        guard let url = self.createUrl(fromLink: link, urlParams: nil) else { return nil }
+        let request = self.createRequest(url, method: .post, body: body, additionalHeaders: nil)
+        return request
+    }
+
     class func createSignUpRequest(userId: Int, firstName: String, lastName:String, email:String, phoneNumber:String, fcmToken:String, password: String) -> URLRequest?{
         guard let baseUrl = URL(string: HttpRequestsFactory.baseUrlLink) else { return nil }
         let link = baseUrl.appendingPathComponent("sing_up/\(userId)/").absoluteString
