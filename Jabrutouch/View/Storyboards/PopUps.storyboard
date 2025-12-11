@@ -73,7 +73,7 @@
                                     <action selector="gotItButtonPressed:" destination="xaY-tz-8IV" eventType="touchUpInside" id="s7X-T6-ZXG"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GOT IT, THANKS!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gBS-Hs-YHf">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CONTINUAR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gBS-Hs-YHf">
                                 <rect key="frame" x="57" y="792" width="300" height="56"/>
                                 <color key="backgroundColor" red="0.1764705882" green="0.16862745100000001" blue="0.66274509800000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
@@ -110,6 +110,18 @@
                                     <segue destination="OOq-7W-yXz" kind="embed" identifier="fifthChild" id="67T-Jv-V78"/>
                                 </connections>
                             </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sxt-C6-Kp1">
+                                <rect key="frame" x="0.0" y="108" width="414" height="670"/>
+                                <connections>
+                                    <segue destination="SxC-V6-Kp2" kind="embed" identifier="sixthChild" id="SxS-V6-Kp3"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Svn-C7-Kp1">
+                                <rect key="frame" x="0.0" y="108" width="414" height="670"/>
+                                <connections>
+                                    <segue destination="SvC-V7-Kp2" kind="embed" identifier="seventhChild" id="SvS-V7-Kp3"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -142,6 +154,14 @@
                             <constraint firstItem="8Mh-lB-UcL" firstAttribute="trailing" secondItem="lQc-ld-Snh" secondAttribute="trailing" id="tY0-zU-0vH"/>
                             <constraint firstItem="pGG-b8-wZs" firstAttribute="trailing" secondItem="lQc-ld-Snh" secondAttribute="trailing" id="yao-Og-FPu"/>
                             <constraint firstItem="drV-y0-RuX" firstAttribute="trailing" secondItem="gBS-Hs-YHf" secondAttribute="trailing" id="zO7-7B-8am"/>
+                            <constraint firstItem="Sxt-C6-Kp1" firstAttribute="leading" secondItem="lQc-ld-Snh" secondAttribute="leading" id="Sxt-C6-Kp4"/>
+                            <constraint firstItem="Sxt-C6-Kp1" firstAttribute="trailing" secondItem="lQc-ld-Snh" secondAttribute="trailing" id="Sxt-C6-Kp5"/>
+                            <constraint firstItem="Sxt-C6-Kp1" firstAttribute="top" secondItem="iIL-CB-KXO" secondAttribute="bottom" id="Sxt-C6-Kp6"/>
+                            <constraint firstItem="drV-y0-RuX" firstAttribute="top" secondItem="Sxt-C6-Kp1" secondAttribute="bottom" constant="14" id="Sxt-C6-Kp7"/>
+                            <constraint firstItem="Svn-C7-Kp1" firstAttribute="leading" secondItem="lQc-ld-Snh" secondAttribute="leading" id="Svn-C7-Kp4"/>
+                            <constraint firstItem="Svn-C7-Kp1" firstAttribute="trailing" secondItem="lQc-ld-Snh" secondAttribute="trailing" id="Svn-C7-Kp5"/>
+                            <constraint firstItem="Svn-C7-Kp1" firstAttribute="top" secondItem="iIL-CB-KXO" secondAttribute="bottom" id="Svn-C7-Kp6"/>
+                            <constraint firstItem="drV-y0-RuX" firstAttribute="top" secondItem="Svn-C7-Kp1" secondAttribute="bottom" constant="14" id="Svn-C7-Kp7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lQc-ld-Snh"/>
                     </view>
@@ -152,6 +172,8 @@
                         <outlet property="popupButton" destination="drV-y0-RuX" id="UpT-H6-P5j"/>
                         <outlet property="popupButtonTitle" destination="gBS-Hs-YHf" id="6qc-B8-zL9"/>
                         <outlet property="second" destination="cQC-JW-MjY" id="djB-YY-sUK"/>
+                        <outlet property="seventh" destination="Svn-C7-Kp1" id="Svn-C7-Kp8"/>
+                        <outlet property="sixth" destination="Sxt-C6-Kp1" id="Sxt-C6-Kp8"/>
                         <outlet property="third" destination="pGG-b8-wZs" id="AYV-Kt-f2T"/>
                     </connections>
                 </viewController>
@@ -540,6 +562,102 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Bj-YK-1jo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2164" y="669"/>
+        </scene>
+        <!--Sixth ChildVC - Image Only 4:5 Aspect Ratio-->
+        <scene sceneID="SxC-V6-Kpa">
+            <objects>
+                <viewController id="SxC-V6-Kp2" customClass="SixthChildVC" customModule="Jabrutouch" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SxC-V6-Kpb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="670"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SxC-V6-Kpc">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="670"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="SxC-V6-Kpd">
+                                        <rect key="frame" x="197" y="325" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SxC-V6-Kpe">
+                                        <rect key="frame" x="24" y="10" width="366" height="458"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="SxC-V6-Kpe" firstAttribute="leading" secondItem="SxC-V6-Kpc" secondAttribute="leading" constant="24" id="SxC-V6-Kpf"/>
+                                    <constraint firstAttribute="trailing" secondItem="SxC-V6-Kpe" secondAttribute="trailing" constant="24" id="SxC-V6-Kpg"/>
+                                    <constraint firstItem="SxC-V6-Kpe" firstAttribute="top" secondItem="SxC-V6-Kpc" secondAttribute="top" constant="10" id="SxC-V6-Kph"/>
+                                    <constraint firstItem="SxC-V6-Kpe" firstAttribute="centerX" secondItem="SxC-V6-Kpd" secondAttribute="centerX" id="SxC-V6-Kpi"/>
+                                    <constraint firstItem="SxC-V6-Kpe" firstAttribute="centerY" secondItem="SxC-V6-Kpd" secondAttribute="centerY" id="SxC-V6-Kpj"/>
+                                    <constraint firstItem="SxC-V6-Kpe" firstAttribute="height" secondItem="SxC-V6-Kpe" secondAttribute="width" multiplier="5:4" id="SxC-V6-Kpk"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="SxC-V6-Kpc" secondAttribute="bottom" id="SxC-V6-Kpl"/>
+                            <constraint firstItem="SxC-V6-Kpc" firstAttribute="leading" secondItem="SxC-V6-Kpb" secondAttribute="leading" id="SxC-V6-Kpm"/>
+                            <constraint firstItem="SxC-V6-Kpc" firstAttribute="top" secondItem="SxC-V6-Kpb" secondAttribute="top" id="SxC-V6-Kpn"/>
+                            <constraint firstAttribute="trailing" secondItem="SxC-V6-Kpc" secondAttribute="trailing" id="SxC-V6-Kpo"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="SxC-V6-Kpp"/>
+                    </view>
+                    <connections>
+                        <outlet property="image" destination="SxC-V6-Kpe" id="SxC-V6-Kpq"/>
+                        <outlet property="imageIndicator" destination="SxC-V6-Kpd" id="SxC-V6-Kpr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SxC-V6-Kps" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="573" y="669"/>
+        </scene>
+        <!--Seventh ChildVC - Image Only 9:16 Aspect Ratio-->
+        <scene sceneID="SvC-V7-Kpa">
+            <objects>
+                <viewController id="SvC-V7-Kp2" customClass="SeventhChildVC" customModule="Jabrutouch" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SvC-V7-Kpb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="670"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SvC-V7-Kpc">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="670"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="SvC-V7-Kpd">
+                                        <rect key="frame" x="197" y="325" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SvC-V7-Kpe">
+                                        <rect key="frame" x="24" y="10" width="366" height="650"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="SvC-V7-Kpe" firstAttribute="leading" secondItem="SvC-V7-Kpc" secondAttribute="leading" constant="24" id="SvC-V7-Kpf"/>
+                                    <constraint firstAttribute="trailing" secondItem="SvC-V7-Kpe" secondAttribute="trailing" constant="24" id="SvC-V7-Kpg"/>
+                                    <constraint firstItem="SvC-V7-Kpe" firstAttribute="top" secondItem="SvC-V7-Kpc" secondAttribute="top" constant="10" id="SvC-V7-Kph"/>
+                                    <constraint firstItem="SvC-V7-Kpe" firstAttribute="centerX" secondItem="SvC-V7-Kpd" secondAttribute="centerX" id="SvC-V7-Kpi"/>
+                                    <constraint firstItem="SvC-V7-Kpe" firstAttribute="centerY" secondItem="SvC-V7-Kpd" secondAttribute="centerY" id="SvC-V7-Kpj"/>
+                                    <constraint firstItem="SvC-V7-Kpe" firstAttribute="height" secondItem="SvC-V7-Kpe" secondAttribute="width" multiplier="16:9" id="SvC-V7-Kpk"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="SvC-V7-Kpc" secondAttribute="bottom" id="SvC-V7-Kpl"/>
+                            <constraint firstItem="SvC-V7-Kpc" firstAttribute="leading" secondItem="SvC-V7-Kpb" secondAttribute="leading" id="SvC-V7-Kpm"/>
+                            <constraint firstItem="SvC-V7-Kpc" firstAttribute="top" secondItem="SvC-V7-Kpb" secondAttribute="top" id="SvC-V7-Kpn"/>
+                            <constraint firstAttribute="trailing" secondItem="SvC-V7-Kpc" secondAttribute="trailing" id="SvC-V7-Kpo"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="SvC-V7-Kpp"/>
+                    </view>
+                    <connections>
+                        <outlet property="image" destination="SvC-V7-Kpe" id="SvC-V7-Kpq"/>
+                        <outlet property="imageIndicator" destination="SvC-V7-Kpd" id="SvC-V7-Kpr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SvC-V7-Kps" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="573" y="1069"/>
         </scene>
     </scenes>
     <resources>

@@ -21,6 +21,8 @@ class PopUpViewController: UIViewController {
     @IBOutlet weak var third: UIView!
     @IBOutlet weak var fourth: UIView!
     @IBOutlet weak var fifth: UIView!
+    @IBOutlet weak var sixth: UIView!
+    @IBOutlet weak var seventh: UIView!
     
     var currentPopup: JTPopup?
     
@@ -47,6 +49,8 @@ class PopUpViewController: UIViewController {
         third.isHidden = true
         fourth.isHidden = true
         fifth.isHidden = true
+        sixth.isHidden = true
+        seventh.isHidden = true
         switch self.currentPopup?.type {
         case 1:
             first.isHidden = false
@@ -58,10 +62,14 @@ class PopUpViewController: UIViewController {
             fourth.isHidden = false
         case 5:
             fifth.isHidden = false
+        case 6:
+            sixth.isHidden = false
+        case 7:
+            seventh.isHidden = false
         default:
             return
         }
-        
+
     }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
@@ -100,6 +108,14 @@ class PopUpViewController: UIViewController {
         }else if segue.identifier == "fifthChild" {
             if let fifthChildCV = segue.destination as? FifthChildVC {
                 fifthChildCV.currentPopup = self.currentPopup
+            }
+        }else if segue.identifier == "sixthChild" {
+            if let sixthChildCV = segue.destination as? SixthChildVC {
+                sixthChildCV.currentPopup = self.currentPopup
+            }
+        }else if segue.identifier == "seventhChild" {
+            if let seventhChildCV = segue.destination as? SeventhChildVC {
+                seventhChildCV.currentPopup = self.currentPopup
             }
         }
     }

@@ -177,6 +177,8 @@
 		604A892B24CF0FF600212B44 /* FirstChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A892824CF0FF500212B44 /* FirstChildVC.swift */; };
 		604A892C24CF0FF600212B44 /* FourthChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A892924CF0FF500212B44 /* FourthChildVC.swift */; };
 		604A892D24CF0FF600212B44 /* FifthChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A892A24CF0FF600212B44 /* FifthChildVC.swift */; };
+		604A892E24CF100600212B44 /* SixthChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A892B24CF0FF400212B44 /* SixthChildVC.swift */; };
+		604A8930C7CF100700212B44 /* SeventhChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A892CC7CF0FF500212B44 /* SeventhChildVC.swift */; };
 		604A893024CF100A00212B44 /* SecondChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A892E24CF100900212B44 /* SecondChildVC.swift */; };
 		604A893124CF100A00212B44 /* ThirdChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A892F24CF100A00212B44 /* ThirdChildVC.swift */; };
 		604A893324CF16CB00212B44 /* JBBarPageIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A893224CF16CB00212B44 /* JBBarPageIndicator.swift */; };
@@ -298,6 +300,10 @@
 		C53D680A2923B077009B9B60 /* OTPSecurityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53D68092923B077009B9B60 /* OTPSecurityManager.swift */; };
 		C53D680C2923D0CB009B9B60 /* otp_encrypt_public.pem in Resources */ = {isa = PBXBuildFile; fileRef = C53D680B2923D0CB009B9B60 /* otp_encrypt_public.pem */; };
 		C53D680E292552CE009B9B60 /* JTOTPRequestorStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53D680D292552CE009B9B60 /* JTOTPRequestorStatus.swift */; };
+		CL0001012E9A0001001EMAIL /* RequestEmailVerificationCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CL0001002E9A0001001EMAIL /* RequestEmailVerificationCodeViewController.swift */; };
+		CL0001032E9A0001001EMAIL /* ValidateEmailVerificationCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CL0001022E9A0001001EMAIL /* ValidateEmailVerificationCodeViewController.swift */; };
+		CL0001052E9A0001001EMAIL /* EmailSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CL0001042E9A0001001EMAIL /* EmailSignUpViewController.swift */; };
+		CL0001072E9A0001001EMAIL /* ValidateEmailCodeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CL0001062E9A0001001EMAIL /* ValidateEmailCodeResponse.swift */; };
 		D6196E762720530C00E1F478 /* SurveyCustomAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6196E752720530C00E1F478 /* SurveyCustomAnswerCell.swift */; };
 		D631F9C526DCDDBC00447B88 /* JTNewsFeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D631F9C426DCDDBC00447B88 /* JTNewsFeedItem.swift */; };
 		D631F9C826DCE0D100447B88 /* NewsFeedRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D631F9C726DCE0D100447B88 /* NewsFeedRepository.swift */; };
@@ -528,6 +534,8 @@
 		604A892824CF0FF500212B44 /* FirstChildVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstChildVC.swift; sourceTree = "<group>"; };
 		604A892924CF0FF500212B44 /* FourthChildVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourthChildVC.swift; sourceTree = "<group>"; };
 		604A892A24CF0FF600212B44 /* FifthChildVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FifthChildVC.swift; sourceTree = "<group>"; };
+		604A892B24CF0FF400212B44 /* SixthChildVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SixthChildVC.swift; sourceTree = "<group>"; };
+		604A892CC7CF0FF500212B44 /* SeventhChildVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeventhChildVC.swift; sourceTree = "<group>"; };
 		604A892E24CF100900212B44 /* SecondChildVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondChildVC.swift; sourceTree = "<group>"; };
 		604A892F24CF100A00212B44 /* ThirdChildVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdChildVC.swift; sourceTree = "<group>"; };
 		604A893224CF16CB00212B44 /* JBBarPageIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JBBarPageIndicator.swift; sourceTree = "<group>"; };
@@ -675,6 +683,10 @@
 		C53D680B2923D0CB009B9B60 /* otp_encrypt_public.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = otp_encrypt_public.pem; sourceTree = "<group>"; };
 		C53D680D292552CE009B9B60 /* JTOTPRequestorStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTOTPRequestorStatus.swift; sourceTree = "<group>"; };
 		C58338295BBDB6243F76E512 /* AWSConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AWSConfig.swift; sourceTree = "<group>"; };
+		CL0001002E9A0001001EMAIL /* RequestEmailVerificationCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestEmailVerificationCodeViewController.swift; sourceTree = "<group>"; };
+		CL0001022E9A0001001EMAIL /* ValidateEmailVerificationCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateEmailVerificationCodeViewController.swift; sourceTree = "<group>"; };
+		CL0001042E9A0001001EMAIL /* EmailSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSignUpViewController.swift; sourceTree = "<group>"; };
+		CL0001062E9A0001001EMAIL /* ValidateEmailCodeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateEmailCodeResponse.swift; sourceTree = "<group>"; };
 		D6196E752720530C00E1F478 /* SurveyCustomAnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyCustomAnswerCell.swift; sourceTree = "<group>"; };
 		D631F9C426DCDDBC00447B88 /* JTNewsFeedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTNewsFeedItem.swift; sourceTree = "<group>"; };
 		D631F9C726DCE0D100447B88 /* NewsFeedRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedRepository.swift; sourceTree = "<group>"; };
@@ -982,6 +994,7 @@
 				D65FE852272E9D63002BA0DC /* GetSurveyUserStatusResponse.swift */,
 				D65FE86C273174BC002BA0DC /* PostSurveyUserAnswersResponse.swift */,
 				5835C7452E9CA7C4003515C9 /* ResetPasswordResponse.swift */,
+				CL0001062E9A0001001EMAIL /* ValidateEmailCodeResponse.swift */,
 			);
 			path = "API Response models";
 			sourceTree = "<group>";
@@ -1118,6 +1131,9 @@
 				2120BE2022DF2787004854DB /* RequestVerificationCodeViewController.swift */,
 				2120BE2222DF279D004854DB /* ValidateVerificationCodeViewController.swift */,
 				2120BE1E22DF2758004854DB /* SignUpViewController.swift */,
+				CL0001002E9A0001001EMAIL /* RequestEmailVerificationCodeViewController.swift */,
+				CL0001022E9A0001001EMAIL /* ValidateEmailVerificationCodeViewController.swift */,
+				CL0001042E9A0001001EMAIL /* EmailSignUpViewController.swift */,
 			);
 			path = SignIn;
 			sourceTree = "<group>";
@@ -1524,6 +1540,8 @@
 				604A892E24CF100900212B44 /* SecondChildVC.swift */,
 				604A892F24CF100A00212B44 /* ThirdChildVC.swift */,
 				604A892A24CF0FF600212B44 /* FifthChildVC.swift */,
+				604A892B24CF0FF400212B44 /* SixthChildVC.swift */,
+				604A892CC7CF0FF500212B44 /* SeventhChildVC.swift */,
 				604A892824CF0FF500212B44 /* FirstChildVC.swift */,
 				604A892924CF0FF500212B44 /* FourthChildVC.swift */,
 				609F80B424910144003D1E9A /* PopUpViewController.swift */,
@@ -2044,6 +2062,8 @@
 				833E622F23A13BE400EC93C7 /* GetCreateMessageResponse.swift in Sources */,
 				60EDAC8324D98062004FB3E6 /* CouponResponse.swift in Sources */,
 				604A892D24CF0FF600212B44 /* FifthChildVC.swift in Sources */,
+				604A892E24CF100600212B44 /* SixthChildVC.swift in Sources */,
+				604A8930C7CF100700212B44 /* SeventhChildVC.swift in Sources */,
 				836A88492390136000F68539 /* GalleryViewController.swift in Sources */,
 				D65E1C44279EE06000E95FA7 /* JTSurveyCheckedInfo.swift in Sources */,
 				FB51712122F1D374003BCAFC /* MishnaChapterViewController.swift in Sources */,
@@ -2176,6 +2196,10 @@
 				83A7A0C923E2E36E0041BE28 /* DedicationCardView.swift in Sources */,
 				2120BE1D22DF273F004854DB /* SignInViewController.swift in Sources */,
 				2120BE2322DF279D004854DB /* ValidateVerificationCodeViewController.swift in Sources */,
+				CL0001012E9A0001001EMAIL /* RequestEmailVerificationCodeViewController.swift in Sources */,
+				CL0001032E9A0001001EMAIL /* ValidateEmailVerificationCodeViewController.swift in Sources */,
+				CL0001052E9A0001001EMAIL /* EmailSignUpViewController.swift in Sources */,
+				CL0001072E9A0001001EMAIL /* ValidateEmailCodeResponse.swift in Sources */,
 				8342BA6C2370528600C3239C /* Fonts.swift in Sources */,
 				83A936AF23DDEA93007BA207 /* OldDonationsViewController.swift in Sources */,
 				212ECEB62317CD6E005AEB36 /* AudioPlayer.swift in Sources */,
@@ -2435,7 +2459,7 @@
 				CODE_SIGN_ENTITLEMENTS = Jabrutouch/Jabrutouch.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 82;
+				CURRENT_PROJECT_VERSION = 86;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = T57ASHU8T6;
 				ENABLE_BITCODE = NO;
@@ -2449,7 +2473,7 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 7.1.6;
+				MARKETING_VERSION = 7.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = il.co.jabrutouch.Jabrutouch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2468,7 +2492,7 @@
 				CODE_SIGN_ENTITLEMENTS = Jabrutouch/Jabrutouch.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 82;
+				CURRENT_PROJECT_VERSION = 86;
 				DEVELOPMENT_TEAM = T57ASHU8T6;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -2481,7 +2505,7 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 7.1.6;
+				MARKETING_VERSION = 7.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = il.co.jabrutouch.Jabrutouch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
